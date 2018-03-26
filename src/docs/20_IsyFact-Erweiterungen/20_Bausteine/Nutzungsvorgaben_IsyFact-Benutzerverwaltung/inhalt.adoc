@@ -1,0 +1,339 @@
+= Einbinden von isy-benutzerverwaltung-core
+
+In diesem Abschnitt wird beschrieben, wie man das Modul `isy-benutzerverwaltung-core` in die eigene Anwendung 
+integriert.
+Nach der Einbindung kann mit Hilfe der Schnittstelle 
+
+    `de.bund.bva.isyfact.benutzerverwaltung.core.benutzerverwaltung.Benutzerverwaltung`
+    
+beispielsweise eine eigene grafische Oberfläche geschrieben werden, um auf die Funktionen  (z.B. Anlegen, 
+Suchen und Löschen von Benutzern) der Benutzerverwaltung zuzugreifen.
+
+== Maven
+
+Zur Integration der Kernkomponente muss die Anwendung die folgende Abhängigkeit in ihrem POM definieren:
+
+[source,xml]
+----
+<dependency>
+    <groupId>de.bund.bva.isyfact.benutzerverwaltung</groupId>
+    <artifactId>isy-benutzerverwaltung-core</artifactId>
+    <version>1.3.x</version>
+</dependency>
+----
+
+== Datenbank
+
+Um die für die _IsyFact-Benutzerverwaltung_ benötigten Tabellen anzulegen gibt es mehrere Möglichkeiten.
+
+- In der Datei `jpa.properties` den Parameter `database.schema.updatemode=create` setzen. 
+
+WARNING: Beim nächsten Start der Anwendung werden alle Tabellen neu erstellt.
+
+- Zum Erzeugen der benötigten Tabellen kann auch das folgende SQL-Skript ausgeführt werden:
+  `isy-benutzerverwaltung\src\main\resources\resources\isy-benutzerverwaltung\skripte\sql\isy-Benutzerverwaltung-tabellen-anlegen.sql`
+
+Für die Komponente `isy-benutzerverwaltung-core` werden drei Tabellen benötigt:
+
+- `Benutzer`
+- `Rollen`
+- `Benutzer_Rollen`
+
+// Ist das so richtig? Die Rollen werden schon in der Datenbank gespeichert, aber die Zuordnung von Rollen
+// zu Rechten geschiet über die rollenrechte.xml.
+// Wechles Attribut RolleName?
+
+Die Rollen werden in der Datenbank gespeichert.
+Die Zuordnung von Rechten zu Rollen geschieht aber in der Datei `rollenrechte.xml`.
+Damit diese Zuordnung funktioniert, müssen die vergebenen _Rollen-IDs_ der Datenkbank mit denen aus der `rollenrechte.xml` übereinstimmen.
+Zum Aufbau der Datei `rollenrechte.xml` sei auf die <<NutzungsvorgabenSicherheit>> verwiesen.
+
+== Spring
+
+Die Spring-Konfiguration von `isy-benutzerverwaltung-core` wird folgendermaßen in die eigene Anwendung integriert:
+
+[source,xml]
+----
+<beans>
+    ...
+    <import resource="classpath:resources/isy-benutzerverwaltung/spring/isy-benutzerverwaltung-core-modul.xml" />
+    ...
+</beans>
+----
+
+Wird die Anwendung mittels Annotationen konfiguriert, sieht der Import wie folgt aus:
+
+[source,java]
+----
+@Configuration
+...
+@ImportResource("classpath:resources/isy-benutzerverwaltung/spring/isy-benutzerverwaltung-core-modul.xml")
+...
+public class ...
+----
+
+
+== Sonstiges
+
+=== Persistenz
+
+In der Datei `persistence.xml` muss ein Eintrag für die Entities `Benutzer` und `Rolle` hinzugefügt werden.
+
+:desc-listing-persisxml: persistence.xml
+[id="listing-persisxml",reftext="{listing-caption} {counter:listings }"]	
+.{desc-listing-persisxml}
+[source,xml]
+----
+<persistence version="2.1">
+  <persistence-unit name="...">
+    ...
+    <!-- Wird für Benutzerverwaltung benötigt -->    
+    <class>de.bund.bva.isyfact.benutzerverwaltung.persistence.basisdaten.entity.Benutzer</class>
+    <class>de.bund.bva.isyfact.benutzerverwaltung.persistence.basisdaten.entity.Rolle</class>
+  </persistence-unit>
+</persistence>
+----
+
+=== Integration in Anwendungen
+
+Da Anwendungen nicht direkt auf die Tabellen der Benutzerverwaltung zugreifen und diese ändern dürfen, müssen sie immer über die Schnittstelle des Anwendungskerns gehen.
+Anwendungskomponenten müssen trotzdem Referenzen auf Benutzer speichern können.
+Dazu ist zur Integration in die Entitäten der Anwendung die Klasse `BenutzerReferenz` vorgesehen.
+Hinweise zur Verwendung sind in der API-Dokumentation der Klasse enthalten.
+
+= Einbinden von isy-benutzerverwaltung-sicherheit
+
+Das Modul `isy-benutzerverwaltung-sicherheit` implementiert einen `AccessManager` aus `isy-sicherheit` als 
+zentrale Komponente zur Authentifizierung.
+
+== Maven
+
+
+Zur Integration der Sicherheitskomponente muss die Anwendung die folgende Abhängigkeit in ihrem POM definieren:
+
+[source,xml]
+----
+<dependency>
+    <groupId>de.bund.bva.isyfact.benutzerverwaltung</groupId>
+    <artifactId>isy-benutzerverwaltung-sicherheit</artifactId>
+    <version>1.3.x</version>
+</dependency>
+----
+
+== Spring
+
+Zur Integration der Sicherheitskomponente muss die Anwendung die XML-Konfiguration der Komponente importieren:
+
+[source,xml]
+----
+<beans>
+    ...
+    <import resource="classpath:resources/isy-benutzerverwaltung/spring/isy-benutzerverwaltung-sicherheit-modul.xml"/>
+    ...
+</beans>
+----
+
+Wird die Anwendung mittels Annotationen konfiguriert, sieht der Import wie folgt aus:
+
+[source,java]
+----
+@Configuration
+...
+@ImportResource("classpath:resources/isy-benutzerverwaltung/spring/isy-benutzerverwaltung-sicherheit-modul.xml")
+...
+public class ...
+----
+
+Wichtig ist, dass die Anwendung bei der Nutzung der Sicherheitskomponente keine eigenen Sicherheits-Beans 
+instantiieren darf.
+Folgende Bean-Definitionen müssen beim Einbinden der Sicherheitskomponente entfernt werden, damit keine 
+Konflikte entstehen:
+
+* `Sicherheit`
+* `SicherheitAdmin`
+* `AccessManager`
+* `AufrufkontextFactory`
+* `AufrufkontextVerwalter`
+
+Wird die Sicherheitskomponente nicht im Kontext einer Web-Anwendung genutzt – zum Beispiel im Rahmen einer 
+Batch-Anwendung – müssen darüber hinaus noch eigene Scopes definiert werden. 
+Dies wird mit folgender Spring-Konfiguration erreicht:
+
+[source,xml]
+----
+<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+    <property name="scopes">
+        <map>
+            <entry key="request">
+		  <bean class="org.springframework.context.support.SimpleThreadScope"/>
+            </entry>
+            <entry key="session">
+               <bean class="org.springframework.context.support.SimpleThreadScope"/>
+            </entry>
+        </map>
+    </property>
+</bean>
+----
+
+Wird die Anwendung mittels Annotationen konfiguriert, sieht die Konfiguration wie folgt aus:
+
+[source,java]
+----
+@Bean
+public static CustomScopeConfigurer customScopeConfigurer() {
+    CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
+    customScopeConfigurer.addScope("request", new SimpleThreadScope());
+    customScopeConfigurer.addScope("session", new SimpleThreadScope());
+    return customScopeConfigurer;
+}
+----
+
+= Einbinden von isy-benutzerverwaltung-gui-tomahawk
+
+Für die Benutzerverwaltung existieren zwei Module, die eine Verwaltungsoberfläche für die Benutzerverwaltung umsetzen.
+Damit können Benutzer gegen eine lokale Datenbank authentifiziert und Benutzer und Rollen angelegt, bearbeitet, gesucht und gelöscht werden.
+Zusätzlich können Benutzern Rollen zugewiesen und Passwörter geändert werden.
+Das Modul `isy-benutzerverwaltung-gui-tomahawk` nutzt die GUI-Komponenten aus der Bibliothek `isy-web` auf der Grundlage von _Apache MyFaces Tomahawk_.
+
+Im Folgenden wird beschrieben, wie das Modul `isy-benutzerverwaltung-gui-tomahawk` in die eigene 
+Anwendung integriert wird.
+
+== Maven
+
+Folgende Abhängigkeit ist in der `pom.xml` zu ergänzen:
+
+:desc-listing-tompomxml: pom.xml
+[id="listing-tompomxml",reftext="{listing-caption} {counter:listings }"]	
+.{desc-listing-tompomxml}
+[source,xml]
+----
+<dependency>
+    <groupId>de.bund.bva.isyfact.benutzerverwaltung</groupId>
+    <artifactId>isy-benutzerverwaltung-gui-tomahawk</artifactId>
+    <version>1.3.x</version>
+</dependency>
+----
+
+== Spring
+
+Die Spring-Konfiguration von `isy-benutzerverwaltung-gui-tomahawk` wird folgendermaßen in die eigene 
+Anwendung integriert:
+
+:desc-listing-springtomgui: Spring-Konfiguration mit _Tomahawk_-GUI
+[id="listing-springtomgui",reftext="{listing-caption} {counter:listings }"]	
+.{desc-listing-springtomgui}
+.[source,xml]
+----
+<beans>
+...
+    <import resource="classpath:resources/isy-benutzerverwaltung/spring/isy-benutzerverwaltung-gui-tomahawk-modul.xml"/>
+...
+</beans>
+----
+
+== Maskentexte
+
+Um den Titel der Anwendung auf den Seiten der Benutzerverwaltungs zu setzen gibt es mehrere Möglichkeiten.
+Eine davon ist die Datei `/WEB-INF/gui/common/seitenelemente/messageRessources.xhtml` in der 
+eigenen Anwendung zu überschreiben und darin eine eigene _Properties_-Datei für den Anwendungstitel zu laden.
+
+:desc-listing-messresstomxml: /WEB-INF/gui/common/seitenelemente/messageRessources.xhtml
+[id="listing-messresstomxml",reftext="{listing-caption} {counter:listings }"]	
+.{desc-listing-messresstomxml}
+[source,xml]
+----
+<ui:composition>
+    <!-- Diese Datei muss in der einbindenden Anwendung überschrieben werden,
+         damit man für MEL_Anwendungsname einen Wert in einer eigenen Properties- 
+         Datei setzen kann.-->
+    <f:loadBundle basename="resources.nachrichten.meinemaskentexte" var="msg" />
+</ui:composition>
+----
+
+:desc-listing-mymaskprops: meinemasktentext.properties
+[id="listing-mymaskprops",reftext="{listing-caption} {counter:listings }"]	
+.{desc-listing-mymaskprops}
+[source,properties]
+----
+MEL_Anwendungsname = Terminfindung
+----
+
+== Sonstiges
+
+=== Rollen und Rechte
+
+In beiden Implementierungen der Benutzeroberfläche ist die GUI durch folgende Rechte gesichert:
+
+Benutzerverwaltung:
+
+* `Benutzerverwaltung.Benutzer.Anlegen`
+* `Benutzerverwaltung.Benutzer.Suchen`
+* `Benutzerverwaltung.Benutzer.Aendern` 
+* `Benutzerverwaltung.Benutzer.Loeschen`
+* `Benutzerverwaltung.Benutzer.Aendern.Selbst`
+
+Rollenverwaltung:
+
+* `Benutzerverwaltung.Rolle.Anlegen`
+* `Benutzerverwaltung.Rolle.Suchen`
+* `Benutzerverwaltung.Rolle.Aendern`
+* `Benutzerverwaltung.Rolle.Loeschen`
+
+Diese Rechte können in der eigenen Anwendung einer beliebigen Rolle zugeordnet werden.
+
+
+:desc-listing-BSProllenrechte: Beispiel für eine `rollenrechte.xml`
+[id="listing-BSProllenrechte",reftext="{listing-caption} {counter:listings }"]	
+.{desc-listing-BSProllenrechte}
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Anwendung AnwendungsId="isy-benutzerverwaltung-gui-primefaces"
+	xmlns:tns="http://www.example.org/RollenRechteSchema"     
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/RollenRechteSchema RollenRechteSchema.xsd">
+  <!-- Rechte der Benutzerverwaltung -->
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Benutzer.Anlegen"/></tns:rechte>
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Benutzer.Suchen"/></tns:rechte>
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Benutzer.Aendern"/></tns:rechte>
+  <tns:rechte>
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Loeschen"/>
+  </tns:rechte>
+  <tns:rechte>
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Aendern.Selbst"/>
+  </tns:rechte>
+  <!-- Rechte der Rollenverwaltung -->
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Rolle.Anlegen"/></tns:rechte>
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Rolle.Suchen"/></tns:rechte>
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Rolle.Aendern"/></tns:rechte>
+  <tns:rechte><tns:rechtId Id="Benutzerverwaltung.Rolle.Loeschen"/></tns:rechte>
+
+  <!-- Beispielrollen -->
+  <tns:rollen RolleId="BenutzerAdmin" RolleName="Benutzer-Administrator">
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Anlegen"/>
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Suchen"/>
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Aendern"/>
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Loeschen"/>
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Aendern.Selbst"/>
+    <tns:rechtId Id="Benutzerverwaltung.Rolle.Anlegen"/>
+    <tns:rechtId Id="Benutzerverwaltung.Rolle.Suchen"/>
+    <tns:rechtId Id="Benutzerverwaltung.Rolle.Aendern"/>
+    <tns:rechtId Id="Benutzerverwaltung.Rolle.Loeschen"/>
+  </tns:rollen>
+
+  <tns:rollen RolleId="Benutzer">
+    <tns:rechtId Id="Benutzerverwaltung.Benutzer.Aendern.Selbst"/>
+  </tns:rollen>
+</tns:Anwendung>
+----
+
+Im gezeigten Beispiel wird eine Rolle `BenutzerAdmin` angelegt, der alle Rechte für 
+die _IsyFact-Benutzerverwaltung_ zugeordnet sind und eine Rolle `Benutzer`, die nur das Recht hat, 
+ihre eigenen Kontaktdaten zu ändern.
+
+=== HTML-Beispielseite
+
+Unter `src/main/resources/WEB-INF/gui/` befindet sich eine Seite `index.html`, auf der Links zu den Unterseiten von `isy-benutzerverwaltung-gui-tomahawk` zu finden sind.
+Diese Seite soll nur als Beispiel dienen und zeigen, wie die Unterseiten aufgerufen werden können. 
+
+WARNING: Bis auf die Login-Seite ist der Zugriff auf die anderen Seiten durch Rollen und Rechte gesichert. Diese können daher nur von angemeldeten Benutzern aufgerufen werden.

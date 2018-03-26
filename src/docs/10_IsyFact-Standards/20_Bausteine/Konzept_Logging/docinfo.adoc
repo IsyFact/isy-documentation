@@ -1,0 +1,31 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Konzept_Logging
+|====
+
+//|Datum |Version |Änderungsgrund
+//|10.09.2007 |0.1 |initiale Version
+//|12.09.2007 |0.2 |Einarbeitung der internen Reviewanmerkungen
+//|18.09.2007 |0.3 |Anpassung der Logging-Konfigurationen zur Nutzung der eigenen Layoutklasse.
+//|07.01.2008 |1.0 |Anmerkungen aus BVA-Prüfprotokollen eingearbeitet
+//|08.01.2008 |1.0.1 |Dokument als VS-NfD eingestuft.
+//|29.07.2008 |2.0 |Übernahme als PIB-Dokument
+//|11.08.2008 |2.0.1 |Vorgaben für Standardsoftware eingefügt
+//|02.09.2008 |2.2 |Zusammenfassung ergänzt, Dokumenteigenschaften und Kopfzeilen angepasst, Referenzen auf bestehende Register entfernt, anzupassende Referenzen gelb hinterlegt
+//|04.02.2009 |2.3 |Korrektur Einstufung im Auftrag des PIB
+//|20.11.2009 |2.3 |Umstellung Formatvorlage
+//|25.11.2009 |2.4 |Kein Rollierendes Logging für Batches
+//|07.04.2010 |2.5 |Einarbeitung der Anmerkungen
+//|19.04.2010 |2.5.1 |Überarbeitung Referenzen
+//|22.08.2011 |2.6 |Code-Beispiel für Logger angepasst.
+//|31.10.2012 |2.7 |Tabelle Java Bibliothek / IT-System hinzugefügt
+//|28.07.2014 |3.0 |Vollständige Überarbeitung des Logging-Konzepts (Entwurf).
+//|05.08.2014 |3.0.1 |Anmerkungen.
+//|19.12.2014 |3.0.2 |Reviewanmerkungen eingearbeitet.
+//|27.02.2015 |3.1 |Umstellung auf IsyFact. Erweiterungen im Rahmen von isy-logging.
+//|24.06.2015 |3.2 |Überarbeitung der Referenzen im Rahmen von IsyFact Release 1.0
+//|16.09.2015 |3.3 |Übernahme in die IsyFact. Reviewanmerkungen zur Übernahme eingearbeitet.
+//|07.10.2015 |3.4 |Beispiele für Ereignisschlüssel korrigiert.
+//|28.09.2017 |3.5 |Kapitel Aufbau der Log-Infrastruktur in separates Dokument ausgegliedert
+//|04.10.2017 |3.6 |Aufbau der Korrelations-ID genauer spezifiziert.

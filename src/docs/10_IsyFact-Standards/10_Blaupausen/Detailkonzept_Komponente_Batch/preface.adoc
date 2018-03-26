@@ -1,0 +1,10 @@
+== Zusammenfassung für das Management
+
+Gemäß der IsyFact-Referenzarchitektur sind Batches für eine Anwendung neben dem Online-Zugriff eine weitere 
+Zugriffsmöglichkeit auf ihre Fachlichkeit.
+Da Batches ohne manuelle Eingriffe auskommen sollen, müssen sie Logik für die Behandlung von und das 
+Wiederanlaufen nach Fehlern enthalten.
+Diese Logik ist in einem Batchrahmen enthalten, welcher keine anwendungsspezifische Logik enthält.
+
+In diesem Dokument wird der von den IsyFact-Standards definierte Batchrahmen sowie die Anforderungen 
+an die anwendungsspezifische Batchverarbeitung beschrieben.

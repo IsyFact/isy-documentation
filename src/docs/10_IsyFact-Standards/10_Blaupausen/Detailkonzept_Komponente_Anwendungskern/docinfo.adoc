@@ -1,0 +1,27 @@
+**Dokumentinformationen**
+
+[cols="1,4"]
+|====
+|Dokumenten-ID:| Detailkonzept_Komponente_Anwendungskern
+|====
+
+//|Datum |Version |Änderungsgrund
+//|14.12.2007 |0.9 |Erste Version des Doku­ments erstellt und vorgelegt.
+//|13.03.2008 |1.0 |Dokument abgenommen.
+//|28.07.2008-04.02.2009 |2.0-2.4 |Fortschreiben des Doku­ments, Korrekturen.
+//|17.11.2009 |2.4 |Fortschreiben des Doku­ments.
+//|15.04.2010 |2.5 |Reviewanmerkungen des BVA eingearbeitet.
+//|19.04.2010 |2.5.1 |Überarbeitung Referenzen
+//|15.02.2011 |2.6 |Axis entfernt, Statischer Zugriff auf Spring-Beans geändert, AOP-Nutzung
+//|25.02.2012 |2.6.1 |Aussagen zur Verwendung von Annotationen
+//|12.06.2012 |2.7 |Verwendung von @Required dokumentiert
+//|13.05.2013 |2.7.1 |Spring-Konfiguration Komponenten überarbeitet
+//|28.08.2013 |2.8 |Änderung vom Formulierungen im Rahmen von RF-Release 1.4
+//|30.09.2014 |2.9 |Übernahme des Dokuments
+//|02.12.2014 |2.10 |Namensänderung in „IsyFact“
+//|10.12.2014 |2.11 |Umstellung auf generiertes Quellenverzeichnis
+//|26.02.2015 |2.12 |Reviewkommentare eingearbeitet, Logo geändert
+//|27.03.2015 |2.13 |Lizenz auf CC 4.0 geändert
+//|12.05.2015 |2.14 |bereinigt
+//|08.04.2016 |2.15 |log4j entfernt, Beschreibung des webAppRootKey angepasst
+//|23.01.2017 |2.16 |Vorlageanwendung eingepflegt

@@ -1,0 +1,36 @@
+
+|====
+|Dokumenten-ID:| Konzept_Fehlerbehandlung
+|====
+
+//|Datum |Version |Änderungsgrund
+//|15.01.2008 |0.1 |initiale Version
+//|11.02.2008 |0.9 |Review-Anmerkungen von J. Boos, G. Pews und F. Dörr eingearbeitet.
+//|03.06.2008 |1.0 |Exception Hierarchien angepasst, ExceptionFassade eingefügt.
+//|29.07.2008 |2.0 |Abnahme-Anmerkungen eingepflegt.
+//|01.09.2008 |2.1 |Übernahme als PIB-Dokument
+//|18.09.2008 |2.2 |Dokumenteigenschaften angepasst, Referenzen auf bestehende Register entfernt, anzupassende Referenzen gelb hinterlegt
+//|20.11.2009 |2.2 |Umstellung Formatvorlage
+//|03.02.2010 |2.3 |Einarbeitung Reviewanmerkungen BVA
+//|07.04.2010 |2.4 |Einarbeitung CR 7893
+//|19.04.2010 |2.4.1 |Überarbeitung Referenzen
+//|29.09.2011 |2.5 | Hinweis auf HttpInvoker-SST in Java 1.4 entfernt. Fachliche Exceptions werden in der Regel auf Debug geloggt.
+//|02.02.2012 |2.6 |Anpassung der Fehlerhierarchie (neue PLIS-BusinessException), TR10132
+//|28.08.2012 |2.7 |Verwendung von Fehler-Rückmeldungen für Validierungen
+//|31.10.2012 |2.8 |Tabelle Java Bibliothek / IT-System hinzugefügt
+//|03.04.2013 |2.8.1 |Erklärung der zugehörigen PLIS-Bibliotheken
+//|30.09.2014 |2.9 |Übernahme des Dokuments in die PLIS-Factory
+//|08.12.2014 |2.10 |Namensänderung in IsyFact
+//|11.12.2014 |2.11 |Umstellung auf generiertes Quellenverzeihnis
+//|25.03.2015 |2.12 |Reviewanmerkungen eingearbeitet, Logo geändert
+//|27.03.2015 |2.13 |Lizenz auf CC 4.0 geändert
+//|31.01.2017 |2.14 |Vorlageanwendung eingepflegt
+
+**Java Bibliothek / IT-System**
+
+[cols="5,2,3",options="header"]
+|====
+|Name |Art |Version
+|isy-exception-core (Teil isyfact-base) |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-exception-sst (Teil isyfact-base) |Bibliothek |siehe isyfact-bom v1.5.x
+|====

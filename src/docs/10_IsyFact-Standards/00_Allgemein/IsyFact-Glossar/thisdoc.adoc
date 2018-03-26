@@ -1,0 +1,7 @@
+[[Einleitung]]
+== Einleitung
+
+// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
+
+Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
+

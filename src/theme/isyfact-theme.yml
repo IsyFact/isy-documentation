@@ -1,0 +1,93 @@
+font:
+  catalog:
+    Liberation:
+      normal: LiberationSans-Regular.ttf
+      italic: LiberationSans-Italic.ttf
+      bold: LiberationSans-Bold.ttf
+      bold_italic: LiberationSans-BoldItalic.ttf
+base:
+  font_family: Liberation
+  font_color: #000000
+  font_size: 10
+  line_height_length: 12
+  line_height: $base_line_height_length / $base_font_size
+  align: justify
+page:
+  layout: portrait
+  margin: [3cm, 3cm, 3cm, 3cm]
+  size: A4
+
+vertical_rhythm: $base_line_height_length
+title_page:
+  background_image: image:front_cover.png[]
+  align: left
+  font_style: bold
+  title:
+    font-size: 26
+  revision:
+    font-size: 16
+toc:
+  h1_font_style: bold
+  h2_font_style: bold
+  h3_font_style: bold
+heading:
+  font_color: #000000
+  font_style: bold
+  line_height: 1.2
+  margin_bottom: $vertical_rhythm
+  h1_font_size: 12
+  h2_font_size: 11
+  h3_font_size: 10
+  h4_font_size: 10
+  h5_font_size: 10
+  h6_font_size: 10
+  h3_font_style: bold
+  h4_font_style: bold
+  h5_font_style: normal
+  h6_font_style: normal
+  margin_bottom: 4
+table:
+  head:
+    background_color: #d9d9d9
+  body:
+    stripe_background_color: #ffffff
+link:
+  font_color: #000000
+code:
+  border_color: #000000
+  font_size: 9
+sidebar:
+  background_color: #bfbfbf
+  border_color: #000000
+admonition:
+  column_rule_color: #000000
+  padding: [0, 6, 0, 6]
+header:
+  height: 2cm
+  line_height: 1
+  recto_content:
+    left: '{document-title}'
+  verso_content:
+    right: '{document-title}'
+footer:
+  height: 1.5cm
+  line_height: 1
+  font_color: #000000
+  border_style: solid
+  border_width: 0.25
+  border_color: #000000
+  recto_content:
+    left: 'Seite {page-number} von {page-count}'
+    right: Vom Bundesverwaltungsamt lizenziert unter https://creativecommons.org/licenses/by/4.0/deed.de[CC-BY 4.0]
+  verso_content:
+    right: 'Seite {page-number} von {page-count}'
+    left: Vom Bundesverwaltungsamt lizenziert unter https://creativecommons.org/licenses/by/4.0/deed.de[CC-BY 4.0]
+image:
+  align: center
+caption:
+  align: center
+  font_color: #000000
+  font_size: 10
+link:
+  text_decoration: underline
+  font_color: #000000

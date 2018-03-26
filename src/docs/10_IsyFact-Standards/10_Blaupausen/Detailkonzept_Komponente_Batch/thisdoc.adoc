@@ -1,0 +1,16 @@
+[[Einleitung]]
+== Einleitung
+
+// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
+
+Dieses Dokument beschreibt die Funktionsweise und Besonderheiten von Batches innerhalb der IsyFact Anwendungslandschaft.
+Zunächst wird auf den Begriff „Batch“ und dessen Anwendungslogik eingegangen.
+Die Trennung von Batchrahmen und Batchlogik ermöglicht eine Trennung der allgemeinen Funktionsweise von dem 
+fachspezifischen Teil.
+
+In Kapitel <<anforderungen>> werden die Anforderungen, in Kapitel <<ausgrenzungen>> die Ausgrenzungen definiert.
+Die Funktionsweise des Batchrahmens und die verschiedenen Startarten sowie die Konfiguration folgt in 
+Kapitel <<der-batchrahmen>>. Dort werden auch die Transaktionssteuerung und die Restart-Funktionalität beschrieben, 
+die es ermöglicht, abgebrochene Batches fortzusetzen.
+Die Überwachung mittels JMX ist ebenfalls enthalten.
+Kapitel <<die-ausfuehrungsbeans>> beschreibt schließlich, wie die konkrete Batchlogik über Ausführungsbeans angebunden wird.

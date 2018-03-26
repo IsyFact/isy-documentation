@@ -1,0 +1,28 @@
+[[einleitung]]
+== Einleitung
+
+Dieses Dokument beschreibt alle Aspekte, die bei der Verwendung der `isy-task` Bibliothek zu berücksichtigen sind.
+
+Die `isy-task` Bibliothek wurde im Dokument <<KonzeptTaskScheduling>> konzipiert.
+
+[[aufbau-und-zweck-des-dokuments]]
+== Aufbau und Zweck des Dokuments
+
+Die `isy-task` Bibliothek wird im Rahmen der IsyFact Software Factory zur automatisierten Ausführung von wiederkehrenden Aufgaben
+innerhalb von fachlichen Anwendungskomponenten eingesetzt.
+Der Zweck dieses Dokuments ist Vorgaben zur Nutzung der Querschnittsbibliothek `isy-task` zu geben.
+Das Dokument richtet sich somit vorrangig an Entwickler, Konstrukteure und Technische Chefdesigner von Anwendungssystemen,
+die gemäß den Vorgaben der IsyFact umgesetzt werden.
+
+Kapitel <<verwendung-der-querschnittsbibliothek-isy-task>> beschreibt das Arbeiten
+mit der Querschnittsbibliothek `isy-task`.
+
+Kapitel <<programmatisches-anlegen-von-aufgaben>> beschreibt, wie die
+Querschnittsbibliothek ohne Spring Konfiguration verwendet werden kann.
+
+Kapitel <<konfigurationsschluessel>> bietet einen Überblick über die Konfigurationsschlüssel.
+
+Kapitel <<ueberwachung-mit-jmx>> zeigt, wie die JMX-Überwachung eingebunden wird.
+
+Kapitel <<hinweise-fuer-den-task-im-parallelbetrieb>> gibt Anmerkungen für die
+Implementierung eines Tasks.

@@ -1,0 +1,8 @@
+[[einleitung]]
+== Einleitung
+// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
+
+In diesem Dokument werden die Java-Programmierkonventionen der IsyFact beschrieben.
+
+Die Einhaltung der Programmierkonventionen fördert die Wartbarkeit und Weiterentwicklungsfähigkeit der nach
+IsyFact-Standards erstellen Software.

@@ -1,0 +1,31 @@
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Konzept_Umgang_mit_Sonderzeichen
+|====
+
+//|Datum |Version |Änderungsgrund
+//|27.02.2008 |0.1 |Initiale Version des Dokuments erstellt
+//| |1.0 |Anmerkungen aus Abnahme BVA eingearbeitet
+//|18.09.2008 |1.1 |Übernahme als PIB-Dokument, auslieferungsfertig für Register Factory
+//|16.02.2009 |1.2 |Dokument um zulässige Sonderzeichen und Codierung von Property-Dateien erweitert.
+//| |1.3 |Einarbeitung CR7893, Akzeptieren der Änderungen
+//|19.04.2010 |1.3.1 |Überarbeitung Referenzen
+//|19.07.2011 |1.4 |Umstellung auf Vorgabe String.latin des BMI
+//|05.01.2012 |1.5 |Aktualisierungen bzgl JPA und Eclipse-Konfig
+//|31.10.2012 |1.5.1 |Tabelle Java Bibliothek / IT-System hinzugefügt
+//|05.02.2013 |1.6 |Nutzungkonzept der Bibliothek plis-sonderzeichen (Kap. 5) hinzugefügt.
+//|30.09.2014 |1.7 |Übernahme des Dokuments.
+//|04.12.2014 |1.8 |Namensänderung in „IsyFact“
+//|11.12.2014 |1.9 |Umstellung auf generiertes Quellenverzeichnis
+//|26.02.2015 |1.10 |Reviewkommentare eingearbeitet, Logo geändert |
+//|27.03.2015 |1.11 |Lizenz auf CC 4.0 geändert 
+
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3"]
+|====
+|Name |Art |Version
+|isy-sonderzeichen |Bibliothek |siehe isyfact-bom v1.5.x
+|====

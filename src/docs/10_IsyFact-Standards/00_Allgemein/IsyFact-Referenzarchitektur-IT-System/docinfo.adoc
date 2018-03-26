@@ -1,0 +1,16 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| IsyFact-Referenzarchitektur-IT-System
+|====
+
+//|Datum |Version |Änderungsgrund
+//|08.07.2013 |0.1 |Dokument angelegt, Übernahme der Kapitel aus RegisterFactory-Referenzarchitektur
+//|28.08.2013 |0.2 |Kleinere Änderungen von Formulierungen im Rahmen von Register Factory Release 1.4
+//|30.09.2014 |0.3 |Übernahme des Dokuments in die PLIS-Factory.
+//|05.12.2014 |0.4 |Umstellung auf IsyFact
+//|10.12.2014 |0.5 |Umstellung auf generiertes Quellenverzeichnis
+//|27.01.2015 |0.6 |Review-Anmerkungen umgesetzt
+//|26.03.2015 |0.7 |Lizenz auf CC 4.0 geändert
+//|12.05.2015 |1.0 |bereinigt, Dokumentnamen auf IsyFact geändert
+//|25.04.2016 |1.2 |Native-GUI entfernt

@@ -1,0 +1,48 @@
+// ASCIIDOC Attribute
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+//
+:doctitle: Nutzungsvorgaben Isy-Util
+:title: {doctitle}
+
+// Zwangsplatz des TOC
+
+include::../../../common/colophon.adoc[]
+
+// Änderungsübersicht
+include::docinfo.adoc[]
+// Executive Summary
+// include::preface.adoc[]
+
+// Inhaltsverzeichnis
+ifdef::backend-html5[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// Einleitung
+include::thisdoc.adoc[]
+
+// Inhalt
+include::inhalt.adoc[leveloffset=1]
+
+:sectnums!:
+
+// Literaturverzeichnis
+include::bibliography.adoc[]
+// ? Tabellenverzeichnis
+include::listoftables.adoc[]
+// ? Abbildungsverzeichnis
+include::listoffigures.adoc[]
+// ? Listings-Verzeichnis
+include::listoflistings.adoc[]
+// Glossar
+include::glossary.adoc[]
+// Index
+//include::../common/index.adoc[]
+
+// Anhänge
+//include::anhaenge.adoc[leveloffset=1]

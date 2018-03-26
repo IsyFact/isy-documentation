@@ -1,0 +1,9 @@
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_Datum_Zeit
+|====
+
+//|Datum |Version |Änderungsgrund
+//|04.09.2017 |0.1 |initiale Version

@@ -1,0 +1,694 @@
+[[aufbau-und-zweck-des-dokuments]]
+= Aufbau und Zweck des Dokuments
+Mit diesem Leitfaden bauen Sie eine funktionierende Entwicklungsumgebung auf und generieren mit dem Projektgenerator der IsyFact eine Hello-World-Anwendung.
+
+== Aufbau
+Der Leitfaden führt Sie durch folgende Schritte:
+
+. <<virtuelle-maschine-vorbereiten>> (optional)
+. benötigte <<werkzeuge-installieren>> und konfigurieren
+. <<isyfact-bibliotheken-installieren>>
+. <<hello-world-anwendung-generieren>>
+
+== Voraussetzungen
+Zum Abschluss des Leitfadens (ohne Vorbereitung einer virtuellen Maschine) benötigen Sie:
+
+* Git 2.x
+* JDK 1.8
+* Maven 3.1.1+
+* Apache Tomcat 8.5.x
+* Spring Tool Suite
+
+Wenn Sie sich eine virtuelle Maschine vorbereiten möchten, benötigen Sie zusätzlich:
+
+* Oracle VirtualBox
+
+Wenn Sie sich bereits eine geeignete Umgebung geschaffen haben, um die Werkzeuge sowie die IsyFact-Bibliotheken zu installieren, können Sie die Vorbereitung einer
+virtuellen Maschine überspringen und direkt mit dem Kapitel <<werkzeuge-installieren>> beginnen.
+
+[[virtuelle-maschine-vorbereiten]]
+== Virtuelle Maschine vorbereiten
+
+In diesem Kapitel bereiten Sie eine virtuelle Maschine (VM) vor, auf der Sie später die IsyFact-Entwicklungsumgebung installieren werden.
+
+TIP: Wenn Sie keine virtuelle Maschine für Ihre IsyFact-Entwicklungsumgebung einsetzen oder bereits eine virtuelle Maschine als Grundlage für Ihre
+IsyFact-Entwicklungsumgebung vorbereitet haben, können Sie dieses Kapitel überspringen und mit dem Kapitel <<werkzeuge-installieren>> fortfahren.
+
+== VirtualBox installieren und konfigurieren
+
+Für die Erstellung der virtuellen Maschine benötigen
+Sie ein Host-System, das die virtuelle Maschine als Gastsystem verwaltet. Das gängigste Produkt hierfür ist Oracle VirtualBox. VirtualBox lässt sich unter https://www.virtualbox.org
+herunterladen.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_01: Virtualbox Hauptmenü
+[id="image-leitfaden_entwicklungsumgebung_vb_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_01}
+image::leitfaden_entwicklungsumgebung_vb_01.png[align="center"]
+
+VirtualBox kann mehrere virtuelle Maschinen verwalten. Jede virtuelle Maschine wird auf Ihrer Festplatte unterhalb des Home-Verzeichnisses im Ordner "VirtualBox VMs" verwaltet.
+Jedes dieser Verzeichnisse enthält Konfigurationsdateien für die virtuelle Maschine. Im folgenden sprechen wir hierbei vom VM-Verzeichnis.
+
+Um die virtuelle Maschine zu erzeugen, klicken Sie innerhalb von Oracle VirtualBox im Hauptmenü auf "Neu".
+Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld "Ubuntu Gnome 17.04 (64bit)" eingeben. Setzen Sie die Version auf Ubuntu (64-bit).
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_02: Eingabe des Names der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_02}
+image::leitfaden_entwicklungsumgebung_vb_02.png[align="center",width=80%,pdfwidth=80%]
+
+Klicken Sie auf Weiter. Hierdurch wird VirtualBox das VM-Verzeichnis zur virtuellen Maschine erstellen. Das Verzeichnis trägt den gleichen Namen wie die virtuelle Maschine,
+nämlich "Ubuntu Gnome 17.04 (64bit)".
+
+Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfiguriert. Die Größe des Hauptspeichers sollte mindestens 4096 Megabyte betragen.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_03: Speichergröße festlegen
+[id="image-leitfaden_entwicklungsumgebung_vb_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_03}
+image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=70%,pdfwidth=70%]
+
+Klicken Sie auf Weiter. Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen. Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox
+in das Verzeichnis der virtuellen Maschine speichert. Ãœber die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
+um dort später das Ubuntu Betriebssystem zu installieren. Statt die Festplatte und das darin zu installierende Betriebssystem von Hand zu installieren, beschreibt diese
+Anleitung eine Abkürzung. Die Webseite http://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an. Unter http://www.osboxes.org/ubuntu-gnome
+wird beispielsweise eine Festplatte angeboten, auf der Ubuntu mit der Gnome-Oberfläche vorinstalliert ist. Diese Datei können Sie in komprimierter Form auch direkt über folgende
+URL herunterladen:
+
+ https://drive.google.com/uc?export=download&confirm=ZacZ&id=0B_HAFnYs6Ur-VWZ5TTVSd1dScEE
+
+Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_Gnome_17.04-VB-64bit.7z` in Ihrem Download-Verzeichnis. Entpacken Sie diese Datei in das
+VM-Verzeichnis "Ubuntu Gnome 17.04 (64bit)". Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_04: Virtuelle Festplatte einbinden
+[id="image-leitfaden_entwicklungsumgebung_vb_04",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_04}
+image::leitfaden_entwicklungsumgebung_vb_04.png[align="center",width=70%,pdfwidth=70%]
+
+Anschließend sollte die virtuelle Maschine samt virtueller Festplatte fertiggestellt sein.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_aendern: Konfigurationsdaten der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_aendern",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_aendern}
+image::leitfaden_entwicklungsumgebung_vb_aendern.png[align="center"]
+
+Die Konfiguration der VM ist noch nicht ganz fertig, denn Sie müssen auch noch einiges bezüglich Boot-Reihenfolge, Prozessor-Anzahl,
+Grafikspeicher und Austauschlaufwerk einstellen.
+
+Hierfür selektieren Sie die neu erschaffene VM und wählen im Menü "Ändern".
+Im erscheinenden Einstellungsfenster wechseln Sie auf der linken Seite auf "Allgemein" und dann rechts in den Reiter "Erweitert".
+Öffnen Sie die beiden Komboboxen "Gemeinsame Zwischenablage" und "Drag'n Drop" und selektieren Sie dort jeweils den Eintrag "bidirektional", um eine gemeinsame Zwischenablage des Host-Betriebssystems und der virtuellen Maschine zu erlangen.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_aendern_01: Zwischenablage konfigurieren
+[id="image-leitfaden_entwicklungsumgebung_vb_aendern_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_01}
+image::leitfaden_entwicklungsumgebung_vb_aendern_01.png[align="center"]
+
+Dann wechseln Sie auf der linken Seite in den Eintrag "System".
+Auf der rechten Seite wählen Sie den Reiter "Hauptplatine" und verschieben die Einträge so, dass in der Boot-Reihenfolge zunächst die Platte und dann die DVD erscheint. Das Häkchen bei "Diskette" können Sie entfernen.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_aendern_02: Zeigergerät einrichten
+[id="image-leitfaden_entwicklungsumgebung_vb_aendern_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_02}
+image::leitfaden_entwicklungsumgebung_vb_aendern_02.png[align="center"]
+
+Den Chipsatz belassen Sie bei PIIX3.
+
+Je nach Zeigergerät selektieren Sie eine für Sie passende Option aus.
+In dem Screenshot wird beispielsweise "USB-Tablet" vewendet. Wenn Sie jedoch eine Maus einsetzen, selektieren Sie "PS/2-Maus".
+
+Bei dem IO-APIC, handelt es sich um den sogenannten Advanced Programmable Interrupt Controller.
+Weil Sie für die Entwicklungsumgbeung zwei Prozessorkerne im Gastsystem einsetzen werden, ist das Häkchen erforderlich.
+
+Dann wechseln Sie in den Reiter "Prozessor".
+Hier stellen Sie ein, dass das Gastsystem über zwei Prozessoren verfügen soll.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_aendern_03: Prozessoren einrichten
+[id="image-leitfaden_entwicklungsumgebung_vb_aendern_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_03}
+image::leitfaden_entwicklungsumgebung_vb_aendern_03.png[align="center"]
+
+Als Letztes klicken Sie auf der linken Seite auf "Gemeinsame Ordner". Auf der rechten Seite können Sie über einen Ordner-Button einen gemeinsamen
+Ordner hinzufügen. Wählen Sie einen für Sie passenden Ordner und setzen Sie ein Häkchen bei "Automatisch einbinden".
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_aendern_04: Gemeinsamer Ordnerzugriff
+[id="image-leitfaden_entwicklungsumgebung_vb_aendern_04",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_04}
+image::leitfaden_entwicklungsumgebung_vb_aendern_04.png[align="center",width=40%,pdfwidth=40%]
+
+Bestätigen Sie die Änderungen mit einem Klick auf OK.
+
+Danach starten Sie die virtuelle Maschine mit einem Doppelklick auf die neu erstellte Instanz.
+
+=== Ubuntu Gnome
+
+Starten Sie Ihre virtuelle Maschine. Gleichen zu Beginn, müssen Sie Ihre Zugangsdaten eingeben.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_01: Startbildschirm der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_01}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_01.png[align="center"]
+
+Benutzername und Kennwort lauten `osboxes.org`. Danach erfolgt die Ersteinrichtung von Ubuntu Gnome.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_02: Welcome der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_02}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_02.png[align="center"]
+
+Anschließend legen Sie die Spracheinstellungen fest.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_03: Sprache der virtuellen Maschine konfigurieren
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_03}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_03.png[align="center"]
+
+Die restlichen Einstellungen können Sie überspringen. Nun ist die Konfiguration von Ubuntu beendet.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04: Konfigurationsende beim Erststart der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_04",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_04.png[align="center"]
+
+Klicken Sie links oben auf "Applications" und dann unten auf "Activities Overview", um eine Ãœbersicht über die Applikationen zu bekommen.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05: Startbildschirm der virtuellen Maschine nach dem Login
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_05",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_05.png[align="center"]
+
+=== Die Gasterweiterungen
+
+Oracle VirtualBox bietet Gasterweiterungen an, welche die Performanz des Gastsystems verbessert. Ein weiteres Feature ist, dass sich der Bildschirm beliebig skalieren lässt.
+Ohne Gasterweiterungen sind lediglich die Auflösungen 640x480, 800x600, und 1024x768 möglich. Außerdem funktioniert Drag'n Drop nur mit installierten Gasterweiterungen.
+Darüber hinaus bieten die Gasterweiterungen den sogenannten Seamless Mode an. Der Seamless Mode ermöglicht, dass sich die Fenster der VirtualBox Instanz innerhalb des
+Host-Systems anzeigen lassen, und somit den Anschein erwecken, sie seien in dieses integriert.
+
+TIP: Um die Gasterweiterungen zu installieren, benötigen Sie ein optisches Laufwerk, das vor dem Start der Ubuntu Instanz noch leer ist. Wenn Sie die obigen
+Arbeitsschritte durchgeführt haben, sollte das optische Laufwerk aber bereits existieren.
+
+Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintrag "Geräte" -> "Gasterweiterungen einlegen..".
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01: Gasterweiterungen laden auf der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01.png[align="center"]
+
+Hierdurch wird eine virtuelle CD automatisch in das optische Laufwerk eingelegt, worauf eine Startanwendung von selbst dafür sorgt, dass die Gasterweiterungen installiert werden. Im aufkommenden Fenster, klicken Sie auf "Run".
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02: Gasterweiterungen installieren auf der virtuellen Maschine
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02.png[align="center"]
+
+Bestätigen Sie mit einem Klick auf "Run". Anschließend sollte die Installation der Gasterweiterungen starten.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03: leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png[align="center"]
+
+Ihre virtuelle Maschine ist nun einsatzbereit.
+
+=== Tweak
+
+Abschließend passen Sie die visuelle Oberfläche Ihres Ubuntu Gnome Betriebssystems an, indem Sie im Hauptmenü auf "Applications" - "Utilities" - "Tweak Tools" klicken.
+Im erscheinenden Fenster, klicken Sie links auf Desktop.
+
+Über ein Häkchen, jeweils in der Checkbox "Home" und "Trash", werden zwei neue Symbole auf dem Desktop für das Home-Verzeichnis und für den Mülleimer erstellt.
+
+Über Location Background und Lock Screen Mode wechseln Sie die Hintergrundbilder.
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01: Hintergrundbild einrichten
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01.png[align="center"]
+
+Top Bar - Show Date und Show Seconds
+
+:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02: Uhrzeitanzeige einrichten
+[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02}
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02.png[align="center"]
+
+
+[[werkzeuge-installieren]]
+== Werkzeuge installieren
+
+Als Nächstes benötigt Ihre Entwicklungsumgebung ein JDK, Git, Maven und eine Entwicklungsumgebung (in diesem Fall das Eclipse Derivat Spring Source Tool Suite (STS)).
+
+===	JDK
+
+Auf der Kommandozeile installieren Sie mit folgender Anweisung das JDK:
+
+ sudo apt-get install openjdk-8-jdk
+
+In der Datei `.bashrc` fügen Sie die Umgebungsvariable `JAVA_HOME` hinzu und erweitern die Umgebungsvariable `PATH`:
+
+ JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ export JAVA_HOME
+
+ PATH=$JAVA_HOME/bin:$PATH
+ export PATH
+
+
+===	Git
+
+Danach installieren Sie Git mit folgender Anweisung:
+
+ sudo apt-get install git
+
+Um auch alle Sub-Packages zu installieren, rufen Sie folgendes Kommando auf:
+
+ sudo apt-get install git-all
+
+==== Git Konfiguration
+
+Auf der Kommandozeile wird Git über den Aufruf des Kommandos `git` gesteuert.
+Das `git`-Kommando kennt eine Reihe von Optionsparametern.
+Die Konfiguration wird beispielsweise über den Optionsparameter `config` festgelegt.
+Dabei kann sie in drei Granularitäten durchgeführt werden.
+Ãœber das Kommando
+
+ git config --system
+
+nehmen Sie die Konfiguration für alle Benutzer des Betriebssystems vor.
+Diese System-Konfiguration wird automatisch in die Datei `/etc/gitconfig` geschrieben.
+Ãœber
+
+ git config --global
+
+führen Sie die Konfiguration für den aktuellen Benutzer durch. Diese Konfiguration wird automatisch in die Datei `.gitconfig` in Ihr Home-Verzeichnis geschrieben.
+
+Darüber hinaus lässt sich in jedem einzelnen Verzeichnis eine eigene Konfiguration setzen, die in dem jeweiligen Unterverzeichnis `.git/config` geschrieben wird.
+Dabei werden die grob- von den feingranularen Konfigurationen überschrieben.
+
+Mit folgender Anweisung setzen Sie die Konfiguration für Ihren Git-Benutzer:
+
+ git config --global user.name "Michael Mustermann"
+ git config --global user.email "MichaelMustermann@behoerde.de"
+
+Jeder Konfigurationsstufe überschreibt die Werte der darüber liegenden Konfigurationsstufe.
+Beispielsweise gelten die Systemeinstellungen (`--system`) für alle Benutzer des Rechners, werden aber von globalen Einstellungen (`--global`) überschrieben.
+
+Um die Konfiguration einzusehen, geben Sie folgendes Kommando ein:
+
+ git config --global --list
+
+Hilfe erhalten Sie über den Optionsparameter `help`. Beispielsweise beschaffen Sie sich die Hilfestellung zum Optionsparameter `config` mit folgendem Kommando:
+
+ git help config.
+
+===	Maven
+
+IsyFact besteht aus zahlreichen Maven-Projekten. Ubuntu bietet von Haus aus ein eigenes
+Maven Paket an, das über folgendes Kommando intalliert wird:
+
+ sudo apt-get install maven
+
+===	Spring Tool Suite (STS)
+
+Im nächsten Schritt installieren Sie die integrierte Entwicklungsumgebung Spring Tool Suite (STS). Auf der Webseite https://spring.io/tools/sts/all bietet der
+Hersteller diesbezüglich eine Reihe von Download-Links an. Laden Sie die Linux-Version in der 64-Bit Variante herunter. Danach wechseln Sie in das
+Verzeichnis `/opt` und installieren die STS-Installationsdatei über folgendes Kommando:
+
+ sudo tar -xzf <Pfad zur STS-Installationsdatei> -C /opt
+
+Anschließend ist die Entwicklungsumgebung über das Kommando `STS` im Ordner `/opt/sts-bundle/<STS-Release>` einsatzfähig.
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts: Spring Tool Suite (STS) Installation
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts}
+image::leitfaden_entwicklungsumgebung_werkzeuge_sts.png[align="center"]
+
+Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses eine Datei des
+Typs `.desktop` abgelegt werden. Diese können Sie bequem mit dem Programm `gnome-panel` erzeugen. Installieren Sie `gnome-panel` mit folgender Anweisung:
+
+ sudo apt install gnome-panel
+
+Das folgende Kommando startet anschließend das Gnome Panel.
+
+ sudo gnome-desktop-item-edit /usr/share/applications --create-new
+
+Setzen Sie den Namen, den Pfad zum STS-Kommando und ein Kommentar. Das Bild ändern Sie durch einen Mausklick auf das Icon-Symbol.
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon: Spring Tool Suite (STS) Einrichtung des Namens
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon}
+image::leitfaden_entwicklungsumgebung_werkzeuge_sts_icon.png[align="center",width=60%,pdfwidth=60%]
+
+Danach lässt sich STS über das Applikations-Menü von Ubuntu starten. Hierfür klicken Sie auf "Applications" - "Other" - "STS"
+
+image::leitfaden_entwicklungsumgebung_werkzeuge_sts_other.png[]
+
+Außerdem wird STS nun auch in der "Activities Overview" angezeigt.
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_overview: Spring Tool Suite (STS) als Activity
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_overview",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_overview}
+image::leitfaden_entwicklungsumgebung_werkzeuge_sts_overview.png[align="center"]
+
+=== Apache Tomcat
+
+Bei einer IsyFact-Anwendung handelt es sich um eine Webanwendung, die genauso wie andere JavaEE-basierte Webanwendungen in einem Servlet-Container betrieben wird.
+Der gängigste Web Container hierfür ist Catalina bzw. das Produkt Apache Tomcat, das den Catalina Web Container integriert. Obwohl STS ein eigenes Apache Tomcat
+Derivat bereithält, setzt man bei einer IsyFact-Anwendung typischerweise Apache Tomcat ein. Deshalb wird in diesem Leitfaden diese Variante gezeigt. Laden Sie
+ Apache Tomcat von der Webseite http://www.apache.org herunter.
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01: Download von Apache Tomcat
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01}
+image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01.png[align="center"]
+
+Nach dem Download extrahieren Sie den Apache Tomcat Server ins Verzeichnis `/opt`.
+
+ sudo tar -xzvf <Pfad zur Tomcat-Installationsdatei> -C /opt
+
+Über folgendes Kommando sorgen Sie auch noch dafür, dass das Installationsverzeichnis dem Benutzer `osboxes` gehört.
+
+ sudo chown -R osboxes /opt/apache-tomcat-8.5.16
+
+Innerhalb von STS müssen Sie dafür sorgen, dass der Apache Tomcat Server eingebunden wird. Hierfür öffnen Sie STS und klicken im Hauptmenü auf "Window" - "Preferences".
+Im Einstellungsfenster öffnen Sie "Server" - "Runtime Environment". Klicken Sie hier auf "Add".
+
+Öffnen Sie den Reiter "Apache" und selektieren Sie darunter den Eintrag "Apache Tomcat v8.5". Setzen Sie auch ein Häkchen bei der Checkbox "Create a new local server".
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02: Server-Konfiguration
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02}
+image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02.png[align="center",width=80%,pdfwidth=80%]
+
+Klicken Sie auf "Next". Setzen Sie im erscheinenden Fenster den Installationspfad Ihres Apache Tomcat. In diesem Leitfaden ist das `/opt/<Tomcat-Release>`.
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03: Konfiguration von Apache Tomcat
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03}
+image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03.png[align="center",width=80%,pdfwidth=80%]
+
+Klicken Sie auf "Finish".
+
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04: Abschluss der Konfiguration
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04}
+image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04.png[align="center"]
+
+Klicken Sie auf "Apply and Close".
+
+[[isyfact-bibliotheken-installieren]]
+== IsyFact-Bibliotheken installieren
+
+In diesem Abschnitt wird gezeigt, wie Sie das IsyFact-Framework in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
+einer neuen Anwendung vorbereiten.
+
+TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten. Die URL zu den
+GitHub-Repositories lautet: https://github.com/isyfact.
+
+[[isyfact-masterpom]]
+=== isyfact-masterpom
+
+Mit diesem Abschnitt werden Sie die entfernten GitHub-Repositories in ein lokales Verzeichnis klonen. Sie beginnen mit dem GitHub-Repository `isyfact-masterpom`, denn dort befinden sich die Maven-Projekte `isyfact-masterpom` und `isyfact-masterpom-lib`, die die
+übergeordneten Maven-Projekte aller anderen Maven-Projekte des IsyFact-Frameworks darstellen. `isyfact-masterpom` ist der parent von `isyfact-masterpom-lib`.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_03: IsyFact masterpom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_03}
+image::leitfaden_entwicklungsumgebung_bibliotheken_03.png[align="center"]
+
+NOTE: In den Diagrammen wurden die GitHub-Repositories mit braunem Rand und hellbrauner Füllfarbe und die darin enthalten Maven-Projekte mit hellblauem Rand und
+weisser Füllfarbe gekennzeichnet.
+Das parent-child-Verhältnis zwischen den Maven Projekten wird mit einem hellblauen Pfeil veranschaulicht.
+
+Um die GitHub-Repositories zu klonen, könnten Sie Git auf der Kommandozeile einsetzen. In dieser Anleitung wird jedoch das Arbeiten mit Git innerhalb der STS gezeigt.
+Starten Sie also die STS und öffnen Sie dort die Perspektive Git. Klicken Sie in der Perspektive Git entweder auf die Clone-Schaltfläche oder auf den Link "Clone a Git repository".
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_04: Clonen eines Git Repositories
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_04",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_04}
+image::leitfaden_entwicklungsumgebung_bibliotheken_04.png[align="center"]
+
+Klicken Sie im erscheinenden Fenster auf GitHub.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_05: Github
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_05",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_05}
+image::leitfaden_entwicklungsumgebung_bibliotheken_05.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie anschließend auf "Next". In dem aufkommenden Fenster können Sie online nach GitHub-Repositories suchen. Geben Sie im Suchfeld "IsyFact" ein und klicken Sie auf den Button "Search". Daraufhin sollten im Fenster alle GitHub-Repositories aufgelistet werden, bei denen im Namen der Bezeichner "IsyFact" vorkommt. Selektieren Sie dort das GitHub-Repository `isyfact-masterpom`.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_06: Wahl des masterpom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_06",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_06}
+image::leitfaden_entwicklungsumgebung_bibliotheken_06.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie auf "Next". Im nächsten Fenster wird der Branch ausgewählt, der lokal heruntergeladen werden soll.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_07: Auswahl des Master
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_07",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_07}
+image::leitfaden_entwicklungsumgebung_bibliotheken_07.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie erneut auf "Next".
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_08: Speicherort des lokalen Clones
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_08",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_08}
+image::leitfaden_entwicklungsumgebung_bibliotheken_08.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie abschließend auf "Finish". Als Nächstes kann das Maven-Projekt aus dem Repository importiert werden. Hierfür klicken Sie mit der rechten Maustaste auf das
+Repository und wählen den Eintrag "Import Projects" aus. Daraufhin erscheint folgendes Fenster.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_09: Import des Projekts
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_09",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_09}
+image::leitfaden_entwicklungsumgebung_bibliotheken_09.png[align="center"]
+
+Bestätigen Sie den Import des Maven-Projekts `isyfact-masterpom` mit einem Klick auf Finish. Wechseln Sie anschließend in die Perspective "Spring". Hier sollte jetzt im
+Package-Explorer das Maven-Projekt `isyfact-masterpom` zu sehen sein.
+Dann klicken Sie mit der rechten Maustaste auf die Datei pom.xml und führen "Run As" -> "Maven Install" aus.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_10: Selektion der Kompilierung
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_10",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_10}
+image::leitfaden_entwicklungsumgebung_bibliotheken_10.png[align="center"]
+
+Dann öffnen Sie im Maven-Projekt `isyfact-masterpom` den Unterordner `isyfact-masterpom-lib` und führen in der dortigen pom.xml erneut das Menü "Run As" -> "Maven Install" aus.
+
+=== isyfact-products-bom
+
+Als Nächstes brauchen Sie das GitHub-Repository `isyfact-products-bom`. Das Maven-Projekt *
+`isyfact-products-bom` hat eine parent-child-Abhängigkeit zum Maven-Projekt `isyfact-masterpom-lib`. Da das Maven-Projekt `isyfact-masterpom-lib` bereits installiert sind, können Sie nun das GitHub-Repository `isyfact-products-bom` klonen.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_11: masterpom und products-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_11",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_11}
+image::leitfaden_entwicklungsumgebung_bibliotheken_11.png[align="center"]
+
+Um das GitHub Repository in ein lokales Verzeichnis zu klonen, gehen Sie genauso wie bereits weiter oben beschrieben vor, indem Sie in der Perspective Git auf den Button
+Clone klicken und in der GitHub-Repository-Auflistung hiernach suchen.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_12: Selektion des products-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_12",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_12}
+image::leitfaden_entwicklungsumgebung_bibliotheken_12.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie auf "Next". Auch hier wählen Sie den master-Branch.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_13: Wahl des Master-branch
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_13",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_13}
+image::leitfaden_entwicklungsumgebung_bibliotheken_13.png[align="center",width=80%,pdfwidth=80%]
+
+Klicken Sie erneut auf "Next".
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_14: Speicherort für products-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_14",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_14}
+image::leitfaden_entwicklungsumgebung_bibliotheken_14.png[align="center",width=80%,pdfwidth=80%]
+
+Bestätigen Sie mit einem Klick auf "Finish". Importieren Sie anschließend auch bei diesem Repository wieder das Maven-Projekt, indem Sie mit der rechten Maustaste auf
+dem Repository den Eintrag "Import Projects" auswählen.
+Dann wechseln Sie in die Perspective "Spring" und führen auf dem Projekt `isyfact-products-bom` das Menü "Run As" -> "Maven Install" aus.
+
+CAUTION: Führen Sie bei dem Projekt `isyfact-products-bom` das Menü "Maven" -> "Update Project" aus, um eventuell unauffindbare Abhängigkeiten aufzulösen.
+
+=== isyfact-base
+
+Ddas Repository isyfact-base ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet. Die Kernfunktionalität ist auf mehrere
+Unterprojekte aufgeteilt. Ãœberspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_15: isyfact-base
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_15",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_15}
+image::leitfaden_entwicklungsumgebung_bibliotheken_15.png[align="center"]
+
+Zum Klonen des Repositories gehen Sie wie bei den Repositories weiter oben vor.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_16: Selektion des Branches
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_16",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_16}
+image::leitfaden_entwicklungsumgebung_bibliotheken_16.png[align="center",width=80%,pdfwidth=80%]
+
+Als Nächstes importieren Sie die Maven-Projekte.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_17: Importieren der Maven-Projekte
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_17",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_17}
+image::leitfaden_entwicklungsumgebung_bibliotheken_17.png[align="center"]
+
+Wechseln Sie in die View "Spring". Dort führen Sie bei jedem importierten Maven-Projekt "Run As" -> "Maven Install" aus.
+
+CAUTION: Führen Sie auch bei diesen Projekten das Menü "Maven" -> "Update Project" aus, um eventuell unauffindbare Abhängigkeiten aufzulösen.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_18: Update-Optionen
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_18",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_18}
+image::leitfaden_entwicklungsumgebung_bibliotheken_18.png[align="center",width=80%,pdfwidth=80%]
+
+=== isyfact-bom
+
+Als Nächstes beschaffen Sie sich das GitHub-Repository `isyfact-bom`.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_19: isyfact-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_19",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_19}
+image::leitfaden_entwicklungsumgebung_bibliotheken_19.png[align="center"]
+
+Wechseln Sie zur Ansicht "git" und laden Sie das GitHub-Repository `isyfact-bom` herunter.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_20: Github als Quelle für isyfact-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_20",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_20}
+image::leitfaden_entwicklungsumgebung_bibliotheken_20.png[align="center",width=80%,pdfwidth=80%]
+
+Klicken Sie auf "Next".
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21: Selektion des master-branch
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_21",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21}
+image::leitfaden_entwicklungsumgebung_bibliotheken_21.png[align="center",width=80%,pdfwidth=80%]
+
+Klicken Sie erneut auf "Next".
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22: lokaler Speicherort für isyfact-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_22",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22}
+image::leitfaden_entwicklungsumgebung_bibliotheken_22.png[align="center",width=80%,pdfwidth=80%]
+
+Bestätigen Sie mit einem Mausklick auf "Finish".
+
+Wenn das Repository heruntergeladen worden ist, importieren Sie das `isyfact-bom` Maven-Projekt. Danach wechseln Sie in die Perspective "Spring".
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_23: Import des Projektes isyfact-bom
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_23",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_23}
+image::leitfaden_entwicklungsumgebung_bibliotheken_23.png[align="center"]
+
+Zuletzt führen Sie im Projekt `isyfact-bom` "Run As" - "Maven Install" durch.
+
+=== isyfact-persistence
+
+In diesem Abschnitt importieren Sie das Repository `isyfact-persistence`.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_24: IsyFact-persistence
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_24",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_24}
+image::leitfaden_entwicklungsumgebung_bibliotheken_24.png[align="center",width=80%,pdfwidth=80%]
+
+Wechseln Sie in die View "Git" und klonen Sie das Projekt `isyfact-persistence` vom GitHub-Server.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_25: Selektion des Master-branches
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_25",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_25}
+image::leitfaden_entwicklungsumgebung_bibliotheken_25.png[align="center"]
+
+Nachdem das Repository `isyfact-persistence` geklont worden ist, importieren Sie das enthaltene Maven-Projekt und wechseln in die Perspektive "Spring".
+
+In der Perspektive "Spring" führen Sie das Menü "Run as" -> "Maven Install" aus.
+
+=== isyfact-projektgenerator
+
+Zuletzt muss auch noch das GitHub-Repository des Projekt-Generators beschafft werden, mit Sie später die Hello-World-Anwendung erzeugen werden.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_28: IsyFact Projektgenerator
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_28",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_28}
+image::leitfaden_entwicklungsumgebung_bibliotheken_28.png[align="center"]
+
+Wechseln Sie wieder in die View "Git" und klonen Sie das Projekt `isyfact-projektgenerator`.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_29: Selektion isyfact-projektgenerator auf GitHub
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_29",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_29}
+image::leitfaden_entwicklungsumgebung_bibliotheken_29.png[align="center",width=80%,pdfwidth=80%]
+
+Importieren Sie das im Repository enthaltene Maven-Projekt.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_30: Import des Projekt-Generators
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_30",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_30}
+image::leitfaden_entwicklungsumgebung_bibliotheken_30.png[align="center"]
+
+Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie abermals "Run as" -> "Maven Install" aus.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_31: Integration in die Entwicklungsumgebung
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_31",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_31}
+image::leitfaden_entwicklungsumgebung_bibliotheken_31.png[align="center"]
+
+[[hello-world-anwendung-generieren]]
+== Hello-World-Anwendung generieren
+
+In diesem Abschnitt wird die Generierung der IsyFact-konformen Hello-World-Anwendung gezeigt.
+
+TIP: Bei der generierten Hello-World-Anwendung handelt es sich um ein Maven-Projekt, das für Ihre eigene Implementierung als Grundgerüst dient.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_01: Hello-World-Anwendung
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_01}
+image::leitfaden_entwicklungsumgebung_bibliotheken_01.png[align="center"]
+
+Hierfür klicken Sie im Hauptmenü auf "File" -> "New" -> "Other". Im Wizard selektieren Sie "Maven" -> "Maven Project".
+
+:desc-image-leitfaden_entwicklungsumgebung_projektgenerator_01: Auswahl des Maven-Wizard
+[id="image-leitfaden_entwicklungsumgebung_projektgenerator_01",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_01}
+image::leitfaden_entwicklungsumgebung_projektgenerator_01.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie auf "Next". Im nächsten Fenster selektieren Sie die Checkbox "Use default workspace location".
+
+:desc-image-leitfaden_entwicklungsumgebung_projektgenerator_02: Default-Location wählen
+[id="image-leitfaden_entwicklungsumgebung_projektgenerator_02",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_02}
+image::leitfaden_entwicklungsumgebung_projektgenerator_02.png[align="center",width=90%,pdfwidth=90%]
+
+Klicken Sie auf "Next". Selektieren Sie den Maven Archetype des IsyFact-Projektgenerators.
+
+:desc-image-leitfaden_entwicklungsumgebung_projektgenerator_03: Wahl des Maven-Archetyps
+[id="image-leitfaden_entwicklungsumgebung_projektgenerator_03",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_03}
+image::leitfaden_entwicklungsumgebung_projektgenerator_03.png[align="center",width=90%,pdfwidth=90%]
+
+Danach wählen Sie die Group Id und Artifact Id Ihres Maven-Projekts.
+
+:desc-image-leitfaden_entwicklungsumgebung_projektgenerator_04: Angabe der Parameter
+[id="image-leitfaden_entwicklungsumgebung_projektgenerator_04",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_04}
+image::leitfaden_entwicklungsumgebung_projektgenerator_04.png[align="center",width=90%,pdfwidth=90%]
+
+Zuletzt bestätigen Sie die Erstellung des neuen Maven Projekts mit einem Klick auf "Finish".
+Die Hello-World-Anwendung wird nun erzeugt. Führen Sie ggf. "Update Maven Projekt" bei dem neu generierten Projekt durch.
+
+Um die Hello-World-Anwendung zu starten, klicken Sie mit der rechten Maustaste auf das generierte Projekt und wählen Sie im Kontextmenü "Run as" -> "Run on Server".
+Selektieren Sie den im Werkzeugkapitel eingerichteten Apache Tomcat und setzen Sie ein Häkchen bei der Checkbox "Always use this server when running this project".
+
+:desc-image-leitfaden_entwicklungsumgebung_projektgenerator_05: Auf Server starten
+[id="image-leitfaden_entwicklungsumgebung_projektgenerator_05",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_05}
+image::leitfaden_entwicklungsumgebung_projektgenerator_05.png[align="center",width=80%,pdfwidth=80%]
+
+Mit "Finish" wird der Application Server gestartet. Im Anschluss sollte der Webbrowser von STS mit der Startseite der Anwendung erscheinen.
+Zum Test geben Sie im ersten Eingabefeld einen Namen und im zweiten eine Nachricht ein. Über den Button "Abschicken" wird die Nachricht gespeichert und alle
+gespeicherten Nachrichten im unteren Bereich ausgegeben.
+
+:desc-image-leitfaden_entwicklungsumgebung_projektgenerator_06: Hello World starten
+[id="image-leitfaden_entwicklungsumgebung_projektgenerator_06",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_06}
+image::leitfaden_entwicklungsumgebung_projektgenerator_06.png[align="center"]

@@ -1,0 +1,24 @@
+[[Einleitung]]
+== Einleitung
+
+// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
+
+Die Anwendungen innerhalb einer Plattform kommunizieren in Form von Serviceanfragen miteinander.
+Das vorliegende Dokument definiert grundlegende Konzepte der Servicekommunikation innerhalb dieser Plattform.
+
+Dazu wird beschrieben, auf welche Art und Weise die Anwendungssysteme der IsyFact miteinander kommunizieren und welche Anforderungen hierfür existieren.
+Nicht Bestandteil dieses Dokuments sind die IT-Systeme des Service-Gateways.
+D. h. die Anforderungen und die Architektur der Service-Provider und der Service-Consumer, um Services extern zur Verfügung zu stellen, werden nicht beschrieben.
+Diese Punkte sind Inhalt des Dokuments <<ServiceGatewaySystementwurf>>.
+
+Das vorliegende Dokument enthält folgende Inhalte:
+
+* Abschnitt <<grundlagen>>: Es werden die Grundlagen bzgl.
+der Kommunikation innerhalb der IsyFact beschrieben.
+Hierbei gehen wir insbesondere auf technische Aspekte der Kommunikation ein.
+* Abschnitt <<versionierung>>: Services müssen versioniert werden.
+In diesem Abschnitt wird kurz auf die Motivation der Versionierung und die Realisierung der Versionierung eingegangen.
+* Abschnitt <<verfuegbarkeit>>: In diesem Abschnitt beschreiben wir kurz die Anforderungen bzgl.
+der Verfügbarkeit von Services.
+
+Das Thema Testen wird im vorliegenden Dokument nicht beschrieben.

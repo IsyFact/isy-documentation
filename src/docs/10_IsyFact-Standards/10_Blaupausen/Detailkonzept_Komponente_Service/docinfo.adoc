@@ -1,0 +1,30 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Detailkonzept_Komponente_Service
+|====
+
+//|Datum |Version |Änderungsgrund
+//|17.11.2009 |0.1 |Erstellung
+//|19.04.2010 |1.0 |Überarbeitung Quellenverzeichnis
+//|25.02.2012 |1.1 |Autorisierung ergänzt
+//|25.02.2013 |1.2 |Referenzen aktualisierte
+//|13.03.2013 |1.3 |Abschnitt zur Paketierung von SST aus SGW-Konzept hierher umgezogen
+//|11.04.2013 |1.4 |Abschnitt zur Realisierung und Namenskonventionen hierher umgezogen
+//|28.08.2013 |1.5 |Anpassung des Schemas für Service-URLs an Beispiel
+//|30.09.2014 |1.6 |Übernahme des Dokuments
+//|02.12.2014 |1.7 |Namensänderung in „IsyFact“
+//|10.12.2014 |1.8 |Umstellung auf generiertes Quellenverzeichnis“
+//|03.02.2015 |1.9 |Reviewkommentare eingearbeitet, Logo geändert
+//|27.03.2015 |1.10 |Lizenz auf CC 4.0 geändert
+//|07.07.2015 |1.11 |Defekte Verweise auf Quellenverz. korrigiert
+//|01.03.2017 |1.12 |Anpassung im Kapitel Realisierung bzgl. Java-Version der Schnittstelle
+
+Java Bibliothek / IT-System
+
+[cols="4,1,2",options="header"]
+|====
+|Name |Art |Version
+|isy-serviceapi-core |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-serviceapi-sst |Bibliothek |siehe isyfact-bom v1.5.x
+|====

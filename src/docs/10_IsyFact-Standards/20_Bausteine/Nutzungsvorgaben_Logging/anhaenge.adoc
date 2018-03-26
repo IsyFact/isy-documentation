@@ -1,0 +1,58 @@
+[Appendix]
+= Anhang A: Weiterführende Themen
+
+[[migration-von-log4j-auf-isy-logging]]
+== A1: Migration von log4j auf isy-logging
+
+Das Logging-Konzept wurde im Vergleich zur Register Factory Version 1.4 komplett überarbeitet.
+Dabei wurde insbesondere das Logging-Framework log4j durch logback ersetzt.
+Die Migration eines Systems auf das neue Logging-Konzept sollte in zwei Stufen erfolgen:
+
+* **Technische Migration**: In einem ersten Schritt muss der Austausch von log4j mit logback erfolgen.
+Dies ist sehr einfach möglich, da mit der Bibliothek `log4j-over-slf4j` eine _Bridge_ bereitgestellt wird, die es ermöglicht log4j zu ersetzen, ohne den Anwendungscode anzupassen.
+Die Bibliothek stellt dazu die gleichen Schnittstellen (im gleichen Pfad) wie log4j bereit und leitet die Aufrufe an SLF4J weiter.
+Für einen Austausch von log4j sind folgende Schritte notwendig:
+** `log4j*.jar` aus der Anwendung entfernen.
+Falls in den referenzierten Bibliotheken Abhängigkeiten auf log4j enthalten sind, bietet es sich an, eine Maven-Dependency auf log4j im Scope „provided“ zu ergänzen.
+** `isy-logging` auf die aktuelle Version aktualisieren (isy-logging ersetzen).
+** `log4j-over-slf4j*.jar` als Abhängigkeit ergänzen.
+Zu beachten ist, dass die Version dieser Bridge mit der Version der SLF4J-Api, die von isy-logging genutzt wird, übereinstimmt.
+** logback gemäß <<inhalt.adoc#logback-konfiguration>> konfigurieren.
++
+:desc-image-ZntMigr: Zustand der Anwendung nach technischer Migration
+[id="image-ZntMigr",reftext="{figure-caption} {counter:figures}"]	
+.{desc-image-ZntMigr}
+image::ZntMigr.png[align="center"]
+* **Fachliche Migration**: Die Fachliche Migration, also das Erstellen von Logeinträgen gemäß diesen Nutzungsvorgaben, geht mit der Umstellung des Loggings auf den IsyLogger einher.
+Dies ist eine aufwändigere Änderung und sollte nur durchgeführt werden, wenn für die Anwendung konkreter Bedarf besteht, das Logging anzupassen.
++
+:desc-image-ZnAbdMigr: Zustand der Anwendung nach Abschluss der Migration
+[id="image-ZnAbdMigr",reftext="{figure-caption} {counter:figures}"]	
+.{desc-image-ZnAbdMigr}
+image::ZnAbdMigr.png[align="center"]
+
+[[log4j-bridge]]
+== A2: Log4j-Bridge
+
+Durch den Wechsel in der IsyFact von logback auf log4j kann es vorkommen, dass in Altsystemen Bibliotheken 
+eingebunden werden müssen, die bereits auf isy-logging umgestellt wurden, die Anwendung jedoch zunächst weiterhin 
+log4j nutzt (insbesondere bei „Hotfixes“).
+
+Zu diesem Zweck wird eine vollwertige SLF4J-Bridge bereitgestellt, die Anfragen an SLF4J auf log4j umleitet.
+Diese ermöglicht es insbesondere die Anfragen an Isy-Logging einheitlich auf log4j umzuleiten, so dass sich das 
+Logging der Altanwendung unverändert verhält.
+
+Zur Nutzung der Bridge sind folgende Anpassungen in der pom.xml der Anwendung notwendig:
+
+* Sämtliche Abhängigkeiten zur SLF4J-API, Isy-Logging und anderen SLF4J-Implementierung der Anwendung durch 
+entsprechende „excludes“ entfernen.
+* Abhängigkeit zur isy-logging-log4j-bridge ergänzen.
++
+**Bitte beachten**: Die Bridge besitzt ihrerseits Abhängigkeiten auf isy-logging und die slf4j-api, die jedoch 
+nicht „excluded“ werden dürfen.
+Durch das Vorgehen wird sichergestellt, dass nur die für die Bridge notwendigen Bibliotheken in der richtigen 
+Version eingebunden werden.
+
+Darüber hinaus sind keine weiteren Anpassungen notwendig.
+
+

@@ -1,0 +1,13 @@
+[[AppendixA]]
+= Anhang A: Abkürzungsverzeichnis
+
+[cols="1,4"]
+|====
+|ADB/JAXB |Axis Data Binding bzw.
+Java Architecture for XML Binding: Diese XML-Bindings werden im Service-Gateway eingesetzt um XML-Nachrichten in Java-Objekte umzuwandeln.
+|ESB |Enterprise Service Bus
+|TO |Transport-Objekt: Die Entitäten des Anwendungskerns werden nicht direkt nach Außen gegeben.
+Sie werden zuvor in Transport-Objekte gewandelt die dann an den Aufrufer gegeben werden.
+|TTL |Time-To-Live
+|====
+

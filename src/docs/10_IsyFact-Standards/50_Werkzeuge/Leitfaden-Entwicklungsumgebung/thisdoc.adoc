@@ -1,0 +1,4 @@
+﻿[[einleitung]]
+== Einleitung
+Dieser Leitfaden erläutert die Installation der Entwicklungsumgebung, um Anwendungen mit der IsyFact zu entwickeln. Er richtet sich an Entwickler,
+die zum ersten Mal mit der IsyFact in Berührung kommen und möglichst schnell mit der Entwicklung einer Anwendung auf Basis der IsyFact beginnen möchten.

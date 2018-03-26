@@ -1,0 +1,10 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Konzept_Datum_Zeit
+|====
+
+//|Datum |Version |Änderungsgrund
+//|14.07.2017 |0.1 |Initiale Version
+//|21.07.2017 |0.2 |Internes Review eingearbeitet
+//|31.07.2017 |0.3 |Bereit zum Review

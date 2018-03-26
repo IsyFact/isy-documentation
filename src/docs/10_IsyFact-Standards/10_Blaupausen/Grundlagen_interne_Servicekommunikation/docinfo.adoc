@@ -1,0 +1,24 @@
+**Dokumentinformationen**
+
+[cols="1,4"]
+|====
+|Dokumenten-ID:| Grundlagen_interne_Servicekommunikation
+|====
+
+//|Datum |Version |Änderungsgrund
+//|13.03.2008 |0.1 |Angelegt aus dem Ursprungsdokument „Technisches_Feinkonzept_Services.doc“. |Stefan Buck (Capgemini Deutschland GmbH)
+//|29.05.2008 |1.0 |Behebung aller Mängel aus dem Prüfprotokoll des BVA. Status auf „akzeptiert“ gesetzt.
+//|01.04.2009 |2.3 |Aufrufwiederholung wurde entfernt
+//|02.11.2009 |2.4 |Komplette Überarbeitung des Dokuments. Fokus des Dokuments auf die internen Service-Kommunikation geändert.
+//|20.12.2010 |2.7 |Anpassungen im Versionierungskonzept
+//|05.10.2011 |2.8 |Hinweis zum Umgang mit synchronen Service-Aufrufen ergänzt
+//|16.05.2012 |2.9 |Anmerkungen aus BVA Review eingearbeitet
+//|11.04.2013 |2.10 |Kapitel Realisierung und Namenskonventionen in Detailkonzept Komponente Service verschoben
+//|10.10.2013 |2.11 |Obligatorische Retries für BNVZ, BHVZ, SVZ und ASV-Suche
+//|30.09.2014 |2.12 |Übernahme des Dokuments in die IsyFact
+//|08.12.2014 |2.13 |Umstellung auf IsyFact
+//|10.12.2014 |2.14 |Umstellung auf generiertes Quellenverzeichnis
+//|17.02.2015 |2.15 |Einarbeitung der Review-Kommentare
+//|27.02.2015 |2.16 |Lizenz auf CC 4.0 geändert
+//|12.05.2015 |2.17 |bereinigt
+//|01.03.2017 |2.18 |Anpassung im Kapitel Grundlagen bzgl. Asynchrone Kommunikation und Zugriff auf Querschnittssysteme

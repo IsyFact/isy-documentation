@@ -1,0 +1,30 @@
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Java-Programmierkonventionen
+|====
+
+//|Datum |Version |Änderungsgrund
+//|04.05.2007 |0.1 |Erster Entwurf von BIT 4
+//|03.07.2007 |0.2 |Ergänzungen
+//|07.08.2007 |1.0 |Einarbeitung Feedback von I B 3
+//|05.11.2007 |1.1 |Reihenfolge für Layer in Package-Namen geändert.
+//|12.12.2007 |1.2 |Java-Package „bereistellung-analyse“ in „analyse“ umbenannt
+//|19.12.2007 |1.3 |Java-Package „common“ in „pliscommon“ unbenannt. Beispiel für querschnittliche Komponenten aufgenommen.
+//|13.05.2008 |1.4 |Konvention für Methodennamen konkretisiert.
+//|13.10.2008 |1.5 |Vorgaben zur Verwendung von Kurzschreibweisen eingefügt. |
+//|21.10.2008 |1.6 |Übernahmen in die Register Factory
+//|26.11.2009 |1.6 |Umstellung Formatvorlage
+//|03.02.2010 |1.7 |Einarbeitung Reviewanmerkungen BVA |
+//|09.04.2010 |1.8 |Einarbeitung CR7893
+//|20.04.2010 |1.8.1 |Überarbeitung Referenzen
+//|11.06.2013 |1.9 |Beispiel für Methodenbenennung angepasst
+//|29.08.2013 |2.0 |package-info.java anstatt package.html
+//|30.07.2014 |2.1 |Umstellung auf PLIS-Factory
+//|08.12.2014 |2.2 |Namensänderung in IsyFact
+//|11.12.2014 |2.3 |Umstellung auf generiertes Quellenverzeichnis
+//|25.03.2015 |2.4 |Reviewkommentare eingearbeitet, Logo geändert
+//|27.03.2015 |2.5 |Lizenz auf CC 4.0 geändert
+//|13.05.2015 |2.6 |bereinigt, Kommentare entfernt, Änderungen übernommen
+//|28.08.2017 |2.7 |@author und @version Tags werden nicht mehr verwendet 

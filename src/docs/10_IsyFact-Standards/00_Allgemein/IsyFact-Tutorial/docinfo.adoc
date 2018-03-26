@@ -1,0 +1,31 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| IsyFact-Tutorial
+|====
+
+//|Datum |Version |Änderungsgrund
+//||0.1 |Initiale Erstellung
+//||0.2 |Update für Aufteilung PLIS-Exception.
+//||0.4 |Überarbeitung Read-Only-Interfaces
+//||0.41 |Fehlerhaftes Source-Beispiel S. 7 korrigiert.
+//| |0.5 |Anpassung Batch-Konfiguration
+//|03.02.2009 |0.6 |Read-Only-Interfaces in Komponenten-Package
+//|04.09.2009 |0.7 |Kapitel zu Service­kommunikation um PLIS-Service-API erweitert. Kapitel zu LDAP-Zugriffen eingefügt.
+//| |0.8 |Kapitel zur Prozesssteuerung mit jBPM eingefügt.
+//| |0.15 |Einarbeitung Java 1.4 Begründung für Schnittstellen
+//| |1.0 |Überarbeitung Referenzen
+//|15.02.2011 |1.1 |Anpassung Datenzugriff ohne TemplateHolder
+//|05.10.2011 |1.2 |Anpassung Deckblatt und Zugriff ohne Templateholder
+//|09.03.2012 |1.3 |Überarbeitung Autorisierung und Aufrufkontextverwaltung
+//|27.11.2012 |1.4 |Java Version 1.5 für Schnittstellen
+//|17.04.2013 |1.5 |Nicht-persistente SST-Objekte anstatt Ro-Interfaces
+//|28.01.2014 |1.6 |Beschreibung zur Java-Kompatibilität der Schnittstelle verallgemeinert.
+//|25.09.2014 |1.7 |Umstellung auf PLIS-Factory
+//|03.12.2014 |1.8 |Namensänderung auf „IsyFact“
+//|10.12.2014 |1.9 |Umstellung auf generiertes Quellenverzeichnis
+//|27.01.2015 |1.10 |Review-Kommentare umgesetzt, Änderungen übernommen, Logo geändert
+//|26.03.2015 |1.11 |Lizenz auf CC 4.0 geändert
+//|12.05.2015 |1.12 |Bereinigt, Dokumentnamen auf IsyFact geändert.
+//|25.04.2016 |1.13 |Abschnitt „Prozesssteuerung“ entfernt (Baustein Workflow)
+//|01.09.2017 |1.14 |Namensänderungen der Bibliotheken nachziehen, neue Vorlageanwendung einbinden

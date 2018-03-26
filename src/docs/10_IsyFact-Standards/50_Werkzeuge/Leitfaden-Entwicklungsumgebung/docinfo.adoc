@@ -1,0 +1,11 @@
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Leitfaden-Entwicklungsumgebung
+|====
+
+//|Datum |Version |Änderungsgrund |Verantwortlich
+//|05.07.2017	|0.1	|Ersterstellung
+//|17.07.2017	|0.2	|Zwischenstand
+//|18.07.2017	|0.3	|Fertigstellung

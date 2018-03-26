@@ -1,0 +1,5 @@
+== Zusammenfassung für das Management
+
+Das IsyFact-Tutorial gibt praktische Anleitungen, wie die Konzepte der IsyFact in der Softwareentwicklung umzusetzen sind.
+Es hilft technischen Chefdesignern und Entwicklern einen Überblick über alle wichtigen Aspekte der IsyFact-konformen Anwendungsentwicklung
+zu erhalten und unterstützt mit Schritt-für-Schritt-Anleitungen bei der Realisierung.

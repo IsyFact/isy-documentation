@@ -1,0 +1,39 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_Logging
+|====
+
+//|Datum |Version |Änderungsgrund
+//|28.07.2014 |0.1 |initiale Version //
+//|05.08.2014 |0.9 |Anmerkungen.
+//|19.12.2014 |1.0 |Reviewanmerkungen eingearbeitet.
+//|27.02.2015 |1.1 |Umstellung auf IsyFact. Erweiterungen im Rahmen von isy-logging.
+//|24.06.2015 |1.2 |Überarbeitung der Referenzen im Rahmen von IsyFact Release 1.0
+//|21.07.2015 |1.3 |Verwendung von Isy-Logging-Bridge ergänzt
+//|31.08.2015 |1.4 |Java Bibliothek auf 1.0.7 erhöht; Abschnitt 3.3: Log-Rotation in UTC ergänzt; 4.2.2.2 Anpassung der Konvertierung von Parametern ergänzt.
+//|16.09.2015 |1.5 |Übernahme in die IsyFact. Reviewanmerkungen zur Übernahme eingearbeitet.
+//|07.10.2015 |1.6 |Ereignisschlüssel bis isy-logging 1.0.7 aufgenommen. Beschreibung der Logkategorien angepasst.
+//|17.11.2015 |1.7 |WICHTIG: Anpassung der Logback-Konfiguration zur Ausgabe des MDC ergänzt. (Abschnitte 4.2.1.1 und 4.2.1.2).
+//                  Der Parameter INCLUDE_MDC muss in allen Konfigurationen gesetzt werden.
+//                  Ausgabe aller Daten an der Schnittstelle („logge Daten“) (Abschnitt 4.1.5.1).
+//                  Entsprechendes Logszenario angepasst und umgezogen (Abschnitt 5.2.2.8). Nutzung MDC-Helper ergänzt (Abschnitt 4.1.5.3).
+//                  Neues Nutzungsszenario für fachliche Korrelation (Abschnitt 5.2.3.5).
+//                  Anpassung Konfiguration der LogInterceptoren (Abschnitte 4.2.2.2 und 5.2.2.3).
+//                  Auswertungsszenario (5.1.9) und Logszenario (5.2.3.6) für die Nachvollziehbarkeit von fachlichen Operationen ergänzt.
+//|13.01.2016 |1.8 |IsyHttpInvokerProxyFactoryBean ergänzt.
+//|04.04.2016 |1.9 |Kombination der Pointcuts mit „or“.
+//|10.05.2016 |1.10 |Verdeutlichung, wann ein Ereignisschlüssel in mehreren Logeinträgen verwendet werden kann.
+//|31.05.2016 |1.11 |Nummernkreise in Ereignisschlüsseln. Isy-Logging aktualisiert.
+//|26.10.2016 |1.12 |Regeln zur Logerstellung ergänzt.
+//|04.10.2017 |1.13 |Typisierung von Logeinträgen beschrieben.
+//|09.10.2017 |1.14 |Konfiguration Performance-Logging hinzugefügt
+
+Java Bibliothek / IT-System
+
+[options="header",cols="3,1,2"]
+|====
+|Name |Art |Version
+|isy-logging |Bibliothek |siehe isyfact-bom v1.5.x
+|Isy-logging-log4j-bridge |Bibliothek |siehe isyfact-bom v1.5.x
+|====

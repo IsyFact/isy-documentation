@@ -1,0 +1,17 @@
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_Task_Scheduling
+|====
+
+//|Datum |Version |Änderungsgrund
+//|16.10.2017 |0.1 |Initiale Version
+
+Java Bibliothek / IT-System
+
+[cols="5,2,3"]
+|====
+|Name |Art |Version
+|_isy-task_ |Bibliothek |siehe isyfact-bom v1.5.x
+|====

@@ -1,0 +1,559 @@
+[[die-arbeitsumgebung-einrichten]]
+= Die Arbeitsumgebung einrichten
+
+[[git-installieren]]
+== Git installieren
+
+Git wird von der Webseite http://www.git-scm.com heruntergeladen.
+
+:desc-image-git1: Webseite des Versionierungssystems Git
+[id="image-git1",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-git1}
+image::git1.png[align="center",pdfwidth=80%,width=80%]
+
+Weil das Git-Repository auf einem Unix-basierten Betriebssystem installiert ist, technische Autoren aber eventuell auf einem Windows-Betriebssystem arbeiten, besteht eine Diskrepanz bei den Zeilenumbrüchen.
+Denn während Windows die Zeichen Carriage-Return (`'\r'`) und New-Line (`'\n'`) einsetzt, um das Zeilenende anzuzeigen, verwendet Unix lediglich ein New-Line (`'\n'`).
+Um dieses Problem zu lösen, wird bei der Installation von Git folgendes Fenster mit drei Optionen angeboten.
+
+:desc-image-git2: Optionen zur Behandlung von Zeilenumbrüchen
+[id="image-git2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-git2}
+image::git2.png[align="center"]
+
+Bei der ersten Option geht Git genau von der Konstellation aus, die auch bei der IsyFact-Dokumentation gebraucht wird.
+Denn mit dieser Option ändert Git die heruntergeladenen Zeilenumbrüche zur Windows-Variante um.
+Beim Hochladen wird hingegen zur Unix-Variante zurückgewandelt.
+Sollten Sie lokal mit Windows arbeiten, selektieren Sie also die erste Option.
+
+[[atom-installieren]]
+== Atom installieren
+
+Die Installationsdatei von Atom kann von https://atom.io heruntergeladen werden.
+
+:desc-image-atom0: Webseite des Texteditors Atom
+[id="image-atom0",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-atom0}
+image::atom0.png[align="center",pdfwidth=80%,width=80%]
+
+[[ein-neues-dokument-anlegen]]
+= Ein neues Dokument anlegen
+
+Nach der Einrichtung der Arbeitsumgebung kann es mit der Bearbeitung der IsyFact-Dokumentation losgehen.
+Allerdings ist schon beim Anlegen der ersten Dateien einiges zu beachten, denn ein IsyFact-Dokument muss der festgelegten Struktur entsprechen.
+In diesem Kapitel wird gezeigt, wie hierfür zunächst das Gesamtprojekt aus dem Git-Repository heruntergeladen wird, um anschließend die darin enthaltene Dokument-Vorlage für das eigene IsyFact-Dokument vorzubereiten.
+
+[[ein-neues-verzeichnis-anlegen]]
+== Ein neues Verzeichnis anlegen
+
+Das neue IsyFact-Dokument muss in einem bestimmten Ordner der vorhandenen Verzeichnisstruktur abgelegt werden.
+Dies setzt voraus, dass das Gesamtprojekt zunächst vom Git-Repository heruntergeladen wird.
+Hierfür wechseln Sie auf der Kommandozeile auf eine geeignete Stelle Ihrer lokalen Festplatte und geben dort folgendes Kommando ein.
+
+====
+C:\tmp\> *git clone* https://github.com/IsyFact/isy-documentation
+====
+
+[[den-richtigen-standort-bestimmen]]
+=== Den richtigen Standort bestimmen
+
+Beim Herunterladen des GitLab-Projekts wird an der betroffenen Stelle das Verzeichnis isy-documentation angelegt, das einen einzigen Ordner enthält, nämlich den Ordner `/src`.
+Unterhalb von `/src` befinden sich die Verzeichnisse `/docs`, `/scripts` und `/theme`.
+
+:desc-image-verzeichnis1: Die Verzeichnisse der IsyFact-Dokumentation
+[id="image-verzeichnis1",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-verzeichnis1}
+image::verzeichnis1.png[align="center"]
+
+Während `/scripts` und `/theme` die Skripte zur automatisierten Verarbeitung enthalten, befinden sich unterhalb von `/docs` die Verzeichnisse der IsyFact-Dokumentation, aber auch die allgemeinen Verzeichnisse `/common` und `/Dokument-Vorlage`.
+Das Verzeichnis `/common` beinhaltet globale Einstellungen für die gesamte IsyFact-Dokumentation.
+Das Verzeichnis `/Dokument-Vorlage` enthält hingegen die Musterdateien für Ihr neues Dokument.
+
+:desc-image-verzeichnis2: Die Verzeichnisse der IsyFact-Dokumentation
+[id="image-verzeichnis2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-verzeichnis2}
+image::verzeichnis2.png[align="center"]
+
+Bei den Verzeichnissen der IsyFact-Dokumentation wird darin unterschieden, ob es sich bei dem Dokument thematisch um ein Modul der _IsyFact-Standards_  (das Fundament von IsyFact) oder ein Modul der _IsyFact-Erweiterungen_ (die optionalen wiederverwendbaren Lösungen) handelt.
+Entsprechend beinhaltet das Verzeichnis `/docs` die zwei Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterungen`.
+Die Unterordner der beiden Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterung` gliedern sich nach den Säulen der IsyFact.
+
+00_Allgemein;; Einstiegsdokumente, Tutorial, Konventionen
+10_Blaupausen;; Grundlagendokumente und Detailkonzepte für Architektur und Anwendungslandschaft
+20_Bausteine;; Dokumente für die jeweilig wiederverwendbaren Softwarelösungen
+30_Plattform;; Dokumente zum Betrieb und Inbetriebnahme
+40_Methodik;; Methodische Dokumente bspw. zum V-Model XT oder Programmierkonventionen
+50_Werkzeuge;; Dokumente zur Verwendung von Werkzeugen und der Einrichtung der Entwicklungsumgebung (hierzu gehört auch dieses Dokument)
+
+Unterhalb der Säulen werden in der Regel die Verzeichnisse der IsyFact-Dokumente angelegt.
+In der folgenden Abbildung sehen Sie beispielsweise, dass das "Handbuch für technische Autoren" unterhalb der Säule 50_Werkzeuge angelegt wurde.
+
+:desc-image-verzeichnis3: Die Verzeichnisse der IsyFact-Dokumentation mit den IsyFact-Säulen
+[id="image-verzeichnis3",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-verzeichnis3}
+image::verzeichnis3.png[align="center"]
+
+Genauso wie in der obigen Abbildung für das IsyFact-Dokument "Handbuch_fuer_technische_Autoren", so muss auch für Ihr IsyFact-Dokument ein neues Verzeichnis innerhalb der korrekt zugeordneten Säule erstellt werden.
+
+TIP: In manchen Fällen wird das Verzeichnis eines IsyFact-Dokuments nicht unmittelbar unterhalb der zugeordneten Säule, sondern in einem weiteren Unterverzeichnis abgelegt.
+Bitte halten Sie hierbei die bereits vorhandene Systematik ein.
+
+Wenn Sie das neue Verzeichnis anlegen, stellt sich als Nächstes die Frage, wie das Verzeichnis benannt werden soll. Dazu vergeben Sie eine neue _Dokument-ID_. Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird. Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
+
+[[die-mustervorlage-vorbereiten]]
+== Die Mustervorlage vorbereiten
+
+Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wurde das Verzeichnis mit dem Namen `/src/docs/Dokument-Vorlage` bereitgestellt.
+In diesem Verzeichnis befinden sich die Musterinhalte, die sie als Grundlage für Ihre neues Dokument  verwenden können.
+Zusätzlich enthält die Dokument-Vorlage das Unterverzeichnis `/images` für die Abbildungen Ihres IsyFact-Dokuments.
+Sobald Sie also das Zielverzeichnis für Ihr IsyFact-Dokument angelegt haben, kopieren Sie darin die Musterdateien und das Unterverzeichnis `/images` aus dem Ordner `/src/docs/Dokument-Vorlage`.
+
+Bei den Musterdateien handelt sich um folgende AsciiDoc-Dokumente:
+
+anhaenge.adoc::
+In der Datei `anhaenge.adoc` werden Anhänge des IsyFact-Dokuments aufgelistet.
+
+docinfo.adoc::
+`docinfo.adoc` beinhalt Informationen für das IsyFact-Dokument.
+Die Datei `docInfo.adoc` enthält derzeitig lediglich die Dokument-ID.
+
+inhalt.adoc::
+`inhalt.adoc` enthält alle Inhaltskapitel des IsyFact-Dokuments.
+
+master.adoc::
+`master.adoc` ist die zentrale Datei, die alle anderen Dateien der Dokument-Vorlage über spezielle Verweise (`include`) einbindet.
+Wenn Sie sich eine vollständige Vorschau Ihres Dokuments anschauen möchten, können Sie die Datei `master.adoc` in Ihrem Editor öffnen und die Vorschaufunktion verwenden.
+
+////
+(Wieder integrieren, wenn wir die Datei wirklich benutzen)
+preface.adoc::
+Das Dokument `preface.adoc` wird derzeitig noch nicht verwendet.
+////
+
+thisdoc.adoc::
+`thisdoc.adoc` enthält das einleitende Kapitel des IsyFact-Dokuments, das den Inhalt zusammenfasst sowie den Aufbau und Zweck des Dokuments erläutert.
+
+[[atom-einsetzen]]
+=== Atom einsetzen
+
+Für die Bearbeitung der Dokument-Vorlagen öffnen Sie Atom über das Startmenü.
+Innerhalb von Atom drücken Sie auf kbd:[Strg + Shift + O] oder öffnen im Hauptmenü menu:File[Open Folder].
+Hierdurch öffnen Sie den Ordner Ihres IsyFact-Dokuments als Atom-Projekt.
+
+:desc-image-atom1: Den Ordner des IsyFact-Dokuments öffnen
+[id="image-atom1",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-atom1}
+image::atom1.png[align="center"]
+
+Selektieren die das Verzeichnis Ihres IsyFact-Dokuments und klicken Sie auf _Ordner auswählen_.
+Dann sollte auf der linken Seite die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments erscheinen.
+
+:desc-image-atom2: Die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments
+[id="image-atom2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-atom2}
+image::atom2.png[align="center"]
+
+Sie können sich nun bereits die Dokument-Vorlage in der Vorschau ansehen.
+Hierfür öffnen Sie zunächst die zentrale Datei `master.adoc`.
+Dann drücken Sie entweder kbd:[Strg + Shift + A] oder Sie öffnen im Hauptmenü den Eintrag menu:Packages[AsciiDoc Preview > Toggle Preview].
+Dabei sollte auf der rechten Seite die Vorschau erscheinen.
+
+[[master.adoc-bearbeiten]]
+== master.adoc bearbeiten
+
+Die erste Datei, die Sie bearbeiten müssen ist die Datei `master.adoc`.
+Hier müssen der Titel, das Bearbeitungsdatum und die Revisionsnummer gesetzt werden.
+In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im Vorlage-Dokument vorfinden werden.
+
+:desc-listing-master: master.adoc
+[id="listing-master",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-master}
+[source,asciidoc]
+----
+ // ASCIIDOC Attribute
+ include::../../../common/isyfact-attributes.adoc[]
+ include::../../../common/attributes.adoc[]
+ //
+ :doctitle: Titel des Dokuments
+ :title: {doctitle}
+----
+
+Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel. Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Veröffentlichung) in Ihrem Projekt nicht zentral gesteuert, fügen Sie die beiden Attribute bitte zur `master.adoc` hinzu.
+
+:desc-listing-revision: Revisionsnummer und Revisionsdatum
+[id="listing-revision",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-revision}
+[source,asciidoc]
+----
+ :revnumber: Revisionsnummer
+ :revdate: Revisionsdatum
+----
+
+NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
+
+
+In der Vorschau sollten die Änderungen unmittelbar erscheinen. Ihre Änderungen speichern Sie über kbd:[Strg + S].
+
+[[docinfo.adoc-bearbeiten]]
+== docinfo.adoc bearbeiten
+
+Als Nächstes muss die Datei `docinfo.adoc` bearbeitet werden.
+Diese Datei wurde als Vorlage für Dokumenteninformationen zur Verfügung gestellt.
+Derzeitig wird in der `docinfo.adoc` aber lediglich die Dokument-ID gesetzt.
+Öffnen Sie die Datei durch einen Mausklick links in der Projektansicht.
+Die Dokument-Vorlage `docinfo.adoc` hat folgenden Inhalt:
+
+:desc-listing-docinfo: docinfo.adoc
+[id="listing-docinfo",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-docinfo}
+[source,asciidoc]
+----
+**Dokumentinformationen**
+|====
+|Dokumenten-ID:|  Bitte_hier_die_Dokument-ID_einfügen
+|====
+----
+
+Ersetzen Sie den Text `Bitte_hier_die_Dokument-ID_einfügen` mit der Dokument-ID Ihres neuen Dokuments.
+
+:desc-image-atom5: docinfo.adoc
+[id="image-atom5",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-atom5}
+image::atom5.png[align="center"]
+
+[[ein-existierendes-dokument-bearbeiten]]
+= Ein existierendes Dokument bearbeiten
+
+Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder ältere bereits bestehende Dateien handelt.
+In beiden Fällen bearbeiten Sie in den meisten Fällen die Dateien `thisdoc.adoc`, `inhalt.adoc` und `anhaenge.adoc`.
+Ausser diesem Handbuch sind hierzu Kenntnisse der AsciiDoc-Syntax erforderlich.
+Dieses Handbuch soll die AsciiDoc-Syntax aber nicht erklären, denn die folgenden Webseiten bieten bereits ausführliche Tutorials an:
+
+* https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual]
+* https://asciidoctor.org/docs/what-is-asciidoc/[What is AsciiDoc? Why do we need it?]
+* https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick Reference]
+* http://www.vogella.com/tutorials/AsciiDoc/article.html[Tutorial: Using AsciiDoc and Asciidoctor to write documentation]
+
+Dennoch sind in IsyFact-Dokumenten bestimmte Besonderheiten zu beachten.
+Eine wichtige Besonderheit ist beispielsweise, dass man auf Kapitelüberschriften, aber auch auf Einträge wie Quellen, Fachbegriffen, Abbildungen oder Tabellen über einen Querverweis referenzieren können muss.
+Das setzt voraus, dass dafür zu sorgen ist, dass jeder Eintrag einen eindeutigen _Inline-Anchor_ erhält.
+Hinzu kommt, dass bei der Umwandlung in die Ausgabeformate HTML und PDF vorgefertigte Skripte ausgeführt werden, die automatisch Verzeichnisse am Ende des Dokuments einfügen und man auch auf die Einträge dieser Verzeichnisse per Querverweis referenzieren können muss.
+Bei den automatisch erzeugten Verzeichnissen handelt es sich um folgende:
+
+Literaturverzeichnis:: Quellenangaben, Referenzen auf Bücher oder andere IsyFact-Dokumente
+// Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
+Abbildungsverzeichnis:: enthaltene Bilder mit Nummer und Bildunterschrift
+Quelltextverzeichnis:: enthaltene Listings, beispielsweise Java, SQL etc.
+Tabellenverzeichnis:: enthaltene Tabellen mit Tabellennummer und Tabellenunterschrift
+
+Die Verzeichnise listen ihre jeweiligen Einträge entweder nach der Position im Dokument oder alphanumerisch auf und dienen so vor allem dazu, Einträge nachzuschlagen.
+Die Skripte gehen hierbei von einer bestimmten Syntax aus, die in den folgenden Abschnitten erläutert wird.
+Je nachdem, ob es sich um eine Abbildung, eine Tabelle, ein Begriff oder ein referenziertes Medium handelt, werden jeweils unterschiedliche Bestandteile vorgesehen, die gesetzt werden müssen.
+
+[[kapitelueberschriften]]
+== Kapitelüberschriften
+
+Kapitelüberschriften können bei AsciiDoc auf unterschiedlicher Weise gesetzt werden.
+Bei einem IsyFact-Dokument ist hingegen stets die Variante zu wählen, bei der die Anzahl der vorgesetzten Gleichheitszeichen die Kapitelebene anzeigt.
+Im folgenden Beispiel wird ein Kapitel und ein Unterkapitel definiert.
+
+:desc-listing-kapitelueberschriften: Kapitelüberschriften
+[id="listing-kapitelueberschriften",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-kapitelueberschriften}
+[source,asciidoc]
+----
+= Hallo Welt Kapitel
+Das ist ein Hallo Welt Text zum Kapitel.
+
+== Hallo Welt Unterkapitel
+Das ist ein Hallo Welt Text zum Unterkapitel.
+----
+
+Für ein IsyFact-Dokument sind diese Kapitelüberschriften aber noch nicht vollkommen, denn es fehlen noch die _Inline-Anchor_.
+
+Der Inline-Anchor wird über eckige Klammern gesetzt.
+Ferner muss die ID des Anchors durchgängig mit kleinen Buchstaben geschrieben werden und darf weder Leer- oder Sonderzeichen enthalten.
+
+:desc-listing-kapitelueberschriften-final: Kapitelüberschriften mit Inline Anchors
+[id="listing-kapitelueberschriften-final",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-kapitelueberschriften-final}
+[source,asciidoc]
+----
+[[hallowelt-kapitel]]
+= Hallo Welt Kapitel
+Das ist ein Hallo Welt Text zum Kapitel.
+
+[[hallowelt-unterkapitel]]
+== Hallo Welt Unterkapitel
+Das ist ein Hallo Welt Text zum Unterkapitel.
+----
+
+[[hallowelt-kapitel]]
+Einen Querverweis auf eine Kapitelüberschrift setzt man bei einem IsyFact-Dokument über zwei spitze Klammerpaare.
+
+:desc-listing-querverweis: Querverweis auf eine Kapitelüberschrift
+[id="listing-querverweis",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-querverweis}
+[source,asciidoc]
+----
+Zum <<hallowelt-kapitel, Hallo Welt Kapitel>> gelangen Sie über einen Mausklick.
+----
+
+Der erste Parameter in dem Klammer-Paar legt die ID des Anchors fest.
+Der zweite Parameter enthält einen Schriftzug, der anstelle der ID angezeigt wird.
+Der gerenderte Texte sollte wie folgt aussehen:
+
+`Zum <<hallowelt-kapitel, Hallo-Welt Kapitel>> gelangen Sie über einen Mausklick.`
+
+[[bilder]]
+== Bilder
+
+Genauso wie Kapitelüberschriften werden auch Bilder über einen Querverweis referenziert.
+
+TIP: Beachten Sie, dass die Bilder nicht im Verzeichnis des aufrufenden Dokuments abgelegt werden, sondern in dem Unterordner `/images`.
+
+Bilder werden bei AsciiDoc über folgende Syntax eingebunden.
+
+:desc-listing-bild-einfuegen: Bild einfügen
+[id="listing-bild-einfuegen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-bild-einfuegen}
+[source,asciidoc]
+----
+image::hallowelt.png
+----
+
+Bei einem IsyFact-Dokument ist diese Syntax aber nicht ausreichend.
+Denn bei IsyFact soll zum Bild eine ID und eine Abbildungsunterschrift hinzukommen.
+Auch bei der ID muss wieder beachtet werden, dass sie werder Großbuchstaben, noch Leer- und Sonderzeichen enthalten darf.
+
+:desc-listing-bild-einfuegen2: Bild einfügen in IsyFact
+[id="listing-bild-einfuegen2",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-bild-einfuegen2}
+[source,asciidoc]
+----
+:desc-image-hallowelt: Das HalloWelt Bild
+[id="image-hallowelt",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-hallowelt}
+image::hallowelt.png
+----
+
+Für Ihre eigenen Bilder ersetzen Sie den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner.
+
+TIP: Beachten Sie, dass die vorgegebene Syntax zwingend eingehalten werden muss, weil die Bilder ansonsten vom entsprechenden Skript nicht erkannt werden.
+
+Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht alle Bilder in dem IsyFact-Dokument und erstellt hieraus ein Abbildungsverzeichnis.
+Ferner kann das Bild im AsciiDoc-Text über seine ID referenziert werden:
+
+ <<image-hallowelt>>
+
+Wenn das Bild zentriert werden soll, fügt man das Attribut `[align="center"]` hinzu.
+
+:desc-listing-bild-einfuegen3: Bild zentriert einfügen
+[id="listing-bild-einfuegen3",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-bild-einfuegen3}
+[source,asciidoc]
+----
+:desc-image-hallowelt: Das HalloWelt Bild
+[id="image-hallowelt",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-hallowelt}
+image::hallowelt.png[align="center"]
+----
+
+Eine Skalierung des Bildes ist auch möglich.
+In dem folgenden Beispiel wird das Bild auf 80% minimiert.
+Die doppelte Angabe der Breite ist leider nötig, damit das Bild sowohl im HTML-Dokument als auch im PDF-Dokument richtig skaliert wird.
+
+:desc-listing-bild-einfuegen4: Bild zentriert und skaliert einfügen
+[id="listing-bild-einfuegen4",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-bild-einfuegen4}
+[source,asciidoc]
+----
+:desc-image-hallowelt: Das HalloWelt Bild
+[id="image-hallowelt",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-hallowelt}
+image::hallowelt.png[align="center",pdfwidth=80%,scaledwidth=80%]
+----
+
+[[tabellen]]
+== Tabellen
+
+In AsciiDoc wird eine Tabelle über folgende Syntax definiert:
+
+:desc-listing-tabelle1: Tabelle einfügen
+[id="listing-tabelle1",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-tabelle1}
+[source,asciidoc]
+----
+|====
+|Zelle 11|Zelle 12|Zelle 13|Zelle 14
+|Zelle 21|Zelle 22|Zelle 23|Zelle 24
+|Zelle 31|Zelle 32|Zelle 33|Zelle 34
+|====
+----
+
+Das Ergebnis ist folgende Tabelle:
+
+|====
+|Zelle 11|Zelle 12|Zelle 13|Zelle 14
+|Zelle 21|Zelle 22|Zelle 23|Zelle 24
+|Zelle 31|Zelle 32|Zelle 33|Zelle 34
+|====
+
+In einem IsyFact-Dokument muss eine Tabelle aber auch:
+
+- eine Tabellenunterschrift enthalten,
+- über einen Identifizierer referenziert werden können und
+- mit einer Kopfzeile beginnen.
+
+Hierfür soll folgende Syntax verwendet werden:
+
+:desc-listing-tabelle2: Tabelle einfügen in IsyFact
+[id="listing-tabelle2",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-tabelle2}
+[source,asciidoc]
+----
+:desc-table-hallowelt: Eine hallowelt-Tabelle
+[id="table-hallowelt",reftext="{table-caption} {counter:tables}"]
+.{desc-table-hallowelt}
+[options="header"]
+|====
+|Spalte 1|Spalte 2|Spalte 3|Spalte 4
+|Zelle 11|Zelle 12|Zelle 13|Zelle 14
+|Zelle 21|Zelle 22|Zelle 23|Zelle 24
+|Zelle 31|Zelle 32|Zelle 33|Zelle 34
+|====
+----
+
+Das Ergebnis sieht dann so aus:
+
+:desc-table-hallowelt: Eine hallowelt-Tabelle
+[id="table-hallowelt",reftext="{table-caption} {counter:tables}"]
+.{desc-table-hallowelt}
+[options="header"]
+|====
+|Spalte 1|Spalte 2|Spalte 3|Spalte 4
+|Zelle 11|Zelle 12|Zelle 13|Zelle 14
+|Zelle 21|Zelle 22|Zelle 23|Zelle 24
+|Zelle 31|Zelle 32|Zelle 33|Zelle 34
+|====
+
+Auch hier können Sie den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner ersetzen.
+Ferner kann die Tabelle im AsciiDoc-Text über ihre ID referenziert werden:
+
+ <<table-hallowelt>>
+
+[[listings]]
+== Listings
+
+Quelltexte können bei AsciiDoc auf folgender Weise mit Syntaxhighlighting angezeigt werden.
+
+:desc-listing-quelltext1: Quelltext einfügen
+[id="listing-quelltext1",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-quelltext1}
+[source,asciidoc]
+----
+ [source,java]
+ ----
+ public class HalloWelt {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+ }
+ ----
+----
+
+Die Ausgabe sieht wie folgt aus:
+
+[source,java]
+----
+public class HalloWelt {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+----
+
+Auch hier wird noch eine Listing-Überschrift und eine ID benötigt:
+
+:desc-listing-quelltext2: Quelltext einfügen in IsyFact
+[id="listing-quelltext2",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-quelltext2}
+[source,asciidoc]
+----
+ :desc-listing-hallowelt: HalloWelt.java
+ [id="listing-hallowelt",reftext="{listing-caption} {counter:listings }"]
+ .{desc-listing-hallowelt}
+ [source,java]
+ ----
+ public class HalloWelt {
+     public static void main(String[] args) {
+         System.out.println("Hallo Welt");
+     }
+ }
+ ----
+----
+
+Wie in den vorigen Beispielen können Sie auch hier den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner ersetzen.
+Ferner kann das Listing im AsciiDoc-Text über seine ID referenziert werden:
+
+ <<listing-hallowelt>>
+
+[[literaturverzeichnis]]
+== Literaturverzeichnis
+
+Für Referenzen auf das Literaturverzeichnis müssen alle referenzierten Dokumente jeweils mit einem eigenen Eintrag in der Datei
+
+`/common/bibliography.adoc`
+
+aufgeführt sein.
+
+Beispielsweise muss für die Referenzierung dieses Dokuments folgender Eintrag in die Datei aufgenommen werden.
+
+:desc-listing-literaturverzeichnis: Literaturverzeichnis
+[id="listing-literaturverzeichnis",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-literaturverzeichnis}
+[source,asciidoc]
+----
+ - [[[Handbuch_fuer_technische_Autoren]]] +
+   Handbuch für technische Autoren +
+   50_Werkzeuge\Handbuch_fuer_technische_Autoren.pdf
+----
+
+Eine Referenz auf die Literatur erfolgt über doppelte spitze Klammerpaare.
+
+ Hier ist das <<Handbuch_fuer_technische_Autoren,Handbuch für technische Autoren>>.
+
+Das Ergebnis sieht so aus:
+
+`Hier ist das <<Handbuch_fuer_technische_Autoren,Handbuch für technische Autoren>>.`
+
+////
+(Wieder mit hereinnehmen, wenn es ein solches Glossar gibt.)
+[[glossar]]
+== Glossar
+
+Für Referenzen auf Fachwörter müssen referenzierte Begriffe jeweils mit einem eigenen Eintrag in der Datei
+
+`/common/glossary.adoc`
+
+aufgeführt sein.
+
+Der ID soll mit dem Bezeichner `glossar-` beginnen.
+Beispielsweise muss für die Referenzierung des Fachausdrucks `Hallo Welt Beispiel` folgender Eintrag in die Datei `/common/glossary.adoc` aufgenommen werden.
+
+:desc-listing-glossar: Glossar
+[id="listing-glossar",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-glossar}
+[source,asciidoc]
+----
+[id="glossar-halloweltbeispiel",reftext="Hallo Welt Beispiel"]
+Hallo Welt Beispiel:: Ein Hallo Welt Beispiel enthält einen denkbar einfachen Quelltext.
+----
+
+Eine Referenz auf einen Begriff des Glossars erfolgt über doppelte spitze Klammerpaare.
+
+ Hier wurde ein <<glossar-halloweltbeispiel, Hallo Welt Beispiel>> verwendet.
+
+Das Ergebnis sieht wie folgt aus:
+
+`Hier wurde ein <<glossar-halloweltbeispiel, Hallo Welt Beispiel>> verwendet.`
+////

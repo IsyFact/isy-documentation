@@ -1,0 +1,25 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| IsyFact-Referenzarchitektur
+|====
+
+//|Datum |Version |Änderungsgrund
+//|07.07.2009 |0.1 |Dokument angelegt
+//|25.08.2009 |0.2 |Dokument weitergeführt
+//|17.04.2010 |1.0 |Reviewanmerkungen eingearbeitet
+//|20.04.2010 |1.0.1 |Überarbeitung Referenzen
+//|30.11.2010 |1.1.0 |Ergänzung zu Vereinfachungsmöglichkeiten der Architektur (Kapitel 7)
+//|17.06.2011 |1.1.1 |TI Architektur für PRU und STU korrigiert (Mail/Fax-Server)
+//|25.02.2012 |1.1.2 |[[OLE_LINK1]]Ergänzung Benutzer­verzeich­nis, Anpassung Referenzen
+//|12.04.2013 |1.1.3 |Ergänzungen WebGUI, Aktualisierung Referenzen, Datenhoheit Komponenten
+//|18.04.2013 |1.2 |Entfernung redundanter Inhalte in div. Kapiteln, anstatt dessen Verweis auf existierende Inhalte Klarstellung/Anpassung Komponentenhoheit (siehe Kapitel 4.1.4)
+//|08.07.2013 |1.3 |Auslagerung der Beschreibung der technischen Referenzarchitektur in ein eigenes Dokument
+//|28.08.2013 |1.4 |Kleiner Änderungen von Formulierungen im Rahmen von RF-Release 1.4
+//|23.07.2014 |1.5 |Übernahme des Dokuments in die IsyFact.
+//|10.12.2014 |1.7 |Umstellung auf generiertes Quellenverzeichnis
+//|11.02.2015 |1.8 |Reviewkommentare eingearbeitet, Logo geändert
+//|26.03.2015 |1.9 |Lizenz auf CC 4.0 geändert
+//|12.05.2015 |1.10 |bereinigt, Dokumentnamen auf IsyFact geändert
+//|25.04.2016 |1.11 |Verweis auf Detailkonzept zu Native-GUI entfernt
+//|01.03.2017 |1.12 |Querschnittskomponenten dürfen auch von Service Gateways aufgerufen werden (siehe Kapitel 4.2)

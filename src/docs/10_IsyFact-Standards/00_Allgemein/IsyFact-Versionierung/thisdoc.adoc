@@ -1,0 +1,5 @@
+[[Einleitung]]
+== Einleitung
+
+Versionen von Bibliotheken, Schnittstellen und Anwendungen dienen zur eindeutigen Identifizierung von Software-Artefakten mit einem bestimmten Inhalt.
+Dieses Konzept trifft Vorgaben und Empfehlungen zum Aufbau der Versionsnummern, um eine bessere Einheitlichkeit und Vergleichbarkeit zu gewährleisten.

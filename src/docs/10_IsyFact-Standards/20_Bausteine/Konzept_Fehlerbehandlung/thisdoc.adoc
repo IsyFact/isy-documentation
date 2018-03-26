@@ -1,0 +1,39 @@
+[[einleitung]]
+= Einleitung
+
+Dieses Dokument enthält das technische Feinkonzept zur Fehlerbehandlung für
+alle Anwendungen gemäß Referenzarchitektur der IsyFact.
+
+[[aufbau-und-zweck-des-dokuments]]
+= Aufbau und Zweck des Dokuments
+
+Dieses Dokument umfasst das Feinkonzept zur Fehlerbehandlung für alle
+Anwendungen nach Referenzarchitektur der IsyFact.
+Es beschreibt die Anforderungen an die Nutzung und Verarbeitung von Exceptions
+und gibt konkrete Beispiele hierfür.
+
+Ziel dieses Dokumentes ist es, einen Standard für die einheitliche
+Implementierung von Exceptions in Anwendungen festzulegen und eine Anleitung
+für die korrekte Verwendung von Exceptions zu geben.
+Dadurch wird eine einheitliche und korrekte Reaktion auf Fehler- und
+Ausnahmesituationen innerhalb der Anwendungen ermöglicht.
+Es werden hierbei die Anforderungen von Betrieb, Nutzern und
+Softwarelieferanten berücksichtigt.
+
+Dieses Feinkonzept beschäftigt sich ausschließlich mit den übergreifenden
+Anforderungen an die Behandlung von Exceptions und macht Vorgaben zu deren
+Umsetzung und Anwendung.
+Die von den Anwendungen benötigten Exception-Klassen sind von der
+konkreten Anwendung abhängig und müssen im entsprechenden Projekt, unter
+Berücksichtigung der in diesem Feinkonzept gemachten Vorgaben, erstellt werden.
+Zur Umsetzung werden ausführliche Beispiele gegeben.
+
+In Kapitel <<anforderungen-an-die-fehlerbehandlung>> werden zunächst Anforderungen
+an die Fehlerbehandlung aufgestellt.
+Im Kapitel <<implementierung-der-fehlerbehandlung>> werden Vorgaben definiert,
+wie Exceptions zu erstellen sind und wie sie behandelt werden müssen.
+Konkrete Beispiele stammen aus der <<Vorlageanwendung>> die eine Anwendung
+gemäß den IsyFact-Standards (und somit gemäß den Vorgaben aus diesem Konzept)
+beispielhaft implementiert.
+Abschließend werden in Kapitel <<dos-und-donts>> typische DO's und DON'Ts erläutert,
+die bei der Fehlerbehandlung beachtet werden müssen.

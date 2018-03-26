@@ -1,0 +1,9 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| IsyFact-Versionierung
+|====
+
+//|Datum |Version |Änderungsgrund
+//|13.10.2016 |0.1 |Initialer Entwurf
+//|17.10.2016 |0.2 |Internes Review eingearbeitet

@@ -1,0 +1,60 @@
+[[einleitung]]
+== Einleitung
+
+Entsprechend der Referenzarchitektur (siehe <<IsyFact-Referenzarchitektur>>) stellen Anwendungen Services über die
+technische Komponente „Service“ zur Verfügung.
+Das vorliegende Dokument beschreibt die Aufgaben und die Architektur dieser technischen Komponente.
+Zu beachten ist, dass die Komponente „Service“ die Services einer Anwendung lediglich innerhalb der Plattform
+verfügbar macht.
+Um diese Services auch externen Anwendungen zur Verfügung zu stellen, müssen die Services durch ein so genanntes
+Service-Gateway exportiert werden.
+Dies ist jedoch nicht Inhalt des vorliegenden Dokuments, sondern wird im Dokument <<SystemdokumentationServiceGateway>>
+ausführlich beschrieben.
+
+Die technischen Grundlagen der Service-Kommunikation innerhalb der Plattform sind im Dokument <<GrundlagenInterneServicekommunikation>>
+beschrieben.
+
+Das Dokument gliedert sich wie folgt.
+In Abschnitt <<ueberblick>> wird kurz beschrieben, wie sich die Komponente “Service“ in die Gesamtarchitektur eines
+IT-Systems der Plattform einfügt.
+In Abschnitt <<aufgaben-der-service-logik>> werden dann die Aufgaben der Komponente erläutert und
+Abschnitt <<aufbau-der-service-logik>> stellt den Standard-Aufbau der
+Komponente dar.
+
+[[ueberblick]]
+== Überblick
+
+Der Zugriff anderer Anwendungen auf die Funktionalität des Anwendungskerns eines IT-Systems innerhalb der
+Plattform erfolgt über die technische Komponente „Service“ (siehe <<image-IFRefArcITSysServ>>).
+
+:desc-image-IFRefArcITSysServ: Referenzarchitektur eines IT-Systems
+[id="image-IFRefArcITSysServ",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-IFRefArcITSysServ}
+image::IFRefArcITSysServ.png[align="center"]
+
+Intern besteht die Komponente „Service“ aus zwei Komponenten, dem Service-Framework und der Service-Logik:
+
+*Service-Framework:* Das Service-Framework ist die Bezeichnung für die Technologie, mit der die Services des
+Anwendungskerns zur Verfügung gestellt werden.
+Hierfür wird das Framework Spring HTTP-Invoker verwendet.
+In der Regel wird ein extern angebotener Service noch durch zusätzliche Daten oder Logik ergänzt.
+Diese werden in der Komponente Service-Logik implementiert.
+
+*Service-Logik:* Die Komponente Service-Logik enthält Daten und Funktionalität, die für die Bereitstellung des
+Services relevant sind.
+Im Normalfall ist der Funktionsumfang der Komponente Service-Logik viel geringer als der Funktionsumfang der
+genutzten Services im Anwendungskern.
+Dies liegt darin begründet, dass die Komponente Service-Logik die Funktionalität des Anwendungskerns nutzt, um
+den Dienst bereitzustellen.
+Die Kernfunktionalität des Dienstes ist also im Anwendungskern implementiert.
+Die Schnittstelle zwischen den Schichten „Service“ und „Anwendungslogik“ ist daher eine interne Service-Schnittstelle.
+Eine Kernaufgabe der Service-Logik ist die Umsetzung der internen Datenstrukturen und Exceptions des IT-Systems
+auf Transportobjekte und Exceptions der Service-Schnittstelle sowie die Autorisierung
+der Nutzung von angebotenen Services.
+
+NOTE: Transportobjekte sind Java-Klassen, deren einziger Zweck es ist, Daten zu transportieren.
+Sie definieren lediglich eine Datenstruktur.
+
+Da durch Spring HTTP-Invoker das Service-Framework vorgeben ist, muss für eine konkrete Anwendung lediglich die
+Service-Logik realisiert werden.
+Die folgenden Abschnitte beschränken sich daher auf die Beschreibung der Aufgaben und des Aufbaus der Service-Logik.

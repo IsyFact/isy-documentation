@@ -1,0 +1,26 @@
+
+ifdef::backend-html5[]
+
+[.float-group]
+--
+[role="left"]
+image::../../../../common/images/BVA-Logo.png[width=270]
+[.right]
+image::../../../../common/images/IFS-Logo.png[width=270]
+--
+
+endif::[]
+
+****
+image::../../../../common/images/CC-BY.png[ccby,width=100,align="center"]
+Dieses Dokument des Bundesverwaltungsamts ist lizenziert unter der https://creativecommons.org/licenses/by/4.0/deed.de[Creative Commons Namensnennung 4.0 International]. +
+Die Lizenzbestimmungen sind unter folgender URL erhältlich: +
+https://creativecommons.org/licenses/by/4.0/legalcode.de
+****
+
+*Ansprechpartner:* +
+
+Referat Z III 2  +
+{orgname} +
+E-Mail: {email} +
+Internet: {homepage}

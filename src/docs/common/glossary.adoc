@@ -1,0 +1,42 @@
+[glossary]
+== Glossar
+
+[id="IFS",reftext="IsyFact Standard"]
+IsyFact Standard:: 
+Die IsyFact-Standards bilden das architektonische, technologische und
+methodische Fundament der IsyFact. Sie umfassen allgemeingültige und
+wiederverwendbare Konzepte und Komponenten, die für die Entwicklung
+beliebiger Fachanwendungen relevant sind.
+
+[id="glossar-5SBlau",reftext="Blaupause"]
+Blaupause:: Die Blaupausen beschreiben die Architektur und Konzepte der Anwendungslandschaft.
+
+[id="glossar-5SBaust",reftext="Baustein"]
+Baustein:: Die Bausteine der IsyFact sind wieder verwendbare Softwarelösungen.
+
+[id="glossar-5SPlat",reftext="Plattform"]
+Plattform:: Eine einheitliche Plattform über alle IT-Systeme, die einen standardisierten und effizienten Systembetrieb ermöglicht.
+
+[id="glossar-5SMeth",reftext="Methodik"]
+Methodik:: Grundlage für die Umsetzung von Systemen mit der IsyFact ist eine standardisierte Vorgehensweise nach dem V-Modell XT.
+
+[id="glossar-5SWerk",reftext="Werkzeug"]
+Werkzeug:: Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von IT-Systemen.
+
+[id="glossar-BVA",reftext="BVA"]
+BVA:: Bundesverwaltungsamt
+
+[id="glossar-HTTP",reftext="HTTP"]
+HTTP:: Hypertext Transfer Protocol: Netzwerkprotokoll zur Übertragung von Daten.
+
+[id="glossar-IMAP",reftext="IMAP"]
+IMAP:: Internet Message Access Protocol: Netzwerkprotokoll für den Abruf von E-Mails.
+
+[id="glossar-JMX",reftext="JMX"]
+JMX:: Java Management Extensions: Spezifikation zur Verwaltung und Überwachung von Java-Anwendungen.
+
+[id="glossar-MBean",reftext="MBean"]
+MBean:: Managed Bean: Java-Objekte zur und Bereitstellung von Eigenschaften über JMX.
+
+[id="glossar-SMTP",reftext="SMTP"]
+SMTP:: Simple Mail Transfer Protocol: Netzwerkprotokoll für den Austausch von E-Mails.

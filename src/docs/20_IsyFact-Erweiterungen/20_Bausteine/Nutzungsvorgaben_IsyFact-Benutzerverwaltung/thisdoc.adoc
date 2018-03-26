@@ -1,0 +1,19 @@
+[[Einleitung]]
+== Einleitung
+
+// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
+
+Die IsyFact-Benutzerverwaltung stellt eine leichtgewichtige Software-Komponente zur Verwaltung von 
+Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht.
+Anwendungen können mithilfe der Komponente auf einfache Weise:
+
+* Benutzer und Rollen verwalten,
+* eine IsyFact-konforme Absicherung der Anwendung erzielen,
+* vorgefertigte grafische Oberflächen für die Verwaltung von Benutzern und Rollen sowie zur An- und 
+Abmeldung von Benutzern einsetzen.
+
+Die IsyFact-Benutzerverwaltung stellt keine Möglichkeit eines Single Sign On (SSO) bereit.
+Jede Anwendung besitzt eigene Benutzer und Rollen.
+
+Die Einbindung der einzelnen Module wird in der jeweiligen Moduldokumentation beschrieben.
+

@@ -1,0 +1,50 @@
+[[einleitung]]
+== Einleitung
+
+IsyFact-konforme Anwendungen sind gegen nicht autorisierte Nutzung zu schützen.
+Authentifizierung und Autorisierung finden nach den Vorgaben des Berechtigungskonzepts <<Berechtigungskonzept>> statt, welches wesentliche Aspekte der Sicherheitsarchitektur beschreibt.
+Das Berechtigungskonzept muss für jede Anwendungslandschaft individuell erstellt werden und ist daher kein Bestandteil der IsyFact.
+
+[[inhalt-dieses-dokuments]]
+=== Inhalt dieses Dokuments
+
+Dieses Dokument beschreibt wie die Komponente Sicherheit verwendet wird, um die *Autorisierung innerhalb einer Fachanwendung* umzusetzen.
+Es wird davon ausgegangen, dass die *Authentifizierung* des Benutzers über eine zentrale Komponente (Access Manager) der Anwendungslandschaft erfolgt, in die die Anwendung eingebettet ist.
+Nach der Authentifizierung eines Benutzers über den zentralen Access-Manager der Anwendungslandschaft wird dessen Anfrage an die Fachanwendung weitergeleitet und hier –
+je nach Schutzbedarf und Funktionalität der Anwendung – autorisiert.
+Dies erfolgt mithilfe der von der IsyFact bereitgestellten Komponente Sicherheit.
+
+[[aufbau-und-zweck-des-dokuments]]
+=== Aufbau und Zweck des Dokuments
+
+Dieses Dokument richtet sich an Entwickler und Chefdesigner, die eine Anwendung gemäß den Vorgaben der IsyFact mit Autorisierungsfunktionalität ausstatten müssen.
+Es beschreibt, wie und in welchen Teilen einer Anwendung die Autorisierung umzusetzen ist.
+
+Dazu wird zunächst in einem Überblick erläutert, wie die Sicherheitsarchitektur auf Ebene der Anwendungslandschaft und auf Ebene einer einzelnen Anwendung aussieht.
+
+In <<das-rollenbasierte-berechtigungskonzept>> wird erläutert, wie für eine neue Anwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Anwendung konfiguriert wird.
+
+In <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in der Anwendung eingegangen.
+Dieser Abschnitt erläutert die Verwendung der Komponente Sicherheit innerhalb einer Anwendung.
+
+In <<weitere-konzepte>> werden weitere Vorgaben zur Verwendung der Komponente Sicherheit gemacht.
+Hier wird der Aufruf von Nachbarsystemen, Behandlung der Korrelations-ID und der Test von Anwendungen erläutert.
+
+[[vorlageanwendung]]
+=== Vorlageanwendung
+
+Viele der in diesem Dokument beschriebenen Vorgaben sind in der <<Vorlageanwendung>> umgesetzt.
+
+[[prinzipien-der-sicherheitsarchitektur]]
+=== Prinzipien der Sicherheitsarchitektur
+
+Die Sicherheitsarchitektur einer konkreten Anwendungslandschaft wird zum großen Teil innerhalb des spezifischen Berechtigungskonzepts für diese Landschaft festgelegt.
+Sie kann daher nicht Teil des vorliegenden Nutzerdokumentation der Sicherheitskomponente sein.
+
+Auf der technischen Ebene macht jedoch die IsyFact-Referenzarchitektur bestimmte Vorgaben für die Sicherheitsarchitektur und für die Prinzipien, nach denen sie aufgebaut ist.
+
+Die konkrete Sicherheitsarchitektur einer Anwendungslandschaft muss nach folgenden Prinzipien gestaltet sein:
+
+* Authentifizierung und grobgranulare Autorisierung an den Außenschnittstellen des Systems (Portal, Service-Gateway, Native-Client-Serviceproxy). Hier finden der Session-Aufbau und die Rollenermittlung durch den Access-Manager statt.
+* Grobgranulare Autorisierung vor den GUI-Schnittstellen der Anwendungen, z.B. mittels Servlet-Agent des Access-Managers.
+* Feingranulare Autorisierung in den Schnittstellen und im Anwendungskern der Anwendungen über die Komponente Sicherheit.
