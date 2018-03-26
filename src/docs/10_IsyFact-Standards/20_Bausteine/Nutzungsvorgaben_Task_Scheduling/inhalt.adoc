@@ -151,6 +151,37 @@ Wenn die Fachanwendung herunterfährt, wird die Methode `shutdownMitTimeout()` a
 taskScheduler.shutdownMitTimeout(10);
 ----
 
+[[verwendung-bereitgestellter-tasks]]
+== Verwendung der bereitgestellten Tasks
+Die Bibliothek `isy-task` enthält nützliche Tasks für die IsyFact-Standards.
+
+=== Automatische Aktualisierung der Konfiguration
+Dieser Task dient der periodischen Prüfung der Konfigurationsdateien auf Änderungen sowie der automatischen Aktualisierung der Konfiguration bei Änderungen.
+Anwendungen können den Task einsetzen, in dem sie ihn als Spring Bean konfigurieren:
+
+[source,xml]
+----
+<beans>
+    ...
+    <bean id="konfigurationUpdateTask" class="de.bund.bva.isyfact.task.task.KonfigurationUpdateTask">
+        <constructor-arg ref="konfiguration"/>
+        <constructor-arg ref="konfigurationUpdateTask-monitor"/>
+    </bean>
+
+    <bean id="konfigurationUpdateTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
+    ...
+</beans>
+----
+
+Der Task `KonfigurationUpdateTask` erwartet task-spezifische Konfigurationsparameter, wie sie im Kapitel <<aufgabenspezifische-konfiguration>> beschrieben werden:
+
+[source]
+----
+isyfact.task.konfigurationUpdateTask.ausfuehrung=FIXED_DELAY
+isyfact.task.konfigurationUpdateTask.initial-delay=5s
+isyfact.task.konfigurationUpdateTask.fixed-delay=60s
+----
+
 [[programmatisches-anlegen-von-aufgaben]]
 = Programmatisches Anlegen von Aufgaben
 
