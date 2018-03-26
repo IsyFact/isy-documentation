@@ -1381,6 +1381,100 @@ Der Auszug aus der Datei `index.html` sieht folgendermaßen aus:
 
 Der Aufbau und die Einbindung des allgemeinen Seitenrahmens ist im Styleguide <<Styleguide>> beschrieben.
 
+[[anpassung-seitenrahmen]]
+=== Anpassung des Seitenrahmens
+Anwendungen können den Seitenrahmen bis zu einem gewissen Grad optisch an ihre Anforderungen anpassen.
+Es besteht die Möglichkeit, für jeden Flow die folgenden Teile des Seitenrahmens anzupassen:
+
+- Linkes Logo im Header (`gui.header.logo.links.pfad`)
+- Rechtes Logo im Header (`gui.header.logo.rechts.pfad`)
+- Text unterhalb des rechten Logos im Header (`gui.header.text.logo.rechts`)
+- Farbwert der Anwendungsgruppe (`gui.anwendungsgruppe.farbwert`)
+
+Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über die Bean-Definition eingebunden werden:
+
+:desc-listing-anpassung-rahmen-config: Konfigurationsdatei zur Anpassung des Seitenrahmens einbinden
+[id="listing-anpassung-rahmen-config",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-anpassung-rahmen-config}
+[source,xml]
+----
+<beans>
+    ...
+    <bean id="konfiguration" ...>
+        <constructor-arg>
+            <list>
+                ...
+                <value>/resources/gui-anwendungsgruppen.properties</value>
+                ...
+            </list>
+        </constructor-arg>
+    </bean>
+    ...
+</beans>
+----
+
+Anwendung können globale Standardwerte definieren. Definieren sie diese nicht, verwendet der Seitenrahmen Standardwerte aus `isy-web`.
+
+:desc-table-SeitenrahmenStandardwerte: Globale Standardwerte für den Seitenrahmen
+[id="table-SeitenrahmenStandardwerte",reftext="{table-caption} {counter:tables}"]
+.{desc-table-SeitenrahmenStandardwerte}
+[cols="5,4",options="header"]
+|====
+|Parameter                      |Standardwert
+|`gui.header.logo.links.pfad`   |kein Logo
+|`gui.header.logo.rechts.pfad`  |kein Logo
+|`gui.header.text.logo.rechts`  |kein Text
+|`gui.anwendungsgruppe.farbwert`|image:anwendungsgruppe-standardfarbe.png[width=25]
+|====
+
+Die gleichen Werte können Anwendungen zusätzlich auf Ebene sogenannter _Anwendungsgruppen_ setzen, um den Seitenrahmen noch weiter an ihre Anforderungen anzupassen.
+Anwendungsgruppen fassen in der Regel mehrere Flows zusammen und spiegeln sich nicht selten direkt in der Hauptnavigation wieder.
+Setzt die Anwendungen einzelne Werte für bestimmte Anwendungsgruppen nicht, werden die globalen Standardwerte (s. <<table-SeitenrahmenStandardwerte,vorige Tabelle>>) herangezogen.
+
+:desc-table-SeitenrahmenStandardwerteGruppen: Standardwerte für den Seitenrahmen bezogen auf Anwendungsgruppen
+[id="table-SeitenrahmenStandardwerteGruppen",reftext="{table-caption} {counter:tables}"]
+.{desc-table-SeitenrahmenStandardwerteGruppen}
+[cols="5,4",options="header"]
+|====
+|Parameter                                         |Standardwert
+|`gui.header.logo.links.pfad.<anwendungsgruppe>`   |`gui.header.logo.links`
+|`gui.header.logo.rechts.pfad.<anwendungsgruppe>`  |`gui.header.logo.rechts`
+|`gui.header.text.logo.rechts.<anwendungsgruppe>`  |`gui.header.text.logo.rechts`
+|`gui.anwendungsgruppe.farbwert.<anwendungsgruppe>`|`gui.anwendungsgruppe.farbwert`
+|====
+
+Das folgende Beispiel zeigt eine vollständige Konfiguration.
+
+:desc-listing-AnpassungSeitenrahmen: Konfiguration zur Anpassung des Seitenrahmens
+[id="listing-AnpassungSeitenrahmen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AnpassungSeitenrahmen}
+[source]
+----
+# Globale Standardwerte
+gui.header.logo.links.pfad = /javax.faces.resource/img/isyfactschriftzug.jpeg
+gui.header.logo.rechts.pfad = /javax.faces.resource/img/isyfactlogo.jpeg
+gui.header.text.logo.rechts = IsyFact
+gui.anwendungsgruppe.farbwert = #337299
+
+# Defintion der Anwendungsgruppen
+gui.anwendungsgruppen.ids = gruppeEins,gruppeZwei,gruppeDrei
+
+# Zuordnung von Flows zu Anwendungdgruppen
+gui.anwendungsgruppen.urls.gruppeEins = startseiteFlow,nachrichtenFlow
+gui.anwendungsgruppen.urls.gruppeZwei = formulareFlow,beispiellinkFlow
+gui.anwendungsgruppen.urls.gruppeDrei = validierungFlow,wizardDialogFlow
+
+# Farbwerte der Anwendungsgruppen
+gui.anwendungsgruppe.farbwert.gruppeEins = #46c095
+gui.anwendungsgruppe.farbwert.gruppeZwei = #887299
+gui.anwendungsgruppe.farbwert.gruppeDrei = #ffbbe1
+
+# Logos / Texte der Anwendungsgruppen
+gui.header.logo.links.pfad.gruppeZwei = /javax.faces.resource/img/andererschriftzug.jpeg
+gui.header.logo.rechts.pfad.gruppeZwei = /javax.faces.resource/img/andereslogo.jpeg
+gui.header.text.logo.rechts.gruppeZwei = Zweite Gruppe
+----
+
 [[behandlung-von-fehlern]]
 === Behandlung von Fehlern
 
