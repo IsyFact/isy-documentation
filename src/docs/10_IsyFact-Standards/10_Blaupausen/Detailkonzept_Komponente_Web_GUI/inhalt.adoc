@@ -1384,6 +1384,8 @@ Der Aufbau und die Einbindung des allgemeinen Seitenrahmens ist im Styleguide <<
 [[anpassung-seitenrahmen]]
 === Anpassung des Seitenrahmens
 Anwendungen können den Seitenrahmen bis zu einem gewissen Grad optisch an ihre Anforderungen anpassen.
+
+==== Logos, Texte und Farben
 Es besteht die Möglichkeit, für jeden Flow die folgenden Teile des Seitenrahmens anzupassen:
 
 - Linkes Logo im Header (`gui.header.logo.links.pfad`)
