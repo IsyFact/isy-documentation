@@ -1544,6 +1544,16 @@ auf „bereit“ steht.
 Erst nach der erfolgreichen Ausführung aller Schritte des Schemas „uebergreifend“, wird der Status
 auf „gueltig“ gesetzt.
 
+[[datenbankuebergreifende-operationen]]
+== Datenbankübergreifende Operationen
+
+Im Gegensatz zu schemaübergreifenden Operationen wird von datenbankübergreifenden Operationen dringlichst abgeraten.
+Nur eine Lösung, Oracle Database Links, bietet im Zusammenspiel mit Oracle-Datenbanken eine generische, transaktionssichere Lösung für dieses Problem an.
+Allerdings sind Oracle Database Links laut Maßnahme M 4.71 des IT-Grundschutzes (<<ITGrundschutzM471>>) nur unter strengen Auflagen zulässig, die eine Verwendung erheblich erschweren.
+
+Mit dem Wegfall dieser Lösung gibt es aus Sicht der IsyFact keine geeignete Lösung, um Daten zwischen mehreren Schemata auf unterschiedlichen Datenbank-Instanzen zu bearbeiten.
+Unabhängig von der Lösung erschweren datenbankübergreifende Operationen die Fehlersuche im Falle einer fehlgeschlagenen Installation oder Aktualisierung wesentlich.
+
 [[pruefen-der-schema-version]]
 == Prüfen der Schema-Version
 

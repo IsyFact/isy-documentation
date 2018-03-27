@@ -184,6 +184,11 @@
   Batch-Verarbeitung mit Hibernate +
   http://www.hibernate.org/hib_docs/v3/reference/en/html/batch.html (Zugriff am 10.12.2014)
 
+- [[[ITGrundschutzM471]]] +
+  M 4.71 Restriktive Handhabung von Datenbank-Links +
+  https://www.bsi.bund.de/DE/Themen/ITGrundschutz/ITGrundschutzKataloge/Inhalt/_content/m/m04/m04071.html +
+  (Zugriff am 27.03.2018)
+
 - [[[Bloch2008]]] +
   Joshua Bloch. Effective Java Second Edition. 2008. Addison Wesley.
 
