@@ -565,6 +565,8 @@ Für die Nachverfolgung können durch die Verarbeitungsbean zu verschiedenen Zei
 * Nach dem Schreiben jedes Checkpoints.
 * Bei der erfolgreichen Beendigung des Batches.
 
+Jeder Log-Eintrag eines Batches, insbesondere die Aufrufe der Fachkomponenten, enthalten pro Satz eine eindeutige Korrelations-ID. Damit können Log-Einträge nicht nur einem Batchlauf, sondern den einzelnen Sätzen eindeutig zugeordnet werden.
+
 Für die Überwachung wird durch den Batchrahmen eine JMX-Bean bereitgestellt. Über folgende Konfiguration wird ein JMX Agent erzeugt, welcher die Bean nach außen zugreifbar macht:
 
 [source]
