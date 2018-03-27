@@ -27,7 +27,7 @@ Gemäß den Vorgaben der Referenzarchitektur der IsyFact <<IsyFact-Referenzarchi
 Eine dieser Schichten ist die Persistenzschicht.
 In dieser Schicht ist alle Funktionalität enthalten, die zum Erzeugen, Suchen, Bearbeiten und Löschen von Datensätzen benötigt wird.
 Der Zugriff auf eine relationale Datenbank ist in dieser Schicht vollständig gekapselt.
-In Richtung Datenbank kommuniziert diese Schicht mittels JDBC und SQL, in Richtung des Anwendungskerns stellt die Schicht Geschäftsobjekte zur Verfügung.
+In Richtung Datenbank kommuniziert diese Schicht mittels JDBC und SQL, in Richtung des Anwendungskerns stellt die Schicht persistente Objekte zur Verfügung.
 
 In <<image-IFRefArcITSsysPers>> ist die Referenzarchitektur eines IT-Systems noch einmal dargestellt, wobei die Persistenzschicht mit der Komponente Datenhaltung hervorgehoben ist.
 
