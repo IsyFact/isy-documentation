@@ -48,7 +48,7 @@ Für ein Verständnis der in diesem Dokument geforderten JPA-Nutzung ist vor all
 Vorlage-Anwendung <<Vorlageanwendung>> zu empfehlen:
 
 * seine Konfiguration in den Dateien `jpa.properties`, `jpa.xml`, `persistence.xml` und `hibernate.cfg.xml`,
-* seine Persistenzklassen `Terminfindung` und `Interpret`,
+* seine Persistenzklassen `Terminfindung` und `Teilnehmer`,
 * seine Data Access Objects `TerminfindungDao` und `TeilnehmerDao`,
 * seine JPQL Queries in der Datei `NamedQueries.hbm.xml`
 
