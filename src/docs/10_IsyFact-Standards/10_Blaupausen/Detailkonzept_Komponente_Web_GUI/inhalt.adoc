@@ -2121,8 +2121,6 @@ Hier muss ein Listener registriert werden, über welchen die Security Bedürfnis
 				   value="cd-register"></entry>
 			<entry key-ref="jpaFlowExecutionListener"
 				   value="cd-register"></entry>
-			<entry key-ref="flowExecutionBreadcrumbListener"
-				   value="cd-register"></entry>
 		</map>
 	</property>
 </bean>
@@ -2347,10 +2345,6 @@ Der JDBC-Sessionmanager muss wie dort beschrieben aktiviert und konfiguriert wer
 .  Die Bean, welche für das Aufräumen der Datenbank-Sessions zuständig ist (`jobExecutorStoreClean`) und die zugehörige Timer-Factory muss von dem Spring-Kontext der Anwendung entfernt werden, weil das Aufräumen der Datenbank-Sessions auch vom Tomcat verwaltet wird.
 .  Die Bean DbBasedBindingConversationManager muss im Spring-Kontext der Anwendung mit der Spring-Web-Flow-Klasse
 `SessionBindingConversationManager` ersetzt werden.
-.  Für Anwendungen, die Breadcrumbs unterstützen, kann die Bean `BreadcrumbAwareDbBasedFlowExecutionRepository`
- mit der neuen Klasse `BreadcrumbAwareFlowExecution­Repository` aus `isy-web` ersetzt werden.
-Für Anwendungen ohne Breadcrumbs kann die Bean `DbBasedFlowExecution­Repository` mit der Spring-Web-Flow Klasse
-`DefaultFlow­ExecutionRepository` ersetzt werden.
 .  Die Datenbank-Tabelle für die Sessions (`WEBFLOW­CONVERSATIONCONTAINER`) muss entfernt werden.
 Sie wird mit einer neuen Datenbank-Tabelle ersetzt, die im <<TomcatNutzungskonzept>> beschrieben ist.
 
@@ -2420,14 +2414,13 @@ Statische Texte bevorzugt nur im HTML verwenden.
 [[optimierung-snapshots]]
 == Optimierung Snapshots
 
-Für die Benutzung der Breadcrumb-Navigation und auch des Back-Buttons ist es notwendig, die Anzahl der Snapshots eines Dialogflusses zu erhöhen.
+Für die Benutzung des Back-Buttons ist es notwendig, die Anzahl der Snapshots eines Dialogflusses zu erhöhen.
 Dieses sollte in Abhängigkeit der Anforderungen an die konkrete Anwendung erfolgen.
 
 [[festlegung-der-texte-fuer-die-titel]]
 == Festlegung der Texte für die Titel
 
 Es sollte ein Standard-Titel und Präfix für die Anwendung angelegt werden.
-Für jede Seite sollte ein Breadcrumb angelegt werden.
 
 [[festlegung-der-hilfeseiten]]
 == Festlegung der Hilfeseiten
