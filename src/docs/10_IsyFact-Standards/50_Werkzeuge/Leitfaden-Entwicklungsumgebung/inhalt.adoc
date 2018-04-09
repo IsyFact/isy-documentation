@@ -67,7 +67,7 @@ Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfig
 image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=70%,pdfwidth=70%]
 
 Klicken Sie auf Weiter. Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen. Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox
-in das Verzeichnis der virtuellen Maschine speichert. Ãœber die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
+in das Verzeichnis der virtuellen Maschine speichert. Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
 um dort später das Ubuntu Betriebssystem zu installieren. Statt die Festplatte und das darin zu installierende Betriebssystem von Hand zu installieren, beschreibt diese
 Anleitung eine Abkürzung. Die Webseite http://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an. Unter http://www.osboxes.org/ubuntu-gnome
 wird beispielsweise eine Festplatte angeboten, auf der Ubuntu mit der Gnome-Oberfläche vorinstalliert ist. Diese Datei können Sie in komprimierter Form auch direkt über folgende
@@ -168,7 +168,7 @@ Die restlichen Einstellungen können Sie überspringen. Nun ist die Konfiguratio
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_04.png[align="center"]
 
-Klicken Sie links oben auf "Applications" und dann unten auf "Activities Overview", um eine Ãœbersicht über die Applikationen zu bekommen.
+Klicken Sie links oben auf "Applications" und dann unten auf "Activities Overview", um eine Übersicht über die Applikationen zu bekommen.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05: Startbildschirm der virtuellen Maschine nach dem Login
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_05",reftext="{figure-caption} {counter:figures}"]
@@ -256,23 +256,19 @@ Danach installieren Sie Git mit folgender Anweisung:
 
  sudo apt-get install git
 
-Um auch alle Sub-Packages zu installieren, rufen Sie folgendes Kommando auf:
-
- sudo apt-get install git-all
-
 ==== Git Konfiguration
 
 Auf der Kommandozeile wird Git über den Aufruf des Kommandos `git` gesteuert.
 Das `git`-Kommando kennt eine Reihe von Optionsparametern.
 Die Konfiguration wird beispielsweise über den Optionsparameter `config` festgelegt.
 Dabei kann sie in drei Granularitäten durchgeführt werden.
-Ãœber das Kommando
+Über das Kommando
 
  git config --system
 
 nehmen Sie die Konfiguration für alle Benutzer des Betriebssystems vor.
 Diese System-Konfiguration wird automatisch in die Datei `/etc/gitconfig` geschrieben.
-Ãœber
+Über
 
  git config --global
 
@@ -319,21 +315,17 @@ Anschließend ist die Entwicklungsumgebung über das Kommando `STS` im Ordner `/
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts}
 image::leitfaden_entwicklungsumgebung_werkzeuge_sts.png[align="center"]
 
-Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses eine Datei des
-Typs `.desktop` abgelegt werden. Diese können Sie bequem mit dem Programm `gnome-panel` erzeugen. Installieren Sie `gnome-panel` mit folgender Anweisung:
+Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses ein https://wiki.ubuntuusers.de/.desktop-Dateien/[Programmstarter] angelegt werden. Legen Sie dazu eine Datei namens `STS.desktop` in diesem Verzeichnis an und versehen Sie sie mit folgendem Inhalt:
 
- sudo apt install gnome-panel
-
-Das folgende Kommando startet anschließend das Gnome Panel.
-
- sudo gnome-desktop-item-edit /usr/share/applications --create-new
-
-Setzen Sie den Namen, den Pfad zum STS-Kommando und ein Kommentar. Das Bild ändern Sie durch einen Mausklick auf das Icon-Symbol.
-
-:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon: Spring Tool Suite (STS) Einrichtung des Namens
-[id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon}
-image::leitfaden_entwicklungsumgebung_werkzeuge_sts_icon.png[align="center",width=60%,pdfwidth=60%]
+ #!/usr/bin/env xdg-open
+ [Desktop Entry]
+ Version=1.0
+ Type=Application
+ Terminal=false
+ Exec=/opt/sts-bundle/<STS-Release>/STS
+ Name=STS
+ Comment=Spring Tool Suite
+ Icon=/opt/sts-bundle/<STS-Release>/icon.xpm
 
 Danach lässt sich STS über das Applikations-Menü von Ubuntu starten. Hierfür klicken Sie auf "Applications" - "Other" - "STS"
 
@@ -360,7 +352,7 @@ image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01.png[align="cent
 
 Nach dem Download extrahieren Sie den Apache Tomcat Server ins Verzeichnis `/opt`.
 
- sudo tar -xzvf <Pfad zur Tomcat-Installationsdatei> -C /opt
+ sudo tar -xzf <Pfad zur Tomcat-Installationsdatei> -C /opt
 
 Über folgendes Kommando sorgen Sie auch noch dafür, dass das Installationsverzeichnis dem Benutzer `osboxes` gehört.
 
@@ -512,7 +504,7 @@ CAUTION: Führen Sie bei dem Projekt `isyfact-products-bom` das Menü "Maven" ->
 === isyfact-base
 
 Ddas Repository isyfact-base ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet. Die Kernfunktionalität ist auf mehrere
-Unterprojekte aufgeteilt. Ãœberspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
+Unterprojekte aufgeteilt. Überspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_15: isyfact-base
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_15",reftext="{figure-caption} {counter:figures}"]
