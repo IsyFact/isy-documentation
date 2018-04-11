@@ -1,0 +1,17 @@
+variables:
+  MAVEN_OPTS: "-Xmx2048M -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+
+image: maven-gawk-rsync
+stages:
+  - build
+
+cache:
+  paths:
+    - .m2/repository
+
+build:jdk8:
+  stage: build
+  script:
+    - 'mvn $MAVEN_CLI_OPTS compile'
+    - 'rsync -av --delete target/html/* rsync://$HTML_DOC_DEPLOY_URL'
