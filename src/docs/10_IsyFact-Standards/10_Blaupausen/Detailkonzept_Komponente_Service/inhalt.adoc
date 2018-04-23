@@ -68,42 +68,6 @@ weiter, fängt auftretende Fehler jedoch über einen try-catch-Block ab.
 Der try-catch-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`HibernateException`) und
 allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log-Dateien zu schreiben.
 
-*Service-Fassade:* Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
-
-* Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt.
-Hierzu wird in der Regel die Java-Bibliothek Dozer verwendet.
-Falls die Transformation kompliziert ist, kann die Transformation auch vollständig ausprogrammiert werden.
-Hierbei sind Kosten und Nutzen genau abzuwägen.
-* Sie öffnet und schließt die Transaktionsklammer und führt gegebenenfalls Rollbacks durch.
-Hierzu werden Annotationen verwendet (siehe <<DetailkonzeptKomponenteDatenzugriff>>).
-* Sie führt gegebenenfalls die Autorisierung des Aufrufs aus.
-Hierzu verwendet sie den Berechtigungsmanager (siehe <<NutzungsvorgabenSicherheit>>).
-
-In <<listing-BSPServiceFassade>> ist ein Beispiel für eine Service-Fassade angegeben.
-Die Implementierung der Service-Fassade erfolgt hier analog zur Implementierung der Exception-Fassade.
-Die nach außen angebotene Service-Operation (`holeBeispielAnfrage`) wird jedoch nicht 1:1 an die implementierende
-Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs unterscheiden.
-Nach außen hin werden Transportobjekte angeboten.
-Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
-Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z. B. weil sie zusätzliche
- Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
-
-In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Servicemethode.
-Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die
-Annotation `@StelltAufrufKontextBereit` an der Servicemethode.
-Anschließend kann über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode geprüft werden.
-Hier werden alle benötigten Rechte des Aufrufers überprüft.
-Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche Autorisierung erfordern.
-Die Annotationen sind Bestandteil der T-Komponente Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
-
-Das Mapping im Beispiel wird durch dozer umgesetzt.
-Vor dem Aufruf werden die Parameter gemappt (Klasse `BeispielHolenAnfrageTo` auf Klasse `BeispielHolenAnfrage`),
-nach dem Aufruf der Rückgabewert (Klasse `BeispielHolenAntwort` auf Klasse `BeispielHolenAntwortTo`).
-
-Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurationsdatei „service.xml“
-verschaltet (siehe <<listing-BspeServicexml>>).
-
-//A3
 :desc-listing-BSPExceptionFassade: Beispiel für eine Exception-Fassade
 [id="listing-BSPExceptionFassade",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPExceptionFassade}
@@ -140,8 +104,41 @@ implements BeispielRemoteBean
 }
 ----
 
+*Service-Fassade:* Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
 
-//A4
+* Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt.
+Hierzu wird in der Regel die Java-Bibliothek Dozer verwendet.
+Falls die Transformation kompliziert ist, kann die Transformation auch vollständig ausprogrammiert werden.
+Hierbei sind Kosten und Nutzen genau abzuwägen.
+* Sie öffnet und schließt die Transaktionsklammer und führt gegebenenfalls Rollbacks durch.
+Hierzu werden Annotationen verwendet (siehe <<DetailkonzeptKomponenteDatenzugriff>>).
+* Sie führt gegebenenfalls die Autorisierung des Aufrufs aus.
+Hierzu verwendet sie den Berechtigungsmanager (siehe <<NutzungsvorgabenSicherheit>>).
+
+In <<listing-BSPServiceFassade>> ist ein Beispiel für eine Service-Fassade angegeben.
+Die Implementierung der Service-Fassade erfolgt hier analog zur Implementierung der Exception-Fassade.
+Die nach außen angebotene Service-Operation (`holeBeispielAnfrage`) wird jedoch nicht 1:1 an die implementierende
+Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs unterscheiden.
+Nach außen hin werden Transportobjekte angeboten.
+Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
+Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z. B. weil sie zusätzliche
+ Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
+
+In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Servicemethode.
+Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die
+Annotation `@StelltAufrufKontextBereit` an der Servicemethode.
+Anschließend kann über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode geprüft werden.
+Hier werden alle benötigten Rechte des Aufrufers überprüft.
+Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche Autorisierung erfordern.
+Die Annotationen sind Bestandteil der T-Komponente Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
+
+Das Mapping im Beispiel wird durch dozer umgesetzt.
+Vor dem Aufruf werden die Parameter gemappt (Klasse `BeispielHolenAnfrageTo` auf Klasse `BeispielHolenAnfrage`),
+nach dem Aufruf der Rückgabewert (Klasse `BeispielHolenAntwort` auf Klasse `BeispielHolenAntwortTo`).
+
+Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurationsdatei „service.xml“
+verschaltet (siehe <<listing-BspeServicexml>>).
+
 :desc-listing-BSPServiceFassade: Beispiel für eine Service-Fassade
 [id="listing-BSPServiceFassade",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPServiceFassade}
@@ -176,7 +173,6 @@ public class BeispielServiceFassade{
 }
 ----
 
-//A5
 :desc-listing-BspeServicexml: Beispiel für service.xml
 [id="listing-BspeServicexml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BspeServicexml}
