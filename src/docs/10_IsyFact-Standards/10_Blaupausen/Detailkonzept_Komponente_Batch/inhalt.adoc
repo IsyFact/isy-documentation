@@ -130,7 +130,7 @@ Dieser Kontext ist ein Kind-Kontext des eigentlichen Anwendungskontextes und kan
 So kann die Konfiguration der Webanwendung mit minimalen Anpassungen auch für den Batch verwendet werden.
 
 Der Batchrahmen benötigt für die Speicherung des Fortschritts und des Status der Batches eine Datenbankverbindung.
-In der Datei werden die vom Batchrahmen benötigten Informationen gespeichert, siehe Kapitel <<die-tabellen-des-batchrahmens>>.
+In der Datei werden die vom Batchrahmen benötigten Informationen gespeichert, siehe <<die-tabellen-des-batchrahmens>>.
 
 Bei Bedarf können in einem Batch auch weitere Datenbankverbindungen genutzt werden.
 Die Einbindung weiterer Datenbanken ist in <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
@@ -222,7 +222,7 @@ Explizit ausgegrenzt werden deshalb folgende Themenbereiche:
 Der Batchrahmen soll kein Wissen darüber besitzen.
 
 *Die Terminierung der Verarbeitung:* Der Batch stellt keine direkten Schnittstellen bereit, um ihn während der Verarbeitung zu beenden.
-Allerdings muss es möglich sein, einen aktiven Lauf mit dem Signal „kill -15“ definiert zu beenden.
+Allerdings muss es möglich sein, einen aktiven Lauf mit dem Signal `kill -15` definiert zu beenden.
 Wie die zugehörige Prozess-ID ermittelt wird, ist in den Betriebshandbüchern für die Prozesse zu definieren.
 Es ist auch möglich, mit dem „laufzeit“-Parameter eine maximale Laufzeit anzugeben, um den Batch nach Überschreitung der angegebenen Laufzeit sich selbst definiert beenden zu lassen.
 
@@ -280,34 +280,34 @@ Tabellen des Batchrahmens verwendet.
 
 Ein Batch befindet sich in einem von vier Status, welche in den Tabellen des Batchrahmens gespeichert werden:
 
-* *neu*: Status eines noch nicht gelaufenen Batches.
+* `neu`: Status eines noch nicht gelaufenen Batches.
 Existiert kein Eintrag in der Datenbank, dann wird dieser Status implizit verwendet.
 Bricht ein noch nicht gelaufener Batch noch in der Initialisierungsphase ab, dann wird dieser Status explizit in die Datenbank geschrieben.
-* *laeuft*: Der Batch wurde gestartet und läuft aktuell.
-* *abgebrochen*: Der Batch ist
+* `laeuft`: Der Batch wurde gestartet und läuft aktuell.
+* `abgebrochen`: Der Batch ist
 ** mit einem Fehler
-** durch das Signal „kill -15“
+** durch das Signal `kill -15`
 ** durch die Überschreitung der konfigurierten maximalen Laufzeit
 ** oder weil die Grenze der zu verarbeitenden Datensätze erreicht wurde abgebrochen
-* *beendet*: Der Batch ist erfolgreich beendet worden.
+* `beendet`: Der Batch ist erfolgreich beendet worden.
 
 Je nachdem, in welchem Zustand sich der Batch laut den Tabellen gerade befindet, lässt er sich nur mit bestimmten Startarten starten.
 Welche Startart verwendet wird, muss über Parameter definiert werden.
 Folgende Startarten sind möglich:
 
-* *Batch im Status „neu“ oder „beendet“:*
+* *Batch im Status `neu` oder `beendet`:*
 +
-„start“: Der Batch startet und bearbeitet die Eingabedaten ab dem ersten Datensatz.
-* *Batch im Status „laeuft“:*
+`start`: Der Batch startet und bearbeitet die Eingabedaten ab dem ersten Datensatz.
+* *Batch im Status `laeuft`:*
 +
-„ignoriereLauf“: Der Batch wird gestartet, als wäre er erfolgreich beendet worden.
+`ignoriereLauf`: Der Batch wird gestartet, als wäre er erfolgreich beendet worden.
 +
-„restart“: Der Batch startet neu und überliest alle bereits verarbeiteten Sätze.
-* *Batch im Status „abgebrochen“:*
+`restart`: Der Batch startet neu und überliest alle bereits verarbeiteten Sätze.
+* *Batch im Status `abgebrochen`:*
 +
-„restart“: Der Batch startet neu und überliest alle bereits verarbeiteten Sätze.
+`restart`: Der Batch startet neu und überliest alle bereits verarbeiteten Sätze.
 +
-„ignoriereRestart“: Der Batch startet neu und beginnt die Verarbeitung mit dem ersten Datensatz.
+`ignoriereRestart`: Der Batch startet neu und beginnt die Verarbeitung mit dem ersten Datensatz.
 
 [[die-konfiguration-des-batchrahmens]]
 == Die Konfiguration des Batchrahmens
@@ -365,7 +365,7 @@ Aus der Property-Datei werden durch den Batchrahmen folgende Properties gelesen:
 |`BatchId` |ID des Batches (ID des Batch-Status-Datensatzes)
 |`BatchName` |Name des Batches in der Batch-Statustabelle
 |`Batchrahmen.AnzahlZuVerarbeitendeDatensaetze` |Falls nicht die ganze Datei verarbeitet werden soll, sondern nur eine gewisse Anzahl an Datensätzen.
-|`Batchrahmen.Ergebnisdatei` |Pfad zur XML-Ergebnisdatei des Batchrahmens (siehe Kapitel <<rueckgabe-des-batchrahmens>>)
+|`Batchrahmen.Ergebnisdatei` |Pfad zur XML-Ergebnisdatei des Batchrahmens (siehe Kapitel <<rueckgabewerte-des-batchrahmens>>)
 |====
 
 Die Property-Datei darf beliebige weitere Properties enthalten.
@@ -510,7 +510,7 @@ Der nächste Lauf muss dann mit „-ignoriereLauf“ gestartet werden.
 
 Falls ein Batch durch einen Fehler oder durch das Erreichen der Anzahl zu verarbeitender Datensätze abgebrochen ist, muss ein Restart für ihn durchgeführt werden.
 In diesem Fall müssen alle bereits verarbeiteten Datensätze übersprungen werden.
-Ebenso wird die Wiederanlauffähigkeit nach manuellem Terminieren durch das Signal „kill -15“ sichergestellt.
+Ebenso wird die Wiederanlauffähigkeit nach manuellem Terminieren durch das Signal `kill -15` sichergestellt.
 
 [[die-konfiguration-im-restart-fall]]
 === Die Konfiguration im Restart-Fall
@@ -519,9 +519,9 @@ Im Restart-Fall wird nicht überprüft, dass die übergebenen Parameter denen en
 Es muss daher bei einem Restart manuell darauf geachtet werden, dass die gleichen Parameter übergeben werden.
 
 [[beenden-eines-laufs-mit-kill--15-und-wiederanlauf]]
-=== Beenden eines Laufs mit „kill -15“ und Wiederanlauf
+=== Beenden eines Laufs mit `kill -15` und Wiederanlauf
 
-Durch Senden des Signals „kill -15“ kann ein aktiver Batchlauf beendet werden.
+Durch Senden des Signals `kill -15` kann ein aktiver Batchlauf beendet werden.
 Beim Empfang des Signals wird der aktuelle Datensatz zu Ende bearbeitet und der Batch terminiert im wohldefinierten Zustand.
 In der Statustabelle ist dann der Status „abgebrochen“ vermerkt und der Batchlauf kann mit dem Parameter „-restart“ wieder aufgesetzt werden.
 
@@ -532,9 +532,9 @@ Falls der Batch mit dem „laufzeit“-Parameter gestartet wurde, wird nach Übe
 In der Statustabelle ist dann der Status „abgebrochen“ vermerkt und der Batchlauf kann mit dem Parameter „-restart“ wieder aufgesetzt werden.
 
 [[wiederanlauf-nach-abbruch-durch-kill--9]]
-=== Wiederanlauf nach Abbruch durch „kill -9“
+=== Wiederanlauf nach Abbruch durch `kill -9`
 
-Durch Senden des Signals „kill -9“ wird der aktive Batchprozess von Betriebssystemseite beendet.
+Durch Senden des Signals `kill -9` wird der aktive Batchprozess von Betriebssystemseite beendet.
 Dabei wird der Java-Prozess direkt entfernt ohne die Möglichkeit, den Batchrahmen definiert zu terminieren.
 Dies ist daher nur in Ausnahmesituationen vom Betrieb durchzuführen.
 Da der Batchrahmen in dieser Situation kein Status-Update mehr schreiben kann, befindet sich der Eintrag „läuft“ in der Statustabelle.
@@ -776,8 +776,8 @@ Bei Fehlern in den „Ausführungsbeans“ kann der zurückzugebende Return-Code
 werden (siehe Kapitel <<informationen-zum-batch-benutzer-bereitstellen>>).
 
 Pro Batch müssen die möglichen Rückgabewerte definiert werden.
-Die folgenden Werte sind reserviert und müssen von jedem Batch zurückgegeben werden, falls ein entsprechendes
-Ereignis eintritt:
+Die folgenden Werte sind reserviert und müssen von jedem Batch zurückgegeben werden, wenn das entsprechende
+Ereignis eingetreten ist:
 
 :desc-table-GenRetCodeBatCanv: Allgemeine Return-Codes des Batchrahmens
 [id="table-GenRetCodeBatCanv",reftext="{table-caption} {counter:tables}"]
@@ -922,11 +922,11 @@ Dies bietet gegenüber dem Auslesen von Entitäten in der Query folgende Vorteil
 
 * Würden Entitäten ausgelesen, wären diese nach einem Commit während der Verarbeitung nicht mehr mit einer Transaktion
 verbunden. +
-Hibernate liest Entitäten bereits bei der hasNext()-Abfrage eines Resultset-Iterators ab.
+Hibernate liest Entitäten bereits bei der `hasNext()`-Abfrage eines Resultset-Iterators ab.
 So kommt es bei Checkpoints zwangsläufig zu toten Entitäten.
 +
-NOTE: Falls (in einem ungewöhnlichen Sonderfall) mit Resultset-Iteratoren gearbeitet werden muss, so sollte mit Hibernate
-ScrollableResults gearbeitet werden. Siehe Hibernate-Referenzdokumentation.
+NOTE: Falls (in einem ungewöhnlichen Sonderfall) mit `ResultSet`-Iteratoren gearbeitet werden muss, so sollte mit einem Hibernate
+`ScrollableResult` gearbeitet werden. Siehe Hibernate-Referenzdokumentation.
 +
 * Durch das Ablegen der Schlüssel in einer Liste ist die Gesamtanzahl der Datensätze bekannt.
 
@@ -935,7 +935,7 @@ ScrollableResults gearbeitet werden. Siehe Hibernate-Referenzdokumentation.
 
 Batches müssen beim Start einen Benutzer authentifizieren und autorisieren, bevor der fachliche Teil der Batchverarbeitung starten kann.
 Der Batchrahmen fordert von der Ausführungsbean die Bereitstellung der Informationen zum Benutzer, um diesen über die T-Komponente Sicherheit zu authentifizieren.
-Dazu ist für das Ausführungsbean die Methode getAuthenticationCredentials() umzusetzen.
+Dazu ist für das Ausführungsbean die Methode `getAuthenticationCredentials()` umzusetzen.
 
 [[fehlerbehandlung-in-ausfuehrungsbeans-durchfuehren]]
 == Fehlerbehandlung in Ausführungsbeans durchführen
@@ -947,7 +947,7 @@ Der Batchrahmen unterstützt beispielsweise _nicht_ das Auslassen von Datensätz
 Wenn eine Ausführungsbean einen Fehler wirft, so muss dies eine „BeanAusfuehrungsException“ oder ein davon erbender Fehler sein.
 In diesen Exceptions ist es möglich, den Return-Code des Batches zu definieren.
 Die Return-Codes sind für den konkreten Batch zu konfigurieren und müssen den Vorgaben in
-Abschnitt <<rueckgabe-des-batchrahmens>> entsprechen.
+Abschnitt <<rueckgabewerte-des-batchrahmens>> entsprechen.
 
 Wichtig ist, dass ein Batch bei einem Fehler, den der Batch nicht behandeln kann, abbricht und nicht endlos weiter läuft.
 Dieses Vorgehen ermöglicht es dem Betrieb, die Ursache des Fehlers zu korrigieren und den Batch neu zu starten.
@@ -998,15 +998,13 @@ public VerarbeitungsErgebnis verarbeiteSatz() throws BatchAusfuehrungsException 
 [[sonderfall-blockloeschung]]
 === Sonderfall Blocklöschung
 
-// kap 681 z 1288
-
-Es ist nicht zwingend, dass in einem Satz auch nur eine Aktion (bspw.
-Löschung durchgeführt wird). Bei großen Datenmengen kann es durchaus Sinn machen, pro Satz eine bestimmte Anzahl Datensätze auf einmal zu verarbeiten, wie im folgenden Codebeispiel zu sehen ist.
-Die Variable blockgroesse ist dabei konfigurativ zu setzen.
+Es ist nicht zwingend erforderlich, dass in einem Satz nur eine einzelne Aktion (bspw.
+Löschung) durchgeführt wird. Bei großen Datenmengen kann es durchaus Sinn sinnvoll sein, pro Satz eine bestimmte Anzahl Datensätze auf einmal zu verarbeiten, wie im folgenden Codebeispiel zu sehen ist.
+Die Variable `blockgroesse` ist dabei konfigurativ zu setzen.
 
 Wichtig ist in so einem Sonderfall, dass das Commit-Intervall des Batches entsprechend niedrig eingestellt ist
 (siehe Kapitel <<konfigurationsdatei-und-kommandozeilen-parameter>>), da ansonsten
-Blockgröße * Commit-Intervall Datensätze mit einer Transaktion verarbeitet werden.
+(_Blockgröße_ * _Commit-Intervall_) viele Datensätze mit einer Transaktion verarbeitet werden.
 
 [source,java]
 ----
