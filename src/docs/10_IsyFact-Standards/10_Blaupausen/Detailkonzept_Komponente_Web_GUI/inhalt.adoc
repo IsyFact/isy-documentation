@@ -6,19 +6,21 @@
 
 Die in diesem Dokument aufgestellten Vorgaben setzen folgende Anforderungen um:
 
-Die in diesem Dokument aufgestellten Vorgaben setzen folgende Anforderungen um:
-
-* *Einfachheit der Verwendung von JSF*: Hier werden die Konfiguration und der Einsatz der verwendeten Technologien festgelegt.
+*Einfachheit der Verwendung von JSF*: Hier werden die Konfiguration und der Einsatz der verwendeten Technologien festgelegt.
 Dazu zählen:
-** *Einsatz von Facelets*
-** *Einsatz von Tag Libraries*
-** *Fehlerbehandlung*
-** *Anbindung von Hilfesystemen*
-* *Einfachheit des Einsatzes von Spring Web Flow:* Die Definition der Dialogschritte und die Abhängigkeiten zu den zugehörigen Daten für die Darstellung wird über Spring Web Flow festgelegt.
+
+** Einsatz von Facelets
+** Einsatz von Tag Libraries
+** Fehlerbehandlung
+** Anbindung von Hilfesystemen
+
+*Einfachheit des Einsatzes von Spring Web Flow:* Die Definition der Dialogschritte und die Abhängigkeiten zu den zugehörigen Daten für die Darstellung wird über Spring Web Flow festgelegt.
 Hierzu werden folgende Themenbereiche genauer definiert:
-** *Konfiguration der Dialog Abläufe (Flow)*
-** *Anbindung der Backend Services (Spring Beans)*
-* *Einfachheit des Session Management:* Hier wird definiert, wie die Behandlung von Session Informationen erfolgen soll und welche wiederverwendbaren Services zur Verfügung gestellt werden.
+
+** Konfiguration der Dialog Abläufe (Flow)
+** Anbindung der Backend Services (Spring Beans)
+
+*Einfachheit des Session Management:* Hier wird definiert, wie die Behandlung von Session Informationen erfolgen soll und welche wiederverwendbaren Services zur Verfügung gestellt werden.
 
 [[sicherheitsanforderungen]]
 == Sicherheitsanforderungen
@@ -99,7 +101,7 @@ Dazu werden eigene Validator-Objekte verwendet, die den Komponenten in der View-
 6.  _Render Response_ („Antwort wiedergeben“) erzeugt schließlich die Antwort auf die ursprüngliche Anfrage, beispielsweise eine HTML-Seite.
 Hierzu werden sogenannte _Renderer_ aufgerufen, die den View-Komponenten zugeordnet sind.
 
- a|
+a|
 :desc-image-PhasemodJSF: Phasenmodell JSF
 [id="image-PhasemodJSF",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-PhasemodJSF}
@@ -301,7 +303,6 @@ in die Referenzarchitektur der IsyFact gegeben sowie die grundlegende Architektu
 Das Nutzungskonzept für das Web-GUI nimmt Bezug auf die in der Referenzarchitektur vorgegebenen Schichten
 und Komponenten einer IsyFact-konformen Fachanwendung.
 
-//F4
 :desc-image-RAFachAnw: Referenzarchitektur einer Fachanwendung
 [id="image-RAFachAnw",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-RAFachAnw}
@@ -364,7 +365,6 @@ GUI sprechen wir von GUI-Komponenten (siehe <<image-KompDiazuGUI>>).
 Die GUI-Komponenten umfassen für jeden Dialog eine Subkomponente.
 Jeder Dialog aus der Systemspezifikation ist also ebenfalls eine eigene Komponente.
 
-//F6
 :desc-image-KompDiazuGUI: Komposition von Dialogen zu GUI-Komponenten
 [id="image-KompDiazuGUI",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-KompDiazuGUI}
@@ -375,7 +375,6 @@ gemeinsame Datenobjekte verwenden.
 Trotzdem sind die Dialog-Komponenten zu kapseln, d.h. Controller- und Model Beans dürfen nicht gemeinsam
 verwendet werden (siehe <<image-IntGUIKompGUISub>>).
 
-//F7
 :desc-image-IntGUIKompGUISub: Innensicht einer GUI-Komponente mit ihren GUI-Sub-Komponenten
 [id="image-IntGUIKompGUISub",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IntGUIKompGUISub}
@@ -386,7 +385,6 @@ in definierter Weise ausschließlich untereinander kommunizieren und Zugriffe au
 Komponenten unterbleiben.
 <<image-CommMVCinGUI>> zeigt die Abhängigkeits­beziehungen innerhalb einer GUI-(Sub-)Komponente.
 
-//F8
 :desc-image-CommMVCinGUI: Kommunikation von View, Controller und Model innerhalb einer GUI-Komponente
 [id="image-CommMVCinGUI",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-CommMVCinGUI}
@@ -421,7 +419,7 @@ Architekturkonvention: Die Implementierung des Controllers ist zustandslos und s
 Das Controller-Bean wird im Spring IoC-Container mit Singleton Scope erzeugt und konfiguriert.
 
 Das Controller-Bean wird vom Flow per Expression-Language aufgerufen.
-In bestimmten Fällen (siehe <<view544>>) wird ein Controller-Bean auch in einer Action (oder ActionListener) des
+In bestimmten Fällen (siehe Abschnitt <<view544>>) wird ein Controller-Bean auch in einer Action (oder ActionListener) des
 Komponenten-View aufgerufen.
 
 [[model-bean]]
@@ -431,7 +429,6 @@ Das Model Bean ist ein Datenobjekt (einfaches POJO) und hält die Daten einer GU
 Es hat keine Abhängigkeiten zu View, Controller oder Anwendungskern und enthält im Regelfall keine Logik.
 Das Model Bean wird durch den Flow erzeugt (durch Definition einer Web Flow-Variablen) und ist somit automatisch im View sichtbar.
 
-//F9
 :desc-listing-CreaModinFlow: Erzeugung einer Model-Instanz im Flow
 [id="listing-CreaModinFlow",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-CreaModinFlow}
@@ -460,14 +457,11 @@ Die Verwendung von Model Beans wird im Verlauf dieses Dokuments noch genauer bes
 [[view544]]
 === View
 
-//kap 544 s 26/69   z 923 von 3126
-
-
 Der Komponenten-View präsentiert die Daten der Anwendung in Form von generierten HTML-Seiten.
 Dazu werden ein oder mehrere Facelets verwendet, die mittels JSF-HTML-Tags auf das Model Bean der Komponente
 zugreifen, um die Daten in den View einzubinden.
-Da das Model Bean seine Datenzugriffsmethoden nach dem Bean-Standard (get/set/is) anbietet, kann mittels
- Value-Expressions _#\{teilnehmenModel.terminfindung.tage}_ direkt auf Eigenschaften des Model Beans und
+Da das Model Bean seine Datenzugriffsmethoden nach dem Bean-Standard (`get`/`set`/`is`) anbietet, kann mittels
+ Value-Expressions (z.B. `#{teilnehmenModel.terminfindung.tage}`) direkt auf Eigenschaften des Model Beans und
  enthaltener Objekte zugegriffen werden.
 Ein View kann auch auf mehrere zum Flow gehörende Model Beans zugreifen.
 
@@ -485,15 +479,12 @@ Beispiel: Selektion eines Elements und darauf basierende Anpassung der Maske.
 
 Die Erstellung von Views wird im Verlauf dieses Dokuments noch genauer beschrieben.
 
-// 545
-
 [[jquery-1]]
 === JQuery
 
 Die oben beschriebene JQuery-Bibliothek wird im Seitenrahmen eingebunden.
 Sollen nun in einem View interaktive Elemente aktiviert werden, wird eine JavaScript-Datei mit dem Namen des Views benötigt und am Seitenende (Ende des Templates) eingebunden.
 
-//F10
 :desc-listing-BindViewspezJS: Einbindung View-spezifischer JS-Dateien
 [id="listing-BindViewspezJS",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BindViewspezJS}
@@ -514,7 +505,6 @@ Zusätzlich sorgt, das script-Tag dafür, dass im Fall von deaktiviertem JavaScr
 Folgende Abbildung zeigt ein Beispiel für eine Java-Script-Datei „vorgangSuchen.js“, welche ein GUI-Element mit
 der ID „Geburtsdatum“ fokussiert:
 
-//F11
 :desc-listing-BspJSDat: Beispiel für eine JavaScript-Datei
 [id="listing-BspJSDat",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BspJSDat}
@@ -537,7 +527,6 @@ Die Aufgabe des AWK-Wrappers ist die Daten vom Anwendungskern in die der GUI zu 
 
 Die Transaktionssteuerung findet im AWK-Wrapper per Annotationen an der Wrapperklasse statt.
 
-//F12
 :desc-listing-DeklTransverhaltAWKWrap: Deklaration des Transaktionsverhaltens am AWK-Wrapper
 [id="listing-DeklTransverhaltAWKWrap",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-DeklTransverhaltAWKWrap}
@@ -565,7 +554,6 @@ Hier gilt analog, dass nicht das gesamte Model Bean B, sondern lediglich Einzelw
 
 Das folgende Beispiel zeigt wie ein Flow an einen Subflow Parameter übergibt und von diesem einen Ausgabewert empfängt.
 
-//F13
 :desc-listing-InfoExFaufF1: Informationsaustausch zwischen Flows – aufrufender Flow
 [id="listing-InfoExFaufF1",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-InfoExFaufF1}
@@ -584,7 +572,6 @@ Das folgende Beispiel zeigt wie ein Flow an einen Subflow Parameter übergibt un
 Innerhalb des Subflows werden übergebene Parameter entgegengenommen und verarbeitet.
 Im Endzustand wird ein Rückgabewert zurückgegeben.
 
-//F14
 :desc-listing-InfoExFaufF2: Informationsaustausch zwischen Flows – aufgerufener Flow
 [id="listing-InfoExFaufF2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-InfoExFaufF2}
@@ -653,14 +640,13 @@ nachvollziehbar dargestellt.
 [[projekt-verzeichnis-einer-fachanwendung-mit-gui]]
 === Projekt-Verzeichnis einer Fachanwendung mit GUI
 
-Nachfolgend ist der Verzeichnisbaum der Beispiel-Implementierung (insbesondere die GUI-Komponente
+Nachfolgend ist in <<image-VerzBspErstellen>> der Verzeichnisbaum der Beispiel-Implementierung (insbesondere die GUI-Komponente
 `Erstellen`) dargestellt, in dem zu sehen ist, wie die Elemente der GUI im Dateisystem abgelegt werden.
 
 :desc-image-VerzBspErstellen: Verzeichnisstruktur am Beispiel Erstellen
 [id="image-VerzBspErstellen",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-VerzBspErstellen}
 image::bspstructmit.png[align="center"]
-//F15
 
 ////
 Projekt Terminfindung
@@ -685,8 +671,6 @@ Web/Web Flow/JSF Konfiguration
 [[praemissen]]
 == Prämissen
 
-// S 31 kap 6  z 1159
-
 Für die Erstellung von Weboberflächen existieren Vorgaben in Form eines Styleguides <<Styleguide>>. Hierüber werden Anforderungen an die Gestaltung und Nutzbarkeit von Oberflächen, sowie technische Aspekte, wie die Verwendung von Javascript oder zu unterstützende Browser festgelegt.
 
 [[erstellung-einer-gui-komponente]]
@@ -699,7 +683,6 @@ Für eine GUI-Komponente wird zunächst die Definition des Flow als XML-Datei er
 Spring Web Flow sucht und findet den Flow selbständig und nimmt ihn in die Flow-Registry auf.
 Zunächst ein exemplarisches Beispiel:
 
-//A16
 :desc-listing-fullFlowBSPTeilnehmen: Ein vollständiger Flow am Beispiel teilnehmenFlow.xml
 [id="listing-fullFlowBSPTeilnehmen",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-fullFlowBSPTeilnehmen}
@@ -890,7 +873,6 @@ Das `<ui:composition>` Tag referenziert hierbei das Seitentemplate, in welchem d
 definierten Teile eingebunden werden.
 Die verschiedenen Teile des Seitentemplates finden sich in <<Styleguide>>.
 
-//A18
 :desc-listing-BSPFaceletView: Beispiel Facelet cdErwerbViewState.xhtml
 [id="listing-BSPFaceletView",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPFaceletView}
@@ -923,7 +905,6 @@ Die Seitenbereiche werden im `ViewState`-Facelet wiederum durch Inklusion auf kl
 Das heißt jeder Seitenbereich (Formular, Buttonzeile) wird per Konvention in einer separaten Datei gepflegt.
 Innerhalb dieser Facelets wird im Normalfall nichts mehr inkludiert.
 
-//A18
 :desc-listing-BSPFaceletCDErwerb: Beispiel-Facelet cdErwerbButtonzeile1.xhtml
 [id="listing-BSPFaceletCDErwerb",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPFaceletCDErwerb}
@@ -944,7 +925,6 @@ Das Model ist im View sichtbar, da es im Flow als Flow-Variable deklariert wurde
 Das Model ist zum Zeitpunkt des Renderns bereits mit Daten befüllt, da im `onEntry`-Handler des Flows der
 Controller die Befüllung des Models vorgenommen hat.
 
-//A19
 :desc-listing-DatZuFacelet: Datenzugriff im Facelet
 [id="listing-DatZuFacelet",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-DatZuFacelet}
@@ -962,7 +942,6 @@ Die HTML Elemente erhalten entsprechend ihres Inhaltes den Bezeichner des zugeh�
 Würde keine ID vergeben, so würde JSF selbständig eine dynamische ID vergeben.
 Das erschwert jedoch den automatischen Test der Oberfläche.
 
-//A20
 :desc-listing-HTMLIDFace: HTML ID Vergabe
 [id="listing-HTMLIDFace",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-HTMLIDFace}
@@ -982,7 +961,6 @@ Die Auslösung von Aktion erfolgt über die Nutzung des `action`-Attributes der 
 Hier wird ein Token verwendet, welches auch im Flow bekannt ist und die Transition so steuert, dass der
 Controller die Daten über den Anwendungskern persistiert.
 
-//A21
 :desc-listing-BSPActions: Beispiele für Actions
 [id="listing-BSPActions",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPActions}
@@ -1000,7 +978,6 @@ typisierte Datenmodell, wie auch zur Umwandlung aus dem Datenmodell in die Ansic
 Hier bieten sich JSF-Konverter an, die jedoch nur mit Einschränkungen verwendet werden können, da diese
  bei der Konvertierung „freier Eingaben“ nicht mit Fehleingaben umgehen können.
 
-//A22
 :desc-listing-ConvDatewihConv: Umwandlung eines Datums mittels Konverter
 [id="listing-ConvDatewihConv",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-ConvDatewihConv}
@@ -1030,7 +1007,6 @@ Hier bietet sich der Einsatz eines eigenen Konverters an, der mittels Schlüssel
 Umwandlung je nach Verarbeitungsrichtung leistet.
 Analog gilt dies auch für Booleans und Aufzählungstypen.
 
-//A23
 :desc-listing-ConvEnumwithConv: Umwandlung eines Aufzählungstyps mittels Konverter
 [id="listing-ConvEnumwithConv",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-ConvEnumwithConv}
@@ -1243,7 +1219,6 @@ Konvertierung und Validierung im selbst programmierten Spring Web Flow-Validator
 
 Das folgende JSF-Tag `message` kommt zum Einsatz, um einen Fehler für ein bestimmtes Feld anzuzeigen:
 
-//A24
 :desc-listing-BspFaceletError: Beispiel aus Facelet
 [id="listing-BspFaceletError",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BspFaceletError}
@@ -1258,7 +1233,6 @@ Das obige JSF Tag markiert das Feld, das die JSF-ID „isbn“ hat, als fehlerha
 Für die Darstellung aller Fehlermeldungen kommt das JSF Tag `messages` zum Einsatz.
 Hierdurch werden alle Fehler, unabhängig von ihren JSF-IDs, in einer Liste dargestellt:
 
-//A25
 :desc-listing-DarstError: Darstellung von Fehlermeldungen
 [id="listing-DarstError",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-DarstError}
@@ -1306,7 +1280,6 @@ Die hierfür in JSF 2.x vorgesehenen Lösung mit `f:param` erfordert den Einsatz
 kann daher Probleme in der Abwärtskompatibilität hervorbringen (z.B. wenn kein JavaScript aktiviert ist).
  Die Umsetzung sollte daher in der Regel mit einem Action Listener stattfinden (siehe <<listing-UseActionListVIEW>>):
 
-//A26
 :desc-listing-UseActionListVIEW: Verwendung eines Action Listeners (View)
 [id="listing-UseActionListVIEW",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-UseActionListVIEW}
@@ -1318,7 +1291,6 @@ kann daher Probleme in der Abwärtskompatibilität hervorbringen (z.B. wenn kein
 </h:commandLink>
 ----
 
-//A27
 :desc-listing-EvalRequestAttr: Auswertung von Request Attributen
 [id="listing-EvalRequestAttr",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-EvalRequestAttr}
@@ -1339,7 +1311,7 @@ werden müssen, bis ein Parameter gefunden wurde, dessen ID mit „bearbeite_SV_
 Vorteil der Lösung ist jedoch, dass Probleme mit dem Einsatz von Action Listenern damit umgangen werden.
 
 [[allgemeines]]
-== Allgemeines
+== Allgemeine Vorgaben
 
 [[festlegung-der-startseite]]
 === Festlegung der Startseite
@@ -1349,7 +1321,6 @@ Dieses geschieht durch den Eintrag in der `<welcome-file-list>` auf ein Index Fi
 Redirect auf den Web Flow steht.
 Dieses ist notwendig, weil eine Angabe der Flow Engine im `web.xml` für Welcome Files nicht möglich ist.
 
-//A28
 :desc-listing-Snipwebxml: Ausschnitt web.xml
 [id="listing-Snipwebxml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Snipwebxml}
@@ -1362,7 +1333,6 @@ Dieses ist notwendig, weil eine Angabe der Flow Engine im `web.xml` für Welcome
 
 Der Auszug aus der Datei `index.html` sieht folgendermaßen aus:
 
-//A29
 :desc-listing-SnipIndexxml: Ausschnitt index.html
 [id="listing-SnipIndexxml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipIndexxml}
@@ -1594,7 +1564,6 @@ Die eigentliche Fehlerursache kann nur aus den Server-Logs ermittelt werden.
 
 Die Fehlerbehandlung wird in der Spring Konfiguration konfiguriert:
 
-//A30
 :desc-listing-SnipConfigxml30: Ausschnitt aus config.xml
 [id="listing-SnipConfigxml30",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipConfigxml30}
@@ -1649,7 +1618,6 @@ Durch die Verwendung des Tags wird vor dem Anzeigen des `<view-state>` eine Übe
 Berechtigung des anfragenden Benutzers durchgeführt.
 Fehlt dem Benutzer diese, wird die Fehlerseite angezeigt.
 
-//A31
 :desc-listing-Snipcreateflow: Ausschnitt aus Flow erstellenFlow.xml
 [id="listing-Snipcreateflow",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Snipcreateflow}
@@ -1663,7 +1631,6 @@ Fehlt dem Benutzer diese, wird die Fehlerseite angezeigt.
 </view-state>
 ----
 
-//A32
 :desc-listing-Snipflowmanage: Ausschnitt aus Flow verwaltenFlow.xml
 [id="listing-Snipflowmanage",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Snipflowmanage}
@@ -1691,7 +1658,6 @@ Mit Hilfe dieses Controllers lassen sich einzelne Maskenelemente, aber auch Grup
 Die JSF-Komponenten bietet hierfür das `rendered`-Attribut (siehe <<listing-HideJSFComp>>). Beantwortet der BerechtigungsController den
 Methoden-Aufruf von `getBenutzerDarfAdministrieren()` mit `false`, so wird der Button nicht dargestellt.
 
-//A33
 :desc-listing-HideJSFComp: JSF-Komponente berechtigungsabhängig ausblenden
 [id="listing-HideJSFComp",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-HideJSFComp}
@@ -1705,7 +1671,6 @@ Facelets-Bibliothek verwendet werden.
 Dieses kann eine beliebige Anzahl an weiteren Maskenelementen umschließen und bietet ebenfalls das `rendered`-Attribut,
 welches sich dann auf alle enthaltenen Komponenten auswirkt (siehe <<listing-HideGUIComp>>).
 
-//A34
 :desc-listing-HideGUIComp: GUI-Komponenten berechtigungsabhängig ausblenden
 [id="listing-HideGUIComp",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-HideGUIComp}
@@ -1815,7 +1780,6 @@ Dieses Kapitel fasst alle notwendigen Basiskonfigurationen für die Verwendung v
 Für die Verwendung von Facelets ist es notwendig, in der Spring Konfiguration ein Mapping zwischen der Datei-Erweiterung
 und den Facelets herzustellen.
 
-//A35
 :desc-listing-SnipConfigxml: Ausschnitt config.xml
 [id="listing-SnipConfigxml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipConfigxml}
@@ -1842,7 +1806,6 @@ wurden, wird abgeschaltet.
 
 Um den gewünschten Konverter für die Verwendung bekannt zu machen, muss dieser in der `faces-config.xml` erfasst werden.
 
-//A36
 :desc-listing-SnipFacesConfigxml: Ausschnitt aus faces-config.xml
 [id="listing-SnipFacesConfigxml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipFacesConfigxml}
@@ -1869,7 +1832,6 @@ Hierzu existiert ein Filter, welcher in die web.xml eingebunden wird.
 Die Parameter müssen ggf.
 angepasst werden.
 
-//A37
 :desc-listing-Snipwebxml2: Ausschnitt web.xml
 [id="listing-Snipwebxml2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Snipwebxml2}
@@ -1909,7 +1871,6 @@ Dieser Abschnitt beschreibt die Basiskonfiguration für die Verwendung von Sprin
 Damit die Funktionalitäten von Spring Web Flow aufgerufen werden, muss das SWF Dispatcher Servlet registriert werden,
 welches die weitere Behandlung an den SWF Kern abgibt.
 
-//A38
 :desc-listing-Snipwebxml3: Ausschnitt web.xml bezüglich Servlets
 [id="listing-Snipwebxml3",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Snipwebxml3}
@@ -1947,7 +1908,6 @@ Zusätzlich kann hier noch der Expression Parser für die EL-Implementierung def
 Durch die Definition des EL-Parsers kann die konkrete EL-Implementierung festgelegt werden.
 Standardmäßig sollte hier keine spezifische Konfiguration vorgenommen werden.
 
-//A39
 :desc-listing-SnipWebflow1xml: Ausschnitt aus Web Flow.xml
 [id="listing-SnipWebflow1xml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebflow1xml}
@@ -1964,7 +1924,6 @@ Standardmäßig sollte hier keine spezifische Konfiguration vorgenommen werden.
 Innerhalb der Spring-Konfiguration wird für den Web Flow die „`flow-registry`“ konfiguriert.
 Hier wird die Ablage der Konfigurations-Files definiert.
 
-//A40
 :desc-listing-SnipWebflow2xml: Ausschnitt aus Web Flow.xml
 [id="listing-SnipWebflow2xml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebflow2xml}
@@ -1993,7 +1952,6 @@ Benötigte Libraries: `de.bund.bva.pliscommon.*isy-logging*`
 
 Die Ablage der Log4J Konfiguration erfolgt in der Datei `web.xml`.
 
-//A41
 :desc-listing-SnipLogginConf1: Logging Konfiguration (Ausschnitt web.xml)
 [id="listing-SnipLogginConf1",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipLogginConf1}
@@ -2027,7 +1985,6 @@ Abhandlungen der Berechtigungen erfolgen.
 
 Hier wird die Ablage der Spring Security Konfiguration definiert.
 
-//A42
 :desc-listing-SnipWebxmlt5: Ausschnitt aus web.xml (bezüglich Security)
 [id="listing-SnipWebxmlt5",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebxmlt5}
@@ -2044,7 +2001,6 @@ Hier wird die Ablage der Spring Security Konfiguration definiert.
 Der Security Filter und die davon betroffenen URL-Patterns werden definiert.
 Im Falle eines Einsatzes zur Absicherung der Dialogabläufe sollten alle Zugriffe abgesichert werden.
 
-//A43
 :desc-listing-SnipWebxmlt6: Ausschnitt aus web.xml (bezüglich Security-Filter)
 [id="listing-SnipWebxmlt6",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebxmlt6}
@@ -2065,7 +2021,6 @@ org.springframework.web.filter.DelegatingFilterProxy
 
 Der Security Filter benötigt einen `ContextLoaderListener`, welcher wie folgt konfiguriert ist.
 
-//A44
 :desc-listing-SnipWebxmlt7: Ausschnitt aus web.xml (Contextloader)
 [id="listing-SnipWebxmlt7",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebxmlt7}
@@ -2087,7 +2042,6 @@ welche durch den Security Filter initial geladen wird.
 
 Für die Konfiguration finden die nachfolgenden Namespaces Verwendung.
 
-//A45
 :desc-listing-SnipWebxmlSecu: Ausschnitt aus isy-sicherheit-web.xml (Namespace)
 [id="listing-SnipWebxmlSecu",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebxmlSecu}
@@ -2104,7 +2058,6 @@ http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
 
 Die Definition der HTTP-Konfiguration erfolgt in dem XML-Tag `<http>`.
 
-//A46
 :desc-listing-SnipApplContxtSec: Ausschnitt aus applicationContext-security.xml
 [id="listing-SnipApplContxtSec",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipApplContxtSec}
@@ -2118,7 +2071,6 @@ Die Definition der HTTP-Konfiguration erfolgt in dem XML-Tag `<http>`.
 Durch Spring Security wird die Verwendung von Annotationen bei der Berechtigungsprüfung ermöglicht.
 Diese wird wie folgt aktiviert.
 
-//A47
 :desc-listing-SnipApplContextSec: Ausschnitt aus applicationContext-security.xml (Aktivierung)
 [id="listing-SnipApplContextSec",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipApplContextSec}
@@ -2132,7 +2084,6 @@ Dieses kann nach aktuellem Stand nicht umgangen werden.
 Daher wird ein Dummy Service definiert, welcher einen inaktiven Benutzer enthält.
 Die Abfrage auf die realen Benutzer erfolgt im Authentication Provider, welcher im folgenden Kapitel beschrieben ist.
 
-//A48
 :desc-listing-SnipWebxmlSec: Ausschnitt aus isy-sicherheit-web.xml
 [id="listing-SnipWebxmlSec",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebxmlSec}
@@ -2149,7 +2100,6 @@ eines “Custom Authentication Providers” Anwendung.
 In diesem Authentication Provider wird bei Bedarf überprüft ob der Nutzer die notwendigen Berechtigungen besitzt, bzw.
 es wird für die weitere Verarbeitung in Spring Security der notwendige Kontext aufgebaut.
 
-//F49 image:em/media/image15.emf[image,width=510,height=259]
 :desc-image-ClassConnSecKomp: Klassendiagramm Anbindung Sicherheitskomponente
 [id="image-ClassConnSecKomp",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-ClassConnSecKomp}
@@ -2160,7 +2110,6 @@ Hierbei werden die Rollen eines Benutzers über den Berechtigungsmanager gelesen
 Token geschrieben.
 Dieser Token findet dann bei der Autorisierung einzelner Benutzerinteraktion durch Spring Security Verwendung.
 
-//F50 image:em/media/image16.emf[image,width=557,height=243]
 :desc-image-SecDiaAccessSec: Sequenzdiagramm Zugriff auf Sicherheitskomponente
 [id="image-SecDiaAccessSec",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-SecDiaAccessSec}
@@ -2177,7 +2126,6 @@ Die Konfiguration der Sicherheitskomponente über eine properties-Datei ist im K
 Der `WebFlowAuthenticationProvider` erhält durch die Konfiguration die Instanz der Bean „`sicherheit`“ injected und wird
 als „`custom-authentication-provider`“ Spring Security bekannt gemacht.
 
-//A51
 :desc-listing-SnipApcntxSec: Ausschnitt aus applicationContext-security.xml
 [id="listing-SnipApcntxSec",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipApcntxSec}
@@ -2199,7 +2147,6 @@ Ermittlung zu verwenden
 
 Hier muss ein Listener registriert werden, über welchen die Security Bedürfnisse geprüft werden.
 
-//A52
 :desc-listing-SnipWebFlowxx: Ausschnitt aus Web Flow.xml (bezüglich Security)
 [id="listing-SnipWebFlowxx",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebFlowxx}
@@ -2351,16 +2298,18 @@ Es besteht die Möglichkeit, die Versionsnummer einer Anwendung im Webseitentite
 Hierzu muss der Parameter _gui.versionsanzeige.seitentitel.aktiv_ in einer Konfigurationsdatei der Anwendung hinterlegt sein und auf _true_ gesetzt werden.
 Ist der Parameter nicht hinterlegt, so ist die Anzeige standardmäßig nicht aktiviert und es ist nichts zu tun (Abwärtskompatibilität).
 
-Zusätzlich muss der Parameter _system.version_ in einer Konfigurationsdatei hinterlegt sein.
+Zusätzlich muss der Parameter `system.version` in einer Konfigurationsdatei hinterlegt sein.
 Dieser Parameter enthält die aktuelle Version der Anwendung.
 Es empfiehlt sich, die Versionsnummer beim Build automatisch zu setzen.
-Außerdem kann im Parameter _system.name_ der Name der Anwendung hinterlegt werden.
+Außerdem kann im Parameter `system.name` der Name der Anwendung hinterlegt werden.
 Dies ist jedoch nicht zwingend nötig.
 Die Anzeige der Versionsnummer funktioniert auch ohne Angabe des Anwendungsnamens.
 Dieser entfällt dann einfach.
-Im Folgenden finden sich beispielhafte Screenshots, die die Konfiguration bzw.
-das eigentliche Feature zeigen.
+In <<listing-AnzeigeVersionNameImTitel>> finden sich eine beispielhafte Konfiguration und in <<image-DispNameVersTitle>> wird das eigentliche Feature gezeigt.
 
+:desc-listing-AnzeigeVersionNameImTitel: Konfiguration der Anzeige von Name und Version im Seitentitel
+[id="listing-AnzeigeVersionNameImTitel",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AnzeigeVersionNameImTitel}
 [source,ruby]
 ----
 # Ob die Versionsnummer im Seitentitel angezeigt werden soll.
@@ -2376,7 +2325,6 @@ system.version=1.2.3
 system.name=Terminfindung
 ----
 
-//F53 image:em/media/image17.png[image,width=314,height=57]´
 :desc-image-DispNameVersTitle: Anzeige von Name und Version im Seitentitel
 [id="image-DispNameVersTitle",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-DispNameVersTitle}
@@ -2448,7 +2396,7 @@ Sie wird mit einer neuen Datenbank-Tabelle ersetzt, die im <<TomcatNutzungskonze
 == Transaktionssteuerung
 
 Alle Zugriffe auf die Datenbank müssen in einer Transaktion verpackt werden.
-Die Transaktionssteuerung wird dabei vom AWK-Wrapper durch Annotation (@Transactional) der Klasse übernommen.
+Die Transaktionssteuerung wird dabei vom AWK-Wrapper durch Annotation (`@Transactional`) der Klasse übernommen.
 
 Aus Sicht der GUI-Schicht bedeutet dies, dass jeder Aufruf des AWKs unmittelbar eine Änderung der Daten zufolge hat.
 Um eine parallele Aktualisierung eines Datensatzes zu verhindern, können die entsprechenden Versionsnummern der
