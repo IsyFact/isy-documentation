@@ -41,7 +41,7 @@ Schreiben der Logs.
 Es gibt keine gemeinsam genutzten Logdateien und keine zentrale Anwendung zum _Erstellen_ der Logs.
 ** **Eindeutige Zuordnung von Logdateien**: Logdateien müssen eindeutig einer Anwendung zugeordnet werden können.
 ** **Es wird nur ein Logging-Framework verwendet**: Alle Anwendungen müssen das gleiche Logging-Framework verwenden
-(isy-logging auf Basis von logback).
+(`isy-logging` auf Basis von logback).
 ** *Minimale Auswirkungen auf Performanz:* Das Logging darf die Performanz der Anwendung nur minimal beeinträchtigen.
 
 [underline]#Anforderungen an die Log-Infrastruktur#
@@ -152,10 +152,11 @@ Die Inhalte der Entitäten werden im Folgenden beschrieben.
 |DTY_System-ID |Zeichenkette |Eindeutige Identifikation eines Systems. |Bspw.: `XYZRG`, `XYZGA`, `QKSVZ`
 |DTY_Host-ID |Zeichenkette |Eindeutige Identifikation eines Hosts/Servers. |Bspw.: `appserver01`
 |DTY_Zeitstempel |Datum |Zeitpunkt. a|
-ISO8601-Format inklusive Zeitzone: `yyyy-MM-dd HH:mm:ss,SSSTZD`
+ISO8601-Format inklusive Zeitzone: +
+`yyyy-MM-dd HH:mm:ss,SSSTZD`
 
 Bspw.: `2007-09-05 16:40:36,464Z`
-|DTY_Korrelations-ID |Zeichenkette |Eindeutige Identifikation eines Aufrufs über Anwen-dungsgrenzen hinweg (siehe <<korrelations-id>>) |Liste von
+|DTY_Korrelations-ID |Zeichenkette |Eindeutige Identifikation eines Aufrufs über Anwendungsgrenzen hinweg (siehe <<korrelations-id>>) |Liste von
 UUIDs mit optionalen Präfixen (siehe <<korrelations-id>>).
 |DTY_Log-Level |Enum |Kategorie eines Logeintrags in Bezug auf Wichtigkeit (siehe <<log-level-log-kategorie-und-ereignisschluessel>>). |`FATAL, ERROR, WARN, INFO, DEBUG, TRACE`
 |DTY_Log-Kategorie |Enum |Kategorie eines Logeintrags in Bezug auf Zweck (siehe <<log-level-log-kategorie-und-ereignisschluessel>>). |`FEHLERANZEIGE, PROFILING, JOURNAL, METRIK,SICHERHEIT, FEHLERANALYSE`
@@ -225,21 +226,24 @@ Jedes Attribut eines Logeintrags wird in einem entsprechenden JSON Name/Wert-Paa
 Attributnamen werden dabei komplett in Kleinbuchstaben und ohne Sonderzeichen geschrieben.
 Im Folgenden wird ein exemplarischer Logeintrag dargestellt, ergänzt um Leerzeichen und Zeilenumbrüche um die Lesbarkeit zu erhöhen:
 
+:desc-listing-Logeintrag: Beispiel für einen Logeintrag
+[id="listing-Logeintrag",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Logeintrag}
 [source,json]
 ----
 {
-"zeitstempel" : "2014-03-04T12:27:27.943",
-"systemid" : "Systemxyz",
-"hostid" : "appserver01",
-"thread" : "main",
-"logger" : "x.y.HelloWorldZ",
-"korrelationsid" : {"c15638a2-4c38-4d18-b887-5ebd2a1c427d","BATCH-c893d44f-3b8e-446e-a360-06a520440e64"},
-"level" : "INFO", +
-"kategorie" : "PROFILING",
-"logschluessel" : "LISYLO01001",
-"nachricht" : "Aufruf des Nachbarsystems XYZ in 10 ms beendet.",
+  "zeitstempel" : "2014-03-04T12:27:27.943",
+  "systemid" : "Systemxyz",
+  "hostid" : "appserver01",
+  "thread" : "main",
+  "logger" : "x.y.HelloWorldZ",
+  "korrelationsid" : {"c15638a2-4c38-4d18-b887-5ebd2a1c427d","BATCH-c893d44f-3b8e-446e-a360-06a520440e64"},
+  "level" : "INFO",
+  "kategorie" : "PROFILING",
+  "logschluessel" : "LISYLO01001",
+  "nachricht" : "Aufruf des Nachbarsystems XYZ in 10 ms beendet.",
 # Zusätzliche Marker:
-"dauer" : "10"
+  "dauer" : "10"
 }
 ----
 
@@ -248,6 +252,9 @@ Die Vergabe „beliebiger“ Marker ist nicht möglich, so dass ein Namenskonfli
 
 Ein tatsächlicher Logeintrag (ohne zusätzliche Leerzeichen und Zeilenumbrüche) sieht demnach wie folgt aus:
 
+:desc-listing-LogeintragUnformatiert: Tatsächlicher Logeintrag (unformatiert)
+[id="listing-LogeintragUnformatiert",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-LogeintragUnformatiert}
 [source,json]
 ----
 {"zeitstempel":"2014-03-04T12:27:27.943","systemid":"Systemxyz","hostid":"appserver01","thread":"main","logger":"x.y.HelloWorldZ","korrelationsid":{"c15638a2-4c38-4d18-b887-5ebd2a1c427d","BATCH-c893d44f-3b8e-446e-a360-06a520440e64"},"level":"INFO","kategorie":"PROFILING","logschluessel":"LISYLO01001","nachricht":"Aufruf des Nachbarsystems XYZ in 10 ms beendet.","dauer" :"10"}
@@ -261,15 +268,15 @@ Die Vorgaben zu Logdateien sowie deren Rotation und Komprimierung sind in den Nu
 [[logging-framework]]
 == Logging-Framework
 
-Als Logging-Framework wird in der IsyFact __logback__ eingesetzt.
+Als Logging-Framework wird in der IsyFact _logback_ eingesetzt.
 
 NOTE: Für mehr Informationen zu logback siehe http://logback.qos.ch/
 
-Durch die Querschnittsbibliothek _isy-logging_ wird eine Fassade bereitgestellt, die eine einheitliche Nutzung von _logback_ sicherstellt.
-Als Grundsätzliche Vorgabe gilt, dass logback durch eine Anwendung niemals direkt, sondern ausschließlich über isy-logging aufgerufen wird
+Durch die Querschnittsbibliothek `isy-logging` wird eine Fassade bereitgestellt, die eine einheitliche Nutzung von _logback_ sicherstellt.
+Als Grundsätzliche Vorgabe gilt, dass logback durch eine Anwendung niemals direkt, sondern ausschließlich über `isy-logging` aufgerufen wird
 (Ausnahme sind hierbei externe Bibliotheken – siehe <<logging-externer-bibliotheken>>).
 
-Die Nutzung und Konfiguration von isy-logging sind in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben.
+Die Nutzung und Konfiguration von `isy-logging` sind in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben.
 
 Im Folgenden werden die grundlegenden Aspekte der Implementierung von `isy-logging` beschrieben.
 
@@ -278,7 +285,7 @@ Im Folgenden werden die grundlegenden Aspekte der Implementierung von `isy-loggi
 
 `isy-logging` stellt eine Fassade zum Zugriff auf logback bzw.
 auf dessen Schnittstellen, die durch das allgemeine Framework SLF4J definiert werden, bereit.
-Wichtig ist, dass durch isy-logging selbst SLF4J nicht implementiert wird.
+Wichtig ist, dass durch `isy-logging` selbst SLF4J nicht implementiert wird.
 Dies wird aus zwei Gründen nicht gemacht:
 
 * Durch die Bereitstellung einer proprietären Schnittstelle können die spezifischen Anforderungen an das Logging besser umgesetzt werden
@@ -330,7 +337,7 @@ Es ist in <<image-interface-isylogger>> dargestellt.
 .{desc-image-interface-isylogger}
 image::interface-isylogger.png[align="center",width=80%,pdfwidth=80%]
 
-Das Interface wird in den Nutzungsvorgaben detailliert <<NutzungsvorgabenLogging>> beschrieben.
+Das Interface wird in den Nutzungsvorgaben <<NutzungsvorgabenLogging>> detailliert beschrieben.
 
 Implementiert wird das Interface durch die Klasse `IsyLoggerImpl`.
 Eingehende Aufrufe werden dabei an den SLF4J-Logger delegiert.
@@ -358,17 +365,16 @@ image::iaufbvLogent.png[align="center"]
 `isy-logging` stellt zwei Hilfsklassen zur Erstellung von Logeinträgen bereit, um die Umsetzung der in den Nutzungsvorgaben <<NutzungsvorgabenLogging>> definierten Szenarien an die Logerstellung zu vereinfachen.
 Diese sind in <<image-hilfklas>> dargestellt.
 
-:desc-image-hilfklas: Hilfsklassen
-[id="image-hilfklas",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hilfklas}
-image::hilfklas.png[align="center"]
-
-
 Die Klasse `LogInterceptor` dient dabei als Hilfsklasse, um verschiedene Informationen zu Methodenaufrufen zu loggen und wird per Spring-AOP konfiguriert.
 
 Die Klasse `LogApplicationListener` dient dem Loggen von wichtigen Systemereignissen und wird als Spring-Bean konfiguriert.
 
 Die Informationen zur Konfiguration und Verwendung der beiden Klassen sind in den Nutzungsvorgaben <<NutzungsvorgabenLogging>> beschrieben und werden an dieser Stelle nicht wiederholt.
+
+:desc-image-hilfklas: Hilfsklassen
+[id="image-hilfklas",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-hilfklas}
+image::hilfklas.png[align="center"]
 
 [[logging-externer-bibliotheken]]
 === Logging externer Bibliotheken
@@ -377,7 +383,7 @@ _Logback_ wird als einzige Implementierung von SLF4J eingesetzt (`IsyLoggerFacto
 `LoggerFactory` von SLF4J nicht). Externe Bibliotheken, die SLF4J oder logback nutzen und in die Anwendung
 eingebunden werden, nutzen dadurch direkt die `LoggerFactory` und damit auch den `Logger`, der durch _logback_ bereitgestellt wird.
 Dies ist ohne Einschränkungen möglich, da die Vereinheitlichung der Logeinträge durch das `IsyJsonLayout`
-durchgeführt wird, welches auch in diesem Fall zum Tragen kommt.
+auch in diesem Fall durchgeführt wird.
 Für Frameworks, die weder logback noch SLF4J nutzen, werden durch SLF4J entsprechende „Bridging Modules“
 bereitgestellt, durch die die Aufrufe des Logging-Frameworks auf SLF4J (bzw.
 logback) umgeleitet werden können.
@@ -417,13 +423,16 @@ Log-Einträge im Level FATAL und ERROR erscheinen in den Logs beide im Level ERR
 === Auswertung des Feldes „zeitstempel“
 
 Für die systematische Auswertung der Logeinträge durch die Betriebsplattform ist der Zeitstempel von besonderer Bedeutung.
-Daher stellt die Bibliothek isy-logging sicher, dass der Zeitstempel möglichst am Anfang des Logeintrags steht.
+Daher stellt die Bibliothek `isy-logging` sicher, dass der Zeitstempel möglichst am Anfang des Logeintrags steht.
 
 [[allgemeine-inhalte-jedes-logeintrags]]
 == Allgemeine Inhalte jedes Logeintrags
 
 Die folgenden Attribute werden automatisch durch logstash gesetzt und sind in jedem Event enthalten:
 
+:desc-table-AllgemeineInhalteLogeintrag: Allgemeine Inhalte jedes Logeintrags
+[id="table-AllgemeineInhalteLogeintrag",reftext="{table-caption} {counter:tables}"]
+.{desc-table-AllgemeineInhalteLogeintrag}
 [cols="1,4,4m",options="header"]
 |====
 |Attribut |Beschreibung |Format / Beispiel
@@ -435,9 +444,12 @@ Die folgenden Attribute werden automatisch durch logstash gesetzt und sind in je
 
 Die Attribute, die durch Anwendungen geloggt werden, die konform zu `isy-logging` umgesetzt sind, werden durch die
 Entität ETY_Logeintrag in <<entitaeten>> beschrieben.
-Diese werden ergänzt um optionale Marker (Name/Wert-Paare). Beim Einsatz von isy-logging werden die folgenden
+Diese werden ergänzt um optionale Marker (Name/Wert-Paare). Beim Einsatz von `isy-logging` werden die folgenden
 Marker erstellt:
 
+:desc-table-MarkerIsyLogging: Zusätzliche Marker von isy-logging
+[id="table-MarkerIsyLogging",reftext="{table-caption} {counter:tables}"]
+.{desc-table-MarkerIsyLogging}
 [cols="2,3,3",options="header"]
 |====
 |Attribut |Beschreibung |Format / Beispiel
@@ -483,6 +495,9 @@ stellen neben der Lognachricht die folgenden Informationen (analog zu <<entitaet
 Die Logeinträge der Tomcat access-logs, die konform zur IsyFact konfiguriert sind, stellen neben der
 Lognachricht die folgenden Informationen bereit:
 
+:desc-table-LogeintragTomcat: Informationen für Tomcat access-log
+[id="table-LogeintragTomcat",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LogeintragTomcat}
 [cols="3m,2,3",options="header"]
 |====
 |Bestandteil |Beschreibung |Format / Beispiel
@@ -508,6 +523,9 @@ Diese wird von mod_jk im Request mitgeliefert. |24 Zeichen. Bspw.: `U08ZosCoAAM-
 Die Logeinträge des Wrapper-Logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht
 die folgenden Informationen bereit:
 
+:desc-table-LogeintragWrapper: Informationen für Wrapper-log
+[id="table-LogeintragWrapper",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LogeintragWrapper}
 [cols="3m,2,3",options="header"]
 |====
 |Bestandteil |Beschreibung |Format / Beispiel
@@ -526,6 +544,9 @@ Apache <<NutzungskonzeptHTTPServer>> beschrieben.
 Da der HTTP-Server ein anderes Zeitstempel-Format verwendet, werden folgende Felder durch die Loginfrastruktur geändert bzw.
 ergänzt:
 
+:desc-table-LogeintragApache: Informationen für Apache access-log und error-log
+[id="table-LogeintragApache",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LogeintragApache}
 [cols="3m,2,3",options="header"]
 |====
 |Bestandteil |Beschreibung |Format / Beispiel
@@ -544,6 +565,9 @@ Webservers als „Fachdaten“ zu kennzeichnen (siehe <<NutzungsvorgabenLogging>
 
 Die Logs des Mailservers stellen neben der Lognachricht, die folgenden Informationen bereit:
 
+:desc-table-LogeintragMailserver: Informationen für Mailserver-log
+[id="table-LogeintragMailserver",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LogeintragMailserver}
 [cols="3m,2,3",options="header"]
 |====
 |Bestandteil |Beschreibung |Format / Beispiel
@@ -562,6 +586,9 @@ Zu beachten ist, dass die Logger-spezifischen Attribute in einer JSON-Map `detai
 
 // wegen des Inhaltes, der den Default Separator beeinhaltet, muss der Separator geändert werden
 
+:desc-table-LogeintragSuchverfahren: Informationen für Suchverfahren-Log
+[id="table-LogeintragSuchverfahren",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LogeintragSuchverfahren}
 [cols="3m,2,3",options="header"]
 |====
 |Bestandteil |Beschreibung |Format / Beispiel
@@ -670,6 +697,9 @@ Vollständiges Ergebnisobjekt.
 
 Logstash stellt neben der Lognachricht, die folgenden Informationen bereit:
 
+:desc-table-LogeintragLogstash: Informationen für logstash-log
+[id="table-LogeintragLogstash",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LogeintragLogstash}
 [cols="3m,2,3",options="header"]
 |====
 |Bestandteil |Beschreibung |Format / Beispiel
