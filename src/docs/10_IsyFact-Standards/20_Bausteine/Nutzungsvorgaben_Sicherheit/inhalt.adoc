@@ -64,7 +64,7 @@ Die Systemnamen sollten dem folgenden Schema entsprechen: <Anwendungskürzel>_BA
 == Konfiguration von Rollen in der Anwendung
 
 Für jede fachliche oder technische Rolle, die innerhalb einer Anwendung zum Zwecke der Autorisierung eines Benutzers ausgewertet werden soll, müssen in der Anwendung Anwendungsrollen konfiguriert und die erforderlichen Rechte zugeordnet werden.
-Dies erfolgt in der Datei /resources/sicherheit/rollenrechte.xml der Anwendung. (Die zugehörige Schema-Datei RollenRechteSchema.xsd findet sich im Anhang <<rollen-rechte-schema>>)
+Dies erfolgt in der Datei `/resources/sicherheit/rollenrechte.xml` der Anwendung. (Die zugehörige Schema-Datei RollenRechteSchema.xsd findet sich im <<rollen-rechte-schema>>)
 
 :desc-listing-RollenRechte: Definition von Rollen und Rechten
 [id="listing-RollenRechte",reftext="{listing-caption} {counter:listings }"]
@@ -306,7 +306,7 @@ Instanzen des Berechtigungsmanagers zur Autorisierung einer Anfrage werden über
 Vom Berechtigungsmanager werden die Interfaces `Recht` und `Rolle` verwendet.
 Rollen werden über das Benutzerverzeichnis Benutzern zugewiesen.
 Berechtigungen sind anwendungsspezifisch und an Rollen gebunden.
-Diese Zuordnung erfolgt über die Konfigurationsdatei rollenrechte.xml.
+Diese Zuordnung erfolgt über die Konfigurationsdatei `rollenrechte.xml`.
 
 Die Implementierung des zu verwendenden Aufrufkontexts richtet sich nach dem verwendeten AccessManager.
 
@@ -342,23 +342,23 @@ Dafür stellte die Komponente Sicherheit den Berechtigungsmanager mit folgender 
 :desc-image-schnittstelle-des-berechtigungsmanagers: Schnittstelle des Berechtigungsmanagers
 [id="image-schnittstelle-des-berechtigungsmanagers",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-schnittstelle-des-berechtigungsmanagers}
-image::sicherheit_003.png[pdfwidth=66%,width=66%,align="center"]
+image::sicherheit_003.png[pdfwidth=45%,width=45%,align="center"]
 
 Die Klasse Berechtigungsmanager bietet die folgenden Methoden an:
 
-`getAktuellerBenutzer`::
+`getAktuellerBenutzer()`::
 Liefert die Benutzerkennung des Benutzers (Login und Behörden-/Organisationskennzeichen) für den der Berechtigungsmanager erzeugt wurde.
 
-`getRechte`::
+`getRechte()`::
 Diese Methode liefert eine Liste aller Rechte des Benutzers.
 
-`getRecht`::
+`getRecht()`::
 Diese Methode liefert zu einer ID das zugehörige Recht, falls der Benutzer es besitzt.
 
-`hatRecht`::
+`hatRecht()`::
 Diese Methode prüft, ob der Benutzer das angegebene Recht hat.
 
-`pruefeRecht`::
+`pruefeRecht()`::
 Diese Methode prüft, ob der Benutzer das angegebene Recht hat und löste eine AutorisierungFehlgeschlagenException aus, wenn das nicht der Fall ist.
 
 [[pruefung-der-erreichbarkeit-des-access-managers-ping]]
@@ -369,7 +369,7 @@ Die Komponente Sicherheit bietet über das Bean SicherheitAdmin die Möglichkeit
 :desc-image-schnittstelle-von-sicherheitadmin: Schnittstelle von SicherheitAdmin
 [id="image-schnittstelle-von-sicherheitadmin",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-schnittstelle-von-sicherheitadmin}
-image::sicherheit_004.png[pdfwidth=66%,width=66%,align="center"]
+image::sicherheit_004.png[pdfwidth=45%,width=45%,align="center"]
 
 `pingAccessManager`::
 Es wird ein Ping gegen den Access-Manager durchgeführt, um dessen Erreichbarkeit zu prüfen.
@@ -400,7 +400,7 @@ Die Komponente Sicherheit wird per Maven-Dependency in das Projekt eingebunden:
 [[spring-konfiguration]]
 === Spring-Konfiguration
 
-Die benötigten Beans für Sicherheit, `AufrufKontext` und angebotener Annotationen werden in der separaten Spring-Konfigurationsdatei _`/resources/spring/querschnitt/sicherheit.xml`_ konfiguriert.
+Die benötigten Beans für Sicherheit, `AufrufKontext` und angebotener Annotationen werden in der separaten Spring-Konfigurationsdatei `/resources/spring/querschnitt/sicherheit.xml` konfiguriert.
 
 :desc-listing-konfiguration-fuer-spring: Konfiguration für Spring
 [id="listing-konfiguration-fuer-spring",reftext="{listing-caption} {counter:listings }"]
@@ -492,7 +492,7 @@ Der Standard-Wert für die Lebensdauer von Cache-Elemente liegt bei 5 Minuten, d
 Die Standard-Konfiguration befindet sich im Anhang.
 Die Werte für die Lebensdauer von Cache-Elementen und die Anzahl der Elemente kann über die betriebliche Konfiguration angepasst werden (siehe <<konfiguration-des-caches>>).
 
-Die Spring-Konfiguration der Komponente Sicherheit wird in die allgemeine Spring-Konfiguration der Querschnittsfunktionalität der Anwendung in _/resources/spring/querschnitt.xml_ eingebunden.
+Die Spring-Konfiguration der Komponente Sicherheit wird in die allgemeine Spring-Konfiguration der Querschnittsfunktionalität der Anwendung in `/resources/spring/querschnitt.xml` eingebunden.
 
 :desc-listing-konfiguration-in-querschnitt: Konfiguration Sicherheit in querschnitt.xml
 [id="listing-konfiguration-in-querschnitt",reftext="{listing-caption} {counter:listings }"]
@@ -590,12 +590,12 @@ _Durchführung der Autorisierungsprüfung_
 
 Nach Übernehmen des `AufrufKontext` in den `AufrufKontextVerwalter` erfolgt die Autorisierungsprüfung dann über die Komponente Sicherheit.
 
-Für die Autorisierungsprüfung stellt die isy-sicherheit neben dem Berechtigungsmanager (erlaubt Autorisierung per API-Aufruf) zusätzliche Hilfsmittel (Annotationen, Tags zur Verwendung in Flow-Definitionen) bereit, mit denen die Autorisierungsprüfung deklarativ erfolgen kann:
+Für die Autorisierungsprüfung stellt die `isy-sicherheit` neben dem Berechtigungsmanager (erlaubt Autorisierung per API-Aufruf) zusätzliche Hilfsmittel (Annotationen, Tags zur Verwendung in Flow-Definitionen) bereit, mit denen die Autorisierungsprüfung deklarativ erfolgen kann:
 
 * Für Aufrufe der GUI wird das `secured`-Tag zur Autorisierung verwendet (siehe <<autorisierung-in-der-gui>>).
-* Für Aufrufe der Service-Schnittstellen wird eine Annotation ``@Gesichert` zur Autorisierung verwendet (siehe <<autorisierung-an-einer-service-schnittstelle>>).
+* Für Aufrufe der Service-Schnittstellen wird eine Annotation `@Gesichert` zur Autorisierung verwendet (siehe <<autorisierung-an-einer-service-schnittstelle>>).
 * Für Batchläufe ist im Batchrahmen bereit eine Autorisierung eines konfigurierten Benutzers enthalten (siehe <<autorisierung-eines-batches>>).
-* Für Autorisierungen im Anwendungskern kann die Annotation ``@Gesichert` oder direkt der `Berechtigungsmanager` verwendet werden.
+* Für Autorisierungen im Anwendungskern kann die Annotation `@Gesichert` oder direkt der `Berechtigungsmanager` verwendet werden.
 
 [[autorisierung-in-der-gui]]
 == Autorisierung in der GUI
@@ -714,7 +714,7 @@ public void gesichertDurch_RechtAundB(AufrufKontextTo kontext, ...) {
 }
 ----
 
-Erfüllt ein Aufrufer nicht die Forderungen der Annotation @Gesichert, so wird die AutorisierungFehlgeschlagenException geworfen.
+Erfüllt ein Aufrufer nicht die Forderungen der Annotation `@Gesichert`, so wird die `AutorisierungFehlgeschlagenException` geworfen.
 Da eine fehlende Berechtigung nicht behandelt werden kann und dies letztlich auf einen Konfigurationsfehler in einer anderen Anwendung zurückzuführen ist (oder einen Angriff),
 wird nicht empfohlen, diese Ausnahme spezifisch zu behandeln.
 Das normale Fehlerhandling greift.
@@ -728,7 +728,7 @@ Die Integration der T-Komponente Sicherheit ist im Batchrahmen ab Version 1.1 en
 Ein Batch wird innerhalb der Anwendungslandschaft gestartet.
 Dazu verwendet der Batch die Benutzerkennung eines Systems (Benutzer), die in seiner Startkonfiguration (als Konfigurationsdatei) hinterlegt und im Benutzerverzeichnis vorhanden ist.
 
-Damit der Benutzer bei der Ausführung des Batches authentifiziert wird, muss die Methode _initialisieren_, die durch das BatchAusfuehrungsBean vorgegeben wird, mittels der Annotation `@Gesichert` geschützt werden.
+Damit der Benutzer bei der Ausführung des Batches authentifiziert wird, muss die Methode `initialisieren()`, die durch das BatchAusfuehrungsBean vorgegeben wird, mittels der Annotation `@Gesichert` geschützt werden.
 Der Access-Manager authentifiziert den Benutzer anhand der angegebenen Benutzerkennung und des Passwortes, registriert alle Informationen zum Benutzer im `AufrufKontextVerwalter` und schließt die Session des Benutzers im Access-Manager.
 
 Da alle Informationen zum Benutzer als Aufrufkontext im `AufrufKontextVerwalter` hinterlegt wurden, kann die Anwendung jederzeit auf diese Kontextinformationen zugreifen, also im Zuge des Batchlaufes Berechtigungsprüfungen vornehmen oder auch Services von Nachbarsystemen (vergleiche Kapitel <<aufrufen-von-nachbarsystemen>>) unter Bereitstellung des Aufrufkontextes aufrufen.
@@ -739,7 +739,7 @@ Dies ist nur möglich, wenn bei Aufrufen des Anwendungskerns keine Autorisierung
 [[implementierung-1]]
 === Implementierung
 
-Der Batchrahmen fordert vom BatchAusführungsBean die Implementierung der Methode: getAuthenticationCredentials(), in der dem Batchrahmen bekanntgegeben wird mit welchem Benutzer der Batch laufen soll.
+Der Batchrahmen fordert vom BatchAusführungsBean die Implementierung der Methode: `getAuthenticationCredentials()`, in der dem Batchrahmen bekanntgegeben wird mit welchem Benutzer der Batch laufen soll.
 
 In der Regel wird der Benutzer aus der Konfiguration gelesen, wie im folgenden Beispiel veranschaulicht wird:
 
@@ -772,12 +772,12 @@ public BatchAuthenticationCredentials getAuthenticationCredentials(
 }
 ----
 
-Soll der Batch ohne Benutzer laufen, so ist null zurückzugeben.
+Soll der Batch ohne Benutzer laufen, so ist `null` zurückzugeben.
 
 [[konfiguration-2]]
 === Konfiguration
 
-Für eine korrekte Funktion wird in der Anwendung die Komponente Sicherheit konfiguriert (vergleiche <<konfiguration>>).
+Für eine korrekte Funktion wird in der Anwendung die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
 
 Zusätzlich wird der Benutzer, über den der Batch laufen soll, wie folgt konfiguriert:
 
@@ -813,7 +813,7 @@ Hier wird festgelegt, dass ein Aufrufer gegen die im Access-Manager konfiguriert
 
 Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet die T-Komponente Sicherheit, um den Benutzer einer eingehenden Anfrage zu
 authentifizieren und zu autorisieren.
-Sie verwendet dazu die Bibliothek plis-sgw-util, in der isy-sicherheit eingebunden ist.
+Sie verwendet dazu die Bibliothek `plis-sgw-util`, in der `isy-sicherheit` eingebunden ist.
 
 [[autorisierung-einer-anfrage-an-ein-service-gateway]]
 === Autorisierung einer Anfrage an ein Service-Gateway
@@ -831,7 +831,7 @@ Kapitel <<aufrufen-von-nachbarsystemen>>).
 [[konfiguration-3]]
 === Konfiguration
 
-Für eine korrekte Funktion wird im Service-Gateway die Komponente Sicherheit konfiguriert (vergleiche <<konfiguration>>).
+Für eine korrekte Funktion wird im Service-Gateway die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
 
 Damit eine Authentifizierung über den Access-Manager möglich ist, sind einige zusätzliche Konfigurationen für die Komponente Sicherheit erforderlich:
 
@@ -889,8 +889,8 @@ starten Prozesse ereignis- oder zeitgesteuert.
 Diesen Prozessen geht im Moment der Bearbeitung keine Benutzeranfrage voraus.
 Daher kann die Bearbeitung im Regelfall nicht mit dem Aufrufkontext eines anfragenden Benutzers durchgeführt werden.
 Stattdessen wird zum Start des Prozesses ein hinreichend berechtigter Benutzer (System) verwendet.
-Es ist ein analoger Ablauf wie beim Start von Batches (siehe <<autorisierung-eines-batches>>) umzusetzen.
-Es ist eine analoge Konfiguration wie bei Batches (siehe <<konfiguration-2>>) vorzunehmen.
+Es ist ein analoger Ablauf wie beim Start von Batches (siehe Kapitel <<autorisierung-eines-batches>>) umzusetzen.
+Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfiguration-2>>) vorzunehmen.
 
 [[weitere-konzepte]]
 = Weitere Konzepte
@@ -906,8 +906,8 @@ Zum Aufruf des Nachbarsystems werden entweder die mit dem Nachbarsystem bereit g
 
 Wenn ein Service über eine spezifische Client-Implementierung (z.B. den Schlüsselverzeichnis-Client) verwendet wird, so enthält diese (konform zum Berechtigungskonzept) bereits die Logik zur Weiterleitung des Aufrufkontextes.
 
-Wenn der Service direkt über Spring HttpInvoker und das zugehörige RemoteBean-Interface aufgerufen wird, so ist die Weiterleitung des AufrufKontextes unter Nutzung des AufrufKontextVerwalters (per Spring injizieren) manuell zu programmieren.
-Hierbei ist es wichtig, dass immer ein AufrufKontextTo-Objekt der Service-API verwendet wird, da nur dieses bei einem HttpInvoker-Aufruf im Server korrekt deserialisiert werden kann.
+Wenn der Service direkt über Spring HTTP-Invoker und das zugehörige RemoteBean-Interface aufgerufen wird, so ist die Weiterleitung des AufrufKontextes unter Nutzung des AufrufKontextVerwalters (per Spring injizieren) manuell zu programmieren.
+Hierbei ist es wichtig, dass immer ein AufrufKontextTo-Objekt der Service-API verwendet wird, da nur dieses bei einem HTTP-Invoker-Aufruf im Server korrekt deserialisiert werden kann.
 
 :desc-listing-weiterleitung-des-aufrufkontextes: Weiterleitung des Aufrufkontextes beim Serviceaufruf
 [id="listing-weiterleitung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
@@ -930,7 +930,7 @@ Das Beispiel enthält folgende Schritte:
 [[verwendung-der-korrelations-id]]
 == Verwendung der Korrelations-ID
 
-Der `AufrufKontext` enthält auch die Korrelations-ID, die während der Be­arbeitung einer Anfrage in der Anwendungslandschaft alle zusammen­ge­hö­ren­den Log-Ausgaben einer Anfrage durch eine gemeinsame Id kennzeichnet – auch wenn die Anfrage mehrere Teilsysteme der Anwendungslandschaft verwendet.
+Der `AufrufKontext` enthält auch die Korrelations-ID, die während der Bearbeitung einer Anfrage in der Anwendungslandschaft alle zusammen­ge­hö­ren­den Log-Ausgaben einer Anfrage durch eine gemeinsame ID kennzeichnet – auch wenn die Anfrage mehrere Teilsysteme der Anwendungslandschaft verwendet.
 Dies erfordert eine Entgegennahme, Verwendung und Weiterleitung einer Korrelations-ID über alle Service-Aufrufe hinweg.
 Details zum Aufbau der Korrelations-ID sind in <<NutzungsvorgabenLogging>> beschrieben.
 
@@ -939,7 +939,7 @@ Eine Korrelations-ID wird entweder bereits im eingehenden Aufruf mitgeliefert, o
 [[entgegennahme-der-korrelations-id-in-der-gui]]
 === Entgegennahme der Korrelations-ID in der GUI
 
-Die Neuerzeugung und Registrierung der Korrelations-ID im MDC erfolgt automatisch innerhalb des HttpHeaderParsers der Bibliothek plis-sicherheit-cams.
+Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb des `HttpHeaderParser` der Bibliothek `plis-sicherheit`-cams.
 
 [[entgegennahme-der-korrelations-id-an-einer-service-sst]]
 === Entgegennahme der Korrelations-ID an einer Service-SST
