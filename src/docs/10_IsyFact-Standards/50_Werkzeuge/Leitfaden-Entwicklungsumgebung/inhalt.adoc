@@ -49,15 +49,14 @@ VirtualBox kann mehrere virtuelle Maschinen verwalten. Jede virtuelle Maschine w
 Jedes dieser Verzeichnisse enthält Konfigurationsdateien für die virtuelle Maschine. Im folgenden sprechen wir hierbei vom VM-Verzeichnis.
 
 Um die virtuelle Maschine zu erzeugen, klicken Sie innerhalb von Oracle VirtualBox im Hauptmenü auf "Neu".
-Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld "Ubuntu Gnome 17.04 (64bit)" eingeben. Setzen Sie die Version auf Ubuntu (64-bit).
+Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld einen Namen Ihrer Wahl eingeben. Setzen Sie die Version auf Ubuntu (64-bit).
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_02: Eingabe des Names der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_02}
 image::leitfaden_entwicklungsumgebung_vb_02.png[align="center",width=80%,pdfwidth=80%]
 
-Klicken Sie auf Weiter. Hierdurch wird VirtualBox das VM-Verzeichnis zur virtuellen Maschine erstellen. Das Verzeichnis trägt den gleichen Namen wie die virtuelle Maschine,
-nämlich "Ubuntu Gnome 17.04 (64bit)".
+Klicken Sie auf Weiter. Hierdurch wird VirtualBox das VM-Verzeichnis zur virtuellen Maschine erstellen. Das Verzeichnis trägt den gleichen Namen wie Ihre virtuelle Maschine.
 
 Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfiguriert. Die Größe des Hauptspeichers sollte mindestens 4096 Megabyte betragen.
 
@@ -67,16 +66,11 @@ Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfig
 image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=70%,pdfwidth=70%]
 
 Klicken Sie auf Weiter. Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen. Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox
-in das Verzeichnis der virtuellen Maschine speichert. Ãœber die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
+in das Verzeichnis der virtuellen Maschine speichert. Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
 um dort später das Ubuntu Betriebssystem zu installieren. Statt die Festplatte und das darin zu installierende Betriebssystem von Hand zu installieren, beschreibt diese
-Anleitung eine Abkürzung. Die Webseite http://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an. Unter http://www.osboxes.org/ubuntu-gnome
-wird beispielsweise eine Festplatte angeboten, auf der Ubuntu mit der Gnome-Oberfläche vorinstalliert ist. Diese Datei können Sie in komprimierter Form auch direkt über folgende
-URL herunterladen:
+Anleitung eine Abkürzung. Die Webseite https://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an. Dieser Leitfaden benutzt die Desktop-Edition von Ubuntu. Diese ist unter https://www.osboxes.org/ubuntu/ verfügbar. Wählen Sie die VirtualBox-Version der virtuellen Festplatte und laden Sie sie herunter.
 
- https://drive.google.com/uc?export=download&confirm=ZacZ&id=0B_HAFnYs6Ur-VWZ5TTVSd1dScEE
-
-Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_Gnome_17.04-VB-64bit.7z` in Ihrem Download-Verzeichnis. Entpacken Sie diese Datei in das
-VM-Verzeichnis "Ubuntu Gnome 17.04 (64bit)". Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
+Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_<Version>-VB-64bit.7z` in Ihrem Download-Verzeichnis. Entpacken Sie diese Datei in Ihr VM-Verzeichnis. Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_04: Virtuelle Festplatte einbinden
 [id="image-leitfaden_entwicklungsumgebung_vb_04",reftext="{figure-caption} {counter:figures}"]
@@ -138,16 +132,20 @@ Bestätigen Sie die Änderungen mit einem Klick auf OK.
 
 Danach starten Sie die virtuelle Maschine mit einem Doppelklick auf die neu erstellte Instanz.
 
-=== Ubuntu Gnome
+=== Ubuntu
 
-Starten Sie Ihre virtuelle Maschine. Gleichen zu Beginn, müssen Sie Ihre Zugangsdaten eingeben.
+Starten Sie Ihre virtuelle Maschine und melden Sie sich an:
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_01: Startbildschirm der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_01}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_01.png[align="center"]
 
-Benutzername und Kennwort lauten `osboxes.org`. Danach erfolgt die Ersteinrichtung von Ubuntu Gnome.
+Ihr Benutzername und Kennwort ist bei den virtuellen Festplatten von OSBoxes standardmäßig gesetzt:
+
+* Benutzername: `osboxes`
+* Passwort: `osboxes.org`
+* Root-Passwort: `osboxes.org`
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_02: Welcome der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_02",reftext="{figure-caption} {counter:figures}"]
@@ -168,7 +166,7 @@ Die restlichen Einstellungen können Sie überspringen. Nun ist die Konfiguratio
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_04.png[align="center"]
 
-Klicken Sie links oben auf "Applications" und dann unten auf "Activities Overview", um eine Ãœbersicht über die Applikationen zu bekommen.
+Klicken Sie links oben auf "Activities" oder benutzen Sie die Windows-Taste oder Befehlstaste, um eine Übersicht der Applikationen zu bekommen.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05: Startbildschirm der virtuellen Maschine nach dem Login
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_05",reftext="{figure-caption} {counter:figures}"]
@@ -185,7 +183,7 @@ Host-Systems anzeigen lassen, und somit den Anschein erwecken, sie seien in dies
 TIP: Um die Gasterweiterungen zu installieren, benötigen Sie ein optisches Laufwerk, das vor dem Start der Ubuntu Instanz noch leer ist. Wenn Sie die obigen
 Arbeitsschritte durchgeführt haben, sollte das optische Laufwerk aber bereits existieren.
 
-Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintrag "Geräte" -> "Gasterweiterungen einlegen..".
+Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintrag "Geräte" -> "Gasterweiterungen einlegen...".
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01: Gasterweiterungen laden auf der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01",reftext="{figure-caption} {counter:figures}"]
@@ -207,27 +205,6 @@ Bestätigen Sie mit einem Klick auf "Run". Anschließend sollte die Installation
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png[align="center"]
 
 Ihre virtuelle Maschine ist nun einsatzbereit.
-
-=== Tweak
-
-Abschließend passen Sie die visuelle Oberfläche Ihres Ubuntu Gnome Betriebssystems an, indem Sie im Hauptmenü auf "Applications" - "Utilities" - "Tweak Tools" klicken.
-Im erscheinenden Fenster, klicken Sie links auf Desktop.
-
-Über ein Häkchen, jeweils in der Checkbox "Home" und "Trash", werden zwei neue Symbole auf dem Desktop für das Home-Verzeichnis und für den Mülleimer erstellt.
-
-Über Location Background und Lock Screen Mode wechseln Sie die Hintergrundbilder.
-
-:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01: Hintergrundbild einrichten
-[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_01.png[align="center"]
-
-Top Bar - Show Date und Show Seconds
-
-:desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02: Uhrzeitanzeige einrichten
-[id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_tweak_02.png[align="center"]
 
 
 [[werkzeuge-installieren]]
@@ -256,23 +233,19 @@ Danach installieren Sie Git mit folgender Anweisung:
 
  sudo apt-get install git
 
-Um auch alle Sub-Packages zu installieren, rufen Sie folgendes Kommando auf:
-
- sudo apt-get install git-all
-
 ==== Git Konfiguration
 
 Auf der Kommandozeile wird Git über den Aufruf des Kommandos `git` gesteuert.
 Das `git`-Kommando kennt eine Reihe von Optionsparametern.
 Die Konfiguration wird beispielsweise über den Optionsparameter `config` festgelegt.
 Dabei kann sie in drei Granularitäten durchgeführt werden.
-Ãœber das Kommando
+Über das Kommando
 
  git config --system
 
 nehmen Sie die Konfiguration für alle Benutzer des Betriebssystems vor.
 Diese System-Konfiguration wird automatisch in die Datei `/etc/gitconfig` geschrieben.
-Ãœber
+Über
 
  git config --global
 
@@ -319,21 +292,17 @@ Anschließend ist die Entwicklungsumgebung über das Kommando `STS` im Ordner `/
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts}
 image::leitfaden_entwicklungsumgebung_werkzeuge_sts.png[align="center"]
 
-Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses eine Datei des
-Typs `.desktop` abgelegt werden. Diese können Sie bequem mit dem Programm `gnome-panel` erzeugen. Installieren Sie `gnome-panel` mit folgender Anweisung:
+Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses ein https://wiki.ubuntuusers.de/.desktop-Dateien/[Programmstarter] angelegt werden. Legen Sie dazu eine Datei namens `STS.desktop` in diesem Verzeichnis an und versehen Sie sie mit folgendem Inhalt:
 
- sudo apt install gnome-panel
-
-Das folgende Kommando startet anschließend das Gnome Panel.
-
- sudo gnome-desktop-item-edit /usr/share/applications --create-new
-
-Setzen Sie den Namen, den Pfad zum STS-Kommando und ein Kommentar. Das Bild ändern Sie durch einen Mausklick auf das Icon-Symbol.
-
-:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon: Spring Tool Suite (STS) Einrichtung des Namens
-[id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_icon}
-image::leitfaden_entwicklungsumgebung_werkzeuge_sts_icon.png[align="center",width=60%,pdfwidth=60%]
+ #!/usr/bin/env xdg-open
+ [Desktop Entry]
+ Version=1.0
+ Type=Application
+ Terminal=false
+ Exec=/opt/sts-bundle/<STS-Release>/STS
+ Name=STS
+ Comment=Spring Tool Suite
+ Icon=/opt/sts-bundle/<STS-Release>/icon.xpm
 
 Danach lässt sich STS über das Applikations-Menü von Ubuntu starten. Hierfür klicken Sie auf "Applications" - "Other" - "STS"
 
@@ -360,7 +329,7 @@ image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01.png[align="cent
 
 Nach dem Download extrahieren Sie den Apache Tomcat Server ins Verzeichnis `/opt`.
 
- sudo tar -xzvf <Pfad zur Tomcat-Installationsdatei> -C /opt
+ sudo tar -xzf <Pfad zur Tomcat-Installationsdatei> -C /opt
 
 Über folgendes Kommando sorgen Sie auch noch dafür, dass das Installationsverzeichnis dem Benutzer `osboxes` gehört.
 
@@ -512,7 +481,7 @@ CAUTION: Führen Sie bei dem Projekt `isyfact-products-bom` das Menü "Maven" ->
 === isyfact-base
 
 Ddas Repository isyfact-base ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet. Die Kernfunktionalität ist auf mehrere
-Unterprojekte aufgeteilt. Ãœberspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
+Unterprojekte aufgeteilt. Überspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_15: isyfact-base
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_15",reftext="{figure-caption} {counter:figures}"]
