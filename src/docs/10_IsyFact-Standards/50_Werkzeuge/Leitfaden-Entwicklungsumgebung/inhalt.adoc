@@ -43,7 +43,7 @@ herunterladen.
 :desc-image-leitfaden_entwicklungsumgebung_vb_01: Virtualbox Hauptmenü
 [id="image-leitfaden_entwicklungsumgebung_vb_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_01}
-image::leitfaden_entwicklungsumgebung_vb_01.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_01.png[align="center",width=70%,pdfwidth=70%]
 
 VirtualBox kann mehrere virtuelle Maschinen verwalten. Jede virtuelle Maschine wird auf Ihrer Festplatte unterhalb des Home-Verzeichnisses im Ordner "VirtualBox VMs" verwaltet.
 Jedes dieser Verzeichnisse enthält Konfigurationsdateien für die virtuelle Maschine. Im folgenden sprechen wir hierbei vom VM-Verzeichnis.
@@ -77,15 +77,14 @@ Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_<Version>-
 .{desc-image-leitfaden_entwicklungsumgebung_vb_04}
 image::leitfaden_entwicklungsumgebung_vb_04.png[align="center",width=70%,pdfwidth=70%]
 
-Anschließend sollte die virtuelle Maschine samt virtueller Festplatte fertiggestellt sein.
+Die virtuelle Maschine sollte danach samt virtueller Festplatte bereit sein.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern: Konfigurationsdaten der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_aendern",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_aendern}
 image::leitfaden_entwicklungsumgebung_vb_aendern.png[align="center"]
 
-Die Konfiguration der VM ist noch nicht ganz fertig, denn Sie müssen auch noch einiges bezüglich Boot-Reihenfolge, Prozessor-Anzahl,
-Grafikspeicher und Austauschlaufwerk einstellen.
+Anschließend müssen Sie die Boot-Reihenfolge, Prozessor-Anzahl, Grafikspeicher und die Austauschlaufwerke konfigurieren.
 
 Hierfür selektieren Sie die neu erschaffene VM und wählen im Menü "Ändern".
 Im erscheinenden Einstellungsfenster wechseln Sie auf der linken Seite auf "Allgemein" und dann rechts in den Reiter "Erweitert".
@@ -343,7 +342,7 @@ Im Einstellungsfenster öffnen Sie "Server" - "Runtime Environment". Klicken Sie
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02: Server-Konfiguration
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02}
-image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf "Next". Setzen Sie im erscheinenden Fenster den Installationspfad Ihres Apache Tomcat. In diesem Leitfaden ist das `/opt/<Tomcat-Release>`.
 
@@ -480,7 +479,7 @@ CAUTION: Führen Sie bei dem Projekt `isyfact-products-bom` das Menü "Maven" ->
 
 === isyfact-base
 
-Ddas Repository isyfact-base ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet. Die Kernfunktionalität ist auf mehrere
+Das Repository `isyfact-base` ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet. Die Kernfunktionalität ist auf mehrere
 Unterprojekte aufgeteilt. Überspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_15: isyfact-base
