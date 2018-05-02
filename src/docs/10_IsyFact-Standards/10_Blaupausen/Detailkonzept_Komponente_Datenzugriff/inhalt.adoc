@@ -3,17 +3,22 @@
 
 Die in diesem Dokument aufgestellten Vorgaben setzen folgende Anforderungen um:
 
-* *Einfachheit der Verwendung von JPA:* Dies betrifft sowohl die Erstellung von JPA-Konfigurationen und des JPA verwendenden Codes als auch deren Verständlichkeit und Wartbarkeit.
+*Einfachheit der Verwendung von JPA:* Dies betrifft sowohl die Erstellung von JPA-Konfigurationen und des JPA verwendenden Codes als auch deren Verständlichkeit und Wartbarkeit.
 Konkret kann diese Anforderung in die folgenden Anforderungen aufgeteilt werden:
-** Einfachheit und Verständlichkeit der Konfiguration und der Mapping-Definition von JPA.
-** Einfachheit und Verständlichkeit des JPA verwendenden Codes.
-* *Schmale, definierte JPA-Schnittstelle:* Die Verwendung und Konfiguration von JPA soll isoliert und über eine schmale Schnittstelle erfolgen.
-** Die Komponente Datenzugriff soll auf JPA über die schmale Schnittstelle zugreifen.
-** Die Stellen, an welchen JPA verwendet wird, sollen keine Fachlogik enthalten.
-* *Effizienz und Schnelligkeit der JPA Zugriffsschicht und der dahinter liegenden Hibernate-Implementierung:* Die von
+
+* Einfachheit und Verständlichkeit der Konfiguration und der Mapping-Definition von JPA.
+* Einfachheit und Verständlichkeit des JPA verwendenden Codes.
+
+*Schmale, definierte JPA-Schnittstelle:* Die Verwendung und Konfiguration von JPA soll isoliert und über eine schmale Schnittstelle erfolgen.
+
+* Die Komponente Datenzugriff soll auf JPA über die schmale Schnittstelle zugreifen.
+* Die Stellen, an welchen JPA verwendet wird, sollen keine Fachlogik enthalten.
+
+*Effizienz und Schnelligkeit der JPA Zugriffsschicht und der dahinter liegenden Hibernate-Implementierung:* Die von
 JPA abgesetzten Datenbank-Aufrufe sollen effizient sein.
 Unnötige Zugriffe und doppelte Zugriffe sollen vermieden werden.
-* *Einheitlichkeit der Verwendung von JPA:* Die Konfiguration und Programmierung der JPA-Zugriffe soll zum einen
+
+*Einheitlichkeit der Verwendung von JPA:* Die Konfiguration und Programmierung der JPA-Zugriffe soll zum einen
 über die gleichen Mechanismen und zum anderen an den gleichen Stellen vorgenommen werden.
 
 [[persistenz]]
@@ -432,10 +437,10 @@ Exceptions in die besser auszuwertenden Spring-DataAccessExceptions umgewandelt 
 
 In der Spring-Konfiguration wird die Klasse `AbstractDao` wie folgt definiert:
 
-NOTE: Wir benutzen nicht die Annotation `@PersistenceContext` und den `PersistenceAnnotationBeanPostProcessor`,
-weil dieser Probleme beim Starten des Application Contexts verursacht (zum Ermitteln der EntityManagerFactory
-werden alle Beans zu einem (zu) frühen Zeitpunkt instanziiert, was bei zirkulären Abhängigkeiten und gewrappten
-Beans Probleme verursacht).
+NOTE: Wir benutzen nicht die Annotation `@PersistenceContext` und den `PersistenceAnnotationBeanPostProcessor`.
+Bei deren Verwendung werden beim Starten des Application Contexts zur Ermittlung der `EntityManagerFactory`
+alle Beans zu einem zu frühen Zeitpunkt instanziiert, was bei zirkulären Abhängigkeiten und gewrappten
+Beans Probleme verursacht.
 
 [source,xml]
 ----
@@ -550,20 +555,20 @@ Filter müssen als Annotationen mit `@FilterDef`, `@Filters` und `@Filter` umges
 [[verbot-von-bulk-queries]]
 == Verbot von Bulk-Queries
 
-JPA bietet über die Methode query.executeUpdate() die Möglichkeit in JPQL formulierte DELETE- und UPDATE-Statements, sog.
+JPA bietet über die Methode `query.executeUpdate()` die Möglichkeit in JPQL formulierte `DELETE`- und `UPDATE`-Statements, sog.
 Bulk-Queries, auszuführen.
 Die Nutzung solcher Bulk-Queries ist verboten.
-Wo aus Performancegründen massenhafte DELETEs oder UPDATEs direkt in der Datenbank benötigt werden, können native
+Wo aus Performancegründen massenhafte `DELETE`- oder `UPDATE`-Statements direkt in der Datenbank benötigt werden, können native
 SQL-Anweisungen verwendet werden.
 Sofern bei solchen Bulk-Operationen kaskadierende Änderungen benötigt werden (z.B. weil Kind-Tabellen
  mitgelöscht werden sollen), müssen entsprechende Constraints in der Datenbank angelegt werden.
 
-Begründung: Hibernate erzeugt bei der Ausführung von BULK-Queries unter bestimmten Umständen zur Laufzeit
+Begründung: Hibernate erzeugt bei der Ausführung von `BULK`-Queries unter bestimmten Umständen zur Laufzeit
 implizit Hilfstabellen (Temporäre Tabellen mit dem Präfix HT_).
 
 NOTE: siehe http://in.relation.to/Bloggers/MultitableBulkOperations
 
-Dies führt dazu, dass der Datenbank-User der Anwendung entsprechende CREATE TABLE-Rechte benötigt, was i.d.R.
+Dies führt dazu, dass der Datenbank-User der Anwendung entsprechende `CREATE TABLE`-Rechte benötigt, was i.d.R.
 nicht zugelassen ist. Weiterhin führt die Nutzung der temporären Tabellen in vielen Fällen zu Performance-Problemen.
 
 Um die Einhaltung dieser Anforderung sicherzustellen, sollten auch in der Entwicklung bzw.
@@ -1101,9 +1106,9 @@ getroffenen Festlegungen zur Persistenz sein soll.
 Daten werden durch die Anwendungslogik gepflegt und persistiert.
 
 Theoretisch wäre es auch möglich, eine solche Historisierung auf der Ebene der Datenbankzugriffsschicht durchzuführen.
-Dazu würden dann in der Datenbankzugriffschicht die UPDATE-Statements durch INSERT-Statements ersetzt.
-Die Daten der INSERT-Statements würden dann durch einen Zeitstempel ergänzt.
-Beim SELECT würde immer der aktuellste Datensatz geliefert werden.
+Dazu würden dann in der Datenbankzugriffschicht die `UPDATE`-Statements durch `INSERT`-Statements ersetzt.
+Die Daten der `INSERT`-Statements würden dann durch einen Zeitstempel ergänzt.
+Beim `SELECT` würde immer der aktuellste Datensatz geliefert werden.
 Dieses Vorgehen lohnt sich aber nicht, da nur sehr wenige Datensätze historisiert werden sollen und ebenso widerspricht es der Anforderung, dass keine Daten gespeichert werden sollen, die nicht auch angezeigt werden.
 Sinnvoll wäre ein solches Vorgehen dann, wenn über die Historisierung eine Nachvollziehbarkeit der Änderungen erreicht werden soll.
 Dies ist im Rahmen der Referenzarchitektur aber explizit die Aufgabe der Protokollierung.
@@ -1148,15 +1153,15 @@ Falls das zu persistierende Objekt den Namen `Xyz` trägt, heißt das zugehörig
 Es hat die Funktion eines Datenverwalters.
 Dieses DAO wird wie folgt angepasst und erweitert:
 
-*Erstellen einer neuen Methode Xyz `leseXyz(Schlüssel, Calendar)`:* Durch die Historisierung wird der bisherige Schlüssel des Objekts um einen Datumsbezug erweitert.
+*Erstellen einer neuen Methode `Xyz leseXyz(Schluessel, Calendar)`:* Durch die Historisierung wird der bisherige Schlüssel des Objekts um einen Datumsbezug erweitert.
 Daher muss jetzt beim Lesen eines Objekts ein Datum angegeben werden, an dem das zu lesende Objekt aktuell sein soll.
 Diese Methode liefert das Objekt mit dem übergebenen Schlüssel, das zum übergebenen Datum aktuell war.
 
-*Ändern der Methode Xyz `lese Xyz(Schlüssel)`:* Diese Methode ist im DAO bereits vorhanden.
+*Ändern der Methode `Xyz lese Xyz(Schluessel)`:* Diese Methode ist im DAO bereits vorhanden.
 Sie wird so angepasst, dass sie das aktuell gültige Objekt zurückgibt.
 Dies ist das Objekt mit den übergebenen Schlüsselattributen, dessen `aktuellBis`-Eintrag der 31.12.9999 ist.
 
-*Erstellen einer neuen Methode `List<Xyz leseXyzHistorie (Schlüssel)`:* Diese Methode liefert die gesamte Historie
+*Erstellen einer neuen Methode `List<Xyz> leseXyzHistorie(Schluessel)`:* Diese Methode liefert die gesamte Historie
 eines Datensatzes.
 
 *Erstellen einer neuen Methode `Xyz erzeugeNeueVersion(Xyz)`:* Bei einer Umsetzung ohne Historisierung konnten
@@ -1188,7 +1193,7 @@ ergänzt werden, die andere Parameter erwarten, z. B. durch eine Methode, die a
 des Objekts und nicht das Objekt selbst erwartet oder durch eine Methode, die die aktuellste Version eines
 Datensatzes selber ermittelt.
 
-*Löschen der Methode void speichereXyz(Xyz)*: Es ist nicht mehr möglich, ein neues Objekt zu erzeugen und direkt in
+*Löschen der Methode `void speichereXyz(Xyz)`*: Es ist nicht mehr möglich, ein neues Objekt zu erzeugen und direkt in
 der Datenbank zu speichern und damit die Historisierung zu umgehen.
 
 *Optionale Erweiterungen:* Falls eine Obergrenze für die Anzahl der zu historisierenden Datensätze vorgegeben ist,

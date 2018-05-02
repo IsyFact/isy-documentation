@@ -15,7 +15,7 @@ Eine `Duration` ist eine zeitbasierte Menge von Zeit, wie z.B. „34,5 Sekunden�
 Der Zugriff ist auch über andere Zeiteinheiten, wie z.B. Minute, Stunde oder Tag, möglich.
 
 `Period` und `Duration` unterscheiden sich bei Berechnungen mit einer `ZonedDateTime` im Zusammenhang mit der Sommerzeit.
-Eine `Duration` wird eine exakte Anzahl von Sekunden hinzuaddieren und die Dauer eines Tages ist somit immer 24 Stunden.
+Mit einer `Duration` wird eine exakte Anzahl von Sekunden hinzuaddiert und die Dauer eines Tages ist somit immer 24 Stunden.
 Im Gegensatz dazu wird bei einer `Period` ein „konzeptioneller“ Tag hinzuaddiert.
 Wenn also am Tag vor der Umstellung auf die Sommerzeit um 18:00 eine `Duration` von einem Tag addiert wird, wird die resultierende `ZonedDateTime` am nächsten Tag auf 19:00 stehen.
 Bei der Addition einer `Period` wird dagegen die Uhrzeit auf 18:00 stehen, obwohl das nur 23 Stunden sind.
@@ -180,6 +180,9 @@ Bei `LocalTime` ist die Methode `equals()` zu verwenden.
 Der Unterschied zwischen `equals()` und `isEqual()` besteht darin, dass `isEqual()` einen chronologischen Vergleich und `equals()` einen „technischen“ Vergleich durchführt.
 Dazu ein Beispiel:
 
+:desc-listing-VergleichZeiten: Vergleich von Zeiten mit equals() und isEqual()
+[id="listing-VergleichZeiten",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-VergleichZeiten}
 [source, java]
 ----
 OffsetTime offsetTime1 = OffsetTime.of(15, 0, 0, 0, ZoneOffset.ofHours(2));
@@ -203,6 +206,9 @@ Wenn das Ergebnis kein `LocalDate` sein soll, sondern einer Objekt des gleichen 
 Es ist die Methode `until()` der Datum- und Zeitklassen oder die Methode `between()` des Interfaces `TemporalUnit` zu verwenden.
 Beispiele:
 
+:desc-listing-AbstandDatumUndZeit: Berechnung des Abstands zwischen zwei Datums- oder Zeitwerten
+[id="listing-AbstandDatumUndZeit",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AbstandDatumUndZeit}
 [source,java]
 ----
 LocalTime time1 = LocalTime.of(15, 0);
@@ -232,6 +238,9 @@ Die Datums- und Zeitklassen von Java 8 stellen umfangreiche `plus*()` und `minus
 
 * Prüfung, ob zwei Datumswerte für zwei direkt aufeinanderfolgende Tage stehen ("Liegt der 28.2.2016 direkt vor dem 1.3.2016?“).
 
+:desc-listing-AufeinanderfolgendeTage: Berechnung mit aufeinanderfolgenden Tagen
+[id="listing-AufeinanderfolgendeTage",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AufeinanderfolgendeTage}
 [source,java]
 ----
 LocalDate date1 = LocalDate.of(2016, 2, 28);
@@ -293,6 +302,9 @@ Als `Clock` wird standardmäßig `Clock.systemDefaultZone()` verwendet.
 Zum Test wird als `Clock` eine `TestClock` gesetzt.
 Der Ablauf eines Tests mit der `TestClock` sieht dann schematisch folgendermaßen aus:
 
+:desc-listing-VerwendungTestClock: Verwendung der Klasse TestClock
+[id="listing-VerwendungTestClock",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-VerwendungTestClock}
 [source, java]
 ----
 @Test

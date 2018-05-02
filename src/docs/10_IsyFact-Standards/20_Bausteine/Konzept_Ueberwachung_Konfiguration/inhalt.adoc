@@ -279,7 +279,7 @@ Die Bibliothek wird in die zu überwachende Anwendung als Jar eingebunden.
 [[allgemeine-ueberwachungsinformationen]]
 ==== Allgemeine Überwachungsinformationen
 
-Tabelle <<table-Stdueber>> zeigt eine Liste der zu überwachenden bzw.
+<<table-Stdueber>> zeigt eine Liste der zu überwachenden bzw.
 anzubietenden Informationen für das Management-Interface.
 Diese Informationen müssen von allen Anwendungen bereitgestellt werden.
 Die beiden zuerst genannten MBeans werden standardmäßig von der Java-VM angeboten und müssen nicht selbst implementiert werden.
@@ -324,9 +324,9 @@ Details dazu werden in Kapitel <<implementierung-von-ping-und-pruefmethoden>> be
 [[informationen-von-services]]
 ==== Informationen von Services
 
-Tabelle <<table-StdueberServ>> zeigt eine Liste der zu überwachenden bzw.
+<<table-StdueberServ>> zeigt eine Liste der zu überwachenden bzw.
 anzubietenden Informationen für das Management-Interface von Service-Anwendungen.
-Die in Tabelle 2 aufgelisteten Informationen müssen für jeden Service einzeln angeboten werden.
+Die dort aufgelisteten Informationen müssen für jeden Service einzeln angeboten werden.
 
 :desc-table-StdueberServ: Standard Überwachungsinformationen für Services
 [id="table-StdueberServ",reftext="{table-caption} {counter:tables}"]
@@ -865,7 +865,7 @@ Zur Nutzung muss in die `web.xml` jeder Webanwendung folgender Abschnitt aufgeno
 
 Standardmäßig verwendet das Servlet die Datei `/WEB-INF/classes/config/isAlive` als IsAlive-Datei.
 
-NOTE: Nach dem Deployment entspricht dies der Datei /etc/<anwendungsname>/isAlive.
+NOTE: Nach dem Deployment entspricht dies der Datei `/etc/<anwendungsname>/isAlive`.
 
 Die zu suchende Datei kann bei Bedarf durch den Servlet-Parameter `isAliveFileLocation` in der `web.xml`
 geändert werden.
@@ -945,7 +945,7 @@ Das wichtigste Kriterium ist, ob die betreffende Konfiguration für alle Umgebun
 identisch ist, und die Fragestellung, von wem die Konfiguration angepasst wird.
 Grundsätzlich kommen dafür Entwickler, der Betrieb oder die Fachabteilung in Frage.
 
-Konfigurationen lassen sich wie in Tabelle <<table-typKonfZiel>> dargestellt typisieren:
+Konfigurationen lassen sich wie in <<table-typKonfZiel>> dargestellt typisieren:
 
 Die Spalte „Pflegeverantwortung“ gibt an, wer die entsprechenden Konfigurationen pflegt.
 So wird beispielsweise die Spring-Konfiguration ausschließlich von den Anwendungsentwicklern bearbeitet.
@@ -1084,8 +1084,8 @@ Die Konfiguration wird der Anwendung als querschnittliche Spring-Bean (im Folgen
 </bean>
 ----
 
-Die Klasse `…konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt
-über das Interface `de.bund.bva.pliscommon.konfiguration.common` einen typsicheren Zugriff auf die
+Die Klasse `[...].konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt
+über das Interface `de.bund.bva.pliscommon.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
 Konfigurationsparameter zur Verfügung.
 
 Alle Parameter aus den in der Liste aufgeführten Property-Dateien werden der Anwendung als eine
@@ -1252,7 +1252,7 @@ In solchen Ausnahmefällen kann daher das im Folgenden beschriebene und von der 
 Um bei Änderungen informiert zu werden, registriert sich die betroffene Komponente als Listener bei der
 Konfigurations-Bean.
 Dafür bietet das von der Konfigurations-Bean implementierte
-Interface `….pliscommon.konfiguration.common.ReloadableKonfiguration` die Methode an:
+Interface `[...].pliscommon.konfiguration.common.ReloadableKonfiguration` die Methode an:
 
 [source,java]
 ----
@@ -1260,7 +1260,7 @@ public void addKonfigurationChangeListener(KonfigurationChangeListener listener)
 ----
 
 Die Komponente muss ihrerseits das
-Interface `….pliscommon.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor
+Interface `[...].pliscommon.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor
 genannte Methode aufrufen. Als Parameter wird die eigene Instanz übergeben.
 
 Bei Änderung der Konfiguration ruft die Konfigurationsbibliothek nun automatisch die Methode

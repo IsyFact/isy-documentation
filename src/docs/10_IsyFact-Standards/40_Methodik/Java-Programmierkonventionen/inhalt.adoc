@@ -153,8 +153,11 @@ Ansonsten gelten die Regeln der nachfolgenden Abschnitte.
 Standard-Package-Struktur verwenden!
 ****
 
-Die Package-Struktur folgt einer Konvention, die aus der fachlichen und technischen Referenzarchitektur hergeleitet wird:
+Die Package-Struktur (<<listing-PackageStruktur>>) folgt einer Konvention, die aus der fachlichen und technischen Referenzarchitektur hergeleitet wird.
 
+:desc-listing-PackageStruktur: Package-Struktur
+[id="listing-PackageStruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-PackageStruktur}
 [source]
 ----
 <organisation>.<domäne>.<anwendungssystem>.<layer>.<subsystem/
@@ -214,7 +217,7 @@ Substantive als Klassennamen!
 
 Für die Namen von Klassen sind Substantive zu verwenden.
 Besteht der Zweck der Klasse ausschließlich oder zum größten Teil aus der Implementierung eines Interfaces, dann
-wird die Klasse so genannt wie das Interface, ergänzt um das Suffix „`*Impl*`".
+wird die Klasse so genannt wie das Interface, ergänzt um das Suffix `Impl`.
 
 Beispiele: `*Meldung*, *KundeDaoImpl*`
 
@@ -367,11 +370,11 @@ Es wird empfohlen, Leerzeichen wie folgt zu verwenden:
 * zwischen einer Klammer „*)*" und einer direkt darauf folgenden Klammer „*{*"
 * nach einem Komma (z. B. bei einer Methode mit mehreren Parametern)
 * zwischen einem binären (ternären) Operator (außer dem Punktoperator) und dem vorausgehenden und dem nachfolgenden Ausdruck +
-Beispiel: *double•length•=•Math.sqrt(x•*•x•+•y•*•y);*
+Beispiel: `double•length•=•Math.sqrt(x•*•x•+•y•*•y);`
 +
 [frame="none",width="57%"]
 |====
-^|Dies gilt insbesondere für „•=•" und „•==•"
+^|Dies gilt insbesondere für `•=•` und `•==•`
 |====
 
 
@@ -385,7 +388,8 @@ Auch innerhalb einer Methode können Leerzeilen die logische Trennung von Blöck
 Die Zeichen pro Zeile sind auf eine lesbare Anzahl zu begrenzen.
 Es sollten niemals mehrere Anweisungen in einer Zeile codiert werden.
 Wenn ein Ausdruck nicht in eine Zeile passt, so ist sie so zu trennen, dass das Ergebnis sinnvoll lesbar ist.
-Es folgen Hinweise, wo unter Umständen sinnvoll getrennt werden und wie getrennte Zeilen formatiert werden könnten:
+Es folgen Hinweise, wo unter Umständen sinnvoll getrennt werden und wie getrennte Zeilen formatiert werden könnten.
+
 Eine Zeile in der Eclipse-Entwicklungsumgebung fasst bei Verwendung der default-Einstellungen ca. 110 Zeichen.
 
 * Hinter einem Komma
@@ -393,7 +397,7 @@ Eine Zeile in der Eclipse-Entwicklungsumgebung fasst bei Verwendung der default-
 * Bei geschachtelten Ausdrücken möglichst weit außen
 * Die neue Zeile wird so eingerückt, dass sie unter dem Anfang des Teilausdrucks steht, den man trennt
 
-Falls die obigen Regeln zu unleserlichen Einrückungen führen, wird einfach um acht Zeichen eingerückt
+Falls die obigen Regeln zu unleserlichen Einrückungen führen, wird der Code um acht Zeichen eingerückt.
 
 Das Umbrechen einer Zeile geschieht möglichst nach einem Komma.
 Die nächste Zeile wird dann an dem Ausdruck vor dem Komma ausgerichtet.
@@ -553,7 +557,7 @@ Autoren (und damit Verantwortlichkeiten für Bestandteile des Quellcodes) sowie 
 [[implementierungskommentare]]
 == Implementierungskommentare
 
-Code sollte immer so geschrieben werden, dass er selbsterklärend ist und nicht oder nur sehr wenig inline kommentiert werden muss.
+Code sollte immer selbsterklärend geschrieben werden und möglichst wenige Inline-Kommentare enthalten.
 Implementierungskommentare begründen Designentscheidungen, die aus dem Code nicht allein ersichtlich sind, oder sie erklären aufwändige Algorithmen.
 Sie wiederholen nicht den Code in Prosa (Negativbeispiel: "Erhöhe Schleifenzähler um 1."). Implementierungskommentare werden für folgende Zwecke eingesetzt:
 

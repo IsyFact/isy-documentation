@@ -122,7 +122,7 @@ isyfact.task.halloWeltTask.ausfuehrung=ONCE
 isyfact.task.halloWeltTask.zeitpunkt=10s
 ----
 
-Die Konfigurationsdatei wird über isy-konfiguration gemäß <<KonzeptUeberwachungKonfiguration>> eingebunden.
+Die Konfigurationsdatei wird über `isy-konfiguration` gemäß <<KonzeptUeberwachungKonfiguration>> eingebunden.
 
 Ein Task wird grundsätzlich als Spring Bean konfiguriert.
 
@@ -348,7 +348,7 @@ isyfact.task.<Task>.fixed-delay
 
 Die Querschnittsbibliothek `isy-task` sieht eine Überwachung über JMX vor.
 
-Der Überwachungsmechanismus von _`isy-task`_, der über JMX abgefragt werden kann, benötigt den TaskMonitor, um sich beispielsweise Erfolg oder Misserfolg des Tasks zu merken.
+Der Überwachungsmechanismus von `isy-task`, der über JMX abgefragt werden kann, benötigt den TaskMonitor, um sich beispielsweise Erfolg oder Misserfolg des Tasks zu merken.
 Wenn der Task vom AbstractTask abgeleitet ist, kann man dem Task einen TaskMonitor per Konstruktor übergeben.
 
 Soll der JMX-Monitor verwendet werden, so muss dieser genau wie der Task als Spring Bean konfiguriert werden.

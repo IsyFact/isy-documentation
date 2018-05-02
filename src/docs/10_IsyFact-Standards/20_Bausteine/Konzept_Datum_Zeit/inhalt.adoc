@@ -208,7 +208,7 @@ deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-
 == Persistierung
 
 Die Bibliothek muss Angaben zu Datum, Zeit, Dauer sowie Zeiträumen persistent speichern können.
-Die Persistierung muss sich nahtlos in die anderen Bausteinen der IsyFact integrieren, vollständig kompatibel mit dem <<DetailkonzeptKomponenteDatenzugriff>> sein und gemäß den Vorgaben des Produktkatalogs umgesetzt werden.
+Die Persistierung muss sich nahtlos in die anderen Bausteine der IsyFact integrieren, vollständig kompatibel mit dem <<DetailkonzeptKomponenteDatenzugriff>> sein und gemäß den Vorgaben des Produktkatalogs umgesetzt werden.
 
 [[berechnungen]]
 == Berechnungen
@@ -301,7 +301,7 @@ Die Bibliothek besitzt die folgenden Maven-Koordinaten:
 * Group-ID: `de.bund.bva.isyfact`
 * Artifact-ID: `isy-datetime`
 
-Das Stammpackage für alle Klassen der Umsetzung lautet: `de.bund.bva.isyfact.datetime`.
+Das Stammpackage für alle Klassen der Umsetzung setzt sich aus Group-ID und Artifact-ID zusammen und lautet: `de.bund.bva.isyfact.datetime`.
 
 [[bedeutung-der-standardbibliothek]]
 == Bedeutung der Standardbibliothek
@@ -367,7 +367,7 @@ Die Bibliothek muss zur Behandlung ungewisser Datums- und Zeitwerte die folgende
 * Formatierung ungewisser Daten zur Anzeige
 * Einlesen ungewisser Daten nach Eingabe durch Anwender
 
-Bisherige Implementierungen ungewisser Datumswerte setzen immer den Sonderfall um, bei dem entweder der Tag, der Tag und der Monat oder alle Teile eines Datumswerts unbekannt sind.
+Bisherige Implementierungen ungewisser Datumswerte setzen immer den Sonderfall um, bei dem entweder der Tag, Tag und Monat oder alle Teile eines Datumswerts unbekannt sind.
 Die Anzeige und Eingabe dieser unbekannten Werte erfolgt hierbei über Nullen, wie <<table-OldUmunZeitw>> zeigt.
 
 :desc-table-OldUmunZeitw: Bisherige Umsetzung ungewisser Datumswerte

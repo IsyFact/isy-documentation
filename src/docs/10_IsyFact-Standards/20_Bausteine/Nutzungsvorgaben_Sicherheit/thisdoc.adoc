@@ -22,12 +22,12 @@ Es beschreibt, wie und in welchen Teilen einer Anwendung die Autorisierung umzus
 
 Dazu wird zunächst in einem Überblick erläutert, wie die Sicherheitsarchitektur auf Ebene der Anwendungslandschaft und auf Ebene einer einzelnen Anwendung aussieht.
 
-In <<das-rollenbasierte-berechtigungskonzept>> wird erläutert, wie für eine neue Anwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Anwendung konfiguriert wird.
+Im Abschnitt <<das-rollenbasierte-berechtigungskonzept>> wird erläutert, wie für eine neue Anwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Anwendung konfiguriert wird.
 
-In <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in der Anwendung eingegangen.
+Im Abschnitt <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in der Anwendung eingegangen.
 Dieser Abschnitt erläutert die Verwendung der Komponente Sicherheit innerhalb einer Anwendung.
 
-In <<weitere-konzepte>> werden weitere Vorgaben zur Verwendung der Komponente Sicherheit gemacht.
+Im Abschnitt <<weitere-konzepte>> werden weitere Vorgaben zur Verwendung der Komponente Sicherheit gemacht.
 Hier wird der Aufruf von Nachbarsystemen, Behandlung der Korrelations-ID und der Test von Anwendungen erläutert.
 
 [[vorlageanwendung]]

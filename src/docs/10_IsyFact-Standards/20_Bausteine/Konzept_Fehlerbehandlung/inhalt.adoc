@@ -3,13 +3,13 @@
 
 Die generelle Anforderung an die Fehlerbehandlung ist das Erkennen, Signalisieren und Verarbeiten von Fehlern, die im System auftreten.
 
-Konkreter bedeutet dies, dass Fehler möglichst effizient behandelbar sein sollen, die Wartbarkeit von Fehlern sichergestellt ist und der Einsatz von Exceptions in einer
-standardisierten Form geschieht, um die Implementierung zu vereinheitlichen und für den Anwender angemessene Informationen zur Verfügung zu stellen.
+Konkret sollen damit Fehler möglichst effizient behandelbar sein, die Wartbarkeit bei Fehlern sichergestellt und Exceptions in einer standardisierten Form eingesetzt werden.
+Dies geschieht mit dem Ziel, die Implementierung zu vereinheitlichen und für den Anwender angemessene Informationen zur Verfügung zu stellen.
 
 Aus den genannten Anforderungen ergeben sich entsprechende Detailvorgaben, die zur Umsetzung der generellen Anforderungen an die Fehlerbehandlung notwendig sind:
 
 **Nutzen stiftende Fehlermeldungen**: Eine Fehlermeldung muss klar verständlich sein, vor allem, wenn sie dem Benutzer angezeigt wird.
-Außerdem müssen die Fehlertexte so aufgebaut sein, dass sie den Betrieb und die Entwickler bei der Ursachenforschung und der schnellen Bearbeitung unterstützen.
+Außerdem müssen die Fehlertexte so aufgebaut sein, dass sie sowohl den Betrieb als auch die Entwickler bei der Ursachenforschung und der schnellen Bearbeitung unterstützen.
 
 **Zuordnung von Fehlern**: Die IsyFact-Architektur beschreibt eine serviceorientierte Anwendungslandschaft.
 Das Ergebnis, das einem Nutzer angezeigt wird, entsteht durch das Zusammenspiel verschiedener Anwendungen, die jeweils Services anbieten.
@@ -180,11 +180,14 @@ Die generierte UUID ist eine im System eineindeutige Nummer, die beim Erstellen 
 Sie ist, wie die Ausnahme-ID, Teil der Fehlernachricht und dient dazu, einen aufgetretenen Fehler im System eindeutig zu referenzieren.
 Tritt nun ein Fehler bei mehreren Nutzern des Systems auf, kann mit Hilfe dieser UUID der Fehler, der bei einem bestimmten Nutzer auftrat, in den Log-Dateien der Anwendung identifiziert werden.
 
-Werden in einer Anwendung Exceptions benötigt, so müssen zuerst vier eigene abstrakte Oberklassen für die Anwendungs-Exceptions abgeleitet werden
-(hier: `TerminfindungException`, `TerminfindungBusinessException`, `TerminfindungTechnicalException` und `TerminfindungTechnicalRuntimeException`).
+Werden in einer Anwendung Exceptions benötigt, so müssen zuerst vier eigene abstrakte Oberklassen für die Anwendungs-Exceptions abgeleitet werden.
+Hier im Beispiel sind das:
 
-Die Klassen `TerminfindungException` und `TerminfindungTechnicalRuntimeException` sind die abstrakten Oberklassen innerhalb einer Anwendung für checked und unchecked Exception.
-TerminfindungException wird über die Kindklassen `TerminfindungBusinessException` und `TerminfindungTechnicalException` letztlich noch in fachliche und technische `Exceptions` unterschieden.
+* `TerminfindungException`: Abstrakte Oberklasse innerhalb einer Anwendung für checked Exceptions
+* `TerminfindungTechnicalRuntimeException`: Abstrakte Oberklasse innerhalb einer Anwendung für unchecked Exceptions
+* `TerminfindungBusinessException`: Kindklasse von `TerminfindungException` für fachliche Exceptions
+* `TerminfindungTechnicalException`: Kindklasse von `TerminfindungException` für technische Exceptions
+
 Die Anwendungsoberklassen besitzen jeweils eine Referenz auf einen anwendungsspezifischen `FehlertextProvider`.
 Dieser wird benötigt, um die Fehlertexte zu laden.
 Diese vier Exceptions sind ebenfalls abstrakt, da auch diese Exceptions rein zur Unterscheidung der Art der Exception innerhalb der Anwendung dienen.
@@ -209,7 +212,6 @@ Diese Exceptions gehören in das Paket:
 **Konstruktoren**
 
 Die abstrakten Exceptions einer Anwendung müssen alle vier Konstruktoren implementieren.
-[[OLE_LINK3]][[OLE_LINK4]]
 Die letztlich eingesetzten Exceptions implementieren nur die Konstruktoren, die benötigt werden.
 Eine Beispiel-Implementierung hierfür befindet sich in der <<Vorlageanwendung>>.
 Dies ist sinnvoll, um Aufwände bei der Erstellung von Exceptions zu sparen, da in diesem Fall lediglich der Konstruktor der Oberklasse aufgerufen werden muss.
@@ -234,8 +236,8 @@ Die <<table-001>> erläutert die Bedeutung der Argumente der Konstruktoren.
 .{desc-table-001}
 [options="header",cols="3,2,2,3"]
 |====
-|TerminfindungNichtGefundenException|String|Throwable (optional)|String... (optional)
-| |Ausnahme-ID |Original-Exception, die gefangen wurde. |String oder String-Array mit Variablenwerten, für Platzhalter in parametrisierten Fehlertexten.
+|Exception|String|Throwable (optional)|String... (optional)
+|`TerminfindungNichtGefundenException` |Ausnahme-ID |Original-Exception, die gefangen wurde. |String oder String-Array mit Variablenwerten, für Platzhalter in parametrisierten Fehlertexten.
 |====
 
 Beispiel für eine technische Runtime-Exception Hierarchie:
@@ -281,6 +283,9 @@ Daher muss es in jeder Anwendung eine Ausnahme-ID geben mit einem generischen Fe
 Als feste Nummer wird für alle Anwendungen die `0001` festgelegt.
 Ein Aufruf einer solchen Exception mit einem generischen Fehlertext sieht dann wie folgt aus:
 
+:desc-listing-ExceptionGenerischerFehlertext: Erstellen einer Exception mit generischem Fehlertext
+[id="listing-ExceptionGenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ExceptionGenerischerFehlertext}
 [source,java]
 ----
 new MeineTechnischeException(FehlerSchluessel.MSG_ALLGEMEINER_FEHLER, "XYZ");
@@ -289,8 +294,9 @@ new MeineTechnischeException(FehlerSchluessel.MSG_ALLGEMEINER_FEHLER, "XYZ");
 Die Konstante `FehlerSchluessel.MSG_ALLGEMEINER_FEHLER` referenziert einen
 generischen Fehlerstring, welcher einen Platzhalter besitzt:
 
-*Konstante:*
-
+:desc-listing-KonstanteGenerischerFehlertext: Konstante für den generischen Fehlertext
+[id="listing-KonstanteGenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-KonstanteGenerischerFehlertext}
 [source,java]
 ----
 /** Generische Exception für alle unbekannten Fehler. */
@@ -298,8 +304,9 @@ generischen Fehlerstring, welcher einen Platzhalter besitzt:
 public static final String MSG_ALLGEMEINER_FEHLER = "TRMIN90001";
 ----
 
-*Fehlertext:*
-
+:desc-listing-GenerischerFehlertext: Generischer Fehlertext
+[id="listing-GenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-GenerischerFehlertext}
 [source,properties]
 ----
 TRMIN90001 = Es ist ein allgemeiner Fehler im Modul Terminfindung aufgetreten.
@@ -310,6 +317,9 @@ Die Fehlertexte dürfen nicht direkt mit dem String referenziert werden (z. B. 
 
 Beim Aufruf einer Exception wird im einfachsten Fall lediglich eine Ausnahme-ID übergeben, welche den Fehlertext identifiziert:
 
+:desc-listing-UebergabeAusnahmeId: Übergabe einer Ausnahme-ID
+[id="listing-UebergabeAusnahmeId",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-UebergabeAusnahmeId}
 [source,java]
 ----
 new TerminfindungNichtGefundenException(
@@ -318,6 +328,9 @@ new TerminfindungNichtGefundenException(
 
 Der Konstruktor der Exception ruft den Konstruktor der abstrakten Eltern-Klasse auf (hier `TerminfindungBusinessException`):
 
+:desc-listing-Konstruktur: Konstruktor
+[id="listing-Konstruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Konstruktur}
 [source,java]
 ----
 public TerminfindungNichtGefundenException(String ausnahmeID) {
@@ -331,6 +344,9 @@ protected TerminfindungBusinessException(String ausnahmeID) {
 
 Dieser Konstruktor wiederum ruft den Konstruktor seiner Eltern-Klasse auf (hier `TerminfindungException`), welcher die oberste Exception-Hierarchie-Stufe einer Anwendung darstellt:
 
+:desc-listing-ObersterKonstruktur: Konstruktor der obersten Exception
+[id="listing-ObersterKonstruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ObersterKonstruktur}
 [source,java]
 ----
 protected TerminfindungException(String ausnahmeID) {
@@ -354,12 +370,15 @@ Bis dato hat der Text den Aufbau:
 
 *Fehlertext*
 
-Die `Plis-Exception`-Klassen überschreiben aber die getMessage()-Methoden von `Exception` und erweitern den Fehlertext bei einem lesenden Zugriff.
+Die `Plis-Exception`-Klassen überschreiben aber die `getMessage()`-Methoden von `Exception` und erweitern den Fehlertext bei einem lesenden Zugriff.
 Der Fehlertext wird um die Ausnahme-ID und die UUID erweitert.
 Dies geschieht über die Klasse `FehlertextUtil`, damit die Formatierung der Fehlertexte an einer zentralen Stelle gekapselt ist.
 
 Der Text hat dann folgenden Aufbau:
 
+:desc-listing-AufbauFehlertext: Aufbau des Fehlertexts
+[id="listing-AufbauFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AufbauFehlertext}
 [source, text]
 ----
 #AusnahmeId Fehlertext #UUID
@@ -382,7 +401,7 @@ Neben den Vorgaben zum Design der Fehlerklassen in <<design-von-fehlerklassen>> 
 
 Für Exceptions an den Anwendungsschnittstellen gelten weitere Vorgaben:
 
-* Sie erben immer von `PlisBusinessToException` oder `PlisTechnicalToException` und implementieren somit immer Serializable,
+* Sie erben immer von `PlisBusinessToException` oder `PlisTechnicalToException` und implementieren somit immer `Serializable`,
 * stellen die Felder Ausnahme-ID, UUID und Fehlernachricht zur Verfügung und
 * erben nicht von internen Anwendungsexceptions.
 
@@ -514,7 +533,7 @@ Das obige Code-Beispiel fängt alle Exceptions und wandelt diese in entsprechend
 Als erwartete Exceptions gibt es hier die Exception `MaxBestandUeberschrittenException`.
 Diese wird, sofern sie auftritt, in eine `MeldungVerarbeitungException` umgewandelt und weitergereicht.
 Zu beachten ist, dass in das Error-Log nur betrieblich relevante Fehler geschrieben werden sollen.
-Fachlich Fehler sind in der Regel irrelevant für den Betrieb.
+Fachliche Fehler sind in der Regel irrelevant für den Betrieb.
 Daher wird die `MaxBestandUeberschrittenException` ins Debug-Log geschrieben.
 
 Weitere erwartete Fehler gibt es nicht, somit wird nun eine Fehlerbehandlung für unerwartete Fehler der Anwendung durchgeführt (alle Exceptions vom Typ `CdRegisterTechnicalRunTimeException`).

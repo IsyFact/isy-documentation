@@ -21,13 +21,13 @@ Damit entsprechen die Fachkomponenten dem fachlichen Komponentenschnitt aus der 
 Diese Komponenten implementieren weitgehend reine Fachlichkeit und trennen so Anwendungslogik und Technologie.
 Das ist der Schlüssel für gute Wartbarkeit und einfache Weiterentwickelbarkeit des Anwendungskerns.
 Diese Struktur findet sich auch in anderen Schichten wieder, z. B. in der Persistenz: dort sind die Fachkomponenten auch gemäß den Komponenten aus der fachlichen Architektur strukturiert.
-In der Vorlageanwendung sind z.B. die Komponenten „Erstellung“, „Teilnahme“ und „Verwaltung“ Fachkomponenten.
+In der Vorlageanwendung sind z.B. die Komponenten _Erstellung_, _Teilnahme_ und _Verwaltung_ Fachkomponenten.
 
 Die Fachkomponenten operieren auf Geschäftsobjekten (Entitäten). Jedes Geschäftsobjekt ist genau einer Komponente zugeordnet, die die Datenhoheit über dieses Geschäftsobjekt besitzt und seinen Lebenszyklus verwaltet.
-In der Vorlageanwendung gibt es z.B. die Entitäten „Terminfindung“, „Tag“ und „Teilnehmer“.
+In der Vorlageanwendung gibt es z.B. die Entitäten `Terminfindung`, `Tag` und `Teilnehmer`.
 
 Es kann aber auch den Fall geben, dass ein Geschäftsobjekt fachlich nicht genau einer Komponente zugeordnet werden kann.
-Hierfür wird die Komponente „Basisdaten“ definiert, die nur die eine Aufgabe hat, solche Geschäftsobjekte an zentraler Stelle effizient zu verwalten.
+Hierfür wird die Komponente _Basisdaten_ definiert, die nur die eine Aufgabe hat, solche Geschäftsobjekte an zentraler Stelle effizient zu verwalten.
 
 [[das-anwendungskern-framework]]
 == Das Anwendungskern-Framework
@@ -85,7 +85,7 @@ Innerhalb einer Teilanwendung dürfen über die Schichten hinweg durchaus änder
 Die hierfür bereitgestellte Schnittstelle der Schicht gehört damit aber zur Teilanwendung darf von einer anderen Teilanwendung nicht genutzt werden.
 
 In der Vorlageanwendung ist z.B. „Terminfindung“ eine Teilanwendung.
-Zu dieser Teilanwendung gehören in der Schicht Nutzung die Oberfläche „Terminfindung“ und der Batch „TerminfindungLoeschBatch“, in der Schicht Anwendungslogik die Fachkomponenten „Erstellen“, „Teilnehmen“, „Verwalten“ und „Datenpflege“ und der Schicht Datenhaltung die Entitäten „Terminfindung“, „Tag“, „Teilnehmer“, „Zeitraum“ und „Teilnehmerzeitraum“.
+Zu dieser Teilanwendung gehören in der Schicht Nutzung die Oberfläche _Terminfindung_ und der Batch `TerminfindungLoeschBatch`, in der Schicht Anwendungslogik die Fachkomponenten _Erstellen_, _Teilnehmen_, _Verwalten_ und _Datenpflege_ und der Schicht Datenhaltung die Entitäten `Terminfindung`, `Tag`, `Teilnehmer`, `Zeitraum` und `Teilnehmerzeitraum`.
 
 [[verwendung-des-spring-frameworks]]
 = Verwendung des Spring-Frameworks
@@ -99,7 +99,7 @@ Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie
 
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
 * Die Bereitstellung von JMX Beans über Spring, beschrieben im Konzept <<KonzeptUeberwachungKonfiguration>>.
-* Die Verwendung der `HttpInvoker`-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
+* Die Verwendung der HTTP-Invoker-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
 * Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
 Dokument <<DetailkonzeptKomponenteWebGUI>>.
@@ -154,7 +154,7 @@ Diese werden grün dargestellt und besitzen „referenziert“ Abhängigkeiten z
 .{desc-image-SpringBeansVorlag}
 image::SpringBeansVorlag.png[align="center",width=80%,pdfwidth=80%]
 
-Die Abbildung zeigt bereits, dass nicht alle Klassen der Anwendung als Beans konfiguriert werden: Für die Komponente
+<<image-SpringBeansVorlag>> zeigt bereits, dass nicht alle Klassen der Anwendung als Beans konfiguriert werden: Für die Komponente
 `Verwaltung` wird eine Klasse als Bean konfiguriert, welche die Funktionalität der Komponente bereitstellt.
 Generell gilt, dass jede zentrale und wichtige Klasse aber als Spring Bean konfiguriert werden sollte.
 
@@ -430,7 +430,7 @@ In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die 
 Dies entspricht nicht den Konventionen des Spring-Frameworks und ist nur in Ausnahmefällen erlaubt.
 
 Die entsprechenden Hilfsklassen werden als _Holder_ bezeichnet.
-Sie besitzen eine statisches Attribut mit statischen `get-` und `set-`Methoden, die per Spring mit dem zur Verfügung
+Sie besitzen eine statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung
 zu stellenden Bean initialisiert werden.
 
 [[aspektorientierte-programmierung-in-spring]]
