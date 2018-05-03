@@ -1314,10 +1314,10 @@ Die Tabelle hat die folgende Struktur:
 [cols="2,2,3",options="header"]
 |====
 |Spalte |Typ |Beschreibung
-|`version_nummer` |`varchar2(25 char)` |Versionsnummer des Datenbankschemas.
+|`version_nummer` | `varchar2(25 char)` |Versionsnummer des Datenbankschemas.
 Diese Versionsnummer entspricht der Versionsnummer der Anwendung, mit der sich das Schema geändert hat.
-|`update_nummer` |varchar2(5 char)` |Update-Zähler, der jedes Mal hochgezählt wird, wenn sich das Datenbankschema ändert, aber die Anwendung unverändert bleibt.
-|`status` |varchar2(25 char)` a|
+|`update_nummer` | `varchar2(5 char)` |Update-Zähler, der jedes Mal hochgezählt wird, wenn sich das Datenbankschema ändert, aber die Anwendung unverändert bleibt.
+|`status` | `varchar2(25 char)` a|
 Status des Schemas:
 
 * gueltig: Das Schema wurde korrekt installiert bzw.
@@ -1564,8 +1564,7 @@ Unabhängig von der Lösung erschweren datenbankübergreifende Operationen die F
 
 Jede Anwendung prüft beim Start, ob das DB-Schema die erwartete Version hat.
 Diese Prüfung ist in der Bibliothek `isy-persistence` fest eingebaut.
-In der Spring Konfiguration müssen in der `appDataSource-Bean` (Klasse
-`de.bund.bva.pliscommon.persistence.datasource.PlisDataSource`) die folgenden Properties gesetzt werden:
+In der Spring Konfiguration müssen in der `appDataSource-Bean` (Klasse `PlisDataSource`) die folgenden Properties gesetzt werden:
 
 [source,xml]
 ----

@@ -182,10 +182,11 @@ Eine Dauer muss mindestens eine Zeiteinheit beinhalten („37s“), kann aber au
 [[zeitraum-1]]
 === Zeitraum
 
-Zeiträume sind kein eigener Datentyp, sondern werden durch zwei Werte beschrieben:
+Zeiträume sind kein eigener Datentyp, sondern werden durch zwei Werte beschrieben.
+So gibt es zwei Möglichkeiten, einen Zeitraum darzustellen. Entweder
 
-* zwei Datums- oder Zeitwerte,
-* ein Datums- oder Zeitwert sowie eine Dauer.
+* Ein Anfang und ein Ende beschrieben durch zwei Datums- oder Zeitwerte oder
+* Ein Anfang beschrieben durch einen Datums- oder Zeitwert sowie eine Dauer.
 
 Die Bibliothek muss zur Eingabe eines Zeitraums diese Kombinationen von Werten unterstützen,
 deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-1>> beschaffen sein muss.

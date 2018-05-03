@@ -16,19 +16,20 @@ Hierbei ist zu unterscheiden, ob ausschließlich Anwendungssysteme innerhalb der
 ob die Kommunikation auch Anwendungssysteme einschließt, die außerhalb der
 Plattform liegen. (siehe <<image-overkommIF>>)
 
-*Kommunikation zwischen internen Anwendungssystemen:* Innerhalb der Plattform basiert die Kommunikation auf Basis des Protokolls HTTP-Invoker: Das aufgerufene Anwendungssystem exportiert seine Fachlichkeit in Form einer HTTP-Invoker-Schnittstelle und das aufrufende Anwendungssystem ruft diese HTTP-Invoker-Schnittstelle direkt auf.
+*Kommunikation zwischen internen Anwendungssystemen:* Innerhalb der Plattform basiert die Kommunikation auf HTTP-Invoker: Das aufgerufene Anwendungssystem exportiert seine Fachlichkeit in Form einer HTTP-Invoker-Schnittstelle und das aufrufende Anwendungssystem ruft diese HTTP-Invoker-Schnittstelle direkt auf.
 Zu beachten ist, dass kein System zur Vermittlung der ausgetauschten Nachrichten wie beispielsweise ein ESB (Enterprise Service Bus) verwendet wird.
 
 *Kommunikation mit externen Anwendungssystemen:* Die Kommunikation mit externen Anwendungssystemen basiert auf Web-Services.
-Hierbei muss man unterscheiden, ob ein externes Anwendungssystem ein internes Anwendungssystem aufrufen möchte 1. oder umgekehrt 2.:
+Hierbei muss man zwischen zwei Fällen unterscheiden:
 
-.  Durch die Plattform wird externen Anwendungssystemen die Fachlichkeit eines internen Anwendungssystems in Form eines Web-Services zur Verfügung gestellt.
+_Externes Anwendungssystem ruft internes Anwendungssystem auf_: Durch die Plattform wird externen Anwendungssystemen die Fachlichkeit eines internen Anwendungssystems in Form eines Web-Services zur Verfügung gestellt.
 Hierbei definiert das interne Anwendungssystem selbst keinen Web-Service.
 Vielmehr definiert das interne Anwendungssystem wie bei der internen Kommunikation lediglich eine HTTP-Invoker-Schnittstelle.
 Diese HTTP-Invoker-Schnittstelle wird dann durch ein eigenständiges IT-System als Web-Services exportiert.
 Dieses IT-System wird als Service-Provider bezeichnet.
 Für jede HTTP-Invoker-Schnittstelle, die als Web-Services exportiert werden soll, muss ein eigener Service-Provider definiert werden.
-.  Möchte ein internes Anwendungssystem ein externes Anwendungssystem aufrufen, so muss das externe Anwendungssystem einen Web-Service definieren. Ähnlich wie bei Punkt (1) ruft das interne Anwendungssystem diesen Web-Services nicht direkt auf.
+
+_Internes Anwendungssystem ruft Externes Anwendungssystem auf_: Möchte ein internes Anwendungssystem ein externes Anwendungssystem aufrufen, so muss das externe Anwendungssystem einen Web-Service definieren. Ähnlich wie bei Punkt (1) ruft das interne Anwendungssystem diesen Web-Services nicht direkt auf.
 Es ruft ein eigenständiges IT-System auf, welches den Web-Service des externen Anwendungssystems als HTTP-Invoker-Schnittstelle in die Anwendungslandschaft importiert.
 Dieses IT-System wird als Service-Consumer bezeichnet.
 Das interne Anwendungssystem ruft dann lediglich die HTTP-Invoker-Schnittstelle des Service-Consumers auf.
@@ -150,8 +151,8 @@ Um eine möglichst lose Kopplung der Anwendungssysteme zu erreichen, wurden folg
 
 * *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht.* Es wird stets eine explizite Schnittstellen-Bean (RemoteBean-Schnittstelle) als HTTP-Invoker-Schnittstelle implementiert.
 * *Es werden keine Datenbank-Entitäten verfügbar gemacht*. Jegliche über HTTP-Invoker-Aufrufe zu transportierende Objekte sind Transportobjekte.
-Diese Transportobjekte sind im Client-HttpInvoker-Wrapper bzw.
-in der Server-HttpInvoker-Bean zu befüllen (siehe <<image-KapsCallInvoke>>).
+Diese Transportobjekte sind im Client-HTTP-Invoker-Wrapper bzw.
+in der Server-HTTP-Invoker-Bean zu befüllen (siehe <<image-KapsCallInvoke>>).
 * *Es werden keine Exceptions des Anwendungskerns geworfen.* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Schnittstelle verwendet werden.
 
 [[definition-der-schnittstelle]]
@@ -163,7 +164,7 @@ Das Anwendungssystem wird daher auch als definierendes Anwendungssystem der HTTP
 Damit andere Anwendungssysteme die HTTP-Invoker-Schnittstelle aufrufen können, muss das definierende Anwendungssystem die Schnittstelle in Form einer Bibliothek (JAR-Datei) zur Verfügung stellen.
 Diese JAR-Datei muss dann von den aufrufenden Anwendungssystemen eingebunden werden.
 
-:desc-image-KapsCallInvoke: Kapselung der Aufrufe von HttpInvoker Beans
+:desc-image-KapsCallInvoke: Kapselung der Aufrufe von HTTP-Invoker Beans
 [id="image-KapsCallInvoke",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-KapsCallInvoke}
 image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
@@ -252,7 +253,7 @@ Die Entscheidung dafür obliegt dem Chefarchitekten.
 
 Externe Services werden durch Service Gateways bereitgestellt.
 Die Versionierung eines Services muss also auch auf Ebene des Service Gateways durchgeführt werden.
-Ein Service Gateway ist ein rein technischer Protokoll-Wandler, der z. B. SOAP auf HttpInvoker konvertiert.
+Ein Service Gateway ist ein rein technischer Protokoll-Wandler, der z. B. SOAP auf HTTP-Invoker konvertiert.
 Im Service Gateway erfolgt daher immer nur ein einfaches Mapping auf der Service-Schnittstelle der angebundenen Fachanwendungen.
 Der Ausgleich der Versionsunterschiede soll ausschließlich in der Fachanwendung und nicht im Service Gateway erfolgen.
 Es ist möglich pro Service Version ein eigenes Service Gateway zu erstellen (siehe <<image-archversServ>>).
@@ -309,9 +310,9 @@ Die Kosten hierfür stehen in den meisten Fällen nicht im Verhältnis zum Nutze
 [[verfuegbarkeit]]
 = Verfügbarkeit
 
-In diesem Abschnitt definieren wir kurz die Anforderungen bzgl.
-der Verfügbarkeit von Services in der Plattform (Abschnitt 4.1), geben dann einige Ursachen für die Nichtverfügbarkeit von Service an (Abschnitt 4.2) und listen schließlich einige Maßnahmen auf, um die definierten Anforderungen bzgl.
-Verfügbarkeit zu erreichen (Abschnitt 4.3).
+In diesem Abschnitt definieren wir kurz die <<anforderungen>> bzgl. der Verfügbarkeit von Services in der Plattform,
+geben dann einige Ursachen für die <<ursachen-für-nichtverfuegbarkeit>> von Services an und listen schließlich einige <<massnahmen>>
+auf, um die definierten Anforderungen bzgl. Verfügbarkeit zu erreichen.
 
 [[anforderungen]]
 == Anforderungen
@@ -327,9 +328,9 @@ Für das Szenario gehen wir im Folgenden davon aus, dass die Fachanwendungen gem
 Hierbei ist zu beachten, dass Fachanwendungen in der Regel andere Anwendungen und Querschnittssysteme aufrufen, um Anfragen zu beantworten.
 Die Gesamtverfügbarkeit sinkt dadurch ab, da zur erfolgreichen Bearbeitung einer Anfrage alle Systeme zeitgleich verfügbar sein müssen.
 Im Szenario wird für alle Systeme ein Richtwert für die Verfügbarkeit von 99,7% angenommen.
-Tabelle <<table-GMTMT>> zeigt eine Beispiel-Rechnung (die Gesamtverfügbarkeit ergibt sich aus dem Produkt der Einzelverfügbarkeiten). Durch eine Verfügbarkeit von 99,7% pro System kann im Beispiel also eine Gesamtverfügbarkeit von über 98% erreicht werden.
+<<table-GMTMT>> zeigt eine Beispiel-Rechnung (die Gesamtverfügbarkeit ergibt sich aus dem Produkt der Einzelverfügbarkeiten). Durch eine Verfügbarkeit von 99,7% pro System kann im Beispiel also eine Gesamtverfügbarkeit von über 98% erreicht werden.
 
-Eine Berechnung der Gesamtverfügbarkeit nach dem Schema von Tabelle <<table-GMTMT>> muss für jede Fachanwendung einzeln durchgeführt werden.
+Eine Berechnung der Gesamtverfügbarkeit nach dem Schema von <<table-GMTMT>> muss für jede Fachanwendung einzeln durchgeführt werden.
 Dabei müssen die berechneten oder gemessenen Verfügbarkeiten aller Systeme zugrunde gelegt werden, die die Fachanwendung aufruft.
 
 *Schnelles Antwortzeitverhalten im Fehlerfall:* Die Nichtverfügbarkeit von Services ist ein Ausnahmefall, auf den angemessen reagiert werden muss: Sollte ein Service nicht verfügbar sein, ist es wichtig, dass die aufrufende Anwendung zügig eine Fehlermeldung erhält.
@@ -371,7 +372,7 @@ In dem kurzen Zeitraum, bis der Loadbalancer einen Server-Knoten als ausgefallen
 In diesem Zeitraum werden Anfragen nicht beantwortet die noch an den ausgefallenen Knoten geleitet werden.
 [NOTE]
 ====
-Die Regeln, nach denen der Loadbalancer entscheidet wann ein Server-Knoten nicht mehr verfügbar ist, können üblicher Weise konfiguriert werden.
+Die Regeln, nach denen der Loadbalancer entscheidet, wann ein Server-Knoten nicht mehr verfügbar ist, können üblicher Weise konfiguriert werden.
 Beispielsweise kann ein Loadbalancer alle paar Sekunden per Script („Health-Check“) überprüfen, ob ein Server-Knoten noch verfügbar ist.
 Erst nach einer festgelegten Anzahl fehlgeschlagener fachlicher Anfragen und negativem Health-Check leitet dann der Loadbalancer keine Anfragen mehr an diesen Knoten.
 Unabhängig von der Konfiguration kann es trotz Loadbalancer und Anwendungscluster zu wenigen nicht beantworteten Anfragen und somit
@@ -382,8 +383,7 @@ zu einer Nichtverfügbarkeit kommen.
 So werden Dateninkonsistenzen vermieden.
 Meldungsaufrufe sind in dieser Zeit nicht verfügbar und werden von der Fachanwendung nicht beantwortet.
 
-*Retries des Loadbalancers:* Tritt ein Ausfall von Hard- oder Software auf (vgl.
-Ursache 2), bekommt der Loadbalancer beim Weiterleiten einer Anfrage an einen ausgefallenen Knoten ein Timeout.
+*Retries des Loadbalancers:* Tritt ein Ausfall von Hard- oder Software auf (siehe _Ausfall von Hard- oder Software_ oben), bekommt der Loadbalancer beim Weiterleiten einer Anfrage an einen ausgefallenen Knoten ein Timeout.
 Loadbalancer können so konfiguriert werden, dass sie in diesem Fall die gleiche Anfrage an einen noch funktionierenden Knoten weiterleiten und nicht sofort eine Fehlermeldung an den Aufrufer zurückgeben.
 Für den Aufrufer hat der Service dadurch eine längere Antwortzeit.
 Der Aufrufer hat keine Möglichkeit dieses Timeout/Retry-Verhalten des Loadbalancers zu beeinflussen und auf seine Bedürfnisse anzupassen.
@@ -449,7 +449,7 @@ Loadbalancer innerhalb der Plattform sind deshalb so zu konfigurieren, dass fehl
 Eine Wiederholung von Aufrufen ist ausschließlich vom Aufrufer auszuführen.
 So kann der Aufrufer je nach Fachlichkeit entscheiden, bei welchen Anfragen Wiederholungen Sinn machen.
 
-_Achtung:_ Grundsätzlich sind Retries nur mit größter Vorsicht anzuwenden.
+*_Achtung:_* Grundsätzlich sind Retries nur mit größter Vorsicht anzuwenden.
 Hierfür gibt es mehrere Gründe:
 
 Ruft ein Client einen Service auf und erhält einen technischen Fehler, so kann der Client anhand des technischen Fehlers in der Regel nicht einwandfrei erkennen, ob seine Anfrage nicht doch auf dem Server erfolgreich verarbeitet wurde.

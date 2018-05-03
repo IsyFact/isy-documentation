@@ -305,8 +305,11 @@ Eine exemplarische `web.xml` findet sich in der Vorlageanwendung.
 [[webapprootkey-konfigurieren]]
 === webAppRootKey konfigurieren
 
-Der Kontextparameter `webAppRootKey` muss auf den eindeutigen Namen der Webanwendung gesetzt werden, bspw.:
+Der Kontextparameter `webAppRootKey` muss auf den eindeutigen Namen der Webanwendung gesetzt werden, wie in <<listing-webAppRootKey>> gezeigt.
 
+:desc-listing-webAppRootKey: Konfiguration des webAppRootKey
+[id="listing-webAppRootKey",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-webAppRootKey}
 [source,xml]
 ----
 <context-param>
@@ -337,8 +340,11 @@ Ihr sind über den Konfigurationsparameter `contextConfigLocation` die Spring-Ko
 Falls eine Anwendung über eine HttpInvoker-Bean zugreifbar sein soll, muss im Tomcat das Spring `DispatcherServlet` konfiguriert werden.
 Das Dispatcher-Servlet nimmt Aufrufe entgegen und leitet sie an die Beans weiter, welche sich für die entsprechende URL registriert haben.
 
-Ein Beispiel für die Konfiguration des Dispatcher-Servlets findet sich in der Datei `web.xml` der Vorlageanwendung:
+Ein Beispiel für die Konfiguration des Dispatcher-Servlets findet sich in der Datei `web.xml` der Vorlageanwendung (<<listing-DispatcherServlet>>).
 
+:desc-listing-DispatcherServlet: Konfiguration des DispatcherServlets
+[id="listing-DispatcherServlet",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-DispatcherServlet}
 [source,xml]
 ----
 <servlet>

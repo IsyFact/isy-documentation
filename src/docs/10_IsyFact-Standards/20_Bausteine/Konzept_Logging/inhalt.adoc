@@ -302,8 +302,11 @@ In <<image-logfass>> ist eine Übersicht der Implementierung der Fassade dargest
 .{desc-image-logfass}
 image::logfass.png[align="center"]
 
-Die Klassen der Fassade sind in folgender Tabelle beschrieben:
+Die Klassen der Fassade sind in <<table-KlassenFassade>> beschrieben.
 
+:desc-table-KlassenFassade: Die Klassen der Logging-Fassade
+[id="table-KlassenFassade",reftext="{table-caption} {counter:tables}"]
+.{desc-table-KlassenFassade}
 [cols="3,7",options="header"]
 |====
 |Klasse |Beschreibung
