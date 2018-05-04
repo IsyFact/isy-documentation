@@ -243,8 +243,11 @@ NOTE: Für das Polling der Anwendung wurden keine JMX-Verbindungsparameter angeg
 [[beispiel-fuer-eine-polling-konfiguration]]
 === Beispiel für eine Polling-Konfiguration
 
-Im Folgenden ist eine vollständige Polling-Konfiguration für einen Cluster aufgeführt, der aus insgesamt zwei Instanzen der Anwendung besteht.
+In <<listing-BeispielPollingKonfiguration>> ist eine vollständige Polling-Konfiguration für einen Cluster aufgeführt, der aus insgesamt zwei Instanzen der Anwendung besteht.
 
+:desc-listing-BeispielPollingKonfiguration: Beispiel Polling Konfiguration
+[id="listing-BeispielPollingKonfiguration",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-BeispielPollingKonfiguration}
 [source,properties]
 ----
 # -----------------------------------------------------------
@@ -282,10 +285,13 @@ Daher ist es sinnvoll, nur die Konfigurationsparameter in die betriebliche Prope
 [[beispiel-fuer-eine-polling-konfiguration-mit-lastverteilung]]
 === Beispiel für eine Polling-Konfiguration mit Lastverteilung
 
-Im Folgenden ist die Polling-Konfiguration für zwei zu pollende Datenquellen mit jeweils eigenem Polling-Cluster aufgeführt.
+In <<listing-BeispielPollingKonfigurationLastverteilung>> ist die Polling-Konfiguration für zwei zu pollende Datenquellen mit jeweils eigenem Polling-Cluster aufgeführt.
 Die beiden Cluster bestehen jeweils aus den zwei gleichen Instanzen der Anwendung.
 Wie in Kapitel <<lastverteilung-ueber-cluster-definition>> beschrieben, kann so eine Lastverteilung erfolgen.
 
+:desc-listing-BeispielPollingKonfigurationLastverteilung: Beispiel Polling Konfiguration mit Lastverteilung
+[id="listing-BeispielPollingKonfigurationLastverteilung",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-BeispielPollingKonfigurationLastverteilung}
 [source,properties]
 ----
 # -----------------------------------------------------------
@@ -332,8 +338,10 @@ Wird die PollingAktion-Annotation verwendet, muss der entsprechende Interceptor 
 
 Im Folgenden werden Beispiele für die Spring-Konfiguration aufgeführt.
 
-[underline]#Beispiel#: Konfiguration des Polling-Verwalters
-
+:desc-listing-KonfigurationPollingVerwalter: Konfiguration des Polling-Verwalters
+[id="listing-KonfigurationPollingVerwalter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-KonfigurationPollingVerwalter}
+[source,properties]
 [source, xml]
 ----
 <!-- Polling-Verwalter -->
@@ -343,11 +351,12 @@ Im Folgenden werden Beispiele für die Spring-Konfiguration aufgeführt.
 </bean>
 ----
 
-Die Property `konfiguration` enthält die Referenz auf die Komponente „Konfiguration“, die Property `jmxDomain` enthält den Namen der JMX-Domain.
+<<listing-KonfigurationPollingVerwalter>>: Die Property `konfiguration` enthält die Referenz auf die Komponente „Konfiguration“, die Property `jmxDomain` enthält den Namen der JMX-Domain.
 Das ist in der Regel das Basis-Package der Anwendung.
 
-[underline]#Beispiel#: Konfiguration der MBeans
-
+:desc-listing-KonfigurationMBeans: Konfiguration der MBeans
+[id="listing-KonfigurationMBeans",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-KonfigurationMBeans}
 [source, xml]
 ----
 <bean id="mailabrufClusterMonitor" class="de.bund.bva.pliscommon.polling.PollingMBean"
@@ -357,10 +366,13 @@ Das ist in der Regel das Basis-Package der Anwendung.
 </bean>
 ----
 
-Die Property `pollingVerwalter` enthält die Referenz auf die Komponente „Polling-Verwalter“, die Property `clusterId` enthält die ID des Polling-Clusters, für den sie den seit der letzten Polling-Aktivität vergangenen Zeitraum liefern soll.
+<<listing-KonfigurationMBeans>>: Die Property `pollingVerwalter` enthält die Referenz auf die Komponente „Polling-Verwalter“, die Property `clusterId` enthält die ID des Polling-Clusters, für den sie den seit der letzten Polling-Aktivität vergangenen Zeitraum liefern soll.
 
-Die Einbindung in JMX erfolgt über den MBean-Exporter dann wie folgt:
+Die Einbindung in JMX erfolgt über den MBean-Exporter dann wie in <<listing-EinbindungJMX>>.
 
+:desc-listing-EinbindungJMX: Einbindung in JMX
+[id="listing-EinbindungJMX",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-EinbindungJMX}
 [source, xml]
 ----
 <bean id="mBeanExporter" class = "org.springframework.jmx.export.MBeanExporter">
@@ -384,8 +396,11 @@ Die Einbindung in JMX erfolgt über den MBean-Exporter dann wie folgt:
 
 Hierbei ist zu beachten, dass der Cluster-Name aus der Konfiguration hier für die Bildung des Keys für die MBeans verwendet wird.
 
-[underline]#Beispiel#: Konfiguration des Polling-Aktion-Interceptors
+Zur Konfiguration des Polling-Aktion-Interceptors siehe <<listing-PollingAktionInterceptor>>.
 
+:desc-listing-PollingAktionInterceptor: Konfiguration des Polling-Aktion-Interceptors
+[id="listing-PollingAktionInterceptor",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-PollingAktionInterceptor}
 [source, xml]
 ----
 <!-- @PollingAktion Annotation einschalten -->
@@ -408,10 +423,12 @@ Wie bereits erwähnt, wird Polling in der Regel in einem Verarbeitungszyklus imp
 Der Verarbeitungszyklus kann eine oder nacheinander mehrere Datenquellen abfragen, für die jeweils ein Polling-Cluster definiert sein kann.
 Für jeden Polling-Cluster werden in einem Verarbeitungszyklus die folgenden Schritte ausgeführt:
 
-[start=1]
-. Abfrage des Polling-Verwalters, ob das Polling für den Cluster gestartet werden darf.
+1. <<listing-AbfragePollingVerwalter>>, ob das Polling für den Cluster gestartet werden darf.
 Ist das nicht der Fall, ist die Verarbeitung für den Cluster beendet.
 
+:desc-listing-AbfragePollingVerwalter: Abfrage des Polling-Verwalters
+[id="listing-AbfragePollingVerwalter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AbfragePollingVerwalter}
 [source, java]
 ----
 if(!pollingVerwalter.startePolling("MAILABRUF_CLUSTER")) {
@@ -425,9 +442,12 @@ fuehreVerarbeitungDurch();
 ----
 
 [start=2]
-. Durchführen der Verarbeitung für jeden Datensatz.
+2. Durchführen der Verarbeitung für jeden Datensatz.
 Am Ende der Verarbeitung eines Datensatzes wird der Zeitpunkt der letzten Polling-Aktivität aktualisiert.
 
+:desc-listing-VerarbeitungDatensatz: Verarbeitung für jeden Datensatz
+[id="listing-VerarbeitungDatensatz",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-VerarbeitungDatensatz}
 [source, java]
 ----
 // ...
@@ -441,6 +461,9 @@ for (Datensatz datensatz: datensaetze) {
 
 oder
 
+:desc-listing-VerarbeitungPollingAktion: Verarbeitung mit Polling-Aktion
+[id="listing-VerarbeitungPollingAktion",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-VerarbeitungPollingAktion}
 [source, java]
 ----
 /**
@@ -452,10 +475,10 @@ public void doPollingAktion () {
   // ...
 }
 // ...
-for (Datensatz datensatz: datensaetze) {
-  // Verarbeite Datensatz
-  // ...
-  doPollingAktion();
-}
+  for (Datensatz datensatz: datensaetze) {
+    // Verarbeite Datensatz
+    // ...
+    doPollingAktion();
+  }
 // ...
 ----

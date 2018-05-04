@@ -357,8 +357,11 @@ NOTE: Für Details siehe Kapitel <<implementierung-der-jmx-schnittstelle-mit-spr
 Die Aktualisierung der Daten in den Statistik-MBeans wird in der Service-Fassade der jeweiligen Komponente durchgeführt.
 Dazu wird per Spring ein AOP-Advice für die Service-Methoden der Komponente definiert.
 Dieses wurde in der Datei `src/main/resources/spring/querschnitt/ueberwachung.xml` der <<Vorlageanwendung>> beispielhaft für die
-Controller durchgeführt:
+Controller durchgeführt (Ausschnitt in <<listing-AopServiceMethoden>>).
 
+:desc-listing-AopServiceMethoden: AOP-Advice für die Service-Methoden der Komponente
+[id="listing-AopServiceMethoden",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AopServiceMethoden}
 [source,xml]
 ----
 <aop:config>
@@ -375,8 +378,11 @@ Eine entsprechende Konfiguration wird also für jeden Service in die Spring-Konf
 
 Jeder AOP-Advisor mit einem Pointcut erfordert nicht unbeträchtliche Ressourcen des Heaps.
 Es muss daher darauf geachtet werden, die Advisors für verschiedene Ziele nicht zu kopieren, sondern einen
-gemeinsamen Advisor mit einem Pointcut zu verwenden, der die verschiedenen Ziele mit `or` verknüpft, wie im folgenden Beispiel dargestellt:
+gemeinsamen Advisor mit einem Pointcut zu verwenden, der die verschiedenen Ziele mit `or` verknüpft, wie <<listing-AopOrVerknuepfung>> dargestellt.
 
+:desc-listing-AopOrVerknuepfung: Verknüpfung von Pointcuts mit "or"
+[id="listing-AopOrVerknuepfung",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AopOrVerknuepfung}
 [source,xml]
 ----
 <aop:config>
@@ -409,6 +415,9 @@ können die `CacheConfigurations` und die `CacheStatistics` aktiviert werden.
 Die Aktivierung kann direkt im Java-Code oder via Spring erfolgen.
 Ersteres bietet sich bei Bibliotheken, letzteres bei Anwendungen an.
 
+:desc-listing-Ehcache: Verwendung von Ehcache
+[id="listing-Ehcache",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Ehcache}
 [source,java]
 ----
 CacheManager manager = new CacheManager();
@@ -416,9 +425,12 @@ MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
 ManagementService.registerMBeans(manager, mBeanServer, false, false, true, true);
 ----
 
-Mit nachfolgender Spring-Konfiguration werden Konfigurationen und Statistiken zu dem in `classpath:ehcache.xml`
+Mit der Spring-Konfiguration aus <<listing-EhcacheSpring>> werden Konfigurationen und Statistiken zu dem in `classpath:ehcache.xml`
 konfigurierten Cache per JMX bereitgestellt.
 
+:desc-listing-EhcacheSpring: Spring-Konfiguration mit Ehcache
+[id="listing-EhcacheSpring",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-EhcacheSpring}
 [source,xml]
 ----
 <bean id="cacheManager"
@@ -505,7 +517,7 @@ NOTE: Eine Beispielimplementierung kann der Klasse AdminImp.java des Vorlage-Reg
 Bei der Prüfung der genutzten Ressourcen ist zu beachten, dass die Prüfmethode sich nicht aufhängt und somit die
 Prüfung nicht weiterläuft.
 Dies hätte zur Folge, dass der Watchdog nicht mehr arbeitet und somit die Überwachung der Anwendung fehlschlägt.
-Um dies zu vermeiden, sollte zur Prüfung der genutzten Ressourcen das Future-Pattern verwendet werden:
+Um dies zu vermeiden, sollte zur Prüfung der genutzten Ressourcen das Future-Pattern wie in <<listing-Pruefmethode>> gezeigt, verwendet werden.
 +
 [NOTE]
 ====
@@ -515,6 +527,9 @@ Ist vor den LDAP-Server ein Loadbalancer geschaltet, so kann es nach einem Fail-
 Beispielanfrage endlos läuft.
 ====
 
+:desc-listing-Pruefmethode: Prüfmethode mit Future-Pattern
+[id="listing-Pruefmethode",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Pruefmethode}
 [source,java]
 ----
 boolean checkFaceVacs() {
@@ -545,9 +560,12 @@ Anwendung aufruft.
 Der Aufruf der Prüfmethode prüft den Status des Systems und aktualisiert das Ergebnis in der MBean.
 
 Der Watchdog wird mit Spring realisiert.
-Dazu ist die folgende Konfiguration notwendig:
+Die dafür notwendige Konfiguration wird in <<listing-WatchdogSpring>> gezeigt.
 
-[source,java]
+:desc-listing-WatchdogSpring: Spring-Konfiguration für den Watchdog
+[id="listing-WatchdogSpring",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-WatchdogSpring}
+[source,xml]
 ----
 <bean id="administration"
       class="de.msg.terminfindung.gui.administration.TerminfindungWatchdog">
@@ -573,8 +591,11 @@ sowie `src/main/resources/spring/querschnitt/tasks.xml` um.
 
 Die vorgestellte Konfiguration erzeugt mittels des Schedulings von Spring einen Task, welcher in
 regelmäßigen Abständen die Prüfmethode `pruefeSystem()` der Admin-Bean (`admininistration)` aufruft.
-Die Komponente Administration wird durch Ableiten der Klasse WatchdogImpl aus `isy-ueberwachung` implementiert.
+Die Komponente Administration wird durch Ableiten der Klasse `WatchdogImpl` aus `isy-ueberwachung` implementiert.
 
+:desc-listing-WatchdogImplementierung: Implementierung des Watchdogs
+[id="listing-WatchdogImplementierung",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-WatchdogImplementierung}
 [source,java]
 ----
 public class TerminfindungWatchdog extends WatchdogImpl implements InitializingBean {
@@ -605,10 +626,13 @@ in die betriebliche Konfigurationsdatei aufgenommen, über den sich das Prüfint
 == Implementierung der JMX-Schnittstelle mit Spring
 
 Alle MBeans werden als Spring-Beans konfiguriert und über den MBeanExporter von Spring exportiert.
-Dazu ist der folgende Abschnitt in die Spring-Konfiguration aufzunehmen:
+Dazu ist der Abschnitt aus <<listing-mbeanExporter>> in die Spring-Konfiguration aufzunehmen:
 
 NOTE: Siehe `src/main/resources/spring/querschnitt/ueberwachung.xml` in der <<Vorlageanwendung>>.
 
+:desc-listing-mbeanExporter: Konfiguration des MBeanExporter in Spring
+[id="listing-mbeanExporter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-mbeanExporter}
 [source,xml]
 ----
 <bean id="mBeanExporter"
@@ -628,43 +652,54 @@ Dabei enthält das Attribut `key` einen Object Name und `value-ref` den Namen ei
 Durch diese Konfiguration wird der MBeanExporter initialisiert und angewiesen, die Spring-Bean `demoBean`
 unter dem Object Name `de.msg.terminfindung:type=DemoBean` zu exportieren.
 
-Die `demoBean` wird wie eine gewöhnliche Spring-Bean definiert, muss jedoch, zur Einhaltung der
-Initialisierungsreihenfolge, vom `mBeanExporter` abhängen:
+Die `demoBean` wird in <<listing-mbean>> wie eine gewöhnliche Spring-Bean definiert, muss jedoch, zur Einhaltung der
+Initialisierungsreihenfolge, vom `mBeanExporter` abhängen.
 
+:desc-listing-mbean: Konfiguration einer MBean in Spring
+[id="listing-mbean",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-mbean}
 [source,xml]
 ----
 <bean id="basisdatenStatistik" class="DemoBean" depends-on="mBeanExporter"/>
 ----
 
 Das Management-Interface der MBean wird nicht als Java-Interface implementiert, sondern dynamisch von Spring an Hand von Annotations ermittelt.
-Dazu wird ein MBeanInfoAssembler wie folgt konfiguriert:
+Dazu wird ein `MBeanInfoAssembler` wie in <<listing-mbeanInfoAssembler>> konfiguriert.
 
+:desc-listing-mbeanInfoAssembler: Konfiguration eines MBeanInfoAssembler in Spring
+[id="listing-mbeanInfoAssembler",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-mbeanInfoAssembler}
 [source,xml]
 ----
 <bean id="assembler"
       class="….jmx.export.assembler.MetadataMBeanInfoAssembler">
 	<property name="attributeSource" ref="jmxAttributeSource"/>
 </bean>
-<bean id="jmxAttributeSource" +
+<bean id="jmxAttributeSource"
       class="….jmx.export.annotation.AnnotationJmxAttributeSource"/>
 ----
 
 Im Java-Code der MBean-Klasse werden alle via JMX zu exportierenden Methoden, d.h. die Methoden,
-die Teil des Management-Interfaces werden sollen, mit der Annotation `@ManagedAttribute`
-bzw. `@ManagedOperation` versehen:
+die Teil des Management-Interfaces werden sollen, mit der Annotation `@ManagedAttribute` bzw. `@ManagedOperation` versehen.
 
+:desc-listing-ManagedAttribute: Annotation der zu exportierenden Methoden
+[id="listing-ManagedAttribute",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ManagedAttribute}
 [source,java]
 ----
-@ManagedAttribute (description = “Liefert die Dauer der letzten Suchabfrage in ms.“)
-public long getLetzteSuchdauer() {…}
+@ManagedAttribute(description = "Liefert die Dauer der letzten Suchabfrage in ms.")
+public long getLetzteSuchdauer() {...}
 ----
 
-Zusätzlich muss die MBean-Klasse mit der Annotation `@ManagedResource` versehen:
+Zusätzlich muss die MBean-Klasse mit der Annotation `@ManagedResource` versehen werden.
 
+:desc-listing-ManagedResource: Annotation der MBean-Klasse
+[id="listing-ManagedResource",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ManagedResource}
 [source,java]
 ----
-@ManagedResource(description = "Diese MBean liefert Statistiken…")
-public class BasisdatenStatistikMBean {…}
+@ManagedResource(description = "Diese MBean liefert Statistiken...")
+public class BasisdatenStatistikMBean {...}
 ----
 
 [[konfigurieren-der-laufzeit-umgebung-fuer-jmx]]
@@ -768,10 +803,13 @@ image::JMXConcsole.png[align="center"]
 === Automatisierte JUnit-Tests
 
 Das per JMX bereitgestellte Management-Interface kann sehr einfach per JUnit getestet werden.
-Der Zugriff auf eine MBean erfolgt dabei nach folgendem Muster:
+Der Zugriff auf eine MBean erfolgt dabei nach dem in <<listing-MBeanJUnit>> gezeigten Muster.
 
 NOTE: Die <<Vorlageanwendung>> implementiert in der Klasse `TestJmxUeberwachung` einen entsprechenden JUnit-Test.
 
+:desc-listing-MBeanJUnit: JUnit-Test mit MBeans
+[id="listing-MBeanJUnit",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MBeanJUnit}
 [source,java]
 ----
 // Holen des MBeanServers
@@ -847,6 +885,9 @@ Das Loadbalancing-Servlet ist als Teil der Bibliothek `isy-ueberwachung` in der
 Klasse `de.bund.bva.pliscommon.ueberwachung.service.loadbalancer.LoadbalancerServlet` implementiert.
 Zur Nutzung muss in die `web.xml` jeder Webanwendung folgender Abschnitt aufgenommen werden:
 
+:desc-listing-IntegrationLoadBalancer: Integration des Loadbalancer-Servlets
+[id="listing-IntegrationLoadBalancer",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-IntegrationLoadBalancer}
 [source,xml]
 ----
 <servlet>
@@ -1069,8 +1110,11 @@ Die Angabe, ob ein Neustart bei Änderung erforderlich ist, sollte jedoch immer 
 Zur Bereitstellung der Konfigurationsparameter in der Anwendung wird die Bibliothek `isy-konfiguration` verwendet.
 
 Die Konfigurations-Bibliothek stellt Interfaces und Implementierungen für das Laden von Property-Dateien und das typsichere Auslesen von Konfigurationsparametern bereit.
-Die Konfiguration wird der Anwendung als querschnittliche Spring-Bean (im Folgenden Konfigurations-Bean genannt) bereitgestellt:
+Die Konfiguration wird der Anwendung als querschnittliche Spring-Bean (im Folgenden Konfigurations-Bean genannt) wie in <<listing-KonfigurationsBean>> bereitgestellt:
 
+:desc-listing-KonfigurationsBean: Spring-Konfiguration für Konfigurations-Bean
+[id="listing-KonfigurationsBean",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-KonfigurationsBean}
 [source,xml]
 ----
 <bean id="konfiguration"
@@ -1093,9 +1137,12 @@ gemeinsame Sicht aller Konfigurationsparameter zur Verfügung gestellt.
 Sind Parameter in mehreren Dateien aufgeführt, so überschreiben Werte aus Dateien, die in der
 Liste hinten stehen, solche von Dateien, die zuvor aufgelistet wurden.
 
-Die Konfigurations-Bean wird den Komponentenfassaden (z.B. MeldungImpl) per Spring-Dependecy-Injection bereitgestellt.
-Dazu muss die Komponente einen Setter für das Interface anbieten:
+Die Konfigurations-Bean wird den Komponentenfassaden (z.B. `MeldungImpl`) per Spring-Dependecy-Injection bereitgestellt.
+Dazu muss die Komponente einen Setter für das Interface anbieten.
 
+:desc-listing-SetterKonfigurationsBean: Setter für Konfigurations-Bean
+[id="listing-SetterKonfigurationsBean",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-SetterKonfigurationsBean}
 [source,java]
 ----
 public void setKonfiguration(Konfiguration konfiguration)
@@ -1104,15 +1151,17 @@ public void setKonfiguration(Konfiguration konfiguration)
 Für den Fall, dass sehr viele Konfigurationsparameter benötigt werden, können komponentenspezifische
 Konfigurations-Beans verwendet werden.
 
-Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des Konfigurations-Interfaces, z.B.
+Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des Konfigurations-Interfaces, siehe <<listing-ZugriffKonfigurationsparameter>>.
 
+:desc-listing-ZugriffKonfigurationsparameter: Zugriff auf Konfigurationsparameter
+[id="listing-ZugriffKonfigurationsparameter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ZugriffKonfigurationsparameter}
 [source,java]
 ----
 String url = konfiguration.getAsString (KonfigurationSchluessel.SERVICE_URL);
 ----
 
-Das Interface bietet für verschiedene Datentypen (String, Integer, Long, Double und Boolean) jeweils
-typsichere Zugriffsmethoden an.
+Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double und `Boolean`) jeweils typsichere Zugriffsmethoden an.
 Für jeden Datentyp wird zusätzlich eine Methode angeboten, welche die Übergabe eines Default-Werts ermöglicht.
 Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurationsdatei vorhanden ist.
 Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine
@@ -1224,8 +1273,11 @@ geladen werden. Änderungen werden durch den Änderungszeitstempel der Dateien f
 
 Die zuvor genannte Methode muss regelmäßig aufgerufen werden.
 Dazu wird, wie in Kapitel <<implementierung-des-watchdogs>> beschrieben, ein weiterer Task definiert und dem
-Tag `<task:scheduled-tasks>` der Spring-Konfiguration hinzugefügt:
+Tag `<task:scheduled-tasks>` der Spring-Konfiguration hinzugefügt.
 
+:desc-listing-TaskKonfigurationsaenderungen: Task für Konfigurationsänderungen
+[id="listing-TaskKonfigurationsaenderungen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-TaskKonfigurationsaenderungen}
 [source,xml]
 ----
 <task:scheduled-tasks scheduler="scheduler">

@@ -43,7 +43,7 @@ herunterladen.
 :desc-image-leitfaden_entwicklungsumgebung_vb_01: Virtualbox Hauptmenü
 [id="image-leitfaden_entwicklungsumgebung_vb_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_01}
-image::leitfaden_entwicklungsumgebung_vb_01.png[align="center",width=70%,pdfwidth=70%]
+image::leitfaden_entwicklungsumgebung_vb_01.png[align="center",width=60%,pdfwidth=70%]
 
 VirtualBox kann mehrere virtuelle Maschinen verwalten. Jede virtuelle Maschine wird auf Ihrer Festplatte unterhalb des Home-Verzeichnisses im Ordner "VirtualBox VMs" verwaltet.
 Jedes dieser Verzeichnisse enthält Konfigurationsdateien für die virtuelle Maschine. Im folgenden sprechen wir hierbei vom VM-Verzeichnis.
@@ -54,7 +54,7 @@ Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld einen Namen Ih
 :desc-image-leitfaden_entwicklungsumgebung_vb_02: Eingabe des Names der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_02}
-image::leitfaden_entwicklungsumgebung_vb_02.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_vb_02.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf Weiter. Hierdurch wird VirtualBox das VM-Verzeichnis zur virtuellen Maschine erstellen. Das Verzeichnis trägt den gleichen Namen wie Ihre virtuelle Maschine.
 
@@ -63,7 +63,7 @@ Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfig
 :desc-image-leitfaden_entwicklungsumgebung_vb_03: Speichergröße festlegen
 [id="image-leitfaden_entwicklungsumgebung_vb_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_03}
-image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=70%,pdfwidth=70%]
+image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf Weiter. Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen. Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox
 in das Verzeichnis der virtuellen Maschine speichert. Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
@@ -75,7 +75,7 @@ Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_<Version>-
 :desc-image-leitfaden_entwicklungsumgebung_vb_04: Virtuelle Festplatte einbinden
 [id="image-leitfaden_entwicklungsumgebung_vb_04",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_04}
-image::leitfaden_entwicklungsumgebung_vb_04.png[align="center",width=70%,pdfwidth=70%]
+image::leitfaden_entwicklungsumgebung_vb_04.png[align="center",width=60%,pdfwidth=70%]
 
 Die virtuelle Maschine sollte danach samt virtueller Festplatte bereit sein.
 
@@ -93,7 +93,7 @@ Im erscheinenden Einstellungsfenster wechseln Sie auf der linken Seite auf "Allg
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern_01: Zwischenablage konfigurieren
 [id="image-leitfaden_entwicklungsumgebung_vb_aendern_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_01}
-image::leitfaden_entwicklungsumgebung_vb_aendern_01.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_aendern_01.png[align="center",width=60%,pdfwidth=70%]
 
 Dann wechseln Sie auf der linken Seite in den Eintrag "System".
 Auf der rechten Seite wählen Sie den Reiter "Hauptplatine" und verschieben die Einträge so, dass in der Boot-Reihenfolge zunächst die Platte und dann die DVD erscheint. Das Häkchen bei "Diskette" können Sie entfernen.
@@ -101,7 +101,7 @@ Auf der rechten Seite wählen Sie den Reiter "Hauptplatine" und verschieben die 
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern_02: Zeigergerät einrichten
 [id="image-leitfaden_entwicklungsumgebung_vb_aendern_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_02}
-image::leitfaden_entwicklungsumgebung_vb_aendern_02.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_aendern_02.png[align="center",width=60%,pdfwidth=70%]
 
 Den Chipsatz belassen Sie bei PIIX3.
 
@@ -117,7 +117,7 @@ Hier stellen Sie ein, dass das Gastsystem über zwei Prozessoren verfügen soll.
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern_03: Prozessoren einrichten
 [id="image-leitfaden_entwicklungsumgebung_vb_aendern_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_03}
-image::leitfaden_entwicklungsumgebung_vb_aendern_03.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_aendern_03.png[align="center",width=60%,pdfwidth=70%]
 
 Als Letztes klicken Sie auf der linken Seite auf "Gemeinsame Ordner". Auf der rechten Seite können Sie über einen Ordner-Button einen gemeinsamen
 Ordner hinzufügen. Wählen Sie einen für Sie passenden Ordner und setzen Sie ein Häkchen bei "Automatisch einbinden".
@@ -125,7 +125,7 @@ Ordner hinzufügen. Wählen Sie einen für Sie passenden Ordner und setzen Sie e
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern_04: Gemeinsamer Ordnerzugriff
 [id="image-leitfaden_entwicklungsumgebung_vb_aendern_04",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_04}
-image::leitfaden_entwicklungsumgebung_vb_aendern_04.png[align="center",width=40%,pdfwidth=40%]
+image::leitfaden_entwicklungsumgebung_vb_aendern_04.png[align="center",width=30%,pdfwidth=30%]
 
 Bestätigen Sie die Änderungen mit einem Klick auf OK.
 
@@ -138,7 +138,7 @@ Starten Sie Ihre virtuelle Maschine und melden Sie sich an:
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_01: Startbildschirm der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_01}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_01.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_01.png[align="center",width=60%,pdfwidth=70%]
 
 Ihr Benutzername und Kennwort ist bei den virtuellen Festplatten von OSBoxes standardmäßig gesetzt:
 
@@ -149,28 +149,28 @@ Ihr Benutzername und Kennwort ist bei den virtuellen Festplatten von OSBoxes sta
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_02: Welcome der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_02}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_02.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_02.png[align="center",width=60%,pdfwidth=70%]
 
 Anschließend legen Sie die Spracheinstellungen fest.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_03: Sprache der virtuellen Maschine konfigurieren
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_03}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_03.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_03.png[align="center",width=60%,pdfwidth=70%]
 
 Die restlichen Einstellungen können Sie überspringen. Nun ist die Konfiguration von Ubuntu beendet.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04: Konfigurationsende beim Erststart der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_04",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_04.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_04.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie links oben auf "Activities" oder benutzen Sie die Windows-Taste oder Befehlstaste, um eine Übersicht der Applikationen zu bekommen.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05: Startbildschirm der virtuellen Maschine nach dem Login
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_05",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_05.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_05.png[align="center",width=60%,pdfwidth=70%]
 
 === Die Gasterweiterungen
 
@@ -187,21 +187,21 @@ Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintr
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01: Gasterweiterungen laden auf der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01.png[align="center",width=60%,pdfwidth=70%]
 
 Hierdurch wird eine virtuelle CD automatisch in das optische Laufwerk eingelegt, worauf eine Startanwendung von selbst dafür sorgt, dass die Gasterweiterungen installiert werden. Im aufkommenden Fenster, klicken Sie auf "Run".
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02: Gasterweiterungen installieren auf der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02.png[align="center",width=60%,pdfwidth=70%]
 
 Bestätigen Sie mit einem Klick auf "Run". Anschließend sollte die Installation der Gasterweiterungen starten.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03: leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03}
-image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png[align="center"]
+image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png[align="center",width=60%,pdfwidth=70%]
 
 Ihre virtuelle Maschine ist nun einsatzbereit.
 
@@ -305,14 +305,17 @@ Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss 
 
 Danach lässt sich STS über das Applikations-Menü von Ubuntu starten. Hierfür klicken Sie auf "Applications" - "Other" - "STS"
 
-image::leitfaden_entwicklungsumgebung_werkzeuge_sts_other.png[]
+:desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_other: Spring Tool Suite (STS) in "Activities Overview"
+[id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_other",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_other}
+image::leitfaden_entwicklungsumgebung_werkzeuge_sts_other.png[align="center",width=80%,pdfwidth=80%]
 
 Außerdem wird STS nun auch in der "Activities Overview" angezeigt.
 
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_overview: Spring Tool Suite (STS) als Activity
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_overview",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_overview}
-image::leitfaden_entwicklungsumgebung_werkzeuge_sts_overview.png[align="center"]
+image::leitfaden_entwicklungsumgebung_werkzeuge_sts_overview.png[align="center",width=70%,pdfwidth=100%]
 
 === Apache Tomcat
 
@@ -349,7 +352,7 @@ Klicken Sie auf "Next". Setzen Sie im erscheinenden Fenster den Installationspfa
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03: Konfiguration von Apache Tomcat
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03}
-image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03.png[align="center",width=60%,pdfwidth=80%]
 
 Klicken Sie auf "Finish".
 
@@ -378,7 +381,7 @@ Mit diesem Abschnitt werden Sie die entfernten GitHub-Repositories in ein lokale
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_03: IsyFact masterpom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_03}
-image::leitfaden_entwicklungsumgebung_bibliotheken_03.png[align="center"]
+image::leitfaden_entwicklungsumgebung_bibliotheken_03.png[align="center",pdfwidth=50%]
 
 NOTE: In den Diagrammen wurden die GitHub-Repositories mit braunem Rand und hellbrauner Füllfarbe und die darin enthalten Maven-Projekte mit hellblauem Rand und
 weisser Füllfarbe gekennzeichnet.
@@ -397,28 +400,28 @@ Klicken Sie im erscheinenden Fenster auf GitHub.
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_05: Github
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_05",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_05}
-image::leitfaden_entwicklungsumgebung_bibliotheken_05.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_05.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie anschließend auf "Next". In dem aufkommenden Fenster können Sie online nach GitHub-Repositories suchen. Geben Sie im Suchfeld "IsyFact" ein und klicken Sie auf den Button "Search". Daraufhin sollten im Fenster alle GitHub-Repositories aufgelistet werden, bei denen im Namen der Bezeichner "IsyFact" vorkommt. Selektieren Sie dort das GitHub-Repository `isyfact-masterpom`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_06: Wahl des masterpom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_06",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_06}
-image::leitfaden_entwicklungsumgebung_bibliotheken_06.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_06.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf "Next". Im nächsten Fenster wird der Branch ausgewählt, der lokal heruntergeladen werden soll.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_07: Auswahl des Master
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_07",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_07}
-image::leitfaden_entwicklungsumgebung_bibliotheken_07.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_07.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie erneut auf "Next".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_08: Speicherort des lokalen Clones
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_08",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_08}
-image::leitfaden_entwicklungsumgebung_bibliotheken_08.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_08.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie abschließend auf "Finish". Als Nächstes kann das Maven-Projekt aus dem Repository importiert werden. Hierfür klicken Sie mit der rechten Maustaste auf das
 Repository und wählen den Eintrag "Import Projects" aus. Daraufhin erscheint folgendes Fenster.
@@ -455,21 +458,21 @@ Clone klicken und in der GitHub-Repository-Auflistung hiernach suchen.
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_12: Selektion des products-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_12",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_12}
-image::leitfaden_entwicklungsumgebung_bibliotheken_12.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_12.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf "Next". Auch hier wählen Sie den master-Branch.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_13: Wahl des Master-branch
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_13",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_13}
-image::leitfaden_entwicklungsumgebung_bibliotheken_13.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_13.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie erneut auf "Next".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_14: Speicherort für products-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_14",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_14}
-image::leitfaden_entwicklungsumgebung_bibliotheken_14.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_14.png[align="center",width=60%,pdfwidth=70%]
 
 Bestätigen Sie mit einem Klick auf "Finish". Importieren Sie anschließend auch bei diesem Repository wieder das Maven-Projekt, indem Sie mit der rechten Maustaste auf
 dem Repository den Eintrag "Import Projects" auswählen.
@@ -492,7 +495,7 @@ Zum Klonen des Repositories gehen Sie wie bei den Repositories weiter oben vor.
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_16: Selektion des Branches
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_16",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_16}
-image::leitfaden_entwicklungsumgebung_bibliotheken_16.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_16.png[align="center",width=60%,pdfwidth=70%]
 
 Als Nächstes importieren Sie die Maven-Projekte.
 
@@ -508,7 +511,7 @@ CAUTION: Führen Sie auch bei diesen Projekten das Menü "Maven" -> "Update Proj
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_18: Update-Optionen
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_18",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_18}
-image::leitfaden_entwicklungsumgebung_bibliotheken_18.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_18.png[align="center",width=60%,pdfwidth=70%]
 
 === isyfact-bom
 
@@ -524,21 +527,21 @@ Wechseln Sie zur Ansicht "git" und laden Sie das GitHub-Repository `isyfact-bom`
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_20: Github als Quelle für isyfact-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_20",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_20}
-image::leitfaden_entwicklungsumgebung_bibliotheken_20.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_20.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf "Next".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21: Selektion des master-branch
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_21",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21}
-image::leitfaden_entwicklungsumgebung_bibliotheken_21.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_21.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie erneut auf "Next".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22: lokaler Speicherort für isyfact-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_22",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22}
-image::leitfaden_entwicklungsumgebung_bibliotheken_22.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_22.png[align="center",width=60%,pdfwidth=70%]
 
 Bestätigen Sie mit einem Mausklick auf "Finish".
 
@@ -558,14 +561,14 @@ In diesem Abschnitt importieren Sie das Repository `isyfact-persistence`.
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_24: IsyFact-persistence
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_24",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_24}
-image::leitfaden_entwicklungsumgebung_bibliotheken_24.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_24.png[align="center",width=60%,pdfwidth=70%]
 
 Wechseln Sie in die View "Git" und klonen Sie das Projekt `isyfact-persistence` vom GitHub-Server.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_25: Selektion des Master-branches
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_25",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_25}
-image::leitfaden_entwicklungsumgebung_bibliotheken_25.png[align="center"]
+image::leitfaden_entwicklungsumgebung_bibliotheken_25.png[align="center",width=60%,pdfwidth=70%]
 
 Nachdem das Repository `isyfact-persistence` geklont worden ist, importieren Sie das enthaltene Maven-Projekt und wechseln in die Perspektive "Spring".
 
@@ -585,7 +588,7 @@ Wechseln Sie wieder in die View "Git" und klonen Sie das Projekt `isyfact-projek
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_29: Selektion isyfact-projektgenerator auf GitHub
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_29",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_29}
-image::leitfaden_entwicklungsumgebung_bibliotheken_29.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_bibliotheken_29.png[align="center",width=60%,pdfwidth=70%]
 
 Importieren Sie das im Repository enthaltene Maven-Projekt.
 
@@ -618,28 +621,28 @@ Hierfür klicken Sie im Hauptmenü auf "File" -> "New" -> "Other". Im Wizard sel
 :desc-image-leitfaden_entwicklungsumgebung_projektgenerator_01: Auswahl des Maven-Wizard
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_01}
-image::leitfaden_entwicklungsumgebung_projektgenerator_01.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_projektgenerator_01.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf "Next". Im nächsten Fenster selektieren Sie die Checkbox "Use default workspace location".
 
 :desc-image-leitfaden_entwicklungsumgebung_projektgenerator_02: Default-Location wählen
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_02}
-image::leitfaden_entwicklungsumgebung_projektgenerator_02.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_projektgenerator_02.png[align="center",width=60%,pdfwidth=70%]
 
 Klicken Sie auf "Next". Selektieren Sie den Maven Archetype des IsyFact-Projektgenerators.
 
 :desc-image-leitfaden_entwicklungsumgebung_projektgenerator_03: Wahl des Maven-Archetyps
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_03}
-image::leitfaden_entwicklungsumgebung_projektgenerator_03.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_projektgenerator_03.png[align="center",width=60%,pdfwidth=70%]
 
 Danach wählen Sie die Group Id und Artifact Id Ihres Maven-Projekts.
 
 :desc-image-leitfaden_entwicklungsumgebung_projektgenerator_04: Angabe der Parameter
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_04",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_04}
-image::leitfaden_entwicklungsumgebung_projektgenerator_04.png[align="center",width=90%,pdfwidth=90%]
+image::leitfaden_entwicklungsumgebung_projektgenerator_04.png[align="center",width=60%,pdfwidth=70%]
 
 Zuletzt bestätigen Sie die Erstellung des neuen Maven Projekts mit einem Klick auf "Finish".
 Die Hello-World-Anwendung wird nun erzeugt. Führen Sie ggf. "Update Maven Projekt" bei dem neu generierten Projekt durch.
@@ -650,7 +653,7 @@ Selektieren Sie den im Werkzeugkapitel eingerichteten Apache Tomcat und setzen S
 :desc-image-leitfaden_entwicklungsumgebung_projektgenerator_05: Auf Server starten
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_05",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_05}
-image::leitfaden_entwicklungsumgebung_projektgenerator_05.png[align="center",width=80%,pdfwidth=80%]
+image::leitfaden_entwicklungsumgebung_projektgenerator_05.png[align="center",width=60%,pdfwidth=70%]
 
 Mit "Finish" wird der Application Server gestartet. Im Anschluss sollte der Webbrowser von STS mit der Startseite der Anwendung erscheinen.
 Zum Test geben Sie im ersten Eingabefeld einen Namen und im zweiten eine Nachricht ein. Über den Button "Abschicken" wird die Nachricht gespeichert und alle
