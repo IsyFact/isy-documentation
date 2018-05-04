@@ -1,0 +1,91 @@
+@import "settings/isyfact";
+@import "components/asciidoc";
+@import "components/awesome-icons";
+
+dt, th.tableblock, td.content, div.footnote {
+  // NOTE text-rendering is already set for p
+  text-rendering: optimizeLegibility;
+}
+
+// QUESTION should we tighten letter spacing of text in footnotes?
+h1, h2, p, td.content, span.alt {
+  letter-spacing: -0.01em;
+}
+
+p, td.content, div.footnote {
+  strong {
+    // NOTE needs to apply anywhere we have bold prose
+    letter-spacing: -0.005em;
+  }
+}
+
+// NOTE include blockquote for when it doesn't have a nested p
+p, blockquote, dt, td.content, span.alt {
+  font-size: 1.0625rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+// restore font size in sidebar block and regular table cells
+.sidebarblock p, .sidebarblock dt, .sidebarblock td.content, p.tableblock {
+  font-size: 1em;
+}
+
+.exampleblock > .content {
+  // white
+  //background-color: #fff;
+  //border-color: $panel-border-color;
+  //@include single-box-shadow($panel-border-color, 0, 1px, 2px);
+
+  // light yellow
+  background-color: #fffef7; // from rgb(252,247,227), analogous to #f8f8f7
+  border-color: $panel-border-color;
+  @include single-box-shadow($panel-border-color, 0, 1px, 4px);
+}
+
+// Textfarbe Admonition-Blocks IsyFact-Gelb
+.admonitionblock > table {
+  td.content {
+    color: #f3aa02;
+  }
+}
+
+// Trennstrich unter Ueberschriften
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { border-bottom: 1px solid #dddddd; }
+
+// Revdate & Revnumber in IsyFact-Gelb
+#header .details { color: #f3aa02; }
+
+// Captions in IsyFact-Gelb
+.imageblock > .title, table.tableblock > .title, .listingblock > .title {
+  color: #f3aa02;
+  text-align: center;
+}
+
+table.tableblock > caption.title {
+  max-width: 100%;
+}
+
+// Tabellen volle Breite
+table {
+  width: 100%
+}
+
+// Tabellenheader innerhalb von Tabellen
+tbody {
+  tr {
+    th {
+      background: rgba(#00417a, 0.6);
+    }
+  }
+}
+
+// Hintergrund Lizenzhinweise auf Titelseite
+
+.sidebarblock {
+  background-color: #ffffff;
+}
+
+@import "components/print";
