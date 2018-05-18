@@ -208,8 +208,8 @@ deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-
 [[persistierung]]
 == Persistierung
 
-Die Bibliothek muss Angaben zu Datum, Zeit, Dauer sowie Zeiträumen persistent speichern können.
-Die Persistierung muss sich nahtlos in die anderen Bausteine der IsyFact integrieren, vollständig kompatibel mit dem <<DetailkonzeptKomponenteDatenzugriff>> sein und gemäß den Vorgaben des Produktkatalogs umgesetzt werden.
+Die Persistierung von Angaben zu Datum, Zeit, Dauer, Zeiträumen und ungewissen Datums- und Zeitangaben (siehe <<ungewisse-datums-und-zeitwerte>>) wird durch die Bibliothek `isy-persistence` behandelt.
+Weitere Details dazu beschreibt das <<DetailkonzeptKomponenteDatenzugriff>>.
 
 [[berechnungen]]
 == Berechnungen
@@ -238,7 +238,7 @@ Die Bibliothek muss die folgenden Berechnungen auf Zeiträumen ermöglichen:
 ** Liegt der 18. Juli 2017 zwischen dem 4. Juli 2016 und dem 6. Dezember 2017?
 * Prüfung, ob sich zwei Zeiträume überlappen
 
-[[ungewisse-datums--und-zeitwerte]]
+[[ungewisse-datums-und-zeitwerte]]
 == Ungewisse Datums- und Zeitwerte
 
 Die Bibliothek muss sogenannte _ungewisse_ Datums- und Zeitwerte verarbeiten können.
@@ -330,39 +330,11 @@ verwenden und, falls nötig, auf die in Deutschland gängigen Formate hin konfig
 gängige Formate leicht ausgeben und einlesen zu können.
 Eine Reihe von Standardformaten, welche die Bibliothek unterstützen muss, sind im Kapitel <<darstellung>> beschrieben.
 
-[[persistierung-1]]
-== Persistierung
-
-JPA unterstützt in der aktuellen Version 2.1 die neuen Typen für Datum und Zeit nicht, da die Spezifikation vor dem Erscheinen von Java 8 verabschiedet wurde.
-JPA 2.2 wird dies nachholen.
-Allerdings gibt es derzeit noch keine (Referenz-)Implementierung von JPA 2.2. Für die Persistierung ergeben sich damit zwei Möglichkeiten:
-
-.  Hibernate bietet ab Version 5 eine proprietäre Lösung für die neuen Datums- und Zeittypen an.
-+
-NOTE: Beschreibung: https://www.thoughts-on-java.org/hibernate-5-date-and-time/
-+
-Hier ist allerdings unklar, wie diese Implementierung nach dem Erscheinen von JPA 2.2 in den Standard überführt werden soll.
-Diese Lösung wird wenig Aufwand bei der Implementierung mit sich bringen, ist allerdings spezifisch für Hibernate und könnte beim Wechsel auf JPA 2.2 zu erhöhtem Migrationsaufwand führen.
-.  JPA bietet die Möglichkeit, zusätzliche Datentypen mithilfe von Konvertern zu unterstützen.
-Dafür muss für jeden zu unterstützenden Datentyp die Klasse `AttributeConverter` implementiert werden.
-Diese Lösung wird mehr Aufwand bei der Implementierung mit sich bringen.
-Die Implementierung ist dafür JPA-konform, als Teil des IsyFact-Bausteins vollständig beschrieben und kann so beim Wechsel auf JPA 2.2 kontrolliert migriert werden.
-
-Der Baustein orientiert sich am JPA-Standard und setzt Lösungsvariante 2 um.
-Die Umsetzung sollte sich am offiziellen Ticket zur Umsetzung des Features in JPA 2.2 orientieren.
-
-NOTE: https://github.com/javaee/jpa-spec/issues/63
-
-Insbesondere dürfen die Datums- und Zeittypen weder als Binärdaten (BLOB) noch als Zeichenketten persistiert werden.
-Zeitzonen müssen immer als Abweichung von UTC persistiert werden, nicht in textueller Form über den Namen der Zeitzone.
-Die Umwandlung von persistierten Werten in Datumswerte mit benannten Zeitzonen (z.B. CET oder Europe/Berlin) muss von einer Anwendung global bestimmt werden oder für jeden Nutzer der Anwendung konfigurierbar sein.
-
 [[ungewisse-datums--und-zeitwerte-1]]
 == Ungewisse Datums- und Zeitwerte
 
 Die Bibliothek muss zur Behandlung ungewisser Datums- und Zeitwerte die folgende Funktionalität bereitstellen:
 
-* Definition einer Entität zur Persistierung ungewisser Datums- und Zeitwerte als Zeitraum mit Start und Ende, d.h. mit zwei Datenfeldern
 * Definition der Datenobjekte zur Verwendung ungewisser Datums- und Zeitwerte im Anwendungskern
 * Definition der Transportobjekte zur Übermittlung ungewisser Datums- und Zeitwerte über Schnittstellen
 * Formatierung ungewisser Daten zur Anzeige

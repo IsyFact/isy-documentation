@@ -179,9 +179,65 @@ Explizit verboten sind bidirektional traversierbare n:m Assoziationen.
 Hierfür sind zwei 1:n (bzw. n:1) Mappings zu definieren.
 
 [[behandlung-von-zeitangaben]]
-== Behandlung von Zeitangaben
+== Behandlung von Datums- und Zeitangaben
 
-Für die Speicherung von Zeitangaben wird in Java einheitlich `java.util.Date` verwendet.
+Es werden die Datums- und Zeitklassen aus der _Java 8 Date Time API_ verwendet.
+Hinweise zu deren Verwendung finden sich im <<KonzeptDatumZeit>>.
+Zur Persistierung von Zeiträumen und ungewissen Datums- und Zeitangaben im Sinne des <<KonzeptDatumZeit>> werden die `@Entity`-Klasse `ZeitraumEntitaet` und die `@Embeddable`-Klassen `UngewisseZeitEntitaet` und `UngewissesDatumEntitaet` bereitgestellt.
+
+[[persistierung-1]]
+=== Persistierung mit JPA
+
+JPA unterstützt in der aktuellen Version 2.1 die neuen Typen für Datum und Zeit nicht, da die Spezifikation vor dem Erscheinen von Java 8 verabschiedet wurde.
+JPA 2.2 wird dies nachholen.
+Allerdings gibt es derzeit noch keine (Referenz-)Implementierung von JPA 2.2. Für die Persistierung ergeben sich damit zwei Möglichkeiten:
+
+.  Hibernate bietet ab Version 5 eine proprietäre Lösung für die neuen Datums- und Zeittypen an.
++
+NOTE: Beschreibung: https://www.thoughts-on-java.org/hibernate-5-date-and-time/
++
+Hier ist allerdings unklar, wie diese Implementierung nach dem Erscheinen von JPA 2.2 in den Standard überführt werden soll.
+Diese Lösung wird wenig Aufwand bei der Implementierung mit sich bringen, ist allerdings spezifisch für Hibernate und könnte beim Wechsel auf JPA 2.2 zu erhöhtem Migrationsaufwand führen.
+.  JPA bietet die Möglichkeit, zusätzliche Datentypen mithilfe von Konvertern zu unterstützen.
+Dafür muss für jeden zu unterstützenden Datentyp die Klasse `AttributeConverter` implementiert werden.
+Diese Lösung wird mehr Aufwand bei der Implementierung mit sich bringen.
+Die Implementierung ist dafür JPA-konform, als Teil des IsyFact-Bausteins vollständig beschrieben und kann so beim Wechsel auf JPA 2.2 kontrolliert migriert werden.
+
+Der Baustein orientiert sich am JPA-Standard und setzt Lösungsvariante 2 um.
+Die Umsetzung sollte sich am offiziellen Ticket zur Umsetzung des Features in JPA 2.2 orientieren.
+
+NOTE: https://github.com/javaee/jpa-spec/issues/63
+
+Insbesondere dürfen die Datums- und Zeittypen weder als Binärdaten (BLOB) noch als Zeichenketten persistiert werden.
+Zeitzonen müssen immer als Abweichung von UTC persistiert werden, nicht in textueller Form über den Namen der Zeitzone.
+Die Umwandlung von persistierten Werten in Datumswerte mit benannten Zeitzonen (z.B. CET oder Europe/Berlin) muss von einer Anwendung global bestimmt werden oder für jeden Nutzer der Anwendung konfigurierbar sein.
+
+==== Attribute Converter
+
+Die Querschnittsbibliothek _isy-persistence_ setzt die Persistenz der Klassen aus der _Java 8 Date and Time API_ mit Attribute Convertern aus JPA 2.1 um.
+Die Converter sind automatisch aktiv.
+Die Bibliothek bringt für folgende Klassen Attribute Converter mit:
+
+:desc-table-Mapping: Mapping
+[id="table-Mapping",reftext="{table-caption} {counter:tables}"]
+.{desc-table-Mapping}
+[cols="^,^,^",options="header",]
+|====
+|*Java 8 Typ* |*Mapping auf* |*Bemerkung*
+<|`LocalTime` <|`java.sql.Time` <|Zeiteinheiten kleiner als Sekunde gehen verloren.
+<|`LocalDate` <|`java.sql.Date` |
+<|`LocalDateTime` <|`java.sql.Timestamp` |
+<|`OffsetTime` <|`String` <|ISO-8601-Repräsentation
+<|`OffsetDateTime` <|`String` <|ISO-8601-Repräsentation
+<|`ZonedDateTime` <|`String` <|ISO-8601-Repräsentation
+<|`Period` <|`String` <|ISO-8601-Repräsentation
+<|`Duration` <|`long` <|`Duration` wird in Nanosekunden gespeichert.
+|====
+
+=== Altanwendungen
+
+Für alte Anwendungen, die nicht die _Java 8 Date Time API_ verwenden, sondern noch `java.util.Date` verwenden, gelten die folgenden Vorgaben.
+
 In der Datenbank erfolgt die Speicherung in einem Attribut vom Typ `TIMESTAMP`.
 In der Entitätsklasse ist das Mapping wie folgt anzugeben:
 
@@ -218,22 +274,6 @@ getTimestamp().compareTo(getDate()); // OK
 .getDate().compareTo(getTimestamp()); // Nicht OK
 .getDate().equals(getTimestamp()); // Nicht OK
 ----
-
-Analoges gilt für die Verwendung im Regelwerk (siehe <<RegelwerkKonzept>>). Hier wird automatisch `compareTo` verwendet.
-Das Attribut mit der höheren Genauigkeit muss aber auf der linken Seite des Vergleichsoperators stehen:
-
-[source,java]
-----
-rule "Datums-Operation"
-  when
-    einObjekt(timestamp < date) // OK
-    einObjekt(timestamp == date) // OK
-    einObjekt(date > timestamp) // Nicht OK
-  then
-  ...
-end
-----
-//Line Thrugh geht in Source-Blöcken nicht
 
 Für Berechnungen, z. B. das Hinzuaddieren von Tagen, oder das Setzen von Feldern, ist der
 Daten-Typ `java.util.Calendar` zu verwenden. In diesem Fall wird im Anwendungskern temporär ein `Calendar`-Objekt
