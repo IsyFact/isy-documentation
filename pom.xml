@@ -5,7 +5,7 @@
 
     <groupId>de.bund.bva.isyfact</groupId>
     <artifactId>isy-documentation</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
