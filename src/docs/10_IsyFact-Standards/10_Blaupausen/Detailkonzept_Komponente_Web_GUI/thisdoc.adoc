@@ -24,7 +24,7 @@ Darüber hinaus stellt es die wesentlichen Schritte für den effektiven Aufbau e
 Zielgruppe dieses Dokuments sind Entwickler und Architekten, die die IsyFact-konforme Umsetzung einer Web-GUI angehen.
 Vorkenntnisse mit den Technologien Spring Web Flow und JSF erleichtern den Einstieg und das Verständnis der in diesem Konzept enthaltenen Vorgaben.
 
-Das Dokument ist in fünf Teile gegliedert:
+Das Dokument ist in sieben Teile gegliedert:
 
 * Darstellung der Anforderungen (Kapitel <<anforderungen>>)
 * Überblick über die verwendeten Basistechnologien (Kapitel <<verwendete-basistechnologien>>).
