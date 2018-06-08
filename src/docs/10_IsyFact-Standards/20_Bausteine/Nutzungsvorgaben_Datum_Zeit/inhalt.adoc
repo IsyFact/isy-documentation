@@ -158,12 +158,6 @@ Bei Zeiträumen die nur aus Datumsangaben bestehen, ist die Anfangszeit 00:00 de
 Intern werden Anfang und Ende mit Angabe der Zeitzone gespeichert, um die Dauer bei Zeitumstellungen korrekt berechnen zu können.
 Wird bei der Erstellung keine Zeitzone angegeben, wird Standard-Zeitzone der JVM verwendet.
 
-[[persistenz]]
-=== Persistenz
-
-Zur Unterstützung der Persistenz der Klassen aus Java 8 stellt _isy-datetime_ Attribute Converter bereit.
-Siehe dazu das Kapitel 4.3.
-
 [[berechnungen]]
 == Berechnungen
 
@@ -264,29 +258,6 @@ Die Klasse `Zeitraum` aus _isy-datetime_ stellt dazu die Methode `isInZeitraum()
 +
 Die Klasse `Zeitraum` aus _isy-datetime_ stellt dazu die Methode `ueberschneidetSichMit()` bereit.
 
-
-[[persistenz-1]]
-== Persistenz
-
-Die Querschnittsbibliothek _isy-datetime_ setzt die Persistenz der Klassen aus der _Java 8 Date and Time API_ gemäß <<KonzeptDatumZeit>> mit Attribute Convertern aus JPA 2.1 um.
-Die Converter sind automatisch aktiv.
-Die Bibliothek bringt für folgende Klassen Attribute Converter mit:
-
-:desc-table-Mapping: Mapping
-[id="table-Mapping",reftext="{table-caption} {counter:tables}"]
-.{desc-table-Mapping}
-[cols="^,^,^",options="header",]
-|====
-|*Java 8 Typ* |*Mapping auf* |*Bemerkung*
-<|`LocalTime` <|`java.sql.Time` <|Zeiteinheiten kleiner als Sekunde gehen verloren.
-<|`LocalDate` <|`java.sql.Date` |
-<|`LocalDateTime` <|`java.sql.Timestamp` |
-<|`OffsetTime` <|`String` <|ISO-8601-Repräsentation
-<|`OffsetDateTime` <|`String` <|ISO-8601-Repräsentation
-<|`ZonedDateTime` <|`String` <|ISO-8601-Repräsentation
-<|`Period` <|`String` <|ISO-8601-Repräsentation
-<|`Duration` <|`long` <|`Duration` wird in Nanosekunden gespeichert.
-|====
 
 [[testunterstützung]]
 == Testunterstützung
