@@ -1,0 +1,644 @@
+[[aufbau-der-log-infrastruktur]]
+= Aufbau der Log-Infrastruktur
+
+Die Log-Infrastruktur beschreibt die IT-Systeme und Mechanismen, die zur Verteilung, Verarbeitung, Auswertung und Archivierung der 
+erstellten Logdateien eingesetzt werden und deren Zusammenspiel untereinander.
+In <<fig-6>> ist eine Übersicht der logischen Komponenten der Log-Infrastruktur dargestellt.
+Dabei kommen ausschließlich freie IT-Systeme zum Einsatz, die auf dem ELK-Stack (Elasticsearch, Logstash und 
+Kibana) basieren.
+
+NOTE: http://www.elasticsearch.org/overview/
+
+:desc-image-loginfraelkr: Logische Komponenten der Log-Infrastruktur
+[id="image-loginfraelkr",reftext="{figure-caption} {counter:figures}"]	 
+.{desc-image-loginfraelkr}
+image::loginfraelkr.png[align="center"]
+
+// ist RF im Bild richtig?
+ 
+Die Kernaspekte der Loginfrastruktur sind:
+
+* **Quellen**: Die Anwendungen schreiben ihre Logeinträge in Logdateien.
+Die Dateien können dabei als Schnittstelle von der Anwendung zur Log-Infrastruktur gesehen werden – jeder Logeintrag, der in eine Datei geschrieben wurde, 
+wird von da an durch die Infrastruktur verwaltet.
++
+[underline]#Anmerkung#: Das Loggen in Dateien hat gegenüber dem direkten Loggen über eine Netzwerkschnittstelle den Vorteil, dass es robuster gegen Ausfälle der Netzwerkverbindung bzw.
+des empfangenden Systems ist.
+Zudem erlaubt es eine sehr einfache Sicherung (Archivierung) der Logs auf Dateiebene.
+
+* **Indizierung**: Eine Kernanforderung an die Infrastruktur ist es, die verschiedenen Log-Quellen einheitlich, zuverlässig und „nahe Echtzeit“ im zentralen Suchserver zu indizieren.
+Zu diesem Zweck wird eine zuverlässige Transport- und Konvertierungsinfrastruktur aufgebaut.
+Sie besteht aus den folgenden Komponenten:
+** **Shipper**: Aufgabe des Shippers ist es, die verschiedenen Log-Quellen an die Infrastruktur anzubinden.
+Hierzu werden Logstash-Instanzen eingesetzt, die es sehr einfach ermöglichen, verschiedene Quellen und Ziele miteinander zu verbinden.
+Logstash wird so konfiguriert, dass es die Einträge der Log-Quellen kontinuierlich einliest und an den nachgelagerten Puffer übergibt.
+** **Puffer**: Im Puffer werden alle zu indizierenden Einträge zwischengespeichert, bevor sie sequentiell durch den nachgelagerten Indexer weiterverarbeitet werden.
+Die Verwendung des Puffers ermöglicht es, Lastspitzen abzufangen.
+Als Puffer kommt Redis zum Einsatz.
++
+NOTE: Redis http://redis.io
+** **Indexer**: Aufgabe des Indexers ist es, die Logeinträge einheitlich im Suchserver zu indizieren.
+Dazu werden die Logeinträge sequentiell aus dem Puffer eingelesen und im Suchserver (Elasticsearch) indiziert.
+Hierzu kommt ebenfalls eine Logstash-Instanz zum Einsatz.
+Logstash bietet auch hierfür die Möglichkeit, die beiden Systeme (Redis und Elasticsearch) deklarativ miteinander zu verbinden.
+* *Suchserver und Analysetool:* Zur Analyse der Logeinträge wird ein zentraler Suchserver verwendet, auf dem mit Hilfe eines Analysetools Auswertungen durchgeführt werden können:
+** **Suchserver**: Als Suchserver kommt Elasticsearch zum Einsatz – ein sehr verbreiteter, hoch skalierbarer und etablierter Suchserver auf Basis von Apache Lucene.
+** **Auswertungstool**: Zur Auswertung der in Elasticsearch gespeicherten Logeinträge wird Kibana verwendet.
+Kibana stellt eine grafische Benutzeroberfläche zum einfachen Formulieren auch komplexer Auswertungen auf dem Datenbestand zur Verfügung.
+
+Die Archivierung der Logs erfolgt auf Ebene der Log-Quellen (Dateien). Durch das Schreiben zeitlich rollierender Logdateien durch die
+ Anwendungen (vergleiche dazu <<NutzungsvorgabenLogging>>) 
+ist es möglich, die Logs von Anwendungen in festen Zeitintervallen – bspw.
+stündlich oder täglich – auf einen Archivserver zu verschieben.
+Die rollierten Logs werden dabei bereits durch die Anwendungen komprimiert.
+Logdateien von Batches können nach Abschluss des jeweiligen Batchlaufes verschoben werden, müssen bei Bedarf aber noch durch die Umgebung komprimiert werden.
+Das Verschieben ist Aufgabe der Betriebsumgebung.
+
+Im Folgenden wird die Konfiguration der einzelnen Komponenten beschrieben.
+
+[[shipper-logstash]]
+== Shipper (Logstash)
+
+Eine Logstash-Konfigurationsdatei besteht aus drei Bereichen:
+
+* **Input**: Zur Definition der einzulesenden Log-Quellen
+* **Filter**: Zur Definition von Filtern, die auf die Logeinträge angewendet werden
+* **Output**: Zur Definition der Ausgabekanäle der Logdateien
+
+[source,c]
+----
+input {
+  ...
+}
+
+filter {
+  ...
+}
+
+output {
+  ...
+}
+----
+
+[[log-quellen-input]]
+=== Log-Quellen (Input)
+
+Als Log-Quellen werden ausschließlich Dateien verwendet, die in gleicher Weise eingelesen werden.
+Die Konfiguration der Quellen erfolgt immer nach folgendem Schema:
+
+[source,c]
+----
+# Zum Einlesen von einzeiligen Logs
+file {
+  path => "<Pfad>"
+  codec => "plain" {
+    charset => "UTF-8"
+  }
+  type => "<Typ>"
+}
+
+# Zum Einlesen von Logs im JSON-Format
+file {
+  path => "<Pfad>"
+  codec => json {
+    charset => "UTF-8"
+  }
+  type => "<Typ>"
+}
+----
+
+Die Platzhalter bedeuten dabei:
+
+* **Pfad**: Absoluter Pfad der einzulesenden Datei.
+* **Typ**: Der angegebene Typ wird als JSON-Attribut an alle Logeinträge dieser Quelle angehängt.
+Er wird primär dazu verwendet, um nachfolgende Filterungen zu steuern.
+
+Die Konfigurationen zum Einlesen der Logdateien der verschiedenen Systemtypen sind in Abschnitt <<logstash-shipper-und-indexer>> dargestellt.
+
+[[filter]]
+=== Filter
+
+Im Shipper werden keine Filter definiert (dies erfolgt im Indexer), um das Einlesen und Übertragen der Logeinträge in den Puffer möglichst effizient umzusetzen.
+
+[[log-ziele-output]]
+=== Log-Ziele (Output)
+
+Es wird ein einzelner Ausgabekanal definiert, um die Logeinträge zur weiteren Verarbeitung an den Puffer (Redis) zu leiten.
+
+[source,c]
+----
+output {
+  # Weiterleiten der Protokolleinträge in den Puffer
+  redis {
+    host => "<host>"
+    port => "<port>"
+    data_type => "list"
+    key => "log"
+  }
+}
+----
+
+Die Platzhalter bedeuten dabei:
+
+* **host**: IP-Adresse des Servers, unter der die Redis-Instanz erreichbar ist.
+* **port**: Port, unter dem die Redis-Instanz erreichbar ist. (Standard: 6379)
+
+[[puffer-redis]]
+== Puffer (Redis)
+
+Für den Einsatz von Redis als Puffer sind keine speziellen Konfigurationen notwendig.
+Der Grund, warum Redis als Puffer eingesetzt wird (und nicht Beispielsweise RabbitMQ), liegt in der hohen Performanz und Einfachheit der Lösung.
+
+[[indexer-logstash]]
+== Indexer (Logstash)
+
+Als Indexer wird ebenfalls _logstash_ eingesetzt, dessen grundlegende Funktionsweise bereits in Abschnitt <<shipper-logstash>> beschrieben 
+wurde und an dieser Stelle nicht wiederholt wird.
+
+Die Konfiguration des Indexers umfasst folgende Elemente:
+
+* Einen Eingabekanal zum Lesen der Einträge aus Redis
+* Mehrere Filter zum Parsen und Vereinheitlichen der Logeinträge
+* Zwei Ausgabekanäle zum getrennten Indizieren der Einträge in Elasticsearch.
+Dabei werden Logeinträge, die Fachdaten enthalten, in einen separaten Index geschrieben, der nur durch berechtigte Personen durchsucht werden kann.
+
+[source,c]
+----
+input {
+  redis {
+    host => "<host_redis>"
+    port => "<port_redis>"
+    data_type => "list"
+    key => "log"
+  }
+}
+
+filter {
+  ... // <1>
+}
+output {
+  if [fachdaten] == "true" {
+    elasticsearch {
+      host => "<host_elasticsearch>"
+      port => "<port_elasticsearch>"
+      index => "log_fachdaten-%{+YYYY.MM.dd}"
+    }
+  } else {
+    elasticsearch {
+      host => "<host_elasticsearch>"
+      port => "<port_elasticsearch>"
+      index => "log-%{+YYYY.MM.dd}"
+    }
+  }
+}
+----
+<1> siehe Kapitel <<filter-1>>
+
+Die Platzhalter sind dabei selbsterklärend und analog zu den vorgehenden Abschnitten.
+Die verwendeten Filter werden im nachfolgenden Abschnitt beschrieben.
+
+[[filter-1]]
+=== Filter
+
+Filter werden zum Parsen und Vereinheitlichen der Logeinträge verwendet.
+Es kommen dabei die folgenden Filterarten zum Einsatz:
+
+[[grok]]
+==== grok
+
+
+Grok-Filter werden verwendet, um Attribute der Logeinträge an Hand regulärer Ausdrücke zu parsen und die enthaltenen Felder in separate Attribute zu schreiben.
+
+[source,c]
+----
+grok {
+  match => ["<Attributname>","<RegExp>"]
+}
+----
+
+Die Parameter bedeuten dabei:
+
+* 'Attributname': Name des Attributs, dessen Wert geparsed werden soll.
+* 'RegExp': Regulärer Ausdruck (im Format von Grok) zum Parsen des Werts.
+
+NOTE: http://logstash.net/docs/1.4.2/filters/grok
+
+Folgende grok-Filter werden definiert:
+
+* Es wird ein allgemeiner grok-Filter für alle Logeinträge definiert, der den Dateinamen der Eingabedatei ermittelt (standardmäßig liegt nur der komplette Pfad vor).
+
+[source,c]
+----
+grok {
+  match => ["path","%{GREEDYDATA}/%{GREEDYDATA:dateiname}.log"]
+}
+----
+
+* Es wird ein weiterer allgemeiner grok-Filter definiert, der die im Dateinamen enthaltenen Informationen (hostid und systemid) aus dem Dateinamen liest:
+
+[source,c]
+----
+grok {
+  match => ["dateiname","%{GREEDYDATA:hostid}_%{GREEDYDATA:systemid}.log"]
+}
+----
+
+* Für jedes System, welches im Format „plain“ (einfacher Text) logged, wird ein spezifischer grok-Filter definiert, der die enthaltenen Informationen 
+in klar definierte JSON-Attribute aufteilt.
+Die Konfigurationen für die verschiedenen Systemtypen sind in Abschnitt <<logstash-shipper-und-indexer>> definiert.
+
+[[date]]
+==== date
+
+Date-Filter werden verwendet, um den Zeitpunkt des Logeintrags zu parsen und in das Logstash-Event als @timestamp zu übernehmen.
+
+[source,c]
+----
+date {
+  match => ["<Attributname>","<Format>"]
+  timezone => "<Zeitzone>"
+}
+----
+
+Die Parameter bedeuten dabei:
+
+* 'Attributname': Name des Attributs, in dem der Zeitstempel abgelegt ist.
+* 'Format': Format des zu parsenden Zeitstempels (in Joda-Time).
+* 'Zeitzone': Zeitzone des Zeitstempels (in Joda-Time).
+
+NOTE: Joda-Time Zeitstempel http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
+
+NOTE: Joda-Time Zeitzone http://joda-time.sourceforge.net/timezones.html
+
+Folgende date-Filter werden definiert:
+
+* Für jede Systemart muss ein spezifischer date-Filter definiert werden, der den Zeitpunkt des Logeintrags in das Logstash-Event übernimmt.
+Diese sind ebenfalls in Abschnitt <<logstash-shipper-und-indexer>> definiert.
+
+[[mutate]]
+==== mutate
+
+mutate-Filter können dazu verwendet werden, Attribute zu setzen oder zu manipulieren.
+Bei allen Log-Quellen, die nicht Register Factory-konform sind, wird ein mutate-Filter verwendet, um das Attribut '@timestamp' (siehe Abschnitt <<date>>) 
+einheitlich in das Feld 'zeitstempel' zu schreiben:
+
+[source,c]
+----
+mutate { +
+  add_field => [ "zeitstempel", "%{@timestamp}" ] +
+}
+----
+
+Dies ist sinnvoll, da der Zeitstempel dadurch unter einem einheitlichen Namen im ISO-Format abgelegt ist, und das Attribut '@timestamp' eher ein 
+internes Attribut zur Steuerung von logstash ist, welches theoretisch später durch logstash überschrieben werden könnte.
+
+[[konfigurationsvorlagen]]
+= Konfigurationsvorlagen
+
+Dieses Kapitel enthält Konfigurationsvorlagen zur Einrichtung der Log-Infrastruktur.
+
+[[logstash-shipper-und-indexer]]
+=== Logstash (Shipper und Indexer)
+
+[[register-factory-konforme-anwendungen]]
+==== Register Factory-konforme Anwendungen
+
+// muss das nicht IF konform heissen????
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen IsyFact-konformer Logdateien
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => json {
+    charset => "UTF-8"
+  }
+  type => "isy"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# IsyFact-konforme Anwendungen
+if [type] == "isy" {
+  date {
+    match => [ "zeitstempel", "yyyy-MM-dd'T'HH:mm:ss.SSS" ]
+    timezone => "UTC"
+  }
+}
+----
+
+[[register-factory-konforme-anwendungen-vor-logging-konzept-version-3.0]]
+==== Register Factory-konforme Anwendungen (vor Logging-Konzept Version 3.0)
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen IsyFact-konformer Logdateien (vor Version 3.0)
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  }
+  type => "isy"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# Register Factory-konforme Anwendungen vor Version 3.0
+if [type] == "isy" {
+  grok {
+  match => ["message","\[D: %\{GREEDYDATA:zeitstempel}\] \[P: %\{GREEDYDATA:level}\] 
+  \[K: %\{GREEDYDATA:korrelationsid}\] \[T: %\{GREEDYDATA:thread}\] 
+  \[L: %\{GREEDYDATA:logger}\] - \[M: %\{GREEDYDATA:nachricht}\] "]
+  }
+  date {
+    match => [ "zeitstempel", "yyyy-MM-dd'T'HH:mm:ss.SSS" ]
+    timezone => "UTC"
+  }
+}
+----
+
+// Laufwerksbuchstaben.... das ist BVA spezifisches
+
+[[tomcat-access]]
+==== Tomcat access
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen Tomcat-Access-Logs
+file {
+path => "<Pfad zu Logdatei>"
+codec => plain {
+charset => "UTF-8"
+}
+type => "tomcat_access"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# Tomcat-Access-Log
+if [type] == "tomcat_access" {
+  grok {
+    match => ["message","%\{GREEDYDATA:tomcathost} 
+	%\{GREEDYDATA:tomcatthread} %\{GREEDYDATA:benutzername} 
+	\[%\{GREEDYDATA:zeitstempelroh}\] '%\{GREEDYDATA:request}'
+	%\{GREEDYDATA:statuscode} %\{GREEDYDATA:anzahlbytes} 
+	%\{GREEDYDATA:thread} %\{GREEDYDATA:verarbeitungszeit} 
+	%\{GREEDYDATA:uniqueid} %\{GREEDYDATA:tomcatname}"]
+  }
+  date {
+    match => [ "zeitstempelroh", "dd/MMM/yyyy:HH:mm:ss Z" ]
+    timezone => "UTC"
+  }
+  mutate {
+    add_field => [ "zeitstempel", "%{@timestamp}" ]
+  }
+}
+----
+
+[[wrapper-log]]
+==== Wrapper-Log
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen Tomcat-Wrapper-Logs
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  }
+  type => "wrapper"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# Wrapper-Log
+if [type] == "wrapper" {
+  grok {
+    match => ["message","%\{GREEDYDATA:level} \|
+	%\{GREEDYDATA:prefix} \| %\{GREEDYDATA:zeitstempelroh} \|
+	%\{GREEDYDATA:nachricht}"]
+  }
+  date {
+    match => ["zeitstempelroh", "dd MMM yyyy HH:mm:ss.SSS"]
+    timezone => "UTC"
+  }
+  # Leerzeichen entfernen
+  mutate {
+    strip => [ "prefix" ]
+    add_field => [ "zeitstempel", "%{@timestamp}" ]
+  }
+}
+----
+
+[[apache-access-log-und-error-log]]
+==== Apache access-Log und error-Log
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen Apache-Access-Logs
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => json {
+    charset => "UTF-8"
+  }
+  type => "apacheaccess"
+}
+
+# Einlesen Apache-Error-Logs
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  }
+  type => "apacheerror"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# Apache-Logs
+if [type] == "apache_access" or [type] == "apache_error" {
+  mutate {
+    add_field => [ "zeitstempelroh", "%{zeitstempel}" ]
+  }
+  date{
+    match => ["zeitstempelroh", "dd/MMM/yyyy:HH:mm:ss Z"]
+    timezone => "UTC"
+  }
+  mutate {
+    add_field => [ "zeitstempel", "%{@timestamp}" ]
+  }
+  # (Optional) Apache-Logs müssen als „Fachdaten“ gekennzeichnet werden, falls in den Requestparametern der URL 
+  fachliche Daten enthalten sein können. Dies ist insbesondere bei REST-Services der Fall, die Suchen anbieten.
+  mutate {
+    add_field => [ "fachdaten", "true" ]
+  }
+}
+----
+
+[[mailserver-logs]]
+==== Mailserver-Logs
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen der Mailserver-Logs
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  } type => "mailserver"
+}
+
+# Einlesen der Mailserver-Logs (Error)
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  } type => "mailerror"
+}
+
+# Einlesen der Mailserver-Logs (Error)
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  } type => "smtpprotokoll"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# Mailserver-Logs
+if [type] == "mailserver" or [type] == "mailerror" or [type] == "smtpprotokoll" {
+  grok {
+    match => ["message","%{GREEDYDATA}%{SYSLOGTIMESTAMP:zeitstempelroh} 
+    %{DATA:mailserver} %{GREEDYDATA:nachricht}"]
+  }
+  mutate {
+    strip => ["mailserver"]
+  }
+
+  # Locale muss gesetzt werden, da die Monatsangaben auf
+  # Englisch sind (Dec vs. Dez)
+  date {
+    match => ["zeitstempelroh", "MMM dd HH:mm:ss", "MMM d HH:mm:ss"]
+    timezone => "UTC"
+    locale => "en"
+  }
+  mutate {
+    add_field => [ "zeitstempel", "%{@timestamp}" ]
+  }
+}
+----
+
+[[suchverfahren-log]]
+==== Suchverfahren-Log
+
+Das Alphanumerische Suchverfahren erstellt mehrere Logdateien (asv-searches.log, asv-updates.log, asv-compares.log), die alle auf die gleiche Weise verarbeitet werden können.
+
+*Input im Shipper:*
+
+[source,c]
+----
+# Einlesen der ASV-Logs
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => "plain"
+  type => "asv"
+  }
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# asv-Log
+if [type] == "asv" {
+  grok {
+    match => ["message", '%{DATA:zeitstempelroh} %{DATA} 
+      %{DATA:level} %{GREEDYDATA} - %{GREEDYDATA:nachrichtroh}']
+  }
+  json {
+    source => "nachrichtroh"
+    target => "details"
+  }
+  date {
+    match => [ "zeitstempelroh", "yyyy-MM-dd/HH:mm:ss.SSS" ]
+    timezone => "UTC"
+  }
+  mutate {
+    add_field => [ "zeitstempel", "%{@timestamp}" ]
+    replace => ["korrelationsid", "_correlationId" ]
+  }
+}
+----
+
+[[logstash-log]]
+==== logstash-Log
+
+**Input im Shipper:**
+
+[source,c]
+----
+# Einlesen der logstash-Logs
+file {
+  path => "<Pfad zu Logdatei>"
+  codec => plain {
+    charset => "UTF-8"
+  }
+  type => "logstash"
+}
+----
+
+*Filter im Indexer:*
+
+[source,c]
+----
+# logstash-Log
+if [type] == "logstash" {
+  grok {
+    match => ["message", '{:timestamp=>"(?<timestamp>.*)",(.*) 
+	:message=>"(?<nachricht>.*)",(.*) :level=>:(?<level>.*)}']
+  }
+  mutate {
+    replace => ["zeitstempelroh", "%{timestamp}" ]
+    remove_field => msg
+  }
+  date {
+    match => [ "zeitstempelroh", "ISO8601" ]
+    remove_field => 'timestamp'
+  }
+  mutate {
+    add_field => [ "zeitstempel", "%{@timestamp}" ]
+  }
+}
+----
