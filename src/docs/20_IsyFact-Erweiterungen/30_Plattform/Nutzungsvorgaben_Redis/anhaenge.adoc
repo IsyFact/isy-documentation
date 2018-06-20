@@ -1,0 +1,97 @@
+[[AnhangA]]
+= Anhang A
+
+[[cluster-auf-einem-einzelnen-server-betreiben]]
+== Cluster auf einem einzelnen Server betreiben
+
+Der Cluster kann zu Testzwecken auch auf einem einzelnen Server installiert werden.
+Hierbei werden analog zu Kapitel <<installation-und-konfiguration>> je 3 Master und 3 Slaves konfiguriert.
+Es werden die folgenden zusätzlichen Dateien angelegt:
+
+:desc-table-datbes1: Dateibeschreibungen (1 Server)
+[id="table-datbes1",reftext="{table-caption} {counter:tables}"]	
+.{desc-table-datbes1}
+[cols="m,",options="header"]
+|====
+|Dateiname |Beschreibung
+2+|*/etc/isy-sessionspeicher*
+|
+redis_master-2.conf
+
+redis_master-3.conf
+
+redis_slave-2.conf
+
+redis_slave-3.conf
+
+ |_Analog zu Kapitel <<installation-und-konfiguration>> für die zusätzlichen Instanzen._
+|
+nodes_master-2.conf:
+
+nodes_master-3.conf:
+
+nodes_slave-2.conf:
+
+nodes_slave-3.conf:
+
+ |
+2+|*/etc/init.d*
+|
+isy-sessionspeicher_master-2.sh
+
+isy-sessionspeicher_master-3.sh
+
+isy-sessionspeicher_slave-2.sh
+
+isy-sessionspeicher_slave-3.sh
+
+ |_Analog zu Kapitel <<installation-und-konfiguration>> für die zusätzlichen Instanzen._
+2+|*/var/log/isy-sessionspeicher*
+|
+<HOSTNAME>_redis_master-2.log
+
+<HOSTNAME>_redis_master-3.log
+
+<HOSTNAME>_redis_slave-2.log
+
+<HOSTNAME>_redis_slave-3.log
+
+ |_Analog zu Kapitel <<installation-und-konfiguration>> für die zusätzlichen Instanzen._
+|
+redis_master-2.pid
+
+redis_master-3.pid
+
+redis_slave-2.pid
+
+redis_slave-3.pid
+
+ |
+|====
+
+Auch für diese Konfiguration wird ein fertiges RPM bereitgestellt, welches alle notwendigen Dateien angelegt:
+
+`isy-sessionspeicher_single-host-1.0.0-1.noarch.rpm`
+
+// aktuell?
+
+[[default-konfigurationsparameter]]
+== Default-Konfigurationsparameter
+
+Die Konfigurationsparameter in der Datei `redis-default.conf` entsprechen den Standardeinstellungen von 
+Redis, bis auf folgende Parameter:
+
+:desc-table-datbes1: Defaultkonfiguration
+[id="table-datbes1",reftext="{table-caption} {counter:tables}"]	
+.{desc-table-datbes1}
+[cols="2m,1m,1m,3",options="header"]
+|====
+|Parameter |Wert |Default |Beschreibung
+|daemonize |yes |_no_ |Redis wird als Daemon ausgeführt.
+|databases |64 |0 |Es können bis zu 64 getrennte Datenbanken (Datentöpfe) in Redis genutzt werden..
+|save |"" |60 10000 |Der Inhalt der Datenbank soll nicht auf der Festplatte gesichert werden.
+|cluster-enabled |yes |no |Redis wird als Cluster betrieben.
+|notify-keyspace-events |Egx | |Es werden „Keyspace events“, “Generic commands” und “Expired events” an den Client geschickt.
+Dies ist notwendig, damit der Session-Manager über gelöschte bzw.
+abgelaufene Sessions informiert wird und selbst eigene Ressourcen freigeben kann.
+|====
