@@ -218,8 +218,8 @@ grok {
 
 Die Parameter bedeuten dabei:
 
-* 'Attributname': Name des Attributs, dessen Wert geparsed werden soll.
-* 'RegExp': Regulärer Ausdruck (im Format von Grok) zum Parsen des Werts.
+* `Attributname`: Name des Attributs, dessen Wert geparsed werden soll.
+* `RegExp`: Regulärer Ausdruck (im Format von Grok) zum Parsen des Werts.
 
 NOTE: http://logstash.net/docs/1.4.2/filters/grok
 
@@ -262,9 +262,9 @@ date {
 
 Die Parameter bedeuten dabei:
 
-* 'Attributname': Name des Attributs, in dem der Zeitstempel abgelegt ist.
-* 'Format': Format des zu parsenden Zeitstempels (in Joda-Time).
-* 'Zeitzone': Zeitzone des Zeitstempels (in Joda-Time).
+* `Attributname`: Name des Attributs, in dem der Zeitstempel abgelegt ist.
+* `Format`: Format des zu parsenden Zeitstempels (in Joda-Time).
+* `Zeitzone`: Zeitzone des Zeitstempels (in Joda-Time).
 
 NOTE: Joda-Time Zeitstempel http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
 
@@ -279,8 +279,8 @@ Diese sind ebenfalls in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 ==== mutate
 
 mutate-Filter können dazu verwendet werden, Attribute zu setzen oder zu manipulieren.
-Bei allen Log-Quellen, die nicht Register Factory-konform sind, wird ein mutate-Filter verwendet, um das Attribut '@timestamp' (siehe Abschnitt <<date>>) 
-einheitlich in das Feld 'zeitstempel' zu schreiben:
+Bei allen Log-Quellen, die nicht Register Factory-konform sind, wird ein mutate-Filter verwendet, um das Attribut `@timestamp` (siehe Abschnitt <<date>>) 
+einheitlich in das Feld `zeitstempel` zu schreiben:
 
 [source,c]
 ----
@@ -289,7 +289,7 @@ mutate { +
 }
 ----
 
-Dies ist sinnvoll, da der Zeitstempel dadurch unter einem einheitlichen Namen im ISO-Format abgelegt ist, und das Attribut '@timestamp' eher ein 
+Dies ist sinnvoll, da der Zeitstempel dadurch unter einem einheitlichen Namen im ISO-Format abgelegt ist, und das Attribut `@timestamp` eher ein 
 internes Attribut zur Steuerung von logstash ist, welches theoretisch später durch logstash überschrieben werden könnte.
 
 [[konfigurationsvorlagen]]
@@ -298,10 +298,10 @@ internes Attribut zur Steuerung von logstash ist, welches theoretisch später du
 Dieses Kapitel enthält Konfigurationsvorlagen zur Einrichtung der Log-Infrastruktur.
 
 [[logstash-shipper-und-indexer]]
-=== Logstash (Shipper und Indexer)
+== Logstash (Shipper und Indexer)
 
 [[register-factory-konforme-anwendungen]]
-==== Register Factory-konforme Anwendungen
+=== Register Factory-konforme Anwendungen
 
 // muss das nicht IF konform heissen????
 
@@ -333,7 +333,7 @@ if [type] == "isy" {
 ----
 
 [[register-factory-konforme-anwendungen-vor-logging-konzept-version-3.0]]
-==== Register Factory-konforme Anwendungen (vor Logging-Konzept Version 3.0)
+=== Register Factory-konforme Anwendungen (vor Logging-Konzept Version 3.0)
 
 *Input im Shipper:*
 
@@ -370,7 +370,7 @@ if [type] == "isy" {
 // Laufwerksbuchstaben.... das ist BVA spezifisches
 
 [[tomcat-access]]
-==== Tomcat access
+=== Tomcat access
 
 *Input im Shipper:*
 
@@ -411,7 +411,7 @@ if [type] == "tomcat_access" {
 ----
 
 [[wrapper-log]]
-==== Wrapper-Log
+=== Wrapper-Log
 
 *Input im Shipper:*
 
@@ -451,7 +451,7 @@ if [type] == "wrapper" {
 ----
 
 [[apache-access-log-und-error-log]]
-==== Apache access-Log und error-Log
+=== Apache access-Log und error-Log
 
 *Input im Shipper:*
 
@@ -501,7 +501,7 @@ if [type] == "apache_access" or [type] == "apache_error" {
 ----
 
 [[mailserver-logs]]
-==== Mailserver-Logs
+=== Mailserver-Logs
 
 *Input im Shipper:*
 
@@ -560,7 +560,7 @@ if [type] == "mailserver" or [type] == "mailerror" or [type] == "smtpprotokoll" 
 ----
 
 [[suchverfahren-log]]
-==== Suchverfahren-Log
+=== Suchverfahren-Log
 
 Das Alphanumerische Suchverfahren erstellt mehrere Logdateien (asv-searches.log, asv-updates.log, asv-compares.log), die alle auf die gleiche Weise verarbeitet werden können.
 
@@ -603,7 +603,7 @@ if [type] == "asv" {
 ----
 
 [[logstash-log]]
-==== logstash-Log
+=== logstash-Log
 
 **Input im Shipper:**
 
