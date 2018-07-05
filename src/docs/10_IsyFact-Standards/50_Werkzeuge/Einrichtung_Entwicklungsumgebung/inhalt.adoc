@@ -219,3 +219,97 @@ Wenn ein leeres Statement im Quellcode vorhanden ist, fügt IntelliJ IDEA zwei L
 image::Einrichtung_Entwicklungsumgebung_011.png[align="center"]
 
 *Bewertung:* Ein überflüssiges, leeres Statement-Semikolon ist auffälliger, wenn es am Zeilenanfang steht. Dieser Fall ist allerdings erneut kein Problem der Formatierung, sondern ein Programmierfehler - das Semikolon sollte gelöscht werden.
+
+[[einrichtung-von-checkstyle]]
+= Einrichtung von Checkstyle
+
+Die Einbindung und Konfiguration von Checkstyle erfolgt über Plugins in der verwendeten IDE.
+
+== Installation des Plugins
+
+=== Eclipse
+
+*Schritt 1:* Installationsquelle für Checkstyle hinzufügen
+
+* Den Dialog _Install_ öffnen: menu:Window[Help > Install New Software...]
+* Neben dem Eingabefeld _Work With:_ auf die Schaltfläche btn:[Add...] klicken und folgende Daten eintragen: +
++
+_Name_: Eclipse Checkstyle Plugin +
+_Location_: https://checkstyle.github.io/eclipse-cs/update
+
+:desc-image-checkstyle-source: Installationsquelle für Checkstyle hinzufügen
+[id="image-checkstyle-source",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-checkstyle-source}
+image::Einrichtung_Entwicklungsumgebung_012.png[align="center"]
+
+*Schritt 2:* Checkstyle-Plugin installieren
+
+* Den Eintrag _Checkstyle_ auswählen und die Installation mit btn:[Next >] bis zum Ende ausführen.
+
+:desc-image-checkstyle-auswaehlen: Checkstyle-Plugins für Eclipse installieren
+[id="image-checkstyle-auswaehlen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-checkstyle-auswaehlen}
+image::Einrichtung_Entwicklungsumgebung_013.png[align="center"]
+
+=== IntelliJ IDEA
+
+*Schritt 1:* Checkstyle-Plugin suchen
+
+* Den Dialog _Plugins_ öffnen: menu:[File > Settings... > Plugins]
+* Im Suchfeld _checkstyle_ eingeben. Wird kein Treffer angezeigt, dann auf den Link _Search in repositories_ klicken.
+
+:desc-image-checkstyle-suche: Suche nach Checkstyle-Plugin
+[id="image-checkstyle-suche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-checkstyle-suche}
+image::Einrichtung_Entwicklungsumgebung_014.png[align="center"]
+
+*Schritt 2:* Checkstyle-Plugin installieren
+
+* Das Checkstyle-Plugin mit einem Klick auf die grüne Schaltfläche btn:[Install] installieren.
+
+:desc-image-checkstyle-intellij: Checkstyle-Plugin für IntelliJ IDEA installieren
+[id="image-checkstyle-intellij",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-checkstyle-intellij}
+image::Einrichtung_Entwicklungsumgebung_015.png[align="center"]
+
+== Konfiguration des Plugins
+
+=== Eclipse
+
+*Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
+
+* Menüeintrag menu:Window[Preferences > Checkstyle]
+
+*Schritt 2:* Import der Checkstyle-Konfiguration von IsyFact
+
+* Mit der Schaltfläche btn:[New...] einen neuen Eintrag anlegen
+* Als _Name_ "IsyFact" eingeben
+* Mit btn:[Import...] die Checkstyle-Konfiguration aus dem Werkzeugverzeichnis der IsyFact importieren
+* Mit btn:[Set as Default] die Konfiguration als Standard aktivieren und den Dialog mit btn:[Apply and Close] schließen
+
+:desc-image-checkstyle-import-eclipse: Import der Checkstyle-Konfiguration für Eclipse
+[id="image-checkstyle-import-eclipse",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-checkstyle-import-eclipse}
+image::Einrichtung_Entwicklungsumgebung_016.png[align="center"]
+
+* Das Checkstyle-Fenster kann anschließend über btn:[Window > Show View > Other... > Checkstyle violations] angezeigt werden
+
+=== IntelliJ IDEA
+
+*Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
+
+* Menüeintrag menu:[File > Settings... > Checkstyle]
+
+*Schritt 2:* Import der Checkstyle-Konfiguration von IsyFact
+
+* Mit der Schaltfläche btn:[+] einen neuen Eintrag anlegen
+* Als _Description_ "IsyFact" eingeben
+* Mit btn:[Browse...] die Checkstyle-Konfiguration aus dem Werkzeugverzeichnis der IsyFact importieren
+* Mit einem Haken in der Spalte _Active_ die Konfiguration aktivieren
+
+:desc-image-checkstyle-import-intellij: Import der Checkstyle-Konfiguration für IntelliJ IDEA
+[id="image-checkstyle-import-intellij",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-checkstyle-import-intellij}
+image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
+
+* Das Checkstyle-Fenster kann anschließend über eine Schaltfläche in den _Tool Buttons_ angezeigt werden
