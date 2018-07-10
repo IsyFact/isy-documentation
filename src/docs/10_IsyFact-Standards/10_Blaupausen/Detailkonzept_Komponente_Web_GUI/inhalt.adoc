@@ -1361,7 +1361,6 @@ Es besteht die Möglichkeit, für jeden Flow die folgenden Teile des Seitenrahme
 - Linkes Logo im Header (`gui.header.logo.links.pfad`)
 - Rechtes Logo im Header (`gui.header.logo.rechts.pfad`)
 - Text unterhalb des rechten Logos im Header (`gui.header.text.logo.rechts`)
-- Farbwert der Anwendungsgruppe (`gui.anwendungsgruppe.farbwert`)
 
 Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über die Bean-Definition eingebunden werden:
 
@@ -1396,7 +1395,6 @@ Anwendung können globale Standardwerte definieren. Definieren sie diese nicht, 
 |`gui.header.logo.links.pfad`   |kein Logo
 |`gui.header.logo.rechts.pfad`  |kein Logo
 |`gui.header.text.logo.rechts`  |kein Text
-|`gui.anwendungsgruppe.farbwert`|image:anwendungsgruppe-standardfarbe.png[width=25]
 |====
 
 Die gleichen Werte können Anwendungen zusätzlich auf Ebene sogenannter _Anwendungsgruppen_ setzen, um den Seitenrahmen noch weiter an ihre Anforderungen anzupassen.
@@ -1412,7 +1410,6 @@ Setzt die Anwendungen einzelne Werte für bestimmte Anwendungsgruppen nicht, wer
 |`gui.header.logo.links.pfad.<anwendungsgruppe>`   |`gui.header.logo.links`
 |`gui.header.logo.rechts.pfad.<anwendungsgruppe>`  |`gui.header.logo.rechts`
 |`gui.header.text.logo.rechts.<anwendungsgruppe>`  |`gui.header.text.logo.rechts`
-|`gui.anwendungsgruppe.farbwert.<anwendungsgruppe>`|`gui.anwendungsgruppe.farbwert`
 |====
 
 Das folgende Beispiel zeigt eine vollständige Konfiguration.
@@ -1426,7 +1423,6 @@ Das folgende Beispiel zeigt eine vollständige Konfiguration.
 gui.header.logo.links.pfad = /javax.faces.resource/img/isyfactschriftzug.jpeg
 gui.header.logo.rechts.pfad = /javax.faces.resource/img/isyfactlogo.jpeg
 gui.header.text.logo.rechts = IsyFact
-gui.anwendungsgruppe.farbwert = #337299
 
 # Defintion der Anwendungsgruppen
 gui.anwendungsgruppen.ids = gruppeEins,gruppeZwei,gruppeDrei
@@ -1435,11 +1431,6 @@ gui.anwendungsgruppen.ids = gruppeEins,gruppeZwei,gruppeDrei
 gui.anwendungsgruppen.urls.gruppeEins = startseiteFlow,nachrichtenFlow
 gui.anwendungsgruppen.urls.gruppeZwei = formulareFlow,beispiellinkFlow
 gui.anwendungsgruppen.urls.gruppeDrei = validierungFlow,wizardDialogFlow
-
-# Farbwerte der Anwendungsgruppen
-gui.anwendungsgruppe.farbwert.gruppeEins = #46c095
-gui.anwendungsgruppe.farbwert.gruppeZwei = #887299
-gui.anwendungsgruppe.farbwert.gruppeDrei = #ffbbe1
 
 # Logos / Texte der Anwendungsgruppen
 gui.header.logo.links.pfad.gruppeZwei = /javax.faces.resource/img/andererschriftzug.jpeg
