@@ -37,6 +37,7 @@ NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden
 //|13.12.2016 |2.25 |Beschreibung des Ressourcen Cachings
 //|20.01.2017 |2.26 |Vorlageanwendung IsyFact eingepflegt
 //|12.09.2017 |2.27 |Dokumentation des Features _Optionale Anzeige Versionsnummer in Webseitentitel
+//|11.07.2018 |2.28 |Einarbeitung von JSP-spezifischen WebGui Kapiteln aus dem Styleguide (Accso Wiki)
 
 *Java Bibliothek / IT-System*
 
