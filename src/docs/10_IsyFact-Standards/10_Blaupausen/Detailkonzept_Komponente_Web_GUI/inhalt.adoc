@@ -2177,6 +2177,52 @@ Hier muss ein Listener registriert werden, über welchen die Security Bedürfnis
 </bean>
 ----
 
+[[konfiguration-portalfarbe]]
+== Konfiguration Portalfarbe
+
+Für eine Anwendung kann eine Basisfarbe / Portalfarbe konfiguriert werden. Von dieser `portalColor` werden
+viele der weiteren Farbstyles für die Anwendung abgeleitet und in der generierten Datei `color.css` abgelegt,
+die in der Zielanwendung einzubinden ist.
+
+Zur Generierung der Datei `color.css` mit der eigenen Portalfarbe sind folgende Schritte erforderlich:
+
+1.  Konfiguration der Portalfarbe
+
+In der Datei `Gruntfile.js` ist die Basisfarbe / Portalfarbe zu setzen:
+
+:desc-listing-gruntPortalfarbe: Portalfarbe in Gruntfile.js konfigurieren
+[id="listing-gruntPortalfarbe",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-gruntPortalfarbe}
+[source, xml]
+----
+var helper = require('./helper/helper');
+module.exports = function (grunt) {
+
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-less');
+
+    var portalColor = '#004179';
+
+    grunt.initConfig({
+        ...
+----
+[start=2]
+2.   Maven Install
+
+In der Bibliothek `isy-style` ist ein "Maven install" durchzuführen. Dadurch wird ein "grunt build" ausgelöst und die Farbstyles befinden sich nach der Generierung
+in `target/color.css`.
+
+[start=3]
+3.   Einbindung in Zielanwendung
+
+Die Datei `color.css` aus dem Target-Verzeichnis von `isy-style` ist in die Zielanwendung unterhalb des WEB-INF Verzeichnisses zu kopieren.
+
+:desc-image-colorCssPosition: Zielordner für color.css Datei
+[id="image-colorCssPosition",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-colorCssPosition}
+image::color-css-position.png[align="center"]
+
 [[konfiguration-einer-anwendung-unter-nutzung-der-isy-web]]
 == Konfiguration einer Anwendung unter Nutzung der `isy-web`
 
