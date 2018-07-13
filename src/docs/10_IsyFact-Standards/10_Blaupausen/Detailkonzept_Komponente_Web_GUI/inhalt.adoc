@@ -2186,9 +2186,7 @@ die in der Zielanwendung einzubinden ist.
 
 Zur Generierung der Datei `color.css` mit der eigenen Portalfarbe sind folgende Schritte erforderlich:
 
-1.  Konfiguration der Portalfarbe
-
-In der Datei `Gruntfile.js` ist die Basisfarbe / Portalfarbe zu setzen:
+*1.  Konfiguration der Portalfarbe*: In der Datei `Gruntfile.js` ist die Basisfarbe / Portalfarbe zu setzen:
 
 :desc-listing-gruntPortalfarbe: Portalfarbe in Gruntfile.js konfigurieren
 [id="listing-gruntPortalfarbe",reftext="{listing-caption} {counter:listings }"]
@@ -2208,15 +2206,11 @@ module.exports = function (grunt) {
         ...
 ----
 [start=2]
-2.   Maven Install
-
-In der Bibliothek `isy-style` ist ein "Maven install" durchzuführen. Dadurch wird ein "grunt build" ausgelöst und die Farbstyles befinden sich nach der Generierung
+*2.   Maven Install*: In der Bibliothek `isy-style` ist ein "Maven install" durchzuführen. Dadurch wird ein "grunt build" ausgelöst und die Farbstyles befinden sich nach der Generierung
 in `target/color.css`.
 
 [start=3]
-3.   Einbindung in Zielanwendung
-
-Die Datei `color.css` aus dem Target-Verzeichnis von `isy-style` ist in die Zielanwendung unterhalb des WEB-INF Verzeichnisses zu kopieren.
+*3.   Einbindung in Zielanwendung*: Die Datei `color.css` aus dem Target-Verzeichnis von `isy-style` ist in die Zielanwendung unterhalb des WEB-INF Verzeichnisses zu kopieren.
 
 :desc-image-colorCssPosition: Zielordner für color.css Datei
 [id="image-colorCssPosition",reftext="{figure-caption} {counter:figures}"]
