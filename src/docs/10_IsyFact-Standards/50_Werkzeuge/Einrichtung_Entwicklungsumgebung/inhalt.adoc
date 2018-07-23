@@ -298,7 +298,8 @@ image::Einrichtung_Entwicklungsumgebung_016.png[align="center"]
 
 *Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
 
-* Menüeintrag menu:[File > Settings... > Checkstyle]
+* Menüeintrag menu:[File > Settings... > Checkstyle] (für das aktuelle Projekt)
+* Menüeintrag menu:[File > Other Settings > Default Settings... > Checkstyle] (für alle zukünftigen Projekte)
 
 *Schritt 2:* Import der Checkstyle-Konfiguration von IsyFact
 
