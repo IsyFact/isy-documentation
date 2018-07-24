@@ -18,6 +18,7 @@ stages:
 cache:
   paths:
     - .m2/repository
+    - /var/cache/apt/archives
 
 .template: &vorlage
   stage: package
@@ -26,8 +27,8 @@ cache:
   artifacts:
     name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
     paths:
-    - "target/html"
-    - "target/pdf"
+    - target/html/
+    - target/pdf/
   script:
     - 'mvn $MAVEN_CLI_OPTS package'
 
