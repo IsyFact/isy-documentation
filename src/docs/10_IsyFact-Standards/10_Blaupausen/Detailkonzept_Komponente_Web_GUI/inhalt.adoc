@@ -1597,11 +1597,6 @@ gui.anwendungsgruppen.urls.gruppeEins = startseiteFlow,nachrichtenFlow
 gui.anwendungsgruppen.urls.gruppeZwei = formulareFlow,beispiellinkFlow
 gui.anwendungsgruppen.urls.gruppeDrei = validierungFlow,wizardDialogFlow
 
-# Farbwerte der Anwendungsgruppen
-gui.anwendungsgruppe.farbwert.gruppeEins = #46c095
-gui.anwendungsgruppe.farbwert.gruppeZwei = #887299
-gui.anwendungsgruppe.farbwert.gruppeDrei = #ffbbe1
-
 # Logos / Texte der Anwendungsgruppen
 gui.header.logo.links.pfad.gruppeZwei = /javax.faces.resource/img/andererschriftzug.jpeg
 gui.header.logo.rechts.pfad.gruppeZwei = /javax.faces.resource/img/andereslogo.jpeg
