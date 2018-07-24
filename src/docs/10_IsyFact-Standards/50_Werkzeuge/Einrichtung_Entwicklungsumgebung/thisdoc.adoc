@@ -20,3 +20,7 @@ beschrieben . Für die Entwicklungsumgebung IntelliJ IDEA ist kein zusätzliches
 Damit wird Softwareentwicklern ermöglicht, sowohl in der Entwicklungsumgebung Eclipse als auch in IntelliJ IDEA den gleichen Boilerplate Code für die `equals()` und `hashCode()` Methoden zu erstellen.
 
 Das Kapitel <<formatierung-von-quellcode>> beschreibt die einheitliche Konfiguration und Verwendung der in Eclipse und IntelliJ IDEA eingebauten Code-Formatierer. Die Konfiguration hat zum Ziel, den Quellcode in beiden IDEs nahezu identisch formatiert zu formatieren. Das Kapitel schließt mit einer kurzen Diskussion der verbleibenden Unterschiede bei der Formatierung.
+
+Eine weitere Unterstützung ist die automatische Prüfung von Codierungsrichtlinien mit _Checkstyle_.
+Die IsyFact liefert eine Konfiguration für _Checkstyle_ mit.
+Im Kapitel <<einrichtung-von-checkstyle>> wird die Installation und Einrichtung der Checkstyle-Plugins für Eclipse und IntelliJ IDEA beschrieben.
