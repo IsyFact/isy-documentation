@@ -691,17 +691,15 @@ Zur anwendungsspezifischen Anpassung des CSS können folgende Dateien in der Anw
 Die Java-Bibliothek `isy-web` enthält notwendige Abhängigkeiten (Maven), Spring-Konfigurationen, JSF-Komponenten (Composite Components) sowie zugehörige JSF-Templates (.xhtml) und setzt die Styleguide Vorgaben durch Verwendung der Java Bibliothek `isy-style` um.
 Die Bibliothek `isy-web` kann über das Build-Tool Maven eingebunden werden. Die Maven Abhängigkeit für die `isy-web` lautet:
 
-:desc-listing-jspMavenIsy: Einbindung der `isy-web` in Maven
-[id="listing-jspMavenIsy",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-jspMavenIsy}
+:desc-listing-jsfMavenIsy: Einbindung der `isy-web` in Maven
+[id="listing-jsfMavenIsy",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-jsfMavenIsy}
 [source, xml]
 ----
 <dependency>
-
-<groupId>de.bund.bva.pliscommon</groupId>
+   <groupId>de.bund.bva.isyfact</groupId>
    <artifactId>isy-web</artifactId>
-   <version>x.y.z</version>
-
+   <version>4.7.x</version>
 </dependency>
 ----
 
@@ -957,9 +955,9 @@ Die Templates bieten folgende Schnittstellen über den `ui:define` / `ui:insert`
 Normalerweise stellt das Layout eine Form bereit.
 Für spezifische Anpassungen (z.B. AJAX-Listpicker) müssen jedoch eigene Forms definiert werden.
 
-:desc-listing-jspViewState: Beispiel für eine JSP ViewState Seite
-[id="listing-jspViewState",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-jspViewState}
+:desc-listing-jsfViewState: Beispiel für eine JSF ViewState Seite
+[id="listing-jsfViewState",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-jsfViewState}
 [source,xml]
 ----
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -1615,7 +1613,7 @@ gui.header.text.logo.rechts.gruppeZwei = Zweite Gruppe
 Applikationsseiten werden über den Controller `ApplikationseiteController` und das Model `ApplikationseiteModel` realisiert.
 
 Wenn eine Applikationsseite erstellt werden soll, dann muss der Flow der Applikationsseite vom Flow `applikationseiteParentFlow` erben.
-Es muss weiterhin ein Controller erstellt werden, der vom `AbstractGuiController` erbt und ein Model, das vom `AbstractMaskenModel` erbt. Die XHTML-Seiten der ViewStates müssen alle vom JSP-Masken-Template `/WEB-INF/gui/common/layout/applikation.xhtml` erben (s.a. <<listing-jspViewState>>).
+Es muss weiterhin ein Controller erstellt werden, der vom `AbstractGuiController` erbt und ein Model, das vom `AbstractMaskenModel` erbt. Die XHTML-Seiten der ViewStates müssen alle vom -Masken-Template `/WEB-INF/gui/common/layout/applikation.xhtml` erben (s.a. <<listing-jsfViewState>>).
 
 Der `ApplikationseiteController` stellt sicher, dass alle layoutspezifischen Funktionen (z.B. der Linksnavigation) einer Applikationsseite initialisiert und zur Verfügung gestellt werden.
 Abweichungen vom Standardvorgehen (z.B. Linksnavigation ausblenden) können durch Zugriff auf den Controller und Model in spezifischeren Controllern beim Initialisieren durchgeführt werden.
@@ -1631,7 +1629,7 @@ Applikationsdetailseiten werden über den Controller `DetailseiteController` u
 
 Wenn eine Applikationsdetailseite erstellt werden soll, dann muss der Flow der Applikationsdetailseite vom Flow `detailseiteParentFlow` erben.
 Es muss weiterhin ein Controller erstellt werden, der vom `AbstractGuiController` erbt und ein Model, das vom `AbstractMaskenModel` erbt.
-Die XHTML-Seiten der ViewStates müssen alle vom JSP-Masken-Template `/WEB-INF/gui/common/layout/applikationDetailseite.xhtml` erben.
+Die XHTML-Seiten der ViewStates müssen alle vom JSF-Masken-Template `/WEB-INF/gui/common/layout/applikationDetailseite.xhtml` erben.
 
 Der DetailseiteController stellt sicher, dass alle layoutspezifischen Funktionen (z.B. der Seitentoolbar sowie Buttons in der Toolbar) einer Detailseite initialisiert und zur Verfügung gestellt werden.
 Abweichungen vom Standardvorgehen (z.B. Seitentoolbar ausblenden, Druckbutton einblenden, Informationsbereich einblenden) können durch Zugriff auf den Controller und Model in spezifischeren Controllern beim Initialisieren durchgeführt werden.
@@ -1708,9 +1706,9 @@ Der Dialog besitzt folgende Facets:
 
 Beispiel:
 
-:desc-listing-jspModalerDialog: Modaler Dialog
-[id="listing-jspModalerDialog",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-jspModalerDialog}
+:desc-listing-jsfModalerDialog: Modaler Dialog
+[id="listing-jsfModalerDialog",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-jsfModalerDialog}
 [source, xml]
 ----
 <ui:define name="modalDialog">
@@ -3547,7 +3545,7 @@ Wenn JavaScript nicht aktiviert ist, werden alle Validierungsfehler in einer Lis
 Auf den Tooltip wird verzichtet.
 Für die Zuordnung von Validierungsfehler und Eingabefeld wird das Attribut `reference` verwendet, welches auch in der entsprechenden Formularkomponente `<isy:form...>` angegeben werden muss.
 
-Für den Einsatz mit der `plis-validation` (Bean Validation) wird bereits ein `GuiValidator` mitgeliefert, welcher direkt ValidationMessages liefert.
+Für den Einsatz mit der `rf-validation` (Bean Validation) wird bereits ein `GuiValidator` mitgeliefert, welcher direkt ValidationMessages liefert.
 Diese können dann dem `ValidationController` übergeben werden.
 Als Referenz wird dabei automatisch der Property-Path der `ConstraintViolation` verwendet.
 
@@ -3626,7 +3624,7 @@ Dabei sind folgende Arten von Fehlern zu unterscheiden:
 
 *Darstellung von Fehlern*
 
-Die Darstellung von Fehlern wird von der Bibliothek `isy-web` über das JSP-Seitentemplate `basis.xhtml` vorgenommen.
+Die Darstellung von Fehlern wird von der Bibliothek `isy-web` über das JSF-Seitentemplate `basis.xhtml` vorgenommen.
 Die Fehlermeldungen werden hierbei im Kopfbereich des Applikations-Inhaltsfensters xxxx angezeigt.
 
 Für Fehler beim Zugriff auf den Anwendungskern kann zusätzlich eine Fehlerbehandlung im Controller eingeführt werden (try/catch).
@@ -3948,9 +3946,9 @@ Aus Sicht der Styleguide-Umsetzung ist die Konfiguration des ApplicationIntiali
 Dieser Filter ist zuständig für die JavaScript Erkennung und die damit verbunden Konfiguration der globalen Einstellungen für die Session des Nutzers.
 Beispiel:
 
-:desc-listing-jspWebXmlKonfigAppInitFilter: web.xml Konfiguration für den ApplicationInitialisierungsFilter
-[id="listing-jspWebXmlKonfigAppInitFilter",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-jspWebXmlKonfigAppInitFilter}
+:desc-listing-jsfWebXmlKonfigAppInitFilter: web.xml Konfiguration für den ApplicationInitialisierungsFilter
+[id="listing-jsfWebXmlKonfigAppInitFilter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-jsfWebXmlKonfigAppInitFilter}
 [source, xml]
 ----
 <filter> <filter-name>applicationInitialisierungFilter</filter-name>
@@ -4101,9 +4099,9 @@ angepasst werden.
 
 Derzeit muss noch folgende Konfiguration in die `faces-config.xml` der Anwendung aufgenommen werden:
 
-:desc-listing-jspRenderer: JSP Renderer Konfiguration
-[id="listing-jspRenderer",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-jspRenderer}
+:desc-listing-jsfRenderer: JSF Renderer Konfiguration
+[id="listing-jsfRenderer",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-jsfRenderer}
 [source,xml]
 ----
 <!-- Spezifische Renderer müssen hier erneut angegeben werden, um die existierenden Renderer aus der Tomahawk Bibliothek zu überschreiben -->
@@ -4222,34 +4220,34 @@ Hier wird die Ablage der Konfigurations-Files definiert.
 [[konfiguration-logging]]
 == Konfiguration Logging
 
-Für das Logging kommt Log4j zum Einsatz.
-Die notwendigen Konfigurationen und weitere Details sind in <<KonzeptLogging>> beschrieben.
+Für das Logging kommt logback zum Einsatz.
+Das <<KonzeptLogging>> enthält die dafür notwendigen Konfigurationen und weitere Details. Zur Konfiguration des Logging ist folgende Abhängigkeit nötig:
 
-Benötigte Libraries: `de.bund.bva.pliscommon.*isy-logging*`
+:desc-listing-SnipLoggingDep: Abhängigkeit isy-logging (Ausschnitt pom.xml)
+[id="listing-SnipLoggingDep",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-SnipLoggingDep}
+[source,xml]
+----
+<dependency>
+    <groupId>de.bund.bva.isyfact</groupId>
+    <artifactId>isy-logging</artifactId>
+</dependency>
+----
 
-Die Ablage der Log4J Konfiguration erfolgt in der Datei `web.xml`.
+Die Ablage der logback-Konfiguration erfolgt in der Datei `web.xml`:
 
 :desc-listing-SnipLogginConf1: Logging Konfiguration (Ausschnitt web.xml)
 [id="listing-SnipLogginConf1",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipLogginConf1}
 [source,xml]
 ----
-<!-- LOG4J Konfiguration
-	Angabe des Speicherorts der log4j Konfiguration
-	Wenn nicht angegeben, greift die Standardinitialisierung:
-	Konfiguration im Classpath.
-	Aufgrund des Deployoments liegt die Konfiguration aber unter
-	/classes/config/log4j.properties
-	Details siehe http://static.springframework.org/spring/docs
-	/2.5.x/api/org/springframework/web/util/Log4jWebConfigurer.html
--->
 <context-param>
-	<param-name>log4jConfigLocation</param-name>
-	<param-value>classpath:/config/log4j.properties</param-value>
+    <param-name>logbackConfigLocation</param-name>
+    <param-value>classpath:/config/logback.xml</param-value>
 </context-param>
 ----
 
-Um Log-Einträge zu schreiben, bedient man sich im Sourcecode der bereitgestellten Methoden der Apache Log4J Implementierung.
+Die <<NutzungsvorgabenLogging>> beinhalten Vorgaben zum Schreiben von Log-Einträgen und zur Ablage von Log-Dateien.
 
 [[konfiguration-security]]
 == Konfiguration Security
