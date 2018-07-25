@@ -7,8 +7,10 @@ image: $ARTIFACTORY_BUILDIMAGE
 before_script:
   - echo "$MIRRORS" > /etc/apt/sources.list
   - cat /proc/version
+  - PFAD=$(pwd)
+  - mkdir -p aptcache
   - apt-get update
-  - apt-get install -y maven gawk --no-install-recommends
+  - apt-get -o dir::cache::archives="$PFAD/aptcache" install -y maven gawk --no-install-recommends
   - gem install asciidoctor-pdf --pre
   - asciidoctor-pdf -v
 
@@ -17,8 +19,9 @@ stages:
 
 cache:
   paths:
+    - aptcache/
     - .m2/repository
-    - /var/cache/apt/archives
+  key: "isyfactdoc"
 
 .template: &vorlage
   stage: package
@@ -35,6 +38,10 @@ cache:
 package:branches:
   <<: *vorlage
   artifacts:
+    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
+    paths:
+    - target/html/
+    - target/pdf/
     expire_in: 2 weeks
   only:
     - branches@IsyFact/isy-documentation
