@@ -3,13 +3,13 @@
 
 Die generelle Anforderung an die Fehlerbehandlung ist das Erkennen, Signalisieren und Verarbeiten von Fehlern, die im System auftreten.
 
-Konkreter bedeutet dies, dass Fehler möglichst effizient behandelbar sein sollen, die Wartbarkeit von Fehlern sichergestellt ist und der Einsatz von Exceptions in einer
-standardisierten Form geschieht, um die Implementierung zu vereinheitlichen und für den Anwender angemessene Informationen zur Verfügung zu stellen.
+Konkret sollen damit Fehler möglichst effizient behandelbar sein, die Wartbarkeit bei Fehlern sichergestellt und Exceptions in einer standardisierten Form eingesetzt werden.
+Dies geschieht mit dem Ziel, die Implementierung zu vereinheitlichen und für den Anwender angemessene Informationen zur Verfügung zu stellen.
 
 Aus den genannten Anforderungen ergeben sich entsprechende Detailvorgaben, die zur Umsetzung der generellen Anforderungen an die Fehlerbehandlung notwendig sind:
 
 **Nutzen stiftende Fehlermeldungen**: Eine Fehlermeldung muss klar verständlich sein, vor allem, wenn sie dem Benutzer angezeigt wird.
-Außerdem müssen die Fehlertexte so aufgebaut sein, dass sie den Betrieb und die Entwickler bei der Ursachenforschung und der schnellen Bearbeitung unterstützen.
+Außerdem müssen die Fehlertexte so aufgebaut sein, dass sie sowohl den Betrieb als auch die Entwickler bei der Ursachenforschung und der schnellen Bearbeitung unterstützen.
 
 **Zuordnung von Fehlern**: Die IsyFact-Architektur beschreibt eine serviceorientierte Anwendungslandschaft.
 Das Ergebnis, das einem Nutzer angezeigt wird, entsteht durch das Zusammenspiel verschiedener Anwendungen, die jeweils Services anbieten.
@@ -180,11 +180,14 @@ Die generierte UUID ist eine im System eineindeutige Nummer, die beim Erstellen 
 Sie ist, wie die Ausnahme-ID, Teil der Fehlernachricht und dient dazu, einen aufgetretenen Fehler im System eindeutig zu referenzieren.
 Tritt nun ein Fehler bei mehreren Nutzern des Systems auf, kann mit Hilfe dieser UUID der Fehler, der bei einem bestimmten Nutzer auftrat, in den Log-Dateien der Anwendung identifiziert werden.
 
-Werden in einer Anwendung Exceptions benötigt, so müssen zuerst vier eigene abstrakte Oberklassen für die Anwendungs-Exceptions abgeleitet werden
-(hier: `TerminfindungException`, `TerminfindungBusinessException`, `TerminfindungTechnicalException` und `TerminfindungTechnicalRuntimeException`).
+Werden in einer Anwendung Exceptions benötigt, so müssen zuerst vier eigene abstrakte Oberklassen für die Anwendungs-Exceptions abgeleitet werden.
+Hier im Beispiel sind das:
 
-Die Klassen `TerminfindungException` und `TerminfindungTechnicalRuntimeException` sind die abstrakten Oberklassen innerhalb einer Anwendung für checked und unchecked Exception.
-TerminfindungException wird über die Kindklassen `TerminfindungBusinessException` und `TerminfindungTechnicalException` letztlich noch in fachliche und technische `Exceptions` unterschieden.
+* `TerminfindungException`: Abstrakte Oberklasse innerhalb einer Anwendung für checked Exceptions
+* `TerminfindungTechnicalRuntimeException`: Abstrakte Oberklasse innerhalb einer Anwendung für unchecked Exceptions
+* `TerminfindungBusinessException`: Kindklasse von `TerminfindungException` für fachliche Exceptions
+* `TerminfindungTechnicalException`: Kindklasse von `TerminfindungException` für technische Exceptions
+
 Die Anwendungsoberklassen besitzen jeweils eine Referenz auf einen anwendungsspezifischen `FehlertextProvider`.
 Dieser wird benötigt, um die Fehlertexte zu laden.
 Diese vier Exceptions sind ebenfalls abstrakt, da auch diese Exceptions rein zur Unterscheidung der Art der Exception innerhalb der Anwendung dienen.
@@ -209,7 +212,6 @@ Diese Exceptions gehören in das Paket:
 **Konstruktoren**
 
 Die abstrakten Exceptions einer Anwendung müssen alle vier Konstruktoren implementieren.
-[[OLE_LINK3]][[OLE_LINK4]]
 Die letztlich eingesetzten Exceptions implementieren nur die Konstruktoren, die benötigt werden.
 Eine Beispiel-Implementierung hierfür befindet sich in der <<Vorlageanwendung>>.
 Dies ist sinnvoll, um Aufwände bei der Erstellung von Exceptions zu sparen, da in diesem Fall lediglich der Konstruktor der Oberklasse aufgerufen werden muss.
@@ -234,8 +236,8 @@ Die <<table-001>> erläutert die Bedeutung der Argumente der Konstruktoren.
 .{desc-table-001}
 [options="header",cols="3,2,2,3"]
 |====
-|TerminfindungNichtGefundenException|String|Throwable (optional)|String... (optional)
-| |Ausnahme-ID |Original-Exception, die gefangen wurde. |String oder String-Array mit Variablenwerten, für Platzhalter in parametrisierten Fehlertexten.
+|Exception|String|Throwable (optional)|String... (optional)
+|`TerminfindungNichtGefundenException` |Ausnahme-ID |Original-Exception, die gefangen wurde. |String oder String-Array mit Variablenwerten, für Platzhalter in parametrisierten Fehlertexten.
 |====
 
 Beispiel für eine technische Runtime-Exception Hierarchie:
@@ -281,6 +283,9 @@ Daher muss es in jeder Anwendung eine Ausnahme-ID geben mit einem generischen Fe
 Als feste Nummer wird für alle Anwendungen die `0001` festgelegt.
 Ein Aufruf einer solchen Exception mit einem generischen Fehlertext sieht dann wie folgt aus:
 
+:desc-listing-ExceptionGenerischerFehlertext: Erstellen einer Exception mit generischem Fehlertext
+[id="listing-ExceptionGenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ExceptionGenerischerFehlertext}
 [source,java]
 ----
 new MeineTechnischeException(FehlerSchluessel.MSG_ALLGEMEINER_FEHLER, "XYZ");
@@ -289,8 +294,9 @@ new MeineTechnischeException(FehlerSchluessel.MSG_ALLGEMEINER_FEHLER, "XYZ");
 Die Konstante `FehlerSchluessel.MSG_ALLGEMEINER_FEHLER` referenziert einen
 generischen Fehlerstring, welcher einen Platzhalter besitzt:
 
-*Konstante:*
-
+:desc-listing-KonstanteGenerischerFehlertext: Konstante für den generischen Fehlertext
+[id="listing-KonstanteGenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-KonstanteGenerischerFehlertext}
 [source,java]
 ----
 /** Generische Exception für alle unbekannten Fehler. */
@@ -298,8 +304,9 @@ generischen Fehlerstring, welcher einen Platzhalter besitzt:
 public static final String MSG_ALLGEMEINER_FEHLER = "TRMIN90001";
 ----
 
-*Fehlertext:*
-
+:desc-listing-GenerischerFehlertext: Generischer Fehlertext
+[id="listing-GenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-GenerischerFehlertext}
 [source,properties]
 ----
 TRMIN90001 = Es ist ein allgemeiner Fehler im Modul Terminfindung aufgetreten.
@@ -310,6 +317,9 @@ Die Fehlertexte dürfen nicht direkt mit dem String referenziert werden (z. B. 
 
 Beim Aufruf einer Exception wird im einfachsten Fall lediglich eine Ausnahme-ID übergeben, welche den Fehlertext identifiziert:
 
+:desc-listing-UebergabeAusnahmeId: Übergabe einer Ausnahme-ID
+[id="listing-UebergabeAusnahmeId",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-UebergabeAusnahmeId}
 [source,java]
 ----
 new TerminfindungNichtGefundenException(
@@ -318,6 +328,9 @@ new TerminfindungNichtGefundenException(
 
 Der Konstruktor der Exception ruft den Konstruktor der abstrakten Eltern-Klasse auf (hier `TerminfindungBusinessException`):
 
+:desc-listing-Konstruktur: Konstruktor
+[id="listing-Konstruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Konstruktur}
 [source,java]
 ----
 public TerminfindungNichtGefundenException(String ausnahmeID) {
@@ -331,6 +344,9 @@ protected TerminfindungBusinessException(String ausnahmeID) {
 
 Dieser Konstruktor wiederum ruft den Konstruktor seiner Eltern-Klasse auf (hier `TerminfindungException`), welcher die oberste Exception-Hierarchie-Stufe einer Anwendung darstellt:
 
+:desc-listing-ObersterKonstruktur: Konstruktor der obersten Exception
+[id="listing-ObersterKonstruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ObersterKonstruktur}
 [source,java]
 ----
 protected TerminfindungException(String ausnahmeID) {
@@ -354,12 +370,15 @@ Bis dato hat der Text den Aufbau:
 
 *Fehlertext*
 
-Die `Plis-Exception`-Klassen überschreiben aber die getMessage()-Methoden von `Exception` und erweitern den Fehlertext bei einem lesenden Zugriff.
+Die `Plis-Exception`-Klassen überschreiben aber die `getMessage()`-Methoden von `Exception` und erweitern den Fehlertext bei einem lesenden Zugriff.
 Der Fehlertext wird um die Ausnahme-ID und die UUID erweitert.
 Dies geschieht über die Klasse `FehlertextUtil`, damit die Formatierung der Fehlertexte an einer zentralen Stelle gekapselt ist.
 
 Der Text hat dann folgenden Aufbau:
 
+:desc-listing-AufbauFehlertext: Aufbau des Fehlertexts
+[id="listing-AufbauFehlertext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AufbauFehlertext}
 [source, text]
 ----
 #AusnahmeId Fehlertext #UUID
@@ -382,7 +401,7 @@ Neben den Vorgaben zum Design der Fehlerklassen in <<design-von-fehlerklassen>> 
 
 Für Exceptions an den Anwendungsschnittstellen gelten weitere Vorgaben:
 
-* Sie erben immer von `PlisBusinessToException` oder `PlisTechnicalToException` und implementieren somit immer Serializable,
+* Sie erben immer von `PlisBusinessToException` oder `PlisTechnicalToException` und implementieren somit immer `Serializable`,
 * stellen die Felder Ausnahme-ID, UUID und Fehlernachricht zur Verfügung und
 * erben nicht von internen Anwendungsexceptions.
 
@@ -441,8 +460,11 @@ Die Fehlerbehandlung besitzt folgende Ausprägungen:
 Wann bzw. ob ein Fehler behandelt werden kann, ist im Einzelfall zu entscheiden.
 Die ersten vier Ausprägungen sind Möglichkeiten innerhalb einer Komponente oder einer Anwendung.
 Die Fehlerbehandlung entspricht den gängigen `try-catch`-Blöcken mit entsprechender Verarbeitung der Exception, z. B. Weiterreichen oder Behandeln und Loggen.
-Das folgende Code-Beispiel zeigt das Weiterwerfen der Original-Exception:
+<<listing-Weiterwerfen>> zeigt das Weiterwerfen der Original-Exception:
 
+:desc-listing-Weiterwerfen: Weiterwerfen der Original-Exception
+[id="listing-Weiterwerfen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Weiterwerfen}
 [source,java]
 ----
 try {
@@ -468,11 +490,14 @@ Diese Exceptions treten außerhalb der eigentlichen Anwendung auf.
 Daher muss die Exception-Fassade als Schicht über der Transaktionsklammer liegen, um auch diese Fehler abzufangen, zu loggen, in Transport-Exceptions umzuwandeln und an den Aufrufer weiterzureichen.
 
 Das Vorgehen für die Fehlerbehandlung nach <<image-011>> gilt für alle Arten von Außenschnittstellen.
-Die HttpInvoker-Schnittstelle ist die am häufigsten angebotene Schnittstelle in der Anwendungslandschaft.
+Die HTTP-Invoker-Schnittstelle ist die am häufigsten angebotene Schnittstelle in der Anwendungslandschaft.
 Aus diesem Grund wurde diese Schnittstelle für das Code-Beispiel gewählt, zur Veranschaulichung der Top-Level Fehlerbehandlung.
 
-Das Code-Fragment zeigt die Fehlerbehandlung in der Exception-Fassade der Meldung im Vorlage-Register für die HttpInvoker-Schnittstelle.
+<<listing-FehlerbehandlungExceptionFassade>> zeigt die Fehlerbehandlung in der Exception-Fassade der Meldung im Vorlage-Register für die HTTP-Invoker-Schnittstelle.
 
+:desc-listing-FehlerbehandlungExceptionFassade: Fehlerbehandlung in der Exception-Fassade
+[id="listing-FehlerbehandlungExceptionFassade",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-FehlerbehandlungExceptionFassade}
 [source,java]
 ----
 public int cdErworben(
@@ -510,11 +535,11 @@ public int cdErworben(
 }
 ----
 
-Das obige Code-Beispiel fängt alle Exceptions und wandelt diese in entsprechende Transport-Exceptions um.
+Das Code-Beispiel in <<listing-FehlerbehandlungExceptionFassade>> fängt alle Exceptions und wandelt diese in entsprechende Transport-Exceptions um.
 Als erwartete Exceptions gibt es hier die Exception `MaxBestandUeberschrittenException`.
 Diese wird, sofern sie auftritt, in eine `MeldungVerarbeitungException` umgewandelt und weitergereicht.
 Zu beachten ist, dass in das Error-Log nur betrieblich relevante Fehler geschrieben werden sollen.
-Fachlich Fehler sind in der Regel irrelevant für den Betrieb.
+Fachliche Fehler sind in der Regel irrelevant für den Betrieb.
 Daher wird die `MaxBestandUeberschrittenException` ins Debug-Log geschrieben.
 
 Weitere erwartete Fehler gibt es nicht, somit wird nun eine Fehlerbehandlung für unerwartete Fehler der Anwendung durchgeführt (alle Exceptions vom Typ `CdRegisterTechnicalRunTimeException`).
@@ -546,27 +571,30 @@ image::fehlerbehandlung012.png[align="center",width=70%,pdfwidth=70%]
 
 Die Klasse `PlisExceptionMapper` bietet zwei statische Methoden an, um aus `PlisException` und `PlisRuntimeException` entsprechende Transport-Exceptions zu erstellen.
 Hierfür muss lediglich die umzuwandelnde Exception und die Klasse der gewünschten Transport-Exception mitgegeben werden.
-Hier ein Beispiel für das Mappen einer technischen `PlisException` in eine technische Transport-Exception:
+<<listing-MappingPlisNachPlisTo>> zeigt ein Beispiel für das Mappen einer technischen `PlisException` in eine technische Transport-Exception:
 
+:desc-listing-MappingPlisNachPlisTo: Mappen einer PlisException in eine technische Transport-Exception
+[id="listing-MappingPlisNachPlisTo",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MappingPlisNachPlisTo}
 [source,java]
 ----
-PlisExceptionMapper.mapException(
-    ex,
-    MeldungTechnikException.class)
+PlisExceptionMapper.mapException(ex, MeldungTechnikException.class)
 ----
 
 Neben den `Plis-(Runtime-)Exceptions` können weitere Exceptions auftreten.
 Diese besitzen jedoch keine Ausnahme-ID oder eine UUID, z. B. Runtime-Exceptions von eingesetzten Frameworks wie Hibernate.
 Auch diese Exceptions müssen in Transport-Exceptions umgewandelt werden.
-Diese Transport-Exceptions werden mittels der `createToException()`-Methode erstellt:
+Diese Transport-Exceptions werden mittels der `createToException()`-Methode erstellt (<<listing-createToException>>).
 
+:desc-listing-createToException: Erstellen von Transport-Exceptions
+[id="listing-createToException",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-createToException}
 [source,java]
 ----
-MeldungTechnikException ex =
-    PlisExceptionMapper.createToException(
-        AusnahmeIdUtil.getAusnahmeId(t),
-        new FehlertextProviderImpl(),
-        MeldungTechnikException.class);
+MeldungTechnikException ex = PlisExceptionMapper.createToException(
+                                  AusnahmeIdUtil.getAusnahmeId(t),
+                                  new FehlertextProviderImpl(),
+                                  MeldungTechnikException.class);
 ----
 
 In diesem Beispiel wird für ein `Throwable t` eine technische Transport-Exception erzeugt.
@@ -588,8 +616,11 @@ Die Klasse ist als Teil des Paketes
 
 zu erstellen und muss immer als Klassennamen `AusnahmeIdUtil` besitzen und die statische Methode `getAusnahmeId(Throwable)` zur Verfügung stellen.
 
-Hier eine mögliche Implementierung für das Mapping von Exceptions auf Ausnahme-IDs des Vorlage-Registers.
+<<listing-MappingExceptions>> zeigt mögliche Implementierung für das Mapping von Exceptions auf Ausnahme-IDs des Vorlage-Registers.
 
+:desc-listing-MappingExceptions: Mapping von Exceptions auf Ausnahme-IDs
+[id="listing-MappingExceptions",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MappingExceptions}
 [source,java]
 ----
 /**
@@ -640,8 +671,8 @@ Dies würde dazu führen, dass die Original-Nachricht überschrieben würde, was
 Das obige Code-Beispiel bzw. die gesamte Klasse `AusnahmeIdUtil` aus dem Vorlage-Register kann als Template für andere Anwendungen genutzt werden.
 Hierfür sind lediglich kleine Anpassungen notwendig: die Prüfung auf anwendungsinterne Exceptions ist anzupassen und die verwendeten Fehlerschlüssel sind auf die Anwendung anzupassen.
 
-Neben der oben gezeigten Fehlerbehandlung für HttpInvoker-Schnittstellen gibt es auch eine Fehlerbehandlung für Axis-basierte Schnittstellen, also SOAP und REST.
-Im Unterschied zu HttpInvoker-Schnittstellen werden die Transport-Exceptions nicht in Ausnahmen von Typ `Exception`, sondern im Fall von SOAP in `AxisFaults` umgewandelt.
+Neben der oben gezeigten Fehlerbehandlung für HTTP-Invoker-Schnittstellen gibt es auch eine Fehlerbehandlung für Axis-basierte Schnittstellen, also SOAP und REST.
+Im Unterschied zu HTTP-Invoker-Schnittstellen werden die Transport-Exceptions nicht in Ausnahmen von Typ `Exception`, sondern im Fall von SOAP in `AxisFaults` umgewandelt.
 Auch hier gilt das generelle Prinzip auf oberster Ebene der Anwendung eine Exception-Fassade zu verwenden, siehe <<image-011>>.
 
 [[fehlertexte-und-deren-einsatz]]
@@ -666,15 +697,18 @@ Bei der Erstellung einer neuen Anwendung ist in der Spezifikations- bzw.
 Konstruktionsphase festzulegen, welche Komponente welchen Nummernkreis verwenden muss.
 
 Die Ausnahme-IDs referenzieren immer einen Fehlertext.
-Die referenzierten Fehlertexte können mit Platzhaltern versehen werden (\{1}, \{2} etc.), um den Text um kontextbezogene Daten zu erweitern, z. B.
+Die referenzierten Fehlertexte können mit Platzhaltern versehen werden (`{1}`, `{2}` etc.), um den Text um kontextbezogene Daten zu erweitern, z. B.
 
 [frame="none"]
 |====
 ^|Der Konfigurationsparameter {0} enthält ungültigen Wert {1}.
 |====
 
-Hierzu wird dem Konstruktor der zugehörigen Exception ein String oder String-Array mit den Werten für die Platzhalter übergeben:
+Hierzu wird dem Konstruktor der zugehörigen Exception ein String oder String-Array mit den Werten für die Platzhalter übergeben (<<listing-UebergabePlatzhalter>>).
 
+:desc-listing-UebergabePlatzhalter: Übergabe von Werten für Platzhalter
+[id="listing-UebergabePlatzhalter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-UebergabePlatzhalter}
 [source,java]
 ----
 new TerminfindungNichtGefundenException(
@@ -698,8 +732,11 @@ abzulegen und muss in jeder Anwendung `FehlerSchluessel` heißen.
 
 Kommen neue Fehlertexte hinzu, so müssen die Schlüssel in einer der oben genannten Klassen als Konstanten hinzugefügt werden.
 Ausnahme-IDs für allgemeine Fehler müssen in die Anwendungsklasse, komponentenspezifische in die Komponentenklasse.
-Die Konstanten müssen einen sprechenden Namen tragen und immer mit `MSG_` beginnen, z.B.
+Wie in <<listing-FehlerSchluessel>> gezeigt, müssen die Konstanten einen sprechenden Namen tragen und immer mit `MSG_` beginnen.
 
+:desc-listing-FehlerSchluessel: Fehlerschlüssel
+[id="listing-FehlerSchluessel",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-FehlerSchluessel}
 [source,java]
 ----
 /** Die im Parameter {0} übergebene Liste ist leer. */
@@ -754,7 +791,7 @@ Bei der Behandlung von Fehlern ist ein geordneter Systemzustand herzustellen, z.
 
 *Throw Early / Failing fast* +
 Fehler sollten früh erkannt werden und zu entsprechenden Ausnahmen führen, bevor sich der Aufruf in tieferen Schichten befindet.
-Beispiel: Übergibt man null an `FileInputStream` wird eine `NullPointerException` in `java.io` geworfen.
+Beispiel: Übergibt man `null` an `FileInputStream` wird eine `NullPointerException` in `java.io` geworfen.
 Passender wäre es aber gleich in der Methode, die `FileInputStream` verwendet auf `null` zu prüfen und eine `Exception` zu werfen.
 
 [[donts]]
@@ -766,9 +803,12 @@ Neben den oben genannten Punkten, wie man Exceptions richtig verwendet, gibt es 
 Interne Exceptions dürfen in der Schnittstelle nicht vorkommen, da diese ansonsten dem Aufrufer bekannt sein müssen.
 Dies würde zu einer engeren Kopplung von Aufrufer und Aufgerufenem führen und dem Komponentengeheimnis widersprechen.
 
-*Fluss-Steuerung über Exceptions* +
-Catch-Blöcke dienen der Fehlerbehandlung und dürfen nicht als `else`-Zweig genutzt werden, z. B.
+*Flusssteuerung über Exceptions* +
+Catch-Blöcke dienen der Fehlerbehandlung und dürfen nicht als `else`-Zweig genutzt werden.
 
+:desc-listing-FlusssteuerungExceptions: DON'T: Flusssteuerung über Exceptions
+[id="listing-FlusssteuerungExceptions",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-FlusssteuerungExceptions}
 [source,java]
 ----
 try {
@@ -778,8 +818,11 @@ try {
 }
 ----
 
-Ebenso sind GoTos über catch/throw-Konstrukte zu vermeiden:
+Ebenso sind GoTos über `catch`/`throw`-Konstrukte zu vermeiden.
 
+:desc-listing-FlusssteuerungExceptions2: DON'T: GoTo über catch/throw
+[id="listing-FlusssteuerungExceptions2",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-FlusssteuerungExceptions2}
 [source,java]
 ----
 public void useExceptionsForFlowControl() {
@@ -788,7 +831,7 @@ try {
         increaseCount();
     }
 } catch (MaximumCountReachedException ex) {}
-//weitere Verarbeitung
+   //weitere Verarbeitung
 }
 
 public void increaseCount() throws MaximumCountReachedException {
@@ -798,8 +841,11 @@ public void increaseCount() throws MaximumCountReachedException {
 
 *Leere catch-Blöcke* +
 Wenn dies der Fall ist, dann ist die Exception unnötig oder die Ausnahme muss behandelt werden.
-Siehe auch <<isyfact-bibliotheken-fuer-fehlerbehandlung>>:
+Siehe auch <<isyfact-bibliotheken-fuer-fehlerbehandlung>>.
 
+:desc-listing-LeererCatchBlock: DON'T: Leerer catch-Block
+[id="listing-LeererCatchBlock2",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-LeererCatchBlock}
 [source,java]
 ----
 try {
@@ -815,6 +861,9 @@ In diesem Fall ist ein entsprechender Kommentar im `catch`-Block zu hinterlegen,
 Das destruktive Wrappen einer Exception zerstört den StackTrace und ist nur für Exceptions an den Außen-Schnittstellen sinnvoll.
 Destruktiv gewrappte Exceptions sind in jedem Fall vor dem Wrappen zu loggen.
 
+:desc-listing-DestruktivesWrappen: DON'T: Destruktives Wrappen
+[id="listing-DestruktivesWrappen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-DestruktivesWrappen}
 [source,java]
 ----
 catch (NoSuchMethodException e) {
@@ -824,8 +873,11 @@ catch (NoSuchMethodException e) {
 
 **Catch Exception** +
 Global die Elternklasse einer Exception zu fangen ist zu unspezifisch.
-Dadurch entfällt die Möglichkeit, auf verschiedene Ausnahmen unterschiedlich reagieren zu können:
+Dadurch entfällt die Möglichkeit, auf verschiedene Ausnahmen unterschiedlich reagieren zu können.
 
+:desc-listing-CatchException: DON'T: Elterklasse einer Exception fangen
+[id="listing-CatchException",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-CatchException}
 [source,java]
 ----
 try {
@@ -838,10 +890,12 @@ try {
 NOTE: Wenn so etwas sinnvoll ist, dann ist die Signatur der aufgerufenen Methode zu überdenken. Ist es nicht möglich die Exceptions der Methode (`foo()`)
 unterschiedlich zu behandeln, so ist die Methode auf sinnvoll behandelbare Exceptions einzuschränken.
 
-*Exception Flut*
+*Exception Flut* +
+Nur Exceptions werfen, die auch sinnvoll zu behandeln sind.
 
-Nur Exceptions werfen, die auch sinnvoll zu behandeln sind:
-
+:desc-listing-ExceptionFlut: DON'T: Exception Flut
+[id="listing-ExceptionFlut",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ExceptionFlut}
 [source,java]
 ----
 public void zuViel() throws
@@ -853,96 +907,108 @@ public void zuViel() throws
 }
 ----
 
-*Throw Exception*
-
+*Throw Exception* +
 Es sollten aussagekräftige Exceptions verwendet werden, um dem Aufrufer eine adäquate Fehlerbehandlung zu ermöglichen.
-Daher ist folgendes Konstrukt nicht erlaubt:
 
+:desc-listing-ThrowException: DON'T: Throw Exception
+[id="listing-ThrowException",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ThrowException}
 [source,java]
 ----
-public void keineAussage() throws Exception {
+public void eineMethode() throws Exception {
     ...
 }
 ----
 
-*Log and throw*
-
+*Log and throw* +
 Das Loggen und Weiterwerfen von Exceptions führt zu unbrauchbaren Log-Dateien.
 Tritt eine Exception in einer tiefen Aufrufhierarchie auf, wird ein und dieselbe Exception mehrmals in einer Log-Dateien gespeichert.
 Dies behindert bei der Fehlersuche.
 Daher gilt die Regel aus <<dos>> (_Log it or throw it_), d. h. entweder man behandelt und loggt die Exception oder man reicht sie weiter.
-Die folgenden Code-Fragmente sind daher in Anwendungen gemäß Referenzarchitektur nicht erlaubt:
 
+:desc-listing-LogAndThrow: DON'T: Log and throw
+[id="listing-LogAndThrow",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-LogAndThrow}
 [source,java]
 ----
 catch (NoSuchMethodException e) {
-    LOG.error("Blah", e); throw e;
+    LOG.error("Foo", e); throw e;
 }
 
 catch (NoSuchMethodException e) {
     LOG.error("Blah", e);
-    throw new MyServiceException("Blah", e);
+    throw new MyServiceException("Foo", e);
 }
 
 catch (NoSuchMethodException e) {
     e.printStackTrace();
-    throw new MyServiceException("Blah", e);
+    throw new MyServiceException("Foo", e);
 }
 ----
 
-*Log and return null / Catch and Ignore*
-
+*Log and return null / Catch and Ignore* +
 Das Ignorieren von Fehlern ist zu vermeiden, da der Aufrufer sonst keinen Fehler bemerkt, den man unter Umständen in der weiteren Verarbeitung berücksichtigen müsste.
-Folgende Konstrukte sind somit nicht erlaubt:
 
+:desc-listing-LogAndReturnNull: DON'T: Log and return null / Catch and Ignore
+[id="listing-LogAndReturnNull",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-LogAndReturnNull}
 [source,java]
 ----
-catch (NoSuchMethodException e) {return null;}
+catch (NoSuchMethodException e) { return null; }
 
-catch (NoSuchMethodException e) {LOG.error("Blah", e); return null;}
+catch (NoSuchMethodException e) { LOG.error("Foo", e); return null; }
 ----
 
 NOTE: Exceptions sollten weitergereicht werden, außer es handelt sich nicht um eine Ausnahme, z. B. `return null` für den Fall, dass nichts gefunden wurde.
 
-*throw im finally-Block*
-
+*throw im finally-Block* +
 Exceptions in `finally`-Blöcken führen zu einem Verlust des Original-Fehlers:
 
+:desc-listing-ThrowInFinally: DON'T: throw im finally-Block
+[id="listing-ThrowInFinally",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ThrowInFinally}
 [source,java]
 ----
-try {myMethod();} finally {cleanUp();}
+try { myMethod(); } finally { cleanUp(); }
 ----
 
 NOTE: Wirft `cleanUp()` eine Exception, ist die original Exception von `myMethod()` verloren.
 Es ist somit nicht gestattet in `finally`-Blöcken Methoden aufzurufen, welche potentiell Exceptions werfen.
 
-*Nicht unterstützte Methode gibt null zurück*
-
+*Nicht unterstützte Methode gibt null zurück* +
 Null als Rückgabewert einer Methode, sofern sie nicht unterstützt wird, deckt sich mit dem oben aufgeführten Punkt "Catch and Ignore". Der Aufrufer hat in diesem
 Fall nicht mitbekommen, dass die Methode eigentlich gar nicht unterstützt wird.
-Im einfachsten Fall tritt eine `NullPointerException` auf, welche aber nicht den eigentlichen Fehlergrund widerspiegelt:
+Im einfachsten Fall tritt eine `NullPointerException` auf, welche aber nicht den eigentlichen Fehlergrund widerspiegelt.
 
+:desc-listing-ThrowNotSupported: DON'T: Nicht unterstützte Methode gibt null zurück
+[id="listing-ThrowNotSupported",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ThrowNotSupported}
 [source,java]
 ----
-public String myMethod() {// Nicht unterstützt.
+public String myMethod() { // Nicht unterstützt.
     return null;
 }
 ----
 
-In diesem Fall sollte eine entsprechende `UnsupportedOperation­Exception` geworfen werden:
+In diesem Fall sollte eine entsprechende `UnsupportedOperationException` geworfen werden:
 
+:desc-listing-ThrowUnsupported: DO: Nicht unterstützte Methode wirft UnsupportedOperationException
+[id="listing-ThrowUnsupported",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ThrowUnsupported}
 [source,java]
 ----
-public String myMethod() {
+public String myMethod() { // Nicht unterstützt.
     throw new UnsupportedOperationException();
 }
 ----
 
-*Sich auf getCause() verlassen*
-
+*Sich auf getCause() verlassen* +
 Dies führt zu Problemen bei gewrappten Exceptions (`getCause().getCause()` notwendig). Exceptions sollten zu einer eindeutigen Behandlung führen.
-Das folgende Code-Fragment unterscheidet die Fehlerbehandlung anhand des Grundes der gefangenen Exception:
+Das Code-Fragment in <<listing-GetCause>> unterscheidet die Fehlerbehandlung anhand des Grundes der gefangenen Exception.
 
+:desc-listing-GetCause: DON'T: Sich auf getCause() verlassen
+[id="listing-GetCause",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-GetCause}
 [source,java]
 ----
 catch (MyException e) {if (e.getCause() instanceof FooException) {
@@ -953,8 +1019,7 @@ Es dürfen nur die für die Schnittstelle spezifizierten Exceptions behandelt we
 Ist auf der Aufruferseite eine Auswertung mittels `getCause()` notwendig, so ist die Schnittstelle zu überarbeiten.
 Der Grund hierfür ist die Anforderung des Aufrufers an die Schnittstelle, die Fehler genauer unterscheiden und unterschiedlich behandeln zu können.
 
-*Technische checked Exceptions zur Schnittstelle durchreichen*
-
+*Technische checked Exceptions zur Schnittstelle durchreichen* +
 Technische checked Exceptions sind zu verwenden, um den Aufrufer zur Fehlerbehandlung zu zwingen.
 Der Aufrufer muss den Fehler behandeln und nicht in eine technische unchecked Exception wrappen.
-In Einzelfällen mag dies notwendig sein, muss dann aber mit dem Chefdesigner abgestimmt werden.
+In Einzelfällen mag dies notwendig sein, muss dann aber mit dem Chefarchitekt abgestimmt werden.

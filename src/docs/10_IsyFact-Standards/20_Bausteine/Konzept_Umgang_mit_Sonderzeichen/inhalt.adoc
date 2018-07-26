@@ -31,7 +31,7 @@ UTF-8-Codierung zu verwenden ist.
 = Konfigurationseinstellungen für den Zeichensatz
 
 Im Folgenden wird die Konfiguration der technischen Systeme zur Verwendung des Zeichensatzes erläutert.
-Um zu erreichen, dass jedes IsyFact-Standard-konforme System Sonderzeichen in gleicher Weise verarbeitet,
+Um zu erreichen, dass jedes IsyFact-konforme System Sonderzeichen in gleicher Weise verarbeitet,
 wird durchgängig Unicode v4.x in der UTF-8-Codierung verwendet.
 
 [[betriebssystem]]
@@ -536,7 +536,7 @@ Die Transformationsfunktion arbeitet die Zeichenkette char für char ab.
 Sollte ein Unicode-Character, welcher aus mehreren char Objekten besteht definiert sein (non-BMP
 character, z.B. I mit angehängtem Circumflex (\\u006C\\u0302), so liefert die Transformationsfunktion
 das korrekte Ergebnis, kann aber nicht zwischen String.Latin- und Nicht-String.Latin-Zeichen unterscheiden.
-So könnten Zeichen außerhalb des Definitionsbereichs (z.B. alle \\u####\\u0302) der Transformation
+So könnten Zeichen außerhalb des Definitionsbereichs (z.B. alle \\u\####\\u0302) der Transformation
 transformiert werden.
 
 Zur Überprüfung ob eine Zeichenkette innerhalb des für den Transformator gültigen Bereichs liegt,
@@ -550,7 +550,7 @@ Die Standardzeichen müssen von jeder Anwendung immer unterstützt werden.
 Die zusätzlichen Zeichen müssen nur unterstützt werden, wenn dies entsprechend vereinbart wurde.
 Die Festlegungen für die zulässigen Zeichen orientieren sich an den Festlegungen, die für das Meldewesen getroffen wurden.
 
-Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (s. Kapitel
+Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (Siehe Kapitel
 <<festlegung-des-zeichensatzes-und-der-codierung>>)
 
 [[standardzeichen]]
@@ -564,7 +564,7 @@ Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (s. Ka
 [[zusaetzliche-zeichen]]
 == Zusätzliche Zeichen
 
-In der Tabelle <<table-zusaetzliche-zeichen>> sind die Zeichen dargestellt, die zusätzlich unterstützt werden.
+In <<table-zusaetzliche-zeichen>> sind die Zeichen dargestellt, die zusätzlich unterstützt werden.
 Damit die Zeichen in der Spalte „Glyph“ korrekt dargestellt werden, muss ein Font installiert sein, der alle Zeichen
 unterstützt. (z.B. Code2000, erhältlich unter http://www.code2000.net).
 

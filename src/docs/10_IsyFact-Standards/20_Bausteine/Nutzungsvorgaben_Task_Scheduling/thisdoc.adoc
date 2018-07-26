@@ -11,7 +11,7 @@ Die `isy-task` Bibliothek wurde im Dokument <<KonzeptTaskScheduling>> konzipiert
 Die `isy-task` Bibliothek wird im Rahmen der IsyFact Software Factory zur automatisierten Ausführung von wiederkehrenden Aufgaben
 innerhalb von fachlichen Anwendungskomponenten eingesetzt.
 Der Zweck dieses Dokuments ist Vorgaben zur Nutzung der Querschnittsbibliothek `isy-task` zu geben.
-Das Dokument richtet sich somit vorrangig an Entwickler, Konstrukteure und Technische Chefdesigner von Anwendungssystemen,
+Das Dokument richtet sich somit vorrangig an Entwickler, Konstrukteure und technische Chefarchitekten von Anwendungssystemen,
 die gemäß den Vorgaben der IsyFact umgesetzt werden.
 
 Kapitel <<verwendung-der-querschnittsbibliothek-isy-task>> beschreibt das Arbeiten

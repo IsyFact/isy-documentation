@@ -23,9 +23,9 @@ title_page:
   align: left
   font_style: bold
   title:
-    font-size: 26
+    font-size: 20
   revision:
-    font-size: 16
+    font-size: 14
 toc:
   h1_font_style: bold
   h2_font_style: bold

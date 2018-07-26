@@ -21,6 +21,9 @@ Alle von Spring LDAP benötigten Bibliotheken können zusammen mit den eigentlic
 
 In der Spring-Konfigurationsdatei müssen drei Einträge für die Nutzung von Spring LDAP gesetzt werden:
 
+:desc-listing-KonfigurationLdap: Spring-Konfiguration für LDAP
+[id="listing-KonfigurationLdap",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-KonfigurationLdap}
 [source,xml]
 ----
 <bean id="contextSource"
@@ -81,10 +84,12 @@ Die Bean `ldapTemplate` definiert die Klasse, die den Zugriff auf den LDAP kapse
 Da gemäß <<DetailkonzeptKomponenteAnwendungskern>> Abschnitt 4.1.5 keine Beans für DAO-Objekte definiert werden dürfen, muss die Bean `LdapTemplate` in eine statische Klasse gesetzt werden, den `LdapTemplateHolder`.
 Dieser bietet das `LdapTemplate` dann über statische Methoden den jeweiligen DAO-Klassen an.
 
-Zum Setzen der Properties der LDAP-Verbindung bzw.
-des Pools kann folgende Vorlage verwendet werden:
+Zum Setzen der Properties der LDAP-Verbindung bzw. des Pools kann als Vorlage <<listing-PropertiesLdapVerbindung>> verwendet werden:
 
-[source, java]
+:desc-listing-PropertiesLdapVerbindung: Setzen der Properties für die LDAP-Verbindung
+[id="listing-PropertiesLdapVerbindung",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-PropertiesLdapVerbindung}
+[source,properties]
 ----
 # Parameter für die Verbindung zum LDAP
 ldap.url = ldap://data.local.vm:1392
@@ -124,7 +129,10 @@ ldap.minEvictableIdleTimeMillis = 1800000
 
 Um gekappte Verbindungen zeitnah zu entfernen und nicht erst, wenn sie benötigt werden, können die folgenden Parameter aus der obigen Beispielkonfiguration wie folgt gesetzt werden:
 
-[source, java]
+:desc-listing-EntfernenGekappterVerbindungen: Entfernen gekappter Verbindungen
+[id="listing-EntfernenGekappterVerbindungen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-EntfernenGekappterVerbindungen}
+[source,properties]
 ----
 # Zeit zwischen den 'EvictionRuns'.
 ldap.timeBetweenEvictionRunsMillis = 5000
@@ -144,6 +152,9 @@ Es wird exemplarisch gezeigt, wie über das `LdapTemplate` Suchen und Einfügen 
 [[auslesen-von-rollen]]
 === Auslesen von Rollen
 
+:desc-listing-AuslesenRollen: Auslesen von Rollen
+[id="listing-AuslesenRollen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AuslesenRollen}
 [source, java]
 ----
 public List<String> getRollen(String uid, String orgknz) {
@@ -173,7 +184,7 @@ private static class RollenContextMapper extends AbstractContextMapper {
 }
 ----
 
-Aufgerufen wird in diesem Beispiel die obere Methode mit `uid` (User-ID) und `orgknz` (Organisationskennzeichen) eines Anwenders, womit ein Anwender eindeutig identifiziert ist.
+Aufgerufen wird in diesem Beispiel die obere Methode mit `uid` (User-ID) und `orgknz` (Organisationskennzeichen) eines Anwenders, womit dieser eindeutig identifiziert ist.
 
 In den ersten drei Zeilen wird die Suchbedingung definiert, wobei `uid` und `orgknz` die Namen der Entsprechenden Felder im LDAP sind.
 
@@ -193,8 +204,11 @@ Zusammengefasst sucht diese Methode einen Benutzer der durch seinen Anmeldenamen
 === Speichern eines Anwenders
 
 Als Beispiel zum Speichern wird hier das Neuanlegen eines Anwenders gezeigt.
-Die Klasse Anwender ist ein reines Transportobjekt mit Getter- und Setter- Methoden und wird nicht weiter erläutert.
+Die Klasse `Anwender` ist ein reines Transportobjekt mit Getter- und Setter- Methoden und wird nicht weiter erläutert.
 
+:desc-listing-SpeichernAnwender: Speichern eines Anwenders
+[id="listing-SpeichernAnwender",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-SpeichernAnwender}
 [source, java]
 ----
 public void speicherAnwender(Anwender anwender) {
@@ -220,6 +234,7 @@ private Name buildDn(Anwender anwender) {
   return name;
 }
 ----
+
 In der ersten Zeile der Methode wird die Methode `buildDn` aufgerufen die den Distinguished-Name des Objektes zusammenbaut.
 Der Distinguished-Name dient zur eindeutigen Identifizierung eines Anwenders, sein Aufbau ist vom Schema des LDAP abhängig.
 

@@ -22,6 +22,4 @@ Abschließend wird für die technischen Systeme angegeben, wo die entsprechenden
 Zeichensatzes vorgenommen werden müssen.
 
 Internationalisierung bedeutet, ein Programm so zu entwerfen und umzusetzen, dass die Anpassung an andere Sprachen
-möglich ist, ohne den Quellcode zu ändern.
-
-Internationalisierung ist nicht Bestandteil dieses Dokuments!
+möglich ist, ohne den Quellcode zu ändern. Jedoch ist Internationalisierung nicht Bestandteil dieses Dokuments.

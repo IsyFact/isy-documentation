@@ -3,17 +3,22 @@
 
 Die in diesem Dokument aufgestellten Vorgaben setzen folgende Anforderungen um:
 
-* *Einfachheit der Verwendung von JPA:* Dies betrifft sowohl die Erstellung von JPA-Konfigurationen und des JPA verwendenden Codes als auch deren Verständlichkeit und Wartbarkeit.
+*Einfachheit der Verwendung von JPA:* Dies betrifft sowohl die Erstellung von JPA-Konfigurationen und des JPA verwendenden Codes als auch deren Verständlichkeit und Wartbarkeit.
 Konkret kann diese Anforderung in die folgenden Anforderungen aufgeteilt werden:
-** Einfachheit und Verständlichkeit der Konfiguration und der Mapping-Definition von JPA.
-** Einfachheit und Verständlichkeit des JPA verwendenden Codes.
-* *Schmale, definierte JPA-Schnittstelle:* Die Verwendung und Konfiguration von JPA soll isoliert und über eine schmale Schnittstelle erfolgen.
-** Die Komponente Datenzugriff soll auf JPA über die schmale Schnittstelle zugreifen.
-** Die Stellen, an welchen JPA verwendet wird, sollen keine Fachlogik enthalten.
-* *Effizienz und Schnelligkeit der JPA Zugriffsschicht und der dahinter liegenden Hibernate-Implementierung:* Die von
+
+* Einfachheit und Verständlichkeit der Konfiguration und der Mapping-Definition von JPA.
+* Einfachheit und Verständlichkeit des JPA verwendenden Codes.
+
+*Schmale, definierte JPA-Schnittstelle:* Die Verwendung und Konfiguration von JPA soll isoliert und über eine schmale Schnittstelle erfolgen.
+
+* Die Komponente Datenzugriff soll auf JPA über die schmale Schnittstelle zugreifen.
+* Die Stellen, an welchen JPA verwendet wird, sollen keine Fachlogik enthalten.
+
+*Effizienz und Schnelligkeit der JPA Zugriffsschicht und der dahinter liegenden Hibernate-Implementierung:* Die von
 JPA abgesetzten Datenbank-Aufrufe sollen effizient sein.
 Unnötige Zugriffe und doppelte Zugriffe sollen vermieden werden.
-* *Einheitlichkeit der Verwendung von JPA:* Die Konfiguration und Programmierung der JPA-Zugriffe soll zum einen
+
+*Einheitlichkeit der Verwendung von JPA:* Die Konfiguration und Programmierung der JPA-Zugriffe soll zum einen
 über die gleichen Mechanismen und zum anderen an den gleichen Stellen vorgenommen werden.
 
 [[persistenz]]
@@ -174,9 +179,65 @@ Explizit verboten sind bidirektional traversierbare n:m Assoziationen.
 Hierfür sind zwei 1:n (bzw. n:1) Mappings zu definieren.
 
 [[behandlung-von-zeitangaben]]
-== Behandlung von Zeitangaben
+== Behandlung von Datums- und Zeitangaben
 
-Für die Speicherung von Zeitangaben wird in Java einheitlich `java.util.Date` verwendet.
+Es werden die Datums- und Zeitklassen aus der _Java 8 Date Time API_ verwendet.
+Hinweise zu deren Verwendung finden sich im <<KonzeptDatumZeit>>.
+Zur Persistierung von Zeiträumen und ungewissen Datums- und Zeitangaben im Sinne des <<KonzeptDatumZeit>> werden die `@Entity`-Klasse `ZeitraumEntitaet` und die `@Embeddable`-Klassen `UngewisseZeitEntitaet` und `UngewissesDatumEntitaet` bereitgestellt.
+
+[[persistierung-1]]
+=== Persistierung mit JPA
+
+JPA unterstützt in der aktuellen Version 2.1 die neuen Typen für Datum und Zeit nicht, da die Spezifikation vor dem Erscheinen von Java 8 verabschiedet wurde.
+JPA 2.2 wird dies nachholen.
+Allerdings gibt es derzeit noch keine (Referenz-)Implementierung von JPA 2.2. Für die Persistierung ergeben sich damit zwei Möglichkeiten:
+
+.  Hibernate bietet ab Version 5 eine proprietäre Lösung für die neuen Datums- und Zeittypen an.
++
+NOTE: Beschreibung: https://www.thoughts-on-java.org/hibernate-5-date-and-time/
++
+Hier ist allerdings unklar, wie diese Implementierung nach dem Erscheinen von JPA 2.2 in den Standard überführt werden soll.
+Diese Lösung wird wenig Aufwand bei der Implementierung mit sich bringen, ist allerdings spezifisch für Hibernate und könnte beim Wechsel auf JPA 2.2 zu erhöhtem Migrationsaufwand führen.
+.  JPA bietet die Möglichkeit, zusätzliche Datentypen mithilfe von Konvertern zu unterstützen.
+Dafür muss für jeden zu unterstützenden Datentyp die Klasse `AttributeConverter` implementiert werden.
+Diese Lösung wird mehr Aufwand bei der Implementierung mit sich bringen.
+Die Implementierung ist dafür JPA-konform, als Teil des IsyFact-Bausteins vollständig beschrieben und kann so beim Wechsel auf JPA 2.2 kontrolliert migriert werden.
+
+Der Baustein orientiert sich am JPA-Standard und setzt Lösungsvariante 2 um.
+Die Umsetzung sollte sich am offiziellen Ticket zur Umsetzung des Features in JPA 2.2 orientieren.
+
+NOTE: https://github.com/javaee/jpa-spec/issues/63
+
+Insbesondere dürfen die Datums- und Zeittypen weder als Binärdaten (BLOB) noch als Zeichenketten persistiert werden.
+Zeitzonen müssen immer als Abweichung von UTC persistiert werden, nicht in textueller Form über den Namen der Zeitzone.
+Die Umwandlung von persistierten Werten in Datumswerte mit benannten Zeitzonen (z.B. CET oder Europe/Berlin) muss von einer Anwendung global bestimmt werden oder für jeden Nutzer der Anwendung konfigurierbar sein.
+
+==== Attribute Converter
+
+Die Querschnittsbibliothek _isy-persistence_ setzt die Persistenz der Klassen aus der _Java 8 Date and Time API_ mit Attribute Convertern aus JPA 2.1 um.
+Die Converter sind automatisch aktiv.
+Die Bibliothek bringt für folgende Klassen Attribute Converter mit:
+
+:desc-table-Mapping: Mapping
+[id="table-Mapping",reftext="{table-caption} {counter:tables}"]
+.{desc-table-Mapping}
+[cols="^,^,^",options="header",]
+|====
+|*Java 8 Typ* |*Mapping auf* |*Bemerkung*
+<|`LocalTime` <|`java.sql.Time` <|Zeiteinheiten kleiner als Sekunde gehen verloren.
+<|`LocalDate` <|`java.sql.Date` |
+<|`LocalDateTime` <|`java.sql.Timestamp` |
+<|`OffsetTime` <|`String` <|ISO-8601-Repräsentation
+<|`OffsetDateTime` <|`String` <|ISO-8601-Repräsentation
+<|`ZonedDateTime` <|`String` <|ISO-8601-Repräsentation
+<|`Period` <|`String` <|ISO-8601-Repräsentation
+<|`Duration` <|`long` <|`Duration` wird in Nanosekunden gespeichert.
+|====
+
+=== Altanwendungen
+
+Für alte Anwendungen, die nicht die _Java 8 Date Time API_ verwenden, sondern noch `java.util.Date` verwenden, gelten die folgenden Vorgaben.
+
 In der Datenbank erfolgt die Speicherung in einem Attribut vom Typ `TIMESTAMP`.
 In der Entitätsklasse ist das Mapping wie folgt anzugeben:
 
@@ -213,22 +274,6 @@ getTimestamp().compareTo(getDate()); // OK
 .getDate().compareTo(getTimestamp()); // Nicht OK
 .getDate().equals(getTimestamp()); // Nicht OK
 ----
-
-Analoges gilt für die Verwendung im Regelwerk (siehe <<RegelwerkKonzept>>). Hier wird automatisch `compareTo` verwendet.
-Das Attribut mit der höheren Genauigkeit muss aber auf der linken Seite des Vergleichsoperators stehen:
-
-[source,java]
-----
-rule "Datums-Operation"
-  when
-    einObjekt(timestamp < date) // OK
-    einObjekt(timestamp == date) // OK
-    einObjekt(date > timestamp) // Nicht OK
-  then
-  ...
-end
-----
-//Line Thrugh geht in Source-Blöcken nicht
 
 Für Berechnungen, z. B. das Hinzuaddieren von Tagen, oder das Setzen von Feldern, ist der
 Daten-Typ `java.util.Calendar` zu verwenden. In diesem Fall wird im Anwendungskern temporär ein `Calendar`-Objekt
@@ -432,10 +477,10 @@ Exceptions in die besser auszuwertenden Spring-DataAccessExceptions umgewandelt 
 
 In der Spring-Konfiguration wird die Klasse `AbstractDao` wie folgt definiert:
 
-NOTE: Wir benutzen nicht die Annotation `@PersistenceContext` und den `PersistenceAnnotationBeanPostProcessor`,
-weil dieser Probleme beim Starten des Application Contexts verursacht (zum Ermitteln der EntityManagerFactory
-werden alle Beans zu einem (zu) frühen Zeitpunkt instanziiert, was bei zirkulären Abhängigkeiten und gewrappten
-Beans Probleme verursacht).
+NOTE: Wir benutzen nicht die Annotation `@PersistenceContext` und den `PersistenceAnnotationBeanPostProcessor`.
+Bei deren Verwendung werden beim Starten des Application Contexts zur Ermittlung der `EntityManagerFactory`
+alle Beans zu einem zu frühen Zeitpunkt instanziiert, was bei zirkulären Abhängigkeiten und gewrappten
+Beans Probleme verursacht.
 
 [source,xml]
 ----
@@ -550,20 +595,20 @@ Filter müssen als Annotationen mit `@FilterDef`, `@Filters` und `@Filter` umges
 [[verbot-von-bulk-queries]]
 == Verbot von Bulk-Queries
 
-JPA bietet über die Methode query.executeUpdate() die Möglichkeit in JPQL formulierte DELETE- und UPDATE-Statements, sog.
+JPA bietet über die Methode `query.executeUpdate()` die Möglichkeit in JPQL formulierte `DELETE`- und `UPDATE`-Statements, sog.
 Bulk-Queries, auszuführen.
 Die Nutzung solcher Bulk-Queries ist verboten.
-Wo aus Performancegründen massenhafte DELETEs oder UPDATEs direkt in der Datenbank benötigt werden, können native
+Wo aus Performancegründen massenhafte `DELETE`- oder `UPDATE`-Statements direkt in der Datenbank benötigt werden, können native
 SQL-Anweisungen verwendet werden.
 Sofern bei solchen Bulk-Operationen kaskadierende Änderungen benötigt werden (z.B. weil Kind-Tabellen
  mitgelöscht werden sollen), müssen entsprechende Constraints in der Datenbank angelegt werden.
 
-Begründung: Hibernate erzeugt bei der Ausführung von BULK-Queries unter bestimmten Umständen zur Laufzeit
+Begründung: Hibernate erzeugt bei der Ausführung von `BULK`-Queries unter bestimmten Umständen zur Laufzeit
 implizit Hilfstabellen (Temporäre Tabellen mit dem Präfix HT_).
 
 NOTE: siehe http://in.relation.to/Bloggers/MultitableBulkOperations
 
-Dies führt dazu, dass der Datenbank-User der Anwendung entsprechende CREATE TABLE-Rechte benötigt, was i.d.R.
+Dies führt dazu, dass der Datenbank-User der Anwendung entsprechende `CREATE TABLE`-Rechte benötigt, was i.d.R.
 nicht zugelassen ist. Weiterhin führt die Nutzung der temporären Tabellen in vielen Fällen zu Performance-Problemen.
 
 Um die Einhaltung dieser Anforderung sicherzustellen, sollten auch in der Entwicklung bzw.
@@ -1101,9 +1146,9 @@ getroffenen Festlegungen zur Persistenz sein soll.
 Daten werden durch die Anwendungslogik gepflegt und persistiert.
 
 Theoretisch wäre es auch möglich, eine solche Historisierung auf der Ebene der Datenbankzugriffsschicht durchzuführen.
-Dazu würden dann in der Datenbankzugriffschicht die UPDATE-Statements durch INSERT-Statements ersetzt.
-Die Daten der INSERT-Statements würden dann durch einen Zeitstempel ergänzt.
-Beim SELECT würde immer der aktuellste Datensatz geliefert werden.
+Dazu würden dann in der Datenbankzugriffschicht die `UPDATE`-Statements durch `INSERT`-Statements ersetzt.
+Die Daten der `INSERT`-Statements würden dann durch einen Zeitstempel ergänzt.
+Beim `SELECT` würde immer der aktuellste Datensatz geliefert werden.
 Dieses Vorgehen lohnt sich aber nicht, da nur sehr wenige Datensätze historisiert werden sollen und ebenso widerspricht es der Anforderung, dass keine Daten gespeichert werden sollen, die nicht auch angezeigt werden.
 Sinnvoll wäre ein solches Vorgehen dann, wenn über die Historisierung eine Nachvollziehbarkeit der Änderungen erreicht werden soll.
 Dies ist im Rahmen der Referenzarchitektur aber explizit die Aufgabe der Protokollierung.
@@ -1148,15 +1193,15 @@ Falls das zu persistierende Objekt den Namen `Xyz` trägt, heißt das zugehörig
 Es hat die Funktion eines Datenverwalters.
 Dieses DAO wird wie folgt angepasst und erweitert:
 
-*Erstellen einer neuen Methode Xyz `leseXyz(Schlüssel, Calendar)`:* Durch die Historisierung wird der bisherige Schlüssel des Objekts um einen Datumsbezug erweitert.
+*Erstellen einer neuen Methode `Xyz leseXyz(Schluessel, Calendar)`:* Durch die Historisierung wird der bisherige Schlüssel des Objekts um einen Datumsbezug erweitert.
 Daher muss jetzt beim Lesen eines Objekts ein Datum angegeben werden, an dem das zu lesende Objekt aktuell sein soll.
 Diese Methode liefert das Objekt mit dem übergebenen Schlüssel, das zum übergebenen Datum aktuell war.
 
-*Ändern der Methode Xyz `lese Xyz(Schlüssel)`:* Diese Methode ist im DAO bereits vorhanden.
+*Ändern der Methode `Xyz lese Xyz(Schluessel)`:* Diese Methode ist im DAO bereits vorhanden.
 Sie wird so angepasst, dass sie das aktuell gültige Objekt zurückgibt.
 Dies ist das Objekt mit den übergebenen Schlüsselattributen, dessen `aktuellBis`-Eintrag der 31.12.9999 ist.
 
-*Erstellen einer neuen Methode `List<Xyz leseXyzHistorie (Schlüssel)`:* Diese Methode liefert die gesamte Historie
+*Erstellen einer neuen Methode `List<Xyz> leseXyzHistorie(Schluessel)`:* Diese Methode liefert die gesamte Historie
 eines Datensatzes.
 
 *Erstellen einer neuen Methode `Xyz erzeugeNeueVersion(Xyz)`:* Bei einer Umsetzung ohne Historisierung konnten
@@ -1188,7 +1233,7 @@ ergänzt werden, die andere Parameter erwarten, z. B. durch eine Methode, die a
 des Objekts und nicht das Objekt selbst erwartet oder durch eine Methode, die die aktuellste Version eines
 Datensatzes selber ermittelt.
 
-*Löschen der Methode void speichereXyz(Xyz)*: Es ist nicht mehr möglich, ein neues Objekt zu erzeugen und direkt in
+*Löschen der Methode `void speichereXyz(Xyz)`*: Es ist nicht mehr möglich, ein neues Objekt zu erzeugen und direkt in
 der Datenbank zu speichern und damit die Historisierung zu umgehen.
 
 *Optionale Erweiterungen:* Falls eine Obergrenze für die Anzahl der zu historisierenden Datensätze vorgegeben ist,
@@ -1309,10 +1354,10 @@ Die Tabelle hat die folgende Struktur:
 [cols="2,2,3",options="header"]
 |====
 |Spalte |Typ |Beschreibung
-|`version_nummer` |`varchar2(25 char)` |Versionsnummer des Datenbankschemas.
+|`version_nummer` | `varchar2(25 char)` |Versionsnummer des Datenbankschemas.
 Diese Versionsnummer entspricht der Versionsnummer der Anwendung, mit der sich das Schema geändert hat.
-|`update_nummer` |varchar2(5 char)` |Update-Zähler, der jedes Mal hochgezählt wird, wenn sich das Datenbankschema ändert, aber die Anwendung unverändert bleibt.
-|`status` |varchar2(25 char)` a|
+|`update_nummer` | `varchar2(5 char)` |Update-Zähler, der jedes Mal hochgezählt wird, wenn sich das Datenbankschema ändert, aber die Anwendung unverändert bleibt.
+|`status` | `varchar2(25 char)` a|
 Status des Schemas:
 
 * gueltig: Das Schema wurde korrekt installiert bzw.
@@ -1559,8 +1604,7 @@ Unabhängig von der Lösung erschweren datenbankübergreifende Operationen die F
 
 Jede Anwendung prüft beim Start, ob das DB-Schema die erwartete Version hat.
 Diese Prüfung ist in der Bibliothek `isy-persistence` fest eingebaut.
-In der Spring Konfiguration müssen in der `appDataSource-Bean` (Klasse
-`de.bund.bva.pliscommon.persistence.datasource.PlisDataSource`) die folgenden Properties gesetzt werden:
+In der Spring Konfiguration müssen in der `appDataSource-Bean` (Klasse `PlisDataSource`) die folgenden Properties gesetzt werden:
 
 [source,xml]
 ----

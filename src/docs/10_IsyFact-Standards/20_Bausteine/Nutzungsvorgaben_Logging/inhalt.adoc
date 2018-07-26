@@ -100,9 +100,9 @@ auf Grund eines OptimisticLocking-Fehlers)
 |6 |TRACE |Feingranulare und umfangreiche Informationen als Ergänzung des DEBUG-Levels für besonders schwierige Fehleranalysen. |Vollständige HTTP-Kommunikation an einer Schnittstelle (Header, Body, technische Informationen).
 |====
 
-[underline]#Hinweis zum Log-Level FATAL#: SLF4J und damit auch logback (welches `isy-logging`zugrunde liegt)
+[underline]#Hinweis zum Log-Level FATAL#: SLF4J und damit auch logback (welches `isy-logging` zugrunde liegt)
 besitzen kein Log-Level FATAL.
-Die Unterscheidung, ob ein Error-Logeintrag „fatal“ ist oder nicht, kann mit Hilfe von Markern umgesetzt
+Die Unterscheidung, ob ein Error-Logeintrag „FATAL“ ist oder nicht, kann mit Hilfe von Markern umgesetzt
 werden.
 
 NOTE: Siehe auch bei http://slf4j.org/faq.html#fatal
@@ -133,7 +133,7 @@ Log-Kategorien werden ausschließlich im Level INFO verwendet und werden in folg
 :desc-table-UnterLogKat: Unterscheidung der Log-Kategorien
 [id="table-UnterLogKat",reftext="{table-caption} {counter:tables}"]
 .{desc-table-UnterLogKat}
-[cols="<2,<3,<9,<7",options="header"]
+[cols="<2,<4,<9,<7",options="header"]
 |====
 |Level |Kategorie |Beschreibung |Beispiel(e)
 .2+.^|ERROR |FATAL |Logeinträge des Log-Levels FATAL (vgl.
@@ -340,7 +340,7 @@ Hierauf kann beim Aufruf des Loggers keinen Einfluss genommen werden.
 Zum Loggen von technischen und nicht datenschutzrelevanten Daten bietet `isy-logging` die Schnittstelle
 `IsyLoggerStandard` an. <<image-SS-IsyLoggerStandard>> zeigt eine Übersicht der Schnittstelle:
 
-:desc-image-SS-IsyLoggerStandard: Schnittstelle `IsyLoggerStandard`
+:desc-image-SS-IsyLoggerStandard: Schnittstelle IsyLoggerStandard
 [id="image-SS-IsyLoggerStandard",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-SS-IsyLoggerStandard}
 image::SS-IsyLoggerStandard.png[align="center"]
@@ -350,6 +350,9 @@ image::SS-IsyLoggerStandard.png[align="center"]
 
 Die folgenden Methoden dienen der _einfachen_ Ausgabe von Lognachrichten:
 
+:desc-listing-MethodenEinfachesLogging: Methoden zur einfachen Ausgabe von Lognachrichten
+[id="listing-MethodenEinfachesLogging",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MethodenEinfachesLogging}
 [source,java]
 ----
 trace(String nachricht, Object... werte)
@@ -358,7 +361,7 @@ warn(String schlussel, String nachricht, Object... werte)
 info(LogKategorie kategorie, String schlussel, String nachricht, Object... werte)
 ----
 Der Aufruf wird an die entsprechende Methode des SLF4J-Loggers (mit gleicher Signatur) delegiert.
-Dabei werden alle werte (d.h. die Inhalte für Platzhalter in der Nachricht) zusätzlich als Marker übergeben,
+Dabei werden alle Werte (d.h. die Inhalte für Platzhalter in der Nachricht) zusätzlich als Marker übergeben,
 so dass sie im Logeintrag als separate Attribute ausgegeben werden können und damit einfacher auswertbar sind:
 
 * `parameter1`: werte[1].
@@ -367,6 +370,9 @@ so dass sie im Logeintrag als separate Attribute ausgegeben werden können und d
 
 Beispiel: Der Aufruf
 
+:desc-listing-AufrufMarker: Aufruf mit Attributen
+[id="listing-AufrufMarker",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-AufrufMarker}
 [source,java]
 ----
 debug("Die Methode {} wurde mit dem Parameter {} aufgerufen.", "addiere", "5")
@@ -423,9 +429,9 @@ die in <<auswertungen>> definierten Auswertungen zu ermöglichen (Beispiel: Eine
  werden können.
 
 Zum Loggen datenschutzrelevanter Daten bietet `isy-logging` die Schnittstelle `IsyLoggerFachdaten` an.
-<<image-SS-IsyLoggerFachdaten>> zeigt eine Übersicht der Schnittstelle:
+<<image-SS-IsyLoggerFachdaten>> zeigt eine Übersicht der Schnittstelle.
 
-:desc-image-SS-IsyLoggerFachdaten: Schnittstelle `IsyLoggerFachdaten`
+:desc-image-SS-IsyLoggerFachdaten: Schnittstelle IsyLoggerFachdaten
 [id="image-SS-IsyLoggerFachdaten",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-SS-IsyLoggerFachdaten}
 image::SS-IsyLoggerFachdaten.png[align="center"]
@@ -441,7 +447,7 @@ Die Methoden tragen dabei jeweils das Suffix „Fachdaten“ im Namen.
 Zum beliebigen Markieren von Logeinträgen bietet `isy-logging` die Schnittstelle `IsyLoggerTypisiert` an.
 <<image-SS-IsyLoggerTypisiert>> zeigt eine Übersicht der Schnittstelle:
 
-:desc-image-SS-IsyLoggerTypisiert: Schnittstelle `IsyLoggerTypisiert`
+:desc-image-SS-IsyLoggerTypisiert: Schnittstelle IsyLoggerTypisiert
 [id="image-SS-IsyLoggerTypisiert",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-SS-IsyLoggerTypisiert}
 image::SS-IsyLoggerTypisiert.png[align="center"]
@@ -577,23 +583,23 @@ Darüber hinaus werden folgende Debug-Logeinträge erstellt:
 :desc-table-DbgLogEntry: Debug Logeinträge
 [id="table-DbgLogEntry",reftext="{table-caption} {counter:tables}"]
 .{desc-table-DbgLogEntry}
-[cols="^2,^1,2,4",options="header"]
+[cols="^2,^4",options="header"]
 |====
-|Schlüssel |Level |Kategorie |Text
-4+|*Falls loggeDatenBeiException = true*
-| |DEBUG | a| Die <Klasse. Methode> wurde mit folgenden Parametern aufgerufen <Parameter>.
+  | Level |Text
+2+| *Falls loggeDatenBeiException = true*
+  | DEBUG <| Die <Klasse. Methode> wurde mit folgenden Parametern aufgerufen <Parameter>.
 
-ANMERKUNG: Der Logeintrag wird als „Fachdaten“ gekennzeichnet.
-4+^|*Falls loggeDaten = true und eine Exception geliefert wurde*
-| |DEBUG | a| Die <Klasse. Methode> wurde mit folgenden Parametern aufgerufen <Parameter>.
+             ANMERKUNG: Der Logeintrag wird als „Fachdaten“ gekennzeichnet.
+2+| *Falls loggeDaten = true und eine Exception geliefert wurde*
+  | DEBUG <| Die <Klasse. Methode> wurde mit folgenden Parametern aufgerufen <Parameter>.
 
-ANMERKUNG: Der Logeintrag wird als „Fachdaten“ gekennzeichnet.
-4+^|*Falls Debug-Einträge erstellt werden und ein Parameter zu groß ist*
-| |DEBUG | a| Die <Klasse. Methode> wurde mit einem zu großen Parameter aufgerufen.
-Position: <Position des Parameters>, Klasse: <Klasse des Parameters>
+             ANMERKUNG: Der Logeintrag wird als „Fachdaten“ gekennzeichnet.
+2+| *Falls Debug-Einträge erstellt werden und ein Parameter zu groß ist*
+  | DEBUG <| Die <Klasse.Methode> wurde mit einem zu großen Parameter aufgerufen.
+             Position: <Position des Parameters>, Klasse: <Klasse des Parameters>
 
-ANMERKUNG: Der Logeintrag wird als „Fachdaten“ gekennzeichnet. Außerdem werden zu große Parameter
-in den oben genannten Logeinträgen durch „<Maximale Größe überschritten>“ ersetzt.
+             ANMERKUNG: Der Logeintrag wird als „Fachdaten“ gekennzeichnet. Außerdem werden zu große Parameter
+             in den oben genannten Logeinträgen durch „<Maximale Größe überschritten>“ ersetzt.
 |====
 
 Den Aufrufen von Nachbarsystemen kommt eine besondere Wichtigkeit bei der Analyse des Laufzeitverhaltens von Systemen zu.
@@ -770,8 +776,11 @@ Folgende Parameter sind zu setzen:
 ==== Batches (größenbasiertes Rollieren)
 
 Die Konfiguration des Loggings für Batches erfolgt analog zum vorhergehenden Abschnitt.
-Es wird jedoch ein anderer Appender referenziert der ein größenbasiertes Rollieren umsetzt:
+Es wird jedoch ein anderer Appender referenziert (<<listing-LoggingKonfigurationBatch>>) der ein größenbasiertes Rollieren umsetzt.
 
+:desc-listing-LoggingKonfigurationBatch: Konfiguration des Loggings für Batches
+[id="listing-LoggingKonfigurationBatch",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-LoggingKonfigurationBatch}
 [source,xml]
 ----
 <configuration scan="true" scanPeriod="1 minutes">
@@ -1067,7 +1076,7 @@ Gründe für die Anpassung der Konfiguration können bspw.
 sein:
 
 * Exkludieren einzelner Packages, die nicht serialisiert werden können oder nicht relevant sind und dadurch zu unnötigen Loginhalten führen.
-* Inkludieren einzelner Packages, falls die Anwendung nicht in der Domäne de.bund.bva entwickelt wird.
+* Inkludieren einzelner Packages, falls die Anwendung nicht in der Domäne `de.bund.bva` entwickelt wird.
 
 Eine exemplarische Konfiguration ist im Folgenden dargestellt:
 
@@ -1237,7 +1246,7 @@ depends-on="slf4JBridgeHandler"/>
 
 Die Zielsetzung des Loggings ist es, unterschiedliche Auswertungen zu ermöglichen, um damit verschiedene Problemstellungen und Informationsbedarfe, die während des Betriebs der Systeme entstehen, einfach und effizient beantworten zu können.
 Grundlage hierfür bildet zum einen die technische Vereinheitlichung des Loggings, die in den vorangegangen Abschnitten (Nutzung und Konfiguration) beschrieben wurde.
-Zum andern muss das Logging jedoch insbesondere auch inhaltlich – also _wann_ wird _was_ geloggt – einheitlich und zielgerichtet im Hinblick auf die verschiedenen Auswertungen erfolgen.
+Zum Anderen muss das Logging jedoch insbesondere auch inhaltlich – also _wann_ wird _was_ geloggt – einheitlich und zielgerichtet im Hinblick auf die verschiedenen Auswertungen erfolgen.
 Dadurch wird sichergestellt, dass die Logeinträge einfach ausgewertet werden können und alle notwendigen Informationen vorliegen.
 
 Aus diesem Grund werden im folgenden Abschnitt zunächst die verschiedenen Auswertungen beschrieben, die für alle Anwendungen relevant sind.
@@ -1408,8 +1417,8 @@ Reduktion der Nachbarsystemaufrufe geführt hat.
 |Kategorie |*JOURNAL*
 |Beschreibung a|
 Die Analyse des Systemzustands und der Systemereignisse umfasst bspw.
-die Analyse, welche Version sich mit welcher Konfiguration in Betrieb befand, welche Änderungen vorgenommen wurden,
-ob die Anwendung gestartet oder beendet wurde etc.
+welche Version sich mit welcher Konfiguration in Betrieb befand, welche Änderungen vorgenommen wurden,
+ob die Anwendung gestartet oder beendet wurde, etc.
 
 Diese Analyse wird querschnittlich zur Unterstützung der anderen Analysen durchgeführt, um bspw.
 Fehler auf Änderungen des Systemzustands zurückzuführen, oder Performance-Schwankungen zu erklären.
@@ -1481,11 +1490,11 @@ Wichtig ist, dass bei der Umsetzung einer Anwendung _keine_ Logeinträge erstell
 
 Die Szenarien sind nach folgendem Schema aufgebaut:
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |_Beschreibung der Situation innerhalb einer Anwendung._
 |Logging |_Das durchzuführende Logging._
-|Auswertungs-szenario |_Die Auswertungen, für die die erstellten Logeinträge verwendet werden._
+|Auswertungsszenario |_Die Auswertungen, für die die erstellten Logeinträge verwendet werden._
 |====
 
 [[vorgaben-fuer-alle-logszenarien]]
@@ -1511,13 +1520,13 @@ Spring nicht verwendet), müssen die entsprechenden Einträge explizit durch Auf
 [[aufruf-an-systemgrenze]]
 ==== Aufruf an Systemgrenze
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Es wird eine Außenschnittstelle des Systems – Service, GUI-Controller oder Batch – aufgerufen
 (eingehender Aufruf).
 |Logging |Der Aufruf der Methode wird mit Hilfe des `LogInterceptor` geloggt.
 Dieser muss gemäß <<loggingmethodinterceptor>> für alle Außenschnittstellen des Systems konfiguriert sein.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Performance analysieren
 * Nutzungshäufigkeit analysieren
 * Verarbeitung eines Aufrufs in Anwendungslandschaft nachvollziehen
@@ -1527,20 +1536,20 @@ Dieser muss gemäß <<loggingmethodinterceptor>> für alle Außenschnittstellen 
 [[rueckliefern-einer-exception-an-systemgrenze]]
 ==== Rückliefern einer Exception an Systemgrenze
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Beim Aufruf eines Systems ist ein Fehler aufgetreten.
 Es wird eine Exception an den Aufrufer zurückgegeben.
 |Logging |Es müssen die übermittelten Eingabeparameter mit Hilfe des `LogInterceptor` geloggt werden.
 Dieser muss gemäß <<loggingmethodinterceptor>> für alle Außenschnittstellen des Systems konfiguriert sein.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Fehleranalyse (Debugging)
 |====
 
 [[aufruf-an-komponentengrenze]]
 ==== Aufruf an Komponentengrenze
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Es wird eine Methode einer Komponentenschnittstelle im Anwendungskern aufgerufen (eingehender Aufruf).
 |Logging a|
@@ -1550,7 +1559,7 @@ führt jedoch in den meisten Anwendungen zu einem sehr hohen Logvolumen.
 Jede Anwendung muss den LogInterceptor gemäß <<loggingmethodinterceptor>> konfigurieren, so dass das Logging an
 den Komponentengrenzen bei Bedarf aktiviert werden kann.
 
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Performance überwachen
 * Nutzungshäufigkeit analysieren
 * Verarbeitung eines Aufrufs in Anwendungslandschaft nachvollziehen
@@ -1559,12 +1568,12 @@ den Komponentengrenzen bei Bedarf aktiviert werden kann.
 [[aufruf-eines-daos]]
 ==== Aufruf eines DAOs
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Es wird eine Methode eines DAOs aufgerufen (eingehender Aufruf).
 |Logging |Der Aufruf der Methode wird mit Hilfe des `LogInterceptor` geloggt.
 Dieser muss gemäß <<loggingmethodinterceptor>> für alle Komponentenschnittstellen konfiguriert sein.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Performance überwachen
 * Nutzungshäufigkeit analysieren
 * Verarbeitung eines Aufrufs in Anwendungslandschaft nachvollziehen
@@ -1573,7 +1582,7 @@ Dieser muss gemäß <<loggingmethodinterceptor>> für alle Komponentenschnittste
 [[aufruf-eines-nachbarsystems]]
 ==== Aufruf eines Nachbarsystems
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Es wird ein entfernter Service eines Nachbarsystems aufgerufen.
 |Logging |Der Aufruf der Methode wird mit Hilfe des `LogInterceptor` geloggt.
@@ -1585,7 +1594,7 @@ Bausteins Service umgesetzt (siehe <<DetailkonzeptKomponenteService>>), so dass 
 Bei Nachbarsystemen, die selbst kein IsyFact-konformes Logging umsetzen (Drittsoftware wie bspw.
 ein Suchverfahren), kann es notwendig sein, zusätzliche Informationen in der aufrufenden Anwendung zu loggen.
 Entsprechende Vorgaben werden in den Nutzungskonzepten der jeweiligen Bausteine definiert.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Nutzungshäufigkeit analysieren
 * Verarbeitung eines Aufrufs in Anwendungslandschaft nachvollziehen
 * _Weitere systemspezifische Auswertungen_
@@ -1594,19 +1603,19 @@ Entsprechende Vorgaben werden in den Nutzungskonzepten der jeweiligen Bausteine 
 [[hochfahren-herunterfahren]]
 ==== Hochfahren / Herunterfahren
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Ein Anwendungssystem oder ein Batch wird gestartet oder beendet.
 |Logging |Der Vorgang wird durch den `LogApplicationListener` geloggt.
 Dieser muss gemäß <<LogApplicationListener>> konfiguriert sein.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Systemzustand und -ereignisse überwachen
 |====
 
 [[neueinlesen-eines-geänderten-konfigurationsparameters]]
 ==== Neueinlesen eines geänderten Konfigurationsparameters
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Es wird festgestellt, dass sich ein Konfigurationsparameter der betrieblichen Konfiguration
 oder eine Laufzeitkonfiguration geändert hat.
@@ -1619,14 +1628,14 @@ Es muss ein Logeintrag erstellt werden, der die Änderung des Konfigurationspara
 
 Dies wird durch die Klasse `ReloadablePropertyKonfiguration` der Bibliothek isy-konfiguration bereits umgesetzt,
 so dass bei deren Verwendung hierfür nichts mehr zu tun ist.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Systemzustand und -ereignisse überwachen
 |====
 
 [[loggen-der-schnittstellenkommunikation]]
 ==== Loggen der Schnittstellenkommunikation
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung a|
 In Ausnahmefällen kann es notwendig sein, Teile oder die gesamten Daten, die über eine Schnittstelle
@@ -1644,7 +1653,7 @@ in <<schwerwiegenden-fehler-erkennen-und-behandeln>> und
 Zur Ausgabe der Schnittstellenkommunikation muss der Schalter loggeDaten auf true gesetzt werden
 (<<loggingmethodinterceptor>>).
 
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Fehleranalyse (Debugging)
 |====
 
@@ -1662,7 +1671,7 @@ zu <<ereignisschluessel-isy-logging>> dieses Dokuments.
 [[behandlung-einer-exception]]
 ==== Behandlung einer Exception
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung a|
 Es wird eine Exception gefangen und behandelt.
@@ -1694,7 +1703,7 @@ Die Lognachricht muss das eingetretene Szenario kurz und möglichst Präzise bes
 [underline]#Anmerkung#: Zur Fehleranalyse sind insbesondere der Fehlerschlüssel, Fehlertext und der Stacktrace relevant.
 Diese werden automatisch durch das Logging-Framework geloggt und müssen daher nicht manuell
 in die Lognachricht übernommen werden.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Schwerwiegenden Fehler erkennen und behandeln
 * Beeinträchtigung des Betriebs erkennen und behandeln
 * Unerwartetes Systemverhalten erkennen und behandeln
@@ -1703,7 +1712,7 @@ in die Lognachricht übernommen werden.
 [[wichtige-systemereignisse]]
 ==== Wichtige Systemereignisse
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung a|
 Es tritt ein wichtiges Ereignis auf, welches für die Durchführung der folgenden Auswertungen relevant ist:
@@ -1725,7 +1734,7 @@ Bspw.: +
 Dieser ist nicht im Bestand vorhanden und wird im Suchverfahren gelöscht.", "12345");` +
 `log.info(LogKategorie.SICHERHEIT, "SYSXY01235", "Innerhalb der letzten Minute wurden {}
 ungültige Logins mit Anwendernamen {} durchgeführt.", "29", "max_muster");`
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Betriebliche Überwachung
 * Performance überwachen
 * Nutzungshäufigkeit auswerten
@@ -1735,7 +1744,7 @@ ungültige Logins mit Anwendernamen {} durchgeführt.", "29", "max_muster");`
 [[durchführen-einer-bulk-query]]
 ==== Durchführen einer Bulk-Query
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Es wird eine native SQL-Bulk-Query (Manipulation mehrerer Datensätze) in der Datenbank durchgeführt.
 |Logging a|
@@ -1746,14 +1755,14 @@ Datensätze als Platzhalter enthält: +
 Bspw.: +
 `log.debug("Query \{} zum Löschen veralteter Sachverhalte wurde ausgeführt.
 Es wurden \{} Sachverhalte gelöscht.", <Name der Query>, <Anzahl Datensätze>);`
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Fehleranalyse
 |====
 
 [[unterstützung-der-fehleranalyse-debug]]
 ==== Unterstützung der Fehleranalyse (Debug)
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung a|
 An allen Stellen der Verarbeitungslogik, die für eine spätere Fehleranalyse _relevant_ sind, müssen entsprechende DEBUG-Einträge erstellt werden.
@@ -1785,14 +1794,14 @@ Bspw.:
 einzusehen.
 Durch die verständliche Formulierung der Logeinträge kann der Hergang, der zu einem Fehler geführt hat, jedoch viel
 einfacher und schneller nachvollzogen werden und damit die Fehlerquelle schneller identifiziert werden.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Fehleranalyse (Debugging)
 |====
 
 [[fachliche-korrelation-von-eintraegen]]
 ==== Fachliche Korrelation von Einträgen
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung a|
 In komplexen Verfahren kann es notwendig sein, die erstellten Logeinträge fachlich in Verbindung zueinander zu
@@ -1801,7 +1810,7 @@ Kennzeichnen aller Logeinträge, die sich auf einen bestimmten Datensatz beziehe
 eindeutigen Schlüssel des betroffenen Datensatzes.
 
 Wenn diese Anforderung gegeben ist, kann dies beim Aufruf an der Systemgrenze (vgl.
-Szenario <<aufruf-an-systemgrenze>> __Aufruf an Systemgrenze__) wie im Folgenden beschrieben berücksichtigt werden.
+Szenario <<aufruf-an-systemgrenze>>) wie im Folgenden beschrieben berücksichtigt werden.
 |Logging a|
 An der Systemgrenze wird der eindeutige Schlüssel des Datensatzes in den MDC aufgenommen.
 Dabei müssen folgende Aspekte berücksichtigt werden:
@@ -1813,7 +1822,7 @@ Dabei müssen folgende Aspekte berücksichtigt werden:
 * Der Schlüssel und der ggf.
 gesetzte Marker müssen in jedem Fall beim Verlassen der Methode, in der sie gesetzt wurden, wieder aus dem MDC entfernt werden.
 Das Entfernen sollte daher in einem „finally“-Block stattfinden.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Fachliche Verarbeitung eines Aufrufs nachvollziehen
 * Fehleranalyse (Debugging)
 |====
@@ -1821,7 +1830,7 @@ Das Entfernen sollte daher in einem „finally“-Block stattfinden.
 [[loggen-fachlicher-operationen]]
 ==== Loggen fachlicher Operationen
 
-[cols="1s,3"]
+[cols="2s,5"]
 |====
 |Beschreibung |Der Fachbereich hat für das System Anforderungen definiert, dass die Verarbeitung einzelner
 Aufrufe fachlich nachvollziehbar sein muss.
@@ -1831,7 +1840,7 @@ Dies ist im Auswertungsszenario „Fachliche Verarbeitung eines Aufrufs nachvoll
 Zu beachten ist jedoch, dass die Aufrufe im Log-Level INFO zu erstellen sind.
 Für alle Logeinträge, die dem gleichen Zweck dienen (also der gleichen fachlichen Anforderung), muss der
 gleiche Ereignisschlüssel verwendet werden.
-|Auswertungs-szenario a|
+|Auswertungsszenario a|
 * Fachliche Verarbeitung eines Aufrufs nachvollziehen
 * Fehleranalyse (Debugging)
 |====

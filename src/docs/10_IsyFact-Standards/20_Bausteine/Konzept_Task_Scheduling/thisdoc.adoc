@@ -37,8 +37,8 @@ Berücksichtigung fachlicher und technischer Anforderungen.
 
 Das Dokument ist entsprechend dieser Zielsetzungen folgendermaßen aufgebaut:
 
-Zunächst werden die *Anforderungen* an die Steuerung von Aufgaben definiert, welche die Grundlage für
+Zunächst werden die <<anforderungen>> an die Steuerung von Aufgaben definiert, welche die Grundlage für
 das nachfolgende Kapitel bilden.
 
-Anschließend werden die *Vorgaben* zur Steuerung von Aufgaben innerhalb der Anwendungen sowie zur
+Anschließend werden die <<vorgaben>> zur Steuerung von Aufgaben innerhalb der Anwendungen sowie zur
 Umsetzung in der zu diesem Baustein gehörenden Bibliothek definiert.
