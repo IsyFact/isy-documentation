@@ -1,12 +1,12 @@
 [[namenskonventionen]]
 = Namenskonventionen
 
-In diesem Abschnitt werden die Namenskonventionen der IsyFact beschrieben.
-In komplexen Anwendungslandschaften werden Anwendungssysteme in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw.
-Register und Geschäftsanwendungen). In weniger komplexen Kontexten, in dem nur ein einziges oder wenige Fachanwendungen existieren, wird meist allgemein von „Fachanwendungen“ gesprochen.
+Dieser Abschnitt beschreibt die Namenskonventionen der IsyFact.
+In komplexen Anwendungslandschaften werden Anwendungssysteme in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen). 
+Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Fachanwendungen existieren, wird meist allgemein von „Fachanwendungen“ gesprochen.
 
 In folgenden Vorgaben wird daher zwischen Fachanwendungen, Registern und Geschäftsanwendungen unterschieden.
-In anderen Kontexten können andere Systemtypen eingeführt werden, für die entsprechende Vorgaben nach dem gleichen Schema zu definieren sind.
+Für andere Kontexte können weitere Systemtypen eingeführt werden, für die entsprechende Vorgaben nach dem gleichen Schema zu definieren sind.
 
 [[allgemein]]
 == Allgemein
@@ -329,8 +329,7 @@ Einige der hier genannten Namenskonventionen sind von denen der Spezifikation ab
 === Technische Systemnamen
 
 Die technischen Systemnamen entsprechen der technischen Bezeichnung für ein IsyFact-konformes Anwendungssystem.
-Sie werden unter anderem für Projektnamen in Eclipse, Dokument Basis / Context Root bei Schnittstellen-URLs und als Namen von Deployment-Einheiten (vgl.
-Kapitel <<rpm-pakete>>) verwendet.
+Sie werden unter anderem für Projektnamen in Eclipse, Dokument Basis / Context Root bei Schnittstellen-URLs und als Namen von Deployment-Einheiten (vgl. Kapitel <<rpm-pakete>>) verwendet.
 
 [[fachanwendungen]]
 ==== Fachanwendungen
@@ -392,8 +391,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 xyz-dienstabc-sgw
 |*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
-m|<zielverfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs, mit dem dieser SGW kommuniziert bzw.
-für den er eine Schnittstelle bereitstellt.
+m|<zielverfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs, mit dem dieser SGW kommuniziert bzw. für den er eine Schnittstelle bereitstellt.
 |====
 
 [[mailgateway]]
@@ -590,7 +588,7 @@ m|<Version>       a| Die Versionsnummer des Service, die zweielementig und aufst
 
 Die Maven Artefakt-ID von Schnittstellen ist nach dem folgenden Muster aufgebaut.
 Die ersten beiden Teile der Versionsnummer sind Teil der Artefakt-ID, um mehrere Versionen einer Schnittstelle gleichzeitig einbinden zu können.
-Die dritte Stelle wird die Maven-Versionsnummer des Artefakts.
+An dritter Stelle steht die Maven-Versionsnummer des Artefakts.
 
 :desc-table-artIFvss: Artefakt-ID von Schnittstellen
 [id="table-artIFvss",reftext="{table-caption} {counter:tables}"]
@@ -707,8 +705,8 @@ cdErwerb.js (übergreifend)
 [[rpm-pakete]]
 === RPM-Pakete
 
-Für die Benennung von RPM-Paketen existiert eine Konvention, welche durch den RPM-Standard vorgeben
-wird. Diese Vorgaben sind ebenfalls im <<DeploymentKonzept>> zu finden.
+Für die Benennung von RPM-Paketen existiert eine Konvention, welche durch den RPM-Standard vorgeben wird. 
+Diese Vorgaben sind ebenfalls im <<DeploymentKonzept>> zu finden.
 
 NOTE: Siehe http://docs.fedoraproject.org/drafts/rpm-guide-en/ch01s03.html.
 
