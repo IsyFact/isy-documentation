@@ -1,4 +1,3 @@
-
 [[vorstellung-der-isyfact]]
 = Vorstellung der IsyFact
 
@@ -11,8 +10,7 @@ Bei der Entwicklung von Anwendungssystemen für eine bestimmte Domäne stehen Ar
 Zwar unterscheiden sich je nach Anwendung die Datenstrukturen, die Geschäftslogik und die Benutzeroberflächen, aber die allgemeinen Prinzipien der Architektur, der Datenhaltung und der Gestaltung von Benutzerschnittstellen, sind in der Regel für alle Anwendungen identisch und somit wiederverwendbar.
 Ebenso lässt sich eine Vielzahl von Detailvorgaben, z.B. für den Betrieb von Anwendungen, das Logging, die Benutzerverwaltung oder für die Kommunikation von Systemen untereinander standardisieren.
 Dies ist nicht nur sinnvoll, sondern auch notwendig, wenn die verschiedenen Anwendungssysteme Teil einer Anwendungslandschaft in einem Unternehmen oder einer Behörde sind.
-Erst durch die Wiederverwendung von bereits entwickelten Komponenten und die Standardisierung von Entwicklungsmethoden wird es möglich, eine komplexe Anwendungslandschaft mit geringem Aufwand bzw.
-kostengünstig zu entwickeln und effizient zu betreiben.
+Erst durch die Wiederverwendung von bereits entwickelten Komponenten und die Standardisierung von Entwicklungsmethoden wird es möglich, eine komplexe Anwendungslandschaft mit geringem Aufwand bzw. kostengünstig zu entwickeln und effizient zu betreiben.
 
 Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer Domäne so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des einmal definierten Architekturrahmens sichergestellt ist.
 Software Factories sind ein Mittel, dies zu erreichen.
