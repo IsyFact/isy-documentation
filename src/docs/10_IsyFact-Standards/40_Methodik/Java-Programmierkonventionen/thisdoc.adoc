@@ -1,8 +1,19 @@
 [[einleitung]]
 == Einleitung
-// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
+
+*Java-Programmierkonventionen*
 
 In diesem Dokument werden die Java-Programmierkonventionen der IsyFact beschrieben.
 
 Die Einhaltung der Programmierkonventionen fördert die Wartbarkeit und Weiterentwicklungsfähigkeit der nach
-IsyFact-Standards erstellen Software.
+IsyFact-Standards erstellten Software.
+
+*Boilerplate Code für equals() und hashCode()*
+
+Bei der Softwareentwicklung werden Entwicklungsumgebungen (IDEs) wie Eclipse oder IntelliJ IDEA verwendet, welche die Anwendungsentwicklung in vielfältiger Weise unterstützen und effektiver gestalten.
+
+Eine der unterstützenden Leistungen dieser IDEs ist die Erzeugung von Boilerplate Code für Konstruktoren, Getter/Setter und die Methoden `equals()` und `hashCode()`.
+
+Während die Konstruktoren und Getter/Setter durch Eclipse und IntelliJ IDEA nach gleichem Muster generiert werden, bestehen Unterschiede bei der `equals()`- und `hashCode()` Methoden-Generierung beider IDEs und es ergibt sich ein Handlungsbedarf, damit der Quellcode nicht je nach Einsatz einer IDE unterschiedlich generiert wird.
+
+Somit gehört auch die Erzeugung von Boilerplate Code zur Java-Programmierkonvention der IsyFact und wird im Kapitel <<generierung-von-boilerplate-code>> beschrieben.
