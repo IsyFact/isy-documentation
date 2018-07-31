@@ -7,7 +7,7 @@
         	<active>true</active>
         	<protocol>http</protocol>
         	<host>${env.PROXY_HOST}</host>
-        	<port>3128</port>
+        	<port>${env.PROXY_PORT}</port>
         </proxy>
 	</proxies>
 	<servers>
@@ -22,10 +22,10 @@
         		<password>${env.ARTIFACTORY_PWD}</password>
 		</server>
 		<server>
-        	    <id>repository-maven-central</id>
-           	 <username>${env.ARTIFACTORY_USER}</username>
-           	 <password>${env.ARTIFACTORY_PWD}</password>
-   		 </server>
+        		<id>repository-maven-central</id>
+           		<username>${env.ARTIFACTORY_USER}</username>
+           		<password>${env.ARTIFACTORY_PWD}</password>
+   		</server>
 	</servers>
 	<profiles>
 		<profile>
