@@ -2,7 +2,7 @@
 include::../../../common/isyfact-attributes.adoc[]
 include::../../../common/attributes.adoc[]
 //
-:doctitle: Einrichtung einer Entwicklungsumgebung – Boilerplate Code und Formatierung
+:doctitle: Einrichtung einer Entwicklungsumgebung – Zusätzliche Tool-Unterstützung
 :title: {doctitle}
 
 // Zwangsplatz des TOC
