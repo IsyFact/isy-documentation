@@ -23,22 +23,18 @@ Wenn Sie sich eine virtuelle Maschine vorbereiten möchten, benötigen Sie zusä
 
 * Oracle VirtualBox
 
-Wenn Sie sich bereits eine geeignete Umgebung geschaffen haben, um die Werkzeuge sowie die IsyFact-Bibliotheken zu installieren, können Sie die Vorbereitung einer
-virtuellen Maschine überspringen und direkt mit dem Kapitel <<werkzeuge-installieren>> beginnen.
+Wenn Sie sich bereits eine geeignete Umgebung geschaffen haben, um die Werkzeuge sowie die IsyFact-Bibliotheken zu installieren, können Sie die Vorbereitung einer virtuellen Maschine überspringen und direkt mit dem Kapitel <<werkzeuge-installieren>> beginnen.
 
 [[virtuelle-maschine-vorbereiten]]
 == Virtuelle Maschine vorbereiten
 
 In diesem Kapitel bereiten Sie eine virtuelle Maschine (VM) vor, auf der Sie später die IsyFact-Entwicklungsumgebung installieren werden.
 
-TIP: Wenn Sie keine virtuelle Maschine für Ihre IsyFact-Entwicklungsumgebung einsetzen oder bereits eine virtuelle Maschine als Grundlage für Ihre
-IsyFact-Entwicklungsumgebung vorbereitet haben, können Sie dieses Kapitel überspringen und mit dem Kapitel <<werkzeuge-installieren>> fortfahren.
+TIP: Wenn Sie keine virtuelle Maschine für Ihre IsyFact-Entwicklungsumgebung einsetzen oder bereits eine virtuelle Maschine als Grundlage für Ihre IsyFact-Entwicklungsumgebung vorbereitet haben, können Sie dieses Kapitel überspringen und mit dem Kapitel <<werkzeuge-installieren>> fortfahren.
 
 == VirtualBox installieren und konfigurieren
 
-Für die Erstellung der virtuellen Maschine benötigen
-Sie ein Host-System, das die virtuelle Maschine als Gastsystem verwaltet. Das gängigste Produkt hierfür ist Oracle VirtualBox. VirtualBox lässt sich unter https://www.virtualbox.org
-herunterladen.
+Für die Erstellung der virtuellen Maschine benötigen Sie ein Host-System, das die virtuelle Maschine als Gastsystem verwaltet. Das gängigste Produkt hierfür ist Oracle VirtualBox. VirtualBox lässt sich unter https://www.virtualbox.org herunterladen.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_01: Virtualbox Hauptmenü
 [id="image-leitfaden_entwicklungsumgebung_vb_01",reftext="{figure-caption} {counter:figures}"]
@@ -56,21 +52,29 @@ Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld einen Namen Ih
 .{desc-image-leitfaden_entwicklungsumgebung_vb_02}
 image::leitfaden_entwicklungsumgebung_vb_02.png[align="center",width=60%,pdfwidth=70%]
 
-Klicken Sie auf Weiter. Hierdurch wird VirtualBox das VM-Verzeichnis zur virtuellen Maschine erstellen. Das Verzeichnis trägt den gleichen Namen wie Ihre virtuelle Maschine.
+Klicken Sie auf Weiter.
+Hierdurch wird VirtualBox das VM-Verzeichnis zur virtuellen Maschine erstellen.
+Das Verzeichnis trägt den gleichen Namen wie Ihre virtuelle Maschine.
 
-Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfiguriert. Die Größe des Hauptspeichers sollte mindestens 4096 Megabyte betragen.
+Im nächsten Fenster wird der Hauptspeicher (RAM) der virtuellen Maschine konfiguriert.
+Die Größe des Hauptspeichers sollte mindestens 4096 Megabyte betragen.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_03: Speichergröße festlegen
 [id="image-leitfaden_entwicklungsumgebung_vb_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_03}
 image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=60%,pdfwidth=70%]
 
-Klicken Sie auf Weiter. Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen. Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox
-in das Verzeichnis der virtuellen Maschine speichert. Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen,
-um dort später das Ubuntu Betriebssystem zu installieren. Statt die Festplatte und das darin zu installierende Betriebssystem von Hand zu installieren, beschreibt diese
-Anleitung eine Abkürzung. Die Webseite https://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an. Dieser Leitfaden benutzt die Desktop-Edition von Ubuntu. Diese ist unter https://www.osboxes.org/ubuntu/ verfügbar. Wählen Sie die VirtualBox-Version der virtuellen Festplatte und laden Sie sie herunter.
+Klicken Sie auf Weiter.
+Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen.
+Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox in das Verzeichnis der virtuellen Maschine speichert. Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen, um dort später das Ubuntu Betriebssystem zu installieren.
+Statt die Festplatte und das darin zu installierende Betriebssystem von Hand zu installieren, beschreibt diese Anleitung eine Abkürzung.
+Die Webseite https://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an.
+Dieser Leitfaden benutzt die Desktop-Edition von Ubuntu.
+Diese ist unter https://www.osboxes.org/ubuntu/ verfügbar.
+Wählen Sie die VirtualBox-Version der virtuellen Festplatte und laden Sie sie herunter.
 
-Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_<Version>-VB-64bit.7z` in Ihrem Download-Verzeichnis. Entpacken Sie diese Datei in Ihr VM-Verzeichnis. Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
+Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_<Version>-VB-64bit.7z` in Ihrem Download-Verzeichnis.
+Entpacken Sie diese Datei in Ihr VM-Verzeichnis. Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_04: Virtuelle Festplatte einbinden
 [id="image-leitfaden_entwicklungsumgebung_vb_04",reftext="{figure-caption} {counter:figures}"]
@@ -119,7 +123,8 @@ Hier stellen Sie ein, dass das Gastsystem über zwei Prozessoren verfügen soll.
 .{desc-image-leitfaden_entwicklungsumgebung_vb_aendern_03}
 image::leitfaden_entwicklungsumgebung_vb_aendern_03.png[align="center",width=60%,pdfwidth=70%]
 
-Als Letztes klicken Sie auf der linken Seite auf "Gemeinsame Ordner". Auf der rechten Seite können Sie über einen Ordner-Button einen gemeinsamen
+Als Letztes klicken Sie auf der linken Seite auf "Gemeinsame Ordner".
+Auf der rechten Seite können Sie über einen Ordner-Button einen gemeinsamen
 Ordner hinzufügen. Wählen Sie einen für Sie passenden Ordner und setzen Sie ein Häkchen bei "Automatisch einbinden".
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern_04: Gemeinsamer Ordnerzugriff
@@ -174,13 +179,14 @@ image::leitfaden_entwicklungsumgebung_vb_ubuntu_05.png[align="center",width=60%,
 
 === Die Gasterweiterungen
 
-Oracle VirtualBox bietet Gasterweiterungen an, welche die Performanz des Gastsystems verbessert. Ein weiteres Feature ist, dass sich der Bildschirm beliebig skalieren lässt.
-Ohne Gasterweiterungen sind lediglich die Auflösungen 640x480, 800x600, und 1024x768 möglich. Außerdem funktioniert Drag'n Drop nur mit installierten Gasterweiterungen.
-Darüber hinaus bieten die Gasterweiterungen den sogenannten Seamless Mode an. Der Seamless Mode ermöglicht, dass sich die Fenster der VirtualBox Instanz innerhalb des
-Host-Systems anzeigen lassen, und somit den Anschein erwecken, sie seien in dieses integriert.
+Oracle VirtualBox bietet Gasterweiterungen an, welche die Performanz des Gastsystems verbessert.
+Ein weiteres Feature ist, dass sich der Bildschirm beliebig skalieren lässt.
+Ohne Gasterweiterungen sind lediglich die Auflösungen 640x480, 800x600, und 1024x768 möglich.
+Außerdem funktioniert Drag'n Drop nur mit installierten Gasterweiterungen.
+Darüber hinaus bieten die Gasterweiterungen den sogenannten Seamless Mode an. Der Seamless Mode ermöglicht, dass sich die Fenster der VirtualBox Instanz innerhalb des Host-Systems anzeigen lassen, und somit den Anschein erwecken, sie seien in dieses integriert.
 
-TIP: Um die Gasterweiterungen zu installieren, benötigen Sie ein optisches Laufwerk, das vor dem Start der Ubuntu Instanz noch leer ist. Wenn Sie die obigen
-Arbeitsschritte durchgeführt haben, sollte das optische Laufwerk aber bereits existieren.
+TIP: Um die Gasterweiterungen zu installieren, benötigen Sie ein optisches Laufwerk, das vor dem Start der Ubuntu Instanz noch leer ist.
+Wenn Sie die obigen Arbeitsschritte durchgeführt haben, sollte das optische Laufwerk aber bereits existieren.
 
 Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintrag "Geräte" -> "Gasterweiterungen einlegen...".
 
@@ -189,14 +195,16 @@ Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintr
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_01.png[align="center",width=60%,pdfwidth=70%]
 
-Hierdurch wird eine virtuelle CD automatisch in das optische Laufwerk eingelegt, worauf eine Startanwendung von selbst dafür sorgt, dass die Gasterweiterungen installiert werden. Im aufkommenden Fenster, klicken Sie auf "Run".
+Hierdurch wird eine virtuelle CD automatisch in das optische Laufwerk eingelegt, worauf eine Startanwendung von selbst dafür sorgt, dass die Gasterweiterungen installiert werden.
+Im aufkommenden Fenster, klicken Sie auf "Run".
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02: Gasterweiterungen installieren auf der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_02.png[align="center",width=60%,pdfwidth=70%]
 
-Bestätigen Sie mit einem Klick auf "Run". Anschließend sollte die Installation der Gasterweiterungen starten.
+Bestätigen Sie mit einem Klick auf "Run".
+Anschließend sollte die Installation der Gasterweiterungen starten.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03: leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03.png
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_gasterweiterung_03",reftext="{figure-caption} {counter:figures}"]
@@ -265,7 +273,8 @@ Um die Konfiguration einzusehen, geben Sie folgendes Kommando ein:
 
  git config --global --list
 
-Hilfe erhalten Sie über den Optionsparameter `help`. Beispielsweise beschaffen Sie sich die Hilfestellung zum Optionsparameter `config` mit folgendem Kommando:
+Hilfe erhalten Sie über den Optionsparameter `help`.
+Beispielsweise beschaffen Sie sich die Hilfestellung zum Optionsparameter `config` mit folgendem Kommando:
 
  git help config.
 
@@ -278,8 +287,9 @@ Maven Paket an, das über folgendes Kommando intalliert wird:
 
 ===	Spring Tool Suite (STS)
 
-Im nächsten Schritt installieren Sie die integrierte Entwicklungsumgebung Spring Tool Suite (STS). Auf der Webseite https://spring.io/tools/sts/all bietet der
-Hersteller diesbezüglich eine Reihe von Download-Links an. Laden Sie die Linux-Version in der 64-Bit Variante herunter. Danach wechseln Sie in das
+Im nächsten Schritt installieren Sie die integrierte Entwicklungsumgebung Spring Tool Suite (STS).
+Auf der Webseite https://spring.io/tools/sts/all bietet der Hersteller diesbezüglich eine Reihe von Download-Links an.
+Laden Sie die Linux-Version in der 64-Bit Variante herunter. Danach wechseln Sie in das
 Verzeichnis `/opt` und installieren die STS-Installationsdatei über folgendes Kommando:
 
  sudo tar -xzf <Pfad zur STS-Installationsdatei> -C /opt
@@ -291,7 +301,8 @@ Anschließend ist die Entwicklungsumgebung über das Kommando `STS` im Ordner `/
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts}
 image::leitfaden_entwicklungsumgebung_werkzeuge_sts.png[align="center"]
 
-Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses ein https://wiki.ubuntuusers.de/.desktop-Dateien/[Programmstarter] angelegt werden. Legen Sie dazu eine Datei namens `STS.desktop` in diesem Verzeichnis an und versehen Sie sie mit folgendem Inhalt:
+Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss im Verzeichnis `.local/share/applications` Ihres Home-Verzeichnisses ein https://wiki.ubuntuusers.de/.desktop-Dateien/[Programmstarter] angelegt werden.
+Legen Sie dazu eine Datei namens `STS.desktop` in diesem Verzeichnis an und versehen Sie sie mit folgendem Inhalt:
 
  #!/usr/bin/env xdg-open
  [Desktop Entry]
@@ -303,7 +314,8 @@ Um STS darüber hinaus über eine Desktop-Verknüpfung starten zu können, muss 
  Comment=Spring Tool Suite
  Icon=/opt/sts-bundle/<STS-Release>/icon.xpm
 
-Danach lässt sich STS über das Applikations-Menü von Ubuntu starten. Hierfür klicken Sie auf "Applications" - "Other" - "STS"
+Danach lässt sich STS über das Applikations-Menü von Ubuntu starten.
+Hierfür klicken Sie auf "Applications" - "Other" - "STS"
 
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_sts_other: Spring Tool Suite (STS) in "Activities Overview"
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_sts_other",reftext="{figure-caption} {counter:figures}"]
@@ -320,9 +332,10 @@ image::leitfaden_entwicklungsumgebung_werkzeuge_sts_overview.png[align="center",
 === Apache Tomcat
 
 Bei einer IsyFact-Anwendung handelt es sich um eine Webanwendung, die genauso wie andere JavaEE-basierte Webanwendungen in einem Servlet-Container betrieben wird.
-Der gängigste Web Container hierfür ist Catalina bzw. das Produkt Apache Tomcat, das den Catalina Web Container integriert. Obwohl STS ein eigenes Apache Tomcat
-Derivat bereithält, setzt man bei einer IsyFact-Anwendung typischerweise Apache Tomcat ein. Deshalb wird in diesem Leitfaden diese Variante gezeigt. Laden Sie
- Apache Tomcat von der Webseite http://www.apache.org herunter.
+Der gängigste Web Container hierfür ist Catalina bzw. das Produkt Apache Tomcat, das den Catalina Web Container integriert.
+Obwohl STS ein eigenes Apache Tomcat Derivat bereithält, setzt man bei einer IsyFact-Anwendung typischerweise Apache Tomcat ein.
+Deshalb wird in diesem Leitfaden diese Variante gezeigt.
+Laden Sie Apache Tomcat von der Webseite http://www.apache.org herunter.
 
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01: Download von Apache Tomcat
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_01",reftext="{figure-caption} {counter:figures}"]
@@ -337,17 +350,20 @@ Nach dem Download extrahieren Sie den Apache Tomcat Server ins Verzeichnis `/opt
 
  sudo chown -R osboxes /opt/apache-tomcat-8.5.16
 
-Innerhalb von STS müssen Sie dafür sorgen, dass der Apache Tomcat Server eingebunden wird. Hierfür öffnen Sie STS und klicken im Hauptmenü auf "Window" - "Preferences".
+Innerhalb von STS müssen Sie dafür sorgen, dass der Apache Tomcat Server eingebunden wird.
+Hierfür öffnen Sie STS und klicken im Hauptmenü auf "Window" - "Preferences".
 Im Einstellungsfenster öffnen Sie "Server" - "Runtime Environment". Klicken Sie hier auf "Add".
 
-Öffnen Sie den Reiter "Apache" und selektieren Sie darunter den Eintrag "Apache Tomcat v8.5". Setzen Sie auch ein Häkchen bei der Checkbox "Create a new local server".
+Öffnen Sie den Reiter "Apache" und selektieren Sie darunter den Eintrag "Apache Tomcat v8.5".
+Setzen Sie auch ein Häkchen bei der Checkbox "Create a new local server".
 
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02: Server-Konfiguration
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02}
 image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_02.png[align="center",width=60%,pdfwidth=70%]
 
-Klicken Sie auf "Next". Setzen Sie im erscheinenden Fenster den Installationspfad Ihres Apache Tomcat. In diesem Leitfaden ist das `/opt/<Tomcat-Release>`.
+Klicken Sie auf "Next". Setzen Sie im erscheinenden Fenster den Installationspfad Ihres Apache Tomcat.
+In diesem Leitfaden ist das `/opt/<Tomcat-Release>`.
 
 :desc-image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03: Konfiguration von Apache Tomcat
 [id="image-leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_03",reftext="{figure-caption} {counter:figures}"]
@@ -415,7 +431,8 @@ NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren au
 .{desc-image-Code-Formatter}
 image::Einrichtung_Entwicklungsumgebung_006.png[align="center"]
 
-Anmerkung: Der Name der Datei kann vom Namen des Scheme abweichen. Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
+NOTE: Der Name der Datei kann vom Namen des Scheme abweichen.
+Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
 
 [[eclipse-code-formatter]]
 ===== Eclipse
@@ -436,12 +453,15 @@ NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren au
 .{desc-image-Code-Formatter2}
 image::Einrichtung_Entwicklungsumgebung_007.png[align="center"]
 
-Anmerkung: Der Name der Datei kann vom Namen des aktiven Profiles des Formatters abweichen. Welcher Profilname angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
+
+NOTE: Der Name der Datei kann vom Namen des aktiven Profiles des Formatters abweichen.
+Welcher Profilname angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
 
 [[formatierungsdifferenzen]]
 === Formatierungsdifferenzen
 
-Mit Hilfe der Einstellungsmasken für die Formatierung bei den beiden IDEs ist eine fast vollständige Übereinstimmung bei der automatischen Formatierung des Quellcodes möglich. Dieses Kapitel führt die noch verbliebenen Differenzen anhand einer Gegenüberstellung auf und diskutiert kurz die Konsequenzen.
+Mit Hilfe der Einstellungsmasken für die Formatierung bei den beiden IDEs ist eine fast vollständige Übereinstimmung bei der automatischen Formatierung des Quellcodes möglich.
+Dieses Kapitel führt die noch verbliebenen Differenzen anhand einer Gegenüberstellung auf und diskutiert kurz die Konsequenzen.
 
 :desc-image-Democode: Democode zur Veranschaulichung von Formatierungseinstellungen (Eclipse)
 [id="image-Democode",reftext="{figure-caption} {counter:figures}"]
@@ -463,7 +483,8 @@ image::Einrichtung_Entwicklungsumgebung_009.png[align="center"]
 [[leerzeilen-bei-for-schleifen-semikolon]]
 ==== Leerzeichen bei `for`-Schleifen
 
-Beide Formatter erlauben es einzustellen, dass nach dem Semikolon in einer for-Schleife ein Leerzeichen stehen soll. Bei IntelliJ IDEA wird diese Regel streng umgesetzt, auch bei `for(;;)`, währenddessen Eclipse Leerzeichen nur dann einfügt, wenn hinter dem Semikolon noch ein Ausdruck wie beispielsweise `„b > i“` steht.
+Beide Formatter erlauben es einzustellen, dass nach dem Semikolon in einer for-Schleife ein Leerzeichen stehen soll.
+Bei IntelliJ IDEA wird diese Regel streng umgesetzt, auch bei `for(;;)`, währenddessen Eclipse Leerzeichen nur dann einfügt, wenn hinter dem Semikolon noch ein Ausdruck wie beispielsweise `„b > i“` steht.
 
 :desc-image-Formatierungsdifferenz-for: Formatierungsdifferenz Leerzeile in for-Schleife
 [id="image-Formatierungsdifferenz-for",reftext="{figure-caption} {counter:figures}"]
@@ -482,7 +503,8 @@ Wenn ein leeres Statement im Quellcode vorhanden ist, fügt IntelliJ IDEA zwei L
 .{desc-image-Formatierungsdifferenz-befehlszeile}
 image::Einrichtung_Entwicklungsumgebung_011.png[align="center"]
 
-*Bewertung:* Ein überflüssiges, leeres Statement-Semikolon ist auffälliger, wenn es am Zeilenanfang steht. Dieser Fall ist allerdings erneut kein Problem der Formatierung, sondern ein Programmierfehler - das Semikolon sollte gelöscht werden.
+*Bewertung:* Ein überflüssiges, leeres Statement-Semikolon ist auffälliger, wenn es am Zeilenanfang steht.
+Dieser Fall ist allerdings erneut kein Problem der Formatierung, sondern ein Programmierfehler - das Semikolon sollte gelöscht werden.
 
 [[einrichtung-von-checkstyle]]
 == Einrichtung von Checkstyle
@@ -519,7 +541,7 @@ image::Einrichtung_Entwicklungsumgebung_013.png[align="center"]
 
 *Schritt 1:* Checkstyle-Plugin suchen
 
-* Den Dialog _Plugins_ öffnen: menu:[File > Settings... > Plugins]
+* Den Dialog _Plugins_ öffnen: menu:File[Settings... > Plugins]
 * Im Suchfeld _checkstyle_ eingeben. Wird kein Treffer angezeigt, dann auf den Link _Search in repositories_ klicken.
 
 :desc-image-checkstyle-suche: Suche nach Checkstyle-Plugin
@@ -562,8 +584,8 @@ image::Einrichtung_Entwicklungsumgebung_016.png[align="center"]
 
 *Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
 
-* Menüeintrag menu:[File > Settings... > Checkstyle] (für das aktuelle Projekt)
-* Menüeintrag menu:[File > Other Settings > Default Settings... > Checkstyle] (für alle zukünftigen Projekte)
+* Menüeintrag menu:File[Settings... > Checkstyle] (für das aktuelle Projekt)
+* Menüeintrag menu:File[Other Settings > Default Settings... > Checkstyle] (für alle zukünftigen Projekte)
 
 *Schritt 2:* Import der Checkstyle-Konfiguration von IsyFact
 
@@ -583,29 +605,29 @@ image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
 [[isyfact-bibliotheken-installieren]]
 == IsyFact-Bibliotheken installieren
 
-In diesem Abschnitt wird gezeigt, wie Sie das IsyFact-Framework in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
-einer neuen Anwendung vorbereiten.
+In diesem Abschnitt wird gezeigt, wie Sie das IsyFact-Framework in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung einer neuen Anwendung vorbereiten.
 
-TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten. Die URL zu den
-GitHub-Repositories lautet: https://github.com/isyfact.
+TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten. Die URL zu denGitHub-Repositories lautet: https://github.com/isyfact.
 
 [[isyfact-masterpom]]
 === isyfact-masterpom
 
-Mit diesem Abschnitt werden Sie die entfernten GitHub-Repositories in ein lokales Verzeichnis klonen. Sie beginnen mit dem GitHub-Repository `isyfact-masterpom`, denn dort befinden sich die Maven-Projekte `isyfact-masterpom` und `isyfact-masterpom-lib`, die die
-übergeordneten Maven-Projekte aller anderen Maven-Projekte des IsyFact-Frameworks darstellen. `isyfact-masterpom` ist der parent von `isyfact-masterpom-lib`.
+Mit diesem Abschnitt werden Sie die entfernten GitHub-Repositories in ein lokales Verzeichnis klonen.
+Sie beginnen mit dem GitHub-Repository `isyfact-masterpom`, denn dort befinden sich die Maven-Projekte `isyfact-masterpom` und `isyfact-masterpom-lib`, die die übergeordneten Maven-Projekte aller anderen Maven-Projekte des IsyFact-Frameworks darstellen.
+`isyfact-masterpom` ist der parent von `isyfact-masterpom-lib`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_03: IsyFact masterpom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_03",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_03}
 image::leitfaden_entwicklungsumgebung_bibliotheken_03.png[align="center",pdfwidth=50%]
 
-NOTE: In den Diagrammen wurden die GitHub-Repositories mit braunem Rand und hellbrauner Füllfarbe und die darin enthalten Maven-Projekte mit hellblauem Rand und
-weisser Füllfarbe gekennzeichnet.
+NOTE: In den Diagrammen wurden die GitHub-Repositories mit braunem Rand und hellbrauner Füllfarbe und die darin enthalten Maven-Projekte mit hellblauem Rand und weisser Füllfarbe gekennzeichnet.
 Das parent-child-Verhältnis zwischen den Maven Projekten wird mit einem hellblauen Pfeil veranschaulicht.
 
-Um die GitHub-Repositories zu klonen, könnten Sie Git auf der Kommandozeile einsetzen. In dieser Anleitung wird jedoch das Arbeiten mit Git innerhalb der STS gezeigt.
-Starten Sie also die STS und öffnen Sie dort die Perspektive Git. Klicken Sie in der Perspektive Git entweder auf die Clone-Schaltfläche oder auf den Link "Clone a Git repository".
+Um die GitHub-Repositories zu klonen, könnten Sie Git auf der Kommandozeile einsetzen.
+In dieser Anleitung wird jedoch das Arbeiten mit Git innerhalb der STS gezeigt.
+Starten Sie also die STS und öffnen Sie dort die Perspektive Git.
+Klicken Sie in der Perspektive Git entweder auf die Clone-Schaltfläche oder auf den Link "Clone a Git repository".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_04: Clonen eines Git Repositories
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_04",reftext="{figure-caption} {counter:figures}"]
@@ -619,7 +641,11 @@ Klicken Sie im erscheinenden Fenster auf GitHub.
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_05}
 image::leitfaden_entwicklungsumgebung_bibliotheken_05.png[align="center",width=60%,pdfwidth=70%]
 
-Klicken Sie anschließend auf "Next". In dem aufkommenden Fenster können Sie online nach GitHub-Repositories suchen. Geben Sie im Suchfeld "IsyFact" ein und klicken Sie auf den Button "Search". Daraufhin sollten im Fenster alle GitHub-Repositories aufgelistet werden, bei denen im Namen der Bezeichner "IsyFact" vorkommt. Selektieren Sie dort das GitHub-Repository `isyfact-masterpom`.
+Klicken Sie anschließend auf "Next".
+In dem aufkommenden Fenster können Sie online nach GitHub-Repositories suchen.
+Geben Sie im Suchfeld "IsyFact" ein und klicken Sie auf den Button "Search".
+Daraufhin sollten im Fenster alle GitHub-Repositories aufgelistet werden, bei denen im Namen der Bezeichner "IsyFact" vorkommt.
+Selektieren Sie dort das GitHub-Repository `isyfact-masterpom`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_06: Wahl des masterpom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_06",reftext="{figure-caption} {counter:figures}"]
@@ -640,16 +666,16 @@ Klicken Sie erneut auf "Next".
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_08}
 image::leitfaden_entwicklungsumgebung_bibliotheken_08.png[align="center",width=60%,pdfwidth=70%]
 
-Klicken Sie abschließend auf "Finish". Als Nächstes kann das Maven-Projekt aus dem Repository importiert werden. Hierfür klicken Sie mit der rechten Maustaste auf das
-Repository und wählen den Eintrag "Import Projects" aus. Daraufhin erscheint folgendes Fenster.
+Klicken Sie abschließend auf "Finish". Als Nächstes kann das Maven-Projekt aus dem Repository importiert werden.
+Hierfür klicken Sie mit der rechten Maustaste auf das Repository und wählen den Eintrag "Import Projects" aus. Daraufhin erscheint folgendes Fenster.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_09: Import des Projekts
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_09",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_09}
 image::leitfaden_entwicklungsumgebung_bibliotheken_09.png[align="center"]
 
-Bestätigen Sie den Import des Maven-Projekts `isyfact-masterpom` mit einem Klick auf Finish. Wechseln Sie anschließend in die Perspective "Spring". Hier sollte jetzt im
-Package-Explorer das Maven-Projekt `isyfact-masterpom` zu sehen sein.
+Bestätigen Sie den Import des Maven-Projekts `isyfact-masterpom` mit einem Klick auf Finish.
+Wechseln Sie anschließend in die Perspective "Spring". Hier sollte jetzt im Package-Explorer das Maven-Projekt `isyfact-masterpom` zu sehen sein.
 Dann klicken Sie mit der rechten Maustaste auf die Datei pom.xml und führen "Run As" -> "Maven Install" aus.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_10: Selektion der Kompilierung
@@ -662,15 +688,15 @@ Dann öffnen Sie im Maven-Projekt `isyfact-masterpom` den Unterordner `isyfact-m
 === isyfact-products-bom
 
 Als Nächstes brauchen Sie das GitHub-Repository `isyfact-products-bom`. Das Maven-Projekt *
-`isyfact-products-bom` hat eine parent-child-Abhängigkeit zum Maven-Projekt `isyfact-masterpom-lib`. Da das Maven-Projekt `isyfact-masterpom-lib` bereits installiert sind, können Sie nun das GitHub-Repository `isyfact-products-bom` klonen.
+`isyfact-products-bom` hat eine parent-child-Abhängigkeit zum Maven-Projekt `isyfact-masterpom-lib`.
+Da das Maven-Projekt `isyfact-masterpom-lib` bereits installiert sind, können Sie nun das GitHub-Repository `isyfact-products-bom` klonen.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_11: masterpom und products-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_11",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_11}
 image::leitfaden_entwicklungsumgebung_bibliotheken_11.png[align="center"]
 
-Um das GitHub Repository in ein lokales Verzeichnis zu klonen, gehen Sie genauso wie bereits weiter oben beschrieben vor, indem Sie in der Perspective Git auf den Button
-Clone klicken und in der GitHub-Repository-Auflistung hiernach suchen.
+Um das GitHub Repository in ein lokales Verzeichnis zu klonen, gehen Sie genauso wie bereits weiter oben beschrieben vor, indem Sie in der Perspective Git auf den Button 'Clone' klicken und in der GitHub-Repository-Auflistung hiernach suchen.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_12: Selektion des products-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_12",reftext="{figure-caption} {counter:figures}"]
@@ -691,16 +717,17 @@ Klicken Sie erneut auf "Next".
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_14}
 image::leitfaden_entwicklungsumgebung_bibliotheken_14.png[align="center",width=60%,pdfwidth=70%]
 
-Bestätigen Sie mit einem Klick auf "Finish". Importieren Sie anschließend auch bei diesem Repository wieder das Maven-Projekt, indem Sie mit der rechten Maustaste auf
-dem Repository den Eintrag "Import Projects" auswählen.
+Bestätigen Sie mit einem Klick auf "Finish".
+Importieren Sie anschließend auch bei diesem Repository wieder das Maven-Projekt, indem Sie mit der rechten Maustaste auf dem Repository den Eintrag "Import Projects" auswählen.
 Dann wechseln Sie in die Perspective "Spring" und führen auf dem Projekt `isyfact-products-bom` das Menü "Run As" -> "Maven Install" aus.
 
 CAUTION: Führen Sie bei dem Projekt `isyfact-products-bom` das Menü "Maven" -> "Update Project" aus, um eventuell unauffindbare Abhängigkeiten aufzulösen.
 
 === isyfact-base
 
-Das Repository `isyfact-base` ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet. Die Kernfunktionalität ist auf mehrere
-Unterprojekte aufgeteilt. Überspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
+Das Repository `isyfact-base` ist von großer Bedeutung, da es einen großen Teil der Kernfunktionalität beinhaltet.
+Die Kernfunktionalität ist auf mehrere Unterprojekte aufgeteilt.
+Überspannt werden die Unterprojekte durch das Maven-Projekt `isyfact-base`.
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_15: isyfact-base
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_15",reftext="{figure-caption} {counter:figures}"]
@@ -721,7 +748,8 @@ Als Nächstes importieren Sie die Maven-Projekte.
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_17}
 image::leitfaden_entwicklungsumgebung_bibliotheken_17.png[align="center"]
 
-Wechseln Sie in die View "Spring". Dort führen Sie bei jedem importierten Maven-Projekt "Run As" -> "Maven Install" aus.
+Wechseln Sie in die View "Spring".
+Dort führen Sie bei jedem importierten Maven-Projekt "Run As" -> "Maven Install" aus.
 
 CAUTION: Führen Sie auch bei diesen Projekten das Menü "Maven" -> "Update Project" aus, um eventuell unauffindbare Abhängigkeiten aufzulösen.
 
@@ -762,7 +790,8 @@ image::leitfaden_entwicklungsumgebung_bibliotheken_22.png[align="center",width=6
 
 Bestätigen Sie mit einem Mausklick auf "Finish".
 
-Wenn das Repository heruntergeladen worden ist, importieren Sie das `isyfact-bom` Maven-Projekt. Danach wechseln Sie in die Perspective "Spring".
+Wenn das Repository heruntergeladen worden ist, importieren Sie das `isyfact-bom` Maven-Projekt.
+Danach wechseln Sie in die Perspective "Spring".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_23: Import des Projektes isyfact-bom
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_23",reftext="{figure-caption} {counter:figures}"]
@@ -873,11 +902,9 @@ Selektieren Sie den im Werkzeugkapitel eingerichteten Apache Tomcat und setzen S
 image::leitfaden_entwicklungsumgebung_projektgenerator_05.png[align="center",width=60%,pdfwidth=70%]
 
 Mit "Finish" wird der Application Server gestartet. Im Anschluss sollte der Webbrowser von STS mit der Startseite der Anwendung erscheinen.
-Zum Test geben Sie im ersten Eingabefeld einen Namen und im zweiten eine Nachricht ein. Über den Button "Abschicken" wird die Nachricht gespeichert und alle
-gespeicherten Nachrichten im unteren Bereich ausgegeben.
+Zum Test geben Sie im ersten Eingabefeld einen Namen und im zweiten eine Nachricht ein. Über den Button "Abschicken" wird die Nachricht gespeichert und alle gespeicherten Nachrichten im unteren Bereich ausgegeben.
 
 :desc-image-leitfaden_entwicklungsumgebung_projektgenerator_06: Hello World starten
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_06",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_06}
 image::leitfaden_entwicklungsumgebung_projektgenerator_06.png[align="center"]
-
