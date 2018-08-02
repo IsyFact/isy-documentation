@@ -519,7 +519,7 @@ image::Einrichtung_Entwicklungsumgebung_013.png[align="center"]
 
 *Schritt 1:* Checkstyle-Plugin suchen
 
-* Den Dialog _Plugins_ öffnen: menu:[File > Settings... > Plugins]
+* Den Dialog _Plugins_ öffnen: menu:File[Settings... > Plugins]
 * Im Suchfeld _checkstyle_ eingeben. Wird kein Treffer angezeigt, dann auf den Link _Search in repositories_ klicken.
 
 :desc-image-checkstyle-suche: Suche nach Checkstyle-Plugin
@@ -562,8 +562,8 @@ image::Einrichtung_Entwicklungsumgebung_016.png[align="center"]
 
 *Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
 
-* Menüeintrag menu:[File > Settings... > Checkstyle] (für das aktuelle Projekt)
-* Menüeintrag menu:[File > Other Settings > Default Settings... > Checkstyle] (für alle zukünftigen Projekte)
+* Menüeintrag menu:File[Settings... > Checkstyle] (für das aktuelle Projekt)
+* Menüeintrag menu:File[Other Settings > Default Settings... > Checkstyle] (für alle zukünftigen Projekte)
 
 *Schritt 2:* Import der Checkstyle-Konfiguration von IsyFact
 
