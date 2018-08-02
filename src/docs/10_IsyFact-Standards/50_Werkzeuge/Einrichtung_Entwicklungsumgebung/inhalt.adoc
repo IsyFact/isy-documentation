@@ -433,6 +433,7 @@ image::Einrichtung_Entwicklungsumgebung_006.png[align="center"]
 
 NOTE: Der Name der Datei kann vom Namen des Scheme abweichen.
 Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
+NOTE: Der Name der Datei kann vom Namen des Scheme abweichen. Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
 
 [[eclipse-code-formatter]]
 ===== Eclipse
@@ -456,6 +457,7 @@ image::Einrichtung_Entwicklungsumgebung_007.png[align="center"]
 
 NOTE: Der Name der Datei kann vom Namen des aktiven Profiles des Formatters abweichen.
 Welcher Profilname angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
+NOTE: Der Name der Datei kann vom Namen des aktiven Profiles des Formatters abweichen. Welcher Profilname angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
 
 [[formatierungsdifferenzen]]
 === Formatierungsdifferenzen
