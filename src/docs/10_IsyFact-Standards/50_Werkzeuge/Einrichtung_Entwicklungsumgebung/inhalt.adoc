@@ -506,6 +506,83 @@ image::Einrichtung_Entwicklungsumgebung_011.png[align="center"]
 *Bewertung:* Ein überflüssiges, leeres Statement-Semikolon ist auffälliger, wenn es am Zeilenanfang steht.
 Dieser Fall ist allerdings erneut kein Problem der Formatierung, sondern ein Programmierfehler - das Semikolon sollte gelöscht werden.
 
+[[generierung-von-equals-und-hashcode]]
+== Generierung von equals() und hashCode()
+
+Eine Unterstützung bei der Codegenerierung erhält der Programmentwickler bei Einsatz von IntelliJ IDEA ohne zusätzliche Plug-Ins.
+Um bei der derzeit aktuellen Eclipse Version _Neon_ identische Umsetzungen der beiden Methode zu generieren, wird das Plugin _jenerate_ verwendet.
+
+[[equals-hashcode-eclipse]]
+=== Eclipse
+
+[[installation-jenerate]]
+==== Installation des Plugins _jenerate_
+
+Das Eclipse Plugin _jenerate_ kann innerhalb von Eclipse über den _„Eclipse Marketplace“_ heruntergeladen und installiert werden.
+
+Eclipse Menüpunkt: menu:Help[Eclipse Marketplace]
+
+:desc-image-eclipse-marketplace-pluginauswahl: Eclipse Marketplace, Pluginauswahl
+[id="image-eclipse-marketplace-pluginauswahl",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-eclipse-marketplace-pluginauswahl}
+image::Einrichtung_Entwicklungsumgebung_001.png[align="center",width=80%,pdfwidth=80%]
+
+[[grundkonfiguration]]
+==== Grundkonfiguration
+
+Bestimmte Einstellungen zur Steuerung der Erzeugung von Boilerplate Code können bei Eclipse über das Menü menu:Window[Preferences > Java > Jenerate] vorgenommen werden.
+
+Der folgende Screenshot zeigt die Einstellungen, die bei der Boilerplate-Code-Erstellung die höchste Übereinstimmung mit dem von IntelliJ IDEA erzeugten Boilerplate Code ergibt.
+
+:desc-image-jenerate-grundeinstellungen: Eclipse Plugin jenerate - Grundeinstellungen
+[id="image-jenerate-grundeinstellungen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-jenerate-grundeinstellungen}
+image::Einrichtung_Entwicklungsumgebung_002.png[align="center"]
+
+Wenn man sich im Klasseneditor über das Plugin _jenerate_ die Methoden `equals()` und `hashCode()` generieren lässt, wird auf der Detailmaske zur Eingabe der zu verwendenden Parameter bei der Codegenerierung die in den Settings voreingestellte „__Content Strategy__“ angezeigt.
+
+Sollte in der _jenerate_ Grundeinstellungsmaske keine oder eine andere Vorauswahl getroffen worden sein, so muss hier die zu verwendende Content Strategy ebenfalls auf `USE_JAVA` (__java.util.Objects__) umgestellt werden.
+
+:desc-image-Eclipse-Boilerplate: Einstellung der Content Strategy
+[id="image-Eclipse-Boilerplate",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-Eclipse-Boilerplate}
+image::Einrichtung_Entwicklungsumgebung_004.png[pdfwidth=40%,width=40%, align="center"]
+
+[[boilerplate-code-erzeugen]]
+==== Boilerplate Code erzeugen
+
+Die Generierung von Boilerplate Code selbst ist intuitiv und erfolgt in drei Schritten.
+
+*Schritt 1:* Die Klasse wird wie üblich angelegt. Wichtig ist, dass alle für die zu generierenden Methoden relevanten Klassenvariablen bereits in der Klasse enthalten sind.
+
+*Schritt 2:* Im Editor der Klasse ruft die Tastenkombination kbd:[Alt + Shift + G] ein kleines Auswahlmenü auf, das Optionen für die Erzeugung des Boilerplate Codes für eine der Methoden `compareTo()`, `equals()` & `hashCode()` oder `toString()` bietet.
+
+:desc-image-jenerate-methodenauswahl: Plugin jenerate - Methodenauswahl
+[id="image-jenerate-methodenauswahl",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-jenerate-methodenauswahl}
+image::Einrichtung_Entwicklungsumgebung_003.png[align="center"]
+
+Alternativ stehen die folgenden Tastenkombinationen zur Verfügung:
+
+* `hashCode()` & `equals()`: kbd:[Alt + Shift + G], dann kbd:[H]
+* `toString()` kbd:[Alt + Shift + G], dann kbd:[S]
+* `compareTo()` kbd:[Alt + Shift + G], dann kbd:[C]
+
+*Schritt 3:* Nach Auswahl der zu erzeugenden Methoden öffnet sich ein Auswahlfenster, auf dem man aus der Menge der im ersten Schritt angelegten Klassenvariablen diejenigen auswählen kann, die bei der Codegenerierung als Parameter einfließen sollen.
+
+TIP: Werden Klassen zu einem späteren Zeitpunkt um weitere Klassenvariablen ergänzt, welche für die Methoden `compareTo()`, `equals()`, `hashCode()` oder `toString()` relevant sind, so kann der erzeugte Quellcode jederzeit wieder gelöscht und erneut erzeugt werden.
+
+[[equals-hashcode-intellij]]
+=== IntelliJ IDEA
+
+In IntelliJ IDEA lässt sich die Vorgabe zur Codegenerierung direkt vorgeben.
+Diese ist im Generierungsdialog unter „Template“ einzustellen. Der Dialog wird mit kbd:[Alt + Einfg] und der Auwahl von __equals() and hashCode()__ aufgerufen.
+
+:desc-image-IntelliJ-Boilerplate: IntelliJ IDEA: Einstellung der Vorgabe zur Codegenerierung
+[id="image-IntelliJ-Boilerplate",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-IntelliJ-Boilerplate}
+image::Einrichtung_Entwicklungsumgebung_005.png[align="center",width=70%,pdfwidth=70%]
+
 [[einrichtung-von-checkstyle]]
 == Einrichtung von Checkstyle
 
