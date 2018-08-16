@@ -3,12 +3,10 @@
 
 Die Redis-Instanzen des Clusters werden auf drei physische Server verteilt:
 
-
 :desc-image-rediscluster: Architektur der technischen Infrastruktur
 [id="image-rediscluster",reftext="{figure-caption} {counter:figures}"]	 
 .{desc-image-rediscluster}
-image::rediscluster.png[align="center"]
-//fig1
+image::nutzungsvorgaben_redis_001.png[align="center"]
 
 Auf jedem Server wird Redis genau einmal deployed und jeweils in einer Master und in einer Slave Konfiguration als Daemon ausgeführt.
 Jeder Master besitzt einen Slave auf dem logisch nachfolgenden Server – der Slave des letzten Masters befindet sich auf dem ersten Server.
@@ -20,7 +18,7 @@ Es existiert kein Single Point of Failure.
 
 Der Cluster wird in der Logik- und Verarbeitungszone betrieben.
 
-Die Kommunikation zwischen Webanwendung zu Redis und Redis zu Redis erfolgt mittels RESP (REdis Serialization Protocol) über TCP-Verbindungen.
+Die Kommunikation zwischen Webanwendung zu Redis und Redis zu Redis erfolgt mittels RESP (_REdis Serialization Protocol_) über TCP-Verbindungen.
 
 Standardmäßig werden die Ports 7000 für Master und 7001 für Slaves vorgesehen.
 Zu beachten ist, dass jeder Daemon Zugriff auf alle anderen Daemons haben muss, um den Zustand des Clusters zu synchronisieren.
@@ -95,7 +93,7 @@ Zudem muss für diesen Schritt Ruby installiert sein.
 Die IsyFact stellt ein RPM bereit, welches sämtliche oben dargestellten Dateien enthält und in die richtigen Verzeichnisse ablegt.
 Installiert wird es mit:
 
-`rpm -i isy-sessionspeicher-<x.x.x-x>.noarch.rpm`
+  rpm -i isy-sessionspeicher-<x.x.x-x>.noarch.rpm
 
 [[schritt-2-konfiguration-anpassen]]
 == Schritt 2: Konfiguration anpassen
@@ -103,10 +101,13 @@ Installiert wird es mit:
 Die Konfigurationen werden wie folgt angelegt:
 
 [[redis_servermaster.conf-anpassen]]
-=== redis_<server/master>.conf anpassen
+=== redis_<master/slave>.conf anpassen
 
-Die Konfigurationsdateien redis_master.conf und redis_slave.conf müssen entsprechend der jeweiligen Umgebungen angepasst werden:
+Die Konfigurationsdateien `redis_master.conf` und `redis_slave.conf` müssen entsprechend der jeweiligen Umgebungen angepasst werden:
 
+:desc-listing-redismasterslaveconf: Konfigurationsdateien redis_master.conf und redis_slave.conf
+[id="listing-redismasterslaveconf",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-redismasterslaveconf}
 [source,php]
 ----
 # Inkludiert einheitliche Redis-Standardkonfigurationen.
@@ -131,8 +132,11 @@ cluster-config-file /etc/isy-sessionspeicher/nodes_<master/slave>.conf
 [[isy-sessionspeicher.conf-anpassen]]
 === isy-sessionspeicher.conf anpassen
 
-Die Konfigurationsdateien isy-sessionspeicher.conf muss analog zum vorherigen Abschnitt angepasst werden:
+Die Konfigurationsdateien `isy-sessionspeicher.conf` muss analog zum vorherigen Abschnitt angepasst werden:
 
+:desc-listing-isy-sessionspeicherconf: Konfigurationsdatei isy-sessionspeicher.conf
+[id="listing-isy-sessionspeicherconf",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-isy-sessionspeicherconf}
 [source,php]
 ----
 # ===
@@ -154,25 +158,24 @@ Die Konfiguration des Clusters erfolgt mit Hilfe des Ruby-Programms `redis-trib`
 Hierzu muss zunächst das Redis-RubyGem installiert werden.
 Hierzu muss wiederum Ruby installiert sein und folgender Befehl ausgeführt werden:
 
-`gem install redis`
+  gem install redis
 
 Es müssen alle Redis-Instanzen gestartet werden.
 
-Die Konfiguration des Clusters erfolgt mit folgendem Aufruf
+Die Konfiguration des Clusters erfolgt mit folgendem Aufruf:
 
-`/opt/isy-sessionspeicher/bin/redis-trib.sh create --replicas 1 <IP MASTER1>:<PORT MASTER1> <IP MASTER2>:<PORT MASTER2> <IP MASTER3>:<PORT MASTER3> <IP SLAVE1>:<PORT SLAVE1> <IP SLAVE2>:<PORT SLAVE2> <IP SLAVE3>:<PORT SLAVE3>`
+ /opt/isy-sessionspeicher/bin/redis-trib.sh create --replicas 1 <IP MASTER1>:<PORT MASTER1> <IP MASTER2>:<PORT MASTER2> <IP MASTER3>:<PORT MASTER3> <IP SLAVE1>:<PORT SLAVE1> <IP SLAVE2>:<PORT SLAVE2> <IP SLAVE3>:<PORT SLAVE3>
 
-Wichtig: Hierbei müssen IPs angegeben werden, keine Hostnamen!
+IMPORTANT: Hierbei müssen IPs angegeben werden, keine Hostnamen!
 
-Die nachfolgende Frage „Can I set the above configuration?” muss mit “yes” bestätigt werden.
+Die nachfolgende Frage _Can I set the above configuration?_ muss mit _yes_ bestätigt werden.
 
 Bei erfolgreicher Konfiguration wird folgende Konsolenausgabe angezeigt:
-
 
 :desc-image-createcluster: Erfolgreiche Cluster-Konfiguration
 [id="image-createcluster",reftext="{figure-caption} {counter:figures}"]	 
 .{desc-image-createcluster}
-image::createcluster.png[align="center"]
+image::nutzungsvorgaben_redis_002.png[align="center",pdfwidth=60%,width=60%]
 
 Durch die Konfiguration des Clusters werden die `nodes_<master/slave>.conf` Dateien erzeugt.
 
@@ -197,11 +200,11 @@ Wenn möglich wird die Umsetzung der ersten Variante empfohlen.
 
 Um die Cluster-Konfiguration mit dem neuen Server zu erstellen, sind folgende Schritte notwendig:
 
-.  Neuen Server analog zu Kapitel <<installation-und-konfiguration>>, Schritte 1-3 einrichten
+.  Neuen Server analog zu Kapitel <<installation-und-konfiguration>>, Schritt 1 und 2 einrichten
 .  Alle Instanzen stoppen
 .  Alle `nodes_<master/slave>.conf` Dateien löschen
 .  Alle Instanzen starten
-.  Cluster-Konfigurieren analog zu Schritt 6 aus Kapitel 3
+.  Cluster-Konfigurieren analog zu Schritt 3 aus Kapitel <<installation-und-konfiguration>>
 
 Ab Schritt 2 ist der Server damit temporär nicht mehr verfügbar und die Session-Daten gehen verloren.
 Durch Automatisierung der Schritte 2-5 kann die Ausfallzeit auf weniger als 1 Minute begrenzt werden.
@@ -211,28 +214,28 @@ Durch Automatisierung der Schritte 2-5 kann die Ausfallzeit auf weniger als 1 Mi
 
 Um die Cluster-Konfiguration zur Laufzeit zu ändern sind folgende Schritte notwendig:
 
-.  Neuen Server analog zu Kapitel <<installation-und-konfiguration>>, Schritte 1-3 einrichten
+.  Neuen Server analog zu Kapitel <<installation-und-konfiguration>>, Schritte 1-2 einrichten
 .  Neue Instanzen starten
 .  Neuen Master hinzufügen:
-+
-`./redis-trib.rb add-node <IP-NEU>:<PORT-NEU> <IP-ALT>:<PORT-ALT>`
+
+  ./redis-trib.rb add-node <IP-NEU>:<PORT-NEU> <IP-ALT>:<PORT-ALT>
 +
 „Neu“ sind dabei die Angaben des neuen Masters, „alt“ die Angaben irgendeines vorhandenen Masters.
 .  Neuen Slave hinzufügen:
 +
-`./redis-trib.rb add-node --slave --master-id <UID-MASTER-NEU> <IP-NEU>:<PORT-NEU>`
+  ./redis-trib.rb add-node --slave --master-id <UID-MASTER-NEU> <IP-NEU>:<PORT-NEU>
 +
 Die UID des neuen Masters muss dabei aus der `nodes_master.conf` des neuen Masters ermittelt werden.
 +
 Damit der neue Master auch für die Speicherung von Sessions genutzt wird, muss ein Resharding 
 durchgeführt werden, d.h. der Werte Bereiche der Schlüssel wird neu über die Master verteilt:
 +
-`./redis-trib.rb reshard --from all --to <UID-MASTER-NEU> --slots <SLOT-ANZAHL> --yes <IP-ALT>:<PORT-ALT>`
+  ./redis-trib.rb reshard --from all --to <UID-MASTER-NEU> --slots <SLOT-ANZAHL> --yes <IP-ALT>:<PORT-ALT>
 +
 SLOT-ANZAHL ist hierbei die Anzahl der neu zuzuordnenden Slots.
 Diese sollte folgender Formel entsprechen:
 +
-SLOTS = 16383 / Anzahl der Master
+_SLOTS = 16383 &#247; Anzahl der Master_
 +
 16383 (bzw.
 da bei 0 angefangen wird zu zählen: 16384) ist die Gesamtzahl der SLOTS.
@@ -242,10 +245,10 @@ Während des Reshardings sind die Redis-Instanzen voll verfügbar.
 [[ueberwachung]]
 = Überwachung
 
-Zur Einrichtung einer Überwachung von Redis mittels Nagios / Icinga wird das Plugin check_redis.pl genutzt, 
+Zur Einrichtung einer Überwachung von Redis mittels Nagios / Icinga wird das Plugin `check_redis.pl` genutzt,
 welches unter folgender URL bereitgestellt wird:
 
-`https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details`
+https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details
 
 [[themensammlung]]
 = Themensammlung
@@ -256,7 +259,7 @@ welches unter folgender URL bereitgestellt wird:
 Die vorgestellte Cluster-Architektur lässt sich ohne weiteres auch auf mehr als 3 Server erweitern.
 Bei der Dimensionierung des Servers muss darauf geachtet werden, dass der Cluster bei Ausfall eines 
 Servers weiterhin lauffähig ist.
-Bei 3 Servern bedeutet dies, dass jeder Server in der Lage sein muss 2/3 der Gesamtlast zu bewältigen 
+Bei 3 Servern bedeutet dies, dass jeder Server in der Lage sein muss 2/3 der Gesamtlast zu bewältigen
 (bei Ausfall eines Servers laufen auf einem Server 2 Master). Bei 4 Servern sind es nur noch 2/4 bzw.
 die Hälfte der Gesamtlast, etc.
 
@@ -278,7 +281,7 @@ nur die `nodes_<master/slave>.conf`, die mit Hilfe von `redis-trib` in Abschnitt
 <<isy-sessionspeicher.conf-anpassen>> erzeugt wird.
 Stattdessen muss die IP des Servers angegeben werden.
 
-siehe: `https://github.com/antirez/redis/issues/2186`
+NOTE: Siehe `https://github.com/antirez/redis/issues/2186`
 
 [[cluster-knoten-muessen-ueber-einheitliche-ip-und-port-erreichbar-sein]]
 == Cluster-Knoten müssen über einheitliche IP und Port erreichbar sein
@@ -298,18 +301,14 @@ insbesondere da zusätzlich keine Hostnamen (siehe Abschnitt
 Beim Starten von Redis erscheint ggf.
 folgende Warnung:
 
-[source]
-----
-WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
-----
-
+  WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
 
 Das TCP-Backlog fungiert als Queue für eingehende TCP Verbindungen.
 Die Größe des Backlogs wird in der `redis_default.conf` konfiguriert.
 Aus Performancegründen sollte die Anzahl der erlaubten TCP-Verbindungen auf der Umgebung erhöht werden.
 Dazu muss folgender Befehl in den Systemstart des Servers aufgenommen werden werden:
 
-`sysctl -w net.core.somaxconn=65535`
+  sysctl -w net.core.somaxconn=65535
 
 [[warnung-overcommit_memory]]
 == Warnung: overcommit_memory
@@ -317,12 +316,10 @@ Dazu muss folgender Befehl in den Systemstart des Servers aufgenommen werden wer
 Beim Starten von Redis erscheint ggf.
 folgende Warnung:
 
-[source]
-----
-WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
-To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot 
-or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
-----
+
+  WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
+  To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot
+  or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
 
 Da “background save” – also das Speichern der Daten auf die Festplatte – nicht verwendet wird, kann diese Warnung ignoriert oder die in der Meldung vorgeschlagene Lösung umgesetzt werden.
 
@@ -340,13 +337,13 @@ To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugep
 Redis must be restarted after THP is disabled.
 ----
 
-Wie gravierend die Auswirkungen dieser Warnung sind, ist nicht klar, es wird jedoch empfohlen, 
+Wie gravierend die Auswirkungen dieser Warnung sind, ist nicht klar. Es wird jedoch empfohlen,
 das in der Meldung beschriebene Vorgehen durchzuführen.
 
 [[redis-trib-unterstuetzt-kein-passwort]]
 == redis-trib unterstützt kein Passwort
 
-redis-trib kann aktuell nicht verwendet werden, wenn der Server mit einem Passwort geschützt ist.
+`redis-trib` kann aktuell nicht verwendet werden, wenn der Server mit einem Passwort geschützt ist.
 Da aktuell keine Passwörter genutzt werden, ist dies unkritisch.
 
 [[spring-session-unterstuetzt-kein-passwort]]
@@ -374,22 +371,21 @@ muss dieses in allen Instanzen gleich sein! Unterschiedliche Passwörter werden 
 Redis unterstützt keine Umgebungen, in denen IPs oder Ports gemapped werden. Docker verwendet 
 „Port Mapping“, um mehrere Container eines Servers extern
  über unterschiedliche Ports erreichbar zu machen.
-Um Redis in Docker verwenden zu können, muss der „host networking mode“ von Docker verwendet werden.
-Mehr zu dieser Problematik unter: `http://redis.io/topics/cluster-tutorial`
+Um Redis in Docker verwenden zu können, muss der _host networking mode_ von Docker verwendet werden.
+Mehr zu dieser Problematik unter http://redis.io/topics/cluster-tutorial.
 
 [[bereinigung-abgelaufener-sessions]]
 == Bereinigung abgelaufener Sessions
 
 Abgelaufene Sessions werden in Redis von Redis selbst gelöscht, jedoch müssen ggf.
 auch in Spring Session Ressourcen freigegeben werden.
-Dies geschieht sobald Redis ein „SessionDeletedEvent“ bzw. „SessionExpiredEvent“ ausgelöst hat.
-Damit Redis diese Events erzeugt, ist in der redis-default.conf folgender Parameter gesetzt:
+Dies geschieht sobald Redis ein `SessionDeletedEvent` bzw. `SessionExpiredEvent` ausgelöst hat.
+Damit Redis diese Events erzeugt, ist in der `redis-default.conf` folgender Parameter gesetzt:
 
-`notify-keyspace-events Egx`
+  notify-keyspace-events Egx
 
-Details zur Bereinigung abgelaufener Sessions finden sich unter:
-
-`http://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-expiration`
+Details zur Bereinigung abgelaufener Sessions finden sich unter
+http://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-expiration
 
 
 
