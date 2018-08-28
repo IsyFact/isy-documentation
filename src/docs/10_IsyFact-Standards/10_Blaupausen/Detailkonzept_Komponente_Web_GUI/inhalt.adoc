@@ -1407,7 +1407,7 @@ image::image37.png[align="center", width="629",height="149"]
 * *B* Farbmarkierung des Applikationsportals
 * *C* Logo des Applikationsportals
 * *D* Login-Information
-* *E + F* Hauptnavigation und Subnavigation als Flyout (siehe Kapitel Horizontale Navigation)
+* *E + F* Hauptnavigation und Subnavigation als Flyout (siehe Kapitel <<horizontale-navigation>>)
 
 
 [[headerbereich-bestandteile]]
@@ -2935,8 +2935,9 @@ Für `<isy:formSelectOneRadio>` sind zusätzlich folgende Attribute zulässig:
 [[horizontale-navigation]]
 ==== Horizontale Navigation
 
-Die Navigationsleiste im Header Bereich lässt sich konfigurierbar gestalten. Hierzu muss jede Anwendung zunächst eine Instanz von `NavigationMenuGenerierenAusKonfiguration`
-im Application-Context zur Verfügung stellen und korrekt konfigurieren. Die Bean benötigt lediglich einen `AufrufkontextVerwalter` und eine `Konfiguration`, um korrekt zu funktionieren.
+Die Navigationsleiste im Header Bereich lässt sich konfigurierbar gestalten.
+Hierzu muss jede Anwendung zunächst eine Instanz von `NavigationMenuGenerierenAusKonfiguration` im Application-Context zur Verfügung stellen und korrekt konfigurieren.
+Die Bean benötigt lediglich einen `AufrufkontextVerwalter` und eine `Konfiguration`, um korrekt zu funktionieren.
 
 :desc-listing-bspBeanHauptnavigation: Beispiel für die Deklaration der Bean
 [id="listing-bspBeanHauptnavigation",reftext="{listing-caption} {counter:listings }"]
@@ -2978,16 +2979,17 @@ gui.navbar.applikationsgruppe.1.anwendung.3.reihenfolge  = 3
 gui.navbar.applikationsgruppe.1.anwendung.3.rollen = Beispielrolle
 ----
 
-Das Schlüsselwort `applikationsgruppe` und die darauf folgenden Parameter beziehen sich immer auf einen Eintrag in der Leiste selbst. Das Schlüsselwort
-`anwendung` und die darauf folgenden Parameter beziehen sich wiederum immer auf einen Eintrag innerhalb des Flyout Menüs eines Eintrags innerhalb der Leiste.
-Die Zahlen innerhalb der Konfigurationsparameter dienen der logischen Zuordnung. Im obigen Beispiel sieht man schnell, dass es eine Applikationsgruppe gibt und dieser Gruppe
-drei Anwendungen zugeordnet sind. Die Zahlen _müssen_ aus technischer Sicht keiner strikten Sequenz folgen (etwa \*`.anwendung.1.`*, \*`.anwendung.2.`* usw.), aber dies bietet sich aufgrund der Lesbarkeit an.
+Das Schlüsselwort `applikationsgruppe` und die darauf folgenden Parameter beziehen sich immer auf einen Eintrag in der Leiste selbst.
+Das Schlüsselwort `anwendung` und die darauf folgenden Parameter beziehen sich wiederum immer auf einen Eintrag innerhalb des Flyout Menüs eines Eintrags innerhalb der Leiste.
+Die Zahlen innerhalb der Konfigurationsparameter dienen der logischen Zuordnung.
+Im obigen Beispiel sieht man schnell, dass es eine Applikationsgruppe gibt und dieser Gruppe drei Anwendungen zugeordnet sind.
+Die Zahlen _müssen_ aus technischer Sicht keiner strikten Sequenz folgen (etwa `\*.anwendung.1.*`, `\*.anwendung.2.*` usw.), aber dies bietet sich aufgrund der Lesbarkeit an.
 
 Für Einträge innerhalb der Leiste selbst (`applikationsgruppe`) existieren folgende Parameter:
 
 * `wert`: Das Label zur Anzeige.
 * `link`: Der Link, der aufgerufen wird, wenn der Anwender auf den Eintrag klickt.
-* `farbe`: Die Farbe der Applikationsgruppe als Hexwert .
+* `farbe`: Die Farbe der Applikationsgruppe als Hexwert.
 * `reihenfolge`: Ein numerischer Wert für die Reihenfolge der Anzeige der Applikationsgruppen innerhalb der horizontalen Navigation.
 * `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste. Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
 
@@ -2998,13 +3000,16 @@ Für Einträge innerhalb eines Flyout Menüs (`anwendung`) existieren folgende P
 * `reihenfolge`: Ein numerischer Wert für die Reihenfolge der Anzeige der Anwendung innerhalb des Flyout Menüs.
 * `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste. Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
 
-Grundsätzlich sind alle Werte optional. Damit ist jedoch lediglich gemeint, dass die Anwendung keinen Fehler erzeugt, falls ein Wert für eine Applikationsgruppe bzw. Anwendung überhaupt nicht konfiguriert ist.
+Grundsätzlich sind alle Werte optional.
+Damit ist jedoch lediglich gemeint, dass die Anwendung keinen Fehler erzeugt, falls ein Wert für eine Applikationsgruppe bzw. Anwendung überhaupt nicht konfiguriert ist.
 Nicht benötigte Parameter können daher einfach weggelassen werden.
 Um einen sinnvollen Einsatz zu gewährleisten sollten immer mindestens `wert` und `link` konfiguriert sein.
 
-Die Navigation würde im obigen Beispiel den Eintrag 'JSF-Vorlagen' enthalten. Wenn die Maus sich über dem Eintrag befindet, würde das Flyout Menü aufklappen und die Einträge
-'JSF-Steuerelemente', '4-Augen Prinzip' und 'Nachrichten' würden sichtbar werden. 'Nachrichten' ist für den jeweiligen Nutzer jedoch nur sichtbar, wenn er die Rolle 'Beispielrolle' besitzt.
-Weitere Rollen lassen sich komma-separiert angeben. Ein Anwender sieht den jeweiligen Eintrag, sobald er mindestens eine der benötigten Rollen besitzt.
+Die Navigation würde im obigen Beispiel den Eintrag _JSF-Vorlagen_ enthalten.
+Wenn die Maus sich über dem Eintrag befindet, würde das Flyout Menü aufklappen und die Einträge _JSF-Steuerelemente_, _4-Augen Prinzip_ und _Nachrichten_ würden sichtbar werden.
+_Nachrichten_ ist für den jeweiligen Nutzer jedoch nur sichtbar, wenn er die Rolle _Beispielrolle_ besitzt.
+Weitere Rollen lassen sich komma-separiert angeben.
+Ein Anwender sieht den jeweiligen Eintrag, sobald er mindestens eine der benötigten Rollen besitzt.
 
 :desc-image-navigationMitSubmenu: Navigation mit ausgeklapptem Flyout Menü
 [id="image-navigationMitSubmenu",reftext="{figure-caption} {counter:figures}"]
