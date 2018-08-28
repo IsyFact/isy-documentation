@@ -1525,34 +1525,25 @@ Der Name kann frei vergeben werden, sollte aber sprechend sein.
 [[schemauebergreifende-operationen]]
 == Schemaübergreifende Operationen
 
-Sollte eine Anwendung schemaübergreifende Operationen haben wird das vorgestellte DB-Versionierungskonzept
-wie folgt erweitert.
-Die Skripte der schemaübergreifenden Operationen werden gemäß Kapitel <<ablage-der-skripte-und-namenskonventionen>>
-in einen eigenen Ordner
-unter „src/main/skripte/sql/uebergreifend“ abgelegt.
+Sollte eine Anwendung schemaübergreifende Operationen haben wird das vorgestellte DB-Versionierungskonzept wie folgt erweitert.
+Die Skripte der schemaübergreifenden Operationen werden gemäß Kapitel <<ablage-der-skripte-und-namenskonventionen>> in einen eigenen Ordner unter `src/main/skripte/sql/uebergreifend` abgelegt.
 Die hier abgelegten Skripte werden immer als letztes ausgeführt.
 Zuvor werden alle anderen Schemata installiert.
 
-Die Skripte im Ordner „uebergreifend“ werden ebenfalls im gewohnten DB-Versionierungskonzept Format abgelegt.
-Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus
-Kapitel <<installationsablauf-bei-der-neuanlage>>. Allerdings beginnt die
-Schrittnummer mit 91 statt mit 01.
-Die einzelnen Skripte werden in der richtigen Reihenfolge über das
-Hilfsskript 99_starte-skript-mit-logging.sql aufgerufen und in der Tabelle M_SCHEMA_LOG des
-Hauptschemas der Anwendung protokolliert.
+Die Skripte im Ordner `uebergreifend` werden ebenfalls im gewohnten DB-Versionierungskonzept Format abgelegt.
+Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus Kapitel <<installationsablauf-bei-der-neuanlage>>.
+Allerdings beginnt die Schrittnummer mit 91 statt mit 01.
+Die einzelnen Skripte werden in der richtigen Reihenfolge über das Hilfsskript `99_starte-skript-mit-logging.sql` aufgerufen und in der Tabelle `M_SCHEMA_LOG` des Hauptschemas der Anwendung protokolliert.
 
-Die Skripte im Hauptschema der Anwendung setzen, nach erfolgreicher Ausführung, den Status
-von M_SCHEMA_VERSION auf „*bereit*“ statt auf „gueltig“. Das signalisiert, dass das Schema bereit ist
-die schemaübergreifenden Operationen durchzuführen.
-Vor der Ausführung der Skripte im Ordner „uebergreifend“ wird geprüft, dass der Status des Hauptschemas
-auf „bereit“ steht.
-Erst nach der erfolgreichen Ausführung aller Schritte des Schemas „uebergreifend“, wird der Status
-auf „gueltig“ gesetzt.
+Die Skripte im Hauptschema der Anwendung setzen, nach erfolgreicher Ausführung, den Status von `M_SCHEMA_VERSION` auf „*bereit*“ statt auf „gueltig“.
+Das signalisiert, dass das Schema bereit ist, die schemaübergreifenden Operationen durchzuführen.
+Vor der Ausführung der Skripte im Ordner `uebergreifend` wird geprüft, dass der Status des Hauptschemas auf „bereit“ steht.
+Erst nach der erfolgreichen Ausführung aller Schritte des Schemas `uebergreifend` wird der Status auf „gueltig“ gesetzt.
 
-Mit den übergreifenden Skripten sollen auch die Zugriffsrechte für die Queue(s) eines Anwendungssystems vergeben werden,
-sofern diese existieren. Die entsprechenden Datenbanknutzer der Systeme, die Zugriff auf die Queue(s) haben sollen, sind dann in
-der Datei 91_environment.sql einzutragen. In einem Skript 93-X.sql können dann die Rechte je nach Bedarf vergeben werden. Auf diese Weise
-legt das Anwendungssystem selbst fest, welche anderen Systeme Zugriff auf die Queue(s) haben.
+Mit den übergreifenden Skripten sollen auch die Zugriffsrechte für die Queue(s) eines Anwendungssystems vergeben werden, sofern diese existieren.
+Die entsprechenden Datenbanknutzer der Systeme, die Zugriff auf die Queue(s) haben sollen, sind dann in der Datei `91_environment.sql` einzutragen. 
+In einem Skript `93-X.sql` können dann die Rechte je nach Bedarf vergeben werden. 
+Auf diese Weise legt das Anwendungssystem selbst fest, welche anderen Systeme Zugriff auf die Queue(s) haben.
 
 [[datenbankuebergreifende-operationen]]
 == Datenbankübergreifende Operationen
