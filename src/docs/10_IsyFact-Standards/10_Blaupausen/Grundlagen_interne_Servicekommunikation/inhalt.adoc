@@ -94,13 +94,15 @@ Dieses Vorgehen hat den Vorteil, dass die Fachanwendung von den Fremdsystemen st
 Die Fachanwendung kann für einen gewissen Zeitraum immer sowohl die alte Queue-Version als auch die neue Queue-Version bedienen – es wird jedoch immer nur eine Queue befüllt.
 
 Die Umsetzung erfolgt mit dem Spring JMS Integration Framework.
-Zusätzlich wird die Register-Factory-Bibliothek _rf-jmsutil_ zur Überwachung verwendet. Die Überwachung ist in Form von drei JMX-Parametern umgesetzt:
+Zusätzlich wird die Register-Factory-Bibliothek _rf-jmsutil_ zur Überwachung verwendet. 
+Die Überwachung ist in Form von drei JMX-Parametern umgesetzt:
 
 * *queueSize:* Gibt die aktuelle Größe der Queue an. 
 * *maxRetries:* Gibt die höchste Anzahl an Retries für die Verarbeitung einer Benachrichtigung an.
 * *maxAlter:* Gibt den Enqueue-Zeitpunkt der ältesten Benachrichtigung an. Die Werte für die Parameter werden mit SQL-Select-Queries auf die entsprechenden Queue-Tabellen ermittelt. Aus Performancegründen wird dabei stets auf die extra von Oracle bereitgestellen Views für Queue-Tabellen zugegriffen und nie direkt auf die Queue-Tabellen selbst.
 
-Die Benachrichtigungen werden ohne _expiration time_ enqueued. D.h. eine automatische Löschung von alten, nicht abgeholten Benachrichtigungen wird nicht durchgeführt.
+Die Benachrichtigungen werden ohne _expiration time_ enqueued. 
+D.h. eine automatische Löschung von alten, nicht abgeholten Benachrichtigungen wird nicht durchgeführt.
 
 [[vorgaben-für-fremdsysteme]]
 === Vorgaben für Fremdsysteme
