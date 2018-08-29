@@ -232,19 +232,14 @@ _Anwendung bezieht sich hierbei auf die Anwendungen, die im Tomcat laufen, in Ab
 stundengenauer Uhrzeit.
 Zu beachten ist, dass der Zeitstempel erst beim Rotieren der Logs an die Datei angehängt
 wird (siehe <<log-rotation-und-komprimierung>>).
-|LAUFENDE-NUMMER |1, 2, 3 … |Bei Batches wird ein größenbasiertes Rollieren der Logdateien
-durchgeführt (siehe <<log-rotation-und-komprimierung>>). Diese werden dabei mit einer laufenden Nummer versehen.
 |====
 
 Ein Beispiel des Namens einer Logdatei ist demnach:
 
 [frame="none"]
 |====
-^a|`xyzweb01_xyzfachverfahren_2007-09-16_0900.log` +
-(Log vom 16. September 2007 ~9 Uhr, von der Anwendung XYZ-Fachverfahren auf dem Server xyzweb01)
-
-`xyzweb01_batchxyz_1.log` +
-(Rollierte Logdatei des Batches XYZ-Batch auf dem Server xyzweb01)
+^a|`xyzweb01_abc_2007-09-16_0900.log` +
+(Log vom 16. September 2007 ~9 Uhr, von der Anwendung bzw. dem Batch ABC auf dem Server xyzweb01)
 |====
 
 [[speicherort]]
@@ -269,19 +264,6 @@ Um zu verhindern, dass Logdateien zu groß werden und es gleichzeitig zu ermögl
 
 Zu beachten ist, dass für den Zeitstempel der rotierten Logdateien die Zeitzone UTC verwendet wird – analog zum Zeitstempel der einzelnen Logeinträge.
 Dieser kann von der Systemzeit des Systems abweichen.
-
-[underline]#Sonderfall: Batches#
-
-Für Batches wird eine größenbasierte Rotation (100MB) durch das Logging-Framework umgesetzt.
-Ein Batch erzeugt demnach pro Lauf potentiell mehrere Logdateien unabhängig von dessen Dauer.
-
-Anmerkung: Es findet keine Komprimierung der Logdateien durch das Logging-Framework statt.
-Hintergrund ist, dass die Komprimierung bei Batches nicht eingesetzt werden kann und ein einheitlicher
-Mechanismus für alle Logdateien umgesetzt werden soll.
-Bei den Batches ist eine Komprimierung nicht möglich, da die Komprimierung durch das Logging-Framework
-erst beim Rollieren der Logdatei erfolgt.
-Beim Ausführen des Batches wird die zuletzt angefangene Logdatei jedoch nicht mehr rolliert und damit
-auch nicht komprimiert.
 
 [[einsatz-des-logging-frameworks]]
 = Einsatz des Logging-Frameworks
@@ -744,9 +726,8 @@ Andere Log-Level sind zu vermeiden.
 [[anwendungen-zeitbasiertes-rollieren]]
 ==== Anwendungen (zeitbasiertes Rollieren)
 
-Die Bilbiothek `isy-logging`stellt bereits einen vorkonfigurierten Appender bereit, durch den Logdateien gemäß den
-in <<vorgaben-fuer-logdateien>> definierten Vorgaben erstellt werden.
-In der Anwendung selbst ist daher nur noch eine minimale Logging-Konfiguration notwendig:
+Die Bibliothek `isy-logging`stellt bereits einen vorkonfigurierten Appender bereit, durch den Logdateien gemäß den in <<vorgaben-fuer-logdateien>> definierten Vorgaben erstellt werden.
+In der Anwendung bzw. im Batch selbst ist daher nur noch eine minimale Logging-Konfiguration notwendig:
 
 [source,xml]
 ----
@@ -770,50 +751,7 @@ Folgende Parameter sind zu setzen:
 
 * `LOGFILE_PATH`: Der Pfad der Logdatei (LOGFILE_PATH) muss gemäß den Vorgaben aus Abschnitt 3.3 angepasst werden.
 * `INCLUDE_MDC`: Gibt an, ob der komplette Inhalt des MDC in das Log aufgenommen werden soll (true) oder nicht (false).
-* `CONTEXT_NAME`: Als `contextName` wird „<HOST>_<SYSTEM-ID>“ zur eindeutigen Identifikation der Instanz der Anwendung angegeben.
-
-[[batches-größenbasiertes-rollieren]]
-==== Batches (größenbasiertes Rollieren)
-
-Die Konfiguration des Loggings für Batches erfolgt analog zum vorhergehenden Abschnitt.
-Es wird jedoch ein anderer Appender referenziert (<<listing-LoggingKonfigurationBatch>>) der ein größenbasiertes Rollieren umsetzt.
-
-:desc-listing-LoggingKonfigurationBatch: Konfiguration des Loggings für Batches
-[id="listing-LoggingKonfigurationBatch",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-LoggingKonfigurationBatch}
-[source,xml]
-----
-<configuration scan="true" scanPeriod="1 minutes">
-<!-- Pfad der Logdatei, ohne Endung -->
-<property name="LOGFILE_PATH" value="logausgaben/testserver_testsystem" />
-<!-- MDC in die Ausgabe mitaufnehmen. -->
-<property name="INCLUDE_MDC" value="false" />
-<!-- Maximale Fenstergröße der zu erstellenden Logdateien. -->
-<property name="MAX_INDEX" value="20" />
-
-<!-- Include der vorkonfigurierten Appender. -->
-<include resource="resources/isylogging/logback/appender.xml" />
-<!-- Root-Logger als Grundlage für alle Logger-Instanzen -->
-<root level="trace">
-<appender-ref ref="DATEI_BATCH" />
-</root>
-</configuration>
-----
-
-Der Parameter `MAX_INDEX` muss Standardmäßig auf „20“ gesetzt werden.
-Dieser wird im Folgenden erläutert:
-
-Logback stellt die beiden Policies `TimeBasedRollingPolicy` und `FixedWindowRollingPolicy` zur Verfügung.
-Erstere wird im referenzierten Appender DATEI_ANWENDUNG verwendet, letztere im Appender DATEI_BATCH,
-um ein rein größenbasiertes Rollieren durchzuführen. `FixedWindow` bedeutet hierbei, dass immer nur
-eine maximale Anzahl an Logdateien erhalten bleiben (gemäß der „Window-Größe“). Die Logdateien werden dabei mit einer laufenden Nummer versehen („Logdatei1“, „Logdatei2“ etc.). Beim Rollieren, wird die Nummer der vorhandenen Logdateien erhöht („Logdatei1“ wird „Logdatei2“ etc.) und die aktuelle Logdatei zu „Logdatei1“ umbenannt.
-Bei einer Fenstergröße von 20 wird dabei die vorher ggf.
-vorhandene „Logdatei20“ gelöscht. Da die Logdateien zwischen jedem Batchlauf archiviert werden,
-ist eine Angabe der Fenstergröße aus
-Sicht dieses Konzepts nicht notwendig – dies ist jedoch ein Pflichtparameter der logback-Konfiguration.
-Standardmäßig muss der Wert auf 20 gesetzt werden.
-Dieser Wert wurde gewählt, da es der Standardwert ist, und ein Batch in der Regel nicht mehr als
-2 GB Logs erstellt (sollte dies doch der Fall sein, muss die Fenstergröße entsprechend erhöht werden).
+* `CONTEXT_NAME`: Als `contextName` wird „<HOST>_<SYSTEM-ID>“ zur eindeutigen Identifikation der Instanz der Anwendung bzw. des Batches angegeben.
 
 [[lokale-entwicklungsumgebung-konsolenausgabe]]
 ==== Lokale Entwicklungsumgebung (Konsolenausgabe)
