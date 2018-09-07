@@ -7,16 +7,17 @@ Die folgende Tabelle zeigt alle für die IsyFact zentralen Begriffe.
 Definitionen der Abbildungsbeschriftungen hier sammeln, da sie nur innerhalb der Tabelle gelten, wenn sie dort definiert werden, nicht aber im Verzeichnis!
 ////
 :desc-image-Anwendungsdomaene: Anwendungsdomäne
-:desc-image-Anwendungslandschaft: Anwendungslandschaft
-:desc-image-AnwendungslandschaftIF: Anwendungslandschaft (IsyFact)
+:desc-image-glossar-4: Anwendungslandschaft (IsyFact)
 :desc-image-Anwendungstypen: Anwendungstypen
 :desc-image-SoftwareFactory: Software Factory
-:desc-image-Systemlandschaft: Systemlandschaft
+:desc-image-glossar-1: Bibliothek
+:desc-image-glossar-3: Anwendungskern
+:desc-image-glossar-2: Service der Isyfact
 
 :desc-table-Glossar: Begriffsklärungen
 [id="table-Glossar",reftext="{table-caption} {counter:tables}"]
 .{desc-table-Glossar}
-[cols="<.^1a,<.^3a",options="header"]
+[cols="<.^12a,<.^28a",options="header"]
 |====
 |Begriff
 |Erklärung
@@ -36,7 +37,8 @@ Dieser Begriff sollte [underline]#nicht# pauschal als Synonym für <<anwendungss
 |Synonym für <<anwendungstyp>>, sollte nicht mehr verwendet werden.
 
 |[[anwendungsdomaene,Anwendungsdomäne]]Anwendungsdomäne
-|Domäne im Kontext der <<a-architektur>>, entspricht der Begrifflichkeit aus Sicht des „Domain Driven Design“. Eine Anwendungsdomäne wird in <<anwendungssystem,Anwendungssysteme>> gegliedert, die einzelne Kerne der Domäne (vgl. „Core Domain“) umsetzen.
+|Eine Domäne im Kontext der <<a-architektur>> entspricht der Begrifflichkeit aus Sicht des „Domain Driven Design“. 
+Eine Anwendungsdomäne gruppiert fachlich zusammengehörende <<anwendungssystem,Anwendungssysteme>>. Werden <<querschnittssystem,Querschnittssysteme>> gruppiert, entsteht eine <<querschnittsdomaene>>.
 
 [id="image-Anwendungsdomaene",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-Anwendungsdomaene}
@@ -47,10 +49,15 @@ Beispiele für Anwendungsdomänen:
 Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
 
 |[[awk,Anwendungskern]]Anwendungskern (AWK)
-|Der Anwendungskern beinhaltet die Geschäftslogik eines <<anwendungssystem,Anwendungssystems>>.
+|Der Anwendungskern beinhaltet die Anwendungslogik eines <<anwendungssystem,Anwendungssystems>>.
+
+[id="image-glossar-3",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-glossar-3}
+image::glossar-3.png[align="center"]
 
 |[[ank,Anwendungskomponente]]Anwendungskomponente (ANK)
-|Eine Anwendungskomponente beschreibt eine Menge von funktional zusammenhängenden Anwendungsfällen. Anwendungskomponenten sind Bestandteile von <<anwendungssystem,Anwendungssystemen>>.
+|Eine Anwendungskomponente beschreibt eine Menge von funktional zusammenhängenden Anwendungsfällen. 
+Anwendungskomponenten sind Bestandteile von <<anwendungssystem,Anwendungssystemen>>.
 
 Beispiele:
 
@@ -62,72 +69,118 @@ Ein Anwendungskontext kann zu neuen <<anwendungstyp,Anwendungstypen>> und damit 
 
 |[[anwendungslandschaft,Anwendungslandschaft]]Anwendungslandschaft (allgemeine Definition)
 
-|Gröbste Strukturierungsebene für eine Menge von <<anwendungssystem,Anwendungssystemen>>: eine Anwendungslandschaft enthält <<anwendungsdomaene,Anwendungsdomänen>>, die wiederum Anwendungssysteme gruppieren.
-
-[id="image-Anwendungslandschaft",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-Anwendungslandschaft}
-image::Anwendungslandschaft.png[align="center"]
-
+|Gröbste Strukturierungsebene für eine Menge von <<anwendungssystem,Anwendungssystemen>>: 
+eine Anwendungslandschaft enthält <<anwendungsdomaene,Anwendungsdomänen>>, die wiederum Anwendungssysteme gruppieren.
 Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungs­systemen ist in der Regel eine hohe Interaktion zu erwarten.
 
 |[[anwendungslandschaft-isyfact,Anwendungslandschaft (IsyFact)]]Anwendungslandschaft (IsyFact)
-|Die Anwendungslandschaft der <<isyfact>> besteht aus <<anwendungsdomaene,Anwendungsdomänen>>, <<fachanwendung,Fach­anwendungen>> und <<querschnittssystem,Querschnittssystemen>> sowie dem <<portal>> und dem Service-Gateway.
+|Die Anwendungslandschaft der <<isyfact>> besteht aus <<anwendungsdomaene,Anwendungsdomänen>>, einem <<portal>> und einem <<servive-gateway>>. 
+Eine <<anwendungsdomaene>> wiederum besteht aus <<fachanwendung,Fach­anwendungen>> und <<querschnittssystem,Querschnittssystemen>> 
 
-[id="image-AnwendungslandschaftIF",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-AnwendungslandschaftIF}
-image::AnwendungslandschaftIF.png[align="center"]
+[id="image-glossar-4",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-glossar-4}
+image::glossar-4.png[align="center"]
+
+NOTE: TODO siehe PPT Änderungen des Bildes
 
 |[[anwendungssystem,Anwendungssystem]]Anwendungssystem
 |Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
-Es besteht aus mehreren <<ank,Anwendungskomponenten>>. Anwendungssysteme unterstützen Geschäftsprozesse.
-
+Es besteht aus <<ank,Anwendungskomponenten>> und <<querschnittskomponente,Querschnittskomponenten>>.
+Anwendungssysteme unterstützen Geschäftsprozesse.
+Stellt ein Anwendungssystem eine Fachlogik da, so handelt es sich um eine <<fachanwendung>>.
 Ein Anwendungssystem ist Bestandteil der <<a-architektur>>.
+Aus Sicht der <<t-architektur>> bildet ein <<it-system>> die software-technische Umsetzung eines Anwendungssystems ab.
 
-Aus Sicht der <<t-architektur>> bilder ein <<it-system>> die software-technische Umsetzung eines Anwendungssystems ab.
+NOTE: Besteht ein Anwendungssystem nur aus <<querschnittskomponente,Querschnittskomponenten>>, dann hanedelt es sich um ein <<querschnittssystem>>.
 
 |[[anwendungstyp,Anwendungstyp]]Anwendungstyp
-|Sammlung von Architekturvorgaben (aller <<architektursicht,Architektursichten>>) zur Entwicklung eines <<anwendungssystem,Anwendungssystems>> mit spezifischen Eigenschaften.
+|Sammlung von Architekturvorgaben (aller <<architektursicht,Architektursichten>>) zur Entwicklung eines <<anwendungssystem,Anwendungssystems>> mit gleichartigen spezifischen Eigenschaften.
+In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von <<anwendungssystem,Anwendungssystemen>>. 
+Für jeden Anwendungstyp ist ein Satz von Blaupausen notwendig.
 
 |[[architektursicht,Architektursicht]]Architektursicht
-|In Anlehnung an iSAQB werden in der <<isyfact>> die Sichten <<a-architektur>>, <<t-architektur>> und <<ti-architektur>> unterschieden. Nachfolgende Abbildung zeigt die Orthogonalität von Architektursichten und <<anwendungstyp,Anwendungstypen>>.
+|In Anlehnung an iSAQB werden in der <<isyfact>> die Sichten <<a-architektur>>, <<t-architektur>> und <<ti-architektur>> unterschieden. 
+Nachfolgende Abbildung zeigt die Orthogonalität von Architektursichten und <<anwendungstyp,Anwendungstypen>>.
 Jeder Anwendungstyp besitzt eine spezifische Darstellung in jeder Sicht.
 
 [id="image-Anwendungstypen",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-Anwendungstypen}
 image::Anwendungstypen.png[align="center"]
 
-NOTE: iSAQB = International Software Architecture Qualification Board
+NOTE: iSAQB = international Software Architecture Qualification Board
 
-|[[auslieferung,Auslieferung]]Auslieferung
-|Im Kontext der Auslieferung von sowohl <<open-source-release,Open Source Releases>> als auch <<closed-source-release,Closed Source Releases>> wird Software (Bibliotheken sowie Querschnittssysteme) und eine <<dokumentation>> ausgeliefert. Software wird als ablauffähige Einheit ausgeliefert.
+|[[auslieferung,Auslieferung]]Auslieferung (Deployment)
+|Im Kontext der Auslieferung von sowohl <<open-source-release,Open Source Releases>> als auch <<closed-source-release,Closed Source Releases>> wird Software (Bibliotheken sowie <<anwendungssystem,Anwendungssysteme>>) und die dazugehörige <<dokumentation>> ausgeliefert. Die entwickelte Software wird auf einer Betriebsumgebung (<<plattform>>) installiert. 
+Zu jeder Auslieferung gibt es ein <<changelog>>.
+
+NOTE: Beachte den etwas anderes definierenden Begriff der <lieferung>> aus dem V-Modell-XT.
+
+|[[basisdienst,Basisdienst]]Basisdienst
+|Ein Basisdienst ist ein Dienst, der eine gemeinsame, übergreifende Grundlage für andere, darauf aufbauende Dienste (Fach- und Querschnittsdienste) bildet. 
+Der Basisdienst ist keiner einzelnen fachlichen Aufgabe direkt zugeordnet. 
+
+|[[batch,Batch]]Batch
+|Ein Batch ist eine automatische Datenbearbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen). 
+Der Nutzer kann die Batchlogik in vorbereitete Strukturen implentieren, die <<isyfact>> stellt einen fertigen Batchrahmen zur Verfügung. 
+Die automatisiert ablaufende Stapelverarbeitung kann dabei <<anwendungen>> aus dem <<awk>> aufrufen und nutzen.
 
 |[[baustein,Baustein]]Baustein
-|Wiederverwendbare Umsetzung einer spezifischen Problemlösung. Umfasst mindestens eine <<bibliothek>> oder ein <<querschnittssystem>> inklusive der dazugehörigen <<dokumentation>>.
+|Wiederverwendbare Umsetzung einer spezifischen Problemlösung. 
+Bausteine stellen strukturiete Lösungen von Geschäftsprozessen dar.
+Umfasst mindestens eine <<bibliothek>> oder ein <<anwendungssystem>> inklusive der dazugehörigen <<dokumentation>>.
 
-Beispiel: Logging, Styleguide, Überwachung
+Beispiel: Logging, Sicherheit, Überwachung
+
+NOTE: Da zwischen einem logischen Baustein und einem <<anwendungssystem>> eine N:M Beziehung besteht (siehe <<image-glossar-1>>), kann es auch vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
 
 |[[bibliothek,Bibliothek]]Bibliothek
 |Kleinste auslieferbare Einheit von thematisch zusammengehörenden Funktionen.
+Eine oder mehrere Bibliotheken sind Bestandteile von <<it-system,IT-Systemen>> oder anderer <<bibliothek,Bibliotheken>>.
+<<bibliothek,Bibliotheken>> unterstützen nur und sind nicht (für sich) alleine ausführbar.
+
+[id="image-glossar-1",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-glossar-1}
+image::glossar-1.png[align="center"]
 
 |[[blaupause,Blaupause]]Blaupause
-|Blaupausen beschreiben die Architektur und Konzepte einer <<anwendungslandschaft>> für den Betrieb von <<fachanwendung,Fachanwendungen>> von den drei <<architektursicht,Architektursichten>> aus: der fachlichen Sicht, der software-technischen Sicht und der Sicht der technischen Infrastruktur.
+|Blaupausen beschreiben die durch die <<isyfact>> vorgegebene Architektur und Konzepte einer <<anwendungslandschaft>> für den Betrieb von <<fachanwendung,Fachanwendungen>> von den drei <<architektursicht,Architektursichten>> aus: 
+der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
+
+NOTE: Für jeden Anwendungstyp ist ein Satz von Blaupausen notwendig.
 
 |[[changelog,Change Log]]Change Log
-|Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit <<release,Releases>>) zuordnet. Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen in eine <<bibliothek>> integrieren. Pro Bibliothek existiert ein Change Log, der zusammen mit der Bibliothek in einem Versionskontrollsystem verwaltet wird.
+|Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit <<release,Releases>>) zuordnet. 
+Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen in eine <<bibliothek>> integrieren. 
+Pro <<bibliothek>> und <<anwendungssystem>> existiert ein Change Log:
+
+* Inhalt und Version der Software in Form einer Stückliste,
+* bekannte Fehler und Probleme der Software,
+* die mit der Version geschlossenen Fehler und umgesetzten Änderungen in einer Aufstellung.
 
 |[[closed-source-release,Closed Source Release]]Closed Source Release
-|Bezeichnet <<release,Releases>> aller <<baustein,Bausteine>> der <<isyfact>> sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als <<EfA>> anbietet. Das Closed Source Release der IsyFact komplettiert das <<open-source-release>>.
+|Bezeichnet <<release,Releases>> aller <<baustein,Bausteine>> der <<isyfact>> sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als <<EfA>> anbietet. 
+Das Closed Source Release der IsyFact komplettiert das <<open-source-release>>.
+
+|[[dienst,Dienst]]Dienst
+|Ein Dienst ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt. 
+Es gibt <<basisdienst,Basisdienste>>, <<fachdienst,Fachdienste>> und <<querschnittsdienst,Querschnittsdienste>>.
 
 |[[dokumentation,Dokumentation]]Dokumentation
-|Die Dokumentation einer <<software-factory>> enthält die folgenden Dokumente:
+|Die Dokumentation einer <<isyfact>> enthält die folgenden Dokumente:
 
-* Allgemeine Dokumente (Einstieg, Tutorial, Änderungshistorie)
+* Allgemeine Dokumente
+** Einstieg, Tutorial,
+** Referenzarchitektur der <<isyfact>> 
+*** logisch, softwaretechnisch und infrastrukturuell
+** Änderungshistorie.
 * Detailkonzepte (eines je <<blaupause>>)
 * Bausteindokumentation (s. unten)
-* Plattformdokumentation (ein Nutzungskonzept je Technologie)
+* Plattformdokumentation 
+** je (von der <<isyfact>> empfohlene) Technologie wird eine Nutzungsvorgabe erstellt.
 * Beschreibung der <<methodik>>:
-** Vorlagen zu allen Pflichtdokumenten
-** Konzepte und Konventionen zu methodischem Vorgehen
+** Vorlagen zu Dokumenten gemäß V-Modell XT
+** Konzepte und Nutzungsvorgaben zu methodischem Vorgehen
+** Hilfreiche Dokumente zur Durchführung eines Projektes, das die <<isyfact>> nutzt.
 * Beschreibung der Werkzeuge:
 ** ein Konzept je verwendetem Werkzeug
 
@@ -137,28 +190,41 @@ Die Dokumentation zu <<baustein,Bausteinen>> besteht im Fall einer <<bibliothek>
 * den <<nutzungsvorgaben>>,
 * einem <<changelog>>.
 
-Die Dokumentation zu <<baustein,Bausteinen>> besteht im Fall eines <<querschnittssystem,Quer­schnitts­systems>> aus:
+Die Dokumentation zu <<baustein,Bausteinen>> besteht im Fall eines <<anwendungssystem,Anwendungssystems>> zusätzlich aus:
 
-* einer Systemspezifikation,
-* einem Systementwurf,
-* einem Systemhandbuch,
-* einem Anwenderhandbuch (falls eine Benutzeroberfläche enthalten ist),
-* einem <<releaseletter>>.
+* einem Betriebshandbuch (mit <<nutzungsvorgaben>> für den Betrieb des <<it-system,IT-Systems>> in einer <<anwendungslandschaft>>)
+* einem Anwenderhandbuch (falls eine Benutzeroberfläche enthalten ist).
 
 |[[domaene,Domäne]]Domäne
-|siehe <<anwendungsdomaene>>
+|siehe <<anwendungsdomaene>> oder <<querschnittsdomaene>>
 
 |[[EfA,Einer-für-Alle-System]]Einer-für-Alle-System (EfA)
-| Begriff aus der deutschen Bundesverwaltung. Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf.
-auch zur Weiterentwicklung angeboten wird. Im Rahmen der <<isyfact>> werden Teile der <<ife>> als Einer-für-Alle-System angeboten.
+| Begriff aus der deutschen Bundesverwaltung. 
+Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird. 
+Im Rahmen der <<isyfact>> werden Teile der <<ife>> als Einer-für-Alle-System angeboten.
 
 |[[fachanwendung,Fachanwendung]]Fachanwendung
-|Eine Fachanwendung ist ein <<anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<anwendungsdomaene>> implementiert. Sie implementiert  die gesamte hierfür notwendige Funktionalität (monolithisch), von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
+|Eine Fachanwendung ist ein <<anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<anwendungsdomaene>> spezifiert.
+Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
+Dabei kann sie die Basis-Dienste von <Querschnittsanwendung,Querschnittsanwendungen>> oder andere <<anwendungssystem,Anwendungssysteme>> nutzen.
 
 Quelle: <<IsyFact-Referenzarchitektur>> (Kapitel 4.1)
 
+|[[fachdienst,Fachdienst]]Fachdienst
+|Ein Fachdienst ist ein Dienst, der direkt der Erfüllung einer speziellen Fachaufgabe dient. 
+Der Kontext eines Fachdienstes ist in der operativen Praxis meist auf eine <<anwendungslandschaft>> beschränkt. 
+Sie werden durch <<basisdienst,Basisdienste>> unterstützt.
+
+|[[geschaeftslogik,Geschäftslogik]]Geschäftslogik
+|Die Anwendungslogik von <<fachanwendung,Fachanwendungen>>.
+
+|[[gui,GUI]]Benutzeroberfläche (GUI)
+|Das Graphical User Interface (GUI) stellt die Verbindung zwischen Anwender und <<anwendung>> her. 
+Die <<isyfact>> stellt ein fertiges Framework zur Verfügung und strukturiert die die Erstellung der Dialoglokgik der Geschäftsprozesse.
+
 |[[isyfact,IsyFact]]IsyFact (IF)
-|Allgemeine Software-Fabrik (engl. Soft­ware Fac­to­ry) für den Bau von komplexen IT-Anwendungslandschaften, die vom Bundesver­waltungsamt entwickelt wird. Sie bündelt bestehendes technisches Know-how um <<anwendungssystem,Anwendungssysteme>> effizienter entwickeln und betreiben zu können.
+|Allgemeine Software-Fabrik (engl. Soft­ware Fac­to­ry) für den Bau von komplexen IT-Anwendungslandschaften, die vom Bundesver­waltungsamt entwickelt wird. 
+Sie bündelt bestehendes technisches Know-how um <<anwendungssystem,Anwendungssysteme>> effizienter entwickeln und betreiben zu können.
 
 Quelle: http://isyfact.de[isyfact.de]
 
@@ -166,101 +232,149 @@ Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu ein
 Die IsyFact besteht aus den <<ifs>> und den <<ife>>.
 
 |[[ife,IsyFact-Erweiterungen]]IsyFact-Erweiterungen (IFE)
-|Umfasst alle Bestandteile der <<isyfact>>, die *nicht* für jede <<fachanwendung>> verpflichtend sind. IsyFact-Erweiterungen können von <<nutzer,Nutzern>> der IsyFact eingebracht werden.
+|Umfasst alle Bestandteile der <<isyfact>>, die *nicht* für jede <<fachanwendung>> verpflichtend sind. 
+IsyFact-Erweiterungen können auch von <<nutzer,Nutzern>> der IsyFact eingebracht werden.
 
 |[[ifs,IsyFact-Standards]]IsyFact-Standards (IFS)
-|Umfasst alle Bestandteile der <<isyfact>>, die für jede <<fachanwendung>> verpflichtend sind. Die IsyFact-Standards werden zentral durch das Bundesver­waltungsamt weiterentwickelt.
+|Umfasst alle Bestandteile der <<isyfact>>, die für jede <<fachanwendung>> verpflichtend sind. 
+Die IsyFact-Standards werden zentral durch das Bundesver­waltungsamt weiterentwickelt.
 
 |[[instanz,Instanz]]Instanz
-|Ausgeführte Instanz eines <<it-system,IT-Systems>> auf einer <<plattform>>. Eine Instanz ist Bestandteil der <<ti-architektur>> einer <<fachanwendung>>.
+|Ausgeführte Instanz eines <<it-system,IT-Systems>> auf einer <<plattform>>. 
+Eine Instanz ist Bestandteil der <<ti-architektur>> einer <<fachanwendung>> und läuft in einer <<systemlandschaft>>.
 
 |[[it-system,IT-System]]IT-System
-|Entwurf einer <<fachanwendung>> unter Berücksichtigung technischer Rahmenbedingungen. Ein IT-System ist Bestandteil der <<t-architektur>> einer Fachanwendung. Aus Sicht der <<a-architektur>> ist die Entsprechung zum IT-System das <<anwendungssystem>>.
+|Umsetzung einer <<fachanwendung>> oder Querschnittsanwendung unter Berücksichtigung technischer Rahmenbedingungen. 
+Ein IT-System ist Bestandteil der <<t-architektur>> und es ist (für sich) alleine ausführbar. 
+Aus Sicht der <<a-architektur>> ist die Entsprechung zum IT-System das <<anwendungssystem>>.
+
+NOTE: Im BVA gibt es pro IT-System einen IT-System-Verantwortlichen, der aus historischen Gründen noch KV genannt wird. 
 
 |Komponente
-|siehe <<ank>>
+|siehe <<ank>> oder <<querschnittskomponente>>
 
 |[[konform,konforme Änderung]]konforme Änderung
-|Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist. Das bedeutet, dass <<nutzer>> der entsprechenden <<bibliothek,Bibliotheken>> keine Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
+|Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist. 
+Das bedeutet, dass <<nutzer>> der entsprechenden <<bibliothek,Bibliotheken>> keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
 
-Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen. Eine konforme Änderung muss im entsprechenden <<changelog>> bzw. <<releaseletter>> eingetragen werden.
+Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen. 
+Eine konforme Änderung muss im entsprechenden <<changelog>> eingetragen werden.
 
 |[[konzept,Konzept]]Konzept
-|Ein Konzept ist die fachliche Beschreibung eines <<baustein,Bausteins>>. Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturentscheidungen sowie den Lösungsansatz.
+|Ein Konzept ist die fachliche Beschreibung eines <<baustein,Bausteins>>. 
+Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturentscheidungen sowie den Lösungsansatz.
+
+|[[lieferung,Lieferung]]Lieferung (Release)
+|Eine Lieferung gemäß V-Modell XT steht vor der Abnahme des entwickelten Systemes. 
+Handelt es sich um eine Entwicklung durch einen Auftragnehmer, so leifert dieser ein System, was dann vom AG mit einer Prüfung abgenommen wird. 
+Die Lieferung selbst ist ein formales qualitätsgesichertes V-Modell XT Produkt, Normalerweise handelt es sich dann bei der Lieferung um ein vertraglich vereinbartes Paket mit Hardware, Software und Dokumentation.
+
+NOTE: Bei der <<isyfact>> wird besteht die Lieferung aus einem <<release>>, der an mehreren Stellen zum Download angeboten wird.
 
 |Lösungsbaustein
 |siehe <<baustein>>
 
 |[[methodik,Methodik]]Methodik
-|Im Rahmen einer <<software-factory>> bildet die Methodik die Grundlage für die Umsetzung von <<fachanwendung,Fachanwendungen>> mittels einer standardisierten Vorgehensweise nach dem V-Modell XT. Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
+|Im Rahmen einer <<software-factory>> bildet die Methodik die Grundlage für die Umsetzung von <<fachanwendung,Fachanwendungen>> mittels einer standardisierten Vorgehensweise nach dem V-Modell XT. 
+Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
+
+NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen. zur Verfügung stellt.
 
 |[[nicht-konform,nicht konforme Änderung]]nicht konforme Änderung
-|Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<konform>>), wobei *keine* Abwärtskompatibilität gewährleistet ist. Das bedeutet, dass <<nutzer>> der entsprechenden <<bibliothek,Bibliotheken>> in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
+|Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<konform>>), wobei *keine* Abwärtskompatibilität gewährleistet ist. 
+Das bedeutet, dass <<nutzer>> der entsprechenden <<bibliothek,Bibliotheken>> in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
 
-Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionalität. Eine nicht konforme Änderung muss im entsprechenden <<changelog>> bzw. <<releaseletter>> eingetragen werden.
+Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionen. 
+Eine nicht konforme Änderung muss im entsprechenden <<changelog>> eingetragen werden.
 
 |[[nutzer,Nutzer]]Nutzer
-|Jemand, der eine <<software-factory>> nutzt, um <<fachanwendung,Fachanwendungen>> zu bauen und zu betreiben. Der Begriff steht im Kontext einer Software Factory im Unterschied zum <<anwender>>.
+|Jemand, der eine <<software-factory>> nutzt, um <<fachanwendung,Fachanwendungen>> zu bauen und zu betreiben. 
+Der Begriff steht im Kontext einer Software Factory im Unterschied zum <<anwender>>.
 
 |[[nutzungsvorgaben,Nutzungsvorgaben]]Nutzungsvorgaben
-|Nutzungsvorgaben beschreiben die Verwendung eines <<baustein,Bausteins>> aus technischer Sicht. Sie sind Teil der <<dokumentation>> eines Bausteins und richten sich an Entwickler. Das Dokument komplementiert das <<konzept>>, das sich an fachlich Interessierte und Architekten richtet.
+|Nutzungsvorgaben beschreiben die Verwendung eines <<baustein,Bausteins>> aus technischer Sicht. 
+Sie sind Teil der <<dokumentation>> eines Bausteins und richten sich an Entwickler. Das Dokument komplementiert das <<konzept>>, das sich an fachlich Interessierte und Architekten richtet.
 
 |[[open-source-release,Open Source Release]]Open Source Release
-|Bezeichnet <<release,Releases>> aller <<baustein,Bausteine>> der <<isyfact>> sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen <<nutzer,Nutzern>> anbietet. Das Open Source Release beinhaltet die <<ifs>> sowie Teile der <<ife>>.
+|Bezeichnet <<release,Releases>> aller <<baustein,Bausteine>> der <<isyfact>> sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen <<nutzer,Nutzern>> anbietet. 
+Das Open Source Release beinhaltet die <<ifs>> sowie Teile der <<ife>>.
+
+|[[persistenz,Persistenz]]Persistenz
+|In der Persistenzschicht wird für die Daten der <<fachanwendung,Fachanwendungen>> einer permanenten Datenhaltung zur Verfügung gestellt. 
+Die Datenzugrifflogik der <<fachanwendung>> wird in strukturiere Komponenten realisiert.
+<<isyfact>> stellt ein fertiges Persistenz-Framework zur Verfügung.
 
 |[[plattform,Plattform]]Plattform
-|Die Plattform (auch: Betriebsplattform) ist eine Sammlung von Produkten und Vorgaben für den Betrieb von <<it-system,IT-Systemen>>, die einen standardisierten und einheitlichen Systembetrieb ermöglicht.
+|Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von <<anwendungslandschaft,Anwendungslandschaften>>, die sich aus der Verwendung von <<isyfact>> ergeben. 
+Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 
 |[[portal,Portal]]Portal
-|Zentraler Zugangspunkt zu den <<fachanwendung,Fachanwendungen>> einer <<anwendungslandschaft>>. Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle Fachanwendungen.
+|Zentraler Zugangspunkt zu den <<fachanwendung,Fachanwendungen>> einer <<anwendungslandschaft>>. 
+Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle <<fachanwendung,Fachanwendungen>>.
 
 |Querschnittsanwendung
-|Synonym für <<querschnittssystem>>
+|Synonym für <<querschnittssystem>>. Der Begriff sollte nicht mehr verwendet werden.
 
-|[[querschnittskomponente,Querschnittskomponente]]Querschnittskomponente (QK)
-|Querschnitskomponenten sind <<ank,Anwendungskomponenten>>, die querschnittliche Funktionalität zur Verfügung stellen. Diese querschnittlichen Komponenten sind in jeweils eigenen <<blaupause,Blaupausen>> oder <<baustein,Bausteinen>> beschrieben und durch eine <<bibliothek>> umgesetzt.
+|[[querschnittsdienst,Querschnittsdienst]]Querschnittsdienst
+|Ein Querschnittsdienst ist ein <<dienst>>, der in unterschiedlichen <<anwendungslandschaft,Anwendungslandschaften>> stets eine anfallende Aufgabe in ähnlicher oder gleicher Form unterstützt (z.B. Personalwesen).
+
+|[[querschnittsdomaene,Querschnittsdomäne]]Querschnittdomäne
+|Eine Anwendungsdomäne, die nur Querschnittssysteme gruppiert, wird als Querschnittsdomäne bezeichnet.
+
+|[[querschnittskomponente,Querschnittskomponente]]Querschnittskomponente
+|Querschnittskomponenten sind <<ank,Anwendungskomponenten>>, die nur querschnittliche Funktionen zur Verfügung stellen. 
+Diese querschnittlichen Komponenten sind in jeweils eigenen <<blaupause,Blaupausen>> oder <<baustein,Bausteinen>> beschrieben und durch eine <<bibliothek>> umgesetzt.
 
 Beispiel: Benutzerverwaltung der <<ife>>
 
 |[[querschnittssystem,Querschnittssystem]]Querschnittssystem
-|Querschnittssysteme sind spezielle <<fachanwendung,Fachanwendungen>> der Querschnittsdomäne, welche Dienste für alle weiteren Fachanwendungen einer <<anwendungslandschaft>> bereitstellen.
+|Querschnittssysteme sind spezielle <<anwendung,Anwendungen>> in einer Querschnittsdomäne, welche Basisdienste für weitere (mindestens zwei) <<fachanwendung,Fachanwendungen>> einer <<anwendungslandschaft>> bereitstellen. 
+Sie werden nur aus einer oder mehreren <<querschnittskomponente,Querschnittskomponenten>> zusammengesetzt.
 
 Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+
+NOTE: Querschnittssysteme wurden früher noch QK genannt, bevor es zu einer genauen Definition von Baustein, Bibliothek, System und Komponente kam. 
 
 |[[release,Release]]Release
 |Veröffentlichter Versionsstand einer <<software-factory>>.
 
 |[[releaseletter,Releaseletter]]Releaseletter
-|Ein Releaseletter ist ein Dokument, das alle umgesetzten Änderungen aus einem <<release>> bezüglich eines <<baustein,Bausteins>> beschreibt.
+|siehe <<changelog,Change Logs>>
 
-Der Releaseletter dokumentiert:
+[NOTE]
+====
+Releaseletter werden durch <<changelog,Change Logs>> ersetzt. 
+<<bibliothek,Bibliotheken>> enthalten bereits <<changelog,Change Logs>>, während es bei <<querschnittssystem,Querschnittssystemen>> den Releaseletter noch gibt.
+====
 
-* Inhalt und Version der Pakete in Form einer Stückliste,
-* bekannte Fehler und Probleme der Pakete,
-* die Installation inklusive der Parameter in einer knappen Anleitung,
-* die mit dem <<release>> geschlossenen Fehler und umgesetzten Änderungen in einer Aufstellung.
+|[[service,Service]]Service
+|Im Sinne der Architektur der <<isyfact>> werden externe Dienste über <<service-gateway>> als externer Service im <<awk>> aufrufbar. 
+Ist eine spezielle Servicelogik zu implementieren, stellt <<isyfact>> dafür eine fertige Struktur bereit.
 
-NOTE: Releaseletter sollen mittelfristig durch <<changelog,Change Logs>> ersetzt werden. <<bibliothek,Bibliotheken>> enthalten bereits Change Logs, während es bei <<querschnittssystem,Querschnittssystemen>> den Releaseletter noch gibt.
+[id="image-glossar-2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-glossar-2}
+image::glossar-2.png[align="center"]
+
+|[[service-gateway,Service-Gateway]]Service-Gateway
+|Stellt die Verbindung zwischen einem extern und einem internen Dienst durch eine Schnittstelle zur Verfügung.
 
 |[[software-factory,Software Factory]]Software Factory (SF)
 |Eine Software Factory ist eine Sammlung von <<blaupause,Blaupausen>>, <<baustein,Bau­steinen>>, einer <<plattform,Plattform>>, <<methodik,Methodik>> und <<werkzeug,Werkzeugen>>, die es erlaubt, durch Wiederverwendung <<fachanwendung,Anwendungen>> weitestgehend standardisiert zu entwickeln.
 
 Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer <<anwendungsdomaene>> so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des Architekturrahmens sichergestellt ist.
 
-„Standardisiert“ bedeutet, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software Factory getroffen und in entsprechenden Komponenten implementiert sind. Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen Fachlichkeit der Anwendung konzentrieren.
+„Standardisiert“ bedeutet, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software Factory getroffen und in entsprechenden Komponenten implementiert sind. 
+Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen Fachlichkeit der Anwendung konzentrieren.
 
 [id="image-SoftwareFactory",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-SoftwareFactory}
 image::SoftwareFactory.png[align="center"]
 
 |[[systemlandschaft,Systemlandschaft]]Systemlandschaft
-|Der Begriff der <<anwendungslandschaft>> ist fachlich motiviert. Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
+|Der Begriff der <<anwendungslandschaft>> ist fachlich motiviert. 
+Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
 
 Eine Systemlandschaft beinhaltet alle software-technisch in <<it-system,IT-Systeme>> umgesetzten <<anwendungssystem,Anwendungssysteme>> der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server, usw.).
-
-[id="image-Systemlandschaft",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-Systemlandschaft}
-image::Systemlandschaft.png[align="center"]
 
 |[[t-architektur,T-Architektur]]T-Architektur
 |Technische <<architektursicht>> auf die Software-Architektur einer <<fachanwendung>>.
@@ -274,8 +388,9 @@ image::Systemlandschaft.png[align="center"]
 |[[vollkonform,vollkonforme Änderung]]vollkonforme Änderung
 |Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer <<bibliothek>> nicht verändert (siehe auch <<konform>> und <<nicht-konform>>).
 
-Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts. Eine vollkonforme Änderung führt nicht zu einem Eintrag im <<changelog>> bzw. <<releaseletter>>.
+Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts. 
 
 |[[werkzeug,Werkzeug]]Werkzeug
-|Eine <<software-factory>> setzt bei der Anwendungsentwicklung auf Automatisierung und Werkzeugunterstützung. Dazu bietet sie vorkonfigurierte Werkzeuge für Modellierung, Programmierung, Installation, Tests oder die Fehlerverfolgung.
+|Eine <<software-factory>> setzt bei der Anwendungsentwicklung auf Automatisierung und Werkzeugunterstützung. 
+Dazu bietet sie vorkonfigurierte Werkzeuge für Modellierung, Programmierung, Installation, Tests oder die Fehlerverfolgung.
 |====
