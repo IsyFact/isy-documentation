@@ -27,11 +27,6 @@ cache:
   stage: package
   tags:
     - docker
-  artifacts:
-    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
-    paths:
-    - target/html/
-    - target/pdf/
   script:
     - 'mvn $MAVEN_CLI_OPTS package'
 
@@ -42,16 +37,36 @@ package:branches:
     paths:
     - target/html/
     - target/pdf/
-    expire_in: 2 weeks
+    expire_in: 1 weeks
   only:
     - branches@IsyFact/isy-documentation
   except:
     - master@IsyFact/isy-documentation
     
-package:master:
+package:master_schedule:
   <<: *vorlage
+  artifacts:
+    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
+    paths:
+    - target/html/
+    - target/pdf/
+    expire_in: 2 days
   only:
     - master@IsyFact/isy-documentation
+    - schedules
+
+package:master:
+  <<: *vorlage
+  artifacts:
+    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
+    paths:
+    - target/html/
+    - target/pdf/
+    expire_in: 1 day
+  only:
+    - master@IsyFact/isy-documentation
+  except:
+    - schedules
 
 .build:jdk8:
   stage: build
