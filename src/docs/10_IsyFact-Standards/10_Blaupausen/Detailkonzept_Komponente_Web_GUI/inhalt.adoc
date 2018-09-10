@@ -2990,7 +2990,7 @@ image::image202.png[align="center",pdfwidth=30%]
 :desc-image-quicklinksaufdashboard: Quicklinks auf Dashboard
 [id="image-quicklinksaufdashboard",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-quicklinksaufdashboard}
-image::image203.png[align="center"]
+image::image203.png[align="center",pdfwidth=30%]
 
 Quicklinks werden durch den Controller `QuicklinksController` und das Model `QuicklinksModel` realisiert.
 Zur Nutzung müssen Controller und Model in den jeweiligen Controller bzw. das Model der Seite integriert werden.
