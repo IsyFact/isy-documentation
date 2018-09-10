@@ -34,10 +34,5 @@ Das Dokument ist in sieben Teile gegliedert:
 * Eine Beschreibung des Spring Web Flow Mechanismus zum Session-Handling (Kapitel <<session-behandlung>>).
 * Eine Checkliste für die Qualitätssicherung in der Umsetzung der oben beschriebenen Tätigkeiten (Kapitel <<checkliste-zur-qs>>).
 
-Das vorliegende Dokument bezieht sich auf einen BVA-internen Styleguide, der nicht bereitgestellt wird.
-Diese Abhängigkeit wird in einer der nachfolgenden Versionen des Dokuments aufgelöst.
-Die dargestellten Konventionen können jedoch als Vorlage zur Erstellung eines eigenen Styleguides verwendet werden.
-
 Das in diesem Dokument vorgestellte Detailkonzept stellt die allgemeinen Architekturmuster einer Webanwendung im Rahmen der IsyFact dar.
-Spezifische Angaben zur Gestaltung und zur Umsetzung von Oberflächen (z.B. Nutzung von Widgets) finden 
-sich im Styleguide <<Styleguide>>.
+Allgemeine Angaben zur Gestaltung und zur Umsetzung von Oberflächen finden sich im <<Styleguide>>.

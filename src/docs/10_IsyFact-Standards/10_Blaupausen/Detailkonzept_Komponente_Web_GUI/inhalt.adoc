@@ -49,34 +49,27 @@ Für detaillierte Informationen über die verwendeten Technologien sei auf entsp
 
 Nachfolgend soll kurz eine Erläuterung der Begrifflichkeiten vorgenommen werden:
 
-* Java Server Faces (JSF) ist ein Framework für die Entwicklung von Webanwendungen.
+*Java Server Faces (JSF)* ist ein Framework für die Entwicklung von Webanwendungen.
 Es implementiert wie auch weitere Java-Frameworks die MVC-Architektur.
-Der Schwerpunkt von JSF ist die Bereitstellung grafischer Komponenten wie z.B. Tabellen, Formulare, Kalender,
-Menüs, Editoren, usw.
-für die Entwicklung von Webanwendungen.
+Der Schwerpunkt von JSF ist die Bereitstellung grafischer Komponenten wie z.B. Tabellen, Formulare, Kalender,Menüs, Editoren, usw. für die Entwicklung von Webanwendungen.
 Zentrales Konzept hinter JSF ist die Bereitstellung eines Komponentenbaumes.
 Aus diesem Baum wird zum Schluss der Bearbeitung die HTML Seite generiert.
-+
-Für JSF kommt die SUN Referenzimplementierung zum Einsatz und wird im Bereich der Komponenten um die Apache
-Tomahawk Bibliothek erweitert <<SUNRI>>, <<Tomahawk>>.
-* Facelets sind eine alternative View Technologie für JSF, hiermit sind kleine, wieder verwendbare
-GUI-Komponenten möglich, die durch ein entsprechendes XML-Tag in eine Seite inkludiert werden.
+
+Für JSF kommt die SUN Referenzimplementierung zum Einsatz und wird im Bereich der Komponenten um die Apache Tomahawk Bibliothek erweitert <<SUNRI>>, <<Tomahawk>>.
+
+*Facelets* sind eine alternative View Technologie für JSF.
+Hiermit sind kleine, wieder verwendbare GUI-Komponenten möglich, die durch ein entsprechendes XML-Tag in eine Seite inkludiert werden.
 Im Gegensatz zu Taglibs erfolgt ein Include der Komponente und kein Aufruf von Java-Code für die
 Generierung von gerendertem GUI-Code.
 Hierbei wird der Templating Mechanismus der Facelets verwendet.
-Facelets bieten vielfältige Möglichkeiten Vorlagenfragmente zu einer Gesamtseite zusammenzusetzen - zum
-Beispiel um auf jeder Seite eine einheitliche Kopfzeile zu realisieren.
-+
-Weiter können Facelets mit herkömmlichen HTML-Editoren bearbeitet werden und sind somit einfacher zu
-verstehen und zu editieren.
-Die Ablage erfolgt hierbei dann in XHTML-Dokumenten.
+Facelets bieten vielfältige Möglichkeiten, Vorlagenfragmente zu einer Gesamtseite zusammenzusetzen, um z.B. auf jeder Seite eine einheitliche Kopfzeile zu realisieren.
+
+Weiter können Facelets mit herkömmlichen HTML-Editoren bearbeitet werden und sind somit einfacher zu verstehen und zu editieren.
+Die Ablage erfolgt in XHTML-Dokumenten.
 Als Implementierung kommt die SUN Bibliothek für Facelets <<Facelets>> zum Einsatz.
-* Model-View-Controller (MVC, „Modell / Präsentation / Steuerung“) bezeichnet ein Architekturmuster zur
-Strukturierung von Software-Entwicklung in die drei Einheiten _Datenmodell_ (engl.
-_Model_), _Präsentation_ (engl.
-_View_) und _Programmsteuerung_ (engl.
-_Controller_). Ziel des Musters ist es, einen flexiblen Programmentwurf zu machen, der u. A. eine spätere
-Änderung oder Erweiterung erleichtert und eine Wiederverwendung der einzelnen Komponenten ermöglicht.
+
+*Model-View-Controller (MVC, „Modell / Präsentation / Steuerung“)* bezeichnet ein Architekturmuster zur Strukturierung von Software-Entwicklung in die drei Einheiten _Datenmodell_ (engl. _Model_), _Präsentation_ (engl. _View_) und _Programmsteuerung_ (engl. _Controller_).
+Ziel des Musters ist es, einen flexiblen Programmentwurf zu gestalten, der u. A. eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendung der einzelnen Komponenten ermöglicht.
 Dieses Muster ist in <<image-MVCPat>> dargestellt.
 
 :desc-image-MVCPat: MVC Pattern
@@ -91,9 +84,11 @@ Die Spezifikation der Java Server Faces definiert einen sogenannten Lebenszyklus
 JSF-Anwendung mit jedem Aufruf erneut durchläuft.
 Dieser Lebenszyklus ist in sechs _Phasen_ (englisch _Phases_) aufgeteilt.
 
-[frame="none",cols="2,1"]
-|====
-a|
+:desc-image-PhasemodJSF: Phasenmodell JSF
+[id="image-PhasemodJSF",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-PhasemodJSF}
+image::jsf-phasen.png[align="center"]
+
 1.  _Restore View_ („Sicht wiederherstellen“) wählt anhand der eingehenden Anforderung eine Sicht (_View_) aus und baut den dazu passenden Komponentenbaum bei Bedarf auf.
 2.  _Apply Request Values_ („Anforderungsparameter anwenden“) extrahiert Parameter aus der Anforderung (üblicherweise ein HTTP-Post-Request) und weist sie den passenden JSF-Komponenten zu, beispielsweise Eingabefeldern.
 3.  _Process Validations_ („Validierung ausführen“) überprüft die Gültigkeit der zuvor ermittelten Eingaben.
@@ -102,13 +97,6 @@ Dazu werden eigene Validator-Objekte verwendet, die den Komponenten in der View-
 5.  _Invoke Application_ („Anwendung aufrufen“) ruft durch die Anwendung definierte Methoden auf, beispielsweise wenn ein Button betätigt wurde.
 6.  _Render Response_ („Antwort wiedergeben“) erzeugt schließlich die Antwort auf die ursprüngliche Anfrage, beispielsweise eine HTML-Seite.
 Hierzu werden sogenannte _Renderer_ aufgerufen, die den View-Komponenten zugeordnet sind.
-
-a|
-:desc-image-PhasemodJSF: Phasenmodell JSF
-[id="image-PhasemodJSF",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-PhasemodJSF}
-image::PhasemodJSF.png[align="center"]
-|====
 
 Treten Fehler auf, oder soll als Antwort beispielsweise eine HTML-Seite aufgerufen werden, die keine
 JSF-Komponenten enthält, so können einzelne Phasen übersprungen werden.
@@ -416,7 +404,12 @@ welches Änderungen an den Daten des Models vornimmt oder diese aufbereitet bzw.
 Services des Anwendungskern-Wrappers aufruft.
 Das Model Bean wird dem Controller mit jedem Aufruf übergeben.
 
-Architekturkonvention: Die Implementierung des Controllers ist zustandslos und stellt nur Methoden bereit.
+[IMPORTANT]
+====
+*Architekturkonvention*
+
+Die Implementierung des Controllers ist zustandslos und stellt nur Methoden bereit.
+====
 
 Das Controller-Bean wird im Spring IoC-Container mit Singleton Scope erzeugt und konfiguriert.
 
@@ -470,14 +463,18 @@ Ein View kann auch auf mehrere zum Flow gehörende Model Beans zugreifen.
 Im View können Actions definiert sein (z.B. Submit durch einen Command-Button). Dabei werden nur Action-Tokens
 (String, der die Aktion benennt) übergeben, die dann im Flow entgegengenommen werden und dann Methodenaufrufe auf dem Controller auslösen.
 
-Achitekturkonvention.
-Aus einer Action des Views sollte i.d.R. immer ein Zustandstoken zur Steuerung von Transitionen im Flow erzeugt werden.
-Dies ist vor allem bei Maskenübergängen und fachlichen Aktionen zu verwenden.
-Beispiel: Suche in einem Formular, Öffnen der Detailansicht.
+[IMPORTANT]
+====
+*Architekturkonvention*
+
+Aus einer Aktion des Views sollte i.d.R. immer ein Zustandstoken zur Steuerung von Transitionen im Flow erzeugt werden.
+Dies ist vor allem bei Maskenübergängen und fachlichen Aktionen zu verwenden. +
+*Beispiel:* Suche in einem Formular, Öffnen der Detailansicht.
 
 Aktionen, welche zur Steuerung der Darstellung innerhalb einer Maske verwendet werden, müssen nicht zwingend eine Transition auslösen.
-In diesen Fällen darf der Controller direkt aufgerufen werden.
-Beispiel: Selektion eines Elements und darauf basierende Anpassung der Maske.
+In diesen Fällen darf der Controller direkt aufgerufen werden. +
+*Beispiel:* Selektion eines Elements und darauf basierende Anpassung der Maske.
+====
 
 Die Erstellung von Views wird im Verlauf dieses Dokuments noch genauer beschrieben.
 
@@ -705,7 +702,7 @@ Die folgenden Abschnitte erklären, wie eine GUI-Komponente nach dem MVC-Muster,
 
 
 [[der-flow]]
-=== Der Flow
+=== Erstellung der Flows
 
 Für eine GUI-Komponente wird zunächst die Definition des Flow als XML-Datei erstellt.
 Spring Web Flow sucht und findet den Flow selbständig und nimmt ihn in die Flow-Registry auf.
@@ -764,7 +761,7 @@ Im Tag `on-start` wird, falls nötig, der Controller aufgerufen, um das Model zu
 Charakteristisch sind hier die folgenden Elemente:
 
 *Flow-Tag*: Deklariert alle verwendeten Taglibs und Namespaces sowie den Parent Flow.
-Dieser enthält anwendungsübergreifend einheitliche Vorgaben zu global gültigen Regeln, Fehler-Handler und Layoutkonfigurationen).
+Dieser enthält anwendungsübergreifend einheitliche Vorgaben zu global gültigen Regeln, Fehler-Handler und Layoutkonfigurationen.
 
 *Flow Model*: Definition des Models unter Angabe der Model-Bean-Klasse als Flow-Variable.
 
@@ -786,7 +783,7 @@ kehrt die Anwendung in den aktuellen Flow zurück),
 Anwendungskerns) oder Entscheidungen zum weiteren Flow-Ablauf trifft, oder
 * keine Angabe eines Zielzustands: Dadurch verbleibt der Flow im aktuellen View-State.
 
-Wenn der Zielzustand dem aktuellen View State entspricht, wird er aktualisiert.
+IMPORTANT: Wenn der Zielzustand dem aktuellen View State entspricht, wird er aktualisiert.
 Der vorherige Zustand kann _NICHT_ mehr über den Browser-Back-Button erreicht werden.
 Für AJAX-Aufrufe, welche nur einen bestimmten Teil der Seite aktualisieren sollen, darf kein Zielzustand
 angegeben werden.
@@ -799,13 +796,17 @@ sollte die Möglichkeit der Bereinigung der Historie genutzt werden.
 Dazu wird ein Input-Tag verwendet, welches ein Schlüssel/Wertpaar an den Subflow übergibt.
 Im Subflow wird der Parameter über ein Input-Tag entgegengenommen und steht dann als Flow-Variable zur Verfügung und sollte im `on-start`-Handler per Controller in das Model übernommen werden.
 
-IMPORTANT: Um die Kapselung der GUI-Komponenten zu bewahren, ist es wichtig, dass GUI-Komponenten ihre Parameter immer über ein Input-Tag erhalten und nicht frei auf fremde Models und Controller zugreifen.
+[IMPORTANT]
+====
+Um die Kapselung der GUI-Komponenten zu bewahren, ist es wichtig, dass GUI-Komponenten ihre Parameter immer über ein Input-Tag erhalten und nicht frei auf fremde Models und Controller zugreifen.
+
 Bei der Übergabe eines Parameters (z.B. Liste) ist immer eine Kopie der Datenstruktur zu
 übergeben, damit Änderungen an der Datenstruktur durch einen Subflow sich nicht auf den aufrufenden
 Flow auswirken.
 In diesem Sinne ist auch verboten, ein ganzes Model-Bean zu übergeben.
 Müssen mehrere Informationen übergeben werden, so können natürlich auch mehrere Input-Parameter
 verwendet werden.
+====
 
 Auch die Rückgabe von Out-Parametern ist über ein Output-Tag möglich.
 Es gelten die gleichen Richtlinien wie bei Input-Parametern.
@@ -820,7 +821,7 @@ leistungsfähigere Spring Expression Language!
 Flow-Definitionen bietet weitaus mehr Möglichkeiten, die im Regelfall allerdings seltener benötigt und daher hier nicht erläutert werden.
 
 [[der-controller]]
-=== Der Controller
+=== Erstellung der Controller
 
 Jede GUI-Komponente verfügt über einen Controller.
 Der Controller ist der „verlängerte Arm“ des Flow, denn im Flow darf keine GUI-Logik ausgeführt werden.
@@ -843,7 +844,7 @@ Die häufig gesehene Umsetzung von einfachen `geheZu`-Methoden des Controllers, 
 Der Wert sollte in diesem Fall direkt in der Flow-Definition festgelegt werden.
 
 [[das-model]]
-=== Das Model
+=== Erstellung der Models
 
 Das Model enthält alle temporären Daten, die ein Flow zur erfolgreichen Durchführung benötigt.
 Es wird, wie im <<der-flow,Abschnitt über Flows>> beschrieben, immer durch einen Flow instanziiert und verwaltet.
@@ -887,7 +888,7 @@ Die nach einem Submit im Model-Bean gespeicherten (und vom Anwender ggf. veränd
 Dies erfolgt immer durch einen Controller, der die Daten aus dem Model an den Anwendungskern-Wrapper übergibt.
 
 [[der-view]]
-=== Der View
+=== Erstellung der Views
 
 [[definition-des-view-state]]
 ==== Definition des View-State
@@ -1096,10 +1097,10 @@ JQuery ist ein mächtiges Framework zur DOM-Manipulation.
 Entsprechend vorsichtig und gezielt sollte der Einsatz gewählt werden.
 In der Regel bieten die <<jsf-bedienelemente>> der IsyFact Zugriff auf Visualisierungsformen mittels JavaScript (z.B. Kalenderwidget, Tags, Panels). Für bestimme Zusatzanforderungen (z.B. bedingtes Deaktivieren eines Felds, weitere GUI-Verschönerungen) kann es jedoch notwendig sein zusätzliches JavaScript einzubinden.
 
-Die View-spezifische Funktionalität wird in einer eigenen JavaScript-Datei umgesetzt.
+Die viewspezifische Funktionalität wird in einer eigenen JavaScript-Datei umgesetzt.
 Dabei sind grundsätzlich folgende Regeln zu beachten:
 
-:desc-table-RuleViewFkt: Regeln für View spezifische Funktionalitäten
+:desc-table-RuleViewFkt: Regeln für viewspezifische Funktionalitäten
 [id="table-RuleViewFkt",reftext="{table-caption} {counter:tables}"]
 .{desc-table-RuleViewFkt}
 [cols="4a,5a",options="header"]
@@ -1494,7 +1495,7 @@ Anwendung können globale Standardwerte definieren. Definieren sie diese nicht, 
 
 Die gleichen Werte können Anwendungen zusätzlich auf Ebene sogenannter _Anwendungsgruppen_ setzen, um den Seitenrahmen noch weiter an ihre Anforderungen anzupassen.
 Anwendungsgruppen fassen in der Regel mehrere Flows zusammen und spiegeln sich nicht selten direkt in der Hauptnavigation wieder.
-Setzt die Anwendungen einzelne Werte für bestimmte Anwendungsgruppen nicht, werden die globalen Standardwerte (s. <<table-SeitenrahmenStandardwerte,vorige Tabelle>>) herangezogen.
+Setzt die Anwendungen einzelne Werte für bestimmte Anwendungsgruppen nicht, werden die globalen Standardwerte (s. vorige <<table-SeitenrahmenStandardwerte>>) herangezogen.
 
 :desc-table-SeitenrahmenStandardwerteGruppen: Standardwerte für den Seitenrahmen bezogen auf Anwendungsgruppen
 [id="table-SeitenrahmenStandardwerteGruppen",reftext="{table-caption} {counter:tables}"]
@@ -1560,11 +1561,9 @@ Der DetailseiteController stellt sicher, dass alle layoutspezifischen Funktione
 Abweichungen vom Standardvorgehen (z.B. Seitentoolbar ausblenden, Druckbutton einblenden, Informationsbereich einblenden) können durch Zugriff auf den Controller und Model in spezifischeren Controllern beim Initialisieren durchgeführt werden.
 
 Neben dem `DetailseiteController` existiert auch der `BasisController`.
-Dieser bietet Zugriff auf seitentypunabhängige Layoutfunktionen
+Dieser bietet Zugriff auf seitentypunabhängige Layoutfunktionen (z.B. modalen Dialog anzeigen).
 
-(z.B. modalen Dialog anzeigen).
-
-_Titel_
+===== Seitentitel
 
 Der TitlesListener (Listener für Spring-Webflow) ermöglicht es, dass konfigurierte Nachrichten anhand von Namenskonventionen automatisch als Title (Title-Tag), Headline (Titelzeile) oder Breadcrumb verwendet werden.
 Der TitlesListener ist automatisch eingebunden und muss nicht explizit aktiviert werden.
@@ -1578,13 +1577,11 @@ Folgende Angaben sind zulässig:
 `MAS_\{FlowName}_Breadcrumb` +
 `MAS_\{FlowName}_\{ViewState}_Breadcrumb`
 
-Die Angaben müssen sich in den Anwendungsressourcen (analog zu anderen Nachrichten) befinden und über eine MessageSource-Bean ("messageSource") der isy-web zur Verfügung gestellt werden.
+Die Angaben müssen sich in den Anwendungsressourcen (analog zu anderen Nachrichten) befinden und über eine MessageSource-Bean (`messageSource`) der isy-web zur Verfügung gestellt werden.
 
 Wenn vorhanden, werden stets die Angaben mit ViewState verwendet, ansonsten die Angaben ohne ViewState.
 In der Flowdefinition können die zu verwendenden Texte überschrieben werden, indem die Attribute titleKey , breadcrumbKey und headlineKey gesetzt werden.
-Wenn für
-
-den Title keine Angabe gefunden werden kann, dann wird der Wert von MAS_Global_Title verwendet.
+Wenn für den Title keine Angabe gefunden werden kann, dann wird der Wert von `MAS_Global_Title` verwendet.
 Weiterhin kann mit `MAS_Global_Title_Prefix` ein globaler Präfix für den Title gesetzt werden.
 
 Weiterhin kann über eine Angabe von `<ui:define name="titel"/>` in Seiten definiert werden, welche Inhalte rechts neben dem bereits definierten Title (Title-Tag) ausgegeben werden. Im Folgenden ein Beispiel:
@@ -1601,8 +1598,8 @@ Weiterhin kann über eine Angabe von `<ui:define name="titel"/>` in Seiten defin
   bzw. <ui:define name="titelzeileInfoRechts"/>
 ----
 
-kann weiterhin definiert werden, welche Inhalte zusätzlich direkt rechts neben der Headline (Titelzeile) angezeigt werden bzw.
-ganz am rechten Rand der Headline angezeigt werden. Im Folgenden ein Beispiel: 
+Es kann weiterhin definiert werden, welche Inhalte zusätzlich direkt rechts neben der Headline (Titelzeile) angezeigt werden bzw. ganz am rechten Rand der Headline angezeigt werden.
+Im Folgenden ein Beispiel: 
 
 :desc-listing-titelzeileninfo: Titelzeileninfo
 [id="listing-titelzeileninfo",reftext="{listing-caption} {counter:listings }"]
@@ -1654,7 +1651,7 @@ Der Dialog besitzt folgende Facets:
 Das Tag `<isy:modalDialogContent>` wird über den UI-Platzhalter modalDialog eingefügt.
 Dieser Platzhalter sorgt dafür, dass je nach Verfügbarkeit von JavaScript, der Inhalt des modalen Fensters entweder als Inhalt oder als eigenständiger Dialog gerendert wird.
 Die Funktionsweise des modalen Dialogs ist in das Basis-Layout eingebunden.
-Um einen Dialog zu öffnen muss dieser als eigener View-State (in Spring Webflow) definiert werden.
+Um einen Dialog zu öffnen, muss dieser als eigener View-State (in Spring Webflow) definiert werden.
 Beim Eintreten in den Flow wird das modale Fenster über einen Aufruf des BasisController geöffnet.
 Beim Verlassen des View-States wird dieser wieder geschlossen.
 
@@ -1704,7 +1701,7 @@ Um im Hintergrund weiterhin das aktuelle Fenster anzuzeigen, genügt es den bish
 
 Wizards, auch Assistenten genannt, bezeichnen eine geführte Abfolge von Interaktionsschritten.
 
-:desc-image-dialogwizard1: Beispiel eines Dialog Wizards
+:desc-image-dialogwizard1: Beispiel eines Wizards
 [id="image-dialogwizard1",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-dialogwizard1}
 image::image88.png[align="center"]
@@ -1877,7 +1874,7 @@ Mehrere Buttons können in einer Zeile gruppiert werden, indem sie in das Tag `
 Folgende optionale Parameter sind für das Tag `<isy:buttonRow>` zulässig:
 
 * `styleClass`: zu ergänzende Style-Klassen
-* `alignRight`: ob die Button Row rechtsbündig ist (Standard: `false`)
+* `alignRight`: ob die Button Row rechtsbündig ist (Standard: `false`, d.h. linksbündig)
 
 ==== Mehrere Aktionen
 
@@ -2014,7 +2011,8 @@ Das Tag stellt folgende ActionSource bereit:
 === Label
 
 Ein Label besteht in der Regel aus einem Text.
-In manchen Fällen kann es auch eine Kombination aus einem Icon und einem Text sein (z.B. Buttons mit Icon und Text). Es gibt auch Bedienelemente deren Label ausschließlich aus einem Icon bestehen.
+In manchen Fällen kann es auch eine Kombination aus einem Icon und einem Text sein (z.B. Buttons mit Icon und Text).
+Es gibt auch Bedienelemente, deren Label ausschließlich aus einem Icon bestehen.
 
 Für reine Labels existieren keine spezifischen JSF-Komponenten.
 Das Standard-JSF Tag `<h:outputText/>` kann verwendet werden.
@@ -2118,7 +2116,7 @@ Dieses Bedienelement verhält sich bis auf wenige Ausnahmen wie `<isy:formInput>
 Das Eingabefeld für Geldbeträge:
 
 * besitzt kein Attribut `inputmask`, da sich diese nicht mit der JavaScript-Funktion verträgt, welche die Daten formatiert.
-* lässt nur die Eingabe von Zahlen und Kommas zu; alle anderen Zeichen werden direkt nach Eingabe sofort wieder gelöscht.
+* lässt nur die Eingabe von Zahlen und Kommata zu; alle anderen Zeichen werden direkt nach Eingabe sofort wieder gelöscht.
 * besitzt das Attribut `onchange` - dort kann eine JavaScript-Funktion übergeben werden, die aufgerufen wird, sobald der Cursor das Feld verlässt.
 
 Folgende Parameter sind Pflicht:
@@ -2179,7 +2177,7 @@ Text Boxen sehen optisch aus wie Eingabefelder, es können jedoch mehrzeilige Da
 :desc-image-bildtextbox: Textbox
 [id="image-bildtextbox",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-bildtextbox}
-image::image163.png[align="center"]
+image::image163.png[align="center", pdfwidth=60%]
 
 Für Formulare kann das Tag `<isy:formTextarea>` verwendet werden.
 
@@ -2405,7 +2403,7 @@ Listen werden benutzt, um eine überschaubare Anzahl an Daten oder Objekten eine
 :desc-image-listemitlistenkopf: Liste mit Listenkopf
 [id="image-listemitlistenkopf",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-listemitlistenkopf}
-image::image178.png[align="center"]
+image::image178.png[align="center",pdfwidth=60%]
 
 Für eine Liste mit Einfachauswahl gibt es die Tags `<isy:selectOneList>` bzw. `<isy:formSelectOneList>`. Für eine Liste mit Mehrfachauswahl stehen die Tags `<isy:selectManyList>` bzw. `<isy:formSelectManyList>` zur Verfügung.
 
@@ -2761,21 +2759,6 @@ Beim Initialisieren des Models muss der Operationsmodus (`SERVER` oder `CLIENT`)
 
 [[selektionsverhalten-tabelle]]
 ==== Selektionsverhalten in einer Tabelle
-:desc-image-tabellemehrfachselektion: Tabelle – Mehrfachselektion über STRG Taste & Maus
-[id="image-tabellemehrfachselektion",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-tabellemehrfachselektion}
-image::image185.png[align="center"]
-
-:desc-image-tabellemehrfachselektioncheckbox: Tabelle – Mehrfachselektion über Checkboxen
-[id="image-tabellemehrfachselektioncheckbox",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-tabellemehrfachselektioncheckbox}
-image::image186.png[align="center"]
-
-:desc-image-textlinkkennzeichen: Textlink zur Kennzeichnung eines Objektes
-[id="image-textlinkkennzeichen",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-textlinkkennzeichen}
-image::image187.png[align="center"]
-
 Um die Selektion von Zeilen zu ermöglichen, müssen folgende Konfigurationen durchgeführt werden:
 
 *Tabellen-Definition:* In der Tabellen-Definition (`<isy:dataTable>`) muss das Attribut `selectable="true"` gesetzt sein. Der Selektierungsmodus (einzeln, mehrere) wird über das Attribut `selectionMode` gesteuert.
@@ -2803,6 +2786,21 @@ Um die Selektion von Zeilen zu ermöglichen, müssen folgende Konfigurationen du
   <isy:dataTableRowSelection />
 </isy:dataTableCell>
 ----
+
+:desc-image-tabellemehrfachselektion: Tabelle – Mehrfachselektion über STRG Taste & Maus
+[id="image-tabellemehrfachselektion",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-tabellemehrfachselektion}
+image::image185.png[align="center"]
+
+:desc-image-tabellemehrfachselektioncheckbox: Tabelle – Mehrfachselektion über Checkboxen
+[id="image-tabellemehrfachselektioncheckbox",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-tabellemehrfachselektioncheckbox}
+image::image186.png[align="center"]
+
+:desc-image-textlinkkennzeichen: Textlink zur Kennzeichnung eines Objektes
+[id="image-textlinkkennzeichen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-textlinkkennzeichen}
+image::image187.png[align="center"]
 
 [[grosse-datenmengen-tabelle]]
 ==== Große Datenmengen in einer Tabelle
@@ -2903,7 +2901,7 @@ Der Benutzer kann also nur eine der Optionen auswählen.
 :desc-image-ieradiobutton: Radio Button – Darstellungsbeispiel IE 9
 [id="image-ieradiobutton",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-ieradiobutton}
-image::image193.png[align="center"]
+image::image193.png[align="center"pdfwidth=30%]
 
 Ein Radio Button wird über das Tag `<isy:selectOneRadio>` (bzw. `<isy:selectOneRadioInline>`) und `<isy:formSelectOneRadio>` eingebunden.
 
@@ -2987,7 +2985,7 @@ Muss der Benutzer häufig auf bestimmte Funktionen oder Objekte in einer Anwendu
 :desc-image-quicklinksunterhalblinksnavigation: Quicklinks unterhalb der Linksnavigation
 [id="image-quicklinksunterhalblinksnavigation",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-quicklinksunterhalblinksnavigation}
-image::image202.png[align="center"]
+image::image202.png[align="center",pdfwidth=30%]
 
 :desc-image-quicklinksaufdashboard: Quicklinks auf Dashboard
 [id="image-quicklinksaufdashboard",reftext="{figure-caption} {counter:figures}"]
@@ -3106,7 +3104,7 @@ Die Master-Detail Ansicht kann durch die Nutzung von einfachen Elementen (Tabell
 [[gruppierung]]
 === Gruppierung
 
-Dieser Abschnitt beschreibt Patterns zur Selektion von Daten.
+Dieser Abschnitt beschreibt Patterns zur Gruppierung von Daten.
 
 ==== Panel
 
@@ -3374,10 +3372,8 @@ Es erfolgen keine spezifischen Anpassungen von Elementen (z.B. alle Tabs anzeige
 
 Das Tag `<isy:print-metainformation>` kann benutzt werden, um Metainformationen zum Druck anzuzeigen.
 Der Inhalt dieses Tags wird nur ausgegeben, sofern die Druckansicht aktiviert ist.
-Es enthält folgende Parameter:
-
-* `warning`: Ein Text, welcher ausgegeben werden soll, falls ein Nutzer die Druckfunktion des Browsers nutzt, jedoch nicht die Druckansicht aktiviert hat.
-Standard: leer.
+Es enthält den Parameter `warning`, der einen Text enthält, welcher ausgegeben werden soll, falls ein Nutzer die Druckfunktion des Browsers nutzt, jedoch nicht die Druckansicht aktiviert hat.
+Standardmäßig ist der Parameter leer.
 
 [[drucken-bestimmter-inhaltesbereiche]]
 === Druck bestimmter Inhaltsbereiche
@@ -3404,10 +3400,9 @@ Dabei sind folgende Arten von Fehlern zu unterscheiden:
 *Darstellung von Fehlern*
 
 Die Darstellung von Fehlern wird von der Bibliothek `isy-web` über das JSF-Seitentemplate `basis.xhtml` vorgenommen.
-Die Fehlermeldungen werden hierbei im Kopfbereich des Applikations-Inhaltsfensters xxxx angezeigt.
+Die Fehlermeldungen werden hierbei im Kopfbereich des Applikations-Inhaltsfensters angezeigt.
 
 Für Fehler beim Zugriff auf den Anwendungskern kann zusätzlich eine Fehlerbehandlung im Controller eingeführt werden (try/catch).
-
 
 [[umgang-mit-validierungsfehlern]]
 === Umgang mit Validierungsfehlern
