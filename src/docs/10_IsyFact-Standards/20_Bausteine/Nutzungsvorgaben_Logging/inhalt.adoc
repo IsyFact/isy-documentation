@@ -463,6 +463,13 @@ zum Markieren der jeweiligen Logeinträge verwendet werden kann.
 Die Methoden besitzen jeweils einen zusätzlichen Parameter vom Typ `IsyDatentypMarker`.
 Anwendungen können ihre Marker von der Klasse `AbstractIsyDatentypMarker` ableiten.
 
+Für die Kennzeichnung von personenbezogenen Daten und für Daten gemäß Artikel 9 DSGVO werden von `isy-logging`
+die Marker `PersonenbezogeneDatenMarker` und `DsgvoArtikel9DatenMarker` bereitgestellt. Sie werden zusammen mit der
+Schnittstelle `IsyLoggerTypisiert` verwendet:
+
+  LOG.info(LogKategorie.JOURNAL, DsgvoArtikel9DatenMarker.INSTANZ, "schluessel", "nachricht")
+
+
 [[verwendung-von-platzhaltern-in-nachrichten]]
 === Verwendung von Platzhaltern in Nachrichten
 
