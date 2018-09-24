@@ -15,7 +15,7 @@ before_script:
   - asciidoctor-pdf -v
 
 stages:
-  - package
+  - documentation
 
 cache:
   paths:
@@ -24,13 +24,13 @@ cache:
   key: "isyfactdoc"
 
 .template: &vorlage
-  stage: package
+  stage: documentation
   tags:
     - docker
   script:
     - 'mvn $MAVEN_CLI_OPTS package'
 
-package:branches:
+documentation:branches:
   <<: *vorlage
   artifacts:
     name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
@@ -43,7 +43,7 @@ package:branches:
   except:
     - master@IsyFact/isy-documentation
     
-package:master_schedule:
+documentation:schedule:
   <<: *vorlage
   artifacts:
     name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
@@ -52,10 +52,9 @@ package:master_schedule:
     - target/pdf/
     expire_in: 2 days
   only:
-    - master@IsyFact/isy-documentation
     - schedules
 
-package:master:
+documentation:master:
   <<: *vorlage
   artifacts:
     name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
