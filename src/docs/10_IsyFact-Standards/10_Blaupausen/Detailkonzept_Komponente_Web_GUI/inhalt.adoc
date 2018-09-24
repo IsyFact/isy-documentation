@@ -2296,7 +2296,7 @@ Tabs werden häufig dazu verwendet, um Eigenschaften eines Objekts in inhaltlich
 .{desc-image-bildtabs}
 image::image173.png[align="center"]
 
-Tabs werden über die Tags `<isy:tabGroup>`, `<isy:tabHeader>` und `<isy:tabContent>` eingebunden.
+Tabs werden über die Tags `<isy:tabGroup>`, `<isy:tabHeader>` und `<isy:tabContent>` eingebunden.
 Im Folgenden ein Beispiel:
 
 :desc-listing-tabgroup: Beispiel für Tabs
@@ -2320,20 +2320,21 @@ Im Folgenden ein Beispiel:
 </isy:tabGroup>
 ----
 
-Zunächst wird die Tabgruppe mit dem Tag `<isy:tabGroup>` allgemein definiert. Folgende Parameter sind zulässig:
+Zunächst wird die Tabgruppe mit dem Tag `<isy:tabGroup>` allgemein definiert.
 
-Folgende Parameter sind Pflicht:
+Folgende Parameter sind Pflichtparameter:
 
-* `tabGroupModel`: Model für die Tabgruppe, das im Maskenmodel liegen sollte. Muss vom Typ `TabGroupModel` sein.
+* `tabGroupModel`: Model für die Tabgruppe, das im Maskenmodel liegen sollte. Muss vom Typ `TabGroupModel` sein.
 
-Außerdem gibt es folgende optionale Parameter:
+Außerdem gibt es weitere optionale Parameter:
 
-* `defaultTab`: Name des Default-Tabs, der beim ersten Anzeigen des Elements aktiv ist.
-* `globalTab`: Name des globalen Tabs
-* `globalTabContentRefs`: Durch Leerzeichen separierte Liste an Namen der Tabs, welche beim Anzeigen des globalen Tabs auch angezeigt werden sollen
+* `defaultTab`: Name des Default-Tabs, der beim ersten Anzeigen des Elements aktiv ist.
+* `globalTab`: Name des globalen Tabs
+* `globalTabContentRefs`: Durch Leerzeichen separierte Liste an Namen der Tabs, welche beim Anzeigen des globalen Tabs auch angezeigt werden sollen. (Anmerk.: Der Parameter wird von der JSF-Komponente 'tabContent' ausgewertet.)
 * `execute`: welche Felder bei einem AJAX-Aufruf ausgewertet werden (Standard: `@form`)
 * `render`: welcher Seitenbereich nach dem AJAX-Aufruf aktualisiert wird (Standard: `@form`)
-* `globalConfig`: spezifische, globale Konfiguration (Standard: `globalConfigurationModel`)
+* `globalConfig`: spezifische, globale Konfiguration (Standard: `globalConfigurationModel`)
+* `scrollTabUpwards`: Bei Tabgruppen, die im unteren Maskenbereich dargestellt werden, wird oftmals der Inhalt der Tabs nicht vollständig angezeigt. Setzt man den Parameter `scrollTabUpwards` auf `true` (Standard: `false`), dann wird die gesamte Tabgruppe beim Anklicken eines Tabellenreiters nach oben verschoben, sodass für den Anwender der TabContent maximal sichtbar wird.
 
 Wenn JavaScript aktiviert ist, dann nutzen die Tabs beim Umschalten AJAX-Aufrufe.
 Andernfalls wird beim Wechsel der Tabs die gesamte Seite neu geladen.
