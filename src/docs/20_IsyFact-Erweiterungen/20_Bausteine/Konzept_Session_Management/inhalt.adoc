@@ -35,7 +35,7 @@ Es wurden folgende Architekturentscheidungen zur Umsetzung des Session-Managers 
 [cols="2,5",options="header"]
 |====
 2+|Vermeidung konkurrierender Zugriffe auf den Session-Speicher
-|Fragestellung a|
+a|Fragestellung a|
 Wie wird mit konkurrierenden Zugriffen auf den Session-Speicher umgegangen?
 
 *Hintergrund:*
@@ -49,13 +49,13 @@ Fenster parallel genutzt werden.
 
 Je nach Session-Manager sind hierfür nur die Requests relevant, die auch tatsächlich die Session verändern.
 
-|Einflussfaktoren |Risiko: Sessions werden gegenseitig überschrieben und Session-Daten gehen verloren.
-|Annahmen a|
+a|Einflussfaktoren |Risiko: Sessions werden gegenseitig überschrieben und Session-Daten gehen verloren.
+a|Annahmen a|
 Spring Session speichert die Session nur dann erneut, wenn Daten verändert wurden.
 
 Spring Session bietet keine Mechanismen, um konkurrierende Zugriffe zu vermeiden / zu erkennen.
 
-|Betrachtete Alternativen a|
+a|Betrachtete Alternativen a|
 Variante 1: Keine Maßnahmen.
 
 Es wird akzeptiert, dass Sessions potentiell überschrieben werden.
@@ -80,19 +80,21 @@ Es werden folgende Regeln in das Konzept „Web GUI“ aufgenommen:
 Anmerkung: Ein Problem mit mehreren parallelen Fenstern kann letztlich nur dann auftreten, wenn in einem 
 Fenster eine Aktion gestartet wird, während sich eine Aktion eines anderen Fensters noch in Bearbeitung befindet.
 Zur Sicherheit werden parallele Fenster aber grundsätzlich ausgeschlossen.
+
 * Aktualisierung der aktuellen Seite im Browser sollte vermieden werden.
-* Jeder Verarbeitungsschritt in einem Flow, muss einen konsistenten Systemzustand hinterlassen.
-* Nebenläufige JavaScript-Aufrufe dürfen die Session nicht verändern.
+Jeder Verarbeitungsschritt in einem Flow, muss einen konsistenten Systemzustand hinterlassen.
+Nebenläufige JavaScript-Aufrufe dürfen die Session nicht verändern.
 
 Optionale Ergänzungen:
 
 * Die parallele Nutzung mehrerer Fenster könnte mit CXRF-Tokens verhindert werden.
-* Die parallele Ausführung mehrerer Fenster könnte durch einen Session-Alias ermöglicht werden (Feature von 
+
+* Die parallele Ausführung mehrerer Fenster könnte durch einen Session-Alias ermöglicht werden (Feature von
   Spring Session). Hierbei wird jedes Fenster in einer eigenen Session verwaltet.
 
 Beide Optionen erfordern zusätzlichen Forschungs- und Entwicklungsaufwand.
 
-|Entscheidung a|
+a|Entscheidung a|
 
 Es wird Variante 3 umgesetzt.
 Die optionalen Ergänzungen werden nicht umgesetzt.
@@ -137,15 +139,15 @@ Es wurden folgende Architekturentscheidungen zum Aufbau des Session-Speichers ge
 [cols="2,5",options="header"]
 |====
 2+|Absicherung des Session-Speichers
-|Fragestellung |Welche Sicherheitsmaßnahmen werden innerhalb des Session-Speichers und beim Zugriff auf den Speicher umgesetzt?
-|Einflussfaktoren a|
+a|Fragestellung |Welche Sicherheitsmaßnahmen werden innerhalb des Session-Speichers und beim Zugriff auf den Speicher umgesetzt?
+a|Einflussfaktoren a|
 Redis ist für einen Einsatz in einer sicheren Umgebung konzipiert, in der ausschließlich vertrauenswürdige Clients Zugriff auf Redis haben.
 Redis selbst bietet nur rudimentäre Sicherheitsmechanismen.
 
 Die IsyFact sieht den Einsatz einer sicheren Technischen Infrastruktur vor, die diese Anforderung erfüllt.
 
-|Annahmen |Redis wird in einer sicheren Umgebung betrieben.
-|Betrachtete Alternativen a|
+a|Annahmen |Redis wird in einer sicheren Umgebung betrieben.
+a|Betrachtete Alternativen a|
 Variante 1: Zusätzlich zur Absicherung der Umgebung werden keine weiteren Sicherheitsmaßnahmen umgesetzt.
 
 Variante 2: Der Zugriff auf Redis wird mit einem Passwort abgesichert.
@@ -156,7 +158,7 @@ Variante 3: Der Zugriff auf und die Daten in Redis werden mit Hilfe von Drittsof
 
 Dies ist eine sehr komplexe Lösung mit hohem zusätzlichen Einrichtungs- und Betriebsaufwand
 
-|Entscheidung a|
+a|Entscheidung a|
 
 Es wird Variante 1 umgesetzt.
 
@@ -175,10 +177,10 @@ In der Datenzone haben ausschließlich sichere Clients Zugriff auf Redis.
 [cols="2,5",options="header"]
 |====
 2+|Trennung der Sessions der einzelnen Anwendungen
-|Fragestellung |Sollen die Session-Daten der verschiedenen Anwendungen innerhalb des Redis-Clusters voneinander logisch getrennt werden?
-|Einflussfaktoren |
-|Annahmen |Session-IDs sind eindeutig, so dass keine Konflikte auftreten können, wenn mehrere Anwendungen die gleiche Datenbank verwenden.
-|Betrachtete Alternativen a|
+a|Fragestellung |Sollen die Session-Daten der verschiedenen Anwendungen innerhalb des Redis-Clusters voneinander logisch getrennt werden?
+a|Einflussfaktoren |
+a|Annahmen |Session-IDs sind eindeutig, so dass keine Konflikte auftreten können, wenn mehrere Anwendungen die gleiche Datenbank verwenden.
+a|Betrachtete Alternativen a|
 Variante 1: Alle Daten in einer einzelnen Datenbank.
 
 Sowohl im Cluster als insbesondere auch in den Clients sehr einfach umzusetzen,
@@ -192,7 +194,7 @@ Variante 3: Eine Datenbank pro Anwendungsinstanz.
 
 Verstärkt die Vor- und Nachteile von Variante 2.
 
-|Entscheidung a|
+a|Entscheidung a|
 Die Trennung in logisch getrennnte Datenbanken wird bei der Verwendung eines Redis-Clusters bisher nicht unterstützt.
 Daher wird Variante 1 umgesetzt.
 
@@ -210,10 +212,10 @@ Die Trennung der Instanzen ist im Hinblick auf die Datensicherheit des Systems n
 [cols="2,5",options="header"]
 |====
 2+|Persistierung der Daten auf der Festplatte
-|Fragestellung |Sollen die Daten auf der Festplatte persistiert werden, oder ausschließlich „in-memory“ verwaltet werden?
-|Einflussfaktoren |
-|Annahmen |
-|Betrachtete Alternativen a|
+a|Fragestellung |Sollen die Daten auf der Festplatte persistiert werden, oder ausschließlich „in-memory“ verwaltet werden?
+a|Einflussfaktoren |
+a|Annahmen |
+a|Betrachtete Alternativen a|
 Variante 1: Ausschließlich in-memory
 
 Variante 2: Redis Database (RDB)
@@ -225,7 +227,7 @@ Variante 3: Redis Append-Only-File (AOF)
 Die durchgeführten Operationen werden in einer “Append-Only-File” gelogged.
 Die gespeicherten Daten können mit Hilfe der Datei wiederhergestellt werden.
 
-|Entscheidung a|
+a|Entscheidung a|
 Es wird Variante 1 umgesetzt.
 
 Die Persistierung von Session-Daten ist nicht notwendig.
@@ -243,21 +245,21 @@ Dies wird akzeptiert.
 [cols="2,5",options="header"]
 |====
 2+|Betrieb in der Logik- und Verarbeitungszone
-|Fragestellung |In welcher Zone soll Redis betrieben werden?
-|Einflussfaktoren a|
+a|Fragestellung |In welcher Zone soll Redis betrieben werden?
+a|Einflussfaktoren a|
 Es findet keine Autorisierung des Zugriffs auf den Server und auch keine Verschlüsselung der Session-Daten statt.
 
 Der Cluster muss daher in einer sicheren Umgebung betrieben werden, in der ausschließlich vertrauenswürdige Clients Zugriff auf ihn haben.
 
 Die Daten in Redis werden nicht dauerhaft persistiert, sondern nur im Arbeitsspeicher abgelegt.
 
-|Annahmen |
-|Betrachtete Alternativen a|
+a|Annahmen |
+a|Betrachtete Alternativen a|
 Variante 1: Logik- und Verarbeitungszone
 
 Variante 2: Datenzone
 
-|Entscheidung a|
+a|Entscheidung a|
 Sowohl Logik- und Verarbeitungszone als auch Datenzone gelten als ausreichend sichere Zonen.
 Der Betrieb von Redis kann sowohl in der Logik- und Verarbeitungszone als auch der Datenzone betrieben werden.
 
