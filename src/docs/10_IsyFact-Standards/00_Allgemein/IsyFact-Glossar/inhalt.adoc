@@ -91,7 +91,7 @@ Stellt ein Anwendungssystem eine Fachlogik da, so handelt es sich um eine <<fach
 Ein Anwendungssystem ist Bestandteil der <<a-architektur>>.
 Aus Sicht der <<t-architektur>> bildet ein <<it-system>> die software-technische Umsetzung eines Anwendungssystems ab.
 
-NOTE: Besteht ein Anwendungssystem nur aus <<querschnittskomponente,Querschnittskomponenten>>, dann hanedelt es sich um ein <<querschnittssystem>>.
+NOTE: Besteht ein Anwendungssystem nur aus <<querschnittskomponente,Querschnittskomponenten>>, dann handelt es sich um ein <<querschnittssystem>>.
 
 |[[anwendungstyp,Anwendungstyp]]Anwendungstyp
 |Sammlung von Architekturvorgaben (aller <<architektursicht,Architektursichten>>) zur Entwicklung eines <<anwendungssystem,Anwendungssystems>> mit gleichartigen spezifischen Eigenschaften.
@@ -120,13 +120,13 @@ NOTE: Beachte den etwas anderes definierenden Begriff der <lieferung>> aus dem V
 Der Basisdienst ist keiner einzelnen fachlichen Aufgabe direkt zugeordnet. 
 
 |[[batch,Batch]]Batch
-|Ein Batch ist eine automatische Datenbearbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen). 
-Der Nutzer kann die Batchlogik in vorbereitete Strukturen implentieren, die <<isyfact>> stellt einen fertigen Batchrahmen zur Verfügung. 
+|Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
+Der Nutzer kann die Batchlogik in vorbereitete Strukturen implementieren, die <<isyfact>> stellt einen fertigen Batchrahmen zur Verfügung.
 Die automatisiert ablaufende Stapelverarbeitung kann dabei <<anwendungen>> aus dem <<awk>> aufrufen und nutzen.
 
 |[[baustein,Baustein]]Baustein
 |Wiederverwendbare Umsetzung einer spezifischen Problemlösung. 
-Bausteine stellen strukturiete Lösungen von Geschäftsprozessen dar.
+Bausteine stellen strukturierte Lösungen von Geschäftsprozessen dar.
 Umfasst mindestens eine <<bibliothek>> oder ein <<anwendungssystem>> inklusive der dazugehörigen <<dokumentation>>.
 
 Beispiel: Logging, Sicherheit, Überwachung
@@ -171,7 +171,7 @@ Es gibt <<basisdienst,Basisdienste>>, <<fachdienst,Fachdienste>> und <<querschni
 * Allgemeine Dokumente
 ** Einstieg, Tutorial,
 ** Referenzarchitektur der <<isyfact>> 
-*** logisch, softwaretechnisch und infrastrukturuell
+*** logisch, softwaretechnisch und infrastrukturell
 ** Änderungshistorie.
 * Detailkonzepte (eines je <<blaupause>>)
 * Bausteindokumentation (s. unten)
@@ -204,7 +204,7 @@ Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und an
 Im Rahmen der <<isyfact>> werden Teile der <<ife>> als Einer-für-Alle-System angeboten.
 
 |[[fachanwendung,Fachanwendung]]Fachanwendung
-|Eine Fachanwendung ist ein <<anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<anwendungsdomaene>> spezifiert.
+|Eine Fachanwendung ist ein <<anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<anwendungsdomaene>> spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
 Dabei kann sie die Basis-Dienste von <Querschnittsanwendung,Querschnittsanwendungen>> oder andere <<anwendungssystem,Anwendungssysteme>> nutzen.
 
@@ -220,10 +220,10 @@ Sie werden durch <<basisdienst,Basisdienste>> unterstützt.
 
 |[[gui,GUI]]Benutzeroberfläche (GUI)
 |Das Graphical User Interface (GUI) stellt die Verbindung zwischen Anwender und <<anwendung>> her. 
-Die <<isyfact>> stellt ein fertiges Framework zur Verfügung und strukturiert die die Erstellung der Dialoglokgik der Geschäftsprozesse.
+Die <<isyfact>> stellt ein fertiges Framework zur Verfügung und strukturiert die die Erstellung der Dialoglogik der Geschäftsprozesse.
 
 |[[isyfact,IsyFact]]IsyFact (IF)
-|Allgemeine Software-Fabrik (engl. Soft­ware Fac­to­ry) für den Bau von komplexen IT-Anwendungslandschaften, die vom Bundesver­waltungsamt entwickelt wird. 
+|Allgemeine Software-Fabrik (engl. Soft­ware Fac­to­ry) für den Bau von komplexen IT-Anwendungslandschaften, die vom Bundesverwaltungsamt entwickelt wird.
 Sie bündelt bestehendes technisches Know-how um <<anwendungssystem,Anwendungssysteme>> effizienter entwickeln und betreiben zu können.
 
 Quelle: http://isyfact.de[isyfact.de]
@@ -237,7 +237,7 @@ IsyFact-Erweiterungen können auch von <<nutzer,Nutzern>> der IsyFact eingebrach
 
 |[[ifs,IsyFact-Standards]]IsyFact-Standards (IFS)
 |Umfasst alle Bestandteile der <<isyfact>>, die für jede <<fachanwendung>> verpflichtend sind. 
-Die IsyFact-Standards werden zentral durch das Bundesver­waltungsamt weiterentwickelt.
+Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwickelt.
 
 |[[instanz,Instanz]]Instanz
 |Ausgeführte Instanz eines <<it-system,IT-Systems>> auf einer <<plattform>>. 
@@ -254,7 +254,7 @@ NOTE: Im BVA gibt es pro IT-System einen IT-System-Verantwortlichen, der aus his
 |siehe <<ank>> oder <<querschnittskomponente>>
 
 |[[konform,konforme Änderung]]konforme Änderung
-|Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist. 
+|Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist.
 Das bedeutet, dass <<nutzer>> der entsprechenden <<bibliothek,Bibliotheken>> keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
 
 Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen. 
@@ -266,10 +266,11 @@ Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturents
 
 |[[lieferung,Lieferung]]Lieferung (Release)
 |Eine Lieferung gemäß V-Modell XT steht vor der Abnahme des entwickelten Systemes. 
-Handelt es sich um eine Entwicklung durch einen Auftragnehmer, so leifert dieser ein System, was dann vom AG mit einer Prüfung abgenommen wird. 
-Die Lieferung selbst ist ein formales qualitätsgesichertes V-Modell XT Produkt, Normalerweise handelt es sich dann bei der Lieferung um ein vertraglich vereinbartes Paket mit Hardware, Software und Dokumentation.
+Handelt es sich um eine Entwicklung durch einen Auftragnehmer, so liefert dieser ein System, was dann vom Auftraggeber mit einer Prüfung abgenommen wird.
+Die Lieferung selbst ist ein formales qualitätsgesichertes V-Modell XT Produkt.
+Normalerweise handelt es sich bei der Lieferung um ein vertraglich vereinbartes Paket mit Hardware, Software und Dokumentation.
 
-NOTE: Bei der <<isyfact>> wird besteht die Lieferung aus einem <<release>>, der an mehreren Stellen zum Download angeboten wird.
+NOTE: Bei der <<isyfact>> besteht die Lieferung aus einem <<release>>, der an mehreren Stellen zum Download angeboten wird.
 
 |Lösungsbaustein
 |siehe <<baustein>>
@@ -278,7 +279,7 @@ NOTE: Bei der <<isyfact>> wird besteht die Lieferung aus einem <<release>>, der 
 |Im Rahmen einer <<software-factory>> bildet die Methodik die Grundlage für die Umsetzung von <<fachanwendung,Fachanwendungen>> mittels einer standardisierten Vorgehensweise nach dem V-Modell XT. 
 Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
 
-NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen. zur Verfügung stellt.
+NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen zur Verfügung stellt.
 
 |[[nicht-konform,nicht konforme Änderung]]nicht konforme Änderung
 |Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<vollkonform>> und <<konform>>), wobei *keine* Abwärtskompatibilität gewährleistet ist. 
@@ -301,7 +302,7 @@ Das Open Source Release beinhaltet die <<ifs>> sowie Teile der <<ife>>.
 
 |[[persistenz,Persistenz]]Persistenz
 |In der Persistenzschicht wird für die Daten der <<fachanwendung,Fachanwendungen>> einer permanenten Datenhaltung zur Verfügung gestellt. 
-Die Datenzugrifflogik der <<fachanwendung>> wird in strukturiere Komponenten realisiert.
+Die Datenzugriffslogik der <<fachanwendung>> wird in strukturiere Komponenten realisiert.
 <<isyfact>> stellt ein fertiges Persistenz-Framework zur Verfügung.
 
 |[[plattform,Plattform]]Plattform
