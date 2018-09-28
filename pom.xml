@@ -1132,41 +1132,6 @@
                     </execution>
 
                     <execution>
-                        <id>Leitfaden-Entwicklungsumgebung-html</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/50_Werkzeuge/Leitfaden-Entwicklungsumgebung
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Werkzeuge/LeitfadenEntwicklungsumgebung.html
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Leitfaden-Entwicklungsumgebung-pdf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/50_Werkzeuge/Leitfaden-Entwicklungsumgebung
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/50_Werkzeuge/Leitfaden-Entwicklungsumgebung.pdf
-                            </outputFile>
-                        </configuration>
-                    </execution>
-
-                    <execution>
                         <id>Handbuch_fuer_technische_Autoren</id>
                         <phase>generate-resources</phase>
                         <goals>
