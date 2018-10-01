@@ -638,3 +638,19 @@ Nicht erlaubt ist die Kurzschreibweise für Bedingungen, also das Weglassen der 
 if (COND)
   STATEMENT
 ----
+
+[[die-equals-und-hashcode-methode]]
+== equals() und hashCode()
+
+Alle Klassen leiten sich von der Basisklasse Object ab und erben von dieser die Methoden `equals()`, `hashCode()`, `toString()`, `clone()` und `finalize()`.
+Diese Methoden sind bewusst als _non-final_ Methoden angelegt, damit sie klassenspezifisch angepasst werden können.
+
+Die von der Klasse `Object` vererbte Implementierung für die Methoden `equals()` und `hashCode()` stellt nur eine Basisimplementierung dar, die für alle Klassen genügt, deren Identität auf Objektgleichheit (gleiche Speicheradresse) basiert.
+Klassen, die eine eigene Identität, unabhängig von der Objektgleichheit, besitzen, müssen `equals()` und `hashCode()` implementieren.
+Dabei können leicht schwer identifizierbare Fehler auftreten.
+Die Implementierung von `equals()` und `hashCode()` ist nicht trivial, da sie bestimmte Eigenschaften (Reflexivity, Symmetry, Transitivity, Consistency und Non-nullity, s. <<Bloch2008>>) erfüllen müssen.
+
+Zur Implementierung von `equals()` und `hashCode()` müssen die Möglichkeiten der Hilfsklasse `java.util.Objects` verwendet werden, insbesondere die Methoden:
+
+* `static boolean Objects.equals(Object a, Object b)`
+* `static int Objects.hash(Object... values)`
