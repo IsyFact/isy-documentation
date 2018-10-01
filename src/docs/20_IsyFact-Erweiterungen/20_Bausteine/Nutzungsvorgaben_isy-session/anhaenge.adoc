@@ -1,0 +1,169 @@
+[[AppendixA]]
+= Anhang A
+
+[[konfiguration]]
+== Konfiguration
+
+[[vollstaendige-liste-der-konfigurationsparameter]]
+=== Vollständige Liste der Konfigurationsparameter
+
+Im Folgenden werden sämtliche Konfigurationsparameter von isy-sesion aufgelistet.
+Der Präfix sämtlicher Konfigurationsparameter `session.redis` wird zur Vereinfachung der Liste weggelassen.
+
+:desc-table-Confip: Konfigurationsparameter
+[id="table-Confip",reftext="{table-caption} {counter:tables}"]	
+.{desc-table-Confip}
+[cols="6,4m,2m,3",options="header"]
+|====
+|Parameter |Wertebereich |Default |Beschreibung
+4+|*Pflichtparameter*
+m|
+$$.nodes[0]$$
+
+$$.nodes[1]$$
+
+$$.nodes[2]$$
+|
+$$<IP>:<Port>$$
+
+Bspw.
+10.0.0.1:7000
+
+ |_keiner_ |Adressen der Redis-Knoten [0..n].
+4+|*Optionale Parameter*
+m|.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
+m|.sessionmanager |jedis, lettuce |jedis |Der zu verwendende Redis-Client.
+m|.password |String |_keiner_ a|
+Passwort zum Zugriff auf Redis.
+
+Der Zugriff auf Redis wird in der Regel nicht abgesichert, so dass der Parameter nicht gesetzt werden darf.
+
+m|.maxredirects |Integer |3 |Anzahl der maximalen Redirects im Cluster.
+m|.convertpipelineandtxresults |Boolean |true |Konvertierung der Ergebnisse des Redis-Treibers auf den erwarteten Datentyp.
+m|.timeout |Long |2000 |Timeout für den Zugriff auf Redis in Millisekunden.
+4+|*Optionale Parameter bei Verwendung von Jedis*
+m|.usepool |Boolean |true |Verwendung eines Connection-Pools.
+4+|*Optionale Parameter bei Verwendung von Lettuce*
+m|.sharenativeconnection |Boolean |true |Mehrere Redis-Connections sollen die gleiche Native-Connection verwenden.
+m|.shutdowntimeout |Long |2000 |Timeout für das Herunterfahren des Clients.
+m|.starttls |Boolean |false |TLS zum Zugriff auf Redis verwenden.
+m|.usessl |Boolean |false |SSL zum Zugriff auf Redis verwenden.
+m|.validateconnection |Boolean |false |Gemeinsam genutzte Native-Connections beim Aufruf validieren.
+m|.verifypeer |Boolean |true |Zertifikat validieren, wenn SSL genutzt wird.
+|====
+
+[[vollstaendiges-konfigurationstemplate]]
+=== Vollständiges Konfigurationstemplate
+
+:desc-listing-konfigurationstemplate: Vollständiges Konfigurationstemplate
+[id="listing-konfigurationstemplate",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfigurationstemplate}
+[source,php]
+----
+# ---
+# --- ALLGEMEINE KONFIGURATIONSPARAMETER
+# ---
+# Aktivieren der Sessionverwaltung.
+# Wertebereich: Boolean.Default: true.
+session.redis.active=true
+
+# Der zu verwendende Redis-Client.
+# Wertebereich: <lettuce,jedis>. Default: jedis.
+session.redis.sessionmanager=jedis
+
+# Die Redis-Knoten [0..n].
+# Wertebereich: <IP>:<Port>.
+session.redis.nodes[0]=<IP1>:7000
+session.redis.nodes[1]=<IP2>:7002
+session.redis.nodes[2]=<IP3>:7004
+
+# Das Password zum Zugriff auf Redis.
+# Von Jedis nicht unterstützt.
+# Wertebereich: String.
+# session.redis.password=geheim12
+
+# Anzahl der maximalen Redirects im Session-Cluster.
+# Wertebereich: Integer.Default: 3
+session.redis.maxredirects=3
+
+# Gibt an, ob Ergebnisse der Pipeline auf das richtige Datenformat konvertiert werden sollen.
+# Wertebereich: Boolean.Default: true
+session.redis.convertpipelineandtxresults=true
+
+# Timeout für den Zugriff auf Redis.
+# Wertebereich: Long.Default: 2000
+session.redis.timeout=2000
+
+# Angabe, wann die Session an Redis übermittelt wird.
+# Wertebereich: ON_SAVE,IMMEDIATE.Default: SAVE
+session.redis.flushmode=ON_SAVE
+
+# ---
+# --- JEDIS-SPEZIFISCHE PARAMETER
+# ---
+# Gibt an, ob ein Connection-Pool verwendet werden soll.
+# Wertebereich: Boolean.Default: true
+session.redis.usepool=true
+
+# ---
+# --- LETTUCE-SPEZIFISCHE PARAMETER
+# ---
+# Gibt an, ob mehrere Lettuce-Connections die gleiche Native-Connection verwenden sollen.
+# Wertebereich: Boolean.Default: true
+session.redis.sharenativeconnection=true
+
+# Timeout für das Herunterfahren des Clients.
+# Wertebereich: Long.Default: 2000
+session.redis.shutdowntimeout=2000
+
+# Gibt a, ob TLS verwendet werden soll.
+# Wertebereich: Boolean.Default: false
+session.redis.starttls=false
+
+# Gibt a, ob SSL verwendet werden soll.
+# Wertebereich: Boolean.Default: false
+session.redis.usessl=false
+
+# Aktiviert die Validierung von gemeinsam genutzen Native-Connections beim Aufruf.
+# Wertebereich: Boolean.Default: false
+session.redis.validateconnection=false
+
+# Aktiviert Zertifikats-Validierung, wenn SSL genutzt wird.
+# Wertebereich: Boolean.Default: true
+session.redis.verifypeer=true
+----
+
+[[migration-von-plis-tomcat]]
+== Migration von plis-tomcat
+
+Zur Migration von `plis-tomcat` auf `isy-session` sind die in Kapitel <<einbindung-und-konfiguration>>
+beschriebenen Schritte analog durchzuführen.
+Zusätzlich müssen folgende Bereinigungen vorgenommen werden.
+
+.  **context.xml anpassen**: Den Session-Manager von `plis-tomcat` sowie das dazugehörende
+Valve aus der `context.xml` des Tomcats entfernen.
+Dies betrifft die folgenden Einträge
++
+[source,xml]
+----
+<Manager className="de.bund.bva.pliscommon.tomcat.session.JdbcSessionManager" configuration="/opt/[Anwendung]/tomcat/conf/sessionmanager.properties" />
+
+<Valve className="de.bund.bva.pliscommon.tomcat.session.JdbcSessionManagerValve" />
+----
++
+*Anmerkung:* Dies ist bereits ausreichend, um das Session-Management durch `plis-tomcat` zu deaktivieren.
+.  **plis-tomcat-<x.x.x>.jar entfernen**. Die Datei befindet sich im Ordner `lib` des Tomcats.
+.  **sessionmanager.properties löschen**: Die Datei befindet sich im Ordner `conf` des Tomcats
+.  **TOMCAT_SESSIONS Tabelle löschen**: Die Tabelle muss mit folgenden Befehl im Schema der Anwendung gelöscht werden:
+
+  DROP TABLE TOMCAT_SESSIONS
+
+.  **DB-Skripte bereinigen**: Die Anlage der Tabelle `TOMCAT_SESSIONS` muss aus den Datenbankskripten
+der Anwendung entfernt werden, so dass diese bei einer Neuinstallation nicht wieder angelegt wird.
+.  *UCP aus Tomcat entfernen und in WAR-Datei aufnehmen:* Beim Einsatz von `plis-tomcat` wurde der Oracle
+UCP im `lib`-Verzeichnis des Tomcats abgelegt.
+Die WAR-Datei der Webanwendung beinhaltet den Oracle UCP hierbei nicht (Maven-Depency im Scope `provided`).
+Mit `isy-session` benötigt der Tomcat selbst keine Datenbankverbindung mehr. Daher muss
+..  der Oracle UCP aus dem `lib`-Verzeichnis des Tomcats entfernt und
+..  die Angabe des Scopes der Maven-Dependency auf den UCP in der Webanwendung entfernt werden, so 
+dass der UCP mit in die WAR-Datei aufgenommen wird.

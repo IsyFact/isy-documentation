@@ -3,7 +3,7 @@
 
 Die Log-Infrastruktur beschreibt die IT-Systeme und Mechanismen, die zur Verteilung, Verarbeitung, Auswertung und Archivierung der 
 erstellten Logdateien eingesetzt werden und deren Zusammenspiel untereinander.
-In <<fig-6>> ist eine Übersicht der logischen Komponenten der Log-Infrastruktur dargestellt.
+In <<image-loginfraelkr>> ist eine Übersicht der logischen Komponenten der Log-Infrastruktur dargestellt.
 Dabei kommen ausschließlich freie IT-Systeme zum Einsatz, die auf dem ELK-Stack (Elasticsearch, Logstash und 
 Kibana) basieren.
 
@@ -12,38 +12,44 @@ NOTE: http://www.elasticsearch.org/overview/
 :desc-image-loginfraelkr: Logische Komponenten der Log-Infrastruktur
 [id="image-loginfraelkr",reftext="{figure-caption} {counter:figures}"]	 
 .{desc-image-loginfraelkr}
-image::loginfraelkr.png[align="center"]
+image::konzept_logging_infrastruktur_elk_001.png[align="center"]
 
 // ist RF im Bild richtig?
  
 Die Kernaspekte der Loginfrastruktur sind:
 
-* **Quellen**: Die Anwendungen schreiben ihre Logeinträge in Logdateien.
+**Quellen**: Die Anwendungen schreiben ihre Logeinträge in Logdateien.
 Die Dateien können dabei als Schnittstelle von der Anwendung zur Log-Infrastruktur gesehen werden – jeder Logeintrag, der in eine Datei geschrieben wurde, 
 wird von da an durch die Infrastruktur verwaltet.
-+
+
 [underline]#Anmerkung#: Das Loggen in Dateien hat gegenüber dem direkten Loggen über eine Netzwerkschnittstelle den Vorteil, dass es robuster gegen Ausfälle der Netzwerkverbindung bzw.
 des empfangenden Systems ist.
 Zudem erlaubt es eine sehr einfache Sicherung (Archivierung) der Logs auf Dateiebene.
 
-* **Indizierung**: Eine Kernanforderung an die Infrastruktur ist es, die verschiedenen Log-Quellen einheitlich, zuverlässig und „nahe Echtzeit“ im zentralen Suchserver zu indizieren.
+**Indizierung**: Eine Kernanforderung an die Infrastruktur ist es, die verschiedenen Log-Quellen einheitlich, zuverlässig und „nahe Echtzeit“ im zentralen Suchserver zu indizieren.
 Zu diesem Zweck wird eine zuverlässige Transport- und Konvertierungsinfrastruktur aufgebaut.
 Sie besteht aus den folgenden Komponenten:
-** **Shipper**: Aufgabe des Shippers ist es, die verschiedenen Log-Quellen an die Infrastruktur anzubinden.
+
+* **Shipper**: Aufgabe des Shippers ist es, die verschiedenen Log-Quellen an die Infrastruktur anzubinden.
 Hierzu werden Logstash-Instanzen eingesetzt, die es sehr einfach ermöglichen, verschiedene Quellen und Ziele miteinander zu verbinden.
 Logstash wird so konfiguriert, dass es die Einträge der Log-Quellen kontinuierlich einliest und an den nachgelagerten Puffer übergibt.
-** **Puffer**: Im Puffer werden alle zu indizierenden Einträge zwischengespeichert, bevor sie sequentiell durch den nachgelagerten Indexer weiterverarbeitet werden.
+
+* **Puffer**: Im Puffer werden alle zu indizierenden Einträge zwischengespeichert, bevor sie sequentiell durch den nachgelagerten Indexer weiterverarbeitet werden.
 Die Verwendung des Puffers ermöglicht es, Lastspitzen abzufangen.
 Als Puffer kommt Redis zum Einsatz.
 +
 NOTE: Redis http://redis.io
-** **Indexer**: Aufgabe des Indexers ist es, die Logeinträge einheitlich im Suchserver zu indizieren.
+
+* **Indexer**: Aufgabe des Indexers ist es, die Logeinträge einheitlich im Suchserver zu indizieren.
 Dazu werden die Logeinträge sequentiell aus dem Puffer eingelesen und im Suchserver (Elasticsearch) indiziert.
 Hierzu kommt ebenfalls eine Logstash-Instanz zum Einsatz.
 Logstash bietet auch hierfür die Möglichkeit, die beiden Systeme (Redis und Elasticsearch) deklarativ miteinander zu verbinden.
-* *Suchserver und Analysetool:* Zur Analyse der Logeinträge wird ein zentraler Suchserver verwendet, auf dem mit Hilfe eines Analysetools Auswertungen durchgeführt werden können:
-** **Suchserver**: Als Suchserver kommt Elasticsearch zum Einsatz – ein sehr verbreiteter, hoch skalierbarer und etablierter Suchserver auf Basis von Apache Lucene.
-** **Auswertungstool**: Zur Auswertung der in Elasticsearch gespeicherten Logeinträge wird Kibana verwendet.
+
+*Suchserver und Analysetool:* Zur Analyse der Logeinträge wird ein zentraler Suchserver verwendet, auf dem mit Hilfe eines Analysetools Auswertungen durchgeführt werden können:
+
+* **Suchserver**: Als Suchserver kommt Elasticsearch zum Einsatz – ein sehr verbreiteter, hoch skalierbarer und etablierter Suchserver auf Basis von Apache Lucene.
+
+* **Auswertungstool**: Zur Auswertung der in Elasticsearch gespeicherten Logeinträge wird Kibana verwendet.
 Kibana stellt eine grafische Benutzeroberfläche zum einfachen Formulieren auch komplexer Auswertungen auf dem Datenbestand zur Verfügung.
 
 Die Archivierung der Logs erfolgt auf Ebene der Log-Quellen (Dateien). Durch das Schreiben zeitlich rollierender Logdateien durch die
@@ -65,6 +71,9 @@ Eine Logstash-Konfigurationsdatei besteht aus drei Bereichen:
 * **Filter**: Zur Definition von Filtern, die auf die Logeinträge angewendet werden
 * **Output**: Zur Definition der Ausgabekanäle der Logdateien
 
+:desc-listing-logstashconfig: Logstash-Konfigurationsdatei
+[id="listing-logstashconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-logstashconfig}
 [source,c]
 ----
 input {
@@ -86,6 +95,9 @@ output {
 Als Log-Quellen werden ausschließlich Dateien verwendet, die in gleicher Weise eingelesen werden.
 Die Konfiguration der Quellen erfolgt immer nach folgendem Schema:
 
+:desc-listing-quellenconfig: Konfiguration der Quellen
+[id="listing-quellenconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-quellenconfig}
 [source,c]
 ----
 # Zum Einlesen von einzeiligen Logs
@@ -125,10 +137,13 @@ Im Shipper werden keine Filter definiert (dies erfolgt im Indexer), um das Einle
 
 Es wird ein einzelner Ausgabekanal definiert, um die Logeinträge zur weiteren Verarbeitung an den Puffer (Redis) zu leiten.
 
+:desc-listing-logzieleconfig: Konfiguration der Log-Ziele
+[id="listing-logzieleconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-logzieleconfig}
 [source,c]
 ----
 output {
-  # Weiterleiten der Protokolleinträge in den Puffer
+  # Weiterleiten der Protokolleintraege in den Puffer
   redis {
     host => "<host>"
     port => "<port>"
@@ -162,6 +177,9 @@ Die Konfiguration des Indexers umfasst folgende Elemente:
 * Zwei Ausgabekanäle zum getrennten Indizieren der Einträge in Elasticsearch.
 Dabei werden Logeinträge, die Fachdaten enthalten, in einen separaten Index geschrieben, der nur durch berechtigte Personen durchsucht werden kann.
 
+:desc-listing-indexerconfig: Konfiguration des Indexers
+[id="listing-indexerconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerconfig}
 [source,c]
 ----
 input {
@@ -174,7 +192,7 @@ input {
 }
 
 filter {
-  ... // <1>
+  // ...siehe folgender Abschnitt zu Filtern
 }
 output {
   if [fachdaten] == "true" {
@@ -192,7 +210,6 @@ output {
   }
 }
 ----
-<1> siehe Kapitel <<filter-1>>
 
 Die Platzhalter sind dabei selbsterklärend und analog zu den vorgehenden Abschnitten.
 Die verwendeten Filter werden im nachfolgenden Abschnitt beschrieben.
@@ -207,9 +224,9 @@ Es kommen dabei die folgenden Filterarten zum Einsatz:
 ==== grok
 
 
-Grok-Filter werden verwendet, um Attribute der Logeinträge an Hand regulärer Ausdrücke zu parsen und die enthaltenen Felder in separate Attribute zu schreiben.
+_grok_-Filter werden verwendet, um Attribute der Logeinträge an Hand regulärer Ausdrücke zu parsen und die enthaltenen Felder in separate Attribute zu schreiben.
 
-[source,c]
+[source]
 ----
 grok {
   match => ["<Attributname>","<RegExp>"]
@@ -223,9 +240,9 @@ Die Parameter bedeuten dabei:
 
 NOTE: http://logstash.net/docs/1.4.2/filters/grok
 
-Folgende grok-Filter werden definiert:
+Folgende _grok_-Filter werden definiert:
 
-* Es wird ein allgemeiner grok-Filter für alle Logeinträge definiert, der den Dateinamen der Eingabedatei ermittelt (standardmäßig liegt nur der komplette Pfad vor).
+* Es wird ein allgemeiner _grok_-Filter für alle Logeinträge definiert, der den Dateinamen der Eingabedatei ermittelt (standardmäßig liegt nur der komplette Pfad vor).
 
 [source,c]
 ----
@@ -234,7 +251,7 @@ grok {
 }
 ----
 
-* Es wird ein weiterer allgemeiner grok-Filter definiert, der die im Dateinamen enthaltenen Informationen (hostid und systemid) aus dem Dateinamen liest:
+* Es wird ein weiterer allgemeiner _grok_-Filter definiert, der die im Dateinamen enthaltenen Informationen (hostid und systemid) aus dem Dateinamen liest:
 
 [source,c]
 ----
@@ -243,14 +260,14 @@ grok {
 }
 ----
 
-* Für jedes System, welches im Format „plain“ (einfacher Text) logged, wird ein spezifischer grok-Filter definiert, der die enthaltenen Informationen 
+* Für jedes System, welches im Format „plain“ (einfacher Text) logged, wird ein spezifischer _grok_-Filter definiert, der die enthaltenen Informationen 
 in klar definierte JSON-Attribute aufteilt.
 Die Konfigurationen für die verschiedenen Systemtypen sind in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 
 [[date]]
 ==== date
 
-Date-Filter werden verwendet, um den Zeitpunkt des Logeintrags zu parsen und in das Logstash-Event als @timestamp zu übernehmen.
+_date_-Filter werden verwendet, um den Zeitpunkt des Logeintrags zu parsen und in das Logstash-Event als @timestamp zu übernehmen.
 
 [source,c]
 ----
@@ -270,22 +287,22 @@ NOTE: Joda-Time Zeitstempel http://joda-time.sourceforge.net/apidocs/org/joda/ti
 
 NOTE: Joda-Time Zeitzone http://joda-time.sourceforge.net/timezones.html
 
-Folgende date-Filter werden definiert:
+Folgende _date_-Filter werden definiert:
 
-* Für jede Systemart muss ein spezifischer date-Filter definiert werden, der den Zeitpunkt des Logeintrags in das Logstash-Event übernimmt.
+* Für jede Systemart muss ein spezifischer _date_-Filter definiert werden, der den Zeitpunkt des Logeintrags in das Logstash-Event übernimmt.
 Diese sind ebenfalls in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 
 [[mutate]]
 ==== mutate
 
-mutate-Filter können dazu verwendet werden, Attribute zu setzen oder zu manipulieren.
-Bei allen Log-Quellen, die nicht Register Factory-konform sind, wird ein mutate-Filter verwendet, um das Attribut `@timestamp` (siehe Abschnitt <<date>>) 
+_mutate_-Filter können dazu verwendet werden, Attribute zu setzen oder zu manipulieren.
+Bei allen Log-Quellen, die nicht Register Factory-konform sind, wird ein _mutate_-Filter verwendet, um das Attribut `@timestamp` (siehe Abschnitt <<date>>) 
 einheitlich in das Feld `zeitstempel` zu schreiben:
 
 [source,c]
 ----
-mutate { +
-  add_field => [ "zeitstempel", "%{@timestamp}" ] +
+mutate {
+  add_field => [ "zeitstempel", "%{@timestamp}" ]
 }
 ----
 
@@ -303,10 +320,11 @@ Dieses Kapitel enthält Konfigurationsvorlagen zur Einrichtung der Log-Infrastru
 [[register-factory-konforme-anwendungen]]
 === Register Factory-konforme Anwendungen
 
-// muss das nicht IF konform heissen????
-
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfig: Input-Konfiguration des Shippers
+[id="listing-shipperinputconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfig}
 [source,c]
 ----
 # Einlesen IsyFact-konformer Logdateien
@@ -321,6 +339,9 @@ file {
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfig: Filter-Konfiguration des Indexers
+[id="listing-indexerfilterconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfig}
 [source,c]
 ----
 # IsyFact-konforme Anwendungen
@@ -337,6 +358,9 @@ if [type] == "isy" {
 
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfig30: Input-Konfiguration des Shippers (vor Logging Konzept 3.0)
+[id="listing-shipperinputconfig30",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfig30}
 [source,c]
 ----
 # Einlesen IsyFact-konformer Logdateien (vor Version 3.0)
@@ -349,6 +373,9 @@ file {
 }
 ----
 
+:desc-listing-indexerfilterconfig30: Filter-Konfiguration des Indexers (vor Logging Konzept 3.0)
+[id="listing-indexerfilterconfig30",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfig30}
 *Filter im Indexer:*
 
 [source,c]
@@ -374,6 +401,9 @@ if [type] == "isy" {
 
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfigtomcataccess: Input-Konfiguration des Shippers (Tomcat access)
+[id="listing-shipperinputconfigtomcataccess",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfigtomcataccess}
 [source,c]
 ----
 # Einlesen Tomcat-Access-Logs
@@ -388,6 +418,9 @@ type => "tomcat_access"
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfigtomcataccess: Filter-Konfiguration des Indexers (Tomcat access)
+[id="listing-indexerfilterconfigtomcataccess",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfigtomcataccess}
 [source,c]
 ----
 # Tomcat-Access-Log
@@ -415,6 +448,9 @@ if [type] == "tomcat_access" {
 
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfigwrapperlog: Input-Konfiguration des Shippers (Wrapper-Log)
+[id="listing-shipperinputconfigwrapperlog",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfigwrapperlog}
 [source,c]
 ----
 # Einlesen Tomcat-Wrapper-Logs
@@ -429,6 +465,9 @@ file {
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfigwrapperlog: Filter-Konfiguration des Indexers (Wrapper-Log)
+[id="listing-indexerfilterconfigwrapperlog",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfigwrapperlog}
 [source,c]
 ----
 # Wrapper-Log
@@ -455,6 +494,9 @@ if [type] == "wrapper" {
 
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfigapacheaccess: Input-Konfiguration des Shippers (Apache access-Log und error-Log)
+[id="listing-shipperinputconfigapacheaccess",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfigapacheaccess}
 [source,c]
 ----
 # Einlesen Apache-Access-Logs
@@ -478,6 +520,9 @@ file {
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfigapacheaccess: Filter-Konfiguration des Indexers (Apache access-Log und error-Log)
+[id="listing-indexerfilterconfigapacheaccess",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfigapacheaccess}
 [source,c]
 ----
 # Apache-Logs
@@ -492,8 +537,9 @@ if [type] == "apache_access" or [type] == "apache_error" {
   mutate {
     add_field => [ "zeitstempel", "%{@timestamp}" ]
   }
-  # (Optional) Apache-Logs müssen als „Fachdaten“ gekennzeichnet werden, falls in den Requestparametern der URL 
-  fachliche Daten enthalten sein können. Dies ist insbesondere bei REST-Services der Fall, die Suchen anbieten.
+  # (Optional) Apache-Logs muessen als Fachdaten gekennzeichnet werden, falls in den
+  # Requestparametern der URL fachliche Daten enthalten seinkoennen. Dies ist
+  # insbesondere bei REST-Services der Fall, die Suchen anbieten.
   mutate {
     add_field => [ "fachdaten", "true" ]
   }
@@ -505,6 +551,9 @@ if [type] == "apache_access" or [type] == "apache_error" {
 
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfigmailserver: Input-Konfiguration des Shippers (Mailserver-Logs)
+[id="listing-shipperinputconfigmailserver",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfigmailserver}
 [source,c]
 ----
 # Einlesen der Mailserver-Logs
@@ -534,6 +583,9 @@ file {
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfigmailserver: Filter-Konfiguration des Indexers (Mailserver-Logs)
+[id="listing-indexerfilterconfigmailserver",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfigmailserver}
 [source,c]
 ----
 # Mailserver-Logs
@@ -566,6 +618,9 @@ Das Alphanumerische Suchverfahren erstellt mehrere Logdateien (asv-searches.log,
 
 *Input im Shipper:*
 
+:desc-listing-shipperinputconfigsuchverfahren: Input-Konfiguration des Shippers (Suchverfahren-Log)
+[id="listing-shipperinputconfigsuchverfahren",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfigsuchverfahren}
 [source,c]
 ----
 # Einlesen der ASV-Logs
@@ -579,6 +634,9 @@ file {
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfigsuchverfahren: Filter-Konfiguration des Indexers (Suchverfahren-Log)
+[id="listing-indexerfilterconfigsuchverfahren",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfigsuchverfahren}
 [source,c]
 ----
 # asv-Log
@@ -607,6 +665,9 @@ if [type] == "asv" {
 
 **Input im Shipper:**
 
+:desc-listing-shipperinputconfiglogstash: Input-Konfiguration des Shippers (logstash-Log)
+[id="listing-shipperinputconfiglogstash",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-shipperinputconfiglogstash}
 [source,c]
 ----
 # Einlesen der logstash-Logs
@@ -621,6 +682,9 @@ file {
 
 *Filter im Indexer:*
 
+:desc-listing-indexerfilterconfiglogstash: Filter-Konfiguration des Indexers (logstash-Log)
+[id="listing-indexerfilterconfiglogstash",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-indexerfilterconfiglogstash}
 [source,c]
 ----
 # logstash-Log

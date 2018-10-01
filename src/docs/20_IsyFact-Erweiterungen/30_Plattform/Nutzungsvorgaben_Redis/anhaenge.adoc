@@ -81,9 +81,9 @@ Auch für diese Konfiguration wird ein fertiges RPM bereitgestellt, welches alle
 Die Konfigurationsparameter in der Datei `redis-default.conf` entsprechen den Standardeinstellungen von 
 Redis, bis auf folgende Parameter:
 
-:desc-table-datbes1: Defaultkonfiguration
-[id="table-datbes1",reftext="{table-caption} {counter:tables}"]	
-.{desc-table-datbes1}
+:desc-table-defaultkonfiguration: Defaultkonfiguration
+[id="table-defaultkonfiguration",reftext="{table-caption} {counter:tables}"]
+.{desc-table-defaultkonfiguration}
 [cols="2m,1m,1m,3",options="header"]
 |====
 |Parameter |Wert |Default |Beschreibung
