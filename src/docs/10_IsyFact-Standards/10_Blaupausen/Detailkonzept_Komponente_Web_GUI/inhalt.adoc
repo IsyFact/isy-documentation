@@ -3013,7 +3013,7 @@ Ein Anwender sieht den jeweiligen Eintrag, sobald er mindestens eine der benöti
 :desc-image-navigationMitSubmenu: Navigation mit ausgeklapptem Flyout Menü
 [id="image-navigationMitSubmenu",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-navigationMitSubmenu}
-image::horizontale-navigation-submenu.png[align="center"]
+image::horizontale-navigation-submenu.png[align="center", pdfwidth="60%"]
 
 Das folgende Beispiel zeigt, wie die Navigationsleiste um einen weiteren Eintrag samt Flyout Menü erweitert werden könnte:
 
