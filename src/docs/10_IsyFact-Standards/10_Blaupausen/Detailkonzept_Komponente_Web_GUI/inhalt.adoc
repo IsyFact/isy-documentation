@@ -1408,7 +1408,7 @@ image::image37.png[align="center", width="629",height="149"]
 * *B* Farbmarkierung des Applikationsportals
 * *C* Logo des Applikationsportals
 * *D* Login-Information
-* *E + F* Hauptnavigation und Subnavigation als Flyout (siehe Kapitel Horizontale Navigation)
+* *E + F* Hauptnavigation und Subnavigation als Flyout (siehe Kapitel <<horizontale-navigation>>)
 
 
 [[headerbereich-bestandteile]]
@@ -2934,9 +2934,107 @@ Für `<isy:formSelectOneRadio>` sind zusätzlich folgende Attribute zulässig:
 [[horizontale-navigation]]
 ==== Horizontale Navigation
 
-Derzeit wird die Navigationsleiste im Header Bereich statisch geladen.
-Jede Anwendung muss daher die Ressource `/WEB-INF/gui/common/seitenelemente/navigation.xhtml` mit einer spezifischen Anpassung überschreiben.
-Zukünftig soll eine Konfiguration der Links möglich sein.
+Die Navigationsleiste im Header Bereich lässt sich konfigurierbar gestalten.
+Hierzu muss jede Anwendung zunächst eine Instanz von `NavigationMenuGenerierenAusKonfiguration` im Application-Context zur Verfügung stellen und korrekt konfigurieren.
+Die Bean benötigt lediglich einen `AufrufkontextVerwalter` und eine `Konfiguration`, um korrekt zu funktionieren.
+
+:desc-listing-bspBeanHauptnavigation: Beispiel für die Deklaration der Bean
+[id="listing-bspBeanHauptnavigation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-bspBeanHauptnavigation}
+[source, xml]
+----
+<bean id="navigationMenuGenerierenStrategie" class="de.bund.bva.isyfact.common.web.jsf.components.navigationmenu.generieren.impl.NavigationMenuGenerierenAusKonfiguration">
+	<property name="konfiguration" ref="konfiguration"/>
+	<property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
+</bean>
+----
+
+Ein einzelner Eintrag in der Navigation lässt sich nach folgendem Schema konfigurieren:
+
+:desc-listing-beispielHorizontaleNavigation: Beispiel zur Konfiguration der horizontalen Navigation
+[id="listing-beispielHorizontaleNavigation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-beispielHorizontaleNavigation}
+[source,properties]
+----
+gui.navbar.applikationsgruppe.1.wert = JSF-Vorlagen
+gui.navbar.applikationsgruppe.1.link = /isy-webgui/app/index.html
+gui.navbar.applikationsgruppe.1.farbe = #337299
+gui.navbar.applikationsgruppe.1.reihenfolge = 1
+gui.navbar.applikationsgruppe.1.rollen =
+
+gui.navbar.applikationsgruppe.1.anwendung.1.wert  = JSF-Steuerelemente
+gui.navbar.applikationsgruppe.1.anwendung.1.link = /isy-webgui/app/jsfSteuerelementeFlow
+gui.navbar.applikationsgruppe.1.anwendung.1.reihenfolge  = 1
+gui.navbar.applikationsgruppe.1.anwendung.1.rollen =
+
+gui.navbar.applikationsgruppe.1.anwendung.2.wert  = 4-Augen Prinzip
+gui.navbar.applikationsgruppe.1.anwendung.2.link = /isy-webgui/app/vieraugenFlow
+gui.navbar.applikationsgruppe.1.anwendung.2.reihenfolge  = 2
+gui.navbar.applikationsgruppe.1.anwendung.2.rollen =
+
+gui.navbar.applikationsgruppe.1.anwendung.3.wert  = Nachrichten
+gui.navbar.applikationsgruppe.1.anwendung.3.link = /isy-webgui/app/nachrichtenFlow
+gui.navbar.applikationsgruppe.1.anwendung.3.reihenfolge  = 3
+gui.navbar.applikationsgruppe.1.anwendung.3.rollen = Beispielrolle
+----
+
+Das Schlüsselwort `applikationsgruppe` und die darauf folgenden Parameter beziehen sich immer auf einen Eintrag in der Leiste selbst.
+Das Schlüsselwort `anwendung` und die darauf folgenden Parameter beziehen sich wiederum immer auf einen Eintrag innerhalb des Flyout Menüs eines Eintrags innerhalb der Leiste.
+Die Zahlen innerhalb der Konfigurationsparameter dienen der logischen Zuordnung.
+Im obigen Beispiel sieht man schnell, dass es eine Applikationsgruppe gibt und dieser Gruppe drei Anwendungen zugeordnet sind.
+Die Zahlen _müssen_ aus technischer Sicht keiner strikten Sequenz folgen (etwa `\*.anwendung.1.*`, `\*.anwendung.2.*` usw.), aber dies bietet sich aufgrund der Lesbarkeit an.
+
+Für Einträge innerhalb der Leiste selbst (`applikationsgruppe`) existieren folgende Parameter:
+
+* `wert`: Das Label zur Anzeige.
+* `link`: Der Link, der aufgerufen wird, wenn der Anwender auf den Eintrag klickt.
+* `farbe`: Die Farbe der Applikationsgruppe als Hexwert.
+* `reihenfolge`: Ein numerischer Wert für die Reihenfolge der Anzeige der Applikationsgruppen innerhalb der horizontalen Navigation.
+* `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste. Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
+
+Für Einträge innerhalb eines Flyout Menüs (`anwendung`) existieren folgende Parameter:
+
+* `wert`: Das Label zur Anzeige.
+* `link`: Der Link, der aufgerufen wird, wenn der Anwender auf den Eintrag klickt.
+* `reihenfolge`: Ein numerischer Wert für die Reihenfolge der Anzeige der Anwendung innerhalb des Flyout Menüs.
+* `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste. Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
+
+Grundsätzlich sind alle Werte optional.
+Damit ist jedoch lediglich gemeint, dass die Anwendung keinen Fehler erzeugt, falls ein Wert für eine Applikationsgruppe bzw. Anwendung überhaupt nicht konfiguriert ist.
+Nicht benötigte Parameter können daher einfach weggelassen werden.
+Um einen sinnvollen Einsatz zu gewährleisten sollten immer mindestens `wert` und `link` konfiguriert sein.
+
+Die Navigation würde im obigen Beispiel den Eintrag _JSF-Vorlagen_ enthalten.
+Wenn die Maus sich über dem Eintrag befindet, würde das Flyout Menü aufklappen und die Einträge _JSF-Steuerelemente_, _4-Augen Prinzip_ und _Nachrichten_ würden sichtbar werden.
+_Nachrichten_ ist für den jeweiligen Nutzer jedoch nur sichtbar, wenn er die Rolle _Beispielrolle_ besitzt.
+Weitere Rollen lassen sich komma-separiert angeben.
+Ein Anwender sieht den jeweiligen Eintrag, sobald er mindestens eine der benötigten Rollen besitzt.
+
+:desc-image-navigationMitSubmenu: Navigation mit ausgeklapptem Flyout Menü
+[id="image-navigationMitSubmenu",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-navigationMitSubmenu}
+image::horizontale-navigation-submenu.png[align="center", pdfwidth="60%"]
+
+Das folgende Beispiel zeigt, wie die Navigationsleiste um einen weiteren Eintrag samt Flyout Menü erweitert werden könnte:
+
+:desc-listing-beispielHorizontaleNavigationErweitert: Erweiterung der Konfiguration der horizontalen Navigation
+[id="listing-beispielHorizontaleNavigationErweitert",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-beispielHorizontaleNavigationErweitert}
+[source,properties]
+----
+gui.navbar.applikationsgruppe.2.wert = Layouts
+gui.navbar.applikationsgruppe.2.link = /isy-webgui/app/page-details.html
+gui.navbar.applikationsgruppe.2.farbe = #F59D35
+gui.navbar.applikationsgruppe.2.reihenfolge = 2
+
+gui.navbar.applikationsgruppe.2.anwendung.1.wert  = Applikationsseite
+gui.navbar.applikationsgruppe.2.anwendung.1.link = /isy-webgui/app/beispielApplikationsseiteFlow
+gui.navbar.applikationsgruppe.2.anwendung.1.reihenfolge  = 1
+
+gui.navbar.applikationsgruppe.2.anwendung.2.wert  = applikationsgruppe-Detailseite
+gui.navbar.applikationsgruppe.2.anwendung.2.link = /isy-webgui/app/applikationDetailseiteFlow
+gui.navbar.applikationsgruppe.2.anwendung.2.reihenfolge  = 2
+----
 
 [[linksnavigation]]
 ==== Linksnavigation
