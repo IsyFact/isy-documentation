@@ -26,7 +26,7 @@ Wenn Sie sich eine virtuelle Maschine vorbereiten möchten, benötigen Sie zusä
 Wenn Sie sich bereits eine geeignete Umgebung geschaffen haben, um die Werkzeuge sowie die IsyFact-Bibliotheken zu installieren, können Sie die Vorbereitung einer virtuellen Maschine überspringen und direkt mit dem Kapitel <<werkzeuge-installieren>> beginnen.
 
 [[virtuelle-maschine-vorbereiten]]
-== Virtuelle Maschine vorbereiten
+= Virtuelle Maschine vorbereiten
 
 In diesem Kapitel bereiten Sie eine virtuelle Maschine (VM) vor, auf der Sie später die IsyFact-Entwicklungsumgebung installieren werden.
 
@@ -66,7 +66,8 @@ image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=60%,pdfwidt
 
 Klicken Sie auf Weiter.
 Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen.
-Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox in das Verzeichnis der virtuellen Maschine speichert. Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen, um dort später das Ubuntu Betriebssystem zu installieren.
+Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox in das Verzeichnis der virtuellen Maschine speichert.
+Über die Option "Festplatte erzeugen" würden Sie diese Datei normalerweise ganz neu anlegen, um dort später das Ubuntu Betriebssystem zu installieren.
 Statt die Festplatte und das darin zu installierende Betriebssystem von Hand zu installieren, beschreibt diese Anleitung eine Abkürzung.
 Die Webseite https://www.osboxes.org bietet virtuelle Festplatten mit vorinstallierten Betriebssystemen an.
 Dieser Leitfaden benutzt die Desktop-Edition von Ubuntu.
@@ -136,7 +137,7 @@ Bestätigen Sie die Änderungen mit einem Klick auf OK.
 
 Danach starten Sie die virtuelle Maschine mit einem Doppelklick auf die neu erstellte Instanz.
 
-=== Ubuntu
+== Ubuntu
 
 Starten Sie Ihre virtuelle Maschine und melden Sie sich an:
 
@@ -177,7 +178,7 @@ Klicken Sie links oben auf "Activities" oder benutzen Sie die Windows-Taste oder
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_05.png[align="center",width=60%,pdfwidth=70%]
 
-=== Die Gasterweiterungen
+== Die Gasterweiterungen
 
 Oracle VirtualBox bietet Gasterweiterungen an, welche die Performanz des Gastsystems verbessert.
 Ein weiteres Feature ist, dass sich der Bildschirm beliebig skalieren lässt.
@@ -215,11 +216,11 @@ Ihre virtuelle Maschine ist nun einsatzbereit.
 
 
 [[werkzeuge-installieren]]
-== Werkzeuge installieren
+= Werkzeuge installieren
 
 Als Nächstes benötigt Ihre Entwicklungsumgebung ein JDK, Git, Maven und eine Entwicklungsumgebung (in diesem Fall das Eclipse Derivat Spring Source Tool Suite (STS)).
 
-===	JDK
+==	JDK
 
 Auf der Kommandozeile installieren Sie mit folgender Anweisung das JDK:
 
@@ -234,13 +235,11 @@ In der Datei `.bashrc` fügen Sie die Umgebungsvariable `JAVA_HOME` hinzu und er
  export PATH
 
 
-===	Git
+==	Git
 
 Danach installieren Sie Git mit folgender Anweisung:
 
  sudo apt-get install git
-
-==== Git Konfiguration
 
 Auf der Kommandozeile wird Git über den Aufruf des Kommandos `git` gesteuert.
 Das `git`-Kommando kennt eine Reihe von Optionsparametern.
@@ -278,14 +277,14 @@ Beispielsweise beschaffen Sie sich die Hilfestellung zum Optionsparameter `confi
 
  git help config.
 
-===	Maven
+==	Maven
 
 IsyFact besteht aus zahlreichen Maven-Projekten. Ubuntu bietet von Haus aus ein eigenes
 Maven Paket an, das über folgendes Kommando intalliert wird:
 
  sudo apt-get install maven
 
-===	Spring Tool Suite (STS)
+==	Spring Tool Suite (STS)
 
 Im nächsten Schritt installieren Sie die integrierte Entwicklungsumgebung Spring Tool Suite (STS).
 Auf der Webseite https://spring.io/tools/sts/all bietet der Hersteller diesbezüglich eine Reihe von Download-Links an.
@@ -330,7 +329,7 @@ Außerdem wird STS nun auch in der "Activities Overview" angezeigt.
 image::leitfaden_entwicklungsumgebung_werkzeuge_sts_overview.png[align="center",width=70%,pdfwidth=100%]
 
 [[apache-tomcat]]
-=== Apache Tomcat
+== Apache Tomcat
 
 Bei einer IsyFact-Anwendung handelt es sich um eine Webanwendung, die genauso wie andere JavaEE-basierte Webanwendungen in einem Servlet-Container betrieben wird.
 Der gängigste Web Container hierfür ist Catalina bzw. das Produkt Apache Tomcat, das den Catalina Web Container integriert.
@@ -380,15 +379,11 @@ image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04.png[align="cent
 
 Klicken Sie auf "Apply and Close".
 
+= IDE einrichten
+Die nachfolgenden Abschnitte zeigen Ihnen, wie Sie Ihre IDE nach den Maßgaben der IsyFact einrichten.
 
 [[formatierung-von-quellcode]]
 == Formatierung von Quellcode
-
-[[konfiguration]]
-=== Konfiguration
-
-[[konfiguration-des-formatierungsstils]]
-==== Konfiguration des Formatierungsstils
 
 Die Code-Formatierungsregeln sind bei beiden IDEs (Eclipse und IntelliJ IDEA) über Konfigurationsmasken individuell einstellbar.
 Es besteht die Möglichkeit, die Formatierungsregeln als XML-Datei abzuspeichern bzw.
@@ -400,7 +395,7 @@ Zu den Formatierungskonfigurationsmasken gelangt man über folgende Menüeinträ
 * *IntelliJ IDEA:* menu:File[Settings > Editor > Code Style > Java]
 
 [[tastaturkuerzel-codeformatierung]]
-==== Tastaturkürzel Codeformatierung
+=== Tastaturkürzel Codeformatierung
 
 Wenn man sich innerhalb eines Codefensters befindet, kann man mit folgenden Tastaturkürzeln die Code-Formatierung anstoßen.
 
@@ -408,12 +403,12 @@ Wenn man sich innerhalb eines Codefensters befindet, kann man mit folgenden Tast
 * *IntelliJ IDEA:* kbd:[Strg + Alt + L]
 
 [[import-von-code-style-formatierungsdateien]]
-==== Import von Code Style Formatierungsdateien
+=== Import von Code Style Formatierungsdateien
 
 Dieses Kapitel erläutert den Import der Konfiguration zur Quellcode-Formatierung für die Entwicklungsumgebungen Eclipse und IntelliJ IDEA.
 
 [[intellij-idea-1]]
-===== IntelliJ IDEA
+==== IntelliJ IDEA
 
 NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren auf der IntelliJ IDEA Version 2017.2.
 
@@ -436,7 +431,7 @@ NOTE: Der Name der Datei kann vom Namen des Scheme abweichen.
 Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
 
 [[eclipse-code-formatter]]
-===== Eclipse
+==== Eclipse
 
 NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren auf der Eclipse Version __Neon__.
 
@@ -680,7 +675,7 @@ image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
 * Das Checkstyle-Fenster kann anschließend über eine Schaltfläche in den _Tool Buttons_ angezeigt werden
 
 [[isyfact-bibliotheken-installieren]]
-== IsyFact-Bibliotheken installieren
+= IsyFact-Bibliotheken installieren
 
 In diesem Abschnitt wird gezeigt, wie Sie das IsyFact-Framework in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
 einer neuen Anwendung vorbereiten.
@@ -689,7 +684,7 @@ TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die 
 GitHub-Repositories lautet: https://github.com/isyfact.
 
 [[isyfact-standards]]
-=== isyfact-standards
+== isyfact-standards
 
 Sie benötigen in jedem Fall Bibliotheken der IsyFact-Standards.
 Alle Bibliotheken der IsyFact-Standards liegen im gleichnamigen Repository `isyfact-standards`.
@@ -729,7 +724,7 @@ Hier sollte jetzt im Package-Explorer das Maven-Projekt `isyfact-standards` zu s
 
 Zum erstmaligen Bau und Installation in Ihrem lokalen Maven-Repository klicken Sie mit der rechten Maustaste auf das Repository und führen die Aktion menu:Run As[Maven Install] aus.
 
-=== isyfact-bom
+== isyfact-bom
 
 Als Nächstes beschaffen Sie sich das GitHub-Repository `isyfact-bom`.
 Das BOM enthält neben den Bibliotheken der IsyFact-Standards weitere Abhängigkeiten der IsyFact.
@@ -766,7 +761,7 @@ image::leitfaden_entwicklungsumgebung_bibliotheken_23.png[align="center"]
 
 Zuletzt führen Sie im Projekt `isyfact-bom` die Aktion menu:Run As[Maven Install] durch.
 
-=== isyfact-projektgenerator
+== isyfact-projektgenerator
 
 Zuletzt muss auch noch das GitHub-Repository des Projekt-Generators beschafft werden, mit Sie später die Hello-World-Anwendung erzeugen werden.
 Wechseln Sie wiederum zur Perspektive Git und klonen Sie das Projekt `isyfact-projektgenerator`.
@@ -786,7 +781,7 @@ image::leitfaden_entwicklungsumgebung_bibliotheken_30.png[align="center"]
 Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie abermals die Aktion menu:Run As[Maven Install] aus.
 
 [[hello-world-anwendung-generieren]]
-== Hello-World-Anwendung generieren
+= Hello-World-Anwendung generieren
 
 In diesem Abschnitt wird die Generierung der IsyFact-konformen Hello-World-Anwendung gezeigt.
 
