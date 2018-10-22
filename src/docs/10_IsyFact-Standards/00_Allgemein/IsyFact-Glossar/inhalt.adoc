@@ -74,7 +74,7 @@ eine Anwendungslandschaft enthält <<anwendungsdomaene,Anwendungsdomänen>>, die
 Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungs­systemen ist in der Regel eine hohe Interaktion zu erwarten.
 
 |[[anwendungslandschaft-isyfact,Anwendungslandschaft (IsyFact)]]Anwendungslandschaft (IsyFact)
-|Die Anwendungslandschaft der <<isyfact>> besteht aus <<anwendungsdomaene,Anwendungsdomänen>>, einem <<portal>> und einem <<servive-gateway>>. 
+|Die Anwendungslandschaft der <<isyfact>> besteht aus <<anwendungsdomaene,Anwendungsdomänen>>, einem <<portal>> und einem <<service-gateway>>.
 Eine <<anwendungsdomaene>> wiederum besteht aus <<fachanwendung,Fach­anwendungen>> und <<querschnittssystem,Querschnittssystemen>> 
 
 [id="image-glossar-4",reftext="{figure-caption} {counter:figures}"]
@@ -87,7 +87,7 @@ NOTE: TODO siehe PPT Änderungen des Bildes
 |Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es besteht aus <<ank,Anwendungskomponenten>> und <<querschnittskomponente,Querschnittskomponenten>>.
 Anwendungssysteme unterstützen Geschäftsprozesse.
-Stellt ein Anwendungssystem eine Fachlogik da, so handelt es sich um eine <<fachanwendung>>.
+Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine <<fachanwendung>>.
 Ein Anwendungssystem ist Bestandteil der <<a-architektur>>.
 Aus Sicht der <<t-architektur>> bildet ein <<it-system>> die software-technische Umsetzung eines Anwendungssystems ab.
 
@@ -113,7 +113,7 @@ NOTE: iSAQB = international Software Architecture Qualification Board
 |Im Kontext der Auslieferung von sowohl <<open-source-release,Open Source Releases>> als auch <<closed-source-release,Closed Source Releases>> wird Software (Bibliotheken sowie <<anwendungssystem,Anwendungssysteme>>) und die dazugehörige <<dokumentation>> ausgeliefert. Die entwickelte Software wird auf einer Betriebsumgebung (<<plattform>>) installiert. 
 Zu jeder Auslieferung gibt es ein <<changelog>>.
 
-NOTE: Beachte den etwas anderes definierenden Begriff der <lieferung>> aus dem V-Modell-XT.
+NOTE: Beachte den etwas anderes definierenden Begriff der <<lieferung>> aus dem V-Modell-XT.
 
 |[[basisdienst,Basisdienst]]Basisdienst
 |Ein Basisdienst ist ein Dienst, der eine gemeinsame, übergreifende Grundlage für andere, darauf aufbauende Dienste (Fach- und Querschnittsdienste) bildet. 
@@ -122,7 +122,7 @@ Der Basisdienst ist keiner einzelnen fachlichen Aufgabe direkt zugeordnet.
 |[[batch,Batch]]Batch
 |Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
 Der Nutzer kann die Batchlogik in vorbereitete Strukturen implementieren, die <<isyfact>> stellt einen fertigen Batchrahmen zur Verfügung.
-Die automatisiert ablaufende Stapelverarbeitung kann dabei <<anwendungen>> aus dem <<awk>> aufrufen und nutzen.
+Die Batches können dabei den <<awk>> aufrufen und nutzen.
 
 |[[baustein,Baustein]]Baustein
 |Wiederverwendbare Umsetzung einer spezifischen Problemlösung. 
@@ -131,7 +131,7 @@ Umfasst mindestens eine <<bibliothek>> oder ein <<anwendungssystem>> inklusive d
 
 Beispiel: Logging, Sicherheit, Überwachung
 
-NOTE: Da zwischen einem logischen Baustein und einem <<anwendungssystem>> eine N:M Beziehung besteht (siehe <<image-glossar-1>>), kann es auch vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
+NOTE: Da zwischen einem logischen Baustein und einem <<anwendungssystem>> eine N:M Beziehung besteht, kann es vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
 
 |[[bibliothek,Bibliothek]]Bibliothek
 |Kleinste auslieferbare Einheit von thematisch zusammengehörenden Funktionen.
@@ -151,7 +151,8 @@ NOTE: Für jeden Anwendungstyp ist ein Satz von Blaupausen notwendig.
 |[[changelog,Change Log]]Change Log
 |Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit <<release,Releases>>) zuordnet. 
 Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen in eine <<bibliothek>> integrieren. 
-Pro <<bibliothek>> und <<anwendungssystem>> existiert ein Change Log:
+Pro <<bibliothek>> und <<anwendungssystem>> existiert ein Change Log.
+Es enthält:
 
 * Inhalt und Version der Software in Form einer Stückliste,
 * bekannte Fehler und Probleme der Software,
@@ -206,7 +207,7 @@ Im Rahmen der <<isyfact>> werden Teile der <<ife>> als Einer-für-Alle-System an
 |[[fachanwendung,Fachanwendung]]Fachanwendung
 |Eine Fachanwendung ist ein <<anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<anwendungsdomaene>> spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die Basis-Dienste von <Querschnittsanwendung,Querschnittsanwendungen>> oder andere <<anwendungssystem,Anwendungssysteme>> nutzen.
+Dabei kann sie die Basisdienste von <<querschnittsanwendung,Querschnittsanwendungen>> oder andere <<anwendungssystem,Anwendungssysteme>> nutzen.
 
 Quelle: <<IsyFact-Referenzarchitektur>> (Kapitel 4.1)
 
@@ -313,7 +314,7 @@ Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 |Zentraler Zugangspunkt zu den <<fachanwendung,Fachanwendungen>> einer <<anwendungslandschaft>>. 
 Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle <<fachanwendung,Fachanwendungen>>.
 
-|Querschnittsanwendung
+|[[querschnittsanwendung,Querschnittsanwendung]]Querschnittsanwendung
 |Synonym für <<querschnittssystem>>. Der Begriff sollte nicht mehr verwendet werden.
 
 |[[querschnittsdienst,Querschnittsdienst]]Querschnittsdienst
