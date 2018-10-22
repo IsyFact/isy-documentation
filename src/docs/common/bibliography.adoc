@@ -40,6 +40,10 @@
 - [[[ProduktKatalog]]] +
   IsyFact Produktkatalog +
   00_Allgemein\Produktkatalog_IsyFact.xlsx
+  
+- [[[Aenderungshistorie]]] +
+  IsyFact Änderungshistorie +
+  00_Allgemein\Aenderungshistorie.xlsx
 
 - [[[DetailkonzeptKomponenteAnwendungskern]]] +
   Detailkonzept der Komponente Anwendungskern +
