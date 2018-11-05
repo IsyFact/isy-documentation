@@ -7,3 +7,4 @@
 - `IFS-196`: "Leitfaden Entwicklungsumgebung" aufgelöst, Inhalte in "Einrichtung Entwicklungsumgebung" migriert
 - `IFS-205`: Dokumentation zu horizontaler Navigation hinzugefügt
 - `IFS-218`: Hinweise zu DSGVO-Markern für das Logging hinzugefügt
+- `IFS-269`: Einrichtung Entwicklungsumgebung: Gliederungsebenen korrigiert
