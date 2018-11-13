@@ -41,6 +41,9 @@ Der Zugriff auf Redis wird in der Regel nicht abgesichert, so dass der Parameter
 m|.maxredirects |Integer |3 |Anzahl der maximalen Redirects im Cluster.
 m|.convertpipelineandtxresults |Boolean |true |Konvertierung der Ergebnisse des Redis-Treibers auf den erwarteten Datentyp.
 m|.timeout |Long |2000 |Timeout für den Zugriff auf Redis in Millisekunden.
+m|session.cams.sessionid.header.name|String |keiner |Aktiviert die Verwendung der CAMS-Session-ID als Schlüssel für die Session.
+                                                     Der Wert ist der Name des HTTP-Headers, der die CAMS-Session-ID enthält.
+                                                     *Achtung: Der Präfix des Parameters ist nicht `session.redis`.*
 4+|*Optionale Parameter bei Verwendung von Jedis*
 m|.usepool |Boolean |true |Verwendung eines Connection-Pools.
 4+|*Optionale Parameter bei Verwendung von Lettuce*
@@ -97,6 +100,10 @@ session.redis.timeout=2000
 # Angabe, wann die Session an Redis übermittelt wird.
 # Wertebereich: ON_SAVE,IMMEDIATE.Default: SAVE
 session.redis.flushmode=ON_SAVE
+
+# Aktiviert die Verwendung der CAMS-Session-ID als Schlüssel für die Session
+# Wertebereich: String; Der Name des HTTP-Headers, der die CAMS-Session-ID enthält
+# session.cams.sessionid.header.name=CAMS-HTTP-SESSION-ID
 
 # ---
 # --- JEDIS-SPEZIFISCHE PARAMETER
