@@ -3621,6 +3621,14 @@ Die Fehlerbehandlung wird in der Spring Konfiguration konfiguriert:
 </bean>
 ----
 
+=== Behandlung von OptimisticLockExceptions
+
+Für Die Behandlung einer `OptimisticLockException` innerhalb der Anwendung ist ein spezieller Handler eingerichtet.
+Beim Auftreten einer `OptimisticLockException` wird eine gesonderte Fehlermeldung ausgegeben, die auf einen konkurrierenden Zugriff hinweist.
+Zusätzlich wechselt der Handler in den Zustand `abbrechenEndState` des aktiven Flows, wenn dieser vorhanden ist.
+Sonst wird in den allgemeinen Fehlerzustand (`fehler`) gewechselt.
+
+
 [[behandlung-von-exceptions-innerhalb-des-clients]]
 === Behandlung von Exceptions innerhalb des Clients
 
@@ -3746,6 +3754,67 @@ Dieser bietet die Möglichkeit Binärdaten entgegenzunehmen und einen Cleanup-Ti
 automatisch wieder aufräumt.
 Somit ist keine Verwendung von Datenbankmitteln notwendig.
 
+[[dynamische-downloads]]
+== Dynamische Downloads
+
+JSF ermöglicht über das Element `<outputlink/>` den Download von statischen Dateien.
+Der Download bzw. das Streaming von dynamisch generierten Dokumenten wird nicht von Haus aus unterstützt.
+Diese Funktionalität wird in der Bibliothek `isy-web` durch die Klasse `DownloadHelper` implementiert.
+Unterstützt wird der Download einzelner Dateien (<<listing-dynamischerDownload>>) und der Download mehrerer Dateien, die in einer ZIP-Datei zusammengefasst werden (<<listing-dynamischerDownloadZip>>).
+
+:desc-listing-dynamischerDownload: Download von dynamische generierten Dateien
+[id="listing-dynamischerDownload",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-dynamischerDownload}
+[source,java]
+----
+...
+private DownloadHelper downloadHelper;
+...
+public void download() {
+    DokumentDatenModel dokumentDatenModel = new DokumentDatenModel();
+    dokumentDatenModel.setInhalt(new byte[] {'T', 'e', 's', 't'});
+    dokumentDatenModel.setDateiname("Test");
+    dokumentDatenModel.setDateityp(DateitypEnum.TXT);
+
+    downloadHelper.starteDownload(dokumentDatenModel);
+}
+----
+
+:desc-listing-dynamischerDownloadZip: Download von dynamische generierten Dateien als ZIP-Datei
+[id="listing-dynamischerDownloadZip",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-dynamischerDownloadZip}
+[source,java]
+----
+...
+private DownloadHelper downloadHelper;
+...
+public void downloadZip() {
+    FileModel datei1 = new FileModel();
+    datei1.setInhalt(new byte[] {'T', 'e', 's', 't', '1'});
+    datei1.setDateiname("Test1.txt");
+    datei1.setMimeType(DateitypEnum.TXT.getMimeType());
+
+    FileModel datei2 = new FileModel();
+    datei2.setInhalt(new byte[] {'T', 'e', 's', 't', '2'});
+    datei2.setDateiname("Test2.txt");
+    datei2.setMimeType(DateitypEnum.TXT.getMimeType());
+
+    downloadHelper.downloadZipFileByModel("Test.zip", datei1, datei2);
+}
+----
+
+Um den `DownloadHelper` zu verwenden, müssen die Beans aus <<listing-downloadHelperBean>> konfiguriert werden.
+Die Einbindung erfolgt dann per Depedency Injection z.B. in einem Controller.
+
+:desc-listing-downloadHelperBean: Konfiguration DownloadHelper als Bean
+[id="listing-downloadHelperBean",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-downloadHelperBean}
+[source,xml]
+----
+<bean id="zipHelper" class="de.bund.bva.isyfact.common.web.filetransfer.ZipHelper"/>
+
+<bean id="downloadHelper" class="de.bund.bva.isyfact.common.web.filetransfer.DownloadHelper"/>
+----
 
 [[konfiguration]]
 = Konfiguration
