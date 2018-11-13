@@ -3621,6 +3621,14 @@ Die Fehlerbehandlung wird in der Spring Konfiguration konfiguriert:
 </bean>
 ----
 
+=== Behandlung von OptimisticLockExceptions
+
+Für Die Behandlung einer `OptimisticLockException` innerhalb der Anwendung ist ein spezieller Handler eingerichtet.
+Beim Auftreten einer `OptimisticLockException` wird eine gesonderte Fehlermeldung ausgegeben, die auf einen konkurrierenden Zugriff hinweist.
+Zusätzlich wechselt der Handler in den Zustand `abbrechenEndState` des aktiven Flows, wenn dieser vorhanden ist.
+Sonst wird in den allgemeinen Fehlerzustand (`fehler`) gewechselt.
+
+
 [[behandlung-von-exceptions-innerhalb-des-clients]]
 === Behandlung von Exceptions innerhalb des Clients
 
