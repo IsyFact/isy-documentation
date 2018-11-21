@@ -1,6 +1,7 @@
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
 - `IFS-150`: OptimisticLockHandler beschrieben
+- `IFS-159`: Vorhalten von Skripten zum Aktualisieren von DB-Schemas konkretisiert 
 - `IFS-177`: Betriebliche Behandlung von Batch-Logs
 - `IFS-179`: Konzept "Grundlagen der internen Servicekommunikation" um Queue-Überwachung erweitert
 - `IFS-187`: Überführung technischer Anteile aus Styleguide in Detailkonzept Web-GUI
