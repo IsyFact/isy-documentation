@@ -12,7 +12,6 @@ Definitionen der Abbildungsbeschriftungen hier sammeln, da sie nur innerhalb der
 :desc-image-SoftwareFactory: Software Factory
 :desc-image-glossar-1: Bibliothek
 :desc-image-glossar-3: Anwendungskern
-:desc-image-glossar-2: Service der Isyfact
 
 :desc-table-Glossar: Begriffsklärungen
 [id="table-Glossar",reftext="{table-caption} {counter:tables}"]
@@ -330,15 +329,11 @@ Releaseletter werden durch <<changelog,Change Logs>> ersetzt.
 ====
 
 |[[service,Service]]Service
-|Im Sinne der Architektur der <<isyfact>> werden externe Dienste über <<service-gateway,Service-Gateways>> als externer Service im <<awk>> aufrufbar.
-Ist eine spezielle Servicelogik zu implementieren, stellt <<isyfact>> dafür eine fertige Struktur bereit.
-
-[id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-AufbauServLogik}
-image::AufbauServLogik.png[align="center"]
+|Technische Komponente (und damit Teil der <<t-architektur>>), über die andere Anwendungen innerhalb einer Anwendungslandschaft auf die Funktionalität des Anwendungskerns eines IT-Systems zugreifen.
+Zugriffe von außerhalb der Anwendungslandschaft laufen zusätzlich über ein <<service-gateway>>.
 
 |[[service-gateway,Service-Gateway]]Service-Gateway
-|Stellt die Verbindung zwischen einem extern und einem internen Dienst durch eine Schnittstelle zur Verfügung.
+|Stellt die Verbindung zwischen einem externen und einem internen Dienst durch eine Schnittstelle zur Verfügung.
 
 |[[software-factory,Software Factory]]Software Factory (SF)
 |Eine Software Factory ist eine Sammlung von <<blaupause,Blaupausen>>, <<baustein,Bau­steinen>>, einer <<plattform,Plattform>>, <<methodik,Methodik>> und <<werkzeug,Werkzeugen>>, die es erlaubt, durch Wiederverwendung <<fachanwendung,Anwendungen>> weitestgehend standardisiert zu entwickeln.
