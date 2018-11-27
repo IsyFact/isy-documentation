@@ -227,8 +227,23 @@ Hier werden alle Konfigurationen eingetragen, die diese eine Komponente betreffe
 Konfigurationen, die die gesamte Anwendung betreffen werden ebenfalls in einer oder mehreren Konfigurationsdateien abgelegt.
 Dabei sollen logisch zusammengehörende Konfigurationen auch in einer Datei abgelegt werden.
 
-Für die gesamte Anwendung wird eine Konfigurationsdatei application.xml erstellt, die nur alle von der Anwendung
-benötigten Konfigurationsdateien über `import`-Tags zusammenfasst.
+Für die gesamte Anwendung wird eine Konfigurationsdatei `application.xml` erstellt, die nur alle von der Anwendung benötigten Konfigurationsdateien über `import`-Tags zusammenfasst.
+
+:desc-listing-applicationXml: Beispiel für application.xml
+[id="listing-applicationXml",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-applicationXml}
+[source, xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans">
+
+    <import resource="spring-context.xml" />
+    <import resource="persistence/jpa.xml" />
+    <import resource="awk/fachkomponente.xml" />
+    ...
+
+</beans>
+----
 
 [[konfigurationsparameter-ueber-property-objekte-konfigurieren]]
 ==== Konfigurationsparameter über Property-Objekte konfigurieren

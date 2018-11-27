@@ -1,16 +1,13 @@
 // ASCIIDOC Attribute
-//include::../../../common/isyfact-attributes.adoc[]
-include::../common/isyfact-attributes.adoc[]
-//include::../../../common/attributes.adoc[]
-include::../common/attributes.adoc[]
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
 //
 :doctitle: Nutzungsvorgaben Redis
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
-//include::../../../common/colophon.adoc[]
-include::../common/colophon.adoc[]
+include::../../../common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
@@ -34,6 +31,9 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Anhänge
+include::anhaenge.adoc[leveloffset=1]
+
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
@@ -46,7 +46,6 @@ include::listoflistings.adoc[]
 include::glossary.adoc[]
 // Index
 //include::../../../common/index.adoc[]
-include::../common/index.adoc[]
+//include::../../../common/index.adoc[]
 
-// Anhänge
-include::anhaenge.adoc[leveloffset=1]
+

@@ -1319,13 +1319,12 @@ Die Methode `speichereBestand(Bestand)` wurde entfernt.
 
 Die Struktur der Daten, die von einer Anwendung dauerhaft gespeichert werden, kann sich im Laufe des Lebenszyklus der Anwendung ändern.
 Das bedeutet, dass sich neben der Anwendung auch das Datenbankschema ändert.
-Die Anwendung und das Datenbank Schema müssen zueinander passen.
+Die Anwendung und das Datenbankschema müssen zueinander passen.
 
 Die Verwaltung von Versionsinformationen für ein Datenbankschema innerhalb der Datenbank soll sicherstellen, dass die Anwendung und Datenmigrationsskripte erkennen können, ob ein Datenbankschema die erwartete Version hat.
 Zusätzlich sollen die Datenbankadministratoren nachvollziehen können, welche Änderungen am Datenbankschema bereits erfolgt sind.
 
-Die Versionsnummer eines Datenbankschemas ist gleich der Versionsnummer der Anwendung, mit der das Schema angelegt bzw.
-zuletzt geändert wurde.
+Die Versionsnummer eines Datenbankschemas ist gleich der Versionsnummer der Anwendung, mit der das Schema angelegt bzw. zuletzt geändert wurde.
 Damit ist auf einen Blick zu erkennen, welche Versionsnummer eine Anwendung mindestens haben muss, um mit dem Schema zusammenarbeiten zu können.
 
 Wird nur eine Anwendung geändert, das Datenbankschema aber nicht, so bleibt die Versionsnummer des Datenbankschemas sowohl in der Anwendung als auch in den Datenbank-Skripten unverändert.
@@ -1401,8 +1400,8 @@ Status der Skriptausführung:
 Die Neuinstallation eines Datenbankschemas erfolgt in mehreren Schritten, die jeweils aufeinander aufbauen.
 Für die automatisierte Installation werden diese Schritte von einem Datenbankskript nacheinander durchgeführt.
 
-**Schritt 1: Umgebungsvariablen laden +
-**Für Testzwecke ist es erforderlich, Datenbankschemas in unterschiedlichen Umgebungen zu installieren.
+*Schritt 1: Umgebungsvariablen laden* +
+Für Testzwecke ist es erforderlich, Datenbankschemas in unterschiedlichen Umgebungen zu installieren.
 Umgebungsspezifische Konfigurationsparameter, wie z.B. der Schemaname oder die Angaben zur Datenbankverbindung werden in einem eigenen Datenbankskript abgelegt, das Umgebungsvariablen mit den entsprechenden Werten setzt.
 Die übrigen Installationsschritte verwenden dann diese Variablen.
 
@@ -1414,16 +1413,16 @@ Anlegen aller Datenbankbenutzer einschließlich ihrer Rollen und Berechtigungen.
 Mit diesen Benutzern werden die anwendungs­spezifischen Datenbankobjekte angelegt.
 Es müssen daher alle hierfür benötigten Rechte für die Dauer der Installation gesetzt werden.
 
-**Schritt 4: Erzeugen der anwendungsspezifischen Datenbankobjekte +
-**Es werden alle Tabellen, Indexe, Views, Prozeduren und Funktionen für die Anwendung angelegt.
+*Schritt 4: Erzeugen der anwendungsspezifischen Datenbankobjekte* +
+Es werden alle Tabellen, Indexe, Views, Prozeduren und Funktionen für die Anwendung angelegt.
 Weiterhin werden benötigte spezielle Datenbankobjekte, z.B. für das Oracle-Advanced-Queuing angelegt.
 Die anwendungsspezifischen Datenbankobjekte werden mit den in Schritt 3 angelegten Benutzern erstellt.
 
-**Schritt 5: Abschlussbearbeitung +
-**In diesem Schritt können alle Operationen ausgeführt werden, die sich auf die bisher angelegten Datenbankobjekte beziehen.
+*Schritt 5: Abschlussbearbeitung* +
+In diesem Schritt können alle Operationen ausgeführt werden, die sich auf die bisher angelegten Datenbankobjekte beziehen.
 
-**Schritt 6: Rechte entziehen +
-**Falls den Benutzern im Schritt 3 Rechte zugewiesen wurden, die nur für die Installation benötigt wurden, werden sie in diesem Schritt wieder entzogen.
+*Schritt 6: Rechte entziehen* +
+Falls den Benutzern im Schritt 3 Rechte zugewiesen wurden, die nur für die Installation benötigt wurden, werden sie in diesem Schritt wieder entzogen.
 
 Die nachfolgende Abbildung zeigt noch einmal die einzelnen Schritte der Installation.
 
@@ -1435,12 +1434,8 @@ image::instbeineuan.png[align="center"]
 [[struktur-der-installationsskripte-fuer-die-neuanlage]]
 === Struktur der Installationsskripte für die Neuanlage
 
-// vor 10.2.1 s 45  z 1845
-
 Für die automatisierte Installation wird eine Strukturierung der Installationsskripte festgelegt.
 Es existieren folgende Aufrufbeziehungen:
-
-// hmmm.. sind wir nicht NUR unter Linux?
 
 *Shell-Skripte:* Über die Shell-Skripte `install-db-schema.bat` (Windows) bzw.
 `install-db-schema.sh` (Linux) wird das SQL-Skript `00_install-main.sql` aufgerufen.
@@ -1455,11 +1450,9 @@ Versionstabelle korrekt.
 Als Parameter werden der Pfad des Skripts, die Schnittnummer inklusiv der Unterschrittnummer
 und die Beschreibung mit übergeben.
 
-*<Installationsskript>.sql:* Die eigentlichen Installationsskripte haben das feste Namensschema: +
-`<Schrittnummer>-<Unterschrittnummer>_<Name>.sql` +
-Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus
-Kapitel <<installationsablauf-bei-der-neuanlage>> Falls zu
-einem Schritt mehrere Skripte gehören, gibt die Unterschrittnummer die Reihenfolge an, in der diese ausgeführt werden.
+*<Installationsskript>.sql:* Die eigentlichen Installationsskripte haben das feste Namensschema: `<Schrittnummer>-<Unterschrittnummer>_<Name>.sql`.
+Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus Kapitel <<installationsablauf-bei-der-neuanlage>>.
+Falls zu einem Schritt mehrere Skripte gehören, gibt die Unterschrittnummer die Reihenfolge an, in der diese ausgeführt werden.
 Der Name kann frei vergeben werden, sollte aber sprechend sein.
 
 Die nachfolgende Abbildung zeigt noch einmal die Beziehung zwischen den einzelnen Skripten.
@@ -1474,28 +1467,26 @@ Templates für die Skripte sind als Ressourcen in der Bibliothek `isy-persistenc
 [[installationsablauf-bei-der-schemaaenderung]]
 == Installationsablauf bei der Schemaänderung
 
-//10.3 z1892
-
 Die Änderung eines Datenbankschemas erfolgt analog zur Neuanlage ebenfalls in mehreren Schritten, die jeweils aufeinander aufbauen.
 Für die automatisierte Änderung werden diese Schritte von einem Datenbankskript nacheinander durchgeführt.
 
-**Schritt 1: Umgebungsvariablen laden +
-**Dieser Schritt unterscheidet sich nicht von der Neuanlage.
+*Schritt 1: Umgebungsvariablen laden* +
+Dieser Schritt unterscheidet sich nicht von der Neuanlage.
 Je nach Art der durchzuführenden Änderung kann es aber erforderlich sein, hier weitere Variablen zu setzen.
 
 *Schritt 2: Rechte setzen* +
 Falls erforderlich, werden für den Benutzer, mit dem die Änderungen durchgeführt werden sollen, alle für die Änderung des Datenbankschemas benötigten Berechtigungen gesetzt.
 
-**Schritt 3: Durchführen der Schemaänderungen +
-**Es werden alle Änderungen am Datenbankschema vorgenommen.
+*Schritt 3: Durchführen der Schemaänderungen* +
+Es werden alle Änderungen am Datenbankschema vorgenommen.
 Das umfasst sowohl das Anlegen neuer Datenbankobjekte, wie z.B. Tabellen, Views und Indexe, als auch die Änderung bereits vorhandener Datenbankobjekte, wie z.B. das Löschen und Hinzufügen von Spalten in Tabellen.
 Die Änderungen werden mit dem Benutzer durchgeführt, für den in Schritt 2 die Berechtigungen entsprechend gesetzt wurden.
 
-**Schritt 4: Abschlussbearbeitung +
-**In diesem Schritt können alle Operationen ausgeführt werden, die sich auf die bisher angelegten Datenbankobjekte beziehen.
+*Schritt 4: Abschlussbearbeitung* +
+In diesem Schritt können alle Operationen ausgeführt werden, die sich auf die bisher angelegten Datenbankobjekte beziehen.
 
-**Schritt 5: Rechte entziehen +
-**Falls in Schritt 2 für Benutzer Rechte gesetzt wurden, die nur für die Durchführung der Änderungen benötigt wurden, werden sie in diesem Schritt wieder entzogen.
+*Schritt 5: Rechte entziehen* +
+Falls in Schritt 2 für Benutzer Rechte gesetzt wurden, die nur für die Durchführung der Änderungen benötigt wurden, werden sie in diesem Schritt wieder entzogen.
 
 Die nachfolgende Abbildung zeigt noch einmal die einzelnen Schritte der Installation.
 
@@ -1541,53 +1532,43 @@ Templates für die Skripte sind als Ressourcen in der Bibliothek `isy-persistenc
 [[ablage-der-skripte-und-namenskonventionen]]
 == Ablage der Skripte und Namenskonventionen
 
-Die Skripte werden im Source-Projekt der Anwendung abgelegt, zu der sie gehören und zwar im
-Verzeichnis „src/main/skripte/sql/[dbschema-name]“. In diesem Verzeichnis werden das
-Unterverzeichnis „db-install-<Versionsnummer>“ für Installationsskripte und das Unterverzeichnis db-update-<Versionsnummer> für die Updateskripte angelegt.
+Die Skripte werden im Source-Projekt der Anwendung, zu der sie gehören, im Verzeichnis `src/main/skripte/sql/<dbschema-name>` abgelegt.
+In diesem Verzeichnis liegen die Unterverzeichnisse `db-install-<Versionsnummer>` für Installationsskripte und `db-update-<Versionsnummer>` für Updateskripte.
+`<Versionsnummer>` gibt dabei die Versionsnummer des Datenbankschemas einschließlich der Update-Nummer an, z.B. `1.2.3_01`.
 
-<Versionsnummer> gibt dabei die Versionsnummer des Datenbankschemas einschließlich der
-Update-Nummer an, z.B. 1.2.3_01.
-
-Für jede Datenbankversion muss es ein vollständiges Installationsskript geben.
-Wurden Änderungen am Schema vorgenommen, gibt es zusätzlich ein entsprechendes Update-Skript von der Vorversion.
+Für die aktuelle Datenbankversion muss es ein vollständiges Installationsskript geben.
+Wurden Änderungen am Schema vorgenommen, gibt es zusätzlich ein entsprechendes Update-Skript von der Vorversion auf die aktuelle Version.
+Das Verzeichnis enthält so immer das Installationsskript für die aktuelle Datenbankversion und Update-Skripte, um jede belieblige Vorversion seit Einführung der Schemaversionierung auf die aktuelle Datenbankversion anheben zu können.
 
 Die einzelnen Skripte werden auf der Grundlage der Templates aus der Bibliothek `isy-persistence` erstellt und behalten auch deren Namen.
 
-Die eigentlichen Installations- und Update-Skripte haben das feste Namensschema: +
-`<Schrittnummer>-<Unterschrittnummer>_<Name>.sql` +
-Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus
-Kapitel <<installationsablauf-bei-der-neuanlage>> bzw.
-<<installationsablauf-bei-der-schemaaenderung>>. Falls zu einem Schritt mehrere Skripte gehören, gibt die
-Unterschrittnummer die Reihenfolge an, in
-der diese ausgeführt werden.
+Die eigentlichen Installations- und Update-Skripte haben das feste Namensschema: `<Schrittnummer>-<Unterschrittnummer>_<Name>.sql`.
+Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus dem Kapitel <<installationsablauf-bei-der-neuanlage>> bzw. <<installationsablauf-bei-der-schemaaenderung>>.
+Falls zu einem Schritt mehrere Skripte gehören, gibt die Unterschrittnummer die Reihenfolge an, in der diese ausgeführt werden.
 Der Name kann frei vergeben werden, sollte aber sprechend sein.
 
 [[schemauebergreifende-operationen]]
 == Schemaübergreifende Operationen
 
-Sollte eine Anwendung schemaübergreifende Operationen haben wird das vorgestellte DB-Versionierungskonzept
-wie folgt erweitert.
-Die Skripte der schemaübergreifenden Operationen werden gemäß Kapitel <<ablage-der-skripte-und-namenskonventionen>>
-in einen eigenen Ordner
-unter „src/main/skripte/sql/uebergreifend“ abgelegt.
+Sollte eine Anwendung schemaübergreifende Operationen haben wird das vorgestellte DB-Versionierungskonzept wie folgt erweitert.
+Die Skripte der schemaübergreifenden Operationen werden gemäß Kapitel <<ablage-der-skripte-und-namenskonventionen>> in einen eigenen Ordner unter `src/main/skripte/sql/uebergreifend` abgelegt.
 Die hier abgelegten Skripte werden immer als letztes ausgeführt.
 Zuvor werden alle anderen Schemata installiert.
 
-Die Skripte im Ordner „uebergreifend“ werden ebenfalls im gewohnten DB-Versionierungskonzept Format abgelegt.
-Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus
-Kapitel <<installationsablauf-bei-der-neuanlage>>. Allerdings beginnt die
-Schrittnummer mit 91 statt mit 01.
-Die einzelnen Skripte werden in der richtigen Reihenfolge über das
-Hilfsskript 99_starte-skript-mit-logging.sql aufgerufen und in der Tabelle M_SCHEMA_LOG des
-Hauptschemas der Anwendung protokolliert.
+Die Skripte im Ordner `uebergreifend` werden ebenfalls im gewohnten DB-Versionierungskonzept Format abgelegt.
+Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus Kapitel <<installationsablauf-bei-der-neuanlage>>.
+Allerdings beginnt die Schrittnummer mit 91 statt mit 01.
+Die einzelnen Skripte werden in der richtigen Reihenfolge über das Hilfsskript `99_starte-skript-mit-logging.sql` aufgerufen und in der Tabelle `M_SCHEMA_LOG` des Hauptschemas der Anwendung protokolliert.
 
-Die Skripte im Hauptschema der Anwendung setzen, nach erfolgreicher Ausführung, den Status
-von M_SCHEMA_VERSION auf „*bereit*“ statt auf „gueltig“. Das signalisiert, dass das Schema bereit ist
-die schemaübergreifenden Operationen durchzuführen.
-Vor der Ausführung der Skripte im Ordner „uebergreifend“ wird geprüft, dass der Status des Hauptschemas
-auf „bereit“ steht.
-Erst nach der erfolgreichen Ausführung aller Schritte des Schemas „uebergreifend“, wird der Status
-auf „gueltig“ gesetzt.
+Die Skripte im Hauptschema der Anwendung setzen, nach erfolgreicher Ausführung, den Status von `M_SCHEMA_VERSION` auf „*bereit*“ statt auf „gueltig“.
+Das signalisiert, dass das Schema bereit ist, die schemaübergreifenden Operationen durchzuführen.
+Vor der Ausführung der Skripte im Ordner `uebergreifend` wird geprüft, dass der Status des Hauptschemas auf „bereit“ steht.
+Erst nach der erfolgreichen Ausführung aller Schritte des Schemas `uebergreifend` wird der Status auf „gueltig“ gesetzt.
+
+Mit den übergreifenden Skripten sollen auch die Zugriffsrechte für die Queue(s) eines Anwendungssystems vergeben werden, sofern diese existieren.
+Die entsprechenden Datenbanknutzer der Systeme, die Zugriff auf die Queue(s) haben sollen, sind dann in der Datei `91_environment.sql` einzutragen. 
+In einem Skript `93-X.sql` können dann die Rechte je nach Bedarf vergeben werden. 
+Auf diese Weise legt das Anwendungssystem selbst fest, welche anderen Systeme Zugriff auf die Queue(s) haben.
 
 [[datenbankuebergreifende-operationen]]
 == Datenbankübergreifende Operationen

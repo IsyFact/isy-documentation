@@ -447,7 +447,7 @@ Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen d
 [[cisyfact-erweiterungen]]
 = IsyFact-Erweiterungen
 
-Aktuell werden nur wenige Erweiterungen unter einer Open-Source-Lizenz zur Verfügung gestellt (siehe auch Kapitel <<aktueller-stand-und-weiterentwicklung>>). Auf den http://www.bva.bund.de/DE/Organisation/Abteilungen/Abteilung_BIT/Leistungen/IT_Produkte/RegisterFactory/Produkt/dossier-produkte.html[Webseiten der Register Factory] befindet sich eine Übersicht über vorhandene Bausteine, die in Zukunft potentiell als IsyFact-Erweiterung zur Verfügung gestellt werden. Teilweise können diese auf Anfrage herausgegeben werden.
+Aktuell werden nur wenige Erweiterungen unter einer Open-Source-Lizenz zur Verfügung gestellt (siehe auch Kapitel <<aktueller-stand-und-weiterentwicklung>>). Auf den https://www.bva.bund.de/DE/Das-BVA/Aufgaben/I/Informationstechnik/RegisterFactory/Produkt/produkt_rf_node.html#doc241990bodyText6[Webseiten der Register Factory] befindet sich eine Übersicht über vorhandene Bausteine, die in Zukunft potentiell als IsyFact-Erweiterung zur Verfügung gestellt werden. Teilweise können diese auf Anfrage herausgegeben werden.
 
 NOTE: Bei Interesse wenden Sie sich bitte per E-Mail (isyfact@bva.bund.de) an uns.
 
