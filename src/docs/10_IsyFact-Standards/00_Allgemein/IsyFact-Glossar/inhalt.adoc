@@ -91,8 +91,6 @@ Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine <<fac
 Ein Anwendungssystem ist Bestandteil der <<a-architektur>>.
 Aus Sicht der <<t-architektur>> bildet ein <<it-system>> die software-technische Umsetzung eines Anwendungssystems ab.
 
-NOTE: Besteht ein Anwendungssystem nur aus <<querschnittskomponente,Querschnittskomponenten>>, dann handelt es sich um ein <<querschnittssystem>>.
-
 |[[anwendungstyp,Anwendungstyp]]Anwendungstyp
 |Sammlung von Architekturvorgaben (aller <<architektursicht,Architektursichten>>) zur Entwicklung eines <<anwendungssystem,Anwendungssystems>> mit gleichartigen spezifischen Eigenschaften.
 In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von <<anwendungssystem,Anwendungssystemen>>. 
@@ -112,8 +110,6 @@ NOTE: iSAQB = international Software Architecture Qualification Board
 |[[auslieferung,Auslieferung]]Auslieferung (Deployment)
 |Im Kontext der Auslieferung von sowohl <<open-source-release,Open Source Releases>> als auch <<closed-source-release,Closed Source Releases>> wird Software (Bibliotheken sowie <<anwendungssystem,Anwendungssysteme>>) und die dazugehörige <<dokumentation>> ausgeliefert. Die entwickelte Software wird auf einer Betriebsumgebung (<<plattform>>) installiert. 
 Zu jeder Auslieferung gibt es ein <<changelog>>.
-
-NOTE: Beachte den etwas anderes definierenden Begriff der <<lieferung>> aus dem V-Modell-XT.
 
 |[[basisdienst,Basisdienst]]Basisdienst
 |Ein Basisdienst ist ein Dienst, der eine gemeinsame, übergreifende Grundlage für andere, darauf aufbauende Dienste (Fach- und Querschnittsdienste) bildet. 
@@ -209,8 +205,6 @@ Im Rahmen der <<isyfact>> werden Teile der <<ife>> als Einer-für-Alle-System an
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
 Dabei kann sie die Basisdienste von <<querschnittsanwendung,Querschnittsanwendungen>> oder andere <<anwendungssystem,Anwendungssysteme>> nutzen.
 
-Quelle: <<IsyFact-Referenzarchitektur>> (Kapitel 4.1)
-
 |[[fachdienst,Fachdienst]]Fachdienst
 |Ein Fachdienst ist ein Dienst, der direkt der Erfüllung einer speziellen Fachaufgabe dient. 
 Der Kontext eines Fachdienstes ist in der operativen Praxis meist auf eine <<anwendungslandschaft>> beschränkt. 
@@ -249,8 +243,6 @@ Eine Instanz ist Bestandteil der <<ti-architektur>> einer <<fachanwendung>> und 
 Ein IT-System ist Bestandteil der <<t-architektur>> und es ist (für sich) alleine ausführbar. 
 Aus Sicht der <<a-architektur>> ist die Entsprechung zum IT-System das <<anwendungssystem>>.
 
-NOTE: Im BVA gibt es pro IT-System einen IT-System-Verantwortlichen, der aus historischen Gründen noch KV genannt wird. 
-
 |Komponente
 |siehe <<ank>> oder <<querschnittskomponente>>
 
@@ -265,19 +257,8 @@ Eine konforme Änderung muss im entsprechenden <<changelog>> eingetragen werden.
 |Ein Konzept ist die fachliche Beschreibung eines <<baustein,Bausteins>>. 
 Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturentscheidungen sowie den Lösungsansatz.
 
-|[[lieferung,Lieferung]]Lieferung (Release)
-|Eine Lieferung gemäß V-Modell XT steht vor der Abnahme des entwickelten Systemes. 
-Handelt es sich um eine Entwicklung durch einen Auftragnehmer, so liefert dieser ein System, was dann vom Auftraggeber mit einer Prüfung abgenommen wird.
-Die Lieferung selbst ist ein formales qualitätsgesichertes V-Modell XT Produkt.
-Normalerweise handelt es sich bei der Lieferung um ein vertraglich vereinbartes Paket mit Hardware, Software und Dokumentation.
-
-NOTE: Bei der <<isyfact>> besteht die Lieferung aus einem <<release>>, der an mehreren Stellen zum Download angeboten wird.
-
-|Lösungsbaustein
-|siehe <<baustein>>
-
 |[[methodik,Methodik]]Methodik
-|Im Rahmen einer <<software-factory>> bildet die Methodik die Grundlage für die Umsetzung von <<fachanwendung,Fachanwendungen>> mittels einer standardisierten Vorgehensweise nach dem V-Modell XT. 
+|Im Rahmen einer <<software-factory>> bildet die Methodik die Grundlage für die Umsetzung von <<fachanwendung,Fachanwendungen>> mittels einer standardisierten Vorgehensweise nach dem V-Modell XT Bund.
 Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
 
 NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen zur Verfügung stellt.
@@ -327,15 +308,14 @@ Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für al
 |Querschnittskomponenten sind <<ank,Anwendungskomponenten>>, die nur querschnittliche Funktionen zur Verfügung stellen. 
 Diese querschnittlichen Komponenten sind in jeweils eigenen <<blaupause,Blaupausen>> oder <<baustein,Bausteinen>> beschrieben und durch eine <<bibliothek>> umgesetzt.
 
-Beispiel: Benutzerverwaltung der <<ife>>
+Beispiel: Benutzerverwaltung
+
+NOTE: Querschnittssysteme wurden früher auch Querschnittskomponenten genannt, bevor es zu einer genauen Definition von Baustein, Bibliothek, System und Komponente kam.
 
 |[[querschnittssystem,Querschnittssystem]]Querschnittssystem
-|Querschnittssysteme sind spezielle <<anwendung,Anwendungen>> in einer Querschnittsdomäne, welche Basisdienste für weitere (mindestens zwei) <<fachanwendung,Fachanwendungen>> einer <<anwendungslandschaft>> bereitstellen. 
-Sie werden nur aus einer oder mehreren <<querschnittskomponente,Querschnittskomponenten>> zusammengesetzt.
+|Querschnittssysteme sind spezielle <<anwendung,Anwendungen>> in einer Querschnittsdomäne, welche Basisdienste für weitere (mindestens zwei) <<fachanwendung,Fachanwendungen>> einer <<anwendungslandschaft>> bereitstellen.
 
 Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
-
-NOTE: Querschnittssysteme wurden früher noch QK genannt, bevor es zu einer genauen Definition von Baustein, Bibliothek, System und Komponente kam. 
 
 |[[release,Release]]Release
 |Veröffentlichter Versionsstand einer <<software-factory>>.
@@ -350,12 +330,12 @@ Releaseletter werden durch <<changelog,Change Logs>> ersetzt.
 ====
 
 |[[service,Service]]Service
-|Im Sinne der Architektur der <<isyfact>> werden externe Dienste über <<service-gateway>> als externer Service im <<awk>> aufrufbar. 
+|Im Sinne der Architektur der <<isyfact>> werden externe Dienste über <<service-gateway,Service-Gateways>> als externer Service im <<awk>> aufrufbar.
 Ist eine spezielle Servicelogik zu implementieren, stellt <<isyfact>> dafür eine fertige Struktur bereit.
 
-[id="image-glossar-2",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-glossar-2}
-image::glossar-2.png[align="center"]
+[id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-AufbauServLogik}
+image::AufbauServLogik.png[align="center"]
 
 |[[service-gateway,Service-Gateway]]Service-Gateway
 |Stellt die Verbindung zwischen einem extern und einem internen Dienst durch eine Schnittstelle zur Verfügung.
