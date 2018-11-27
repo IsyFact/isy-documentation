@@ -107,7 +107,7 @@ image::Anwendungstypen.png[align="center"]
 NOTE: iSAQB = international Software Architecture Qualification Board
 
 |[[auslieferung,Auslieferung]]Auslieferung (Deployment)
-|Im Kontext der Auslieferung von sowohl <<open-source-release,Open Source Releases>> als auch <<closed-source-release,Closed Source Releases>> wird Software (Bibliotheken sowie <<anwendungssystem,Anwendungssysteme>>) und die dazugehörige <<dokumentation>> ausgeliefert. Die entwickelte Software wird auf einer Betriebsumgebung (<<plattform>>) installiert. 
+|Im Kontext der Auslieferung von sowohl <<open-source-release,Open Source Releases>> als auch <<closed-source-release,Closed Source Releases>> wird Software (Bibliotheken sowie <<anwendungssystem,Anwendungssysteme>>) und die dazugehörige Dokumentation ausgeliefert. Die entwickelte Software wird auf einer Betriebsumgebung (<<plattform>>) installiert.
 Zu jeder Auslieferung gibt es ein <<changelog>>.
 
 |[[basisdienst,Basisdienst]]Basisdienst
@@ -122,7 +122,7 @@ Die Batches können dabei den <<awk>> aufrufen und nutzen.
 |[[baustein,Baustein]]Baustein
 |Wiederverwendbare Umsetzung einer spezifischen Problemlösung. 
 Bausteine stellen strukturierte Lösungen von Geschäftsprozessen dar.
-Umfasst mindestens eine <<bibliothek>> oder ein <<anwendungssystem>> inklusive der dazugehörigen <<dokumentation>>.
+Umfasst mindestens eine <<bibliothek>> oder ein <<anwendungssystem>> inklusive der dazugehörigen Dokumentation.
 
 Beispiel: Logging, Sicherheit, Überwachung
 
@@ -160,36 +160,6 @@ Das Closed Source Release der IsyFact komplettiert das <<open-source-release>>.
 |[[dienst,Dienst]]Dienst
 |Ein Dienst ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt. 
 Es gibt <<basisdienst,Basisdienste>>, <<fachdienst,Fachdienste>> und <<querschnittsdienst,Querschnittsdienste>>.
-
-|[[dokumentation,Dokumentation]]Dokumentation
-|Die Dokumentation einer <<isyfact>> enthält die folgenden Dokumente:
-
-* Allgemeine Dokumente
-** Einstieg, Tutorial,
-** Referenzarchitektur der <<isyfact>> 
-*** logisch, softwaretechnisch und infrastrukturell
-** Änderungshistorie.
-* Detailkonzepte (eines je <<blaupause>>)
-* Bausteindokumentation (s. unten)
-* Plattformdokumentation 
-** je (von der <<isyfact>> empfohlene) Technologie wird eine Nutzungsvorgabe erstellt.
-* Beschreibung der <<methodik>>:
-** Vorlagen zu Dokumenten gemäß V-Modell XT
-** Konzepte und Nutzungsvorgaben zu methodischem Vorgehen
-** Hilfreiche Dokumente zur Durchführung eines Projektes, das die <<isyfact>> nutzt.
-* Beschreibung der Werkzeuge:
-** ein Konzept je verwendetem Werkzeug
-
-Die Dokumentation zu <<baustein,Bausteinen>> besteht im Fall einer <<bibliothek>> aus:
-
-* einem <<konzept>>,
-* den <<nutzungsvorgaben>>,
-* einem <<changelog>>.
-
-Die Dokumentation zu <<baustein,Bausteinen>> besteht im Fall eines <<anwendungssystem,Anwendungssystems>> zusätzlich aus:
-
-* einem Betriebshandbuch (mit <<nutzungsvorgaben>> für den Betrieb des <<it-system,IT-Systems>> in einer <<anwendungslandschaft>>)
-* einem Anwenderhandbuch (falls eine Benutzeroberfläche enthalten ist).
 
 |[[domaene,Domäne]]Domäne
 |siehe <<anwendungsdomaene>> oder <<querschnittsdomaene>>
@@ -275,19 +245,19 @@ Der Begriff steht im Kontext einer Software Factory im Unterschied zum <<anwende
 
 |[[nutzungsvorgaben,Nutzungsvorgaben]]Nutzungsvorgaben
 |Nutzungsvorgaben beschreiben die Verwendung eines <<baustein,Bausteins>> aus technischer Sicht. 
-Sie sind Teil der <<dokumentation>> eines Bausteins und richten sich an Entwickler. Das Dokument komplementiert das <<konzept>>, das sich an fachlich Interessierte und Architekten richtet.
+Sie sind Teil der Dokumentation eines Bausteins und richten sich an Entwickler. Das Dokument komplementiert das <<konzept>>, das sich an fachlich Interessierte und Architekten richtet.
 
 |[[open-source-release,Open Source Release]]Open Source Release
 |Bezeichnet <<release,Releases>> aller <<baustein,Bausteine>> der <<isyfact>> sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen <<nutzer,Nutzern>> anbietet. 
 Das Open Source Release beinhaltet die <<ifs>> sowie Teile der <<ife>>.
 
 |[[persistenz,Persistenz]]Persistenz
-|In der Persistenzschicht wird für die Daten der <<fachanwendung,Fachanwendungen>> einer permanenten Datenhaltung zur Verfügung gestellt. 
-Die Datenzugriffslogik der <<fachanwendung>> wird in strukturiere Komponenten realisiert.
-<<isyfact>> stellt ein fertiges Persistenz-Framework zur Verfügung.
+|Die Persistenzschicht ermöglicht es, Daten der <<fachanwendung,Fachanwendungen>> permanent zu speichern.
+Die Datenzugriffslogik der <<fachanwendung>> wird in strukturierten Komponenten realisiert.
+Die <<isyfact>> stellt ein fertiges Persistenz-Framework zur Verfügung.
 
 |[[plattform,Plattform]]Plattform
-|Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von <<anwendungslandschaft,Anwendungslandschaften>>, die sich aus der Verwendung von <<isyfact>> ergeben. 
+|Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von <<anwendungslandschaft,Anwendungslandschaften>>, die sich aus der Verwendung der <<isyfact>> ergeben.
 Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 
 |[[portal,Portal]]Portal
@@ -300,7 +270,7 @@ Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für al
 |[[querschnittsdienst,Querschnittsdienst]]Querschnittsdienst
 |Ein Querschnittsdienst ist ein <<dienst>>, der in unterschiedlichen <<anwendungslandschaft,Anwendungslandschaften>> stets eine anfallende Aufgabe in ähnlicher oder gleicher Form unterstützt (z.B. Personalwesen).
 
-|[[querschnittsdomaene,Querschnittsdomäne]]Querschnittdomäne
+|[[querschnittsdomaene,Querschnittsdomäne]]Querschnittsdomäne
 |Eine Anwendungsdomäne, die nur Querschnittssysteme gruppiert, wird als Querschnittsdomäne bezeichnet.
 
 |[[querschnittskomponente,Querschnittskomponente]]Querschnittskomponente
