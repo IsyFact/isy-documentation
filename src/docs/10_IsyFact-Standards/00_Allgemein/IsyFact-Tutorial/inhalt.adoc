@@ -77,7 +77,7 @@ Entitäten, die von mehreren Anwendungskomponenten verwendet werden, werden von 
 Die Komponente Basisdaten ist keine vollständige Komponente, sie bietet keine Schnittstelle an.
 Ausnahmsweise verwenden Komponenten stattdessen direkt die zugehörigen DAOs der Basisdaten.
 Dieser Fall ist auch in <<image-Datenhaltung>> dargestellt.
-Weitere Details können <<IsyFact-Referenzarchitektur>> entnommen werden.
+Weitere Details können <<IsyFactReferenzarchitektur>> entnommen werden.
 
 [[realisierung]]
 == Realisierung
@@ -176,7 +176,7 @@ Für jeden Entitätstyp wird eine nicht-persistente Schnittstellenklasse erstell
 Das Komponenten Interface wird von einer Java-Klasse implementiert.
 Diese Klasse kann die Anwendungsfälle im einfachen Fall direkt implementieren oder an Anwendungsfall-Klassen delegieren.
 * Die interne Strukturierung von Komponenten ist nicht im Detail vorgeben.
-Für fachliche Komponenten wird eine Basisimplementierung in <<IsyFact-Referenzarchitektur>> beschrieben.
+Für fachliche Komponenten wird eine Basisimplementierung in <<IsyFactReferenzarchitektur>> beschrieben.
 
 [[klassendesign-1]]
 == Klassendesign

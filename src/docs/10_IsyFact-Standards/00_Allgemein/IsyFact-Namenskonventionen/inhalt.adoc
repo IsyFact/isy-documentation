@@ -729,7 +729,7 @@ Beispiel:
 * isy-fachanwendung
 * isy-fachanwendung-batch
 
-m|<versionsnummer> |Versionsnummer der Deployment-Einheit, z.B. „1.2.0“. Die Versionierung basiert auf Semantic Versioning und ist im Konzept <<IsyFact-Versionierung>> beschrieben.
+m|<versionsnummer> |Versionsnummer der Deployment-Einheit, z.B. „1.2.0“. Die Versionierung basiert auf Semantic Versioning und ist im Konzept <<IsyFactVersionierung>> beschrieben.
 m|<build-version> a|
 Hier wird die Build-Nummer eingesetzt.
 Sie wird bei dem Bau jeder Auslieferungsversion (insbesondere auch bei Nachlieferungen) erhöht.

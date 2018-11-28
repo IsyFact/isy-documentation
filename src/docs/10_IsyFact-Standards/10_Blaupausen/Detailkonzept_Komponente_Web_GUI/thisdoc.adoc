@@ -3,8 +3,8 @@
 
 // Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
 
-Im Dokument zur Zielarchitektur ist der Aufbau von Fachanwendungen in fünf Komponenten 
-beschrieben <<IsyFact-Referenzarchitektur-IT-System>>. Eine ist die Komponente GUI.
+Im Dokument <<IsyFactReferenzarchitekturITSystem>> ist der Aufbau von Fachanwendungen in fünf Komponenten beschrieben.
+Eine davon ist die Komponente GUI.
 Die T-Architektur und die Komponente sind in <<image-IFRefArcITSysGUI>> dargestellt.
 
 //F1
@@ -13,8 +13,7 @@ Die T-Architektur und die Komponente sind in <<image-IFRefArcITSysGUI>> dargeste
 .{desc-image-IFRefArcITSysGUI}
 image::IFRefArcITSysGUI.png[align="center"]
 
-Das vorliegende Dokument enthält die Detailkonzeption der Komponente GUI, die entsprechend 
-<<IsyFact-Referenzarchitektur>> als Web-GUI umgesetzt wird.
+Das vorliegende Dokument enthält die Detailkonzeption der Komponente GUI, die entsprechend der <<IsyFactReferenzarchitektur>> als Web-GUI umgesetzt wird.
 
 Beschrieben werden allgemeine Vorgaben zur Erstellung der GUI einer Anwendung nach IsyFact-Architektur.
 Das Dokument gibt zusätzlich einen Überblick über die benötigten Basistechnologien Spring Web Flow, JSF und Facelets.

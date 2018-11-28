@@ -208,7 +208,7 @@ Im Rahmen der <<isyfact>> werden Teile der <<ife>> als Einer-für-Alle-System an
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
 Dabei kann sie die Basis-Dienste von <Querschnittsanwendung,Querschnittsanwendungen>> oder andere <<anwendungssystem,Anwendungssysteme>> nutzen.
 
-Quelle: <<IsyFact-Referenzarchitektur>> (Kapitel 4.1)
+Quelle: <<IsyFactReferenzarchitektur>> (Kapitel 4.1)
 
 |[[fachdienst,Fachdienst]]Fachdienst
 |Ein Fachdienst ist ein Dienst, der direkt der Erfüllung einer speziellen Fachaufgabe dient. 

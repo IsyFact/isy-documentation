@@ -205,7 +205,7 @@ core.<komponente>.jmx +
 Der Java-Klassenname der eigentlichen MBean wird mit dem Suffix `MBean` versehen.
 Der Name für die Monitor-MBean der Verwaltungskomponente könnte z.B. `VerwaltungMonitorMBean.java` genannt werden.
 
-NOTE: Die Komponenten einer IsyFact-Anwendung werden in <<IsyFact-Referenzarchitektur>> beschrieben.
+NOTE: Die Komponenten einer IsyFact-Anwendung werden in der <<IsyFactReferenzarchitektur>> beschrieben.
 
 [[entwurf-der-anwendungsueberwachung]]
 === Entwurf der Anwendungsüberwachung

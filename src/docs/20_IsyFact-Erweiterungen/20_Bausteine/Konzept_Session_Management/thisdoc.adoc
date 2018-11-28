@@ -5,7 +5,7 @@ Um die Skalierbarkeit und Hochverfügbarkeit von Anwendungen zu ermöglichen, si
 Diese ermöglicht es, mehrere Instanzen einer Anwendung parallel zu betreiben, was die Grundlage für Loadbalancing und Failover ist.
 
 Die Zustandslosigkeit der Applikationsserver wird erreicht, in dem der Zustand der Anwendungen in einer Datenbank verwaltet wird.
-Details hierzu sind in <<IsyFact-Referenzarchitektur>> beschrieben.
+Details hierzu sind in <<IsyFactReferenzarchitektur>> beschrieben.
 
 Webanwendungen verwalten die Zustände der eingeloggten Nutzer in Sessions.
 Die Sessions werden in einem zentralen Session-Speicher verwaltet.

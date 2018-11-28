@@ -18,6 +18,6 @@ Dieses Dokument beschreibt die Einrichtung und Verwendung dieser Funktionen wie 
 
 Das Kapitel <<formatierung-von-quellcode>> beschreibt die einheitliche Konfiguration und Verwendung der in Eclipse und IntelliJ IDEA eingebauten Code-Formatierer. Die Konfiguration hat zum Ziel, den Quellcode in beiden IDEs nahezu identisch formatiert zu formatieren. Das Kapitel schließt mit einer kurzen Diskussion der verbleibenden Unterschiede bei der Formatierung.
 
-Das Kapitel <<generierung-von-equals-und-hashcode>> beschreibt insbesondere die Generierung von `equals()` und `hashCode()` konform zu den <<Java-Programmierkonventionen>>.
+Das Kapitel <<generierung-von-equals-und-hashcode>> beschreibt insbesondere die Generierung von `equals()` und `hashCode()` konform zu den <<JavaProgrammierkonventionen>>.
 
 Im Kapitel <<einrichtung-von-checkstyle>> wird die Installation und Einrichtung der Checkstyle-Plugins für Eclipse und IntelliJ IDEA beschrieben.
