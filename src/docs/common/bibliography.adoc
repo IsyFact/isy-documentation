@@ -7,6 +7,7 @@
 // nicht erlaubt: IsyFact-Einstieg
 // Referenzen werden in den folgenden Dokumenten gefunden und zu Literaturverzeichnissen verarbeitet:
 // docinfo.adoc, thisdoc.adoc, inhalt.adoc, anhaenge.adoc
+// Zwischen den einzelnen Einträgen dürfen nur Zeilenumbrüche ohne Leerzeichen stehen.
 ////
 
 ////
@@ -48,7 +49,7 @@
 - [[[ProduktKatalog]]] +
   IsyFact Produktkatalog +
   00_Allgemein\Produktkatalog_IsyFact.xlsx
-  
+
 - [[[Aenderungshistorie]]] +
   IsyFact Änderungshistorie +
   00_Allgemein\Aenderungshistorie.xlsx
