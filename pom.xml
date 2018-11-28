@@ -163,7 +163,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Einstieg.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactEinstieg.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -198,7 +198,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Glossar.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactGlossar.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -233,7 +233,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Namenskonventionen.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactNamenskonventionen.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -268,7 +268,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Referenzarchitektur.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactReferenzarchitektur.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -303,7 +303,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Referenzarchitektur-IT-System.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactReferenzarchitekturITSystem.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -338,7 +338,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Tutorial.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactTutorial.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -373,7 +373,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Versionierung.html
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactVersionierung.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -1074,7 +1074,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Methodik/Java-Programmierkonventionen.html
+                                ${html-output-base-directory}/IsyFact-Standards/Methodik/JavaProgrammierkonventionen.html
                             </outputFile>
                         </configuration>
                     </execution>
