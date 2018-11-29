@@ -244,10 +244,27 @@ Es tritt regelmäßig zusammen, um aktuelle Anforderungen und Problemstellungen 
 == Styleguides und die Gestaltung von Benutzeroberflächen
 
 Bei der Entwicklung einer Anwendungslandschaft sollten nicht nur die Architektur der einzelnen Anwendungen sondern auch die Benutzeroberflächen einheitlichen Standards folgen.
-Die Standards für die Benutzeroberflächen werden üblicherweise durch einen Styleguide vorgegeben, der u.a. beschreibt, welche Elemente eine graphische Benutzeroberfläche besitzt, wie diese zu gestalten sind und wie sie miteinander kombinieren werden, um bestimmte Funktionen zu realisieren.
+Die Standards für die Benutzeroberflächen werden üblicherweise durch einen Styleguide vorgegeben, der u.a. beschreibt, welche Elemente eine grafische Benutzeroberfläche besitzt, wie diese zu gestalten sind und wie sie miteinander kombinieren werden, um bestimmte Funktionen zu realisieren.
 
 Die Dokumente der IsyFact verweisen an verschiedenen Stellen auf den Styleguide und dort zu definierende Regeln.
 Es wird jedoch vorausgesetzt, dass jeder Anwender der IsyFact einen eigenen Styleguide erstellt, der spezifisch auf seinen Anwendungskontext abgestimmt ist.
+
+== Struktur der Dokumentation
+Die Dokumentation der IsyFact folgt einer festgelegten Struktur.
+Dokumente wie dieser Einstieg liegen im *allgemeinen* Teil der Dokumentation.
+Der Teil enthält außerdem das <<IsyFact-Tutorial>>, grundlegende Dokumente wie den <<ProduktKatalog>> und die <<Aenderungshistorie>> sowie die Beschreibungen der Referenzarchitektur.
+
+Die Dokumentation der *Blaupausen* enthält je ein Detailkonzept pro Blaupause.
+
+Die *Bausteine* sind jeder für sich ausführlich dokumentiert.
+Wird der Baustein mittels einer Bibliothek realisiert, umfasst die Dokumentation ein Konzept, Nutzungsvorgaben sowie ein Changelog.
+Besteht der Baustein aus einem eigenständigen Querschnittssystem, enthält die Dokumentation zusätzlich ein Betriebshandbuch (Nutzungsvorgaben für den Betrieb des IT-Systems in einer Anwendungslandschaft) und ein Anwenderhandbuch (insofern das Querschnittssystem über eine Benutzeroberfläche verfügt).
+
+Die Dokumentation der *Plattform* enthält Nutzungsvorgaben für jede von der IsyFact empfohlene oder eingesetzte Technologie zum Betrieb von IT-Systemen (z.B. HTTP- und Applikationsserver, Datenbanken).
+
+Die Dokumentation der *Methodik* bietet neben Konzepten und Nutzungsvorgaben zu methodischem Vorgehen Vorlagen zu Dokumenten gemäß V-Modell XT sowie hilfreiche Dokumente zur Durchführung eines IsyFact-Projektes.
+
+Schließlich umfasst die Dokumentation der *Werkzeuge* ein Dokument pro Werkzeug, das die Nutzung begründet und Nutzungsvorgaben festlegt.
 
 [id="cisyfact-standards",reftext="IsyFact-Standards"]
 = IsyFact-Standards
