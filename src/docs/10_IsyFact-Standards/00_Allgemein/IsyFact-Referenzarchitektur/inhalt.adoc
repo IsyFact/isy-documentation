@@ -33,10 +33,10 @@ weitgehend herstellerneutrale Software-Architektur und Plattform.
 .{desc-image-IFBereiche}
 image::IFBereiche.png[align="center",pdfwidth=70%,width=70%]
 
-Die IsyFact bietet standardisierte Lösungsbausteine zu wichtigen Themen beim Bau von Fachanwendungen.
+Die IsyFact bietet standardisierte Lösungen zu wichtigen Themen beim Bau von Fachanwendungen.
 Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Besonderheiten seiner Fachanwendung konzentrieren.
 
-Die Lösungsbausteine decken fünf Bereiche ab: Blaupausen, Bausteine, Betriebsplattform, Methodik und Werkzeuge.
+Die Lösungen decken fünf Bereiche ab: Blaupausen, Bausteine, Betriebsplattform, Methodik und Werkzeuge.
 
 *Blaupausen:* Blaupausen beschreiben die Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Fachanwendungen aus drei verschiedenen Sichten: der fachlichen Sicht, der Sicht der softwaretechnischen Umsetzung und der Sicht der technischen Infrastruktur.
 
