@@ -81,7 +81,7 @@ Die fachliche Referenzarchitektur wird in Kapitel <<die-fachliche-referenzarchit
 *Software-Referenzarchitektur:* Hierunter fällt eine software-technische Beschreibung der Systemlandschaft.
 Die gesamte Systemlandschaft wird in technische Komponenten zerlegt, die miteinander über technische Schnittstellen interagieren.
 Jegliche Abbildung auf physikalische Systeme und deren Infrastruktur sind dabei nicht von Belang.
-Die Software-Referenzarchitektur wird in <<IsyFact-Referenzarchitektur-IT-System>> definiert.
+Die Software-Referenzarchitektur wird in der <<IsyFactReferenzarchitekturITSystem>> definiert.
 
 *Referenzarchitektur der technischen Infrastruktur:* Ist eine Beschreibung der Systemlandschaft aus dem Blickwinkel der technischen Infrastruktur.
 Es wird beschrieben, welche technischen Systeme existieren und welche technischen Komponenten auf ihnen laufen.
@@ -216,8 +216,8 @@ Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
 Eine Systemlandschaft, die eine Anwendungslandschaft nach den IsyFact-Standards umsetzt, wird im Folgenden als _IsyFact-Systemlandschaft_ bezeichnet.
 Eine IsyFact-Systemlandschaft beinhaltet alle software-technisch umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z. B. Datenbanken, Web-Server, usw.). Sie wird auf einer technischen Infrastruktur betrieben und bildet einen in sich geschlossenen Sicherheitsbereich.
 
-Die technische Architektur eines IT-Systems wird in <<IsyFact-Referenzarchitektur-IT-System>> definiert.
-Im Folgenden wird, aufbauend auf diesem Konzept, beschrieben
+Die technische Architektur eines IT-Systems wird in <<IsyFactReferenzarchitekturITSystem>> definiert.
+Im Folgenden wird, aufbauend auf diesem Konzept, beschrieben:
 
 * welche Eigenschaften bezogen auf die technische Referenzarchitektur die Typen von Anwendungssystemen in einer IsyFact-Systemlandschaft besitzen
 (Kapitel <<strukturierung-der-register-plattform>>),
@@ -285,7 +285,7 @@ Ausnahmen hiervon sind Querschnittsysteme wie das Outputmanagement das z. B. zu
 [[nutzungsarten-eines-anwendungssystems]]
 == Nutzungsarten eines Anwendungssystems
 
-Nachdem im <<IsyFact-Referenzarchitektur-IT-System>> die technische Architektur vorgestellt wurde, soll in diesem Abschnitt konkret vorgestellt werden, wie auf Basis dieser Architektur Anwendungen entworfen werden.
+Nachdem im Dokument <<IsyFactReferenzarchitekturITSystem>> die technische Architektur vorgestellt wurde, soll in diesem Abschnitt konkret vorgestellt werden, wie auf Basis dieser Architektur Anwendungen entworfen werden.
 
 Die Nutzungsschicht eines IT-Systems bietet anderen IT-Systemen über Services, dem Betrieb über Batches und menschlichen Nutzern über eine GUI Schnittstellen zur
 Nutzung der implementierten Fachlichkeit an.
@@ -312,7 +312,7 @@ Im vorliegenden Fall wird nur ein Service-Provider benötigt, da nur Aufrufe ent
 Diese werden authentifiziert, autorisiert, und an das zugehörige Anwendungssystem weitergeleitet.
 
 Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten Anwendungssysteme und Aufruf-Beziehungen.
-Die in dieser Abbildung angedeuteten Schichten eines Anwendungssystems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFact-Referenzarchitektur-IT-System>> erläutert.
+Die in dieser Abbildung angedeuteten Schichten eines Anwendungssystems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
 Wichtig in Hinblick auf diese Schichten sind folgende Punkte:
 
 * Die Schicht _Batch_ der Fachanwendung wird im Beispiel nicht implementiert, da die Fachanwendung keine Schnittstelle für Batchläufe anbietet.

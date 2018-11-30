@@ -2,7 +2,7 @@
 = Namenskonventionen
 
 Die Service-URLs der HTTP-Invoker-Schnittstellen müssen einheitlich aufgebaut sein.
-Hierzu werden im Dokument <<IsyFact-Namenskonventionen>> einheitliche Vorgaben definiert.
+Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben definiert.
 
 [[aufgaben-der-service-logik]]
 = Aufgaben der Service-Logik

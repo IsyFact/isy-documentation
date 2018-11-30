@@ -21,7 +21,7 @@ readGlossaryTerms() {
 findTerms() {
     for term in $@
     do
-        cat $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk -v foundref=$term 'match($0, /<<(.+)>>/, m) && m[1] == foundref { print m[1]; }' | sort -u
+        cat $dir/docinfo.adoc $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk -v foundref=$term 'match($0, /<<(.+)>>/, m) && m[1] == foundref { print m[1]; }' | sort -u
     done
 }
 

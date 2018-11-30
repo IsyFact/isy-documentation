@@ -10,7 +10,7 @@ In Abschnitt <<technologie>> gehen wir dann auf die technische Umsetzung von Ser
 [[interne-und-externe-servicekommunikation]]
 == Interne und externe Servicekommunikation
 
-Gemäß der Referenzarchitektur (siehe <<IsyFact-Referenzarchitektur>>) kommunizieren Anwendungssysteme auf Basis von Services.
+Gemäß der Referenzarchitektur (siehe <<IsyFactReferenzarchitektur>>) kommunizieren Anwendungssysteme auf Basis von Services.
 Das bedeutet, dass die Anwendungssysteme ihre Fachlichkeit anderen Anwendungssystemen in Form von Services anbieten.
 Hierbei ist zu unterscheiden, ob ausschließlich Anwendungssysteme innerhalb der Plattform miteinander kommunizieren oder
 ob die Kommunikation auch Anwendungssysteme einschließt, die außerhalb der
@@ -221,7 +221,7 @@ Das heißt zur vollständigen Definition der HTTP-Invoker-Schnittstelle ist imme
 [[zugriff-auf-querschnittssysteme]]
 === Zugriff auf Querschnittssysteme
 
-Gemäß der Referenzarchitektur (siehe <<IsyFact-Referenzarchitektur>>) ist der Zugriff von Service-Gateways auf
+Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf
 Querschnittssysteme erlaubt.
 
 [[versionierung]]

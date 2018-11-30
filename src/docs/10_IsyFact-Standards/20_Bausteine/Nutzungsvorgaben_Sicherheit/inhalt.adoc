@@ -222,7 +222,7 @@ Sie hängt von den Abhängigkeiten der Systeme ab, die in den Releaselettern der
 [[einbindung-der-komponente-sicherheit]]
 = Einbindung der Komponente Sicherheit
 
-Die Komponente Sicherheit ist eine Querschnittkomponente der <<IsyFact-Referenzarchitektur>>.
+Die Komponente Sicherheit ist eine Querschnittkomponente der <<IsyFactReferenzarchitektur>>.
 Diese Komponente ist von jeder konformen Anwendung zur Autorisierung von Zugriffen und Vorgängen zu verwenden.
 
 Für ein korrektes Funktionieren benötigt die Komponente Sicherheit die Komponente AufrufKontextVerwalter, deren Verwendung ebenfalls in diesem Kapitel erläutert wird.

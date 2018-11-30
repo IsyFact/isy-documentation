@@ -16,7 +16,7 @@ buildListOfTables() {
     then
         echo -e "\n== Tabellenverzeichnis\n" > $dir/listoftables.adoc
 
-        cat $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk 'match($0, /\[id="(table-.+)",/, m) { print "<<" m[1] ">>" " {desc-" m[1] "}\n" }' | tee -a $dir/listoftables.adoc
+        cat $dir/docinfo.adoc $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk 'match($0, /\[id="(table-.+)",/, m) { print "<<" m[1] ">>" " {desc-" m[1] "}\n" }' | tee -a $dir/listoftables.adoc
     else
         touch $dir/listoftables.adoc
     fi
@@ -30,7 +30,7 @@ buildListOfFigures() {
     then
         echo -e "\n== Abbildungsverzeichnis\n" > $dir/listoffigures.adoc
 
-        cat $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk 'match($0, /\[id="(image-.+)",/, m) { print "<<" m[1] ">>" " {desc-" m[1] "}\n" }' | tee -a $dir/listoffigures.adoc
+        cat $dir/docinfo.adoc $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk 'match($0, /\[id="(image-.+)",/, m) { print "<<" m[1] ">>" " {desc-" m[1] "}\n" }' | tee -a $dir/listoffigures.adoc
     else
         touch $dir/listoffigures.adoc
     fi
@@ -44,7 +44,7 @@ buildListOfListings() {
     then
         echo -e "\n== Listenverzeichnis\n" > $dir/listoflistings.adoc
 
-        cat $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk 'match($0, /\[id="(listing-.+)",/, m) { print "<<" m[1] ">>" " {desc-" m[1] "}\n" }' | tee -a $dir/listoflistings.adoc
+        cat $dir/docinfo.adoc $dir/thisdoc.adoc $dir/inhalt.adoc $dir/anhaenge.adoc | gawk 'match($0, /\[id="(listing-.+)",/, m) { print "<<" m[1] ">>" " {desc-" m[1] "}\n" }' | tee -a $dir/listoflistings.adoc
       else
           touch $dir/listoflistings.adoc
       fi

@@ -503,13 +503,13 @@ Die DAOs werden als Spring-Beans in den Anwendungskern injiziert.
 Zudem wird für jedes DAO ein Interface angelegt.
 
 DAOs werden im Persistenzpaket der Komponente abgelegt, welche die Datenhoheit über die Tabelle(n) des
-DAOs besitzt (zum Thema Datenhoheit siehe <<IsyFact-Referenzarchitektur-IT-System>>). Falls die Datenhoheit
+DAOs besitzt (zum Thema Datenhoheit siehe <<IsyFactReferenzarchitekturITSystem>>). Falls die Datenhoheit
 keiner einzelnen Komponente zugewiesen werden kann, erhält die Komponente Basisdaten die Datenhoheit
 (siehe auch <<DetailkonzeptKomponenteAnwendungskern>>). Die DAOs werden nur von Klassen der Datenhoheits-Komponente aufgerufen.
 
 Während über DAOs Persistenzobjekte aus der Datenbank gelesen und in die Datenbank eingefügt werden,
 können sie auch außerhalb dieser Klassen verändert bzw. befüllt werden.
-Dies darf jedoch gemäß der Referenzarchitektur <<IsyFact-Referenzarchitektur>> nur von Klassen innerhalb
+Dies darf jedoch gemäß der Referenzarchitektur <<IsyFactReferenzarchitektur>> nur von Klassen innerhalb
 der gleichen Teilanwendung  erfolgen: Komponenten anderer Teilanwendungen dürfen sie nicht verändern oder befüllen.
 Sie erhalten daher lediglich Deep-Copies bzw. nicht änderbare Varianten der Entitäten.
 

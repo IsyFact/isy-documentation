@@ -240,7 +240,7 @@ Die Variante der Session Serialisierung ist zwar einfacher, beinhaltet aber auch
 Die Session des Servers wird zum Speichern von verschiedensten Daten genutzt, der Zugriff auf sie ist frei möglich.
 Dies führt in der Praxis dazu, dass unkontrolliert große Datenmengen in der Session abgelegt werden.
 Diese großen Datenmengen lassen sich dann nicht mehr effizient persistieren.
-Daher wurde diese Option in <<IsyFact-Referenzarchitektur>> ausgeschlossen.
+Daher wurde diese Option in <<IsyFactReferenzarchitektur>> ausgeschlossen.
 Die Details dazu, wie in Spring Web Flow die zu speichernden Daten einer Session ermittelt werden, finden sich
 in Kapitel <<session-behandlung>>.
 
@@ -306,7 +306,7 @@ Funktionalität der Anwendung für einen menschlichen Nutzer zur Verfügung zu s
 Dazu stellt sie die benötigten Dialoge und Masken bereit.
 
 Die GUI ist untergliedert in ein GUI-Framework (verwendet wird JSF mit Spring Web Flow) und die Dialoglogik,
-welche die für den Anwendungsfall notwendigen Anforderungen umsetzt <<IsyFact-Referenzarchitektur>>.
+welche die für den Anwendungsfall notwendigen Anforderungen umsetzt (s. <<IsyFactReferenzarchitektur>>).
 
 [[grundprinzipien-der-web-gui]]
 == Grundprinzipien der Web-GUI
@@ -613,7 +613,7 @@ Ein nicht zu vernachlässigender Aspekt zur Komponentenbildung ist die Paketieru
 Komponente gehörende Elemente gruppiert abgelegt werden.
 Alle Elemente werden in einem Paket mit einheitlichem Paketnamen abgelegt.
 
-Für die Namenskonvention zu Java-Klassen und Paketen wird hier auf das Dokument <<Java-Programmierkonventionen>> verwiesen.
+Für die Namenskonvention zu Java-Klassen und Paketen wird hier auf das Dokument <<JavaProgrammierkonventionen>> verwiesen.
 Zusätzlich gelten die folgenden Konventionen:
 
 * Jede GUI-Komponente hat einen Namen.

@@ -2,26 +2,35 @@
 == Literaturverweise
 
 ////
+// Referenzen dürfen nur aus Buchstaben und Zahlen bestehen. Es sind keine Sonderzeichen erlaubt:
+// erlaubt: IsyFactEinstieg
+// nicht erlaubt: IsyFact-Einstieg
+// Referenzen werden in den folgenden Dokumenten gefunden und zu Literaturverzeichnissen verarbeitet:
+// docinfo.adoc, thisdoc.adoc, inhalt.adoc, anhaenge.adoc
+// Zwischen den einzelnen Einträgen dürfen nur Zeilenumbrüche ohne Leerzeichen stehen.
+////
+
+////
 // Referenzen auf IsyFact
 ////
 
-- [[[IsyFact-Einstieg]]] +
+- [[[IsyFactEinstieg]]] +
   IsyFact-Einstieg +
   00_Allgemein\IsyFact-Einstieg.pdf
 
-- [[[IsyFact-Glossar]]] +
+- [[[IsyFactGlossar]]] +
   IsyFact Glossar +
   00_Allgemein\IsyFact-Glossar.pdf
 
-- [[[IsyFact-Namenskonventionen]]] +
+- [[[IsyFactNamenskonventionen]]] +
   IsyFact – Namenskonventionen +
   00_Allgemein\IsyFact-Namenskonventionen.pdf
 
-- [[[IsyFact-Referenzarchitektur]]] +
+- [[[IsyFactReferenzarchitektur]]] +
   IsyFact – Referenzarchitektur +
   00_Allgemein\IsyFact-Referenzarchitektur.pdf
 
-- [[[IsyFact-Referenzarchitektur-IT-System]]] +
+- [[[IsyFactReferenzarchitekturITSystem]]] +
   IsyFact – Referenzarchitektur für IT-Systeme +
   00_Allgemein\IsyFact_Referenzarchitektur-IT-System.pdf
 
@@ -29,18 +38,18 @@
   Vorlage für IsyFact Tailoring Dokument +
   00_Allgemein\IsyFact-Tailoring.dotx
 
-- [[[IsyFact-Tutorial]]] +
+- [[[IsyFactTutorial]]] +
   IsyFact–Tutorial +
   00_Allgemein\IsyFact-Tutorial.pdf
 
-- [[[IsyFact-Versionierung]]] +
+- [[[IsyFactVersionierung]]] +
   IsyFact-Versionierung +
   00_Allgemein/IsyFact-Versionierung.pdf
 
 - [[[ProduktKatalog]]] +
   IsyFact Produktkatalog +
   00_Allgemein\Produktkatalog_IsyFact.xlsx
-  
+
 - [[[Aenderungshistorie]]] +
   IsyFact Änderungshistorie +
   00_Allgemein\Aenderungshistorie.xlsx
@@ -149,7 +158,7 @@
   Vorlage Systemhandbuch +
   40_Methodik\30_Implementierung\IsyFact-Vorlage_Systemhandbuch.dotx
 
-- [[[Java-Programmierkonventionen]]] +
+- [[[JavaProgrammierkonventionen]]] +
   Java-Programmierkonventionen +
   40_Methodik\30_Implementierung\Java-Programmierkonventionen.pdf
 

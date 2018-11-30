@@ -53,8 +53,7 @@ Neben der technischen Kommunikation erfolgt durch diese Komponenten auch die Abb
 == Austausch von Geschäftsobjekten
 
 Der Anwendungskern hat die Hoheit über die Geschäftsobjekte des IT-Systems.
-In <<IsyFact-Referenzarchitektur>> wurde bereits beschrieben, dass zur Strukturierung eines IT-Systems zwei Sichten
-verwendet werden können:
+In <<IsyFactReferenzarchitektur>> wurde bereits beschrieben, dass zur Strukturierung eines IT-Systems zwei Sichten verwendet werden können:
 
 *Technische Sicht:* Die technische Sicht unterteilt die IT-Anwendung in Schichten für die jeweils eigene Technologien verwendet werden: Nutzung (GUI, Batch und Service), Anwendungskern und Datenzugriff.
 Das Ziel ist es, eine Durchmischung von Technologien zu verhindern, so darf z. B. in der GUI kein SQL formuliert werden.

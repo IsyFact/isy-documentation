@@ -1,7 +1,7 @@
 [[einleitung]]
 == Einleitung
 
-Entsprechend der Referenzarchitektur (siehe <<IsyFact-Referenzarchitektur>>) stellen Anwendungen Services über die
+Entsprechend der Referenzarchitektur (siehe <<IsyFactReferenzarchitektur>>) stellen Anwendungen Services über die
 technische Komponente „Service“ zur Verfügung.
 Das vorliegende Dokument beschreibt die Aufgaben und die Architektur dieser technischen Komponente.
 Zu beachten ist, dass die Komponente „Service“ die Services einer Anwendung lediglich innerhalb der Plattform

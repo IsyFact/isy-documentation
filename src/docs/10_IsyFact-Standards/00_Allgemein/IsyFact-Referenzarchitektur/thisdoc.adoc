@@ -82,7 +82,7 @@ Dies sind in der Regel Web Service-Aufrufe.
 
 Die individuell erstellten Anwendungssysteme der Anwendungslandschaft sind technisch gleichartig aufgebaut.
 Daher wird eine Referenzarchitektur aufgestellt, nach denen Anwendungssysteme (Fachanwendungen und Querschnittssysteme) software-technisch in IT-Systeme umgesetzt werden.
-Das Dokument <<IsyFact-Referenzarchitektur-IT-System>> beschreibt diese Referenzarchitektur.
+Das Dokument <<IsyFactReferenzarchitekturITSystem>> beschreibt diese Referenzarchitektur.
 
 Skalierbarkeit und Hochverfügbarkeit sind wichtige Anforderungen an die Referenzarchitektur.
 Dies wird unterstützt durch eine zustandslose Serverarchitektur.
@@ -146,7 +146,7 @@ Nachdem in Kapitel <<kurzueberblick>> die drei Sichten der Referenzarchitektur f
 Detaillierung der einzelnen Sichten:
 
 * Für die fachliche Sicht wird in Kapitel <<die-fachliche-referenzarchitektur>> eine fachliche Referenzarchitektur beschrieben.
-* Für die softwaretechnische Sicht wird in Kapitel <<die-software-referenzarchitektur>> die Einbindung der Software-Referenzarchitektur <<IsyFact-Referenzarchitektur-IT-System>> beschrieben.
+* Für die softwaretechnische Sicht wird in Kapitel <<die-software-referenzarchitektur>> die Einbindung der Software-Referenzarchitektur <<IsyFactReferenzarchitekturITSystem>> beschrieben.
 * Für die technische Infrastruktur wird in Kapitel <<die-referenzarchitektur-der-technischen-infrastruktur>> eine Referenzarchitektur vorgestellt.
 
 Im Rahmen dieser Referenzarchitektur werden auch betriebliche Aspekte betrachtet, da diese Auswirkungen auf Designentscheidungen haben können.

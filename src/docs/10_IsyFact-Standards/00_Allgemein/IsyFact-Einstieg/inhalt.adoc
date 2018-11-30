@@ -284,7 +284,7 @@ Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 Für die Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
 Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage
 für die Systemspezifikation <<IsyFactSystemspezifikation>>. Bereits bei der Systemspezifikation ist auf die
-Einhaltung der <<IsyFact-Namenskonventionen>> zu achten.
+Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
 
 Für die Erfassung von Anforderungslisten ist ebenfalls eine Vorlage vorhanden <<IsyFactVorlageAnforderungsliste>>. Die
 Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller
@@ -304,7 +304,7 @@ Darin ist auch das Vorgehen zur Modellierung und die zu beschreibenden Inhalte v
 Zur Konstruktion des Systems, also den eigentlichen Inhalten des Systementwurfs, existieren eine Reihe von
 Dokumenten, die inhaltliche Vorgaben machen.
 Grundlage ist das Dokument zur Referenzarchitektur, das die wesentlichen Inhalte auf grober Ebene
-festlegt <<IsyFact-Referenzarchitektur>>. Dieses Dokument wird durch weitere Dokumente konkretisiert.
+festlegt <<IsyFactReferenzarchitektur>>. Dieses Dokument wird durch weitere Dokumente konkretisiert.
 Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind in <<ProduktKatalog>> festgelegt.
 Anwendungen müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
 
@@ -312,12 +312,12 @@ Weitere Detaillierungen der Referenzarchitektur werden in den folgenden drei Abs
 Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstellenden Architektur:
 Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische
 Infrastruktur (TI-Architektur). Die genaue Unterscheidung zwischen diesen Sichten
-ist in <<IsyFact-Referenzarchitektur>> beschrieben.
+ist in <<IsyFactReferenzarchitektur>> beschrieben.
 
 [[vorgaben-für-die-a-architektur]]
 === Vorgaben für die A-Architektur
 (((A-Architektur)))
-Das Dokument <<IsyFact-Referenzarchitektur>> gibt die Grundkonzepte für den Aufbau einer Anwendung vor.
+Das Dokument <<IsyFactReferenzarchitektur>> gibt die Grundkonzepte für den Aufbau einer Anwendung vor.
 Dazu ist eine Referenzarchitektur vorgegeben.
 Diese allgemeine Referenzarchitektur muss für die zu bauenden Systeme in einer fachlichen Architektur konkretisiert werden.
 
@@ -331,7 +331,7 @@ Daher hält sie eine aktuelle und vollständige Dokumentation dieser vor.
 [[vorgaben-für-die-t-architektur]]
 === Vorgaben für die T-Architektur
 (((T-Architektur)))
-Im Dokument <<IsyFact-Referenzarchitektur-IT-System>> wird die Technische Referenzarchitektur für IT-Systeme eingeführt und erläutert.
+Im Dokument <<IsyFactReferenzarchitekturITSystem>> wird die Technische Referenzarchitektur für IT-Systeme eingeführt und erläutert.
 Ein IT-System basiert demnach auf einer Drei-Schichten-Architektur und besteht aus den Komponenten, die in <<image-image008>>
 dargestellt sind.
 
@@ -385,21 +385,21 @@ Die genauen Festlegungen zur Web-GUI-Entwicklung finden sich im Dokument <<Detai
 [[vorgaben-für-die-ti-architektur]]
 === Vorgaben für die TI-Architektur
 (((TI-Architektur)))
-Die TI-Architektur von Fachanwendungen ist in <<IsyFact-Referenzarchitektur>> beschrieben.
+Die TI-Architektur von Fachanwendungen ist in <<IsyFactReferenzarchitektur>> beschrieben.
 Die zu verwendende Infrastruktur ist z. T. durch den <<ProduktKatalog>> vorgegeben.
 
 
 [[vorgaben-für-die-realisierung]]
 == Vorgaben für die Realisierung
 
-Die Realisierung hat gemäß den <<Java-Programmierkonventionen>> zu erfolgen. Die Versionierung von Bibliotheken und Anwendungen muss sich nach den Vorgaben zur <<IsyFact-Versionierung>> richten, die im Wesentlichen auf https://semver.org[Semantic Versioning] basieren. Für die Entwicklungsumgebung gelten wenige Vorgaben, die in <<LeitfadenEntwicklungsumgebung>> und <<EinrichtungEntwicklungsumgebung>> zusammengefasst sind.
+Die Realisierung hat gemäß den <<JavaProgrammierkonventionen>> zu erfolgen. Die Versionierung von Bibliotheken und Anwendungen muss sich nach den Vorgaben zur <<IsyFactVersionierung>> richten, die im Wesentlichen auf https://semver.org[Semantic Versioning] basieren. Für die Entwicklungsumgebung gelten wenige Vorgaben, die in <<LeitfadenEntwicklungsumgebung>> und <<EinrichtungEntwicklungsumgebung>> zusammengefasst sind.
 
 Die Bibliotheken der IsyFact werden als JAR (Java Archive) bereitgestellt und können über ihre
 Maven-Koordinaten leicht als Abhängigkeit in die Anwendungsentwicklung eingebunden werden.
 
 Darüber hinaus existiert eine <<Vorlageanwendung>>, die eine einfache Fachanwendung („Terminfindung“) auf Grundlage der IsyFact implementiert.
 
-Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFact-Tutorial>> eine weitere Handreichung, um sich in die Implementierungsvorgaben einzuarbeiten.
+Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> eine weitere Handreichung, um sich in die Implementierungsvorgaben einzuarbeiten.
 
 Für jedes realisierte System ist ein Handbuch für die Installation, Konfiguration und den Systembetrieb zu erstellen. Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
 
@@ -497,4 +497,4 @@ Um die IsyFact als Ganzes kennenzulernen, zu verstehen und einzu­setzen, empfeh
 .{desc-image-IF-Factory}
 image::IF-Factory.png[align="center",width=70%,pdfwidth=70%]
 
-Während der gesamten Einarbeitung dient außerdem das <<IsyFact-Glossar>> dazu, zentrale Begriffe der IsyFact nachzuschlagen.
+Während der gesamten Einarbeitung dient außerdem das <<IsyFactGlossar>> dazu, zentrale Begriffe der IsyFact nachzuschlagen.
