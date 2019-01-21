@@ -328,10 +328,10 @@ Auch bei der ID muss wieder beachtet werden, dass sie werder Großbuchstaben, no
 :desc-listing-bild-einfuegen2: Bild einfügen in IsyFact
 [id="listing-bild-einfuegen2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen2}
-[source,asciidoc]
+[source,asciidoc,subs="attributes+"]
 ----
 :desc-image-hallowelt: Das HalloWelt Bild
-[id="image-hallowelt",reftext="{figure-caption} {counter:figures}"]
+[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-hallowelt}
 image::hallowelt.png
 ----
@@ -350,10 +350,10 @@ Wenn das Bild zentriert werden soll, fügt man das Attribut `[align="center"]` h
 :desc-listing-bild-einfuegen3: Bild zentriert einfügen
 [id="listing-bild-einfuegen3",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen3}
-[source,asciidoc]
+[source,asciidoc,subs="attributes+"]
 ----
 :desc-image-hallowelt: Das HalloWelt Bild
-[id="image-hallowelt",reftext="{figure-caption} {counter:figures}"]
+[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-hallowelt}
 image::hallowelt.png[align="center"]
 ----
@@ -365,10 +365,10 @@ Die doppelte Angabe der Breite ist leider nötig, damit das Bild sowohl im HTML-
 :desc-listing-bild-einfuegen4: Bild zentriert und skaliert einfügen
 [id="listing-bild-einfuegen4",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen4}
-[source,asciidoc]
+[source,asciidoc,subs="attributes+"]
 ----
 :desc-image-hallowelt: Das HalloWelt Bild
-[id="image-hallowelt",reftext="{figure-caption} {counter:figures}"]
+[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-hallowelt}
 image::hallowelt.png[align="center",pdfwidth=80%,scaledwidth=80%]
 ----
@@ -409,10 +409,10 @@ Hierfür soll folgende Syntax verwendet werden:
 :desc-listing-tabelle2: Tabelle einfügen in IsyFact
 [id="listing-tabelle2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-tabelle2}
-[source,asciidoc]
+[source,asciidoc,subs="attributes+"]
 ----
 :desc-table-hallowelt: Eine hallowelt-Tabelle
-[id="table-hallowelt",reftext="{table-caption} {counter:tables}"]
+[{id-equals}"table-hallowelt",reftext="{table-caption} {counter:tables}"]
 .{desc-table-hallowelt}
 [options="header"]
 |====
@@ -477,10 +477,10 @@ Auch hier wird noch eine Listing-Überschrift und eine ID benötigt:
 :desc-listing-quelltext2: Quelltext einfügen in IsyFact
 [id="listing-quelltext2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-quelltext2}
-[source,asciidoc]
+[source,asciidoc,subs="attributes+"]
 ----
  :desc-listing-hallowelt: HalloWelt.java
- [id="listing-hallowelt",reftext="{listing-caption} {counter:listings }"]
+ [{id-equals}"listing-hallowelt",reftext="{listing-caption} {counter:listings }"]
  .{desc-listing-hallowelt}
  [source,java]
  ----
@@ -541,11 +541,11 @@ Der ID soll mit dem Bezeichner `glossar-` beginnen.
 Beispielsweise muss für die Referenzierung des Fachausdrucks `Hallo Welt Beispiel` folgender Eintrag in die Datei `/common/glossary.adoc` aufgenommen werden.
 
 :desc-listing-glossar: Glossar
-[id="listing-glossar",reftext="{listing-caption} {counter:listings }"]
+[{id-equals}"listing-glossar",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-glossar}
-[source,asciidoc]
+[source,asciidoc,subs="attributes+"]
 ----
-[id="glossar-halloweltbeispiel",reftext="Hallo Welt Beispiel"]
+[{id-equals}"glossar-halloweltbeispiel",reftext="Hallo Welt Beispiel"]
 Hallo Welt Beispiel:: Ein Hallo Welt Beispiel enthält einen denkbar einfachen Quelltext.
 ----
 
