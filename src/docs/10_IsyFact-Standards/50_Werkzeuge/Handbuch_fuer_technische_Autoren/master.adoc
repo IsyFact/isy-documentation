@@ -5,6 +5,9 @@ include::../../../common/attributes.adoc[]
 :doctitle: Handbuch für technische Autoren
 :title: {doctitle}
 
+// Verhindert Interpretation der AsciiDoc-Beispiele durch Skripte
+:id-equals: id=
+
 // Zwangsplatz des TOC
 
 include::../../../common/colophon.adoc[]
