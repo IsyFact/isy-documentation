@@ -80,8 +80,6 @@ Eine <<anwendungsdomaene>> wiederum besteht aus <<fachanwendung,Fach­anwendunge
 .{desc-image-glossar-4}
 image::glossar-4.png[align="center"]
 
-NOTE: TODO siehe PPT Änderungen des Bildes
-
 |[[anwendungssystem,Anwendungssystem]]Anwendungssystem
 |Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es besteht aus <<ank,Anwendungskomponenten>> und <<querschnittskomponente,Querschnittskomponenten>>.
