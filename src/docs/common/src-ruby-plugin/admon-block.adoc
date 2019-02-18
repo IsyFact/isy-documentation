@@ -1,0 +1,71 @@
+== Standard Admonition Blocks
+Auswahl der Fontawesome-Icons durch die Fachabteilung
+
+[NOTE]
+Tag: [NOTE],  Icon: fa-file-text-o
+
+[TIP]
+Tag: [TIP], Icon: fa-lightbulb-o
+
+[IMPORTANT]
+Tag: [IMPORTANT], Icon: fa-bullhorn
+
+[WARNING]
+Tag: [WARNING],  Icon: fa-exclamation-triangle
+
+[CAUTION]
+Tag: [CAUTION],  Icon: fa-exclamation-circle
+
+
+
+:icons: font
+== Zusätzliche Custom-Admonition-Blocks
+Auswahl der Fontawesome-Icons durch die Fachabteilung
+
+[ANWENDUNGSANFORDERUNG]
+Tag=[ANWENDUNGSANFORDERUNG],  Icon: fa-cogs
+
+[ARCHITEKTURREGEL]
+Tag=[ARCHITEKTUR],  Icon: fa-university
+
+[STYLEGUIDE]
+Tag=[STYLEGUIDE:  Icon: fa-paint-brush
+
+[SICHERHEIT]
+Tag=[SICHERHEIT], Icon: fa-shield
+
+[INFO]
+Tag: [INFO],  Icon: fa-info-circle
+
+== Generierungsbefehle
+*PDF-Aufrufbeispiel:*
+[source, bash]
+asciidoctor-pdf -a revnumber=1.1 -a revdate=1.2 -a icons=font -a sectanchors -a idprefix -a docinfo1  -a pdf-stylesdir=C:\dev\src_gitlab\isy-style\src\main\asciidoc\theme -a pdf-style=isyfact -a pdf-fontsdir=C:\dev\src_gitlab\isy-style\src\main\asciidoc\theme\fonts\    -r ..\..\..\common\lib\custom-admonition-block.rb --trace    master-admon-block.adoc -o admon-block.pdf
+
+*HTML-Aufrufbeispiel:*
+[source, bash]
+asciidoctor -b html5 -a revnumber=1.0 -a revdate=1.0 -a icons=font -a sectanchors -a idprefix -a docinfo1 -a data-uri -a stylesdir=C:\dev\src_gitlab\isy-style\src\main\asciidoc\theme -a stylesheet=isyfact.css     -r ..\..\..\common\lib\custom-admonition-block.rb --trace      master-admon-block.adoc -o admon-block.html
+
+=== Optionale Flags
+Optional ist das Debug-Flag  --trace , um z.B. Verzeichnisfehler zu finden
+
+== Hinweise zur Plugin Installation
+Für die Erweiterung von AsciiDoctor mit *Custom-Admonition-Blocks*, ist es erforderlich, das System um drei Ruby-Dateien zu erweitern. Zwei davon wurden in das von allen Dokumenten genutzte `common`-Verzeichnis gestellt (kein weiterer Handlungsbedarf). Eine Datei ist in ein Systemverzeichnis zu stellen.
+
+.. Die in ein Systemverzeichnis zu installierende Datei `converter.rb` ist in `isy-documentation\src\docs\common\src-ruby-plugin` zu finden und muss unterhalb des "`asciidoctor-pdf-1.5.0.alpha.16`"-Systemverzeichnisses gestellt werden.
++
+Bei einem Windows-Rechner bei dem Ruby im Verzeichnis
+ C:\dev\tools\ruby\Ruby25-x64
+installiert wurde, würde der Pfad beispielsweise
+
+ C:\dev\tools\ruby\Ruby25-x64\lib\ruby\gems\2.5.0\gems\asciidoctor-pdf-1.5.0.alpha.16\lib\asciidoctor-pdf\converter.rb
+
++
+lauten.
+Bei einem Linux-Rechner ist das Verzeichnis, in welches `converter.rb` abzulegen ist, entsprechend anzupassen.
+
+
+.. Die Dateien `custom-admonition-block.rb` und `extension.rb` wurden zentral im `common`-Verzeichnis von `isy-documentation` angelegt. Dadurch kann innerhalb der Bibliothek `ìsy-documentation` darauf verzichtet werden, diese Dateien bei jedem Dokumentenverzeichnis in einem lib-Unterverzeichnis erneut/redundant anzulegen.
++
+Beim Generierungsaufruf ist das Statement `-r ..\..\..\common\lib\custom-admonition-block.rb` hinzuzufügen (s.a. PDF-Aufrufbeispiel aus Abschnitt 3).
++
