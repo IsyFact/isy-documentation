@@ -100,16 +100,16 @@ class CustomAdmonitionBlockDocinfo < Extensions::DocinfoProcessor
 
   def process doc
     '<style>
-.admonitionblock td.icon .icon-info:before {content:"\f05a";color:#19407C;}
-.admonitionblock td.icon .icon-note:before {content:"\f0f6";color:#19407C;}
-.admonitionblock td.icon .icon-tip:before {content:"\f0eb";color:#111111;}
-.admonitionblock td.icon .icon-important:before {content:"\f0a1";color:#bf0000;}
-.admonitionblock td.icon .icon-warning:before {content:"\f071";color:#bf6900;}
-.admonitionblock td.icon .icon-caution:before {content:"\f06a";color:#bf3400;}
-.admonitionblock td.icon .icon-architekturregel:before {content:"\f19c";color:#19407C;}
-.admonitionblock td.icon .icon-sicherheit:before {content:"\f132";color:#FF0000;}
-.admonitionblock td.icon .icon-styleguide:before {content:"\f1fc";color:#800000;}
-.admonitionblock td.icon .icon-anwendungsanforderung:before {content:"\f085";color:#551a8b;}
+.admonitionblock td.icon .icon-info:before {content:"\f05a";color:#003D86;}
+.admonitionblock td.icon .icon-note:before {content:"\f0f6";color:#003D86;}
+.admonitionblock td.icon .icon-tip:before {content:"\f0eb";color:#003D86;}
+.admonitionblock td.icon .icon-important:before {content:"\f0a1";color:#003D86;}
+.admonitionblock td.icon .icon-warning:before {content:"\f071";color:#003D86;}
+.admonitionblock td.icon .icon-caution:before {content:"\f06a";color:#003D86;}
+.admonitionblock td.icon .icon-architekturregel:before {content:"\f19c";color:#003D86;}
+.admonitionblock td.icon .icon-sicherheit:before {content:"\f132";color:#003D86;}
+.admonitionblock td.icon .icon-styleguide:before {content:"\f1fc";color:#003D86;}
+.admonitionblock td.icon .icon-anwendungsanforderung:before {content:"\f085";color:#003D86;}
 </style>'
   end
 end

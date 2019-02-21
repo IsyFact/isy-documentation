@@ -40,16 +40,16 @@ class Converter < ::Prawn::Document
 
   AsciidoctorVersion = ::Gem::Version.create ::Asciidoctor::VERSION
   AdmonitionIcons = {
-    info:      { name: 'fa-info-circle', stroke_color: '19407C', size: 24 },
-    note:      { name: 'fa-file-text-o', stroke_color: '19407C', size: 24 },
-    tip:       { name: 'fa-lightbulb-o', stroke_color: '51AEB1', size: 24 },
-    important: { name: 'fa-bullhorn', stroke_color: '111111', size: 24 },
-    warning:   { name: 'fa-exclamation-triangle', stroke_color: 'FF0000', size: 24 },
-    caution:   { name: 'fa-exclamation-circle', stroke_color: 'D83790', size: 24 },
-	architekturregel:   { name: 'fa-university', stroke_color: '19407C', size: 24 },
-	sicherheit: { name: 'fa-shield', stroke_color: 'FF0000', size: 24 },
-    styleguide:   { name: 'fa-paint-brush', stroke_color: '800000', size: 24 },
-    anwendungsanforderung: { name: 'fa-cogs', stroke_color: '551a8b', size: 24 }
+    info:      { name: 'fa-info-circle', stroke_color: '003D86', size: 24 },
+    note:      { name: 'fa-file-text-o', stroke_color: '003D86', size: 24 },
+    tip:       { name: 'fa-lightbulb-o', stroke_color: '003D86', size: 24 },
+    important: { name: 'fa-bullhorn', stroke_color: '003D86', size: 24 },
+    warning:   { name: 'fa-exclamation-triangle', stroke_color: '003D86', size: 24 },
+    caution:   { name: 'fa-exclamation-circle', stroke_color: '003D86', size: 24 },
+	architekturregel:   { name: 'fa-university', stroke_color: '003D86', size: 24 },
+	sicherheit: { name: 'fa-shield', stroke_color: '003D86', size: 24 },
+    styleguide:   { name: 'fa-paint-brush', stroke_color: '003D86', size: 24 },
+    anwendungsanforderung: { name: 'fa-cogs', stroke_color: '003D86', size: 24 }
   }
   TextAlignmentNames = ['left', 'center', 'right', 'justify']
   BlockAlignmentNames = ['left', 'center', 'right']
