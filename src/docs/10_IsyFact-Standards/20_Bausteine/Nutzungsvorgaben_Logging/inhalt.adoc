@@ -713,18 +713,17 @@ Folgende Aspekte sind bei der Logback-Konfiguration zu beachten:
 
 [underline]#Konfigurationsdateien#
 
-Alle Anwendungen dürfen ihre Logging-Konfiguration ausschließlich über die Konfigurationsdatei `logback.xml` vornehmen.
+Alle Anwendungen dürfen ihre Logging-Konfiguration ausschließlich über die Konfigurationsdateien `logback.xml` und `application.properties` vornehmen.
 Die Auslieferung der Logging-Konfiguration geschieht mit den applikationsspezifischen Konfigurationsdateien für die jeweilige Umgebung.
 Die Ablage der Konfigurationsdatei in Sourcen und Kompilaten ist durch das Konzept <<KonzeptUeberwachungKonfiguration>> definiert.
 Die Konfigurationsdateien dürfen nicht in einem Archiv (JAR-Bibliothek) abgelegt werden, sondern müssen als einzelne Dateien installiert werden.
 
-[underline]#Log-Level und Anpassung der Konfiguration zur Laufzeit#
+[underline]#Konfiguration des Log-Levels#
 
-Logback wird so konfiguriert, dass die Konfigurationsdatei jede Minute automatisch neu geladen wird und durchgeführte Änderungen – ohne Neustart der Anwendung – übernommen werden.
-In Testumgebungen kann hierdurch zwischen verschiedenen Konfigurationsalternativen gewechselt werden.
 In Produktion ist die Konfiguration in aller Regel fix, da sie auf die betriebliche Infrastruktur abgestimmt sein muss.
 In der Produktionsumgebung darf daher nur der Log-Level angepasst werden.
-
+Der Log-Level wird über `application.properties` eingestellt.
+Damit dies funktioniert, wird das Attribut `level` bei der Definition der Logger in `logback.xml` weggelassen.
 Standardmäßig werden die Systeme in Produktion im Log-Level INFO betrieben.
 Bei Bedarf kann jedoch auf DEBUG und in Ausnahmefällen auf TRACE gewechselt werden, um detaillierte Informationen zur Fehleranalyse bereitzustellen.
 Andere Log-Level sind zu vermeiden.
@@ -732,7 +731,7 @@ Andere Log-Level sind zu vermeiden.
 [[anwendungen-zeitbasiertes-rollieren]]
 ==== Anwendungen (zeitbasiertes Rollieren)
 
-Die Bibliothek `isy-logging`stellt bereits einen vorkonfigurierten Appender bereit, durch den Logdateien gemäß den in <<vorgaben-fuer-logdateien>> definierten Vorgaben erstellt werden.
+Die Bibliothek `isy-logging` stellt bereits einen vorkonfigurierten Appender bereit, durch den Logdateien gemäß den in <<vorgaben-fuer-logdateien>> definierten Vorgaben erstellt werden.
 In der Anwendung bzw. im Batch selbst ist daher nur noch eine minimale Logging-Konfiguration notwendig:
 
 [source,xml]
@@ -747,7 +746,7 @@ In der Anwendung bzw. im Batch selbst ist daher nur noch eine minimale Logging-K
 <!-- Include der vorkonfigurierten Appender. -->
 <include resource="resources/isylogging/logback/appender.xml" />
 <!-- Root-Logger als Grundlage für alle Logger-Instanzen -->
-<root level="trace">
+<root>
 <appender-ref ref="DATEI_ANWENDUNG" />
 </root>
 </configuration>
@@ -755,7 +754,7 @@ In der Anwendung bzw. im Batch selbst ist daher nur noch eine minimale Logging-K
 
 Folgende Parameter sind zu setzen:
 
-* `LOGFILE_PATH`: Der Pfad der Logdatei (LOGFILE_PATH) muss gemäß den Vorgaben aus Abschnitt 3.3 angepasst werden.
+* `LOGFILE_PATH`: Der Pfad der Logdatei (LOGFILE_PATH) muss gemäß den <<vorgaben-fuer-logdateien>> angepasst werden.
 * `INCLUDE_MDC`: Gibt an, ob der komplette Inhalt des MDC in das Log aufgenommen werden soll (true) oder nicht (false).
 * `CONTEXT_NAME`: Als `contextName` wird „<HOST>_<SYSTEM-ID>“ zur eindeutigen Identifikation der Instanz der Anwendung bzw. des Batches angegeben.
 
@@ -772,7 +771,7 @@ Hierfür wird folgende Konfiguration verwendet:
 <!-- Include der vorkonfigurierten Appender. -->
 <include resource="resources/isylogging/logback/appender-entwicklung.xml" />
 <!-- Root-Logger als Grundlage für alle Logger-Instanzen -->
-<root level="trace">
+<root>
 <appender-ref ref="KONSOLE" />
 </root>
 </configuration>
@@ -792,14 +791,22 @@ konfigurieren – bspw. falls ein Framework in einer bestimmten Klasse irreführ
 Dies geschieht nach folgendem Schema:
 
 [source,xml]
+.logback.xml
 ----
-<logger name="<Package- oder Klassenname>" level="<Log-Level>"
-additivity="false">
-<appender-ref ref="FILE" />
-</logger>
-<!-- Root-Logger als Grundlage für alle Logger-Instanzen -->
-<root level="debug">
-...
+<root>
+  <appender-ref ref="KONSOLE" />
+</root>
+
+<logger name="de.bund.bva.isyfact" additivity="false">
+  <appender-ref ref="KONSOLE"/>
+</logger
+----
+
+[source]
+.application.properties
+----
+logging.level.root=INFO
+logging.level.de.bund.bva.isyfact=DEBUG
 ----
 
 Das Attribut `additivity=false` gibt dabei an, dass für die konfigurierte Klasse bzw.
@@ -811,58 +818,6 @@ das konfigurierte Package ausschließlich dieser Logger und nicht zusätzlich de
 Im Folgenden werden die Spring-Konfigurationen zur Integration von logback in Spring und zur Konfiguration
 der genutzten Hilfsmechanismen (vgl. <<konzeptlogging>>) beschrieben.
 
-[[logbackconfiglistener]]
-==== LogbackConfigListener
-
-Zum Initialisieren und sauberen Herunterfahren von logback in Web-Anwendungen, wird der `LogbackConfigListener`
-verwendet, der durch die Bibliothek `org.logback-extensions:logback-ext-spring` bereitgestellt wird.
-Hierzu ist eine entsprechende Konfiguration in der web.xml vorzunehmen:
-
-[source,xml]
-----
-<web-app>
-...
-<!--
-Angabe des Speicherorts der logback Konfiguration
-Wenn nicht angegeben, greift die Standardinitialisierung:
-Konfiguration im Classpath.
-Aufgrund des Deplyoments liegt die Konfiguration aber unter
-/classes/config/logback.xml
--->
-<context-param>
-<param-name>logbackConfigLocation</param-name>
-<param-value>classpath:/config/logback.xml</param-value>
-</context-param>
-<!--
-Angabe des zu verwendenden Listeners fuer logback
-Dies ist noetig, da Container, die die Servlet 2.4 API implementieren
-verlangen, dass Listener vor load-on-startup Servlets geladen werden.
-Servlet 2.3 Container erzwingen dieses Vorgehen.
-Ausserdem ist der LogbackConfigListener vor dem ContextLoaderListener zu
-registrieren, siehe analoge Vorgaben für log4j
-unter http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/web/util/Log4jConfigListener.html
-Anmerkung: Sollte ein aelterer Servlet-Container (2.2) verwendet werden ist
-LogbackConfigServlet anstelle von LogbackConfigListener zu verwenden.
--->
-<listener>
-<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
-</listener>
-<!--
-Bootstrap Listener zum Starten des Springs Haupt-WebApplicationContexts
-von Spring.
-Delegiert an ContextLoader.
-Sofern der Log4jConfigListener verwendet wird ist dieser Listener danach
-in der web.xml zu registrieren.
-Anmerkung: Sollte ein aelterer Servlet-Container (2.2) verwendet werden ist
-ContextLoaderServlet anstelle von ContextLoaderListener zu verwenden.
--->
-<listener>
-<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-</listener> +
-...
-</web-app>
-----
-
 [[loggingmethodinterceptor]]
 ==== LoggingMethodInterceptor
 
@@ -871,93 +826,19 @@ Der `LoggingMethodInterceptor` besitzt die folgenden Konfigurationsparameter:
 `loggeDauer`, `loggeAufruf`, `loggeErgebnis`, `loggeDaten`, `loggeDatenBeiException` und `loggeMaximaleParameterGroesse`
 (vgl. <<loggingmethodinterceptor-und-loggingmethodinvoker>>).
 
-Es werden zwei Instanzen des LogInterceptors mit unterschiedlichen Ausprägungen der oben genannten
-Parameter konfiguriert:
+Durch `isy-logging` werden zwei Instanzen des LogInterceptors mit unterschiedlichen Ausprägungen der oben genannten
+Parameter automatisch konfiguriert:
 
 * `boundaryLogInterceptor`: Dieser wird verwendet, um Aufrufe an Systemgrenzen zu loggen.
-Es müssen entsprechende Pointcuts für alle Service-Schnittstellen, GUI-Controller und Batchausführungsbeans
-definiert werden (siehe Szenarien in <<aufruf-an-systemgrenze>> und <<rueckliefern-einer-exception-an-systemgrenze>>).
+Zur Kennzeichnung von Systemgreznzen wird die von `isy-logging` bereitgestellt Annotation `@Systemgrenze` verwendet.
+Damit werden alle Service-Schnittstellen, GUI-Controller und Batchausführungsbeans annotiert (siehe Szenarien in <<aufruf-an-systemgrenze>> und <<rueckliefern-einer-exception-an-systemgrenze>>).
 * `komponentLogInterceptor`: Dieser wird verwendet, um Aufrufe an Komponentengrenzen zu loggen.
-Es müssen entsprechende Pointcuts für alle relevanten Komponenten-Schnittstellen definiert werden
+Hierfür wird die analog die Annotation `@Komponentengrenze` bereitgestellt.
+Damit werden alle relevanten Komponenten-Schnittstellen annotiert.
 (siehe Szenario in Abschnitt 5.2.2.3).
 
-Die Konfiguration der Beans ist im Folgenden dargestellt:
-
-[source,xml]
-----
-<beans ...>
-<!-- Autoproxies einschalten -->
-<aop:aspectj-autoproxy />
-<!-- Interceptor zum Loggen an Systemgrenzen. -->
-<bean id="boundaryLogInterceptor" class="de.bund.bva.isyfact.logging.util.LoggingMethodInterceptor">
-<property name="loggeDauer">
-<value>${isylogging.boundary.loggeDauer}</value>
-</property>
-<property name="loggeAufruf">
-<value>${isylogging.boundary.loggeAufruf}</value>
-</property>
-<property name="loggeErgebnis">
-<value>${isylogging.boundary.loggeErgebnis}</value>
-</property>
-<property name="loggeDaten">
-<value>${isylogging.boundary.loggeDaten}</value>
-</property>
-<property name="loggeDatenBeiException">
-<value>${isylogging.boundary.loggeDatenBeiException}
-</value>
-</property>
-<property name="loggeMaximaleParameterGroesse">
-<value>${isylogging.boundary.loggeMaximaleParameterGroesse}
-</value>
-</property>
-</bean>
-<!-- Interceptor zum Loggen an Komponentengrenzen. -->
-<bean id="componentLogInterceptor" class="de.bund.bva.isyfact.logging.util.LoggingMethodInterceptor">
-<property name="loggeDauer">
-<value>${isylogging.component.loggeDauer}</value>
-</property>
-<property name="loggeAufruf">
-<value>${isylogging.component.loggeAufruf}</value>
-</property>
-<property name="loggeErgebnis">
-<value>${isylogging.component.loggeErgebnis}</value>
-</property>
-<property name="loggeDaten">
-<value>${isylogging.component.loggeDaten}</value>
-</property>
-<property name="loggeDatenBeiException">
-<value>${isylogging.component.loggeDatenBeiException}
-</value>
-</property>
-<property name="loggeMaximaleParameterGroesse">
-<value>${isylogging.component.loggeMaximaleParameterGroesse}
-</value>
-</property>
-</bean>
-<!-- AOP-Advice für das Logging konfigurieren -->
-<aop:config>
-<!-- Pointcuts an den Systemgrenzen -->
-<aop:advisor order="1000" advice-ref="boundaryLogInterceptor"
-pointcut="target(de.bund.bva.xyz.fachanwendungxyz.service.meldung.httpinvoker.v1_0.MeldungRemoteBean)
-or target(de.bund.bva.xyz.fachawendungxyz.gui.meldung.MeldungController)" />
-<!-- Pointcuts an den Komponentengrenzen -->
-<aop:advisor order="1000" advice-ref="componentLogInterceptor"
-pointcut="target(de.bund.bva.xyz.fachawendungxyz.core.meldung.Meldung)" />
-</beans>
-----
-
-[WARNING]
-====
-Folgende Aspekte müssen zwingend beachtet werden:
-
-* Jeder definierte Advisor belegt ca. 5 MB im Heap Space.
-Damit die Anzahl der Advisor gering gehalten wird, wird für jeden Interceptor nur ein Advisor
-definiert und die verschiedenen `targets` mit `or` verbunden.
-Analog zum Pointcut an den Systemgrenzen im obigen Beispiel.
-* Die Werte der Konfigurationsparameter (`isylogging.boundary.loggeDauer`, `isylogging.boundary.loggeAufruf` etc.)
-müssen als betriebliche Konfigurationsparameter in der Anwendungskonfiguration abgelegt werden
-und wie folgt gesetzt werden:
-====
+Die Standardkonfiguration der Interceptoren zeigt <<table-ESIsyLog>>.
+Sie kann in Ausnahmefällen über `application.properties` geändert werden:
 
 :desc-table-ESIsyLog: Ereignisschlüssel isy-logging
 [id="table-ESIsyLog",reftext="{table-caption} {counter:tables}"]
@@ -965,32 +846,30 @@ und wie folgt gesetzt werden:
 [cols="6m,2m,6",options="header"]
 |====
 |Parameter |Default |Bemerkung
-|isylogging.boundary.loggeDauer |true .3+|Muss auf `true` sein, um das Logszenario _Aufruf an Systemgrenze_
+|isy.logging.boundary.loggeDauer |true .3+|Muss auf `true` sein, um das Logszenario _Aufruf an Systemgrenze_
 umzusetzen.
-|isylogging.boundary.loggeAufruf |true
-|isylogging.boundary.loggeErgebnis |true
-|isylogging.boundary.loggeDaten |false |Kann in einer Testumgebung oder temporär in Produktion auf `true`
+|isy.logging.boundary.loggeAufruf |true
+|isy.logging.boundary.loggeErgebnis |true
+|isy.logging.boundary.loggeDaten |false |Kann in einer Testumgebung oder temporär in Produktion auf `true`
 gesetzt werden, um die gesamte Schnittstellenkommunikation zur Unterstützung der Fehlersuche auszugeben.
-|isylogging.boundary.loggeDatenBeiException |true |Muss auf `true` sein, um das Logszenario _Rückliefern
+|isy.logging.boundary.loggeDatenBeiException |true |Muss auf `true` sein, um das Logszenario _Rückliefern
 einer Exception an Systemgrenze_ umzusetzen.
-|isylogging.boundary.loggeMaximaleParameterGroesse |0 a|
+|isy.logging.boundary.loggeMaximaleParameterGroesse |0 a|
 Setzt die maximale Größe von Parametern, die ins Log geschrieben werden dürfen, in Bytes.
 
 Ist nur aktiv, wenn `loggeDaten` oder `loggeDatenBeiException` auf `true` gesetzt ist.
 
 0 bedeutet keine Beschränkung.
-|isylogging.component.loggeDauer |false .2+|Die Ausgabe der Dauer und der durchgeführten Aufrufe an
+|isy.logging.component.loggeDauer |false .2+|Die Ausgabe der Dauer und der durchgeführten Aufrufe an
 Komponentengrenzen führt zu einem hohen Logvolumen.
 Daher ist es sinnvoll, den Parameter im Produktivbetrieb nur bei Bedarf auf v zu stellen (vgl.
 Logszenario _Aufruf an Komponentengrenze_).
-|isylogging.component.loggeAufruf |false
-|isylogging.component.loggeErgebnis |false .3+|Kann in einer Testumgebung oder temporär in Produktion zur
+|isy.logging.component.loggeAufruf |false
+|isy.logging.component.loggeErgebnis |false .3+|Kann in einer Testumgebung oder temporär in Produktion zur
 Unterstützung der Fehlersuche `true` gesetzt werden.
-|isylogging.component.loggeDaten |false
-|isylogging.component.
-loggeDatenBeiException |false
-|isylogging.component.
-loggeMaximaleParameterGroesse |0 a|
+|isy.logging.component.loggeDaten |false
+|isy.logging.component.loggeDatenBeiException |false
+|isy.logging.component.loggeMaximaleParameterGroesse |0 a|
 Setzt die maximale Größe von Parametern, die ins Log geschrieben werden dürfen, in Bytes.
 
 Ist nur aktiv, wenn loggeDaten oder loggeDatenBeiException auf `true` gesetzt ist.
@@ -1008,8 +887,8 @@ Bei dieser Konvertierung gelten standardmäßig folgende Regeln:
 Subpackages) werden rekursiv durchlaufen.
 * Alle anderen Objekte, Primitives und Enums werden mit `toString` umgewandelt.
 
-Dieses Verhalten [underline]#*kann*# bei Bedarf konfigurativ angepasst werden, in dem die beiden Constructor-Argumente
-`converterIncludes` und `converterExcludes` angegeben werden.
+Dieses Verhalten [underline]#*kann*# bei Bedarf konfigurativ angepasst werden, in dem die beiden Properties
+`isy.logging.<boundary | component>.converterIncludes` und `isy.logging.<boundary | component>.converterExcludes` angegeben werden.
 Dabei gilt:
 
 * Alle Objekte aus Packages (und Sub-Packages) in der Liste `converterIncludes` werden Rekursiv durchlaufen.
@@ -1024,45 +903,22 @@ sein:
 
 Eine exemplarische Konfiguration ist im Folgenden dargestellt:
 
-[source,xml]
+[source]
 ----
-<!-- Interceptor zum Loggen an Systemgrenzen. -->
-<bean id="xyzInterceptor" class="de.bund.bva.isyfact.logging.util.LoggingMethodInterceptor">
-<constructor-arg name="converterIncludes">
-<list>
-<!-- included Packages -->
-<value>x.y.z</value>
-</list>
-</constructor-arg>
-<constructor-arg name="converterExcludes">
-<list>
-<!-- excluded Packages -->
-<value>a.b.c</value>
-</list>
-</constructor-arg>
-…
-</bean>
+isy.logging.boundary.converterIncludes=x.y.z, u.v.w
+isy.logging.boundary.converterExcludes=a.b.c
 ----
 
 [[logapplicationlistener-1]]
 ==== LogApplicationListener
 
-Im Folgenden wird die Konfiguration des LogApplicationListener dargestellt:
+Der LogApplicationListener wird über folgende Properties konfiguriert:
 
-[source,xml]
+[source]
 ----
-<beans ...>
-<bean id="statusLogger"
-class=" de.bund.bva.isyfact.logging.util.LogApplicationListener">
-<property name="systemart"
-value="<SYSTEMART>" />
-<property name="systemname"
-value="<SYSTEMNAME>" />
-<property name="systemversion"
-value="${<VERSIONSNUMMER>}" />
-</bean>
-
-</beans>
+isy.logging.anwendung.typ=<SYSTEMART>
+isy.logging.anwendung.name=<SYSTEMNAME>
+isy.logging.anwendung.version=<SYSTEMVERSION>
 ----
 
 Die Platzhalter müssen dabei wie folgt ersetzt werden:
@@ -1094,23 +950,7 @@ Eine Übersicht über die erfassten Klassen bietet die folgende Tabelle:
 |====
 
 Bei allen Aufrufen wird nur die Dauer des Aufrufs geloggt.
-
-[[einbinden-der-spring-konfiguration]]
-==== Einbinden der Spring-Konfiguration
-
-Zum Aktivieren des Performance-Logging wird eine durch `isy-logging` bereitgestellte Spring-Konfiguration
-eingebunden:
-
-[source,xml]
-----
-<beans ...>
-...
-<import resource="classpath:resources/isylogging/spring/aop-performance-logging.xml"/> +
-...
-</**beans**>
-----
-
-Diese Konfiguration ist nach dem Einbinden über das Spring-Profil `performance-logging` zu aktivieren.
+Das Performance-Logging wird über die Property `isy.logging.performancelogging.enabled=true` eingeschaltet.
 
 [[annotation-fuer-performance-logging]]
 ==== Annotation für Performance-Logging
@@ -1173,16 +1013,17 @@ Diese kann wie folgt umgesetzt werden:
 . `jul-to-slf4j.jar` in die Anwendung ergänzen
 . Den folgenden Abschnitt in die Spring-Konfiguration der Anwendung ergänzen:
 
-[source,xml]
+[source,java]
 ----
-<!-- Bridge von java.util.logging nach SLF4J einrichten-->
-<!-- 1. Entferne vorhandene Log-Handler -->
-<bean id="slf4JBridgeHandler" class="org.slf4j.bridge.SLF4JBridgeHandler"
-init-method="removeHandlersForRootLogger"/>
-<!-- 2. Installiere den Handler der Bridge -->
-<bean class="org.slf4j.bridge.SLF4JBridgeHandler"
-init-method="install"
-depends-on="slf4JBridgeHandler"/>
+@Configuration
+public class LoggingBridgeConfig {
+    @Bean
+    public SLF4JBridgeHandler slf4JBridgeHandler() {
+        SLF4JBridgeHandler.removeHandlersForRootLogger();
+        SLF4JBridgeHandler.install();
+        return new SLF4JBridgeHandler();
+    }
+}
 ----
 
 [[vorgaben-zur-logerstellung]]
