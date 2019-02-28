@@ -3255,6 +3255,37 @@ Hierzu können in der Konfiguration folgende Einstellungen hinterlegt werden:
 
 Ist keine Konfiguration bzgl. Flows gesetzt, so wird die Gruppe immer angezeigt.
 
+[[breadcrumbs]]
+==== Breadcrumbs auf der Detailseite
+
+Auf der Detailseite einer Applikation kann in der Titelzeile ein Location-Breadcrumb eingeblendet werden.
+In diesem Breadcrumb wird der Pfad zum aktuellen Element angezeigt (<<image-breadcrumb>>).
+
+:desc-image-breadcrumb: Breadcrumb in der Titelzeile der Detailseite der Applikation
+[id="image-breadcrumb",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-breadcrumb}
+image::breadcrumb.png[align="center", pdfwidth=40%]
+
+Die angezeigten Daten werden nicht automatisch angezeigt, sondern müssen programmatisch gesetzt werden.
+Hierzu wird die Model-Klasse `LocationBreadcrumbModel` entsprechend befüllt.
+Ist das Breadcrumb-Model leer, wird der Breadcrumb nicht angezeigt.
+
+Eine Instanz des Breadcrumb-Models wird über das `BasisModel` bereitgestellt.
+Unterstützt wird die Anzeige von Hierarchieebene über die Methoden `pushHierarchiebene() / popHierarchiebene / clearHierarchiebenen()` und die Angabe eines Objektnamens per `setObjektname(String)`.
+Mit dem in <<listing-breadcrumbmodel>> gezeigten Code wird der in <<image-breadcrumb>> gezeigte Breadcrumb realisiert.
+
+:desc-listing-breadcrumbmodel: Verwendung des Breadcrumb-Models
+[id="listing-breadcrumbmodel",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-breadcrumbmodel}
+[source,java]
+----
+public void initialisiereBreadcrumbModel(LocationBreadcrumbModel model) {
+    model.setObjektname("Testobjekt / ID-1234");
+    model.pushHierarchiebene("Ebene 1");
+    model.pushHierarchiebene("Ebene 2");
+}
+----
+
 
 [[selektion-ueberschrift]]
 === Selektion
@@ -3989,6 +4020,9 @@ Folgende Komponentenattribute sind optional:
 * `invalid`: Ob die Auswahl invalide ist oder nicht. (Standard: `false`, Typ: `Boolean`)
 * `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
 * `readonly`: Ob die Darstellung nur lesend erfolgen soll (Standard: `false`, Typ: `Boolean`)
+
+NOTE: Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `readonly="true"` als Label gerendert.
+
 * `valueChangeListener`: Value Change Listener
 * `fourEyesLastValue`: 4 Augen Prinzip Mode (locked, unlock)
 * `converter`: Letzter Wert im 4-Augen-Eingabefeld
@@ -4089,6 +4123,9 @@ Außerdem gibt es folgende optionale Parameter:
 * `globalConfig`: Eine spezifische globale Konfiguration, falls notwendig. (Standard: `#{globalConfigurationModel}`)
 * `dropdownStyleClass`: Die CSS-Klasse für das Dropdownmenü.
 * `readonly`: Ob die Darstellung nur lesend erfolgen soll (Standard: `false`, Typ: `Boolean`)
+
+NOTE: Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `readonly="true"` als Label gerendert.
+
 * `disabled`: Ob die Auswahl deaktiviert ist oder nicht. (Standard: `false`, Typ: `Boolean`)
 * `converter`: Konverter-Bean für die angezeigten Elemente
 * `converterAttribute`: Parameter für den Konverter
