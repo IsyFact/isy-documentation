@@ -3,6 +3,7 @@
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
 - `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
+- `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls

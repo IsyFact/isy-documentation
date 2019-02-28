@@ -2823,23 +2823,27 @@ Die Komponente hat folgende optionale Parameter:
 ==== Sortierung in einer Tabelle
 
 Tabellen bieten Möglichkeiten zur Sortierung an.
-Dazu müssen die einzelnen Spalten-Header über das `<isy:dataTableHeader>` Tag entsprechend konfiguriert werden.
+Dazu können die einzelnen Spalten-Header über das `<isy:dataTableHeader>` Tag entsprechend konfiguriert werden.
+
+Wenn eine Tabellenspalte auf- bzw. absteigend sortierbar ist, dann wird dies durch zwei kleine Pfeil-Icon-Dreiecke dargestellt.
+Wählt der Anwender eine Spalte zum Sortieren aus, dann wird entsprechend der ausgewählten Sortierrichtung das jeweilige Icon dargestellt.
+In der folgenden Abbildung sind die Spalten `Vorname, Loginname und "#"` als sortierbar erkennbar. Die Spalte `Nachname` ist abwärts-sortiert, dargestellt durch das nach unten gerichtete Dreiecks-Icon.
 
 :desc-image-tabellesortierungimkopf: Tabelle – Sortierungs-Indikator in Tabellenkopf
 [id="image-tabellesortierungimkopf",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-tabellesortierungimkopf}
-image::image183.png[align="center"]
+image::demopanel-dataTableHeader.png[align="center"]
+
+Durch Angabe von `sortable="true"` und dem Attribut `sortProperty` werden automatisch Buttons und Symbole zur Sortierung hinzugefügt.
+Beim Initialisieren des Models muss der Operationsmodus (`SERVER` oder `CLIENT`) gesetzt werden: `model.setMode(DatatableOperationMode.SERVER)`. Im Modus `CLIENT` erfolgt die Sortierung automatisch per JavaScript. Im Modus `SERVER` wird die Methode `DataTableController.updateDisplayItems(...)` aufgerufen, welche die Tabelleneinträge filtert sowie sortiert und anschließend seitenweise anzeigt.
 
 :desc-listing-dataTableHeader2: Beispiel für dataTableHeader
 [id="listing-dataTableHeader2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-dataTableHeader2}
 [source, xml]
 ----
-<isy:dataTableHeader name="#{...}" sortable="true" sortProperty="vorname" />
+<isy:dataTableHeader name="#{...}" sortable="true" sortProperty="vorname"/>
 ----
-
-Durch Angabe von `sortable="true"` und dem Attribut `sortProperty` werden automatisch Buttons und Symbole zur Sortierung hinzugefügt.
-Beim Initialisieren des Models muss der Operationsmodus (`SERVER` oder `CLIENT`) gesetzt werden: `model.setMode(DatatableOperationMode.SERVER)`. Im Modus `CLIENT` erfolgt die Sortierung automatisch per JavaScript. Im Modus `SERVER` wird die Methode `DataTableController.updateDisplayItems(...)` aufgerufen, welche die Tabelleneinträge filtert sowie sortiert und anschließend seitenweise anzeigt.
 
 [[selektionsverhalten-tabelle]]
 ==== Selektionsverhalten in einer Tabelle
@@ -4186,15 +4190,6 @@ Die Komponente besitzt folgende optionale Parameter:
 
 * `warning`: Die anzuzeigende Warnung wenn die browserseitige Druckansicht einer Seite angezeigt wird (optional) (Standard: ``)
 * `basis`: BasisModel (Standard: `#{basisModel}`)
-
-[[specialCharPicker]]
-=== Sonderzeichen Widget
-<isy:specialCharPicker> -  Diese Komponente dient dazu, die Eingabe der nationalen Buchstaben und Sonderzeichen über ein externes Widget-Plugin zu ermöglichen/erleichtern.
-
-Die Komponente besitzt weder notwendige noch optionale Parameter.
-
-
-
 
 
 [[Druckaufbereitung]]
