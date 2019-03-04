@@ -185,55 +185,6 @@ Es werden die Datums- und Zeitklassen aus der _Java 8 Date Time API_ verwendet.
 Hinweise zu deren Verwendung finden sich im <<KonzeptDatumZeit>>.
 Zur Persistierung von Zeiträumen und ungewissen Datums- und Zeitangaben im Sinne des <<KonzeptDatumZeit>> werden die `@Entity`-Klasse `ZeitraumEntitaet` und die `@Embeddable`-Klassen `UngewisseZeitEntitaet` und `UngewissesDatumEntitaet` bereitgestellt.
 
-[[persistierung-1]]
-=== Persistierung mit JPA
-
-JPA unterstützt in der aktuellen Version 2.1 die neuen Typen für Datum und Zeit nicht, da die Spezifikation vor dem Erscheinen von Java 8 verabschiedet wurde.
-JPA 2.2 wird dies nachholen.
-Allerdings gibt es derzeit noch keine (Referenz-)Implementierung von JPA 2.2. Für die Persistierung ergeben sich damit zwei Möglichkeiten:
-
-.  Hibernate bietet ab Version 5 eine proprietäre Lösung für die neuen Datums- und Zeittypen an.
-+
-NOTE: Beschreibung: https://www.thoughts-on-java.org/hibernate-5-date-and-time/
-+
-Hier ist allerdings unklar, wie diese Implementierung nach dem Erscheinen von JPA 2.2 in den Standard überführt werden soll.
-Diese Lösung wird wenig Aufwand bei der Implementierung mit sich bringen, ist allerdings spezifisch für Hibernate und könnte beim Wechsel auf JPA 2.2 zu erhöhtem Migrationsaufwand führen.
-.  JPA bietet die Möglichkeit, zusätzliche Datentypen mithilfe von Konvertern zu unterstützen.
-Dafür muss für jeden zu unterstützenden Datentyp die Klasse `AttributeConverter` implementiert werden.
-Diese Lösung wird mehr Aufwand bei der Implementierung mit sich bringen.
-Die Implementierung ist dafür JPA-konform, als Teil des IsyFact-Bausteins vollständig beschrieben und kann so beim Wechsel auf JPA 2.2 kontrolliert migriert werden.
-
-Der Baustein orientiert sich am JPA-Standard und setzt Lösungsvariante 2 um.
-Die Umsetzung sollte sich am offiziellen Ticket zur Umsetzung des Features in JPA 2.2 orientieren.
-
-NOTE: https://github.com/javaee/jpa-spec/issues/63
-
-Insbesondere dürfen die Datums- und Zeittypen weder als Binärdaten (BLOB) noch als Zeichenketten persistiert werden.
-Zeitzonen müssen immer als Abweichung von UTC persistiert werden, nicht in textueller Form über den Namen der Zeitzone.
-Die Umwandlung von persistierten Werten in Datumswerte mit benannten Zeitzonen (z.B. CET oder Europe/Berlin) muss von einer Anwendung global bestimmt werden oder für jeden Nutzer der Anwendung konfigurierbar sein.
-
-==== Attribute Converter
-
-Die Querschnittsbibliothek _isy-persistence_ setzt die Persistenz der Klassen aus der _Java 8 Date and Time API_ mit Attribute Convertern aus JPA 2.1 um.
-Die Converter sind automatisch aktiv.
-Die Bibliothek bringt für folgende Klassen Attribute Converter mit:
-
-:desc-table-Mapping: Mapping
-[id="table-Mapping",reftext="{table-caption} {counter:tables}"]
-.{desc-table-Mapping}
-[cols="^,^,^",options="header",]
-|====
-|*Java 8 Typ* |*Mapping auf* |*Bemerkung*
-<|`LocalTime` <|`java.sql.Time` <|Zeiteinheiten kleiner als Sekunde gehen verloren.
-<|`LocalDate` <|`java.sql.Date` |
-<|`LocalDateTime` <|`java.sql.Timestamp` |
-<|`OffsetTime` <|`String` <|ISO-8601-Repräsentation
-<|`OffsetDateTime` <|`String` <|ISO-8601-Repräsentation
-<|`ZonedDateTime` <|`String` <|ISO-8601-Repräsentation
-<|`Period` <|`String` <|ISO-8601-Repräsentation
-<|`Duration` <|`long` <|`Duration` wird in Nanosekunden gespeichert.
-|====
-
 === Altanwendungen
 
 Für alte Anwendungen, die nicht die _Java 8 Date Time API_ verwenden, sondern noch `java.util.Date` verwenden, gelten die folgenden Vorgaben.
@@ -353,7 +304,7 @@ Beispiel für eine persistente Entität, die ein Enum-Feld enthält:
 ----
 @Entity
 public class Person {
-  …
+  ...
 
   @Column(nullable = *false*, length = 1)
   @Type(type = "de.bund.bva.pliscommon.persistence.usertype.Enum(WithId)UserType", parameters = { @Parameter(
@@ -362,7 +313,7 @@ public class Person {
   public Geschlecht getGeschlecht() {
     return geschlecht;
   }
-  …
+  ...
 }
 ----
 
@@ -370,24 +321,20 @@ public class Person {
 == Datenbankschema anfangs über hbm2ddl erzeugen
 
 Für die Erstellung des Datenbank-Schemas wird empfohlen, es initial über Hibernate zu erzeugen.
-Dies ist einfach zu konfigurieren: In der Konfiguration der Session-Factory (siehe Datei `hibernate.cfg.xml`
-in der Vorlage-Anwendung) ist die Konfiguration von `hbm2ddl.auto` auf `create` zu setzen:
+Dies ist einfach zu konfigurieren: In `application.properties` wird dazu die folgende Property gesetzt:
 
-[source,xml]
+[source]
 ----
-<property name="hibernate.hbm2ddl.auto">
-  create
-</property>
+spring.jpa.hibernate.ddl-auto=create
 ----
 
 Grundsätzlich ist es möglich, sämtliche Tabellen-Eigenschaften (etwa auch die Feldlängen und Indizes) über Annotationen zu definieren und das Datenbank-Schema komplett durch hbm2ddl zu erzeugen.
 Hierzu wird keine Vorgabe erstellt: Ob die DDL während der Entwicklung stets generiert wird oder sie nach einer initialen Generierung verändert und parallel gepflegt wird, ist je nach Komplexität des Schemas zu entscheiden.
 
-Befindet sich die Anwendung aber in Produktion, dann muss der Parameter `hbm2ddl.auto` auskommentiert werden,
-damit weder eine Generierung noch eine Validierung des Schemas stattfindet. (Anmerkung: Es gibt keinen
-gültigen Parameterwert „none“ oder ähnliches, der hbm2ddl bei gesetztem Parameter `hbm2ddl.auto` deaktivieren würde.
-Der Parameter muss daher aus der Konfiguration entfernt werden.) Eine Validierung durch Setzen des Parameters
-auf `validate` findet nicht statt.
+Befindet sich die Anwendung aber in Produktion, dann muss der Parameter `spring.jpa.hibernate.ddl-auto` auskommentiert werden,
+damit weder eine Generierung noch eine Validierung des Schemas stattfindet.
+Alternativ kann auch der Wert `none` gesetzt werden.
+Eine Validierung durch Setzen des Parameters auf `validate` findet nicht statt.
 Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung
 wird überprüft, ob in der Datenbank die Schemaversion vorliegt, die die Anwendung erwartet.
 Die Funktionalität hierzu ist in Abschnitt <<pruefen-der-schema-version>> beschrieben.
@@ -415,87 +362,70 @@ Beispiel Nummer eines Registereintrags, Kennung einer Nachricht usw.
 Nachdem ein Persistenzmodell erstellt und das Mapping auf ein Datenbankschema definiert wurde
 (siehe Kapitel <<persistenz>> und <<die-definition-des-mappings-zwischen-objekten-und-datenbank>>),
 können die Persistenzobjekte in der Anwendung verwendet werden.
-Die Verwendung der Persistenzobjekte sowie der benötigten JPA-Klassen wird in diesem Kapitel beschrieben.
+In diesem Kapitel wird der Zugriff auf Persistenzobjekte mit der Hilfe von Spring Data beschrieben.
 
 [[zugriff-auf-jpa-nur-ueber-data-access-objects-daos]]
 == Zugriff auf JPA nur über Data-Access-Objects (DAOs)
 
 Die Persistenzfunktionen werden in Data-Access-Objects (DAOs) mithilfe des JPA Entity Managers implementiert.
 
-Für DAO-Klassen wird in der `isy-persistence` die Basisschnittstelle `Dao` und deren Implementierung `AbstractDao` bereitgestellt.
-Diese stellen Methoden zum Anlegen, Löschen und Suchen über den Primärschlüssel bereit.
-Sie benötigen zwei Typparameter: Den Entitätstyp und den Typ des Primärschlüssels.
+#Für DAO-Klassen wird in der `isy-persistence` die Basisschnittstelle `Dao` und deren Implementierung `AbstractDao` bereitgestellt.
+#Diese stellen Methoden zum Anlegen, Löschen und Suchen über den Primärschlüssel bereit.
+#Sie benötigen zwei Typparameter: Den Entitätstyp und den Typ des Primärschlüssels.
 
+Um den Anteil an Boilerplate Code bei der Implementierung von Data Access Objects deutlich zu reduzieren, wird die Abstraktion für Data Access Object von Spring Data eingesetzt.
+Die häufig verwendeten CRUD-Methoden (Create, Read, Update, Delete) werden vom Interface `CrudRepository` (siehe <<listing-crudrepository>>) aus Spring Data zur direkten Verwendung angeboten.
+Zur Implementierung werden zwei Typparameter benötigt: Der Entitätstyp `T` und der Typ des Primärschlüssels `ID`.
+
+:desc-listing-crudrepository: Methoden von CrudRepository
+[id="listing-crudrepository",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-crudrepository}
 [source,java]
 ----
-/**
-* Basisschnittstelle für Data Access Objects (DAOs).
-*
-* @param <T>
-*               die Entitätsklasse
-* @param <ID>
-*               die Primärschlüsselklasse
-*/
-public interface Dao<T, ID extends Serializable> {
-
-  /**
-  * Speichert die gegebene Entität.
-  *
-  * @param entitaet
-  *             die Entität
-  */
-  public void speichere(T entitaet);
-
-  /**
-  * Löscht die gegebene Entität.
-  *
-  * @param entitaet
-  *             die Entität
-  */
-  public void loesche(T entitaet);
-
-  /**
-  * Sucht eine Entität über ihren Primärschlüssel.
-  *
-  * @param id
-  *             der Primärschlüssel
-  *
-  * @return die Entität, oder <code>null</code> wenn keine gefunden wurde
-  */
-  public T sucheMitId(ID id);
+public interface CrudRepository<T,ID> {
+    long        count();
+    void        delete(T entity)
+    void        deleteAll()
+    void        deleteAll(Iterable<? extends T> entities)
+    void        deleteById(ID id)
+    boolean     existsById(ID id)
+    Iterable<T> findAll()
+    Iterable<T> findAllById(Iterable<ID> ids)
+    Optional<T> findById(ID id)
+    S           save(S entity)
+    Iterable<S> saveAll(Iterable<S> entities)
 }
 ----
 
-Für ein konkretes DAO ist eine eigene Schnittstelle von der Basisschnittstelle `Dao` abzuleiten.
+Für ein konkretes DAO ist eine eigenes Interface von der Basisschnittstelle `CrudRepository` abzuleiten.
 In dieser können weitere DAO-Operationen definiert werden, zum Beispiel zur Durchführung von Queries.
-Die Implementierungsklasse des konkreten DAOs ist von `AbstractDao` abzuleiten.
+Ein Beispiel hierfür ist in <<listing-beispielrepository>> zu sehen.
 
-Die Basisklasse `AbstractDao` stellt den Zugriff auf den JPA-Entity Manager bereit.
-Dieser wird per Dependency-Injection gesetzt.
-Weiterhin ist sie mit der Annotation `@Repository` versehen, damit alle vom Entity Manager erzeugten
-Exceptions in die besser auszuwertenden Spring-DataAccessExceptions umgewandelt werden.
+Weiterhin ist das eigene Interface mit der Annotation `@Repository` zu versehen, damit alle vom Entity Manager erzeugten
+Exceptions in die besser auszuwertenden Spring-`DataAccessExceptions` umgewandelt werden.
 
-In der Spring-Konfiguration wird die Klasse `AbstractDao` wie folgt definiert:
-
-NOTE: Wir benutzen nicht die Annotation `@PersistenceContext` und den `PersistenceAnnotationBeanPostProcessor`.
-Bei deren Verwendung werden beim Starten des Application Contexts zur Ermittlung der `EntityManagerFactory`
-alle Beans zu einem zu frühen Zeitpunkt instanziiert, was bei zirkulären Abhängigkeiten und gewrappten
-Beans Probleme verursacht.
-
-[source,xml]
+:desc-listing-beispielrepository: Beispiel für ein eigenes Data Access Object
+[id="listing-beispielrepository",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-beispielrepository}
+[source,java]
 ----
-<!-- Factory-Bean, um den Shared-Entity-Manager für die DAOs zu erzeugen -->
-<bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-  <property name="entityManagerFactory" ref="entityManagerFactory" />
-</bean>
+@Repository
+public interface EintragDao extends CrudRepository<Eintrag, Long> {
+    List<Eintrag> findAllBy...
 
-<!-- Abstrakte Basisklasse für DAOs -->
-<bean id="abstractDao" class="de.bund.bva.pliscommon.persistence.dao.AbstractDao" abstract="true">
-  <property name="entityManager" ref="entityManagerFactoryBean" />
-</bean>
+}
+----
 
-<!-- Diese Bean sorgt dafür, dass in mit @Repository annotierten DAOs die JPA-Exception auf die besser behandelbaren Spring-Persistence-Exceptions übersetzt werden -->
-<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+Damit die DAOs von Spring automatisch als Beans erzeugt werden, muss eine Konfigurationsklasse der Anwendung mit der Annotation `@EnableJpaRepositories` annotiert werden.
+
+:desc-listing-enablejparepositories: Automatische Erstellung von DAO-Beans durch Spring
+[id="listing-enablejparepositories",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-enablejparepositories}
+[source,java]
+----
+@Configuration
+@EnableJpaRepositories("<Package-Name des Persistenz-Packages>")
+class PersistenceConfiguration { }
 ----
 
 Der Zugriff auf die Datenbank aus dem Anwendungskern heraus erfolgt immer über die DAOs.
@@ -518,6 +448,22 @@ Eine Ausnahme hierzu bildet die Komponente Basisdaten: Sie gibt die Entitäten a
 Als Beispiel für DAOs siehe die Klassen `TerminfindungDao` und `TeilnehmerDao` der
 Vorlage-Anwendung <<Vorlageanwendung>>.
 
+[[definition-von-query-methoden]]
+== Definition von Query Methoden
+
+Der von Spring Data erzeugte Proxy für das Repository Interface kann die Queries auf zwei Arten ableiten:
+
+1. Ableitung des Queries über den Namen der Methode
+
+2. Ableitung über eine manuell definierte Query.
+
+
+bevorzugt wird  Variante 1
+Für eine Referenz zu den Möglichkeiten siehe X
+
+
+
+
 [[jpql-fuer-datenbank-abfragen-nutzen]]
 == JPQL für Datenbank-Abfragen nutzen
 
@@ -526,9 +472,6 @@ In dieser werden Queries über Objekte und Variablen, nicht über Tabellen und F
 
 Wann immer möglich sollten JPQL Abfragen und keine „nativen“ SQL Abfragen verwendet werden.
 Der einzige Grund für die Verwendung von SQL ist die Verwendung von Oracle SQL Features, welche durch JPQL nicht angeboten werden.
-
-Ein Beispiel für eine JPQL Anfrage findet man in Datei `NamedQueries.hbm.xml` in der
-Vorlage-Anwendung <<Vorlageanwendung>>.
 
 [[ablage-von-query-definitionen-in-konfigurationsdatei]]
 == Ablage von Query-Definitionen in Konfigurationsdatei
@@ -542,7 +485,7 @@ Falls der Query-String selbst erst zur Laufzeit zusammengesetzt wird, kann diese
 Dies ist aber zu vermeiden.
 In diesem Fall soll zur Vermeidung von SQL-Injection Attacken die Criteria-API von JPA eingesetzt werden.
 
-Die Konfiguration von Queries über Annotationen in Entitätsklassen ist verboten.
+Die Konfiguration von Queries erfolgt über über Annotationen an den Entitätsklassen.
 
 [[verwendung-von-oracle-hints-bei-optimizer-problemen]]
 == Verwendung von Oracle Hints bei Optimizer-Problemen
@@ -552,7 +495,7 @@ Deshalb werden sie vom Oracle Optimizer bereits analysiert und ein Ausführungsp
 ihre Parameter gebunden werden.
 
 Dies führt in Ausnahmefällen dazu, dass ein benötigter Index für die Query-Bearbeitung nicht
-verwendet wird und „Full Tablescans“ durch­geführt werden.
+verwendet wird und „Full Tablescans“ durchgeführt werden.
 
 Im Falle von Index-Problemen bei NamedQueries sind Oracle-Hints zu verwenden.
 Die Queries sind als native SQL-Queries in der XML Konfigurationsdatei abzulegen.
@@ -650,64 +593,34 @@ image::JPAoverSprBeans.png[align="center"]
 [[konfiguration-des-entitymanagers]]
 == Konfiguration des EntityManagers
 
-Der Zugriff auf JPA erfolgt über einen EntityManager, der wie folgt konfiguriert wird
+Der EntityManager wird von Spring Boot automatisch konfiguriert.
+Eine zusätzliche Konfiguration kann über `application.properties` erfolgen.
+Grundsätzlich können nach dem Schema `spring.jpa.properties.<Schlüssel>=<Wert>` beliebige native Properties für Hibernate gesetzt werden (<<listing-configentitymanager>>).
 
-[source,xml]
+:desc-listing-configentitymanager: Konfiguration des EntityManagers in application.properties
+[id="listing-configentitymanager",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-configentitymanager}
+[source]
 ----
-<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-  <property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence" />
-  <property name="persistenceUnitName" value="hibernatePersistence" />
-  <property name="dataSource">
-    <ref bean="appDataSource" />
-  </property>
-  <property name="jpaDialect">
-    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
-  </property>
-  <property name="jpaProperties">
-    <props>
-      <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
-      <prop key="hibernate.connection.isolation">4</prop>
-      <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
-      <prop key="hibernate.connection.useUnicode">true</prop>
-      <prop key="hibernate.connection.characterEncoding">utf-8</prop>
-      <prop key="hibernate.jdbc.batch_size">0</prop>
-      <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
-      <prop key="hibernate.show_sql">false</prop>
-      <prop key="hibernate.format_sql">false</prop>
-      <prop key="hibernate.default_schema">${database.schema.default}</prop>
-      <!-- Hibernate-Mappings und Lazy-Loading per Default werden in hibernate.cfg.xml konfiguriert -->
-      <prop key="hibernate.ejb.cfgfile">/resources/persistence/hibernate.cfg.xml</prop>
-      <prop key="hibernate.ejb.metamodel.generation">enabled</prop>
-    </props>
-  </property>
-</bean>
-----
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
 
-Da Hibernate als Implementierung von JPA verwendet wird, muss in zwei Schritten JPA mit Hibernate verbunden und
-Hibernate selbst konfiguriert werden.
-Die Verknüpfung zwischen JPA und Hibernate erfolgt über die Datei `persistence.xml`.
-Bei Bedarf können Hibernate spezifische Parameter z.B. zusätzliche Mappings in der Datei `hibernate.cfg.xml`
-konfiguriert werden.
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+spring.jpa.properties.hibernate.connection.isolation=4
+spring.jpa.properties.hibernate.connection.useUnicode=true
+spring.jpa.properties.hibernate.connection.characterEncoding=utf-8
+spring.jpa.properties.hibernate.jdbc.batch_size=0
+spring.jpa.properties.hibernate.jdbc.use_streams_for_binary=true
+spring.jpa.properties.hibernate.format_sql=false
+spring.jpa.properties.hibernate.default_schema=<Default Schema>
+spring.jpa.properties.hibernate.ejb.metamodel.generation=enabled
+----
 
 [[konfiguration-der-datasource]]
 == Konfiguration der Datasource
 
-Als Datasource-Implementierung muss die Implementierung
-aus `de.bund.bva.pliscommon.persistence.datasource.PlisDataSource` genutzt werden:
-
-[source,xml]
-----
-<bean id="appDataSource" class="de.bund.bva.pliscommon.persistence.datasource.PlisDataSource">
-  <property name="schemaVersion" value="x.x.x" />
-  <property name="invalidSchemaVersionAction" value="fail" />
-  <property name="targetDataSource">
-    <bean id="oracleDataSourceUcp" class="oracle.ucp.jdbc.PoolDataSourceFactory" factory-method="getPoolDataSource" lazy-init="true">
-    …
-    </bean>
-  </property>
-</bean>
-----
-
+Als Datasource-Implementierung muss die Implementierung aus `de.bund.bva.isyfact.persistence.datasource.IsyDataSource` genutzt werden.
+Bei der Verwendung von `isy-persistence` wird automatisch eine Bean mit dem Namen `appDataSource` erzeugt.
 Diese prüft die Version des Datenbankschemas (siehe Abschnitt <<pruefen-der-schema-version>>) und dient als
 Wrapper für die wirkliche Datasource des Connections-Pools, dessen Konfiguration im nächsten Abschnitt erläutert wird.
 
@@ -724,142 +637,86 @@ Dieser kann auf der Oracle Website heruntergeladen werden.
 Zur Laufzeit bietet der Pool Informationen per JMX an, die zur Überwachung der Poolaktivität nützlich sind.
 Dazu zählt unter anderem die Anzahl aktuell ausgeliehener Verbindungen.
 
-Die Konfiguration des Pools beschränkt sich auf die Konfiguration der Klasse `oracle.ucp.jdbc.PoolDataSource`
-in der DataSource-Bean.
-Eine Instanz dieser Klasse kann über die Bean `oracle.ucp.jdbc.PoolDataSourceFactory` erzeugt werden.
-
 Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue
 Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
 
-[source,xml]
-----
-<bean class="oracle.ucp.jdbc.PoolDataSourceFactory" factory-method="getPoolDataSource" lazy-init="true">
-  <property name="connectionFactoryClassName" value="oracle.jdbc.pool.OracleDataSource" />
-  <property name="connectionPoolName" value="NAME_DES_POOLS" />
-  <property name="user" value="${database.username}" />
-  <property name="password" value="${database.password}" />
-  <property name="URL" value="${database.url}" />
-  <property name="initialPoolSize" value="${database.connections.initial.size}" />
-  <property name="minPoolSize" value="${database.connections.min.active}" />
-  <property name="maxPoolSize" value="${database.connections.max.active}" />
-  <property name="connectionWaitTimeout" value="${database.connections.wait.timeout}" />
-  <property name="inactiveConnectionTimeout" value="${database.connections.inactive.timeout}" />
-  <property name="timeToLiveConnectionTimeout" value="${database.connections.timetolive.timeout}" />
-  <property name="abandonedConnectionTimeout" value="${database.connections.abandoned.timeout}" />
-  <property name="maxConnectionReuseTime" value="${database.connections.max.reusetime}" />
-  <property name="maxConnectionReuseCount" value="${database.connections.max.reusecount}" />
-  <property name="validateConnectionOnBorrow" value="${database.connections.validate.onborrow}" />
-  <property name="maxStatements" value="${database.connections.statement.cache}" />
-  <property name="connectionProperties">
-    <props merge="default">
-      <prop key="oracle.net.disableOob">${database.jdbc.disable.oob}</prop>
-      <prop key="oracle.net.CONNECT_TIMEOUT">${database.jdbc.timeout.connect}</prop>
-      <prop key="oracle.jdbc.ReadTimeout">${database.jdbc.timeout.read}</prop>
-    </props>
-  </property>
-</bean>
-----
+Die Konfiguration des UCP erfolgt in `application.properties` über folgende Properties:
 
-Entsprechend werden in der betrieblichen Konfigurationsdatei jpa.properties folgende Properties konfigurierbar gemacht:
-
-[source,properties]
+[source,ruby]
 ----
 # Connection-String für die Datenbankverbindung
-database.url=jdbc:oracle:thin:@database.local.vm:1521:isyfact
+oracle.datasource.database-url=jdbc:oracle:thin:@database.local.vm:1521:isyfact
 # Name des Datenbankbenutzers
-database.username=anwendungxyz
+oracle.datasource.database-username=anwendungxyz
 # Passwort für den Datenbankbenutzer
-database.password=anwendungxyz
-# Default-Schema für die Anwendung
-database.schema.default=anwendungxyz
-
+oracle.datasource.database-password=anwendungxyz
+# Name des Verbindungspools
+oracle.datasource.pool-name=anwendungxyz
 # Anzahl der minimal offenen Verbindungen im Connection Cache
-database.connections.min.active=5
+oracle.datasource.pool-min-active=5
 # Anzahl der maximal moeglichen Verbindungen im Connection Cache
-database.connections.max.active=40
+oracle.datasource.pool-max-active=40
 # Anzahl der initialen Connections im Connection Cache
-database.connections.initial.size=10
+oracle.datasource.pool-initial-size=10
 # Aktiviert/deaktiviert die Pruefung von Datenbankverbindungen vor ihrer Benutzung (validateConnectionOnBorrow)
-database.connections.validate.onborrow=true
-
+oracle.datasource.pool-validate-on-borrow=true
 # Zeit in Sekunden, nach der bei Nichtverfuegbarkeit einer neue Verbindung ein Fehler geworfen wird
-database.connections.wait.timeout=10
+oracle.datasource.pool-wait-timeout=10
 # Zeit in Sekunden, nach der eine bereitstehende und untätige Verbindung geschlossen und aus dem Pool entfernt wird
-database.connections.inactive.timeout=120
+oracle.datasource.pool-inactive-timeout=120
 # Zeit in Sekunden, nach der eine ausgeliehene Verbindung wieder zwangsweise zurück in den Pool geholt wird.
 # Offene Transaktionen werden zurückgerollt. Standard ist 0 (deaktiviert).
-database.connections.timetolive.timeout=0
+oracle.datasource.pool-time-to-live-timeout=0
 # Zeit in Sekunden, nach der eine ungenutzte aber verliehene Verbindung wieder in den Pool geholt wird.
 # Offene Transaktionen werden zurückgerollt. Standard ist 0 (deaktiviert).
-database.connections.abandoned.timeout=0
+oracle.datasource.pool-abandoned-timeout=0
 # Zeit in Sekunden, nach der eine physikalische Verbindung im Pool geordnet abgebaut wird. Sie wird erst abgebaut,
 # wenn die Verbindung nicht mehr genutzt wird und zurück im Pool ist. Kann genutzt werden, wenn bspw. Firewalls
 # nach einer zeitlichen Beschränkung Verbindungen schliessen. Standard ist 0, deaktiviert.
-database.connections.max.reusetime=0
+oracle.datasource.pool-max-reuse-time=0
 # Maximale Anzahl, die eine Verbindung ausgeliehen werden kann, bevor sie endgueltig abgebaut wird. Standard 0 (deaktiviert)
-database.connections.max.reusecount=0
+oracle.datasource.pool-max-reuse-count=0
 # Anzahl der Statements, die pro Verbindung gecacht werden sollen (Statement Cache). Standard ist 0 (deaktiviert).
-database.connections.statement.cache=0
+oracle.datasource.pool-statement-cache=0
 
 # --- Konfiguration des Oracle JDBC Datenbanktreibers ---
 # Der Wert fuer oracle.net.CONNECT_TIMEOUT des Oracle JDBC Treibers. Der Timeout bestimmt die maximale Zeit in ms,
 # welche zum Aufbau einer Netzwerkverbindung zum Datenbankserver gewartet wird.
-database.jdbc.timeout.connect=10000
+oracle.datasource.jdbc-timeout-connect=10000
 # Der Wert fuer oracle.jdbc.ReadTimeout des Oracle JDBC Treibers. Der Timeout bestimmt die maximale Zeit in ms,
 # welche auf Socketebene zum Lesen von Daten gewartet wird.Dadurch koennen abgebrochene TCP Verbindungen erkannt werden.
-database.jdbc.timeout.read=300000
+oracle.datasource.jdbc-timeout-read
 # Verbindungen können im regulären band (inband) oder asynchron (out-of-band) beendet werden. Standardmässig passiert das
 # per OOB. Kann bei Problemen deaktiviert werden.
-database.jdbc.disable.oob=true
+oracle.datasource.jdbc-disable-oob
 ----
 
 Hierbei ist zu beachten, dass die hier angegebenen Werte der Konfigurationsparameter nur beispielhaft sind.
 Sie müssen je nach Anwendung und Lastprofil angepasst werden.
 
-[[zu-verwendende-konfigurations-properties]]
-== Zu verwendende Konfigurations-Properties
-
-Zur Konfiguration der Hibernate `SessionFactory` können verschiedene Konfigurationsparameter angegeben werden.
-Standardmäßig sollen folgende Parameterwerte verwendet werden:
-
-
-:desc-table-ConfHiber: Konfigurationsproperties von Hibernate
-[id="table-ConfHiber",reftext="{table-caption} {counter:tables}"]
-.{desc-table-ConfHiber}
-[cols="4,5",options="header"]
-|====
-|Konfiguration |Wert (Erklärung)
-|`hibernate.dialect`      |org.hibernate.dialect.Oracle10gDialect
-|`hibernate.hbm2ddl.auto` |_auskommentieren bzw. nicht verwenden_ (Wird nur zur initialen Generierung des Schemas verwendet)
-|`hibernate.connection.isolation` |4 (repeatable Read)
-|`hibernate.jdbc.batch_size`      |0 (Es werden keine jdbc Batch-Updates verwendet)
-|`hibernate.jdbc.use_streams_for_binary` |true
-|`hibernate.transaction.factory_class`   |org.hibernate.transaction.JDBCTransactionFactory
-|====
-
 [[standardmaessig-lazy-loading-verwenden]]
 == Standardmäßig Lazy Loading verwenden
 
-Standardmäßig verwendet Hibernate ein Lazy Loading über dynamische Proxies für alle 1:n und n:m Assoziationen.
-Für n:1 oder 1:1 Assoziationen wird Eager Loading eingesetzt.
-Dies muss überschrieben werden:
+Standardmäßig verwendet Hibernate für alle 1:n und n:m Assoziationen ein Lazy Loading über dynamische Proxies und für n:1 oder 1:1 Assoziationen wird Eager Loading eingesetzt.
+Standardmäßig soll für alle Assoziationen Lazy Loading verwendet werden, wobei Bytecode-Manipulationen für Lazy Loading nicht verwendet werden sollen.
 
-Standardmäßig soll für alle Assoziationen Lazy Loading verwendet werden.
-Für das Lazy Loading sollen dynamische Proxies und keine Bytecode-Manipulationen verwendet werden.
-
-Überschrieben wird dies in einer Hibernate-Mapping-Definition (in der Vorlage-Anwendung in Datei NamedQueries.hbm.xml). Dort wird definiert:
-
-[source,xml]
-----
-<hibernate-mapping default-lazy="true">
-----
-
-Es ist erlaubt und erwünscht, dieses Verhalten für Assoziationen zu überschreiben, bei denen Eager Loading Sinn macht.
-Hierfür kann eine Annotation wie die folgende verwendet werden:
+Um Lazy Loading auch für 1:1 Assoziationen einzuschalten, wird das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
+Damit das Lazy Loading über Proxies funktioniert, muss die Assoziation nicht optional sein, d.h., dass Feld darf nicht ` null` sein.
 
 [source,java]
 ----
-@ManyToOne(fetch = FetchType.EAGER)
+@OneToOne(optional = false, fetch = FetchType.LAZY)
+private SomeEntity someEntity;
+----
+
+Ist ein 1:1 assoziiertes Feld optional und kann den Wert `null` annehmen, kann Lazy Loading nur über Bytecode-Manipulation realisiert werden.
+Für n:1 Assoziationen wird genau so verfahren und das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
+Es ist erlaubt und erwünscht, dieses Verhalten für Assoziationen zu überschreiben, bei denen Eager Loading Sinn ergibt.
+Hierfür ist das Attribute `fetch` der jeweiligen Mapping-Annotation wie folgt zu setzen:
+
+[source,java]
+----
+@OneToMany(fetch = FetchType.EAGER)
 ----
 
 Die Verwendung der Annotationen `@LazyToOne` und `@LazyCollection` ist zu vermeiden, falls man nicht den `@LazyCollection` Wert „Extra“ für extra große Collections benötigt.
@@ -877,15 +734,8 @@ Abschnitt <<bei-bedarf-explizites-locking-verwenden>>). In der Anwendung ist kei
 Die geworfene Ausnahme ist (gewrappt) an den Aufrufer weiter zu geben.
 
 Um zu erkennen, ob sich das Objekt in der Datenbank verändert hat, empfiehlt Hibernate die Verwendung eines
-numerischen Versions-Felds in jeder Datenbank-Tabelle. Dies ist umzusetzen.
-Die zugehörigen Hibernate-Entitäten sind über folgenden Tag als optimistisch gelockt zu kennzeichnen:
-
-[source,java]
-----
-@org.hibernate.annotations.Entity(optimisticLock = OptimisticLockType.VERSION)
-----
-
-In den Entitäten ist die numerische Versions-Property für Hibernate zu kennzeichnen:
+numerischen Versions-Felds in jeder Datenbank-Tabelle.
+Dazu wird in den Entitäten eine numerische Property wird der Annotation `@Version` gekennzeichnet.
 
 [source,java]
 ----
@@ -938,15 +788,91 @@ Nutzung über JPA, die in Kapitel <<konfiguration-von-jpa-ueber-spring-beans-dur
 Dabei erfolgt der Zugriff auf die zweite Datenbank getrennt über einen weiteren Entity Manager und eine weitere
 Data Source.
 
-In der Konfigurationsdatei `jpa.xml` werden die Spring-Beans für die Transaktionskontrolle, `EntityManager`
-und `DataSource` dupliziert und mit den Werten der zweiten Datenbank versehen.
-Um zu vermeiden, dass die zweite Datenbank an Stellen genutzt wird, wo es nicht geplant ist,
-muss allen Beans das Attribut `autowire-candidate="false"` hinzugefügt werden.
+Die Beans für die `EntityManagerFactory` und den `TransactionManager` müssen manuell konfiguriert werden <<listing-datasource1>>.
+Als `DataSource` wird hier die von `isy-persistence` automatisch konfigurierte `appDataSource` verwendet.
 
-Zusätzlich muss in der Datei `persistence.xml` eine weitere Persistence Unit deklariert werden, auf die in
-der `EntityManagerFactory` der zweiten Datenbank verwiesen wird.
+:desc-listing-datasource1: Konfiguration der ersten DataSource
+[id="listing-datasource1",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-datasource1}
+[source,java]
+----
+@Configuration
+@EnableJpaRepositories(basePackages = "de.beispiel.zweidatasources.persistence", entityManagerFactoryRef = "entityManagerFactoryApp", transactionManagerRef = "transactionManagerApp")
+public class PersistenceConfig {
 
-Die Datei `jpa.properties` wird um die neuen Konfigurationsparameter für die zweite Datenbankverbindung erweitert.
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryApp(@Qualifier("appDataSource") DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setPackagesToScan("de.beispiel.zweidatasource.persistence");
+        em.setDataSource(dataSource);
+        em.setJpaDialect(new HibernateJpaDialect());
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setDatabase(Database.ORACLE);
+        vendorAdapter.setShowSql(false);
+        em.setJpaVendorAdapter(vendorAdapter);
+
+        return em;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManagerApp(@Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
+    }
+}
+----
+
+Für die zweite Datenbankanbindung wird eine weitere Konfiguration angelegt <<listing-datasource2>>.
+
+:desc-listing-datasource2: Konfiguration der zweiten DataSource
+[id="listing-datasource2",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-datasource2}
+[source,java]
+----
+@Configuration
+@EnableJpaRepositories(basePackages = "de.beispiel.zweidatasources.persistencesec", entityManagerFactoryRef = "entityManagerFactorySec", transactionManagerRef = "transactionManagerSec")
+public class Persistence2Config {
+
+    @Autowired
+    private Environment env;
+
+    @Bean
+    public DataSource dataSourceSec() {
+        JdbcDataSource dataSource = new JdbcDataSource();
+        dataSource.setUrl(env.getProperty("datasource.second.url"));
+
+        return dataSource;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactorySec(@Qualifier("dataSourceSec") DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setPackagesToScan("de.beispiel.zweidatasource.persistencesec");
+        em.setDataSource(dataSource);
+        em.setJpaDialect(new HibernateJpaDialect());
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setDatabase(Database.H2);
+        vendorAdapter.setShowSql(false);
+        em.setJpaVendorAdapter(vendorAdapter);
+
+        return em;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManagerSec(@Qualifier("entityManagerFactorySecc") EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
+    }
+}
+----
+
+Die Datei `application.properties` wird um den neuen Konfigurationsparameter `datasource.second.url` für die zweite Datenbankverbindung erweitert.
 
 [[konfiguration-der-id-und-sequenz]]
 == Konfiguration der ID und Sequenz
@@ -1019,12 +945,13 @@ In der Beispiel-Anwendung ist das wie folgt umgesetzt:
 public class AwkWrapperImpl implements AwkWrapper {
 ----
 
-Damit Spring die Annotationen auswertet, muss folgende Konfiguration durchgeführt werden:
+Damit Spring die Annotationen auswertet, muss eine der Konfigurationsklassen der Anwendung mit `@EnableTransactionManagement` annotiert werden.
 
-[source,xml]
+[source,java]
 ----
-<!-- Transaktionssteuerung per Annotationen -->
-<tx:annotation-driven transaction-manager="transactionManager"/>
+@Configuration
+@EnableTransactionMangement
+public class PersistenceConfig { ... }
 ----
 
 Durch diese Konfiguration erzeugt Spring für die Annotationen passende AOP-Proxies, welche die
@@ -1585,49 +1512,21 @@ Unabhängig von der Lösung erschweren datenbankübergreifende Operationen die F
 
 Jede Anwendung prüft beim Start, ob das DB-Schema die erwartete Version hat.
 Diese Prüfung ist in der Bibliothek `isy-persistence` fest eingebaut.
-In der Spring Konfiguration müssen in der `appDataSource-Bean` (Klasse `PlisDataSource`) die folgenden Properties gesetzt werden:
+In der Anwendungskonfiguration müssen in `application.properties` die folgenden Properties gesetzt werden:
 
-[source,xml]
+[source]
 ----
-<property name="schemaVersion" value="1.2.3" />
-<property name="schema" value="dbschema" />
-<property name="invalidSchemaVersionAction" value="fail" />
+oracle.datasource.schema-invalid-version-action=fail
+oracle.datasource.schema-version=1.2.3
 ----
 
 In der Property `schemaVersion` wird die Versionsnummer des Datenbankschemas angegeben, das die Anwendung erwartet.
 Wird die Property `schemaVersion` oder der Wert für die Version nicht angegeben, so findet keine Überprüfung der Schemaversion statt.
 
-In der Property `schema` wird der Schemaname des Datenbankschemas angegeben, das die Anwendung erwartet.
-Wird die Property nicht angegeben, so werden die Überprüfungsstatements ohne Angabe eines Schemas ausgeführt.
-
 In der Property `invalidSchemaVersionAction` wird festgelegt, wie die Data-Source auf eine falsche Schema-Version reagieren soll.
 Der Wert `fail` legt fest, dass eine Exception geworfen wird.
 Das hat zur Folge, dass die Anwendung nicht gestartet werden kann.
 Der Wert `warn` legt fest, dass lediglich eine Warnung in die Log-Datei geschrieben wird.
-
-Der Wert für Property `invalidSchemaVersionAction` soll über die Properties gesetzt werden können, damit er zur Laufzeit vom Betrieb verändert werden kann.
-Hierzu sind in der Datei default.properties die folgenden Zeilen hinzuzufügen:
-
-[source,ruby]
-----
-# ----------------------------------------------------------
-# Persistenz
-# ----------------------------------------------------------
-# Reaktion der Data-Source auf eine falsche Schema-Version.
-# fail: es wird eine Exception geworfen und die Anwendung
-# kann nicht gestartet werden.
-# warn: es wird lediglich eine Warnung in die
-# Log-Datei geschrieben.
-persistenz.invalidSchemaVersionAction = fail
-----
-
-Die zugehörige Zeile in der Spring-Konfiguration sieht damit wie folgt aus:
-
-[source,ruby]
-----
-<property name="invalidSchemaVersionAction"
-          value="${persistenz.invalidSchemaVersionAction}" />
-----
 
 Bei Datenmigrationen muss jedes Skript vor der Ausführung prüfen, ob die Datenbank die erwartete Version hat.
 Das kann mit dem folgenden SQL-Statement durchgeführt werden:
