@@ -62,6 +62,40 @@ sidebar:
 admonition:
   column_rule_color: #000000
   padding: [0, 6, 0, 6]
+  icon:
+    note:
+      stroke_color: #003D86
+      name: fa-file-text-o
+    important:
+      stroke_color: #003D86
+      name: fa-bullhorn
+    caution:
+      stroke_color: #003D86
+      name: fa-exclamation-circle
+    warning:
+      stroke_color: #003D86
+    tip:
+      stroke_color: #003D86
+    anwendungsanforderung:
+      stroke_color: #003D86
+      name: fa-cogs
+      size: 24
+    architekturregel:
+      stroke_color: #003D86
+      name: fa-university
+      size: 24
+    sicherheit:
+      stroke_color: #003D86
+      name: fa-shield
+      size: 24
+    styleguide:
+      stroke_color: #003D86
+      name: fa-paint-brush
+      size: 24
+    info:
+      stroke_color: #003D86
+      name: fa-info-circle
+      size: 24
 header:
   height: 2cm
   line_height: 1

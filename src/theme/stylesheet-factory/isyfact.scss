@@ -52,6 +52,13 @@ p {
   }
 }
 
+// Farbe Admonition-Blocks in Blau; Icons geändert
+.admonitionblock td.icon .icon-note:before { content:"\f0f6"; color:#003D86; }
+.admonitionblock td.icon .icon-tip:before { content:"\f0eb"; color:#003D86; }
+.admonitionblock td.icon .icon-important:before { content:"\f0a1"; color:#003D86; }
+.admonitionblock td.icon .icon-warning:before { content:"\f071"; color:#003D86; }
+.admonitionblock td.icon .icon-caution:before { content:"\f06a"; color:#003D86; }
+
 // Trennstrich unter Ueberschriften
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { border-bottom: 1px solid #dddddd; }
 
