@@ -2677,7 +2677,7 @@ Folgende optionale Parameter gibt es für einen Header:
 * `title`: Tooltip, der über der Spalte angezeigt wird (Standard: leer)
 * `align`: horizontale Ausrichtung der Spaltenüberschrift
 
-[[]dataTableRows]
+[[dataTableRows]]
 ==== Zeilen einer Tabelle
 
 Die Zeilen der Tabelle werden mit dem Tag `<isy:dataTableRows>` definiert. Hier steht der eigentliche Inhalt der Datatable. Dieses Tag sollte nach den Headern in den Body der Data-Table geschrieben werden.
@@ -2714,7 +2714,7 @@ Mit diesem Parameter können dann für jede Spalte die `<isy:dataTableCell>` Ta
 Die Inhalte dieser Tags repräsentieren den Inhalt der jeweiligen Zellen.
 Die Reihenfolge der Spalten werden durch die Definition des Tabellen-Headers festgelegt.
 
-[[]dataTableCell]
+[[dataTableCell]]
 ==== Zellen einer Tabellenzeile
 Das Tag `<isy:dataTableCell>` hat derzeit folgende Parameter:
 
