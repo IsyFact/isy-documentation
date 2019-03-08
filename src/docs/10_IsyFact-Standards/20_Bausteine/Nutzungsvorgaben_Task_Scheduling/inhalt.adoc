@@ -25,34 +25,11 @@ Die Bibliothek authentifiziert Benutzer bei entsprechender Konfiguration und bin
 Sie sichert die Aufgaben selbst allerdings nicht gegen unerlaubte Ausführungen ab.
 Die Verantwortlichkeit dafür liegt bei den jeweiligen Fachkomponenten der Anwendungen, die sich gemäß den Sicherheitsrichtlinien der IsyFact und den Anforderungen an die Anwendung schützen müssen.
 Authentifizierung und Autorisierung finden nach den Vorgaben des Berechtigungskonzepts statt.
-Dazu wird die IsyFact-Bibliothek isy-sicherheit eingesetzt.
-Die Nutzung von isy-sicherheit wird im Dokument <<NutzungsvorgabenSicherheit>> beschrieben.
+Dazu wird die IsyFact-Bibliothek `isy-sicherheit` eingesetzt.
+Die Nutzung von `isy-sicherheit` wird im Dokument <<NutzungsvorgabenSicherheit>> beschrieben.
 
-Die Bibliothek `isy-task` mit Authentifizierung wird über folgende Konfiguration eingebunden:
-
-[source, xml]
-----
-<beans>
-...
-  <import resource=
-    "classpath:resources/isy-task/spring/isytask-isysicherheit.xml"
-  />
-...
-</beans>
-----
-Soll keine Autorisierung stattfinden, wird folgende Konfiguration eingesetzt:
-
-[source, xml]
-----
-<beans ...>
-...
-  <import
-    resource=
-    "classpath:resources/isy-task/spring/isytask-noauth.xml"
-  />
-...
-</beans>
-----
+Um die Verwendung von `isy-sicherheit` für die Authentifizierung und Autorisierung zu konfigurieren, wird die Property `isy.task.authentication.enabled`
+in `application.properties` auf `true` oder `false` gesetzt.
 
 [[erstellung-eines-tasks]]
 == Erstellung eines Tasks
@@ -110,30 +87,26 @@ public class HalloWeltTask extends AbstractTask {
 }
 ----
 
-Der Task muss als Nächstes in einer Property-Datei konfiguriert werden.
+Der Task muss als Nächstes über Properties in `application.properties` konfiguriert.
 Im folgenden Listing sehen Sie die Konfiguration für den `HalloWeltTask`.
 
 [source,properties]
 ----
-isyfact.task.halloWeltTask.benutzer=TestUser1
-isyfact.task.halloWeltTask.passwort=TestPasswort1
-isyfact.task.halloWeltTask.bhkz=BHKZ1
-isyfact.task.halloWeltTask.ausfuehrung=ONCE
-isyfact.task.halloWeltTask.zeitpunkt=10s
+isy.task.tasks.halloWeltTask.benutzer=TestUser1
+isy.task.tasks.halloWeltTask.passwort=TestPasswort1
+isy.task.tasks.halloWeltTask.bhkz=BHKZ1
+isy.task.tasks.halloWeltTask.ausfuehrung=ONCE
+isy.task.tasks.halloWeltTask.initial-delay=10s
 ----
-
-Die Konfigurationsdatei wird über `isy-konfiguration` gemäß <<KonzeptUeberwachungKonfiguration>> eingebunden.
 
 Ein Task wird grundsätzlich als Spring Bean konfiguriert.
 
-[source, xml]
+[source, java]
 ----
-<beans>
-...
-<bean id=" halloWeltTask"
-  class="de.bund.bva.HalloWeltTask"/>
-...
-</beans>
+@Bean
+public HalloWeltTask halloWeltTak() {
+    return new HalloWeltTask();
+}
 ----
 
 In der Fachanwendung wird der `TaskScheduler` über Spring injiziert.
@@ -159,27 +132,30 @@ Die Bibliothek `isy-task` enthält nützliche Tasks für die IsyFact-Standards.
 Dieser Task dient der periodischen Prüfung der Konfigurationsdateien auf Änderungen sowie der automatischen Aktualisierung der Konfiguration bei Änderungen.
 Anwendungen können den Task einsetzen, in dem sie ihn als Spring Bean konfigurieren:
 
-[source,xml]
+[source,java]
 ----
-<beans>
-    ...
-    <bean id="konfigurationUpdateTask" class="de.bund.bva.isyfact.task.task.KonfigurationUpdateTask">
-        <constructor-arg ref="konfiguration"/>
-        <constructor-arg ref="konfigurationUpdateTask-monitor"/>
-    </bean>
+@Configuration
+public class UpdateKonfigurationTaskConfiguration {
 
-    <bean id="konfigurationUpdateTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
-    ...
-</beans>
+    @Bean
+    public KonfigurationUpdateTask(@Qualifier("konfigurationUpdateTaskMonitor") TaskMonitor monitor, Konfiguration konfiguration) {
+        return new KonfigurationUpdateTask(konfiguration, monitor);
+    }
+
+    @Bean
+    public TaskMonitor konfigurationUpdateTaskMonitor() {
+        return new TaskMonitor();
+    }
+}
 ----
 
 Der Task `KonfigurationUpdateTask` erwartet task-spezifische Konfigurationsparameter, wie sie im Kapitel <<aufgabenspezifische-konfiguration>> beschrieben werden:
 
 [source]
 ----
-isyfact.task.konfigurationUpdateTask.ausfuehrung=FIXED_DELAY
-isyfact.task.konfigurationUpdateTask.initial-delay=5s
-isyfact.task.konfigurationUpdateTask.fixed-delay=60s
+isy.task.tasks.konfigurationUpdateTask.ausfuehrung=FIXED_DELAY
+isy.task.tasks.konfigurationUpdateTask.initial-delay=5s
+isy.task.tasks.konfigurationUpdateTask.fixed-delay=60s
 ----
 
 [[programmatisches-anlegen-von-aufgaben]]
@@ -229,42 +205,42 @@ Die Anzahl der Threads, die im Thread-Pool initial angelegt werden:
 
 [source]
 ----
-isyfact.task.standard.amount_of_threads
+isy.task.default.amount_of_threads
 ----
 
 Das DateTimePattern, das für den Start eines Tasks verwendet werden kann:
 
 [source]
 ----
-isyfact.task.standard.date_time_pattern
+isy.task.default.date_time_pattern
 ----
 
 Die Dauer, die `isy-task` wartet, bis ein fehlgeschlagener Task erneut gestartet wird:
 
 [source]
 ----
-isyfact.task.watchdog.restart_interval
+isy.task.watchdog.restart_interval
 ----
 
 Die Kennung die benutzt wird, wenn kein Task-spezifisches Kennwort konfiguriert wird:
 
 [source]
 ----
-isyfact.task.standard.benutzer
+isy.task.default.benutzer
 ----
 
 Das Passwort das benutzt wird, wenn kein Task-spezifisches Passwort konfiguriert wird:
 
 [source]
 ----
-isyfact.task.standard.passwort
+isy.task.default..asswort
 ----
 
 Das Behördenkennzeichen das benutzt wird, wenn kein Task-spezifisches konfiguriert wird:
 
 [source]
 ----
-isyfact.task.standard.bhkz
+isy.task.default.bhkz
 ----
 
 Der Host, wenn kein Task-spezifischer Host konfiguriert wird:
@@ -281,42 +257,42 @@ Die Kennung des ausführenden Benutzers:
 
 [source]
 ----
-isyfact.task.<Task>.benutzer
+isy.task.tasks.<Task>.benutzer
 ----
 
 Das Passwort des ausführenden Benutzers:
 
 [source]
 ----
-isyfact.task.<Task>.passwort
+isy.task.tasks.<Task>.passwort
 ----
 
 Behördenkennzeichen des ausführenden Benutzers:
 
 [source]
 ----
-isyfact.task.<Task>.bhkz
+isy.task.tasks.<Task>.bhkz
 ----
 
 Der Name des Hosts auf dem der Task ausgeführt werden soll:
 
 [source]
 ----
-isyfact.task.<Task>.host
+isy.task.tasks.<Task>.host
 ----
 
 Der Ausführungsplan für einen Task:
 
 [source]
 ----
-isyfact.task.<Task>.ausfuehrung
+isy.task.tasks.<Task>.ausfuehrung
 ----
 
 Der einmalige Zeitpunkt der Ausführung in Form eines Zeitstempels:
 
 [source]
 ----
-isyfact.task.<Task>.zeitpunkt
+isy.task.tasks.<Task>.zeitpunkt
 ----
 
 Die Dauer, die zwischen dem Start des TaskSchedulers und der einmaligen Ausführung liegt.
@@ -324,7 +300,7 @@ Die Dauer muss die Form eines Zeitraums gemäß dem <<KonzeptDatumZeit>> besitze
 
 [source]
 ----
-isyfact.task.<Task>.initial-delay
+isy.task.tasks.<Task>.initial-delay
 ----
 
 Die festgelegte Dauer zwischen zwei Starts einer Ausführung.
@@ -332,7 +308,7 @@ Die Dauer muss die Form eines Zeitraums gemäß dem <<KonzeptDatumZeit>> besitze
 
 [source]
 ----
-isyfact.task.<Task>.fixed-rate
+isy.task.tasks.<Task>.fixed-rate
 ----
 
 Die festgelegte Dauer zwischen dem Ende einer und dem Start der nächsten Ausführung.
@@ -340,7 +316,7 @@ Die Dauer muss die Form eines Zeitraums gemäß dem <<KonzeptDatumZeit>> besitze
 
 [source]
 ----
-isyfact.task.<Task>.fixed-delay
+isy.task.tasks.<Task>.fixed-delay
 ----
 
 [[ueberwachung-mit-jmx]]
@@ -353,19 +329,21 @@ Wenn der Task vom AbstractTask abgeleitet ist, kann man dem Task einen TaskMonit
 
 Soll der JMX-Monitor verwendet werden, so muss dieser genau wie der Task als Spring Bean konfiguriert werden.
 
-[source, xml]
+[source, java]
 ----
-<beans>
-...
-<bean id="taskTest"
-    class="de.bund.bva.isyfact.task.TestTask">
-    <constructor-arg ref="taskTest-monitor"/>
-</bean>
+@Configuration
+public class TaskConfiguration {
 
-<bean id="taskTest-monitor"
-    class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
-...
-</beans>
+    @Bean
+    public TestTask testTask(TaskMonitor monitor) {
+        return new TestTask(monitor);
+    }
+
+    @Bean
+    public TaskMonitor taskMonitor() {
+        return new TaskMonitor();
+    }
+}
 ----
 
 Der MBean-Exporter wird gemäß dem <<KonzeptUeberwachungKonfiguration>> konfiguriert.
