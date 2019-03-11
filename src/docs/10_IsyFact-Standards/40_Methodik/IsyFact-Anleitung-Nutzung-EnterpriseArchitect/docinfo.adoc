@@ -1,5 +1,0 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Anleitung-Nutzung-Enterprise-Architekt
-|====

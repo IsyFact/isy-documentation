@@ -1066,7 +1066,7 @@
                     </execution>
 
                     <execution>
-                        <id>Anleitung-Nutzung-EnterpriseArchitect-html</id>
+                        <id>Nutzung-EnterpriseArchitect-html</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
@@ -1074,16 +1074,16 @@
                         <configuration>
                             <backend>html</backend>
                             <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Anleitung-Nutzung-EnterpriseArchitect
+                                src/docs/10_IsyFact-Standards/40_Methodik/Nutzung_EnterpriseArchitect
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Methodik/AnleitungNutzungEnterpriseArchitect.html
+                                ${html-output-base-directory}/IsyFact-Standards/Methodik/NutzungEnterpriseArchitect.html
                             </outputFile>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Anleitung-Nutzung-EnterpriseArchitect-pdf</id>
+                        <id>Nutzung-EnterpriseArchitect-pdf</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
@@ -1091,11 +1091,11 @@
                         <configuration>
                             <backend>pdf</backend>
                             <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Anleitung-Nutzung-EnterpriseArchitect
+                                src/docs/10_IsyFact-Standards/40_Methodik/Nutzung_EnterpriseArchitect
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/10_Systemspezifikation/Anleitung-Nutzung-EnterpriseArchitect.pdf
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/10_Systemspezifikation/Nutzung-Enterprise-Architect.pdf
                             </outputFile>
                         </configuration>
                     </execution>  
