@@ -1614,9 +1614,6 @@ Im Folgenden ein Beispiel: 
 </ui:define>
 ----
 
-// TODO noch nicht implementiert prüfen
-//_Hinweis:_ Die Breadcrumbfunktionalität ist derzeit noch nicht vollständig umgesetzt.
-
 === Modaler Dialog
 
 Modale Dialoge werden mit dem Tag `<isy:modalDialogContent>` definiert.
@@ -3130,6 +3127,38 @@ Ist keine Konfiguration bzgl. Flows gesetzt, so wird die Gruppe immer angezeigt.
 //Editable Rows sind flexible Zeilen deren Inhalte separat bearbeitet werden können.
 //
 //Derzeit nicht umgesetzt.
+
+[[breadcrumbs]]
+==== Breadcrumbs auf der Detailseite
+
+Auf der Detailseite einer Applikation kann in der Titelzeile ein Location-Breadcrumb eingeblendet werden.
+Der Breadcrumb zeigt den Pfad zum aktuellen Element (<<image-breadcrumb>>).
+
+:desc-image-breadcrumb: Breadcrumb in der Titelzeile der Detailseite der Applikation
+[id="image-breadcrumb",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-breadcrumb}
+image::breadcrumb.png[align="center", pdfwidth=40%]
+
+Die angezeigten Daten werden nicht automatisch angezeigt, sondern müssen programmatisch gesetzt werden.
+Hierzu wird die Model-Klasse `LocationBreadcrumbModel` entsprechend befüllt.
+Ist das Breadcrumb-Model leer, wird der Breadcrumb nicht angezeigt.
+
+Eine Instanz des Breadcrumb-Models wird über das `BasisModel` bereitgestellt.
+Unterstützt wird die Anzeige von Hierarchieebene über die Methoden `pushHierarchiebene() / popHierarchiebene / clearHierarchiebenen()` und die Angabe eines Objektnamens per `setObjektname(String)`.
+Mit dem in <<listing-breadcrumbmodel>> gezeigten Code wird der in <<image-breadcrumb>> gezeigte Breadcrumb realisiert.
+
+:desc-listing-breadcrumbmodel: Verwendung des Breadcrumb-Models
+[id="listing-breadcrumbmodel",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-breadcrumbmodel}
+[source,java]
+----
+public void initialisiereBreadcrumbModel(LocationBreadcrumbModel model) {
+    model.setObjektname("Testobjekt / ID-1234");
+    model.pushHierarchiebene("Ebene 1");
+    model.pushHierarchiebene("Ebene 2");
+}
+----
+
 
 [[selektion-ueberschrift]]
 === Selektion

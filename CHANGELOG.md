@@ -1,3 +1,6 @@
+# 1.7.0
+- `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
 - `IFS-150`: OptimisticLockHandler beschrieben

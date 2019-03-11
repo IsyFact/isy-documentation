@@ -31,7 +31,7 @@ getRelativeHtmlPathForBibRefs() {
 replaceLinks() {
     newLinkTarget=$(getRelativeHtmlPathForBibRefs $1 $2 | sed -e 's/[\/&]/\\&/g')
 
-    sed -i -r "s/<a href=\"#($2)\">/<a href=\"$newLinkTarget\/$2.html\">/" $3
+    sed -i -r "s/<a href=\"#($2)\">/<a href=\"$newLinkTarget\/$2.html\">/g" $3
 }
 
 # (5)
