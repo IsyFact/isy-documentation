@@ -2962,12 +2962,13 @@ Der Benutzer kann beliebige Optionen auswählen.
 Eine einzelne Checkbox wird über das Tag `<isy:selectBooleanCheckbox>` eingebunden.
 
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `value`: Der Wert der Checkbox für das Databinding in Models.
 * `disabled`: Ob die Checkbox deaktiviert ist oder nicht. (Standard: `false`, Typ: `Boolean`)
 * `required`: Ob die Checkbox zwingend markiert werden muss oder nicht. (Standard: `false`, Typ: `Boolean`)
 
-
 Außerdem gibt es folgende optionale Parameter:
+
 * `label`: Das Label der Checkbox
 * `showPrintView`: Ob die Komponente innerhalb einer Druckansicht angezeigt werden soll. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
 * `onchange`: Das onchange-Event der Checkbox
@@ -2979,9 +2980,11 @@ Außerdem gibt es folgende optionale Parameter:
 Mehrere Checkboxen werden über das Tag `<isy:selectManyCheckbox>` eingebunden. Realisiert über Select-Items.
 
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `value`: Der Wert für das Data-Binding
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `showPrintView`: Ob die Komponente innerhalb einer Druckansicht angezeigt werden soll. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
 showPrintView`: spezifisches Flag zur Erkennung der Druckansicht (Standard: `basisModel.showPrintView`)
 
@@ -2990,11 +2993,13 @@ showPrintView`: spezifisches Flag zur Erkennung der Druckansicht (Standard: `bas
 Für Formulare existiert das Tag `<isy:formCheckbox>`.
 
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `reference`: Die Referenz des Objekts.
 * `value`: Der Wert für das Databinding im Eingabefeld
 * `disabled`: Ob die Checkbox deaktiviert ist oder nicht. (Standard: `false`)
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
 * `label`: Der Text für das Label
 * `labelRight`: Der Text für das Label rechts neben
@@ -3023,10 +3028,12 @@ Ein Radio Button wird über das Tag `<isy:selectOneRadio>` (bzw. `<isy:selectO
 ==== Vertikal gruppierte Radio Buttons
 Über das Tag `<isy:selectOneRadioInline>` werden Radiobuttons horizontal gruppiert dargestellt.
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `value`: Der Wert der Auswahl für das Data-Binding
 * `selectItems`: Liste der auszuwählenden Werte, den Select-Items. Jedes Item entspricht einem Radio-Button.
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `disabled`: Ob die Darstellung nur lesend erfolgen soll (Standard: `false`, Typ: `Boolean`)
 
 [[radio-button-horizontal]]
@@ -3034,24 +3041,26 @@ Außerdem gibt es folgende optionale Parameter:
 Über das Tag `<isy:selectOneRadio>` werden Radiobuttons vertikal gruppiert dargestellt.
 
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `value`: Der Wert der Auswahl für das Data-Binding
 * `selectItems`: Liste der auszuwählenden Werte, den Select-Items. Jedes Item entspricht einem Radio-Button.
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `showPrintView`: Ob die Komponente innerhalb einer Druckansicht angezeigt werden soll. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
-
-
 
 [[radio-button-form]]
 ==== Form gruppierte Radio Buttons
 Das Tag `<isy:formSelectOneRadio>` ermöglicht die Gruppierung von Radiobuttons innerhalb einer Form.
 
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `value`: Der Wert der Auswahl für das Data-Binding.
 * `selectItems`: Liste der auszuwählenden Werte, den Select-Items. Jedes Item entspricht einem Radio-Button.
 * `reference`: Die Referenz des Objekts.
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
 * `inline`: Ob die Radio-Buttons inline angezeigt werden sollen. (Standard: `false`, Typ: `Boolean`)
 * `disabled`: Ob die Darstellung nur lesend erfolgen soll. (Standard: `false`, Typ: `Boolean`)
@@ -3307,9 +3316,11 @@ Ein Beispiel zur Umsetzung eines Suchformulars findet sich im Abschnitt <<layout
 Ein Toggle-Filter wird über das Tag `<isy:toggleFilter>` eingebunden. Die einzelne Filter sollten als <f:selectItem> angegeben werden.
 
 Die Komponente besitzt folgende notwendige Parameter:
+
 * `action`: Die auszuführende Aktion.
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `label`: Der Text für das Label
 * `value`: Der ausgewählt Filter.
 * `styleClass`: Optionale CSS Style Klasse.
@@ -3583,7 +3594,7 @@ Die Geschäftslogik, die hinter einer 4-Augen-Komponente steckt, wird entspreche
 
 
 Es gibt bei der Implementierung der Geschäftslogik der 4-Augen Komponenten keine Vorgaben bzgl. der zu verwendenden Methoden.
-Da der Grundgedanke der 4-Augen-Komponenten darin besteht, dass Eingaben erst von einer zweiten Person bestätigt werden, bevor sie in das finale Datenbankfeld gelangen, bietet es sich an, über Methoden die Model- und Datenpflege (init..., speichern) vorzunehmen.
+Da der Grundgedanke der 4-Augen-Komponenten darin besteht, dass Eingaben erst von einer zweiten Person bestätigt werden, bevor sie in das finale Datenbankfeld gelangen, bietet es sich an, über Methoden die Model- und Datenpflege (`init...`, `speichern`) vorzunehmen.
 
 Die folgenden beiden Listings zeigen entsprechende Codebeispiele für die Umsetzung dieses Grundgedankens im Maskenflow und -controller.
 
@@ -4170,7 +4181,7 @@ Codebeispiel:
 
 [[FocusOnload]]
 === FocusOnload
-<isy:focusOnload> -  Dient dazu, das initial zu fokussierende Element einer Seite anzugeben oder die initiale Fokussierung zu deaktivieren.
+Die Komponente `<isy:focusOnload>` dient dazu, das initial zu fokussierende Element einer Seite anzugeben oder die initiale Fokussierung zu deaktivieren.
 
 Die Komponente besitzt folgende notwendige Parameter:
 
