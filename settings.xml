@@ -1,75 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<proxies>
-    	<proxy>
-        	<id>runner-proxy</id>
-        	<active>true</active>
-        	<protocol>http</protocol>
-        	<host>${env.PROXY_HOST}</host>
-        	<port>3128</port>
+    <proxies>
+        <proxy>
+            <id>runner-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>${env.PROXY_HOST}</host>
+            <port>3128</port>
         </proxy>
-	</proxies>
+        <proxy>
+            <id>runner-proxy-https</id>
+            <active>true</active>
+            <host>${env.PROXY_HOST}</host>
+            <port>3128</port>
+        </proxy>
+    </proxies>
 	<servers>
 		<server>
-			<id>repository</id>
-			<username>${env.ARTIFACTORY_USER}</username>
-			<password>${env.ARTIFACTORY_PWD}</password>
+		    <id>repository</id>
+		    <username>${env.REPO_USER}</username>
+            <password>${env.REPO_PWD}</password>
 		</server>
 		<server>
-        		<id>repository-snapshot</id>
-        		<username>${env.ARTIFACTORY_USER}</username>
-        		<password>${env.ARTIFACTORY_PWD}</password>
+		    <id>repository-snapshot</id>
+            <username>${env.REPO_USER}</username>
+			<password>${env.REPO_PWD}</password>
 		</server>
 		<server>
-        		<id>repository-maven-central</id>
-           		<username>${env.ARTIFACTORY_USER}</username>
-           		<password>${env.ARTIFACTORY_PWD}</password>
-   		</server>
+            <id>repository-local-release</id>
+            <username>${env.REPO_USER}</username>
+            <password>${env.REPO_PWD}</password>
+        </server>
+		<server>
+			<id>repository-maven-central</id>
+			<username>${env.REPO_USER}</username>
+			<password>${env.REPO_PWD}</password>
+		</server>
+        <server>
+            <id>oracle-repository</id>
+            <username>${env.REPO_USER}</username>
+            <password>${env.REPO_PWD}</password>
+       	</server>
 	</servers>
 	<profiles>
 		<profile>
 			<id>zssi</id>
 			<properties>
-		    		<deploy-url-release>${env.ARTIFACTORY_DEPLOYURL_RELEASE}</deploy-url-release>
-		    		<deploy-url-snapshot>${env.ARTIFACTORY_DEPLOYURL_SNAPSHOT}</deploy-url-snapshot>
-		    	</properties>
+				<deploy-url-release>${env.DEPLOYURL_RELEASE}</deploy-url-release>
+				<deploy-url-snapshot>${env.DEPLOYURL_SNAPSHOT}</deploy-url-snapshot>
+			</properties>
 			<repositories>
 				<repository>
 					<id>repository</id>
-					<name>isyfactServer-releases</name>
-					<url>${env.ARTIFACTORY_REPOSITORY_RELEASE}</url>
+					<name>IFS-releases</name>
+					<url>${env.REPOSITORY_IFS_RELEASE}</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
 				</repository>
 				<repository>
 					<id>repository-snapshot</id>
-					<name>isyfactServer-snapshot</name>
-					<url>${env.ARTIFACTORY_REPOSITORY_SNAPSHOT}</url>
+					<name>IFS-snapshot</name>
+					<url>${env.REPOSITORY_IFS_SNAPSHOT}</url>
 					<snapshots>
-                        			<enabled>true</enabled>
-                    			</snapshots>
+						<enabled>true</enabled>
+					</snapshots>
 				</repository>
 				<repository>
-                    			<id>repository-maven-central</id>
-                    			<name>isyfactServer-releases</name>
-                    			<url>${env.ARTIFACTORY_REPOSITORY_MAVENCENTRAL}</url>
-                    			<releases>
-                        			<enabled>true</enabled>
-                    			</releases>
-                		</repository>				
+                    <id>repository-local-release</id>
+                    <name>local-releases</name>
+                    <url>${env.REPOSITORY_LOCAL_RELEASE}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </repository>
+				<repository>
+					<id>repository-maven-central</id>
+					<name>maven-central</name>
+					<url>${env.REPOSITORY_MAVENCENTRAL}</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+                <repository>
+                    <id>oracle-repository</id>
+                    <name>oracle-releases</name>
+                    <url>${env.REPOSITORY_ORACLE}</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </repository>
+                <repository>
+                    <id>central</id>
+                    <url>http://repo1.maven.org/maven2</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
 			</repositories>
 			<pluginRepositories>
-                		<pluginRepository>
-                   			<id>repository</id>
-                    			<name>isyfactServer-releases</name>
-                    			<url>${env.ARTIFACTORY_REPOSITORY_MAVENCENTRAL}</url>
+				<pluginRepository>
+					<id>repository-maven-central</id>
+					<name>maven-central</name>
+					<url>${env.REPOSITORY_MAVENCENTRAL}</url>
 					<releases>
-                        			<enabled>true</enabled>
-                    			</releases>
+						<enabled>true</enabled>
+					</releases>
 				</pluginRepository>
-            		</pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://repo1.maven.org/maven2</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+			</pluginRepositories>
 		</profile>
 	</profiles>
 	<activeProfiles>
