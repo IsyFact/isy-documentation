@@ -1,5 +1,6 @@
 # 1.7.0
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- 'IFE-35': Dokumentation von List Picker Filterung mit Servlets hinzugefügt.
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
