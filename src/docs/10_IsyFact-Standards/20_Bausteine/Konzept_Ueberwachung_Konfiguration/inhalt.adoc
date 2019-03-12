@@ -1043,6 +1043,7 @@ Dieses Kapitel enthält die Vorgaben wo Konfigurationen abgelegt und wie diese v
 [[datei-basierte-konfigurationen]]
 === Datei-basierte Konfigurationen
 
+Die datei-basierte Konfiguration orientiert sich an den Vorgaben von Spring Boot.
 Konfigurationsparameter, die nicht durch die Anwendung geschrieben werden, sollen in Dateien und nicht in der Datenbank gespeichert werden.
 Als Format kommen bevorzugt Property-Dateien zum Einsatz.
 
@@ -1055,13 +1056,14 @@ NOTE: Die Ablage der Konfigurationsdateien zur Laufzeit wird im Kapitel <<deploy
 Dort werden Unterordner wie folgt angelegt:
 
 * *Resources-Ordner:* In `src/main/resources/resources/` liegen die statischen Konfigurationen.
-Zur Strukturierung sollen hier Unterordner für gleichartige Konfigurationen angelegt werden (z.B. spring, hibernate).
+Zur Strukturierung sollen hier Unterordner für gleichartige Konfigurationen angelegt werden (z.B. nachrichten, sicherheit).
 Falls sich eine Konfiguration explizit auf eine Java-Klasse bezieht (z.B. Dialog-Beschreibungen)
-#wird eine Verzeichnisstruktur analog zur Package-Struktur angelegt und die Konfiguration dort abgelegt,
+wird eine Verzeichnisstruktur analog zur Package-Struktur angelegt und die Konfiguration dort abgelegt,
 z.B.:
 +
 `src/main/resources/resources/de/msg/terminfindung/gui/verwaltung/eingabe-dialog.xml`
 * *Config-Ordner:* In `src/main/resources/config/` liegen alle betrieblichen Konfigurationen.
+                   Hier wird auch die Konfigurationsdatei `application.properties` abgelegt.
 
 [[namenskonventionen-fuer-konfigurationsparameter]]
 ==== Namenskonventionen für Konfigurationsparameter
@@ -1104,98 +1106,74 @@ Der Wertebereich ist bei vielen, jedoch nicht bei allen Konfigurationsparametern
 Werden z.B. Anzeigetexte oder Links konfiguriert, so kann die Angabe des Wertebereichs entfallen.
 Die Angabe, ob ein Neustart bei Änderung erforderlich ist, sollte jedoch immer erfolgen.
 
-[[implementierungsvorgaben-für-property-dateien]]
-==== Implementierungsvorgaben für Property-Dateien
+[[typsichere-bereitstellung-von-konfiguration]]
+==== Typsichere Bereitstellung von Konfiguration
 
-Zur Bereitstellung der Konfigurationsparameter in der Anwendung wird die Bibliothek `isy-konfiguration` verwendet.
+Zur Bereitstellung von Konfigurationsparametern in der Anwendung wird der von Spring Boot bereitgestellte Mechanismus verwendet.
+Hierzu werden für Konfigurationsparameter logisch zusammenhängende Klassen erstellt, die die Konfigurationswerte aufnehmen und mit `@ConfigurationProperties` annotiert werden.
+Beim Start der Anwendung befüllt Spring automatisch die Werte der Objekte mit den entsprechenden Properties aus `application.properties`.
+Zur Überprüfung der Konfigurationswerte sollte die Standard-Java-Validierung eingesetzt werden. Damit können Werte auf Vorhandensein und korrektes Format geprüft werden.
+Zur Verwendung in der Anwendung wird die Konfigurationsklasse als Bean instanziiert und dann in der Anwendung per Dependency Injection gesetzt.
 
-Die Konfigurations-Bibliothek stellt Interfaces und Implementierungen für das Laden von Property-Dateien und das typsichere Auslesen von Konfigurationsparametern bereit.
-Die Konfiguration wird der Anwendung als querschnittliche Spring-Bean (im Folgenden Konfigurations-Bean genannt) wie in <<listing-KonfigurationsBean>> bereitgestellt:
+Ein Beispiel für eine Konfigurationsklasse ist in <<listing-beispielConfigurationProperties>> zusehen.
+Die dazugehörige Property lautet dann `projekt.meine-anwendung.person.firstName=<Wert>` und muss aufgrund von `@NotNull` gesetzt sein.
 
-:desc-listing-KonfigurationsBean: Spring-Konfiguration für Konfigurations-Bean
-[id="listing-KonfigurationsBean",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-KonfigurationsBean}
-[source,xml]
-----
-<bean id="konfiguration"
-      class="de.bund.bva.pliscommon.konfiguration.common.impl.ReloadablePropertyKonfiguration">
-  <constructor-arg>
-    <list>
-      <value>/config/terminfindung.properties</value>
-      <value>/config/jpa.properties</value>
-   </list>
-  </constructor-arg>
-</bean>
-----
-
-Die Klasse `[...].konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt
-über das Interface `de.bund.bva.pliscommon.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
-Konfigurationsparameter zur Verfügung.
-
-Alle Parameter aus den in der Liste aufgeführten Property-Dateien werden der Anwendung als eine
-gemeinsame Sicht aller Konfigurationsparameter zur Verfügung gestellt.
-Sind Parameter in mehreren Dateien aufgeführt, so überschreiben Werte aus Dateien, die in der
-Liste hinten stehen, solche von Dateien, die zuvor aufgelistet wurden.
-
-Die Konfigurations-Bean wird den Komponentenfassaden (z.B. `MeldungImpl`) per Spring-Dependecy-Injection bereitgestellt.
-Dazu muss die Komponente einen Setter für das Interface anbieten.
-
-:desc-listing-SetterKonfigurationsBean: Setter für Konfigurations-Bean
-[id="listing-SetterKonfigurationsBean",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-SetterKonfigurationsBean}
+:desc-listing-beispielConfigurationProperties: Konfigurationsklasse (@ConfigurationProperties)
+[id="listing-beispielConfigurationProperties",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-beispielConfigurationProperties}
 [source,java]
 ----
-public void setKonfiguration(Konfiguration konfiguration)
+@Component
+@ConfigurationProperties("projekt.meine-anwendung.person")
+@Validated
+public class PersonProperties {
+
+    @NotNull
+    String param;
+
+    public String getParam() {
+        return param;
+    }
+
+    public void setParam(String param) {
+        this.param = param;
+    }
+}
 ----
 
-Für den Fall, dass sehr viele Konfigurationsparameter benötigt werden, können komponentenspezifische
-Konfigurations-Beans verwendet werden.
+Spring löst die Namen der Properties der Konfigurationsparameter über _Relaxed Binding_ auf.
+Die damit möglichen Schreibweisen für einen Parameternamen sind in <<table-relaxedBinding>> dargestellt.
 
-Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des Konfigurations-Interfaces, siehe <<listing-ZugriffKonfigurationsparameter>>.
+:desc-table-relaxedBinding: Schreibweisen von Parameternamen
+[id="table-relaxedBinding",reftext="{table-caption} {counter:tables}"]
+.{desc-table-relaxedBinding}
+[cols="2,3",options="header"]
+|====
+| Schreibweise | Anmerkung
+m| projekt.meine-anwendung.person.first-name | Kebab case (Trennung mit '-'). Für die Verwendung in Property-Dateien empfohlen.
+m| projekt.meineAnwendung.person.firstName   | Standard Camel Case Syntax.
+m| projekt.meine_anwendung.person.first_name | Trennung mit Unterstrichen. Alternative für die Verwendung in Property-Dateien.
+m| PROJEKT_MEINEANWENDUNG_PERSON_FIRSTNAME   | Empfohlen für Systemumgebungsvariablen.
+|====
 
-:desc-listing-ZugriffKonfigurationsparameter: Zugriff auf Konfigurationsparameter
-[id="listing-ZugriffKonfigurationsparameter",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-ZugriffKonfigurationsparameter}
-[source,java]
-----
-String url = konfiguration.getAsString (KonfigurationSchluessel.SERVICE_URL);
-----
-
-Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double und `Boolean`) jeweils typsichere Zugriffsmethoden an.
-Für jeden Datentyp wird zusätzlich eine Methode angeboten, welche die Übergabe eines Default-Werts ermöglicht.
-Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurationsdatei vorhanden ist.
-Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine
-Exception geworfen.
+Für die Auswahl werden hier nur Empfehlungen gegeben.
+Die gewählte Schreibweise sollte durchgehend in der Anwendung verwendet werden.
 
 [[handhabung-von-default-werten]]
 ==== Handhabung von Default-Werten
 
-Default-Werte können entweder explizit im Java-Code oder in eigenen Property-Dateien im
-Verzeichnis `resources/default-config/` abgelegt werden.
-Werte, für die kein Default-Wert in Java hinterlegt ist, werden in eine Property-Datei
-in `resources/default-config` übernommen, sofern sie nicht umgebungsabhängig sind.
-Typischerweise existiert für jede Default-Property-Datei eine gleichnamige Datei im
-Config-Verzeichnis, in welcher der Betrieb die Default-Werte überschreiben kann.
-
-Die Ablage von Properties in den Dateien in `resources/default-config` hat so zum großen
-Teil einen Dokumentationscharakter.
-Hier ist auf einen Blick ersichtlich, welche Parameter existieren und welches die Default-Werte sind.
-Die Ablage von Default-Werten in den Java-Klassen ist nur dann zu verwenden, wenn die Anwendung
-auch ohne eine entsprechende explizite Konfiguration lauffähig sein soll und das Fehlen der
-Einstellung keinesfalls einen Fehler erzeugen soll.
+Default-Werte werden in den Konfigurationsklassen (mit `@ConfigurationProperties` annotierte Klassen) festgehalten.
 
 Für systemabhängige Werte dürfen keine Default-Werte hinterlegt werden.
 Wichtig ist, dass die Anwendung die Existenz dieser Werte (z.B. URLs zu genutzten Services) bereits bei
-der Initialisierung prüft.
+der Initialisierung durch Validierung prüft (siehe <<typsichere-bereitstellung-von-konfiguration]>>).
 Dadurch wird vermieden, dass das Fehlen von Einstellungen erst bei späteren Zugriffen erkannt wird.
 
 Konfigurationsparameter, die nicht zur Laufzeit änderbar sind (siehe Kapitel
 <<konfigurationsaenderungen-zur-laufzeit>>), können
 zur Performance-Optimierung in Instanzvariablen gehalten werden.
-Dabei kann auch gleich das Vorhandensein der Einstellung geprüft werden. D.h. die Komponente liest
+Dabei kann auch gleich das Vorhandensein der Einstellung geprüft werden, d.h., die Komponente liest
 bereits bei Ihrer Initialisierung den Parameterwert aus und speichert ihn in einer Instanzvariablen.
-
-NOTE: Ein Beispiel findet sich in `de.bund.bva.cd.registercd.core.meldung.impl.AwfCdErworben`.
 
 [[deployment-von-konfigurationsdateien]]
 ==== Deployment von Konfigurationsdateien
@@ -1210,7 +1188,7 @@ Der Config-Ordner wird beim Deployment aus der eigentliche Anwendung herausgezog
 der Inhalt in `/etc/<Anwendungsname>` abgelegt.
 Zusätzlich wird ein symbolischer Link von `/classes/config` auf `/etc/<Anwendungsname>/`
 angelegt, so dass auch diese Inhalte Teil des Klassenpfads der Anwendung sind.
-Details dazu können dem Konzept <<DeploymentKonzept]>> entnommen werden.
+Details dazu können dem Konzept <<DeploymentKonzept>> entnommen werden.
 
 In einigen Fällen wird die für die Entwicklung benötigte Konfiguration von der Release-Version abweichen.
 Für jede Konfiguration aus `config` kann es eine Entwicklungs- und genau eine Release-Variante
@@ -1233,6 +1211,57 @@ Für systemabhängige Werte existiert kein Default, diese werden aber bereits w�
 Initialisierung der Anwendung geprüft (siehe Kapitel <<handhabung-von-default-werten>>).
 Fehlende Einstellungen werden so beim Programmstart erkannt.
 
+[[implementierungsvorgaben-für-property-dateien]]
+==== Verwendung von isy-konfiguration
+
+[WARNING]
+Die Bibliothek `isy-konfiguration` wird nicht mehr weiterentwickelt und ist nur im Ausnahmefall zu verwenden.
+
+Zur Bereitstellung von Konfigurationsparametern in der Anwendung kann die Bibliothek `isy-konfiguration` verwendet werden.
+
+Die Konfigurationsbibliothek enthält Interfaces und Implementierungen für das Laden von Property-Dateien und das typsichere Auslesen von Konfigurationsparametern.
+Die Konfiguration wird der Anwendung als querschnittliche Spring-Bean (im Folgenden Konfigurations-Bean genannt) bei der Verwendung von `isy-konfiguration` automatisch bereitgestellt:
+
+Die Liste der Property-Dateien, die von `isy-konfiguration` gelesen werden sollen, wird in `application.properties` angegeben (<<listing-isykonfigurationproperty>>).
+
+:desc-listing-isykonfigurationproperty: Property zur Konfiguration von isy-konfiguration
+[id="listing-isykonfigurationproperty",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-isykonfigurationproperty}
+[source]
+----
+isy.konfiguration.properties = /config/A.properties, /config/B.properties
+----
+
+Die Klasse `[...].konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt
+über das Interface `de.bund.bva.pliscommon.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
+Konfigurationsparameter zur Verfügung.
+
+Alle Parameter aus den in der Liste aufgeführten Property-Dateien werden der Anwendung als eine
+gemeinsame Sicht aller Konfigurationsparameter zur Verfügung gestellt.
+Sind Parameter in mehreren Dateien aufgeführt, so überschreiben Werte aus Dateien, die in der
+Liste hinten stehen, solche von Dateien, die zuvor aufgelistet wurden.
+
+Die Konfigurations-Bean wird den Komponenten per Spring-Dependecy-Injection bereitgestellt.
+
+Für den Fall, dass sehr viele Konfigurationsparameter benötigt werden, können komponentenspezifische
+Konfigurations-Beans verwendet werden.
+
+Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des Konfigurations-Interfaces, siehe <<listing-ZugriffKonfigurationsparameter>>.
+
+:desc-listing-ZugriffKonfigurationsparameter: Zugriff auf Konfigurationsparameter
+[id="listing-ZugriffKonfigurationsparameter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ZugriffKonfigurationsparameter}
+[source,java]
+----
+String url = konfiguration.getAsString (KonfigurationSchluessel.SERVICE_URL);
+----
+
+Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double und `Boolean`) jeweils typsichere Zugriffsmethoden an.
+Für jeden Datentyp wird zusätzlich eine Methode angeboten, welche die Übergabe eines Default-Werts ermöglicht.
+Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurationsdatei vorhanden ist.
+Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine
+Exception geworfen.
+
 [[datenbank-basierte-konfigurationen]]
 === Datenbank-basierte Konfigurationen
 
@@ -1246,6 +1275,7 @@ Für weitere Details siehe <<DetailkonzeptKomponenteDatenzugriff>>.
 
 Betriebliche Konfigurationen werden in Dateien gespeichert und nur beim Starten der Anwendung geladen.
 Im Normalfall werden Konfigurationsparameter beim Start der Anwendung ausgelesen und in Instanzvariablen gehalten.
+Die Bibliothek `isy-konfiguration` bietet die Möglichkeit, Konfigurationsparameter zur Laufzeit neu einzulesen.
 
 Sollen Konfigurationsparameter zur Laufzeit änderbar sein, müssen besondere Vorkehrungen getroffen werden:
 
@@ -1272,24 +1302,8 @@ sorgt beim Aufruf dafür, dass alle Konfigurationsdateien auf Änderungen geprü
 geladen werden. Änderungen werden durch den Änderungszeitstempel der Dateien festgestellt.
 
 Die zuvor genannte Methode muss regelmäßig aufgerufen werden.
-Dazu wird, wie in Kapitel <<implementierung-des-watchdogs>> beschrieben, ein weiterer Task definiert und dem
-Tag `<task:scheduled-tasks>` der Spring-Konfiguration hinzugefügt.
-
-:desc-listing-TaskKonfigurationsaenderungen: Task für Konfigurationsänderungen
-[id="listing-TaskKonfigurationsaenderungen",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-TaskKonfigurationsaenderungen}
-[source,xml]
-----
-<task:scheduled-tasks scheduler="scheduler">
-  ...
-  <task:scheduled ref="konfiguration" method="checkAndUpdate"
-                  fixed-delay="${konfiguration.reload.interval}"
-                  initial-delay="5000"/>
-  ...
-</task:scheduled-tasks>
-----
-
-Die <<Vorlageanwendung>> setzt diese Konfiguration in der Datei `src/main/resources/spring/querschnitt/tasks.xml` um.
+Dazu stellt die Bibliothek `isy-task` einen Task bereit.
+Die Konfiguration dieses Tasks ist in <<NutzungsvorgabenTaskScheduling>> beschrieben.
 
 [[reagieren-auf-konfigurationsaenderungen]]
 === Reagieren auf Konfigurationsänderungen
@@ -1338,32 +1352,6 @@ Dazu gehört z.B. die Konfiguration von Frameworks oder die Konfiguration des To
 
 Eine detaillierte Beschreibung der Konfiguration einzelner Frameworks findet sich in deren jeweiliger Dokumentation.
 
-[[spring-konfiguration]]
-=== Spring-Konfiguration
-
-Spring wird über eine Reihe von XML-Dateien konfiguriert.
-Da Spring als Container zur Konfiguration einer Reihe anderer Frameworks verwendet wird (z.B. Hibernate), wird hierüber letztendlich auch die Konfiguration dieser Frameworks durchgeführt.
-Die Spring-Konfigurationen werden im Resources-Ordner abgelegt:
-
-`src/main/resources/resources/spring/`
-
-Spring unterstützt es, über einen Platzhalter-Mechanismus einzelne Parameter aus den XML-Dateien in Property-Dateien auszulagern.
-Dieser Mechanismus wird benutzt, um einzelne Properties durch den Betrieb konfigurierbar zu machen.
-Dazu wird eine Property-Datei im Config-Ordner abgelegt, welche von Spring gelesen wird.
-Die Inhalte dieser Datei werden in die XML-Konfiguration integriert.
-Nähere Details zu dem Platzhalter-Mechanismus sind in <<DetailkonzeptKomponenteAnwendungskern>> nachzulesen.
-
-[[log4j-konfiguration]]
-=== Log4j-Konfiguration
-
-Die eigentliche Log4j-Konfiguration wird in <<KonzeptLogging>> beschrieben.
-Aus Sicht des Konfigurationskonzeptes wird lediglich vorgegeben, die
-Konfigurationsdatei log4j.properties als betriebliche Konfiguration im Config-Ordner abzulegen.
-
-Die Log4-Konfiguration wird nicht über die Konfigurationsbibliothek verwaltet, sondern direkt von der Log4j-Bibliothek verwendet.
-Damit Log-Level zur Laufzeit änderbar sind, wird der von Log4j bereitgestellte Listener verwendet.
-Details dazu sind im Konzept <<KonzeptLogging>> nachzulesen.
-
 [[web-kontext-konfiguration-web.xml]]
 === Web-Kontext-Konfiguration (web.xml)
 
@@ -1400,8 +1388,6 @@ während gleichzeitig Auskünfte möglich sind.
 
 Die Anforderung wird durch Einfügen eines Konfigurationsparameter `anwendung.auskunftsmodus.aktiviert`
 in die betriebliche Konfigurationsdatei umgesetzt.
-
-NOTE: In der Vorlageanwendung ist dies die Datei `src/main/resources/config/cd-register.properties`.
 
 Die Option kann die Ausprägungen `false` (Alle
 Funktionen sind aktiv) und `true` (Schreibzugriffe sind deaktiviert) annehmen.
