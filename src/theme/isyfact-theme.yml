@@ -23,13 +23,12 @@ title_page:
   align: left
   font_style: bold
   title:
-    font_size: 30
-    top: 29%
+    font_size: 26
+    top: 27%
     font_color: [6, 73, 65]
   revision:
-    font_size: 15
-    margin_top: $base_line_height_length * 6
-    font_color: [255, 255, 255]
+    font_size: 14
+    font_color: [6, 73, 65]
 toc:
   h1_font_style: bold
   h2_font_style: bold
