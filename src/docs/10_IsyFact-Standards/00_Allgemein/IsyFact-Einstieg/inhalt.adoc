@@ -282,13 +282,12 @@ Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 == Vorgaben für die Spezifikation
 
 Für die Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
-Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage
-für die Systemspezifikation <<IsyFactSystemspezifikation>>. Bereits bei der Systemspezifikation ist auf die
-Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
+Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage für die Systemspezifikation <<IsyFactSystemspezifikation>>.
+Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
+Bei der Erstellung von Diagrammen mit dem Enterprise Architect hilft das Dokument <<NutzungEnterpriseArchitect>>.
 
-Für die Erfassung von Anforderungslisten ist ebenfalls eine Vorlage vorhanden <<IsyFactVorlageAnforderungsliste>>. Die
-Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller
-Anforderungen an ein System im gesamten Projektlebenszyklus zu erhalten.
+Für die Erfassung von Anforderungslisten ist ebenfalls eine Vorlage vorhanden <<IsyFactVorlageAnforderungsliste>>.
+Die Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller Anforderungen an ein System im gesamten Projektlebenszyklus zu erhalten.
 Weitere Erläuterungen finden sich in der Vorlage.
 
 Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine

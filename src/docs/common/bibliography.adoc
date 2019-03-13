@@ -146,6 +146,10 @@
   Vorlage für Anforderungsliste +
   40_Methodik\10_Systemspezifikation\IsyFact-Vorlage-Anforderungsliste.xlsx
 
+- [[[NutzungEnterpriseArchitect]]] +
+  Nutzung von Enterprise Architect +
+  40_Methodik\10_Systemspezifikation\Nutzung-Enterprise-Architect.pdf
+
 - [[[IsyFactSystementwurf]]] +
   Vorlage für Systementwürfe +
   40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dot
