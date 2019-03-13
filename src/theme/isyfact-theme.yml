@@ -45,14 +45,11 @@ heading:
   h4_font_style: bold
   h5_font_style: normal
   h6_font_style: normal
-  margin_bottom: 4
 table:
   head:
     background_color: #d9d9d9
   body:
     stripe_background_color: #ffffff
-link:
-  font_color: #000000
 code:
   border_color: #000000
   font_size: 9
