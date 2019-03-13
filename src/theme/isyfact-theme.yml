@@ -1,12 +1,12 @@
 font:
   catalog:
-    Liberation:
-      normal: LiberationSans-Regular.ttf
-      italic: LiberationSans-Italic.ttf
-      bold: LiberationSans-Bold.ttf
-      bold_italic: LiberationSans-BoldItalic.ttf
+    Cambria:
+      normal: Cambria-Regular.ttf
+      italic: Cambria-Italic.ttf
+      bold: Cambria-Bold.ttf
+      bold_italic: Cambria-BoldItalic.ttf
 base:
-  font_family: Liberation
+  font_family: Cambria
   font_color: #000000
   font_size: 10
   line_height_length: 12
@@ -23,9 +23,13 @@ title_page:
   align: left
   font_style: bold
   title:
-    font-size: 20
+    font_size: 30
+    top: 29%
+    font_color: [6, 73, 65]
   revision:
-    font-size: 14
+    font_size: 15
+    margin_top: $base_line_height_length * 6
+    font_color: [255, 255, 255]
 toc:
   h1_font_style: bold
   h2_font_style: bold
