@@ -2,7 +2,7 @@
 include::../../../common/isyfact-attributes.adoc[]
 include::../../../common/attributes.adoc[]
 //
-:doctitle: Einrichtung einer Entwicklungsumgebung – Zusätzliche Tool-Unterstützung
+:doctitle: Einrichtung einer Entwicklungsumgebung
 :title: {doctitle}
 
 // Zwangsplatz des TOC
