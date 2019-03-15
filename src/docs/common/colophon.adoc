@@ -20,7 +20,7 @@ https://creativecommons.org/licenses/by/4.0/legalcode.de
 
 *Ansprechpartner:* +
 
-Referat Z III 2  +
+Referat IT 1  +
 {orgname} +
 E-Mail: {email} +
 Internet: {homepage}
