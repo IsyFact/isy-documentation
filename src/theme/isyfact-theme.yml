@@ -1,12 +1,12 @@
 font:
   catalog:
-    Cambria:
-      normal: Cambria-Regular.ttf
-      italic: Cambria-Italic.ttf
-      bold: Cambria-Bold.ttf
-      bold_italic: Cambria-BoldItalic.ttf
+    Caladea:
+      normal: caladea-regular.ttf
+      italic: caladea-italic.ttf
+      bold: caladea-bold.ttf
+      bold_italic: caladea-bolditalic.ttf
 base:
-  font_family: Cambria
+  font_family: Caladea
   font_color: #000000
   font_size: 10
   line_height_length: 12
