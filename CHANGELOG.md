@@ -1,5 +1,6 @@
 # 1.7.0
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
