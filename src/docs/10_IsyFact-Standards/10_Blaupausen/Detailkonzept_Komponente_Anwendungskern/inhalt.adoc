@@ -93,17 +93,18 @@ Das Spring-Framework ist ein Java EE Framework, welches im Kern sehr verständli
 In ihm werden die Bestandteile eines Systems als „Beans“ definiert.
 Neben seiner Kern-Funktionalität der Verwaltung, Konfiguration und aspektorientierten Erweiterung von Beans bietet Spring viele Funktionalitäten, welche die Entwicklung einer Anwendung erleichtern sollen.
 
-Die IsyFact verwendet ausgewählte Funktionalitäten des Spring-Framework in der Anwendungsentwicklung.
+Die IsyFact verwendet ausgewählte Funktionalitäten des Spring-Frameworks in der Anwendungsentwicklung.
 Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie folgt beschrieben:
 
+* Die Konfiguration der Datenzugriffschicht, beschrieben im <<DetailKonzeptKomponenteDatenzugriff>>.
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
-* Die Bereitstellung von JMX Beans über Spring, beschrieben im Konzept <<KonzeptUeberwachungKonfiguration>>.
+* Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachungKonfiguration>>.
 * Die Verwendung der HTTP-Invoker-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
 * Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
 Dokument <<DetailkonzeptKomponenteWebGUI>>.
 
-Alle anderen Spring-Funktionalitäten (Validierung über Spring, Emailing, Thread Pooling, Scripting, Annotations)
+Alle anderen Spring-Funktionalitäten (Validierung über Spring, Emailing, Thread Pooling, Scripting)
 werden nicht verwendet.
 
 Dieses Kapitel teilt sich in vier Teile:
@@ -119,13 +120,13 @@ Nicht beschrieben wird hier der Einsatz von Tools für die Entwicklung von Sprin
 == Anforderungen
 
 Dies bezieht sich unter anderem auf die Bestandteile von Spring: Spring bietet verschiedene Komponenten, welche getrennt voneinander eingesetzt werden können.
-Es sollen nur die Kom­ponenten eingesetzt werden, welche zu geringerer Komplexität und geringerem Entwicklungsaufwand führen.
+Es sollen nur die Komponenten eingesetzt werden, welche zu geringerer Komplexität und geringerem Entwicklungsaufwand führen.
 
 *Einheitlichkeit der Nutzung:* Spring soll in den verschiedenen Anwendungen einheitlich eingesetzt werden.
 Hierfür sind geeignete Vorgaben für die Nutzung zu verwenden.
 
-*Verständlichkeit der Konfiguration:* Die Konfiguration der Spring-Komponenten wird in hierarchisch gegliederten XML-Dateien durchgeführt.
-Diese XML-Dateien sollen übersichtlich und verständlich sein.
+*Verständlichkeit der Konfiguration:* Die Konfiguration der Spring-Komponenten erfolgt über Annotationen an den Komponenten. Wenn erforderlich,
+werden Komponenten außerhalb der Anwendung über Java-Konfigurationsklassen konfiguriert.
 
 *Komponentenorientierung wahren:* Über Spring sollen Komponenten konfiguriert werden: Es soll nicht möglich sein, direkt auf Implementierungsklassen einer Komponente zuzugreifen.
 
@@ -133,17 +134,21 @@ Diese XML-Dateien sollen übersichtlich und verständlich sein.
 == Konfiguration von Spring
 
 Das grundlegende Konzept von Spring ist das der Spring-Bean.
-Die Konfiguration von Spring teilt sich deshalb in zwei Teile: In die Konfiguration der Spring-Beans sowie in die Konfiguration von Spring selbst (innerhalb eines Tomcat Servers). Diese Konfigurationsarten werden in den folgenden Kapiteln beschrieben.
+Die Konfiguration von Spring teilt sich deshalb in zwei Teile: In die Konfiguration der Spring-Beans sowie in die Konfiguration von Spring selbst (innerhalb eines Tomcat Servers).
+Um die Konfiguration von Spring und der eingesetzten Baustein einfach zu halten, werden die Autokonfigurationsmechanismen von Spring Boot eingesetzt.
+Diese Konfigurationsarten werden in den folgenden Kapiteln beschrieben.
 
 [[die-konfiguration-von-spring-beans]]
 === Die Konfiguration von Spring-Beans
 
-Spring ist ein Applikations-Container, welcher sogenannte Spring-Beans instanziiert, per „Dependency Injection“
+Spring ist ein Applikations-Container, welcher sogenannte Spring-Beans instanziiert, per _Dependency Injection_
 konfiguriert und bereitstellt.
 Spring-Beans sind beliebige Java-Klassen.
 Für diese Klassen kann man benötigte andere Beans oder Konfigurationsparameter konfigurieren,
 welche der Klasse daraufhin im Konstruktor oder per `set`-Methode übergeben werden.
-Konfiguriert werden Beans und ihre Abhängigkeiten in XML-Dateien.
+
+Konfiguriert werden Beans und ihre Abhängigkeiten durch von Spring bereitgestellte Annotationen.
+Diese werden beim Start des Applikations-Containers gescannt und ausgewertet (_Component Scan_).
 
 Die folgende Abbildung zeigt einen Ausschnitt der für die Vorlageanwendung erstellten Beans.
 Diese werden grün dargestellt und besitzen „referenziert“ Abhängigkeiten zu benötigten anderen Beans.
@@ -198,16 +203,6 @@ gesetzt werden (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-son
 Ebenfalls über Beans durchzuführen ist die Konfiguration diverser Frameworks, z.B. Hibernate.
 Die Konfiguration dieser Frameworks wird in ihren Nutzungsvorgaben beschrieben.
 
-[[kein-autowiring-verwenden]]
-==== Kein Autowiring verwenden
-
-Die Verwendung von Autowiring ist verboten, da es das Verständnis der Zusammenhänge und die Fehlersuche erschwert.
-
-Über den Autowiring-Mechanismus von Spring ist es möglich, die `set`-Methoden von Beans während der Initialisierung von
-Spring beim Start der Anwendung nicht nur anhand der in den XML-Konfigurationsdateien abgelegten Konfiguration
-aufzurufen, sondern auch implizit über Namenskonventionen.
-Das muss aber explizit in Spring konfiguriert werden.
-
 [[beans-standardmäßig-als-singletons-definieren]]
 ==== Beans standardmäßig als Singletons definieren
 
@@ -216,78 +211,98 @@ pro Abhängigkeit (Prototype) erzeugt werden.
 Die Komponenten-Beans einer Anwendung sollen zustandslos sein und werden als Singleton-Beans erzeugt.
 Wo technisch erforderlich, können auch andere Scopes verwendet werden.
 
-[[spring-konfiguration-hierarchisch-aufbauen]]
-==== Spring-Konfiguration hierarchisch aufbauen
+// TODO Überarbeiten, hier beschreiben, wie Java-Konfiguration aufgebaut sein soll
+[[vorgaben-zur-spring-konfiguration]]
+==== Vorgaben zur Spring-Konfiguration
 
-Die Spring-Konfiguration soll hierarchisch aufgebaut werden.
-Das bedeutet, dass zunächst je Komponente der Anwendung eine Spring-Konfiguration erstellt wird.
-Hier werden alle Konfigurationen eingetragen, die diese eine Komponente betreffen.
+Die Spring-Konfiguration der Anwendung ist nach folgenden Vorgaben zu erstellen.
 
-Konfigurationen, die die gesamte Anwendung betreffen werden ebenfalls in einer oder mehreren Konfigurationsdateien abgelegt.
-Dabei sollen logisch zusammengehörende Konfigurationen auch in einer Datei abgelegt werden.
-
-Für die gesamte Anwendung wird eine Konfigurationsdatei `application.xml` erstellt, die nur alle von der Anwendung benötigten Konfigurationsdateien über `import`-Tags zusammenfasst.
-
-:desc-listing-applicationXml: Beispiel für application.xml
-[id="listing-applicationXml",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-applicationXml}
-[source, xml]
+1. Der zentraler Ausgangspunkt für die Spring-Konfiguration ist die Applikationsklasse der Anwendung (<<listing-applikationsklasse>>).
+Diese wird im Wurzelpackage der Anwendung (`<org>.<domäne>.<anwendung>.<anwendung>Application`) erstellt.
+Sie ist mit `@Configuration` und `@EnableAutoConfiguration` annotiert.
+Damit wird der Autokofiguration von Spring Boot eingeschaltet.
+Zusätzliche erbt die Klasse von `SpringBootServletInitializer`, damit die Anwendung im Tomcat deployt werden kann.
+Die Konfigurationsklassen der Schichten werden per `@Import`-Annotation eingebunden.
++
+:desc-listing-applikationsklasse: Applikationsklasse der Anwendung
+[id="listing-applikationsklasse",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-applikationsklasse}
+[source, java]
 ----
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans">
+package de.beispiel.if2anwendung;
 
-    <import resource="spring-context.xml" />
-    <import resource="persistence/jpa.xml" />
-    <import resource="awk/fachkomponente.xml" />
-    ...
+...
 
-</beans>
+@Configuration
+@EnableAutoConfiguration
+@Import({ CoreConfig.class, PersistenceConfig.class, ServiceConfig.class })
+public class IsyFactApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(IsyFactApplication.class);
+    }
+}
 ----
+
+
+2. Für jede Schicht wird im Package `<org>.<domäne>.<anwendung>.<schicht>.config` eine mit `@Configuration` annotierte
+Konfigurationsklasse erstellt (<<listing-konfigurationklasse>>).
+Diese wird zusätzlich mit `@ComponentScan` annotiert.
+Der _Component Scan_ mit wird dem Attribute `basePackages` auf das Package der Schicht beschränkt.
+Annotation, die querschnittliche Aspekte konfigurieren (z.B. `@EnableTransactionManagement`), werden an die jeweilige
+Konfigurationklasse der Schicht geschrieben, zu der sie inhaltlich passen.
++
+:desc-listing-konfigurationsklasse: Konfigurationsklasse innerhalb einer Schicht
+[id="listing-konfigurationsklasse",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfigurationsklasse}
+[source, java]
+----
+package de.beispiel.if2anwendung.core.config;
+
+...
+
+@Configuration
+@EnableTransactionManagement
+@ComponentScan("de.beispiel.if2anwendung.core")
+public class CoreConfig {
+
+    @Bean
+    public ...
+}
+----
+
+3. Die Beans der Komponenten werden mit der Annotation `@Component` bzw. deren Spezialisierungen (`@Repository`, `@Service`, `@Controller` etc.) versehen.
+   Externe Beans, die nicht annotiert werden können, werden in der Konfigurationklasse der Schicht per `@Bean-Methoden` konfiguriert.
 
 [[konfigurationsparameter-ueber-property-objekte-konfigurieren]]
 ==== Konfigurationsparameter über Property-Objekte konfigurieren
 
 Die Konfiguration der Anwendung wird (wie im Detailkonzept Überwachung und Konfiguration <<KonzeptUeberwachungKonfiguration>>
-beschrieben) über ein Property-Objekt durchgeführt.
-Dieses Property-Objekt enthält sämtliche Konfigurationsparameter der Anwendung.
-Das Setzen einzelner Konfigurationsparameter über set-Methoden ist nur in Ausnahmefällen erlaubt: Es ist stets das Property-Objekt zu übergeben.
-
-Ein Beispiel dafür ist die Konfigurations-Bean `konfiguration` in der Datei `konfiguration.xml` der Vorlageanwendung.
-Diese Bean wird den Komponenten in der Datei `app-context.xml` per Dependency Injection übergeben.
-
+beschrieben) über die Datei `application.properties` durchgeführt.
+Dieses Datei enthält sämtliche Konfigurationsparameter der Anwendung.
+Das Setzen einzelner Konfigurationsparameter über `set`-Methoden ist nur in Ausnahmefällen erlaubt.
+// TODO Ein Beispiel dafür ist die Konfigurations-Bean `konfiguration` in der Datei `konfiguration.xml` der Vorlageanwendung.
 Abweichungen für technische Beans sind erlaubt.
 
-[[abhaengigkeiten-von-komponenten-ueber-set-methoden-konfigurieren]]
-==== Abhängigkeiten von Komponenten über set-Methoden konfigurieren
+[[abhaengigkeiten-von-komponenten-konfigurieren]]
+==== Abhängigkeiten von Komponenten konfigurieren
 
-Benötigte Beans können entweder über `set`-Methoden oder über Konstruktor-Parameter injiziert werden.
+Benötigte Beans müssen über Konstruktor-Parameter injiziert werden.
 Falls eine benötigte Bean nicht zum Zeitpunkt der Objekterzeugung vorhanden sein muss, sollte sie über
 eine `set`-Methode und nicht über einen Konstruktor-Parameter konfiguriert werden.
 Grund dafür ist, dass bei Konstruktor-Parametern eine zusätzliche Reihenfolge-Abhängigkeit erzeugt wird.
 
-Falls eine Bean erkennen muss, dass alle von ihr benötigten Beans konfiguriert wurden, hat sie das Interface
-`InitializingBean` sowie die Methode `afterPropertiesSet()` zu implementieren: Diese Methode wird erst aufgerufen,
-wenn alle Konfigurationen durchgeführt wurden.
-
-In einigen Fällen müssen benötigte Beans bei der Instanzerzeugung vorliegen.
-Ein Beispiel dafür ist die Property-Bean mit der Anwendungskonfiguration: Sie wird ggf.
-benötigt, um bei fehlenden Konfigurationsparametern im Konstruktor eine Exception zu werfen und damit den gesamten
-Spring-Konfigurationsprozess zu stoppen.
-
-Falls ein oder mehr Parameter einer Bean als Konstruktor-Parameter konfiguriert werden müssen, sind die anderen
-Parameter trotzdem über `set`-Methoden zu injizieren.
-
-[[required-annotation-verwenden]]
-==== Required-Annotation verwenden
-
-Um Fehler in der Spring-Konfiguration frühzeitig erkennen zu können, sollen zwingend erforderliche Dependencies
-mit der Annotation `@Required` versehen werden.
+Für den Fall, dass eine Bean Code zur Initialisierung ausführen soll, nachdem ihre Abhängigkeiten gesetzt sind, ist eine mit `@PostConstruct` annotierte
+Methode zu implementieren.
+Generell sind die standardisierten Lifecycle-Annotationen `@PostConstruct` und `@PreDestroy` den spring-spezifischen
+Interfaces `InitializingBean` und `DisposableBean` vorzuziehen.
 
 [[explizite-abhaengigkeits-konfiguration-bei-nachrichten]]
-==== Explizite Abhängigkeits-Konfiguration bei Nachrichten
+==== Explizite Abhängigkeitskonfiguration bei Nachrichten
 
 Falls man innerhalb des Konstruktors eine andere Bean benötigt, so konfiguriert man diese per Konstruktor-Argument
-(siehe Kapitel <<abhaengigkeiten-von-komponenten-ueber-set-methoden-konfigurieren>>). In einigen Fällen wird
+(siehe Kapitel <<abhaengigkeiten-von-komponenten-konfigurieren>>). In einigen Fällen wird
 auf Beans aber nicht über derartige Dependency Injection, sondern über statische Methoden zugegriffen
 (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>).
 
@@ -300,26 +315,13 @@ Beim Aufruf der `set`-Methode für die abhängige Bean wird diese in eine statis
 Falls in einem Bean-Konstruktor oder einer `set`-Methode statisch auf eine Holder-Klasse zugegriffen
 wird, so kennt Spring die Abhängigkeit zur Bean der Holder-Klasse nicht.
 Es muss sichergestellt werden, dass die Holder-Klasse bereits befüllt wurde.
-Hierzu ist ein `depends-on` Attribut in die Bean-Konfiguration einzufügen.
+Hierzu ist eine `@DependsOn`-Annotation in die Bean-Konfiguration einzufügen.
 Diese muss den Bean-Namen der benutzten Holder-Klassen enthalten.
-
-Für die Beans Template-Holder und Protokoll ist dies nicht notwendig: Für ihre Verwendung muss eine
-Transaktion geöffnet worden sein, und der Transaktionsmanager besitzt bereits eine `depends-on` Beziehung zu diesen Beans.
-Lediglich für die Verwendung von Resource-Bundles im Konstruktor ist eine Abhängigkeit zu konfigurieren.
-
-[[konfiguration-von-spring-im-tomcat]]
-=== Konfiguration von Spring im Tomcat
-
-Eine Anwendung der IsyFact ist technisch gesehen eine Tomcat Webanwendung.
-Der Spring-Kontext muss beim Start dieser Webanwendung instanziiert werden, damit alle benötigte Funktionalität (die HttpInvoker-Beans, die JMX-Beans, die Watchdog-Bean, die gesamte verwendete Anwendungslogik etc.) bereitgestellt wird.
-Hierfür stellt Spring Funktionalitäten bereit, die in der `web.xml` konfiguriert werden müssen.
-Diese werden in den folgenden Abschnitten beschrieben.
-Eine exemplarische `web.xml` findet sich in der Vorlageanwendung.
 
 [[webapprootkey-konfigurieren]]
 === webAppRootKey konfigurieren
 
-Der Kontextparameter `webAppRootKey` muss auf den eindeutigen Namen der Webanwendung gesetzt werden, wie in <<listing-webAppRootKey>> gezeigt.
+Der Kontextparameter `webAppRootKey` muss in der `web.xml` auf den eindeutigen Namen der Webanwendung gesetzt werden, wie in <<listing-webAppRootKey>> gezeigt.
 
 :desc-listing-webAppRootKey: Konfiguration des webAppRootKey
 [id="listing-webAppRootKey",reftext="{listing-caption} {counter:listings }"]
@@ -342,87 +344,22 @@ im Parameter `terminfindung` abgelegt.
 Da jede Webanwendung einen eindeutigen Namen besitzt, und damit einen eigenen Kontextparameter verwendet,
 wird das Überschreiben vermieden.
 
-[[spring-contextloaderlistener-konfigurieren]]
-=== Spring ContextLoaderListener konfigurieren
-
-Damit der Spring-Kontext beim Start des Tomcat geladen wird, ist `org.springframework.web.context.ContextLoaderListener` als Listener zu konfigurieren.
-Ihr sind über den Konfigurationsparameter `contextConfigLocation` die Spring-Konfigurationsdateien bekannt zu machen.
-
-[[spring-dispatcherservlet-konfigurieren]]
-=== Spring DispatcherServlet konfigurieren
-
-Falls eine Anwendung über eine HttpInvoker-Bean zugreifbar sein soll, muss im Tomcat das Spring `DispatcherServlet` konfiguriert werden.
-Das Dispatcher-Servlet nimmt Aufrufe entgegen und leitet sie an die Beans weiter, welche sich für die entsprechende URL registriert haben.
-
-Ein Beispiel für die Konfiguration des Dispatcher-Servlets findet sich in der Datei `web.xml` der Vorlageanwendung (<<listing-DispatcherServlet>>).
-
-:desc-listing-DispatcherServlet: Konfiguration des DispatcherServlets
-[id="listing-DispatcherServlet",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-DispatcherServlet}
-[source,xml]
-----
-<servlet>
-  <servlet-name>remoting</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  <init-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/classes/resources/spring/remoting-servlet.xml</param-value>
-  </init-param>
-  <load-on-startup>1</load-on-startup>
-</servlet>
-<servlet-mapping>
-  <servlet-name>remoting</servlet-name>
-  <url-pattern>/app/*</url-pattern>
-</servlet-mapping>
-----
-
-Für das Dispatcher-Servlet muss eine eigene Spring-XML-Datei als Konfiguration bereitgestellt werden
-(hier Datei `remoting-servlet.xml`). Die Beans dieser Datei werden als eigener Anwendungskontext bereitgestellt.
-Es gibt somit zwei Spring-Kontexte:
-
-* Der durch den Spring-Listener erzeugte Kontext: Dies ist der „eigentliche“ Kontext.
-* Der Kontext des Dispatcher-Servlets: Dieser Kontext ist ein „Kind“ Kontext des eigentlichen Kontextes.
-Ihm sind alle im eigentlichen Kontext definierten Beans bekannt.
-
-Der Zugriff aus dem DispatcherServlet-Springkontext auf den eigentlichen Kontext geschieht somit direkt über die
-Definition von Bean-Referenzen im Dispatcher-Kontext.
-Die fachliche Verarbeitung eines HttpInvoker-Aufrufs soll im eigentlichen Kontext durchgeführt werden.
-Deshalb soll in der `HttpInvokerServiceExporter` Bean konfigurierte Service-Bean im eigentlichen Anwendungskontext
-konfiguriert sein.
-
-Dies wird in der folgenden Anwendung illustriert.
-
-:desc-image-CallWeiterInvoke: Aufruf-Weiterleitung eines HttpInvoker Aufrufs
-[id="image-CallWeiterInvoke",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-CallWeiterInvoke}
-image::CallWeiterInvoke.png[align="center"]
-
-Eine detailliertere Beschreibung der Umsetzung von HttpInvoker-Schnittstellen findet sich im Detailkonzept
-Komponente Service (siehe <<DetailkonzeptKomponenteService>>).
-
-[[spring-watchdog-konfigurieren]]
-=== Spring Watchdog konfigurieren
-
-Jede Anwendung implementiert einen Watchdog, der die Verfügbarkeit der Anwendung überprüft.
-Der Watchdog ist ein Timer, welcher in regelmäßigen Abständen eine Prüfung durchführt.
-Der Watchdog-Timer wird dabei als Spring-Bean konfiguriert, so dass keine eigene Timer-Implementierung notwendig ist.
-Weitere Details dazu und eine Beispielkonfiguration sind im Konzept <<KonzeptUeberwachungKonfiguration>> enthalten.
-
 [[die-direkte-verwendung-des-spring-frameworks]]
 == Die direkte Verwendung des Spring-Frameworks
 
-Neben der Konfiguration der Beans enthält eine Anwendung kaum Abhängigkeiten von Spring: Da die benötigten Objekte per Dependency Injection konfiguriert werden, müssen diese nach ihrer Konfiguration lediglich verwendet werden.
+Neben der Konfiguration der Beans enthält eine Anwendung kaum Abhängigkeiten von Spring: Da die benötigten Objekte per
+Dependency Injection konfiguriert werden, müssen diese nach ihrer Konfiguration lediglich verwendet werden.
 
 In einigen Fällen existieren jedoch weitere Abhängigkeiten von Spring:
 
-Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptUeberwachungKonfiguration>>).
+* Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptUeberwachungKonfiguration>>).
 
-Bei HttpInvoker Server-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
-(siehe <<DetailkonzeptKomponenteService>> und Kapitel <<spring-dispatcherservlet-konfigurieren>>).
+* Bei HttpInvoker Server-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
+(siehe <<DetailkonzeptKomponenteService>>.
 
-Beans werden per Namen aus dem Anwendungskontext ausgelesen.
+* Beans werden per Namen aus dem Anwendungskontext ausgelesen.
 
-Beans werden nicht per Dependency Injection, sondern über statische Methoden bereitgestellt.
+* Beans werden nicht per Dependency Injection, sondern über statische Methoden bereitgestellt.
 Hierüber entstehen Abhängigkeiten zur Instanziierungsreihenfolge der Beans durch Spring.
 
 Für die noch nicht in anderen Konzepten besprochenen (letzten beiden) Themen werden im Folgenden Vorgaben aufgestellt.
@@ -432,7 +369,8 @@ Für die noch nicht in anderen Konzepten besprochenen (letzten beiden) Themen we
 
 Über den Anwendungskontext könnten Beans explizit per Namen ausgelesen werden.
 Dies ist mit einer Ausnahme verboten: Die Namen von Beans sollen nicht im Anwendungscode verwendet werden.
-Die Ausnahme gilt für den Zugriff von einem Anwendungskontext auf einen anderen (in Zusammenhang mit dem DispatcherServlet). In diesem Fall ist ein explizites Auslesen nicht zu vermeiden.
+Die Ausnahme gilt für den Zugriff von einem Anwendungskontext auf einen anderen (in Zusammenhang mit dem DispatcherServlet).
+In diesem Fall ist ein explizites Auslesen nicht zu vermeiden.
 Auszulesen ist in diesem Fall keine AWK-Komponente, sondern eine weitere Schnittstellen-Bean, welche nur für
 diesen Zweck verwendet wird (siehe Kapitel <<spring-dispatcherservlet-konfigurieren>>).
 
@@ -444,9 +382,12 @@ Kontext gelesen werden.
 === Statischer Zugriff auf Bean-Instanzen nur in Sonderfällen
 
 Üblicherweise werden Spring-Beans per Dependency-Injection an die Beans weitergegeben, welche sie verwenden.
-In einigen Fällen muss eine Bean jedoch von sehr vielen Klassen verwendet werden: Die entsprechende Bean müsste in sämtlichen Komponenten-Beans injiziert und von dort in das komplette Objektgeflecht der Komponente (unter anderem an sämtliche Anwendungsfallklassen) weitergeleitet werden.
+In einigen Fällen muss eine Bean jedoch von sehr vielen Klassen verwendet werden: Die entsprechende Bean müsste in
+sämtlichen Komponenten-Beans injiziert und von dort in das komplette Objektgeflecht der Komponente (unter anderem an
+sämtliche Anwendungsfallklassen) weitergeleitet werden.
 
-In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die Konfiguration und Weiterleitung verzichtet wird, indem die Bean-Instanz über eine statische Methode zugreifbar gemacht wird.
+In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die Konfiguration und Weiterleitung verzichtet
+wird, indem die Bean-Instanz über eine statische Methode zugreifbar gemacht wird.
 Dies entspricht nicht den Konventionen des Spring-Frameworks und ist nur in Ausnahmefällen erlaubt.
 
 Die entsprechenden Hilfsklassen werden als _Holder_ bezeichnet.
