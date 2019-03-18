@@ -249,6 +249,27 @@ Die Verzeichnise listen ihre jeweiligen Einträge entweder nach der Position im 
 Die Skripte gehen hierbei von einer bestimmten Syntax aus, die in den folgenden Abschnitten erläutert wird.
 Je nachdem, ob es sich um eine Abbildung, eine Tabelle, ein Begriff oder ein referenziertes Medium handelt, werden jeweils unterschiedliche Bestandteile vorgesehen, die gesetzt werden müssen.
 
+[[ein-satz-pro-zeile]]
+== Zeilenumbrüche
+
+Der Quelltext eines Dokuments bricht nach jedem Satz um.
+Er orientiert sich nicht anhand einer fixen Spaltenbreite.
+Diese Regel wird "ein Satz pro Zeile" (_one sentence per line_, s. <<AsciiDocRecommendedPractices>>) genannt und orientiert sich an der Art und Weise, wie Quellcode organisiert ist (eine Anweisung pro Zeile).
+
+Die Anwendung der Regel "ein Satz pro Zeile" bringt unter anderem folgende Vorteile mit sich:
+
+* Änderungen am Anfang eines Absatzes führen nicht zu Veränderungen an den restlichen Zeilenumbrüchen des Absatzes.
+* Einzelne Sätze können mit Leichtigkeit verschoben oder ausgetauscht werden.
+* Absätze können durch das Einfügen oder Löschen von Leerzeilen mit Leichtigkeit verbunden oder auseinander gezogen werden.
+* Einzelne Sätze können gut auskommentiert oder mit Kommentaren versehen werden.
+* Eine Analyse der Zeilenlänge lässt schnell auf zu lange Sätze (z.B. Bandwurm- oder Schachtelsätze) oder andere Anomalien wie eine redundante Schreibweise (z.B. alle Sätze eines Absatzes beginnen gleich) schließen.
+
+Die Regel passt außerdem sehr gut zur gleichzeitigen Verwendung eines modernen Versionsverwaltungssystems, das Branching sowie Merging unterstützt und Merges zeilenweise verarbeitet.
+Neue oder gelöschte Sätze kann das Versionsverwaltungssystems leicht interpretieren und zusammenführen, da sie sich auf jeweils unterschiedliche Zeilen auswirken.
+Merge-Konflikte passieren häufig auf Ebene eines Satzes.
+Sie sind daher leicht verständlich, lokal begrenzt und daher in den meisten Fällen gut zu lösen.
+
+
 [[kapitelueberschriften]]
 == Kapitelüberschriften
 

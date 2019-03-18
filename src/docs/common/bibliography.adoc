@@ -194,6 +194,10 @@
   Writing Robust Java Code. The AmbySoft Inc. Coding Standards for Java v17.01d +
   http://www.ambysoft.com/downloads/javaCodingStandards.pdf
 
+- [[[AsciiDocRecommendedPractices]]] +
+  AsciiDoc Recommended Practices. A catalogue of recommended practices for composing AsciiDoc documents. +
+  https://asciidoctor.org/docs/asciidoc-recommended-practices
+
 - [[[BaKi07]]] +
   Christian Bauer, Gavin King. Java Persistence with Hibernate. 2007. Manning Publications
 
