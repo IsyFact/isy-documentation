@@ -451,18 +451,61 @@ Vorlage-Anwendung <<Vorlageanwendung>>.
 [[definition-von-query-methoden]]
 == Definition von Query Methoden
 
-Der von Spring Data erzeugte Proxy für das Repository Interface kann die Queries auf zwei Arten ableiten:
+Der von Spring Data erzeugte Proxy für das Repository Interface kann die Queries auf zwei Arten ableiten.
 
-1. Ableitung des Queries über den Namen der Methode
+1. Ableitung des Queries über den Namen der Methode. <<querymethodenname>> zeigt ein Beispiel hierfür.
++
+:desc-listing-querymethodenname: Beispiele für die Ableitung des Queries aus dem Methodennamen.
+[id="listing-querymethodenname",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-querymethodenname}
+[source,java]
+----
+interface PersonRepository extends Repository<Person, Long> {
+
+  List<Person> findByEmailAdresseAndNachname(EmailAdresse emailAdresse, String nachname);
+
+  // Verwendung von DISTINCT
+  List<Person> findDistinctPeopleByNachnameOrVorname(String nachname, String vorname);
+  List<Person> findPeopleDistinctByNachnameOrVorname(String nachname, String vorname);
+
+  // Ignorieren der Groß-/Kleinschreibung für ein bestimmtes Feld
+  List<Person> findByNachnameIgnoreCase(String nachname);
+  // Ignorieren der Groß-/Kleinschreibung für alle betroffenen Felder
+  List<Person> findByNachnameAndVornameAllIgnoreCase(String nachname, String vorname);
+
+  // Statisches Sortieren mit ORDER BY
+  List<Person> findByNachnameOrderByVornameAsc(String nachname);
+  List<Person> findByNachnameOrderByVornameDesc(String nachname);
+}
+----
++
+Bei dieser Ableitung wird der Präfix des Methodennamens abgeschnitten und der Rest geparst.
+Nach dem ersten `By` beginnen die eigentlichen Abfragekriterien.
+In den Abfragekriterien werden Bedingungen auf Feldern der Entität definiert und diese können mit 'And' und 'Or'
+verknüpft werden.
++
+NOTE: Eine Übersicht zur Ableitung von Queries aus Methodenamen findet in der Referenzdokumentation zu Spring Data JPA:
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details[https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details]
+
 
 2. Ableitung über eine manuell definierte Query.
+Die Query wird über die `@Query`-Annotation in JPQL direkt an die Methode des DAO geschrieben.
++
+:desc-listing-queryannotation: Beispiele für die Ableitung des Queries aus dem Methodennamen.
+[id="listing-queryannotation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-queryannotation}
+[source,java]
+----
+public interface PersonRepository extends Repository<Person, Long> {
+
+  @Query("select p from Person p where p.emailAdresse = ?1")
+  User findByEmailAdresse(String emailAdresse);
+}
+----
 
 
-bevorzugt wird  Variante 1
-Für eine Referenz zu den Möglichkeiten siehe X
-
-
-
+Bevorzugt wird die Ableitung der Queries über den Methodennamen.
+Kann die Query nicht über den Methodennamen ausgedrückt werden, wird Variante 2 verwendet.
 
 [[jpql-fuer-datenbank-abfragen-nutzen]]
 == JPQL für Datenbank-Abfragen nutzen
@@ -472,20 +515,6 @@ In dieser werden Queries über Objekte und Variablen, nicht über Tabellen und F
 
 Wann immer möglich sollten JPQL Abfragen und keine „nativen“ SQL Abfragen verwendet werden.
 Der einzige Grund für die Verwendung von SQL ist die Verwendung von Oracle SQL Features, welche durch JPQL nicht angeboten werden.
-
-[[ablage-von-query-definitionen-in-konfigurationsdatei]]
-== Ablage von Query-Definitionen in Konfigurationsdatei
-
-Queries (egal ob in JPQL oder SQL) sollen in einer Hibernate-Konfigurationsdatei abgelegt werden.
-In der Vorlage-Anwendung ist dies die Datei `NamedQueries.hbm.xml`.
-Von dort aus werden sie über die JPA-Sitzung als „NamedQueries“ zur Verfügung gestellt.
-So werden alle Query-Definitionen an einer Stelle zusammengeführt.
-
-Falls der Query-String selbst erst zur Laufzeit zusammengesetzt wird, kann diese Query nicht in der Konfigurationsdatei abgelegt werden.
-Dies ist aber zu vermeiden.
-In diesem Fall soll zur Vermeidung von SQL-Injection Attacken die Criteria-API von JPA eingesetzt werden.
-
-Die Konfiguration von Queries erfolgt über über Annotationen an den Entitätsklassen.
 
 [[verwendung-von-oracle-hints-bei-optimizer-problemen]]
 == Verwendung von Oracle Hints bei Optimizer-Problemen
@@ -579,16 +608,18 @@ In den folgenden Abschnitten werden konkrete Vorgaben gemacht, welche Konfigurat
 [[konfiguration-von-jpa-ueber-spring-beans-durchfuehren]]
 == Konfiguration von JPA über Spring Beans durchführen
 
-Spring bietet die Möglichkeit, die für die Verwendung von JPA notwendigen Klassen komplett deskriptiv über Beans zu konfigurieren und zu erzeugen.
-Es ist eine Vorgabe, JPA auf diese Weise zu konfigurieren.
+Die für die Verwendung von JPA benötigten Beans werden von Spring Boot beim Start der Anwendung automatisch instanziiert.
 
-Ein Beispiel für diese Konfiguration findet sich in Datei `jpa.xml` in der Vorlage-Anwendung.
-Für die Verwendung von JPA wurden in der Vorlage-Anwendung verschiedene Beans konfiguriert:
+Teile dieser automatische Konfiguration können bei Bedarf überschrieben werden.
+Soll z.B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean
+durch eine andere überschrieben werden.
+Das gleiche gilt für die Anbindung einer zweiten Datenbank, siehe dazu <<nutzung-und-anbindung-einer-zweiten-datenbank>>.
 
-:desc-image-JPAoverSprBeans: JPA-Konfiguration über Spring Beans
-[id="image-JPAoverSprBeans",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-JPAoverSprBeans}
-image::JPAoverSprBeans.png[align="center"]
+// TODO Neues Bild?
+//:desc-image-JPAoverSprBeans: JPA-Konfiguration über Spring Beans
+//[id="image-JPAoverSprBeans",reftext="{figure-caption} {counter:figures}"]
+//.{desc-image-JPAoverSprBeans}
+//image::JPAoverSprBeans.png[align="center"]
 
 [[konfiguration-des-entitymanagers]]
 == Konfiguration des EntityManagers
