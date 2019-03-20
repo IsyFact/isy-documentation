@@ -259,7 +259,7 @@
 
 - [[[Spring]]] +
   Spring Framework Reference Documentation +
-  http://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
+  http://docs.spring.io/spring-framework/docs/5.1.x/spring-framework-reference/
 
 - [[[SpringLDAP]]] +
   Spring LDAP +
