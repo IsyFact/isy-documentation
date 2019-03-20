@@ -9,26 +9,26 @@ Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben de
 
 Die Service-Logik hat die folgenden Aufgaben:
 
-*Transformation:* Bei einem Serviceaufruf müssen die Transportobjekte der Service-Schnittstelle in passende Objekte des Anwendungskerns umgewandelt werden.
+*Transformation:* Bei einem Serviceaufruf müssen die Transportobjekte der Service-Schnittstelle in passende Objekte des
+Anwendungskerns umgewandelt werden.
 Außerdem muss das Ergebnis des Anwendungskerns wieder in ein Transportobjekt der Service-Schnittstelle umgewandelt werden.
 
-*Exception-Behandlung:* Tritt bei der Verarbeitung eines Service-Aufrufs im Anwendungskern oder in der Komponente "Service" eine Exception auf, so muss diese Exception in eine Exception der Service-Schnittstelle umgewandelt werden.
+*Exception-Behandlung:* Tritt bei der Verarbeitung eines Service-Aufrufs im Anwendungskern oder in der Komponente
+"Service" eine Exception auf, so muss diese Exception in eine Exception der Service-Schnittstelle umgewandelt werden.
 
 *Transaktion:* Die Komponente „Service“ übernimmt in der Regel auch die vollständige Transaktionssteuerung.
 Das bedeutet, die Komponente öffnet und schließt Transaktionsklammern und führt im Fehlerfall ein Rollback durch.
 
-*Autorisierung:* Für einen Service-Aufruf muss eine Anwendung überprüfen, ob der Aufrufer autorisiert ist die Service-Operation auszuführen.
+*Autorisierung:* Für einen Service-Aufruf muss eine Anwendung überprüfen, ob der Aufrufer autorisiert ist die
+Service-Operation auszuführen.
 
-*Logging:* Die Komponente muss die Korrelation-ID in den Logging-Kontext einfügen.
+*Logging:* Die Komponente muss die Korrelations-ID in den Logging-Kontext einfügen.
 
 [[aufbau-der-service-logik]]
 = Aufbau der Service-Logik
 
-// s10/19 kap 5  z201
-
 Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
 
-//F2 image:em/media/image7.emf[image,width=444,height=396]
 :desc-image-AufbauServLogik: Aufbau Service-Logik
 [id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-AufbauServLogik}
@@ -37,35 +37,37 @@ image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
 Eine Service-Schnittstelle wird durch eine Fachanwendung entsprechend der Referenzarchitektur in Form einer
 HTTP-Invoker-Schnittstelle angeboten.
 Zum Aufruf dieser HTTP-Invoker-Schnittstelle definiert die Fachanwendung eine JAR-Datei, die die `RemoteBean`
-definiert und alle direkt oder indirekt verwendeten Transportobjekte der `RemoteBean`. Die JAR-Datei hat typischerweise den
-Namen `<Anwendungsname>-httpinvoker-sst-<servicename>-vx.y-z.jar`.
+definiert und alle direkt oder indirekt verwendeten Transportobjekte der `RemoteBean`. Die JAR-Datei hat typischerweise
+den Namen `<Anwendungsname>-httpinvoker-sst-<servicename>-vx.y-z.jar`.
 
-NOTE: Als `RemoteBean` wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert. Mit diesem Interface wird durch die passende Spring-Konfiguration in der Fachanwendung die  HTTP-Invoker-Schnittstelle definiert.
+NOTE: Als `RemoteBean` wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert. Mit diesem
+Interface wird durch die passende Spring-Konfiguration in der Fachanwendung die  HTTP-Invoker-Schnittstelle definiert.
 
 Jeder Methode der RemoteBean wird eine Instanz der Klasse `AufrufKontextTo` übergeben.
-Diese Klasse ist in der JAR-Datei `serviceapi.jar` definiert.
+Diese Klasse ist Teil der Bibliothek `isy-serviceapi-sst`.
 Durch die Klasse werden jeder Methode der internen Service-Schnittstelle die Login-Daten (Benutzer,
-Behörde, Passwort), die Rollen und die Correlation-ID übergeben.
+Behörde, Passwort), die Rollen und die Korrelations-ID übergeben.
 
 Im Wesentlichen besteht die Service-Logik aus zwei Klassen:
 
 *Exception-Fassade:* Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern
 oder die Service-Logik geworfenen Exceptions in Exceptions der Service-Schnittstelle.
 Hierzu implementiert die Exception-Fassade das Remote-Bean-Interface der Service-Schnittstelle und definiert
-in jeder Methode einen try-catch-Block, der alle Throwables abfängt und in Exceptions der Service-Schnittstelle umwandelt.
+in jeder Methode einen `try`-`catch`-Block, der alle `Throwables` abfängt und in Exceptions der Service-Schnittstelle
+umwandelt.
 
 In <<listing-BSPExceptionFassade>> ist ein Beispiel für eine Exception-Fassade einer Fachanwendung angegeben.
 Die Service-Operationen sind in diesem Fall die Methoden des Interfaces `BeispielRemoteBean`.
 Konkret handelt es sich lediglich um eine Service-Operation nämlich `holeBeispielAnfrage`.
 Die Service-Operation ist mit der Annotation `@StelltLoggingKontextBereit` versehen, die eine mit dem `AufrufKontext`
-übergebene Korrelation-ID im Logging-Kontext registriert und diesen beim Verlassen der Methode wieder aufräumt.
+übergebene Korrelations-ID im Logging-Kontext registriert und diesen beim Verlassen der Methode wieder aufräumt.
 
-NOTE: Falls im AufrufKontext keine Korrelation-ID vorhanden ist, so erzeugt die Annotation eine neue Korrelation-ID.
+NOTE: Falls im AufrufKontext keine Korrelations-ID vorhanden ist, so erzeugt die Annotation eine neue Korrelations-ID.
 
 Es ist wichtig den Logging-Kontext zu setzen, bevor die Exception-Fassade aktiv wird.
 Die Implementierung der Service-Operation reicht den Methodenaufruf an die implementierende Klasse (`BeispielService`)
-weiter, fängt auftretende Fehler jedoch über einen try-catch-Block ab.
-Der try-catch-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`HibernateException`) und
+weiter, fängt auftretende Fehler jedoch über einen `try`-`catch`-Block ab.
+Der `try`-`catch`-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`DataAccessException`) und
 allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log-Dateien zu schreiben.
 
 :desc-listing-BSPExceptionFassade: Beispiel für eine Exception-Fassade
@@ -73,34 +75,24 @@ allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log
 .{desc-listing-BSPExceptionFassade}
 [source,java]
 ----
-public class BeispielExceptionFassade
-implements BeispielRemoteBean
+public class BeispielExceptionFassade implements BeispielRemoteBean
 {
-	private static final Logger logger = ...
-	private BeispielService service;
-
-	...
-
-	@StelltLoggingKontextBereit
-	public BeispielHolenAntwortTo
-		holeBeispielAnfrage(
-			AufrufKontextTo kontext,
-			BeispielHolenAnfrageTo anfrage)
-		throws BeispielTechnicalToException {
-		try {
-		return service.holeBeispielAnfrage(kontext,anfrage);
-		} catch (HibernateException e) {
-		  logger.error("Fehler bei Transaktion", e);
-		  throw new BeispielTechnicalToException(
-			...);
-		} catch (Throwable t) {
-		  logger.error("...", t);
-		  throw new BeispielTechnicalToException(
-			...);
-		}
-	}
-
-	...
+    private static final IsyLoggerStandard logger = ...;
+    private BeispielService beispielService;
+    ...
+    @StelltLoggingKontextBereit
+    public BeispielHolenAntwortTo holeBeispielAnfrage(AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage) throws BeispielTechnicalToException {
+        try {
+            return beispielService.holeBeispielAnfrage(kontext,anfrage);
+        } catch (DataAccessException e) {
+            logger.error("Fehler bei Transaktion", e);
+            throw new BeispielTechnicalToException(...);
+        } catch (Throwable t) {
+            logger.error("...", t);
+             throw new BeispielTechnicalToException(...);
+        }
+    }
+    ...
 }
 ----
 
@@ -122,14 +114,16 @@ Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs u
 Nach außen hin werden Transportobjekte angeboten.
 Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
 Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z. B. weil sie zusätzliche
- Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
+Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als
+die Transportobjekte.
 
 In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Servicemethode.
 Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die
 Annotation `@StelltAufrufKontextBereit` an der Servicemethode.
 Anschließend kann über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode geprüft werden.
 Hier werden alle benötigten Rechte des Aufrufers überprüft.
-Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche Autorisierung erfordern.
+Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche
+Autorisierung erfordern.
 Die Annotationen sind Bestandteil der T-Komponente Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
 
 Das Mapping im Beispiel wird durch dozer umgesetzt.
@@ -145,56 +139,27 @@ verschaltet (siehe <<listing-BspeServicexml>>).
 [source,java]
 ----
 @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
-public class BeispielServiceFassade{
-	private static final Logger logger = ...
+public class BeispielServiceFassade {
+    private static final IsyLoggerStandard logger = ...;
 
-	private MapperIF dozer;
-	private Beispiel beispiel;
+    private Mapper dozer;
+    private Beispiel beispiel;
 
-	@StelltAufrufKontextBereit
-	@Gesichert(Rechte.RECHT_ZUGRIFFBEISPIEL)
-	public BeispielHolenAntwortTo
-	  holeBeispielAnfrage(
-		AufrufKontextTo kontext,
-		BeispielHolenAnfrageTo anfrage)
-	  throws VisaPortalException {
+    @StelltAufrufKontextBereit
+    @Gesichert(Rechte.RECHT_ZUGRIFFBEISPIEL)
+    public BeispielHolenAntwortTo holeBeispielAnfrage(AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage) {
 
-	  try {
-		  BeispielHolenAnfrage anfrageAwk = (BeispielHolenAnfrage) dozer.map(anfrage, BeispielHolenAnfrage.class);
+        try {
+            BeispielHolenAnfrage anfrageAwk = (BeispielHolenAnfrage) dozer.map(anfrage, BeispielHolenAnfrage.class);
+            BeispielHolenAntwort antwortAwk = beispiel.holeBeispielAnfrage(anfrageAwk);
 
-		  BeispielHolenAntwort antwortAwk = beispiel.holeBeispielAnfrage(anfrageAwk);
-
-		  return (BeispielHolenAntwortTo)dozer.map(antwortAwk, BeispielHolenAntwortTo.class);
-	  } catch (MappingException e) {
-		  logger.error("...", e);
-		  throw new TechnicalException(...);
-	}
+            return (BeispielHolenAntwortTo)dozer.map(antwortAwk, BeispielHolenAntwortTo.class);
+        } catch (MappingException e) {
+            logger.error("...", e);
+            throw new TechnicalException(...);
+        }
 	...
 }
-----
-
-:desc-listing-BspeServicexml: Beispiel für service.xml
-[id="listing-BspeServicexml",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-BspeServicexml}
-[source,xml]
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<beans ...>
-  <!-- =============================================
-	   Zusammenschaltung der T-Komponente Service
-	   ============================================= -->
-
-  <bean id="beispielExceptionFassade"
-	class="....BeispielExceptionFassade">
-
-	<property name="service">
-	  <bean class="....BeispielServiceFassade">
-		<property name="beispiel" ref="..."/>
-		<property name="dozer" ref="..."/>
-	  </bean>
-	</property>
-  </bean>
-</beans>
 ----
 
 [[realisierung]]
@@ -241,12 +206,10 @@ Dies würde im Beispiel wie folgt aussehen:
 
 [source,xml]
 ----
-<project …>
-	<modelVersion>4.0.0</modelVersion>
-
-<groupId><Organisation>.<Domäne>.<Anwendungsname></groupId>
-	<artifactId><Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1</artifactId>
-	<version>0</version>
+<project ...>
+    <groupId><Organisation>.<Domaene>.<Anwendungsname></groupId>
+    <artifactId><Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1</artifactId>
+    <version>0</version>
 ----
 
 Diese einstellige Version kann bei kompatiblen Änderungen erhöht werden, ohne dass eine neue ArtifactID vergeben werden muss.
@@ -255,8 +218,8 @@ Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle
 Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst und
 damit ein neues Projekt erzeugt.
 
-NOTE: Inkompatible Änderungen der Schnittstelle sind: Entfernen von Attributen oder Operationen, Hinzufügen von
-Pflichtfeldern, sonstige inkompatible Änderungen.
+NOTE: Inkompatible Änderungen der Schnittstelle sind das Entfernen von Attributen oder Operationen, das Hinzufügen von
+Pflichtfeldern und sonstige inkompatible Änderungen.
 
 Bei umfangreichen Anpassungen kann eine Erhöhung der ersten Stelle gerechtfertigt sein, dies ist mit den
 entsprechenden Gremien abzustimmen.
@@ -273,25 +236,35 @@ aktuellen Java-Version kompiliert werden.
 Zur Nutzung einer entfernten Schnittstelle bindet ein Anwendungssystem das erstellte Schnittstellen-JAR ein und
 initialisiert die RemoteBeans damit.
 
-Das geschieht über die vom Spring Framework bereitgestellte Factory-Klasse `HttpInvokerProxyFactoryBean`, wie im
-folgenden Beispiel dargestellt.
+Das geschieht über die vom Spring Framework bereitgestellte Factory-Klasse `HttpInvokerProxyFactoryBean`, wie in
+<<listing-invokerconfig>> dargestellt.
 Auf dieser Bean können dann die entfernten Methoden aufgerufen werden.
 
-[source,xml]
+:desc-listing-invokerconfig: Konfiguration für die Nutzung einer entfernten Schnittstelle
+[id="listing-invokerconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-invokerconfig}
+[source,java]
 ----
-<!-- HttpInvoker-Proxy für Virenscanner -->
-<bean id="virenscanRemoteBean"
-      class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-	<property name="serviceUrl" value="${virenscan.service.url}/VirenscanBean_v1_0"/>
-	<property name="serviceInterface"
-			  value="de.bund.bva.pliscommon.avscanner.service.virenscan.httpinvoker.v1_0.VirenscanRemoteBean"/>
-	<property name="httpInvokerRequestExecutor">
-		<bean class="de.bund.bva.pliscommon.serviceapi.core.httpinvoker.TimeoutWiederholungHttpInvokerRequestExecutor">
-			<property name="anzahlWiederholungen" value="${virenscan.service.wiederholungen}"/>
-			<property name="timeout" value="${virenscan.service.timeout}"/>
-		</bean>
-	</property>
-</bean>
+@Configuration
+public class ServiceConfiguration {
+
+    @Bean
+    public HttpInvokerProxyFactoryBean virenscanRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
+        HttpInvokerProxyFactoryBean invoker = new HttpInvokerProxyFactoryBean();
+        invoker.setServiceUrl(config.getServiceUrl());
+        invoker.setServiceInterface(VirenscanRemoteBean.class);
+        invoker.setHttpInvokerRequestExecutor(executor);
+        return invoker;
+    }
+
+    @Bean
+    public TimeoutWiederholungHttpInvokerRequestExecutor executor(ServiceConfigProperties config) {
+        TimeoutWiederholungHttpInvokerRequestExecutor executor = new TimeoutWiederholungHttpInvokerRequestExecutor();
+        executor.setAnzahlWiederholungen(config.getWiederholungen());
+        executor.setTimeout(config.getTimeout());
+        return executor;
+    }
+
 ----
 
 Die FactoryBean erwartet eine Service-URL und ein Interface zur Initialisierung.
@@ -302,24 +275,26 @@ Die Nutzung des hier im Beispiel verwendeten `TimeoutWiederholungHttpInvokerRequ
 Dieser Executor bricht nach dem angegebenen Timeout die Anfrage ab und wiederholt sie bis zur maximalen angegebenen
 Wiederholungsanzahl.
 
-Wenn die Anwendung isy-logging <<NutzungsvorgabenLogging>> nutzt, muss statt der Spring-eigenen Factory die
+Wenn die Anwendung isy-logging (<<NutzungsvorgabenLogging>>) nutzt, muss statt der Spring-eigenen Factory die
 erweiterte `IsyHttpInvokerProxyFactoryBean` genutzt werden.
 Sie versieht die RemoteBeans automatisch mit einem `LogMethodInterceptor`, der die Aufrufzeiten der ausgehenden
 Aufrufe misst und loggt.
-Die Konfiguration erfolgt in diesem Fall wie folgt:
+Die Konfiguration erfolgt wie in <<listing-isyinvokerconfig>> gezeigt:
 
-[source,xml]
+:desc-listing-isyinvokerconfig: Konfiguration mit IsyHttpInvokerProxyFactoryBean
+[id="listing-isyinvokerconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-isyinvokerconfig}
+[source,java]
 ----
-<bean id="konfigurationRemoteBean"
-	  class="de.bund.bva.pliscommon.serviceapi.core.httpinvoker.IsyHttpInvokerProxyFactoryBean">
-	<property name="serviceUrl">
-		<value>${anwendung.xyz.service.url}/KonfigurationBean_v1_0</value>
-	</property>
-	<property name="serviceInterface"
-			  value="de.bund.bva.yz.anwendung.service.konfiguration.httpinvoker.v1_0.KonfigurationRemoteBean"/>
-	<property name="httpInvokerRequestExecutor" ref="httpInvokerRequestExecutor"/>
-	<property name="remoteSystemName" value="${httpinvoker.anwendungxyz.name}"/>
-</bean>
+@Bean
+public IsyHttpInvokerProxyFactoryBean virenscanRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
+    IsyHttpInvokerProxyFactoryBean invoker = new IsyHttpInvokerProxyFactoryBean();
+    invoker.setServiceUrl(config.getServiceUrl());
+    invoker.setServiceInterface(VirenscanRemoteBean.class);
+    invoker.setHttpInvokerRequestExecutor(executor);
+    invoker.setRemoteSystemName(config.getRemoteSystemName());
+    return invoker;
+}
 ----
 
 Die erweiterte ProxyFactoryBean erwartet nur einen zusätzlichen Parameter `remoteSystemName`.
