@@ -1,5 +1,6 @@
 # 1.7.0
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
 - `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 
 # 1.6.0
