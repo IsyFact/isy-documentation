@@ -1,4 +1,7 @@
 # 1.7.0
+- `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
+
+# 1.7.0
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
 
