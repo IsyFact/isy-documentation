@@ -1,4 +1,4 @@
-# 1.7.0
+# 1.9.0
 - `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
 
 # 1.7.0
