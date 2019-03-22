@@ -357,9 +357,8 @@ Aus der Property-Datei werden durch den Batchrahmen folgende Properties gelesen:
 |====
 |Property |Beschreibung
 |`Batchrahmen.BeanName` |Name der Batchrahmen-Bean
-|`Anwendung.SpringDateien.<N>` |Namen der Spring-Konfigurationsdateien der Fachanwendung
-|`Batchrahmen.SpringDateien.<N>` |Namen der Spring-Konfigurationsdateien des Batchrahmens
-|`Batchrahmen.Log4JConfigFile` |Pfad zur Log4J Konfigurationsdatei
+|`Anwendung.SpringDateien.<N>` |Vollqualifizierte Namen der Spring-Konfigurationsklassen der Fachanwendung
+|`Batchrahmen.SpringDateien.<N>` |Vollqualifizierte Namen der Spring-Konfigurationsklassen des Batchrahmens
 |`Batchrahmen.CommitIntervall` |Anzahl Satz-Verarbeitungen pro Commit
 |`AusfuehrungsBean` |Name der Ausführungsbean für die Batchlogik
 |`BatchId` |ID des Batches (ID des Batch-Status-Datensatzes)
@@ -411,15 +410,37 @@ Wie in Kapitel <<grobe-architektur-des-batchrahmens>> beschrieben, werden für e
 Für den Kontext der eigentlichen Fachanwendung können die Spring-Konfigurationsdateien übernommen werden.
 In ihnen müssen folgende Anpassungen vorgenommen werden:
 
-* Die Beans für Axis-Skeletons und HttpInvoker-Beans sollten entfernt werden.
-* Die JMX-Technikbeans müssen entfernt werden.
-Die eigentlichen Mbeans müssen bleiben.
-* Die Konfigurationsdatei für die Batchrahmen-Tabellen hinzufügen.
-In der Vorlageanwendung geschieht dies über resources/META-INF/persistence.xml).
-* Das Nachrichten-Resource-Bundle für den Batch muss der messageSource-Bean hinzugefügt werden.
+* Beans, die für die Batch-Verarbeitung nicht benötigt werden, sollten entfernt werden (HttpInvoker-Beans, GUI-Beans).
+* Damit die Entity-Klassen des Batchrahmens gefunden werden können, muss in der Spring-Konfiguration der Batches ein Entity-Scan hinzugefügt werden:
+
+ @EntityScan("de.bund.bva.isyfact.batchrahmen.persistence.rahmen")
+
+* Das Nachrichten-Resource-Bundle für den Batch muss der `messageSource`-Bean hinzugefügt werden.
+
+Um Beans gezielt aus der Spring-Konfiguration der Anwendung für die Ausführung eines Batches auszuschließen, kann die
+Annotation `@ExludeFromBatchContext` verwendet werden.
+Damit werden mit `@Component` annotierte Klasse oder `@Bean`-Methoden in `@Configuration`-Klassen annotiert (<<listing-excludefrombatchcontext>>).
+
+:desc-listing-excludefrombatchcontext: Verwendung der Annotation @ExcludeFromBatchContext
+[id="listing-excludefrombatchcontext",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-excludefrombatchcontext}
+[source,java]
+----
+@Component
+@ExcludeFromBatchContext
+public class BeispielServiceExceptionFassade { ...
+
+
+@Configuration
+public class ServiceConfig {
+    @Bean
+    @ExcludeFromBatchContext
+    public BeispielServiceExceptionFassade() { ...
+----
 
 Die Spring-Konfiguration für den Kontext des Batchrahmens muss neu erstellt werden.
-Hierfür nehme man Datei resources/batch/rahmen/Batchrahmen.xml der Vorlageanwendung und passe die Konfiguration der Ausführungsbeans an.
+Hierfür werden gesonderte `@Configuration`-Klassen erstellt.
+/// TODO Hierfür nehme man Datei resources/batch/rahmen/Batchrahmen.xml der Vorlageanwendung und passe die Konfiguration der Ausführungsbeans an.
 
 [[die-tabellen-des-batchrahmens]]
 == Die Tabellen des Batchrahmens
