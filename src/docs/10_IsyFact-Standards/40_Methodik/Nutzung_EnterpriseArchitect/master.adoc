@@ -2,7 +2,7 @@
 include::../../../common/isyfact-attributes.adoc[]
 include::../../../common/attributes.adoc[]
 //
-:doctitle: Einrichtung einer Entwicklungsumgebung
+:doctitle: Nutzung von Enterprise Architect
 :title: {doctitle}
 
 // Zwangsplatz des TOC
@@ -24,7 +24,7 @@ endif::[]
 toc::[]
 
 // Einleitung
-include::thisdoc.adoc[]
+include::thisdoc.adoc[leveloffset=1]
 
 // Inhalt
 include::inhalt.adoc[leveloffset=1]
@@ -40,9 +40,9 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
 // Glossar
-// include::glossary.adoc[]
+include::glossary.adoc[]
 // Index
-//include::../common/index.adoc[]
+//include::../../../common/index.adoc[]
 
 // Anhänge
-// include::anhaenge.adoc[leveloffset=1]
+//include::anhaenge.adoc[leveloffset=1]

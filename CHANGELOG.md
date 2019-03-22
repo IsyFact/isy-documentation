@@ -4,6 +4,7 @@
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
 - `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
 - `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
+- `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
