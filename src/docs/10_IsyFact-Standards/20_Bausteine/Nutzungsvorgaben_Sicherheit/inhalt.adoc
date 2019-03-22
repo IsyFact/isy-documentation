@@ -391,117 +391,43 @@ Die Komponente Sicherheit wird per Maven-Dependency in das Projekt eingebunden:
 [source, xml]
 ----
 <dependency>
-  <groupId>de.bund.bva.pliscommon</groupId>
-  <artifactId>plis-sicherheit-cams</artifactId>
-  <version>AKTUELLE VERSION DER KOMPONENTE SICHERHEIT</version>
+  <groupId>de.bund.bva.isyfact</groupId>
+  <artifactId>isy-sicherheit</artifactId>
 </dependency>
 ----
 
 [[spring-konfiguration]]
 === Spring-Konfiguration
 
-Die benötigten Beans für Sicherheit, `AufrufKontext` und angebotener Annotationen werden in der separaten Spring-Konfigurationsdatei `/resources/spring/querschnitt/sicherheit.xml` konfiguriert.
+Durch die Autokonfiguration von `isy-sicherheit` führt die folgende Konfiguration durch:
+
+* Der zur Verwendung der Annotation `@Gesichert` notwendige Interceptor wird konfiguriert.
+* Die normalerweise in Spring nicht verfügbaren Bean Scopes `thread` und `request` werden registriert.
+* Die Bean für die `AufrufKontextFactory` wird konfiguriert.
+
+Die Beans für Sicherheit und den AufrufKontextVerwalter in einer separaten Spring-Konfigurationsklasse manuell konfiguriert.
+Ein Beispiel dazu findet sich in <<listing-konfiguration-fuer-spring>>.
+Die fehlenden Typparameter sind in der echten Konfiguration zu ergänzen.
+Des Weiteren muss eine Bean für den verwendeten `AccessManager` existieren.
 
 :desc-listing-konfiguration-fuer-spring: Konfiguration für Spring
 [id="listing-konfiguration-fuer-spring",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-konfiguration-fuer-spring}
-[source, xml]
+[source, java]
 ----
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:sec="http://www.springframework.org/schema/security" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-  <!-- @StelltAufrufKontextBereit Annotation einschalten -->
-  <bean id="aufrufKontextInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereitInterceptor">
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="aufrufKontextPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit)"/>
-    <aop:advisor pointcut-ref="aufrufKontextPointcut" advice-ref="aufrufKontextInterceptor"/>
-  </aop:config>
-  <!-- @NutzerAuthentifizierung Annotation einschalten -->
-  <bean id="nutzerAuthentifizierungInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierungInterceptor">
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="konfiguration" ref="konfiguration"/>
-    <property name="sicherheit" ref="sicherheit"/>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="nutzerAuthentifizierungPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung) || @within(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung)"/>
-    <aop:advisor pointcut-ref="nutzerAuthentifizierungPointcut" advice-ref="nutzerAuthentifizierungInterceptor"/>
-  </aop:config>
-  <!-- `@Gesichert` Annotation einschalten -->
-  <bean id="gesichertInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.GesichertInterceptor">
-    <property name="sicherheit" ref="sicherheit"/>
-    <property name="sicherheitAttributeSource">
-      <bean class="de.bund.bva.pliscommon.sicherheit.annotation.AnnotationSicherheitAttributeSource"/>
-    </property>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="gesichertPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert) || @within(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert)"/>
-    <aop:advisor pointcut-ref="gesichertPointcut" advice-ref="gesichertInterceptor"/>
-  </aop:config>
-  <!-- @StelltLoggingKontextBereit Annotation einschalten -->
-  <bean id="stelltLoggingKontextBereitInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"></bean>
-  <aop:config>
-    <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
-    <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut" advice-ref="stelltLoggingKontextBereitInterceptor"/>
-  </aop:config>
-  <!-- Factory zum Erzeugen neuer Aufruf-Kontexte -->
-  <bean id="aufrufKontextFactory" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
-    <property name="aufrufKontextKlasse" value="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl"/>
-  </bean>
-  <!--
-    `AufrufKontextVerwalter` definieren (jeder Request hat einen eigenen Kontext (-Verwalter))
-  -->
-  <bean id="aufrufKontextVerwalter" scope="thread" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl">
-    <aop:scoped-proxy/>
-  </bean>
-  <!--
-  ===================================================================== Über diese Bean wird die Komponente
-  Sicherheit Einsatzbereit gemacht =====================================================================
-  -->
-  <bean id="sicherheit" class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitImpl">
-    <property name="rollenRechteDateiPfad" value="/resources/sicherheit/rollenrechte.xml"/>
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="accessManager" ref="camsAccessManager"/>
-    <property name="konfiguration" ref="konfiguration"/>
-    <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
-  </bean>
-  <!-- Zur Überwachung der Verfügbarkeit des Cams -->
-  <bean id="sicherheitAdmin" class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitAdminImpl">
-    <property name="accessManager" ref="camsAccessManager"/>
-  </bean>
-  <!--
-  ===================================================================== Konfiguration der CAMS Implementierung
-  des AccessManagers =====================================================================
-  -->
-  <bean id="camsAccessManager" class="de.bund.bva.pliscommon.sicherheit.cams.CamsAccessManagerImpl" depends-on="konfiguration">
-    <constructor-arg index="0">
-      <value>classpath:/config/cams-webagent.conf</value>
-    </constructor-arg>
-    <constructor-arg index="1">
-      <ref bean="konfiguration"/>
-    </constructor-arg>
-  </bean>
-</beans>
-----
+@Configuration
+public class SicherheitConfiguration {
 
-Die Property `cacheKonfiguration` der Bean `sicherheit` beinhaltet den Pfad zu einer Cache-Konfiguration.
-Dieser Parameter ist optional.
-Der Client besitzt schon eine Standard-Konfiguration für den Cache.
-Muss die Konfiguration der Authentifizierungs-Caches angepasst werden, so wird diese Cache-Konfiguration benötigt.
-Der Standard-Wert für die Lebensdauer von Cache-Elemente liegt bei 5 Minuten, die maximale Anzahl an Elementen in einem Schlüsselcache Cache liegt bei `1000`.
-Die Standard-Konfiguration befindet sich im Anhang.
-Die Werte für die Lebensdauer von Cache-Elementen und die Anzahl der Elemente kann über die betriebliche Konfiguration angepasst werden (siehe <<konfiguration-des-caches>>).
+    @Bean
+    @Scope(value="request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public AufrufKontextVerwalter aufrufKontextVerwalter() {
+        return new AufrufKontextVerwalterImpl();
+    }
 
-Die Spring-Konfiguration der Komponente Sicherheit wird in die allgemeine Spring-Konfiguration der Querschnittsfunktionalität der Anwendung in `/resources/spring/querschnitt.xml` eingebunden.
-
-:desc-listing-konfiguration-in-querschnitt: Konfiguration Sicherheit in querschnitt.xml
-[id="listing-konfiguration-in-querschnitt",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-in-querschnitt}
-[source, xml]
-----
-[…]
-  <import resource="querschnitt/sicherheit.xml" />
-[…]
+    @Bean
+    public Sicherheit sicherheit(AufrufKontextVerwalter aufrufKontextVerwalter, AufrufKontextFactory aufrufKontextFactory, AccessManager accessManager, IsySicherheitConfigurationProperties properties) {
+        return new SicherheitImpl("/resources/sicherheit/rollenrechte.xml", aufrufKontextVerwalter, aufrufKontextFactory, accessManager, properties);
+    }
 ----
 
 [[scope-des-aufrufkontextverwalters]]
@@ -512,59 +438,52 @@ Welcher Scope geeignet ist, ist abhängig von der Art der Verarbeitung:
 
 * für Anfragen über die GUI oder über eine Service-Schnittstelle wird der Request-Scope (alternativ Thread-Scope) verwendet
 
-[source, xml]
+[source, java]
 ----
-<!-- definiere AufrufKontextVerwalter; jeder Request hat einen eigenen -->
-<bean id="aufrufKontextVerwalter" scope="request" class="..." >
+@Bean
+@Scope(value="request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public AufrufKontextVerwalter aufrufKontextVerwalter() {
 ----
 * für Batches wird ein Singleton (alternativ Thread-Scope) verwendet
 
-[source, xml]
+[source, java]
 ----
-<!-- definiere `AufrufKontextVerwalter` für Batches als Singleton -->
-<bean id="aufrufKontextVerwalter" class="..." >
+@Bean
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public AufrufKontextVerwalter aufrufKontextVerwalter() {
 ----
 
 * für Workflow-Threads innerhalb einer Fachanwendung wird der Thread-Scope verwendet.
 
-[source, xml]
+[source, java]
 ----
-<!-- definiere `AufrufKontextVerwalter` für interne Threads mit ThreadScope -->
-<bean id="aufrufKontextVerwalter" scope="thread" class="..." >
+@Bean
+@Scope(value="thread", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public AufrufKontextVerwalter aufrufKontextVerwalter() {
 ----
-
-Ab Spring 3 kann auch generell der Thread-Scope verwendet werden.
-
-[[konfiguration-fuer-den-access-manager]]
-=== Konfiguration für den Access Manager
-
-Die Komponente Sicherheit verwendet eine Client-Bibliothek des Access-Managers, um einen Benutzer gegen den Access-Manager-Service zu authentifizieren.
-
-Wenn als Access-Manager CAMS verwendet wird, ist eine Konfiguration in der betrieblichen Konfigurationsdatei `_/config/cams-webagent.conf_` erforderlich.
-Da diese Konfiguration in der Regel langjährig unverändert verwendet wird und lediglich die Aufrufadresse anzupassen ist, wird auf die Darstellung der Konfiguration hier verzichtet.
 
 [[konfiguration-des-caches]]
 === Konfiguration des Caches
 
 Um den Access Manager zu entlasten, kann ein Cache eingeschaltet werden.
-Die Konfiguration des Caches erfolgt über die betriebliche Konfiguration.
+Die Konfiguration des Caches erfolgt über die betriebliche Konfiguration in `application.properties`.
 Hierzu sind folgende Parameter zu setzen:
 
-[source,java]
+[source,ruby]
 ----
 # Zeit in Sekunden, die ein Eintrag im Cache verweilt, bis er als ungültig
 # markiert wird.
 # Time-To-Live 0 deaktiviert den Cache.
-sic.caching.ttl=300
+isy.sicherheit.cache.ttl=300
 
 # Maximale Anzahl an Elementen, die im Cache vorgehalten werden. Die Elemente, # die am
 # längsten nicht verwendet wurden, werden aus dem Cache entfernt.
 # Der Cache hat eine unbegrenzte Größe, wenn der Wert auf 0 gesetzt wird.
-sic.caching.max.elements=10000
+isy.sicherheit.cache.maxelements=10000
 ----
 
-Wird der Parameter `sic.caching.ttl` auf 0 gesetzt oder nicht konfiguriert, ist der Cache deaktiviert.
-Wird der Parameter `sic.caching.max.elements` auf 0 gesetzt, werden beliebig viele Elemente im Cache vorgehalten.
+Wird der Parameter `isy.sicherheit.cache.ttl` auf 0 gesetzt oder nicht konfiguriert, ist der Cache deaktiviert.
+Wird der Parameter `isy.sicherheit.cache.maxelements` auf 0 gesetzt, werden beliebig viele Elemente im Cache vorgehalten.
 
 [[autorisierung-innerhalb-einer-anwendung]]
 = Autorisierung innerhalb einer Anwendung
@@ -629,7 +548,7 @@ Mit der Authentifizierung des Anwenders fügt der Access-Manager http-Header in 
 Diese Header enthalten neben Informationen der Identifikation des anfragenden Benutzers auch die Gesamtheit seiner Rollen.
 Die Informationen aus dem Http-Header werden in den `AufrufKontext` übertragen.
 
-Die Bibliothek `plis-sicherheit-cams` enthält einen `CamsAuthentication­ProcessingFilter`, der den Aufrufkontext bei jeder Anfrage an die GUI aus dem HTTP-Header ermittelt und damit den `AufrufKontextVerwalter` befüllt.
+Die Bibliothek `rf-sicherheit-cams` enthält einen `CamsAuthentication­ProcessingFilter`, der den Aufrufkontext bei jeder Anfrage an die GUI aus dem HTTP-Header ermittelt und damit den `AufrufKontextVerwalter` befüllt.
 Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontexts transparent für sämtliche Aufrufe der GUI.
 
 [[konfiguration-1]]
@@ -916,21 +835,24 @@ Hierbei ist es wichtig, dass immer ein AufrufKontextTo-Objekt der Service-API ve
 ----
 AufrufKontext aufrufKontext = aufrufKontextVerwalter.getAufrufKontext();
 if (aufrufKontext == null) {
-  throw new ...Exception(...);
+    throw new ...Exception(...);
 }
 remoteBean.methodeX((AufrufKontextTo) dozer.map(aufrufKontext, AufrufKontextTo.class, weitere, parameter);
 ----
 
 Das Beispiel enthält folgende Schritte:
 
-* Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird vom `AufrufKontextVerwalter` abgerufen.
+* Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird
+vom `AufrufKontextVerwalter` abgerufen.
 * Es wird ein Dozer-Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
 * Das erzeugte `AufrufKontextTo` der Service-API wird an die Schnittstelle des Service-Client übergeben.
 
 [[verwendung-der-korrelations-id]]
 == Verwendung der Korrelations-ID
 
-Der `AufrufKontext` enthält auch die Korrelations-ID, die während der Bearbeitung einer Anfrage in der Anwendungslandschaft alle zusammen­ge­hö­ren­den Log-Ausgaben einer Anfrage durch eine gemeinsame ID kennzeichnet – auch wenn die Anfrage mehrere Teilsysteme der Anwendungslandschaft verwendet.
+Der `AufrufKontext` enthält auch die Korrelations-ID, die während der Bearbeitung einer Anfrage in der Anwendungslandschaft
+alle zusammengehörenden Log-Ausgaben einer Anfrage durch eine gemeinsame ID kennzeichnet – auch wenn die Anfrage mehrere
+Teilsysteme der Anwendungslandschaft verwendet.
 Dies erfordert eine Entgegennahme, Verwendung und Weiterleitung einer Korrelations-ID über alle Service-Aufrufe hinweg.
 Details zum Aufbau der Korrelations-ID sind in <<NutzungsvorgabenLogging>> beschrieben.
 
@@ -939,40 +861,42 @@ Eine Korrelations-ID wird entweder bereits im eingehenden Aufruf mitgeliefert, o
 [[entgegennahme-der-korrelations-id-in-der-gui]]
 === Entgegennahme der Korrelations-ID in der GUI
 
-Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb des `HttpHeaderParser` der Bibliothek `plis-sicherheit`-cams.
+Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb
+des `HttpHeaderParser` der Bibliothek `plis-sicherheit`-cams.
 
 [[entgegennahme-der-korrelations-id-an-einer-service-sst]]
 === Entgegennahme der Korrelations-ID an einer Service-SST
 
-Die Entgegennahme (ggf. Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der Http-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+Die Entgegennahme (ggf. Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der
+Http-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
 
 [[ablage-und-weiterleitung-der-korrelations-id]]
 === Ablage und Weiterleitung der Korrelations-ID
 
 Die Korrelations-ID wird für das Logging im MDC abgelegt.
 Gleichzeitig wird diese jedoch auch im vom `AufrufKontextVerwalter` verwalteten `AufrufKontext` hinterlegt.
-Ist dies der Fall, so wird die Korrelations-ID beim Aufruf des RemoteBeans des Nachbar­systems als Bestandteil des AufrufKontextes automatisch weitergeleitet.
+Ist dies der Fall, so wird die Korrelations-ID beim Aufruf des RemoteBeans des Nachbar­systems als Bestandteil des
+AufrufKontextes automatisch weitergeleitet.
 
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
 Gelegentlich möchte eine Anwendung zusätzliche Informationen im `AufrufKontextVerwalter` ablegen.
-Hierzu lässt sich eine anwendungs­spezifische Spezialisierung des `de.bund.bva.pliscommon.kontext.AufrufKontextImpl` verwenden, der den `AufrufKontext` um zusätzliche Attribute erweitert.
+Hierzu lässt sich eine anwendungs­spezifische Spezialisierung des `de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl`
+verwenden, der den `AufrufKontext` um zusätzliche Attribute erweitert.
 
 :desc-listing-verwendung-des-aufrufkontextes: Verwendung eines anwendungsspezifischen AufrufKontext
 [id="listing-verwendung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-verwendung-des-aufrufkontextes}
-[source,xml]
+[source,java]
 ----
-<!—- Erstellt den anwendungsspezifischen `AufrufKontext` -->
-  <bean
-      id="aufrufKontextFactory"
-      class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
+@Bean
+public AufrufKontextFactory<MeinAufrufKontextImpl> aufrufKontextFactory() {
+    AufrufKontextFactory<MeinAufrufKontextImpl> aufrufKontextFactory = new AufrufKontextFactory<>();
+    aufrufKontextFactory.setAufrufKontextKlasse(MeinAufrufKontextImpl.class);
 
-    <property
-      name="aufrufKontextKlasse"
-      value="de.bund.bva.pliscommon.aufrufkontext.impl.<Anwendungsspezifisch>AufrufKontextImpl" />
-  </bean>
+    return aufrufKontextFactory;
+}
 ----
 
 Die zusätzlichen Attribute können bereits beim automatischen Befüllen des AufrufKontextVerwalters gesetzt werden.
@@ -986,26 +910,21 @@ Hier wird erläutert, wie ein konfigurierbarer Stub des Aufruf­KontextVerwalter
 
 Mit Hilfe dieses Stubs kann auf die Verwendung eines Access Managers in der Software-Entwicklungsumgebung verzichtet werden.
 Der Stub gibt bei jeder Anfrage die statisch konfigurierten Benutzerdaten zurück.
-Die Konfiguration erfolgt in _/resources/spring/querschnitt/sicherheit.xml_.
 
 :desc-listing-konfiguration-aufrufkontext-stub: Konfiguration Aufrufkontext-Stub
 [id="listing-konfiguration-aufrufkontext-stub",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-konfiguration-aufrufkontext-stub}
-[source,xml]
+[source,java]
 ----
-<!-- Verwende Stub Implementierung für die Entwicklung -->
-<bean id="aufrufKontextVerwalter" class="de.bund.bva.pliscommon.
-aufrufkontext.stub.AufrufKontextVerwalterStub" scope="request">
-  <aop:scoped-proxy/>
-  <property name="rollen">
-    <list>
-      <value><Rolle1, die der Benutzer im Test haben soll></value>
-       <value><Rolle2, die der Benutzer im Test haben soll></value>
-    </list>
-  </property>
-  <property name="durchfuehrendeBehoerde" value="42" />
-  <property name="aufrufKontextFactory" ref="aufrufKontextFactory" />
-</bean>
+@Bean
+public AufrufKontextVerwalter aufrufKontextVerwalterStub(AufrufKontextFactory aufrufKontextFactory) {
+    AufrufKontextVerwalterStub stub = new AufrufKontextVerwalterStub();
+    stub.setRollen("Rolle1", "Rolle2");
+    stub.setDurchfuehrendeBehoerde("42");
+    stub.setAufrufKontextFactory(aufrufKontextFactory);
+
+    return stub;
+}
 ----
 
 Neben der gezeigten Eigenschaft „Rollen“ und durchführende Behörde lassen sich auch alle weiteren Eigenschaften des Benutzers konfigurieren.
