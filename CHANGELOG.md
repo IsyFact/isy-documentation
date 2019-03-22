@@ -1,6 +1,7 @@
 # 1.7.0
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
+- `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
 - `IFS-299`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
 
 # 1.6.0
