@@ -1748,11 +1748,11 @@ Jeder Wizard besitzt die folgenden, vordefinierten Buttons:
 
 Für jeden dieser Buttons gibt es die folgenden Einstellungen:
 
-* `activated`: ob der Button aktiviert ist. (Standard: `false`)
+* `activated`: Gibt an, ob der Button aktiviert ist. (Standard: `false`)
 * `visible`: Gibt an, ob der Button sichtbar ist. (Standard: `true`)
 * `ajaxActivated`: Gibt an, ob die Aktion per AJAX ausgeführt werden soll. (Standard: `true`)
-* `ajaxAction`: welche Felder bei einem AJAX-Aufruf ausgewertet werden. (Standard: `@form`)
-* `ajaxRender`: welcher Seitenbereich nach dem AJAX-Aufruf aktualisiert wird. (Standard: `@form`)
+* `ajaxAction`: Welche Felder bei einem AJAX-Aufruf ausgewertet werden. (Standard: `@form`)
+* `ajaxRender`: Welcher Seitenbereich nach dem AJAX-Aufruf aktualisiert wird. (Standard: `@form`)
 * `ajaxBlock`: Gibt an, ob die GUI während des AJAX-Aufrufs blockiert. (Standard: `false`)
 
 Weiterhin benötigt ein Wizard ein Model des Typs `WizardDialogModel`. Ein `WizardDialogModel` hat folgende Attribute und Methoden:
@@ -1761,8 +1761,8 @@ Weiterhin benötigt ein Wizard ein Model des Typs `WizardDialogModel`. Ein `Wi
 * `activeWizardDialogPage`: momentan aktive Seite
 * `nextActiveWizardDialogPageId`: ID der nächsten Seite
 * `wizardDialogPages`: Liste der einzelnen Seiten des Wizards (`WizardDialogPage`-Objekte)
-* `boolean isPageDone(String id)`: ob die Seite mit der angegebenen ID bereits abgearbeitet wurde
-* `boolean isPageDisabled(String id)`: ob die Seite mit der angegebenen ID deaktiviert ist
+* `boolean isPageDone(String id)`: Gibt an, ob die Seite mit der angegebenen ID bereits abgearbeitet wurde
+* `boolean isPageDisabled(String id)`: Gibt an, ob die Seite mit der angegebenen ID deaktiviert ist
 * `WizardDialogPage getWizardDialogPage(String wizardDialogPageId)`: Gibt die Seite zur angegebenen ID zurück.
 
 Für die Verwendung eines Wizards muss ein Controller erstellt werden, der vom `WizardDialogController` erbt.
@@ -2471,7 +2471,7 @@ Außerdem gibt es folgende optionale Parameter:
 
 * `disabled`: Gibt an, ob die Liste deaktiviert ist. (Standard: `false`)
 * `size`: Anzahl der Zeilen, die sichtbar sind
-* `checkboxed`: ob neben dem Highlighting ebenfalls Checkboxen angezeigt werden. (Standard: `false`)
+* `checkboxed`: Gibt an, ob neben dem Highlighting ebenfalls Checkboxen angezeigt werden. (Standard: `false`)
 * `selectlistStyleClass`: Die CSS-Klasse für die Liste.
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
@@ -2664,8 +2664,8 @@ Die Listen können jeweils Elemente der Typen `<isy:buttonToolbar>` (siehe <<too
 
 Folgende optionale Parameter gibt es für die Toolbar:
 
-* `alignLeft`: ob die Toolbar linksbündig ausgerichtet ist. (Standard: `false`)
-* `alignRight`: ob die Toolbar rechtsbündig ausgerichtet ist. (Standard: `false`)
+* `alignLeft`: Gibt an, ob die Toolbar linksbündig ausgerichtet ist. (Standard: `false`)
+* `alignRight`: Gibt an, ob die Toolbar rechtsbündig ausgerichtet ist. (Standard: `false`)
 
 [[facet-tableHeader]]
 ==== JSF-Facet tableHeader
@@ -2676,8 +2676,8 @@ Ein Tag entspricht dabei einem Titel einer Spalte.
 Folgende optionale Parameter gibt es für einen Header:
 
 * `name`: Header-Name / Spaltenüberschrift
-* `sortable`: ob die Spalte sortierbar ist. (Standard: `false`)
-* `hidden`: ob die Spalte ausgeblendet ist. (Standard: `false`)
+* `sortable`: Gibt an, ob die Spalte sortierbar ist. (Standard: `false`)
+* `hidden`: Gibt an, ob die Spalte ausgeblendet ist. (Standard: `false`)
 * `sortProperty`: Attribut der Datensätze (Items), nach dem sortiert wird
 * `width`: Breite der Spalte
 * `title`: Tooltip, der über der Spalte angezeigt wird. (Standard: '')
@@ -3349,7 +3349,7 @@ Folgende Parameter sind für `<isy:browseAndCollect>` verpflichtend:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `disabled`: ob die Liste deaktiviert ist. (Standard: `false`)
+* `disabled`: Gibt an, ob die Liste deaktiviert ist. (Standard: `false`)
 * `browsecollectStyleClass`: Die CSS-Klasse für die Komponente.
 * `size`: Anzahl der Zeilen, die sichtbar sind
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
@@ -3483,7 +3483,7 @@ Die Komponente unterstützt folgende Attribute:
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
 * `escapeLabel`: Gibt an, ob Sonderzeichen für das Label escaped werden sollen. (Standard: `false`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
-* `breakWords`: ob der Überlauf von Text in die nächste Zeile erlaubt ist. (Standard: `true`)
+* `breakWords`: Gibt an, ob der Überlauf von Text in die nächste Zeile erlaubt ist. (Standard: `true`)
 
 Die Komponente besitzt folgende Facets:
 
