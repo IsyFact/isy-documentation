@@ -1091,162 +1091,191 @@ Im Hinblick auf aktiviertes JavaScript darf bei `outputText` niemals das Attribu
 gesetzt werden.
 
 [[interaktive-elemente-mit-jquery]]
-==== Interaktive Elemente mit JQuery
+=== Interaktive Elemente mit JQuery
 
 JQuery ist ein mächtiges Framework zur DOM-Manipulation.
 Entsprechend vorsichtig und gezielt sollte der Einsatz gewählt werden.
 In der Regel bieten die <<jsf-bedienelemente>> der IsyFact Zugriff auf Visualisierungsformen mittels JavaScript (z.B. Kalenderwidget, Tags, Panels). Für bestimme Zusatzanforderungen (z.B. bedingtes Deaktivieren eines Felds, weitere GUI-Verschönerungen) kann es jedoch notwendig sein zusätzliches JavaScript einzubinden.
 
 Die viewspezifische Funktionalität wird in einer eigenen JavaScript-Datei umgesetzt.
-Dabei sind grundsätzlich folgende Regeln zu beachten:
 
-:desc-table-RuleViewFkt: Regeln für viewspezifische Funktionalitäten
-[id="table-RuleViewFkt",reftext="{table-caption} {counter:tables}"]
-.{desc-table-RuleViewFkt}
-[cols="4a,5a",options="header"]
-|====
-|Regel |Begründung / Beispiel
-|`eval()` darf nicht verwendet werden.
-|Die Verwendung von `eval()` stellt ein Sicherheitsrisiko dar.
-Es besteht die Gefahr, dass Werte aus Request-Parametern ohne ausreichende Prüfung als Code ausgeführt werden.
-Beispiel:
+[.underline]#Dabei sind grundsätzlich folgende Regeln zu beachten:#
 
-[source,javascript]
-----
-var requestValue = getParameterValueForParameter
-  (“searchString“);
-eval(requestValue)
-----
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: eval() darf nicht verwendet werden.
+:: *Begründung*
+:: Die Verwendung von eval() stellt ein Sicherheitsrisiko dar. Es besteht die Gefahr, dass Werte aus Request-Parametern ohne ausreichende Prüfung als Code ausgeführt werden.
+''''
 
-Dies ermöglicht es jeden beliebigen JavaScript Code per Injektion auf einem Client ausführen zu lassen.
-Ein Angreifer könnte dann Code auf dem Server wie folgt einschleusen:
+:: *Lösung*
+:: Anstatt Parameter an die eval(...)-Funktion zu übergeben, schreiben Sie eine eigene Parser-Funktion, in der sie sicherstellen können, dass kein Code-Injection Angriff erfolgreich ist.
+''''
 
-[source,html]
-----
-www.mySite.de?searchString=alert(‚hallo‘)
-----
+:: *Negativ-Beispiel*
 
-|`setTimeout()` darf nicht in der Variante aufgerufen werden, die den Code in einer Zeichenfolge enthält.
-Stattdessen muss ein `function()`-Parameter übergeben werden:
+:: Der Inhalt des Strings `requestValue` wird ohne ausreichende Prüfung ausgeführt.
 
-[source,javascript]
-----
-setTimeout(
-  function() {
-    ...
-  }
-, 100)
-----
+           var requestValue = getParameterValueForParameter
+             (“searchString“);
+           eval(requestValue)
 
-|Die verbotenen Varianten von `setTimeout()` stellen ebenfalls ein Sicherheitsproblem da.
-Die Angriffsmöglichkeit ist jedoch weniger offensichtlich.
-Beispiel:
+:: Dies ermöglicht es jeden beliebigen JavaScript Code per Injektion auf einem Client ausführen zu lassen.
+:: Ein Angreifer könnte dann Code auf dem Server wie folgt einschleusen:
 
-[source,javascript]
-----
-setTimeout(“callSomeSpecialFunktion
-  (searchString)“, 100);
-----
+           www.mySite.de?searchString=alert(‚hallo‘)
 
-Ein Angreifer könnte nun eine URL wie folgt aufrufen:
+====
 
-[source,html]
-----
-www.mySite.de?searchString=5
-  );alert(‚hallo‘
-----
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: setTimeout() darf nicht in der Variante
+           aufgerufen werden, die den Code in einer
+           Zeichenfolge enthält.
+:: *Begründung*
+:: Damit wird verhindert, dass ein "Greasemonkey-Skript" (clientseitig laufender Code) ausgeführt wird, mit dem sich der JS-Code manipulieren lässt.
+''''
 
-Der Inhalt der Variable `searchString` wird im `searchString` ersetzt, so dass folgender Code ausgeführt würde:
+:: *Lösung*
+:: Anstatt den Code in einer Zeichenfolge zu übergeben, muss ein function()-Parameter übergeben werden
 
-[source,javascript]
-----
-setTimeout(“callSomeSpecialFunktion
-  (5);alert(“hallo“), 100);
-----
+   setTimeout(function() { ... }, 100)
 
-Der Angreifer hätte es also geschafft die Ausführung der Funktion `alert(“hallo“)` auf dem Server zu veranlassen.
+:: Hierdurch wird kein clientseitig laufender Code ausgeführt.
+''''
 
-|Sofern keine Wiederverwendung möglich ist, ist von der Definition benannter Funktionen abzusehen und anonyme Funktionen einzusetzen.
-Dies betrifft im speziellen das Event-Binding
-|Definierte JavaScript-Funktionen sind in der Regel im globalen Variablen-Kontext gültig.
-Würde für jede Callback-Funktion eine eigene Funktion definiert, würde das den Speicher unnötig belasten.
-Weiterhin verschlechtert sich die Lesbarkeit.
-Gerade bei Callbacks ist es nützlich wenn direkt ersichtlich ist, was passiert wenn der Callback aufgerufen wird.
 
-Weiterhin können anonyme Funktionen auf Variablen der umgebenen Funktion zugreifen, was die Implementierung vereinfacht:
+:: *Negativ-Beispiel*
 
-[source,javascript]
-----
-var einWert=5;
-setTimeout(
-  function {
-  alert(4 + einWert);
-}
-, 100);
-----
+:: Hier wird der Code unzulässigerweise als Zeichenfolge übergeben.
 
-|Benannte Funktionen sollten in einem Namespace deklariert werden, die eine Zuordnung zu einem View erkennen lässt:
-[source,javascript]
-----
-var ns_<view> = {
-foo : function() { … }
-}
-----
-|Wie bereits beschrieben gelten Funktionen häufig im globalen Kontext.
-Funktionsnamen können wie Variablen durch redundante Deklaration leicht versehentlich überschrieben werden.
-Dann gilt immer die letzte Definition.
-Die Verwendung des View-Names als „Namespace“ vermeidet, Funktionen aus einem anderen View versehentlich zu „überschreiben“.
+           setTimeout(“callSomeSpecialFunktion (searchString)“, 100);
 
-|Jede JavaScript-Datei beginnt mit
-[source,javascript]
-----
-(function(){
-----
-und endet mit
-[source,JavaScript]
-----
-})()
-----
-Die Deklaration von wiederverwendbaren Funktion- bzw. Namespace-Definitionen müssen außerhalb dieses Blocks erfolgen.
-|Mit diesem Konstrukt wird verhindert, dass (versehentlich) neue Funktions- und Variablen-Definitionen Elemente aus dem globalen Kontext überschreiben.
+:: Ein Angreifer könnte nun eine URL wie folgt aufrufen:
 
-|Inline-JavaScript ist zu vermeiden.
-|Es gibt Fälle in denen JavaScript „inline“ technisch bedingt direkt in der XHTML-View-Definition implementiert werden muss.
-Hier besteht die Gefahr, dass der JS-Script-Code schlecht strukturiert und auf zu viele Dateien verteilt wird.
+           www.mySite.de?searchString=5);alert(‚hallo‘
 
-Zudem ist JavaScript-Code in XHTML-Dateien unerwartet und wird bei der Analyse der Anwendung schnell übersehen.
-Insgesamt wird hierdurch die Verständlichkeit und Wartbarkeit der Anwendung verschlechtert.
+:: Der Inhalt der Variable searchString wird im searchString ersetzt, so dass folgender Code ausgeführt würde:
 
-|Der DOM-Zugriff mit der `$`-Funktion sollte stets über die Id oder Klasse eines DOM-Knotens erfolgen und nicht über die Knotenhierarchie des DOMs.
-|[source,javascript]
-----
-$(„#eineBildID“);   // GUT
-$(„div span a img“);// SCHLECHT
-----
+   setTimeout(“callSomeSpecialFunktion(5);alert(“hallo“), 100);
 
-Die Gefahr bei letzterer Variante ist die Fehleranfälligkeit auf Änderungen in der DOM-Struktur.
-Wird z.B. ein weiterer Knoten eingefügt, greift die Funktion ggf. nicht und die Anwendung arbeitet fehlerhaft.
+:: Der Angreifer hätte es also geschafft, die Ausführung der Funktion alert(“hallo“) auf dem Server zu veranlassen.
 
-|Event-Binding erfolgt im JavaScript-Code und nicht in den `on<Event>`-Attributen des HTML-Elementes.
-|Das Event-Binding in den `on<Event>`-Attributen erzeugt Inline-JavaScript, dass stets zu vermeiden ist (s.o.)
+====
 
-|Im JavaScript-Code dürfen Request- oder URL-Parameter nur nach ausreichendem Encodieren und Escapen verwendet werden.
-Gleiches gilt für den Einsatz von Server-Parametern bzw. Model-Attributen.
-|Auch hier besteht ein Sicherheitsrisiko.
-Wird Beispielsweise ein Suchstring wie folgt in die Seite eingebunden:
-[source,xml]
-----
-<title>${searchStringFromRequest}</title>
-----
-Ein Angreifer könnte dann folgende URL aufrufen:
-[source,html]
-----
-www.mySite.de?searchString=
-   <script>alert(‚halloWelt‘)</script>
-----
-Der übergebene JavaScript-Block würde dann auf dem Server ausgeführt.
-Das Escapen „zerstört“ die spitzen Klammern und Hochkommata, so dass kein Code ausgeführt wird.
-|====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Sofern keine Wiederverwendung möglich ist, ist von der Definition benannter Funktionen abzusehen und anonyme Funktionen einzusetzen. Dies betrifft im speziellen das Event-Binding
+
+:: *Begründung*
+:: Definierte JavaScript-Funktionen sind in der Regel im globalen Variablen-Kontext gültig. Würde für jede Callback-Funktion eine eigene Funktion definiert, würde das den Speicher unnötig belasten. Weiterhin verschlechtert sich die Lesbarkeit.
+:: Gerade bei Callbacks ist es nützlich, wenn direkt ersichtlich ist, was passiert, wenn der Callback aufgerufen wird.
+''''
+
+:: *Lösung*
+:: Ein weiterer Vorteil bei der Verwendung von anonymen Funktionen ist, dass auf Variablen der umgebenen Funktion zugegriffen werden kann, was die Implementierung vereinfacht:
+
+   var einWert=5;
+   setTimeout( function {alert(4 + einWert);}, 100);
+
+====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Benannte Funktionen sollten in einem Namespace deklariert werden, die eine Zuordnung zu einem View erkennen lässt:
+
+:: *Begründung*
+:: Wie bereits beschrieben, gelten Funktionen häufig im globalen Kontext. Funktionsnamen können wie Variablen durch redundante Deklaration leicht versehentlich überschrieben werden. Dann gilt immer die letzte Definition. Die Verwendung des View-Names als „Namespace“ vermeidet, Funktionen aus einem anderen View versehentlich zu „überschreiben“.
+''''
+
+:: *Lösung*
+
+   var ns_<view> = { foo : function() { … } }
+
+====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Jede JavaScript-Datei beginnt mit einer function()-Definition. Die Deklaration von wiederverwendbaren Funktion- bzw. Namespace-Definitionen muss außerhalb eines function-Blocks erfolgen.
+
+
+:: *Begründung*
+:: Mit diesem Konstrukt wird verhindert, dass (versehentlich) neue Funktions- und Variablen- Definitionen Elemente aus dem globalen Kontext überschreiben.
+''''
+
+:: *Lösung*
+:: Jede JavaScript Datei beginnt mit
+
+   (function(){
+
+:: und endet mit
+
+   })()
+
+====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Inline-JavaScript ist zu vermeiden.
+
+
+:: *Begründung*
+:: Es gibt Fälle, in denen JavaScript „inline“ technisch bedingt direkt in der XHTML-View-Definition implementiert werden muss. Hier besteht die Gefahr, dass der JS-Script-Code schlecht strukturiert und auf zu viele Dateien verteilt wird.
+:: Zudem ist JavaScript-Code in XHTML-Dateien unerwartet und wird bei der Analyse der Anwendung schnell übersehen. Insgesamt wird hierdurch die Verständlichkeit und Wartbarkeit der Anwendung verschlechtert.
+
+====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Der DOM-Zugriff mit der $-Funktion sollte stets über die Id oder Klasse eines DOM-Knotens erfolgen und nicht über die Knotenhierarchie des DOMs.
+
+
+:: *Begründung*
+:: Die Gefahr beim Negativ-Beispiel ist die Fehleranfälligkeit auf Änderungen in der DOM-Struktur. Wird z.B. ein weiterer Knoten eingefügt, greift die Funktion ggf. nicht und die Anwendung arbeitet fehlerhaft.
+''''
+
+:: *Lösung*
+
+   $(„#eineBildID“); // GUT
+
+:: *Negativ-Beispiel*
+
+   $(„div span a img“); // SCHLECHT
+====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Event-Binding erfolgt im JavaScript-Code und nicht in den `on<Event>`-Attributen des HTML-Elementes.
+
+
+:: *Begründung*
+:: Das Event-Binding in den `on<Event>`-Attributen erzeugt ein Inline-JavaScript. Inline-JavaScripte sind stets zu vermeiden.
+
+====
+
+====
+[horizontal]
+*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Im JavaScript-Code dürfen Request oder URL-Parameter nur nach ausreichendem Encodieren und Escapen verwendet werden. Gleiches gilt für den Einsatz von Server-Parametern bzw. Model-Attributen.
+
+
+:: *Begründung*
+:: Sicherheitsrisiko: Es gilt, die Ausführung von Code (z.B. durch Request-Strings übergeben) auf dem Server zu verhindern.
+''''
+
+:: *Negativ-Beispiel*
+:: Wird beispielsweise ein Suchstring wie folgt in die Seite eingebunden
+
+   <title>${searchStringFromRequest}</title>
+
+:: dann könnte ein Angreifer folgende URL aufrufen:
+
+  www.mySite.de?searchString=<script>alert(‚halloWelt‘)</script>
+
+:: Der übergebene JavaScript-Block würde dann auf dem Server ausgeführt. Das Escapen „zerstört“ die spitzen Klammern und Hochkommata, so dass kein Code ausgeführt wird.
+
+====
+
 
 [[clientseitige-validierung-von-eingaben]]
 ==== Clientseitige Validierung von Eingaben
