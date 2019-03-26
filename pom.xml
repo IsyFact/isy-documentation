@@ -149,11 +149,13 @@
                         <pdf-stylesdir>${project.basedir}/src/theme</pdf-stylesdir>
                         <pdf-style>isyfact</pdf-style>
                         <pdf-fontsdir>${project.basedir}/src/theme/fonts</pdf-fontsdir>
+                        <version-ifs>${project.version}</version-ifs>
                     </attributes>
                 </configuration>
 
                 <executions>
 
+<!--
                     <execution>
                         <id>IsyFact-Einstieg-html</id>
                         <phase>generate-resources</phase>
@@ -328,6 +330,7 @@
                             </outputFile>
                         </configuration>
                     </execution>
+-->
 
                     <execution>
                         <id>IsyFact-Tutorial-html</id>
@@ -364,6 +367,7 @@
                         </configuration>
                     </execution>
 
+<!--
                     <execution>
                         <id>IsyFact-Versionierung-html</id>
                         <phase>generate-resources</phase>
@@ -1379,6 +1383,7 @@
                             </outputFile>
                         </configuration>
                     </execution>
+-->
 
                 </executions>
             </plugin>

@@ -257,6 +257,10 @@
   OWASP Top 10 Project +
   https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
 
+- [[[MavenCentral]]] +
+  Maven Central +
+  https://search.maven.org
+
 - [[[SAGA40]]] +
   SAGA Version 4.0 – Standards und Architekturen für E-Government-Anwendungen; Publikation der KBSt; +
   http://www.kbst.bund.de/saga
