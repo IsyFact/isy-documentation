@@ -155,7 +155,6 @@
 
                 <executions>
 
-<!--
                     <execution>
                         <id>IsyFact-Einstieg-html</id>
                         <phase>generate-resources</phase>
@@ -330,7 +329,6 @@
                             </outputFile>
                         </configuration>
                     </execution>
--->
 
                     <execution>
                         <id>IsyFact-Tutorial-html</id>
@@ -367,7 +365,6 @@
                         </configuration>
                     </execution>
 
-<!--
                     <execution>
                         <id>IsyFact-Versionierung-html</id>
                         <phase>generate-resources</phase>
@@ -1383,7 +1380,6 @@
                             </outputFile>
                         </configuration>
                     </execution>
--->
 
                 </executions>
             </plugin>
