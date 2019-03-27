@@ -1,5 +1,9 @@
 # 1.7.0
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
+- `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
+- `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
+- `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
 - `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 - `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
