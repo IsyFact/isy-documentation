@@ -61,7 +61,7 @@ Als Implementierung für die JPA wird Hibernate verwendet.
 * Der Zugriff auf Entitäten erfolgt immer über DAOs oder durch die Traversierung des persistenten Datenmodells.
 * DAOs stellen Zugriffsmethoden (Suchen, Schreiben, Löschen...) für genau einen Entitätstyp bereit.
 * Datenbank-Queries werden nach Möglichkeit als Named Queries abgelegt.
-* Entitäten werden entweder von genau einer fachlichen Komponente oder querschnittlich von der Komponente „Basisdaten“ verwaltet.
+* Entitäten werden entweder von genau einer fachlichen Komponente oder querschnittlich von der Komponente `Basisdaten` verwaltet.
 * Der Datenzugriff erfolgt entweder über die Komponenten-Schnittstelle oder im Fall der Basisdaten direkt über die Basisdaten-DAOs.
 * Für persistente Entitäten, die über eine Komponentenschnittstelle angeboten werden, werden eigene Schnittstellenobjekte definiert, die
 per Deep-Copy gefüllt werden. Hierfür wird der Bean-Mapper Dozer verwendet.
@@ -112,7 +112,7 @@ Während die DAOs die eigentlichen Entitätstypen anbieten, liefert die Komponen
 Sie stellen Methoden zum Suchen, Anlegen und Löschen dieser Typen zur Verfügung.
 Zur Durchführung der Datenbank-Queries benötigt das DAO den EntityManager.
 Dieser wird von Spring bereitgestellt.
-|*RegisterEintrag* |Implementierungsklasse für Entitäten vom Typ „RegisterEintrag“. Enthält Getter- und Setter-Methoden für alle Attribute.
+|*RegisterEintrag* |Implementierungsklasse für Entitäten vom Typ `RegisterEintrag`. Enthält Getter- und Setter-Methoden für alle Attribute.
 |*RegisterEintragDaten* |Nicht persistentes Schnittstellenobjekt, das die Daten des RegisterEintrags enthält.
 Wird als Deep-Copy durch Bean-Mapper erzeugt.
 |====
@@ -259,7 +259,7 @@ a| Interfaces zur Definitionen der Schnittstelle der Komponente "Auskunft". +
 Zu beachten ist, dass über die Schnittstelle keine Entitäten der Komponente herausgegeben werden.
 Es darf immer nur eine Nur-Lese-Sicht (nicht-persistente Schnittstellen-Objekte) herausgegeben werden. +
 Die Umwandlung der internen (`RegisterEintrag`) auf die externe Sicht erfolgt per Bean-Mapper Dozer.
-|*AuskunftImpl* |Implementierung der Komponente „Auskunft“. Diese Klasse wird als Spring-Bean konfiguriert.
+|*AuskunftImpl* |Implementierung der Komponente `Auskunft`. Diese Klasse wird als Spring-Bean konfiguriert.
 Weitere benötigte Komponenten (Spring-Beans) werden dieser Komponente per Spring-Dependency-Injection bekannt gemacht.
 Alle weiteren Klassen der Komponente, z.B. AWF-Klassen werden in der `AuskunftImpl` "normal" instanziiert, und die benötigten Referenzen übergeben.
 |*AwfLeseGesamtBestand* |Beispielklasse zur Implementierung eines Anwendungsfalls.
@@ -571,7 +571,7 @@ Zum Zugriff auf den Service wird im Normalfall ein Adapter im Client implementie
 
 Im Adapter wird im Wesentlichen eine Wrapper-Klasse (`AuskunftWrapper`) implementiert.
 Diese führt das Mapping der Exceptions und der Daten durch.
-Der Adapter implementiert im Beispiel ein eigenes „Auskunft“-Interface für die Nutzung durch die Client-Anwendung.
+Der Adapter implementiert im Beispiel ein eigenes `Auskunft`-Interface für die Nutzung durch die Client-Anwendung.
 
 Für die Remote Zugriffe wird der `HttpInvokerProxy` benutzt.
 Dieser wird automatisch von Spring erzeugt.
@@ -721,7 +721,7 @@ Die Ausführungs-Bean übermittelt dem Batchrahmen Status-Informationen für das
 .{desc-image-KDBatch}
 image::KDBatch.png[align="center",width=80%,pdfwidth=80%]
 
-<<image-KDBatch>> zeigt eine beispielhafte Implementierung eines Batches, der die Komponenten „Auskunft“ und „Basisdaten“ verwendet.
+<<image-KDBatch>> zeigt eine beispielhafte Implementierung eines Batches, der die Komponenten `Auskunft` und `Basisdaten` verwendet.
 
 Im Normalfall erhält die Batch-Bean (`AuskunftBatch`) eine Referenz auf die Komponenten des Anwendungskerns per Spring-Dependency.
 Für die Komponente Basisdaten erfolgt der Zugriff wie immer mittels statischer Aufrufe der DAOs.
@@ -763,7 +763,7 @@ Zur Realisierung von Batches muss die in Tabelle <<listing-bib-batch>> aufgelist
 Die Batch-Logik wird implementiert, in dem eine Batch-Bean im Package `<organisation>.<domäne>.<anwendung>.batch` implementiert wird.
 Für die Realisierung ist es notwendig, dass die Batch-Bean das Interface `BatchAusfuehrungsBean` aus der Bibliothek `isy-batchrahmen` implementiert.
 
-Der Batchrahmen ruft als erstes die Methode „initialisieren“ auf.
+Der Batchrahmen ruft als erstes die Methode `initialisieren` auf.
 Dabei werden alle zur Initialisierung benötigten Informationen übergeben.
 Details dazu werden im JavaDoc der Methode beschrieben.
 
@@ -1063,11 +1063,7 @@ Komponente genutzt werden, gehören in das Paket:
 [[realisierung-7]]
 === Realisierung
 
-Die Bibliothek ist in zwei Teile aufgeteilt:
-
-* isy-exception-core und
-* isy-exception-sst
-
+Die Bibliothek ist in zwei Teile aufgeteilt: `isy-exception-core` und `isy-exception-sst`.
 Das Core-Paket enthält anwendungsinterne Exception-Klassen und Hilfsklassen für das Exception-Mapping.
 Im Schnittstellen-Projekt sind die Klassen für die Transport-Exceptions enthalten.
 Wenn das Core-Paket eingebunden wird, wird über Maven automatisch das Schnittstellen-Projekt mit eingebunden.
@@ -1194,12 +1190,12 @@ Die Protokollierungskomponente wird analog zu den übrigen fachlichen Komponente
 Es wird keine Basisimplementierung dafür vorgeben.
 
 Es müssen eigene Entitätsklassen für die Protokolleinträge angelegt werden.
-Diese müssen von der abstrakten Entitätsklasse aus „plis-protokollierung“ erben.
+Diese müssen von der abstrakten Entitätsklasse aus `rf-protokollierung` erben.
 
 Ein Klassendiagram ist in <<ProtokollierungKonzept>> enthalten.
 
 Die Protokollierungskomponente benötigt in der Regel Kontextinformationen über den Aufrufer.
-Dazu wird in der Anwendung eine AufrufKontext-Komponente (siehe <<aufrufkontextverwaltung>>) eingebunden.
+Dazu wird in der Anwendung eine Aufrufkontext-Komponente (siehe <<aufrufkontextverwaltung>>) eingebunden.
 
 [[aufrufkontextverwaltung]]
 == Aufrufkontextverwaltung
@@ -1207,12 +1203,12 @@ Dazu wird in der Anwendung eine AufrufKontext-Komponente (siehe <<aufrufkontextv
 Einige Komponenten der Anwendung, z.B. die Protokollierung oder die Autorisierung benötigen
 Kontextinformationen über den Aufrufer.
 Damit diese nicht durch die gesamte Anwendung gereicht werden müssen, kann in der Anwendung
-ein AufrufKontextVerwalter verwendet werden.
+ein `AufrufKontextVerwalter` verwendet werden.
 
 [[designvorgaben-9]]
 === Designvorgaben
 
-* Die Komponente wird so implementiert, dass sie spezifische Informationen über den Aufruf-Kontext speichern kann (z.B. Name des aufrufenden Benutzers).
+* Die Komponente wird so implementiert, dass sie spezifische Informationen über den Aufrufkontext speichern kann (z.B. Name des aufrufenden Benutzers).
 * Die Komponente kann in einer Anwendung so erweitert werden, dass sie beliebige weitere Kontext-Informationen aufnehmen kann.
 
 [[realisierung-9]]
@@ -1221,7 +1217,7 @@ ein AufrufKontextVerwalter verwendet werden.
 [[einbinden-der-bibliothek-3]]
 ==== Einbinden der Bibliothek
 
-Zur Realisierung des AufrufKontext müssen die in <<listing-bib-aufrufkontext>> aufgelisteten Bibliotheken eingebunden werden.
+Zur Realisierung des Aufrufkontextes müssen die in <<listing-bib-aufrufkontext>> aufgelisteten Bibliotheken eingebunden werden.
 
 :desc-listing-bib-aufrufkontext: Einbindung der Bibliotheken zur Nutzung des Aufrufkontextes
 [id="listing-bib-aufrufkontext",reftext="{listing-caption} {counter:listings}"]
@@ -1246,22 +1242,23 @@ Die Bibliothek `isy-aufrufkontext` enthält die Komponente `AufrufKontextVerwalt
 Die Komponente `AufrufKontextVerwalter` wird als Spring-Bean konfiguriert.
 Dabei wird festgelegt, dass Spring eine neue Instanz für jeden Thread (alternativ Request) anlegen soll:
 
-:desc-listing-ARKxtVerw: AufrufKontextVerwalter
+:desc-listing-ARKxtVerw: Spring-Konfiguration der Bean AufrufKontextVerwalter
 [id="listing-ARKxtVerw",reftext="{listing-caption} {counter:listings}"]
 .{desc-listing-ARKxtVerw}
 [source,java]
 ----
-<bean id="aufrufKontextVerwalter" scope="request" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl">
-<aop:scoped-proxy />
+<bean id="aufrufKontextVerwalter" scope="request"
+    class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl">
+    <aop:scoped-proxy />
 </bean>
 ----
 
-Der vom AufrufKontextVerwalter verwaltete AufrufKontext wird beim Aufruf der Anwendung in der Service-Schnittstelle oder im DialogController der GUI gesetzt und steht fortan, während der Verarbeitung des Requests, in der gesamten Anwendung zur Verfügung.
+Der vom `AufrufKontextVerwalter` verwaltete Aufrufkontext wird beim Aufruf der Anwendung in der Service-Schnittstelle oder im DialogController der GUI gesetzt und steht fortan, während der Verarbeitung des Requests, in der gesamten Anwendung zur Verfügung.
 
 Komponenten, die diese Informationen benötigen, erhalten dazu einfach eine Referenz auf den
-AufrufKontextVerwalter per Dependency Injection.
+`AufrufKontextVerwalter` per Dependency Injection.
 
-Zur Entgegennahme des AufrufKontextes an der Service-Schnittstelle kann eine Annotation
+Zur Entgegennahme des Aufrufkontextes an der Service-Schnittstelle kann eine Annotation
 `@StelltAufrufKontextBereit` verwendet werden.
 Die Konfiguration ist in <<NutzungsvorgabenSicherheit>> beschrieben.
 
@@ -1417,7 +1414,7 @@ Zur Realisierung der Überwachung muss die in <<listing-bib-ueberwachung>> aufge
 </dependencies>
 ----
 
-Die Bibliothek enthält `MBeans`, welche das von Anwendungen bereitzustellende Management-Interface implementieren.
+Die Bibliothek enthält MBeans, welche das von Anwendungen bereitzustellende Management-Interface implementieren.
 
 [[konfiguration-der-überwachungsschnittstelle]]
 ==== Konfiguration der Überwachungsschnittstelle
@@ -1436,7 +1433,7 @@ Dieser Advice wird so konfiguriert, dass bei jedem Aufruf einer Methode der Remo
 
 Um die Verfügbarkeit bzw.
 Erreichbarkeit eines Systems automatisiert überprüfen zu können, muss eine Ping- und eine Prüf-Methode in der
-Komponente „Administration“ implementiert werden.
+Komponente `Administration` implementiert werden.
 
 Die Ping-Methode wird per HttpInvoker als Service-Methode angeboten (siehe <<anbieten-von-service-schnittstellen>>).
 Die Implementierung besteht darin, einfach den übergebenen String zurückzugeben.
