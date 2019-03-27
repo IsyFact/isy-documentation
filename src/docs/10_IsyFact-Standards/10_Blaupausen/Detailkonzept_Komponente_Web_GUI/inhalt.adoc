@@ -2089,7 +2089,7 @@ Es besitzt folgende optionale Parameter:
 * `textStyleClass`: Die CSS-Klasse des auszugebenden Textes.
 * `tooltip`: Tooltip des Ausgabebereichs.
 * `escapeLabel`: Gibt an, ob Sonderzeichen für das Label escaped werden sollen. (Standard: `true`)
-* `breakWords`: 'Gibt an, ob der Überlauf von Text in die nächste Zeile erlaubt ist. (Standard: `true`)
+* `breakWords`: Gibt an, ob der Überlauf von Text in die nächste Zeile erlaubt ist. (Standard: `true`)
 * `converter`: ID des JSF-Converters, welche die Ausgabe in einen Text konvertiert. (Standard: leer)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
@@ -3477,8 +3477,8 @@ Die Elemente innerhalb dieses Tags werden dann mit einem Label an der korrekten 
 
 Die Komponente unterstützt folgende Attribute:
 
-* `reference`: Die Referenz des Objekts. für die Validierung.
-* `label`: Der Text für das Label..
+* `reference`: Die Referenz des Objekts für die Validierung.
+* `label`: Der Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse für das Label. (Standard: `col-lg-6`)
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
 * `escapeLabel`: Gibt an, ob Sonderzeichen für das Label escaped werden sollen. (Standard: `false`)
@@ -3846,7 +3846,7 @@ Folgende Komponentenattribute sind optional:
 
 * `tooltip`: Tooltip. (Standard: '')
 * `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
-* `required`: On die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
+* `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
 * `label`: Der Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse für das Label. (Standard: `col-lg-6`)
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
