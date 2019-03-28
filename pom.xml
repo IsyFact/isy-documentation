@@ -273,7 +273,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactReferenzarchitektur.html
+                                ${html-output-base-directory}/IsyFact-Standards/Blaupausen/IsyFactReferenzarchitektur.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -290,7 +290,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur.pdf
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/10_Blaupausen/IsyFact-Referenzarchitektur.pdf
                             </outputFile>
                         </configuration>
                     </execution>
@@ -308,7 +308,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactReferenzarchitekturITSystem.html
+                                ${html-output-base-directory}/IsyFact-Standards/Blaupausen/IsyFactReferenzarchitekturITSystem.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -325,7 +325,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur-IT-System.pdf
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/10_Blaupausen/technische_Architektur/IsyFact-Referenzarchitektur-IT-System.pdf
                             </outputFile>
                         </configuration>
                     </execution>
