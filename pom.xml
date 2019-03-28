@@ -149,6 +149,7 @@
                         <pdf-stylesdir>${project.basedir}/src/theme</pdf-stylesdir>
                         <pdf-style>isyfact</pdf-style>
                         <pdf-fontsdir>${project.basedir}/src/theme/fonts</pdf-fontsdir>
+                        <version-ifs>${project.version}</version-ifs>
                     </attributes>
                 </configuration>
 
