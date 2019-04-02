@@ -2835,7 +2835,7 @@ Wenn eine Tabellenspalte auf- bzw. absteigend sortierbar ist, dann wird dies dur
 Wählt der Anwender eine Spalte zum Sortieren aus, dann wird entsprechend der ausgewählten Sortierrichtung das jeweilige Icon dargestellt.
 In der folgenden Abbildung sind die Spalten `Vorname, Loginname und "#"` als sortierbar erkennbar. Die Spalte `Nachname` ist abwärts-sortiert, dargestellt durch das nach unten gerichtete Dreiecks-Icon.
 
-:desc-image-tabellesortierungimkopf: Tabelle – Sortierungs-Indikator in Tabellenkopf
+:desc-image-tabellesortierungimkopf: Tabelle – Sortierungs-Indikator im Tabellenkopf
 [id="image-tabellesortierungimkopf",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-tabellesortierungimkopf}
 image::demopanel-dataTableHeader.png[align="center"]
