@@ -4642,6 +4642,24 @@ Die Datei `index.html` sieht folgendermaßen aus:
 </html>
 ----
 
+[[SetCharacterEncodingFilter]]
+=== SetCharacterEncodingFilter
+
+Damit eingehende Anfragen richtig verarbeitet werden können, müssen diese zunächst kodiert werden. Um eine korrektes
+Kodieren zu gewährleisten, muss der `SetCharacterEncodingFilter` als erster Filter-Mapping Eintrag in der `web.xml`
+eingetragen sein.
+
+:desc-listing-SnipWebxmlt8: Ausschnitt aus web.xml (bezüglich SetCharacterEncodingFilter)
+[id="listing-SnipWebxmlt8",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-SnipWebxmlt8}
+[source,xml]
+----
+<!-- Encoding -->
+<filter-mapping>
+    <filter-name>SetCharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+----
 
 === ApplicationInitialisierungsFilter
 
