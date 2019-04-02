@@ -4645,16 +4645,28 @@ Die Datei `index.html` sieht folgendermaßen aus:
 [[SetCharacterEncodingFilter]]
 === SetCharacterEncodingFilter
 
-Damit eingehende Anfragen richtig verarbeitet werden können, müssen diese zunächst kodiert werden. Um eine korrektes
-Kodieren zu gewährleisten, muss der `SetCharacterEncodingFilter` als erster Filter-Mapping Eintrag in der `web.xml`
-eingetragen sein.
+Damit eingehende Anfragen richtig verarbeitet werden können, müssen diese zunächst mit dem korrekten Zeichensatz kodiert werden.
+Um ein korrektes Kodieren zu gewährleisten, muss der `SetCharacterEncodingFilter` als erster Filter-Mapping Eintrag in der `web.xml` eingetragen sein.
+Standardmäßig sollte `UTF-8` als Zeichensatz angegeben sein und, falls anderweitig gesetzt, erzwungen werden.
 
 :desc-listing-SnipWebxmlt8: Ausschnitt aus web.xml (bezüglich SetCharacterEncodingFilter)
 [id="listing-SnipWebxmlt8",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebxmlt8}
 [source,xml]
 ----
-<!-- Encoding -->
+<filter>
+    <filter-name>SetCharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+    </init-param>
+</filter>
+...
 <filter-mapping>
     <filter-name>SetCharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
