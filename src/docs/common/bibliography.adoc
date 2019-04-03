@@ -146,13 +146,17 @@
   Vorlage für Anforderungsliste +
   40_Methodik\10_Systemspezifikation\IsyFact-Vorlage-Anforderungsliste.xlsx
 
-- [[[IsyFactSystementwurf]]] +
-  Vorlage für Systementwürfe +
-  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dot
+- [[[NutzungEnterpriseArchitect]]] +
+  Nutzung von Enterprise Architect +
+  40_Methodik\10_Systemspezifikation\Nutzung-Enterprise-Architect.pdf
 
 - [[[IsyFactSystemspezifikation]]] +
   Vorlage für Systemspezifikationen +
-  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systemspezifikation.dot
+  40_Methodik\10_Systemspezifikation\IsyFact-Vorlage_Systemspezifikation.dotx
+
+- [[[IsyFactSystementwurf]]] +
+  Vorlage für Systementwürfe +
+  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dotx
 
 - [[[IsyFactVorlageSystemhandbuch]]] +
   Vorlage Systemhandbuch +
@@ -189,6 +193,10 @@
 - [[[Ambler1999]]] +
   Writing Robust Java Code. The AmbySoft Inc. Coding Standards for Java v17.01d +
   http://www.ambysoft.com/downloads/javaCodingStandards.pdf
+
+- [[[AsciiDocRecommendedPractices]]] +
+  AsciiDoc Recommended Practices. A catalogue of recommended practices for composing AsciiDoc documents. +
+  https://asciidoctor.org/docs/asciidoc-recommended-practices
 
 - [[[BaKi07]]] +
   Christian Bauer, Gavin King. Java Persistence with Hibernate. 2007. Manning Publications
@@ -248,6 +256,10 @@
 - [[[OWASP10]]] +
   OWASP Top 10 Project +
   https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
+
+- [[[MavenCentral]]] +
+  Maven Central +
+  https://search.maven.org
 
 - [[[SAGA40]]] +
   SAGA Version 4.0 – Standards und Architekturen für E-Government-Anwendungen; Publikation der KBSt; +

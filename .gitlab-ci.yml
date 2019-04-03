@@ -1,74 +1,62 @@
 variables:
   MAVEN_OPTS: "-Xmx2048M -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
-  MAVEN_CLI_OPTS: "-s settings.xml --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+  MAVEN_CLI_OPTS: "-s settings.xml --batch-mode --errors --fail-at-end"
 
-image: $ARTIFACTORY_BUILDIMAGE
-
-before_script:
-  - echo "$MIRRORS" > /etc/apt/sources.list
-  - cat /proc/version
-  - PFAD=$(pwd)
-  - mkdir -p aptcache
-  - apt-get update
-  - apt-get -o dir::cache::archives="$PFAD/aptcache" install -y maven gawk --no-install-recommends
-  - gem install asciidoctor-pdf --pre
-  - asciidoctor-pdf -v
+image: $BUILDIMAGE
 
 stages:
   - documentation
 
 cache:
   paths:
-    - aptcache/
-    - .m2/repository
+   - aptcache/
+   - .m2/repository
   key: "isyfactdoc"
 
 .template: &vorlage
   stage: documentation
   tags:
-    - docker
+   - ZIII4
+  before_script:
+   - mvn -v
+   - echo "$SETTINGSSECURITY" > ~/.m2/settings-security.xml
+   - PFAD=$(pwd)
+   - mkdir -p aptcache
+   - apt-get update
+   - apt-get -o dir::cache::archives="$PFAD/aptcache" install -y gawk --no-install-recommends
   script:
-    - 'mvn $MAVEN_CLI_OPTS package'
+   - mvn $MAVEN_CLI_OPTS process-resources
 
 documentation:branches:
   <<: *vorlage
   artifacts:
-    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
-    paths:
+   paths:
     - target/html/
     - target/pdf/
-    expire_in: 1 weeks
+   expire_in: 1 weeks
   only:
-    - branches@IsyFact/isy-documentation
+   - branches
   except:
-    - master@IsyFact/isy-documentation
+   - master
     
 documentation:schedule:
   <<: *vorlage
   artifacts:
-    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
-    paths:
+   paths:
     - target/html/
     - target/pdf/
-    expire_in: 2 days
+   expire_in: 2 days
   only:
-    - schedules
+   - schedules
 
 documentation:master:
   <<: *vorlage
   artifacts:
-    name: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-$CI_JOB_ID"
-    paths:
+   paths:
     - target/html/
     - target/pdf/
-    expire_in: 1 day
+   expire_in: 1 day
   only:
-    - master@IsyFact/isy-documentation
+   - master
   except:
-    - schedules
-
-.build:jdk8:
-  stage: build
-  script:
-    - 'mvn $MAVEN_CLI_OPTS compile'
-    - 'rsync -av --delete target/html/* rsync://$HTML_DOC_DEPLOY_URL'
+   - schedules
