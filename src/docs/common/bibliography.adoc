@@ -150,13 +150,13 @@
   Nutzung von Enterprise Architect +
   40_Methodik\10_Systemspezifikation\Nutzung-Enterprise-Architect.pdf
 
+- [[[IsyFactSystemspezifikation]]] +
+  Vorlage für Systemspezifikationen +
+  40_Methodik\10_Systemspezifikation\IsyFact-Vorlage_Systemspezifikation.dot
+
 - [[[IsyFactSystementwurf]]] +
   Vorlage für Systementwürfe +
   40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dot
-
-- [[[IsyFactSystemspezifikation]]] +
-  Vorlage für Systemspezifikationen +
-  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systemspezifikation.dot
 
 - [[[IsyFactVorlageSystemhandbuch]]] +
   Vorlage Systemhandbuch +
