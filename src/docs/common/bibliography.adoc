@@ -152,11 +152,11 @@
 
 - [[[IsyFactSystemspezifikation]]] +
   Vorlage für Systemspezifikationen +
-  40_Methodik\10_Systemspezifikation\IsyFact-Vorlage_Systemspezifikation.dot
+  40_Methodik\10_Systemspezifikation\IsyFact-Vorlage_Systemspezifikation.dotx
 
 - [[[IsyFactSystementwurf]]] +
   Vorlage für Systementwürfe +
-  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dot
+  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dotx
 
 - [[[IsyFactVorlageSystemhandbuch]]] +
   Vorlage Systemhandbuch +
