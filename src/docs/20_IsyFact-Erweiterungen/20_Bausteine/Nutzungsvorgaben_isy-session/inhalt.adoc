@@ -39,11 +39,9 @@ In der `pom.xml` der Anwendung muss lediglich folgende Abhängigkeit ergänzt we
 <dependency>
    <groupId>de.bund.bva.isyfact</groupId>
    <artifactId>isy-session</artifactId>
-    <version><X.X.X></version>
+   <version><X.X.X></version>
 </dependency>
 ----
-
-Die Versionsangabe kann entfallen, wenn  das `isyfact-masterpom-lib` als Parent verwendet wird.
 
 [[schritt-2-spring-konfiguration-ergänzen]]
 == Schritt 2: Spring-Konfiguration ergänzen
