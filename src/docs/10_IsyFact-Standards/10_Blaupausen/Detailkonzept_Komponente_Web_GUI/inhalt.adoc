@@ -2777,7 +2777,7 @@ Beispiel einer Detail-Definition:
 <ui:composition>
   <td colspan="2">
     <div class="form-horizontal readonly">
-      <div class="row row-df">
+      <div class="row">
         <div class="col col-lg-6">
           <isy:formLabel reference="aktenzeichen"
              value="#{dataTableItem.aktenzeichen}"
@@ -3464,7 +3464,7 @@ Um ein einfaches Suchformular umzusetzen genügt z.B. folgender Code:
 [source, xml]
 ----
 <div class="form-horizontal">
-  <div class="row row-df">
+  <div class="row">
     <div class="col-lg-6">
       <isy:formInput reference="vorname" ... />
       <isy:formInput reference="nachname" .... />
@@ -3488,7 +3488,6 @@ Um ein einfaches Suchformular umzusetzen genügt z.B. folgender Code:
 Durch ein `<div>`-Tag mit der CSS-Klasse `form-horizontal` wird der Bereich für das Formular definiert.
 In darin geschachtelten `<div>`-Tags mit der CSS-Klasse `row` ist das aus 12 Spalten bestehende Layout von Bootstrap aktiv.
 Innerhalb dieser Tags können die Formularkomponenten problemlos verwendet werden.
-// (`row-df` ist dabei eine Spezialanpassung zur Nutzung von Bootstrap unter IE8 ohne JavaScript).
 
 ==== Formularkomponenten
 
@@ -3781,7 +3780,7 @@ Codebeispiel:
 <!-- formCheckbox with FourEyes -->
 
 <div class="form-horizontal">
-    <div class="row row-df">
+    <div class="row">
         <div class="col-lg-12">
             <isy:formCheckboxWithFourEyes
                     id="cbtest2FourEyes" reference="cbtest2FourEyes"
@@ -3842,7 +3841,7 @@ Codebeispiel:
 <!-- formCurrencyInputWithFourEyes -->
 
 <div class="form-horizontal">
-	<div class="row row-df">
+	<div class="row">
 		<isy:formCurrencyInputWithFourEyes
 				label="isy:formCurrencyInput"
 				labelStyleClass="col-lg-2" inputStyleClass="col-lg-2"
@@ -3899,12 +3898,12 @@ Codebeispiel:
 .{desc-listing-codeFormDate4}
 [source, xml]
 ----
-<div class="row row-df">
+<div class="row">
 	<h2>isy:formDateWithFourEyes</h2>
 </div>
 
 <div class="col-lg-12">
-	<div class="row row-df">
+	<div class="row">
 		<div class="col-lg-8">
 			<isy:formDateWithFourEyes
 					reference="formDate"
@@ -3967,12 +3966,12 @@ Codebeispiel:
 .{desc-listing-codeFormInputWithFourEyes}
 [source, xml]
 ----
-<div class="row row-df">
+<div class="row">
 	<h2>isy:formInputWithFourEyes</h2>
 </div>
 
 <div class="form-horizontal">
-	<div class="row row-df">
+	<div class="row">
 		<isy:formInputWitohFurEyes
 			id="formInputFourEyes"
 			type="text" label="Text: "
@@ -4029,11 +4028,11 @@ Codebeispiel:
 .{desc-listing-codeFormNumericInputWithFourEyes}
 [source, xml]
 ----
-<div class="row row-df">
+<div class="row>
 	<h2>isy:formNumericInputWithFourEyes</h2>
 </div>
 <div class="col-lg-12">
-	<div class="row row-df">
+	<div class="row">
 				<isy:formNumericInputWithFourEyes
 				label="formNumericInput mit fourEyesMode=unlocked"
 				placeholder="24,00" fourEyesMode="unlocked"
@@ -4130,11 +4129,11 @@ Codebeispiel:
 .{desc-listing-codeFormTextAreaWithFourEyes}
 [source, xml]
 ----
-<div class="row row-df">
+<div class="row">
 	<h2>isy:formTextareaWithFourEyes</h2>
 </div>
 <div class="col-lg-12">
-	<div class="row row-df">
+	<div class="row">
 		<isy:formTextareaWithFourEyes
 				id="formTextarea2"
 				label="formTextarea mit  grey normal"
@@ -4191,11 +4190,11 @@ Codebeispiel:
 .{desc-listing-codeSelectOneDropdownWithfourEyes}
 [source, xml]
 ----
-<div class="row row-df">
+<div class="row">
 	<h2>isy:selectOneDropdownWithFourEyes</h2>
 </div>
 <div class="col-lg-12">
-	<div class="row row-df">
+	<div class="row">
 		<div class="col-lg-12">
 			selectOneDropdown (kein Label, außerhalb einer Form).
 		</div>
