@@ -100,9 +100,9 @@ header:
   height: 2cm
   line_height: 1
   recto_content:
-    left: '{document-title}'
+    left: '{section-or-chapter-title} '
   verso_content:
-    right: '{document-title}'
+    right: '{section-or-chapter-title} '
 footer:
   height: 1.5cm
   line_height: 1
