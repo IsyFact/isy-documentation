@@ -19,7 +19,7 @@ page:
 
 vertical_rhythm: $base_line_height_length
 title_page:
-  background_image: image:front_cover_rf.png[]
+  background_image: image:front_cover.png[]
   align: left
   font_style: bold
   title:
@@ -112,10 +112,10 @@ footer:
   border_color: #000000
   recto_content:
     left: 'Seite {page-number} von {page-count}'
-    right: Vom Bundesverwaltungsamt urheberrechtlich geschützt. Es gelten Lizenzbedingungen (s. Seite 1).
+    right: (C) 2019 Bundesverwaltungsamt. Alle Inhalte sind urheberrechtlich geschützt.
   verso_content:
     right: 'Seite {page-number} von {page-count}'
-    left: Vom Bundesverwaltungsamt urheberrechtlich geschützt. Es gelten Lizenzbedingungen (s. Seite 1).
+    left: (C) 2019 Bundesverwaltungsamt. Alle Inhalte sind urheberrechtlich geschützt.
 image:
   align: center
 caption:

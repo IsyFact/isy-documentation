@@ -1,43 +1,35 @@
+
+****
 ifdef::backend-html5[]
-
 ifeval::["{factory}" == "IsyFact-Standards"]
-[.float-group]
---
-[role="left"]
-image::../../../../common/images/IFS-Logo.png[width=270]
---
-endif::[]
+[.left]
+image::../../../../common/images/IFS-Logo.png[width=150]
 
+endif::[]
 ifeval::["{factory}" == "IsyFact-Erweiterungen"]
-[.float-group]
---
-[role="left"]
-image::../../../../common/images/IFE-Logo.jpg[width=270]
---
-endif::[]
+[.left]
+image::../../../../common/images/IFE-Logo.jpg[width=150]
 
+endif::[]
 ifeval::["{factory}" == "Register Factory"]
-[.float-group]
---
-[role="left"]
-image::../../../../common/images/RF-Logo.png[width=270]
---
-endif::[]
+[.left]
+image::../../../../common/images/RF-Logo.jpg[width=200]
 
 endif::[]
+endif::[]
+Dieses Dokument ist ein Teil der {factory}.
+Alle Inhalte dieses Dokuments, insbesondere Texte, Fotografien und Grafiken, sind urheberrechtlich geschützt.
+Das Urheberrecht liegt beim Bundesverwaltungsamt.
 
 ifdef::license-oss[]
-****
-image::../../../../common/images/CC-BY.png[ccby,width=100,align="center"]
-Dieses Dokument des Bundesverwaltungsamts ist ein Teil der {factory} und lizenziert unter der https://creativecommons.org/licenses/by/4.0/deed.de[Creative Commons Namensnennung 4.0 International]. +
+[.right]
+image::../../../../common/images/CC-BY.png[ccby,width=100]
+
+Die Nutzung ist unter den Lizenzbedingungen der https://creativecommons.org/licenses/by/4.0/deed.de[Creative Commons Namensnennung 4.0 International] gestattet. +
 Die Lizenzbestimmungen sind unter folgender URL erhältlich: +
 https://creativecommons.org/licenses/by/4.0/legalcode.de
-****
 endif::[]
-
 ifndef::license-oss[]
-****
-Dieses Dokument des Bundesverwaltungsamts ist ein Teil der {factory} und durch das Bundesverwaltungsamt urheberrechtlich geschützt.
 Die Nutzung ist nur unter den folgenden Bedingungen gestattet.
 
 *Für Bundesbehörden:* Es muss eine Verwaltungsvereinbarung mit dem Bundesverwaltungsamt zur Nutzung der {factory} vorliegen.
@@ -46,9 +38,9 @@ Die Nutzung ist nur unter den folgenden Bedingungen gestattet.
 
 *Für Privatpersonen und Unternehmen:* Es muss eine Beauftragung durch eine Behörde erfolgen, die selbst eine der zuvor genannten Vereinbarungen mit dem Bundesverwaltungsamt geschlossen hat und die eine Nutzung der {factory} im Rahmen der Auftragserfordernis ermöglicht.
 
-Falls keine solche Vereinbarung vorliegt, wenden Sie sich bitte an Ihre auftraggebende Behörde, falls sie eine Privatperson sind oder ein Unternehmen vertreten, oder an den unten genannten Ansprechpartner im Bundesverwaltungsamt, falls Sie eine der oben genannten Behörden vertreten.
-****
+Falls keine solche Vereinbarung vorliegt, wenden Sie sich bitte an den unten genannten Ansprechpartner im Bundesverwaltungsamt, falls Sie eine der oben genannten Behörden vertreten, oder an Ihre auftraggebende Behörde, falls sie eine Privatperson sind oder ein Unternehmen vertreten.
 endif::[]
+****
 
 *Ansprechpartner:* +
 
