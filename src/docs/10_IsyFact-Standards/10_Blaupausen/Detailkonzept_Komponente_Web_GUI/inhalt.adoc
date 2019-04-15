@@ -2540,6 +2540,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `listpickerController`: Controller für den List Picker, abgeleitet von `ListpickerController`
 * `ajaxLoading`: Gibt an, ob Items dynamisch nachgeladen werden. (Standard: `false`)
 * `ajaxForm`: ID des Formulars, welches für das dynamische Nachladen von Items verwendet wird
+* `servletUrl`: Alternative zu ajaxLoading. Wenn dieser Parameter gesetzt ist, werden die Items über ein Servlet und nicht über Ajax nachgeladen. Was hierbei zu beachten ist, wird weiter unten genauer beschrieben.
 * `header`: sortierte Liste der Spaltenüberschriften
 * `inputComplement`: Nummer der Spalte, dessen Inhalt per JavaScript im Eingabefeld ergänzt werden soll. (Standard: 0 = deaktiviert)
 * `useAutocomplete`: Gibt an, ob Eingaben automatisch vervollständigt werden. (Standard: `true`)
@@ -2597,6 +2598,78 @@ Der Behördenlistpicker ist ein AJAX Listpicker, d.h. der Parameter `ajaxForm` m
 Als Dropdown zeigt er eine zweispaltige Tabelle mit Behördenkennzeichen und Namen der Behörde an, auf welcher gefiltert werden kann.
 
 Der Behörden Picker besitzt keine zusätzlichen Parameter gegenüber `<isy:formListpicker>`, definiert jedoch einen eigenen Controller, von dem abgeleitet werden muss (`AbstractBehoerdeListpickerController`), und ein eigenes Model (`BehoerdeListpickerModel`).
+
+==== List Picker mit Servlet
+
+Damit ein List Picker über ein Servlet gefiltert werden kann, muss JavaScript aktiviert sein. Ansonsten steht die Funktionalität nicht zur Verfügung.
+Im Folgenden wird beschrieben, welche Schritte durchzuführen sind, damit ein Listpicker über ein Servlet gefiltert werden kann.
+
+:desc-listing-listpickerMitServlet: Listpicker mit Servlet-Filterung
+[id="listing-listpickerMitServlet",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-listpickerMitServlet}
+[source, xml]
+----
+<isy:formListpicker
+  reference="anfrageIdentifikation.gruppe"
+  inputmask="99"
+  listpickerModel="#{identifikationModel.gruppeListpickerModel}"
+  listpickerController="#{behoerdeHelper.gruppeListpickerController}"
+  label="#{msg.MEL_Identifikation_Gruppe}"
+  value="#{identifikationModel.anfrageIdentifikation.gruppe}"
+  header="#{msg.MEL_Identifikation_Gruppe_Listpicker_Nummer},
+          #{msg.MEL_Identifikation_Gruppe_Listpicker_Name} "
+  servletUrl="/app/listpicker" />
+----
+Entscheidend ist der Paramater `servletUrl`. Erstens wird anhand des Vorhandenseins des Parameters erkannt, dass ein Servlet zum Filtern benutzt werden soll und nicht etwa Ajax.
+Zweitens muss der Wert des Parameters sich in der Datei web.xml wiederfinden.
+
+:desc-listing-beispielEinbindungServlet: Beispielhafte Einbindung in web.xml
+[id="listing-beispielEinbindungServlet",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-beispielEinbindungServlet}
+[source, xml]
+----
+<servlet>
+  <servlet-name>listpickerprovider</servlet-name>
+  <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+  <load-on-startup>3</load-on-startup>
+</servlet>
+
+...
+
+<servlet-mapping>
+	<servlet-name>listpickerprovider</servlet-name>
+	<url-pattern>/app/listpicker/*</url-pattern>
+</servlet-mapping>
+----
+
+Der Parameter `servletUrl` hat hier beispielsweise den Wert "/app/listpicker" und das Servlet erfasst laut Eintrag in der web.xml alle Requests, deren URL auf das Pattern "/app/listpicker/*" passen.
+Auf diese Weise ist die Verknüpfung zwischen List Picker und Servlet hergestellt.
+
+Die konkrete Implementierung des `HttpRequestHandler` muss von der jeweiligen Anwendung selbst bereitgestellt werden. Hierzu sollte von der Klasse `AbstractListpickerProviderRequestHandler` geerbt werden.
+In dem obigen Beispiel heißt die Bean der Implementierung `listpickerprovider`.
+
+===== Hinweise zur Funktionsweise
+
+Folgende grundlegende Funktionalität wird durch die Komponente _automatisch_, also ohne weiteres Zutun, bereitgestellt: Per JavaScript werden Eingaben im Filter-Feld des Listpickers erkannt. Der aktuell eingegebene Wert
+wird der URL (siehe `servletUrl`) angefügt (Beispiel: Anwender filtert nach "123". Dann wird die URL um "?filter=123" ergänzt) und der Request wird anschließend abgesetzt und vom Servlet behandelt.
+Die eigentliche Filterungslogik obliegt dann der konkreten Implementierung. Den Wert des Filter-Feldes erhält sie jedoch von der abstraken Oberklasse. Nachdem die Einträge gefiltert wurden, werden sie automatisch mittels JavaScript gerendert.
+
+Es kann vorkommen, dass die Filterung nicht nur von dem Wert des Filter-Feldes abhängt.
+Es ist z.B. denkbar, dass die Filterung zusätzlich die Auswahl eines gänzlich anderen Feldes innerhalb des Formulars berücksichtigen soll. In dieser Situation würde es also nicht genügen, den Wert des Filter-Feldes in der URL zu codieren und zu übertragen.
+Zusätzlich benötigte Parameter können frei gewählt werden und müssen einfach der URL hinzugefügt werden. Ein Beispiel:
+
+:desc-listing-listpickerMitServletWeitererParam: Servlet-URL mit weiteren Filter-Parametern
+[id="listing-listpickerMitServletWeitererParam",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-listpickerMitServletWeitererParam}
+[source, xml]
+----
+<isy:formListpicker
+	....
+  servletUrl="/app/listpicker?weitererFilterParameter1={#eingabeModel.weitererFilterParameter1}&weitererFilterParameter2={#eingabeModel.weitererFilterParameter2}" />
+----
+In dem Bespiel werden zwei zusätzliche Parameter zur Filterung benötigt (`weitererFilterParameter1` und `weitererFilterParameter2`). Ihre Bezeichnung und woher sie bezogen werden, kann beliebig festgelegt werden.
+Wichtig ist lediglich, dass die konkrete Implementierung des Servlets die Bezeichnungen kennt und diese der Oberklasse über die entsprechende Methode bekannt macht.
+Unabhängig von etwaigen zusätzlichen Filter-Parametern wird der Wert des Filter-Feldes des Listpicker immer übertragen.
 
 [[tabelle-ueberschrift]]
 === Tabelle
