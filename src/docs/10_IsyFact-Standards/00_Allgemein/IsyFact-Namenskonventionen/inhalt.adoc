@@ -708,7 +708,7 @@ cdErwerb.js (übergreifend)
 Für die Benennung von RPM-Paketen existiert eine Konvention, welche durch den RPM-Standard vorgeben wird. 
 Diese Vorgaben sind ebenfalls im <<DeploymentKonzept>> zu finden.
 
-NOTE: Siehe http://docs.fedoraproject.org/drafts/rpm-guide-en/ch01s03.html.
+NOTE: Siehe https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/ch01s03.html[RPM-Terminologie (Fedora Project)]
 
 :desc-table-rpmpak: RPM-Pakete
 [id="table-rpmpak",reftext="{table-caption} {counter:tables}"]
