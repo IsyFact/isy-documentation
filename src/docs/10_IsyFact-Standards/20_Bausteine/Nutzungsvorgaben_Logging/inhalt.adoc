@@ -399,17 +399,22 @@ Als Marker werden dabei übergeben:
 
 * `parameter[1..n]`: siehe oben (<<loggen-einfacher-nachrichten-tracedebugwarninfo>>)
 
-[[loggen-datenschutzrelevanter-daten]]
-=== Loggen datenschutzrelevanter Daten
+[[loggen-fachlicher-daten]]
+=== Loggen von fachlichen Daten
 
-Lognachrichten dürfen im Allgemeinen keine datenschutzrelevanten (d.h. fachlichen) Daten enthalten.
-Unter Umständen kann es jedoch notwendig sein, entsprechende Daten in den Logeintrag mitaufzunehmen, um
-die in <<auswertungen>> definierten Auswertungen zu ermöglichen (Beispiel: Eine Fehleranalyse ist nur
- mit Kenntnis der an der Schnittstelle übertragenen Daten möglich). Diese Logeinträge müssen bei
- ihrer Erstellung markiert werden, so dass sie durch die Log-Infrastruktur speziell geschützt
- werden können.
+Lognachrichten dürfen gemäß dem Grundsatz der Datensparsamkeit nur die fachlichen Daten enthalten, die für den Betrieb der jeweiligen Anwendung unbedingt notwendig sind.
+Fachliche Daten sind in der Regel alle Teile des fachlichen Datenmodells.
+Sie unterliegen häufig den Auflagen des Datenschutzes.
+Eine Ausnahme stellen fachliche IDs dar; sie werden nicht als fachliches Datum behandelt.
+Welche weiteren Daten als fachlich anzusehen sind, muss in der Systemspezifikation festgelegt werden.
+Welche fachlichen Daten im Log enthalten sein müssen, muss im Systementwurf festgelegt werden.
 
-Zum Loggen datenschutzrelevanter Daten bietet `isy-logging` die Schnittstelle `IsyLoggerFachdaten` an.
+Die folgenden zwei Beispiele verdeutlichen, warum es notwendig sein kann, fachliche Daten ins Log aufzunehmen:
+
+* Die Daten ermöglichen die in <<auswertungen>> definierten Auswertungen.
+* Zur generellen Analyse von Fehlern an einer Schnittstelle werden einige der an ihr übertragenen Daten benötigt.
+
+Zum Loggen fachlicher Daten bietet `isy-logging` die Schnittstelle `IsyLoggerFachdaten` an.
 <<image-SS-IsyLoggerFachdaten>> zeigt eine Übersicht der Schnittstelle.
 
 :desc-image-SS-IsyLoggerFachdaten: Schnittstelle IsyLoggerFachdaten
@@ -417,10 +422,11 @@ Zum Loggen datenschutzrelevanter Daten bietet `isy-logging` die Schnittstelle `I
 .{desc-image-SS-IsyLoggerFachdaten}
 image::SS-IsyLoggerFachdaten.png[align="center"]
 
-Zu allen Methoden, die in <<loggen-von-technischen-daten>> beschrieben wurden, bietet die Schnittstelle
-`IsyLoggerFachdaten` eine äquivalente Methode mit gleicher Signatur an, die zum Loggen von
-datenschutzrelevanten fachlichen Daten im jeweiligen Log-Level verwendet wird.
-Die Methoden tragen dabei jeweils das Suffix „Fachdaten“ im Namen.
+Zu allen Methoden, die in <<loggen-von-technischen-daten>> beschrieben wurden, bietet die Schnittstelle `IsyLoggerFachdaten` eine äquivalente Methode mit gleicher Signatur an, die zum Loggen fachlicher Daten im jeweiligen Log-Level verwendet wird.
+Die Methoden tragen dabei jeweils das Suffix `Fachdaten` im Namen.
+
+Eine besondere Rolle innerhalb der fachlichen Daten spielen personenbezogenen Daten und insbesondere Daten gemäß Artikel 9 DSGVO.
+Diese sollten nur in absoluten Ausnahmefällen ins Log geschrieben werden und müssen zwingend mit speziellen Markern versehen werden (s. <<verwendung-von-markern-in-logeinträgen>>).
 
 [[verwendung-von-markern-in-logeinträgen]]
 === Verwendung von Markern in Logeinträgen
@@ -433,7 +439,7 @@ Zum beliebigen Markieren von Logeinträgen bietet `isy-logging` die Schnittstell
 .{desc-image-SS-IsyLoggerTypisiert}
 image::SS-IsyLoggerTypisiert.png[align="center"]
 
-Die in <<loggen-datenschutzrelevanter-daten>> beschriebene Funktionalität verwendet intern einen
+Die in <<loggen-fachlicher-daten>> beschriebene Funktionalität verwendet intern einen
 festen Marker, um einen Logeintrag als datenschutzrelevant („Fachdaten“) zu kennzeichnen.
 Die Schnittstelle `IsyLoggerTypisiert` ermöglicht es Anwendungen darüber hinaus, Logeinträge mit
 beliebigen Markern zu versehen.
@@ -660,7 +666,7 @@ mit der Korrelations-ID „Y“), so wird das Attribut durch „Y;X“ ersetzt.
 * `entferneKorrelationsIds()`: Entfernt alle Korrelations-IDs.
 +
 Darüber hinaus werden Methoden zum Kennzeichen der Inhalte im MDC als fachlich bereitgestellt (vgl.
-Abschnitt <<loggen-datenschutzrelevanter-daten>>):
+Abschnitt <<loggen-fachlicher-daten>>):
 * `setzeMarkerFachdaten(...)`: Markiert den MDC als fachlich / nicht fachlich.
 * `liesMarkerFachdaten()`: Gibt an, ob der MDC fachliche Daten enthält.
 * `entferneMarkerFachdaten()`: Entfernt den Marker für Fachdaten.
