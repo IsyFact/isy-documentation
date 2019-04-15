@@ -325,6 +325,56 @@ Der gerenderte Texte sollte wie folgt aussehen:
 
 `Zum <<hallowelt-kapitel, Hallo-Welt Kapitel>> gelangen Sie über einen Mausklick.`
 
+== Zusätzliche Admonition-Blocks
+
+Wichtige Hinweise oder zusätzliche Informationen (Tipps, Warnungen, etc.) können in AsciiDoc in sogenannten _Admonition Blocks_ hervorgehoben werden.
+AsciiDoc bringt dazu eine Reihe von vordefinierten Blöcken mit (`NOTE`, `TIP`, `WARNING`, `CAUTION`, `IMPORTANT`).
+Zusätzlich zu diesen werden in der IsyFact weitere Blöcke bereitgestellt.
+
+[ANWENDUNGSANFORDERUNG]
+`ANWENDUNGSANFORDERUNG`: Anforderungen an die Entwicklung von Anwendungen wie z.B. Architektur, Quellcodestruktur und Inhalt der Auslieferung.
+
+[ARCHITEKTURREGEL]
+`ARCHITEKTURREGEL`: Regeln für die Architektur der Anwendung oder der IsyFact.
+
+[SICHERHEIT]
+`SICHERHEIT`: Hinweise zur IT-Sicherheit.
+
+[STYLEGUIDE]
+`STYLEGUIDE`: Hinweise zum Styling.
+
+[INFO]
+`INFO`: Allgemeine Informationen.
+
+Die Verwendung erfolgt in AsciiDoc (im Beispiel für die Admonition `SICHERHEIT`) über
+
+  [SICHERHEIT]
+  Hier steht der Text.
+
+Die für die eingebauten Admonitions auch mögliche Schreibweise
+
+  NOTE: Hier steht der Text.
+
+funktioniert nicht für die zusätzlichen Admonitions.
+
+=== Verwendung von Tags zur Kennzeichnung
+
+Die Inhalte von Admonitions vom Typ `ARCHITEKTURREGEL` und `ANWENDUNGSANFORDERUNG` sind zusätzlich mit einem Tag zu kennzeichnen.
+Damit lassen sich die Regeln oder Anforderungen aus der gesamten Dokumentation zusammenziehen und gebündelt bereitstellen, z.B. als Checklisten oder zur Grundlage automatischer Überprüfungen.
+
+Die Tags werden jeweils am Anfang und am Ende des Blocks gesetzt (<<listing-tags>>).
+
+:desc-listing-tags: Setzen eines Tags
+[id="listing-tags",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-tags}
+[source,asciidoc]
+----
+// tag::architekturregel[]
+[ARCHITEKTURREGEL]
+Der Text der Regel.
+// end::architekturregel[]
+----
+
 [[bilder]]
 == Bilder
 
