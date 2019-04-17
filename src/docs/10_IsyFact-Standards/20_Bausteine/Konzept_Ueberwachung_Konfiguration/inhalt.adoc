@@ -93,19 +93,16 @@ Dadurch steht JMX prinzipiell jeder Java-Anwendung ab J2SE 5.0 zur Verfügung.
 
 Für die Überwachbarkeit der Anwendungen werden die folgenden Festlegungen getroffen:
 
-* Zum Anbieten einer Administrationsschnittstelle wird JMX verwendet
+* Zum Anbieten einer Administrationsschnittstelle wird JMX verwendet.
 * Die Überwachung der Anwendungen erfolgt über das Nagios JMX-Plugin.
-
-NOTE: Siehe http://www.nagiosexchange.org/Misc.54.0.html?&tx_netnagext_pi1%5bp_view%5d=808&tx_netnagext_pi1%5bpage%5d=20%3A10[http://www.nagiosexchange.org/Misc.54.0.html?&tx_netnagext_pi1[p_view]=808 +
-&tx_netnagext_pi1[page]=20%3A10
-
 * Der JMX-Agent muss per RMI erreichbar sein.
 * Es werden keine Notifications verwendet, da das zur Anbindung von Nagios verwendete Nagios-JMX-Plugin keine Notifications unterstützt.
 * JMX wird nicht zur Konfiguration von Anwendungen verwendet.
 * Zur Erhöhung der Sicherheit in der Betriebsumgebung muss eine Absicherung der RMI-Schnittstelle für JMX per Benutzername und Passwort erfolgen.
 * Anwendungen stellen einen definierten Satz von Überwachungsinformationen bereit.
-+
+
 Folgende Punkte sind bewusst nicht Teil dieses Konzeptes:
+
 * Die Konfiguration eines konkreten Produkts zum System-Monitoring ist nicht Teil des Konzeptes.
 * Es gibt keine Vorgabe, welcher Typ von MBeans zu verwenden ist.
 Die Erzeugung der MBeans erfolgt transparent durch Spring und ist nicht konfigurierbar.
