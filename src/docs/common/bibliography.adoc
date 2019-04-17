@@ -28,11 +28,11 @@
 
 - [[[IsyFactReferenzarchitektur]]] +
   IsyFact – Referenzarchitektur +
-  00_Allgemein\IsyFact-Referenzarchitektur.pdf
+  10_Blaupausen\IsyFact-Referenzarchitektur.pdf
 
 - [[[IsyFactReferenzarchitekturITSystem]]] +
   IsyFact – Referenzarchitektur für IT-Systeme +
-  00_Allgemein\IsyFact_Referenzarchitektur-IT-System.pdf
+  10_Blaupausen\technische_Architektur\IsyFact-Referenzarchitektur-IT-System.pdf
 
 - [[[TailoringVorlage]]] +
   Vorlage für IsyFact Tailoring Dokument +
@@ -44,7 +44,7 @@
 
 - [[[IsyFactVersionierung]]] +
   IsyFact-Versionierung +
-  00_Allgemein/IsyFact-Versionierung.pdf
+  00_Allgemein\IsyFact-Versionierung.pdf
 
 - [[[ProduktKatalog]]] +
   IsyFact Produktkatalog +
@@ -168,19 +168,15 @@
 
 - [[[EinrichtungEntwicklungsumgebung]]] +
   Einrichtung einer Entwicklungsumgebung – Boilerplate Code und Formatierung +
-  50_Werkzeuge/Einrichtung_Entwicklungsumgebung.pdf
+  50_Werkzeuge\Einrichtung_Entwicklungsumgebung.pdf
 
 - [[[HandbuchFuerTechnischeAutoren]]] +
   Handbuch für technische Autoren +
-  50_Werkzeuge/Handbuch_fuer_technische_Autoren.pdf
-
-- [[[LeitfadenEntwicklungsumgebung]]] +
-  Leitfaden zur Einrichtung der Entwicklungsumgebung +
-  50_Werkzeuge/Leitfaden-Entwicklungsumgebung.pdf
+  50_Werkzeuge\Handbuch_fuer_technische_Autoren.pdf
 
 - [[[NutzungsvorgabenBenutzerverwaltung]]] +
   Nutzungsvorgaben Benutzerverwaltung +
-  20_Bausteine/Benutzerverwaltung/Nutzungsvorgaben_Benutzerverwaltung.pdf
+  20_Bausteine\Benutzerverwaltung\Nutzungsvorgaben_Benutzerverwaltung.pdf
 
 - [[[Vorlageanwendung]]] +
   IsyFact-Vorlageanwendung "Terminfindung" +
