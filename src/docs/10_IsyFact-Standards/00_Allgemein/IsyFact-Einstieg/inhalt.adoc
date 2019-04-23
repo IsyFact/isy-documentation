@@ -391,16 +391,18 @@ Die zu verwendende Infrastruktur ist z. T. durch den <<ProduktKatalog>> vorgege
 [[vorgaben-für-die-realisierung]]
 == Vorgaben für die Realisierung
 
-Die Realisierung hat gemäß den <<JavaProgrammierkonventionen>> zu erfolgen. Die Versionierung von Bibliotheken und Anwendungen muss sich nach den Vorgaben zur <<IsyFactVersionierung>> richten, die im Wesentlichen auf https://semver.org[Semantic Versioning] basieren. Für die Entwicklungsumgebung gelten wenige Vorgaben, die in <<LeitfadenEntwicklungsumgebung>> und <<EinrichtungEntwicklungsumgebung>> zusammengefasst sind.
+Die Realisierung hat gemäß den <<JavaProgrammierkonventionen>> zu erfolgen.
+Die Versionierung von Bibliotheken und Anwendungen muss sich nach den Vorgaben zur <<IsyFactVersionierung>> richten, die im Wesentlichen auf https://semver.org[Semantic Versioning] basieren.
+Für die Entwicklungsumgebung gelten wenige Vorgaben, die in <<EinrichtungEntwicklungsumgebung>> zusammengefasst sind.
 
-Die Bibliotheken der IsyFact werden als JAR (Java Archive) bereitgestellt und können über ihre
-Maven-Koordinaten leicht als Abhängigkeit in die Anwendungsentwicklung eingebunden werden.
+Die Bibliotheken der IsyFact werden als JAR (Java Archive) bereitgestellt und können über ihre Maven-Koordinaten leicht als Abhängigkeit in die Anwendungsentwicklung eingebunden werden.
 
 Darüber hinaus existiert eine <<Vorlageanwendung>>, die eine einfache Fachanwendung („Terminfindung“) auf Grundlage der IsyFact implementiert.
 
 Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> eine weitere Handreichung, um sich in die Implementierungsvorgaben einzuarbeiten.
 
-Für jedes realisierte System ist ein Handbuch für die Installation, Konfiguration und den Systembetrieb zu erstellen. Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
+Für jedes realisierte System ist ein Handbuch für die Installation, Konfiguration und den Systembetrieb zu erstellen.
+Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
 
 [[bausteine-der-isyfact-standards]]
 == Bausteine der IsyFact-Standards

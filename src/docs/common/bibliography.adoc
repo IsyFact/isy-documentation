@@ -16,31 +16,31 @@
 
 - [[[IsyFactEinstieg]]] +
   IsyFact-Einstieg +
-  00_Allgemein\IsyFact-Einstieg.pdf
+  00_Allgemein/IsyFact-Einstieg.pdf
 
 - [[[IsyFactGlossar]]] +
   IsyFact Glossar +
-  00_Allgemein\IsyFact-Glossar.pdf
+  00_Allgemein/IsyFact-Glossar.pdf
 
 - [[[IsyFactNamenskonventionen]]] +
   IsyFact – Namenskonventionen +
-  00_Allgemein\IsyFact-Namenskonventionen.pdf
+  00_Allgemein/IsyFact-Namenskonventionen.pdf
 
 - [[[IsyFactReferenzarchitektur]]] +
   IsyFact – Referenzarchitektur +
-  00_Allgemein\IsyFact-Referenzarchitektur.pdf
+  10_Blaupausen/IsyFact-Referenzarchitektur.pdf
 
 - [[[IsyFactReferenzarchitekturITSystem]]] +
   IsyFact – Referenzarchitektur für IT-Systeme +
-  00_Allgemein\IsyFact_Referenzarchitektur-IT-System.pdf
+  10_Blaupausen/technische_Architektur/IsyFact-Referenzarchitektur-IT-System.pdf
 
 - [[[TailoringVorlage]]] +
   Vorlage für IsyFact Tailoring Dokument +
-  00_Allgemein\IsyFact-Tailoring.dotx
+  00_Allgemein/IsyFact-Tailoring.dotx
 
 - [[[IsyFactTutorial]]] +
   IsyFact–Tutorial +
-  00_Allgemein\IsyFact-Tutorial.pdf
+  00_Allgemein/IsyFact-Tutorial.pdf
 
 - [[[IsyFactVersionierung]]] +
   IsyFact-Versionierung +
@@ -48,15 +48,15 @@
 
 - [[[ProduktKatalog]]] +
   IsyFact Produktkatalog +
-  00_Allgemein\Produktkatalog_IsyFact.xlsx
+  00_Allgemein/Produktkatalog_IsyFact.xlsx
 
 - [[[Aenderungshistorie]]] +
   IsyFact Änderungshistorie +
-  00_Allgemein\Aenderungshistorie.xlsx
+  00_Allgemein/Aenderungshistorie.xlsx
 
 - [[[DetailkonzeptKomponenteAnwendungskern]]] +
   Detailkonzept der Komponente Anwendungskern +
-  10_Blaupausen\technische_Architektur\Detailkonzept_Komponente_Anwendungskern.pdf
+  10_Blaupausen/technische_Architektur/Detailkonzept_Komponente_Anwendungskern.pdf
 
 - [[[DetailkonzeptKomponenteBatch]]] +
   Detailkonzept Komponente Batch +
@@ -64,11 +64,11 @@
 
 - [[[DetailkonzeptKomponenteDatenzugriff]]] +
   Detailkonzept Komponente Datenzugriff +
-  10_Blaupausen\technische_Architektur\Detailkonzept_Komponente_Datenzugriff.pdf
+  10_Blaupausen/technische_Architektur/Detailkonzept_Komponente_Datenzugriff.pdf
 
 - [[[DetailkonzeptKomponenteService]]] +
   Detailkonzept Komponente Service +
-  10_Blaupausen\technische_Architektur\Detailkonzept_Komponente_Service.pdf
+  10_Blaupausen/technische_Architektur/Detailkonzept_Komponente_Service.pdf
 
 - [[[DetailkonzeptKomponenteWebGUI]]] +
   Detailkonzept Komponente Web-GUI +
@@ -76,95 +76,95 @@
 
 - [[[GrundlagenInterneServicekommunikation]]] +
   Grundlagen der Servicekommunikation innerhalb der Plattform +
-  10_Blaupausen\Integrationsplattform\Grundlagen_interne_Servicekommunikation.pdf
+  10_Blaupausen/Integrationsplattform/Grundlagen_interne_Servicekommunikation.pdf
 
 - [[[KonzeptDatumZeit]]] +
   Konzept Datum & Zeit +
-  20_Bausteine\Datum_Zeit\Konzept_Datum_Zeit.pdf
+  20_Bausteine/Datum_Zeit/Konzept_Datum_Zeit.pdf
 
 - [[[NutzungsvorgabenDatumZeit]]] +
   Nutzungsvorgaben Datum & Zeit +
-  20_Bausteine\Datum_Zeit\Nutzungsvorgaben_Datum_Zeit.pdf
+  20_Bausteine/Datum_Zeit/Nutzungsvorgaben_Datum_Zeit.pdf
 
 - [[[KonzeptFehlerbehandlung]]] +
   Konzept Fehlerbehandlung +
-  20_Bausteine\Fehlerbehandlung\Konzept_Fehlerbehandlung.pdf
+  20_Bausteine/Fehlerbehandlung/Konzept_Fehlerbehandlung.pdf
 
 - [[[NutzungsvorgabenSpringLDAP]]] +
   Nutzungskonzept Spring-LDAP +
-  20_Bausteine\LDAP-Zugriffe\Nutzungsvorgaben_Spring_LDAP.pdf
+  20_Bausteine/LDAP-Zugriffe/Nutzungsvorgaben_Spring_LDAP.pdf
 
 - [[[KonzeptLogging]]] +
   Konzept Logging +
-  20_Bausteine\Logging\Konzept_Logging.pdf
+  20_Bausteine/Logging/Konzept_Logging.pdf
 
 - [[[NutzungsvorgabenLogging]]] +
   Nutzungsvorgaben Logging +
-  20_Bausteine\Logging\Nutzungsvorgaben_Logging.pdf
+  20_Bausteine/Logging/Nutzungsvorgaben_Logging.pdf
 
 - [[[NutzungsvorgabenPolling]]] +
   Konzept Protokollierung +
-  20_Bausteine\Polling\Nutzungsvorgaben_Polling.pdf
+  20_Bausteine/Polling/Nutzungsvorgaben_Polling.pdf
 
 - [[[NutzungsvorgabenSicherheit]]] +
   Nutzerdokumentation Sicherheit +
-  20_Bausteine\Sicherheitskomponente\Nutzungsvorgaben_Sicherheit.pdf
+  20_Bausteine/Sicherheitskomponente/Nutzungsvorgaben_Sicherheit.pdf
 
 - [[[KonzeptUmgangMitSonderzeichen]]] +
   Transkriptions-Regeln +
-  20_Bausteine\Sonderzeichen\Konzept_Umgang_mit_Sonderzeichen.pdf
+  20_Bausteine/Sonderzeichen/Konzept_Umgang_mit_Sonderzeichen.pdf
 
 - [[[SLMapping]]] +
   Mapping-Tabelle für die Transformation von String.Latin-Zeichen +
-  20_Bausteine\Sonderzeichen\Mappingtabelle.xls
+  20_Bausteine/Sonderzeichen/Mappingtabelle.xls
 
 - [[[Transskriptionsregeln]]] +
   Transkriptions-Regeln +
-  20_Bausteine\Sonderzeichen\Transkriptionsregeln.xls
+  20_Bausteine/Sonderzeichen/Transkriptionsregeln.xls
 
 - [[[KonzeptTaskScheduling]]] +
   Konzept Task Scheduling +
-  20_Bausteine\Task_Scheduling\Konzept_Task_Scheduling.pdf
+  20_Bausteine/Task_Scheduling/Konzept_Task_Scheduling.pdf
 
 - [[[NutzungsvorgabenTaskScheduling]]] +
   Nutzungsvorgaben Task Scheduling +
-  20_Bausteine\Task_Scheduling\Nutzungsvorgaben_Task_Scheduling.pdf
+  20_Bausteine/Task_Scheduling/Nutzungsvorgaben_Task_Scheduling.pdf
 
 - [[[KonzeptUeberwachungKonfiguration]]] +
   Konzept Überwachung und Konfiguration +
-  20_Bausteine\Ueberwachung_Konfiguration\Konzept_Ueberwachung_Konfiguration.pdf
+  20_Bausteine/Ueberwachung_Konfiguration/Konzept_Ueberwachung_Konfiguration.pdf
 
 - [[[NutzungsvorgabenIsyUtil]]] +
   Nutzungskonzept Isy-Util +
-  20_Bausteine\Util\Nutzungsvorgaben_Isy_Util.pdf
+  20_Bausteine/Util/Nutzungsvorgaben_Isy_Util.pdf
 
 - [[[AnleitungDatenflussdiagramme]]] +
   Anleitung zur Erstellung und zum Lesen von Datenflussdiagrammen +
-  40_Methodik\10_Systemspezifikation\Anleitung_zu_Datenflussdiagrammen.dotx
+  40_Methodik/10_Systemspezifikation/Anleitung_zu_Datenflussdiagrammen.dotx
 
 - [[[IsyFactVorlageAnforderungsliste]]] +
   Vorlage für Anforderungsliste +
-  40_Methodik\10_Systemspezifikation\IsyFact-Vorlage-Anforderungsliste.xlsx
+  40_Methodik/10_Systemspezifikation/IsyFact-Vorlage-Anforderungsliste.xlsx
 
 - [[[NutzungEnterpriseArchitect]]] +
   Nutzung von Enterprise Architect +
-  40_Methodik\10_Systemspezifikation\Nutzung-Enterprise-Architect.pdf
+  40_Methodik/10_Systemspezifikation/Nutzung-Enterprise-Architect.pdf
 
 - [[[IsyFactSystemspezifikation]]] +
   Vorlage für Systemspezifikationen +
-  40_Methodik\10_Systemspezifikation\IsyFact-Vorlage_Systemspezifikation.dotx
+  40_Methodik/10_Systemspezifikation/IsyFact-Vorlage_Systemspezifikation.dotx
 
 - [[[IsyFactSystementwurf]]] +
   Vorlage für Systementwürfe +
-  40_Methodik\20_Systementwurf\IsyFact-Vorlage_Systementwurf.dotx
+  40_Methodik/20_Systementwurf/IsyFact-Vorlage_Systementwurf.dotx
 
 - [[[IsyFactVorlageSystemhandbuch]]] +
   Vorlage Systemhandbuch +
-  40_Methodik\30_Implementierung\IsyFact-Vorlage_Systemhandbuch.dotx
+  40_Methodik/30_Implementierung/IsyFact-Vorlage_Systemhandbuch.dotx
 
 - [[[JavaProgrammierkonventionen]]] +
   Java-Programmierkonventionen +
-  40_Methodik\30_Implementierung\Java-Programmierkonventionen.pdf
+  40_Methodik/30_Implementierung/Java-Programmierkonventionen.pdf
 
 - [[[EinrichtungEntwicklungsumgebung]]] +
   Einrichtung einer Entwicklungsumgebung – Boilerplate Code und Formatierung +
@@ -173,10 +173,6 @@
 - [[[HandbuchFuerTechnischeAutoren]]] +
   Handbuch für technische Autoren +
   50_Werkzeuge/Handbuch_fuer_technische_Autoren.pdf
-
-- [[[LeitfadenEntwicklungsumgebung]]] +
-  Leitfaden zur Einrichtung der Entwicklungsumgebung +
-  50_Werkzeuge/Leitfaden-Entwicklungsumgebung.pdf
 
 - [[[NutzungsvorgabenBenutzerverwaltung]]] +
   Nutzungsvorgaben Benutzerverwaltung +
@@ -318,15 +314,15 @@
 
 - [[[DeploymentKonzept]]] +
   Konzept Deployment für IsyFact-Anwendungen +
-  30_Plattform\Konzept_Deployment.pdf
+  30_Plattform/Konzept_Deployment.pdf
 
 - [[[IsyFactJQuery]]] +
   Paketierte JQuery-Dateien für IsyFact-Anwendungen +
-  60_Software\Bibliotheken\web-gui
+  60_Software/Bibliotheken/web-gui
 
 - [[[KonzeptLoggingInfrastrukturELK]]] +
   Konzept Logging Infrastruktur ELK +
-  30_Plattform\Konzept_Logging-Infrastruktur_ELK.pdf
+  30_Plattform/Konzept_Logging-Infrastruktur_ELK.pdf
 
 - [[[NutzungskonzeptHTTPServer]]] +
   Nutzungskonzept HTTP Server +
@@ -338,11 +334,11 @@
 
 - [[[ProtokollierungKonzept]]] +
   Konzept Protokollierung +
-  20_Bausteine\Protokollierung_Protokollrecherche\Konzept_Protokollierung.pdf
+  20_Bausteine/Protokollierung_Protokollrecherche/Konzept_Protokollierung.pdf
 
 - [[[RegelwerkKonzept]]] +
   Konzept Regelwerk +
-  20_Bausteine\Regelwerk\Konzept_Regelwerk.pdf
+  20_Bausteine/Regelwerk/Konzept_Regelwerk.pdf
 
 - [[[ServiceGatewaySystementwurf]]] +
   Systemdokumentation Service-Gateway +
@@ -350,7 +346,7 @@
 
 - [[[Styleguide]]] +
   Styleguide +
-  20_Bausteine\Styleguide\Styleguide.pdf
+  20_Bausteine/Styleguide/Styleguide.pdf
 
 - [[[SystemdokumentationServiceGateway]]] +
   Systemdokumentation Service-Gateway +
@@ -358,4 +354,4 @@
 
 - [[[TomcatNutzungskonzept]]] +
   Nutzungskonzept Apache Tomcat +
-  30_Plattform\Nutzungskonzept_Apache_Tomcat_8.pdf
+  30_Plattform/Nutzungskonzept_Apache_Tomcat_8.pdf
