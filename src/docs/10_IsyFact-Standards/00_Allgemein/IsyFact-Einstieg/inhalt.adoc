@@ -407,7 +407,7 @@ Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
 [[bausteine-der-isyfact-standards]]
 == Bausteine der IsyFact-Standards
 (((Baustein)))
-Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind.Diese werden im Folgenden dargestellt:
+Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind. Diese werden im Folgenden dargestellt:
 
 [[fehlerbehandlung]]
 === Fehlerbehandlung
