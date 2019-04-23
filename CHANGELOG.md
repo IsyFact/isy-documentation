@@ -6,6 +6,7 @@
 - `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
 - `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
+- `IFS-270`: Hinweis zu Korrelations-IDs (UUID statt Batch-ID) bei Batches hinzugefügt
 - `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 - `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
 - `IFS-298`: Tutorial auf Maven Central umgestellt
