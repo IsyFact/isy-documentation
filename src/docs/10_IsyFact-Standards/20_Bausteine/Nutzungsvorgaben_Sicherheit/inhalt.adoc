@@ -838,14 +838,14 @@ AufrufKontext aufrufKontext = aufrufKontextVerwalter.getAufrufKontext();
 if (aufrufKontext == null) {
     throw new ...Exception(...);
 }
-remoteBean.methodeX((AufrufKontextTo) dozer.map(aufrufKontext, AufrufKontextTo.class, weitere, parameter);
+remoteBean.methodeX(beanMapper.map(aufrufKontext, AufrufKontextTo.class, weitere, parameter);
 ----
 
 Das Beispiel enthält folgende Schritte:
 
 * Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird
 vom `AufrufKontextVerwalter` abgerufen.
-* Es wird ein Dozer-Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
+* Es wird ein Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
 * Das erzeugte `AufrufKontextTo` der Service-API wird an die Schnittstelle des Service-Client übergeben.
 
 [[verwendung-der-korrelations-id]]

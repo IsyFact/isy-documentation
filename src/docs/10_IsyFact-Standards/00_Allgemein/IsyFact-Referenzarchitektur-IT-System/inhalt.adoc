@@ -123,7 +123,7 @@ Nur die korrespondierende Anwendungskern-Komponente darf Änderungen an den ents
 Die persistenten Objekte dürfen nicht über Komponentengrenzen hinweg herausgegeben werden.
 In diesem Fall wäre nicht sichergestellt, dass keine Änderungen außerhalb der Komponente passieren.
 Für den Transfer über Komponentengrenzen hinweg müssen eigene, nicht-persistente Schnittstellen-Objekte erzeugt werden, die dann aus den persistenten Objekten
-mittels des Bean-Mappers Dozer befüllt werden können. +
+mittels eines Bean-Mappers befüllt werden können. +
 Wenn Objekte von mehreren Komponenten genutzt werden und keiner einzelnen Komponente zugeordnet werden können, sollten sie in einem eigenen querschnittlichen
 Package abgelegt werden.
 

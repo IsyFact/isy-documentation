@@ -18,7 +18,7 @@ Als Implementierung für die JPA wird Hibernate verwendet.
 * Entitäten werden entweder von genau einer fachlichen Komponente oder querschnittlich von der Komponente „Basisdaten“ verwaltet.
 * Der Datenzugriff erfolgt entweder über die Komponenten-Schnittstelle oder im Fall der Basisdaten direkt über die Basisdaten-DAOs.
 * Für persistente Entitäten, die über eine Komponentenschnittstelle angeboten werden, werden eigene Schnittstellenobjekte definiert, die
-per Deep-Copy gefüllt werden. Hierfür wird der Bean-Mapper Dozer verwendet.
+per Deep-Copy gefüllt werden. Hierfür wird ein Bean-Mapper verwendet.
 Innerhalb einer Teilanwendung dürfen persistente Entitäten allerdings über Komponentengrenzen hinweg genutzt werden.
 * Die Transaktionssteuerung wird per AOP in der Service-Schicht durchgeführt (siehe Kapitel <<anbieten-von-service-schnittstellen>>).
 +
@@ -122,7 +122,7 @@ andere Komponenten diese Daten ändern.
 Schnittstellen-Klassen enthalten alle Attribute, die auch ihre persistenten Gegenstücke besitzen.
 Zusätzlich besitzen sie Getter-/Settermethoden für alle Attribute.
 
-Die Schnittstellen-Objekte werden per Deep-Copy mittels des Bean-Mappers Dozer erzeugt und dem Aufrufer außerhalb der
+Die Schnittstellen-Objekte werden per Deep-Copy mittels eines Bean-Mappers erzeugt und dem Aufrufer außerhalb der
 Teilanwendung zurückgeliefert.
 So stehen dem Aufrufer alle Informationen zur Verfügung, es ist ihm aber nicht möglich, Änderungen zu persistieren.
 Damit ist die Datenhoheit der Komponente gewahrt.
@@ -134,8 +134,8 @@ Im Folgenden ist ein beispielhaftes Mapping zu sehen:
 .{desc-listing-beanmapper}
 [source,java]
 ----
-/** Dozer Bean-Mapper. */
-protected Mapper mapper;
+/* Bean-Mapper */
+protected MapperFacade mapper;
 // Entität mappen
 RegisterEintragDaten daten = mapper.map(registerEintrag, RegisterEintragDaten.class);
 ----
@@ -176,7 +176,7 @@ image::Fachliche_Komponente.png[align="center"]
 a| Interfaces zur Definitionen der Schnittstelle der Komponente "Auskunft". +
 Zu beachten ist, dass über die Schnittstelle keine Entitäten der Komponente herausgegeben werden.
 Es darf immer nur eine Nur-Lese-Sicht (nicht-persistente Schnittstellen-Objekte) herausgegeben werden. +
-Die Umwandlung der internen (`RegisterEintrag`) auf die externe Sicht erfolgt per Bean-Mapper Dozer.
+Die Umwandlung der internen (`RegisterEintrag`) auf die externe Sicht erfolgt per Bean-Mapper.
 |*AuskunftImpl* |Implementierung der Komponente „Auskunft“. Diese Klasse wird als Spring-Bean konfiguriert.
 Weitere benötigte Komponenten (Spring-Beans) werden dieser Komponente per Spring-Dependency-Injection bekannt gemacht.
 Alle weiteren Klassen der Komponente, z.B. AWF-Klassen werden in der `AuskunftImpl` "normal" instanziiert, und die benötigten Referenzen übergeben.
@@ -306,13 +306,11 @@ In Service-Implementierung müssen die folgenden Aktivitäten durchgeführt werd
 * Aufrufen des Anwendungskerns (Auskunft)
 * Mappen der ausgehenden Daten
 
-Das Mappen der Daten wird mit Dozer durchgeführt.
-
-NOTE: Dozer: Generischer Java-Bean zu Java-Bean Mapper (http://dozer.sourceforge.net)
+Das Mappen der Daten wird mit einem Bean Mapper durchgeführt.
 
 Dies geschieht automatisiert, ohne dass man Mapping-Informationen hinterlegen muss.
 Grund hierfür ist die strukturelle Gleichheit der Objekte des Anwendungskerns und der Service-Schicht.
-Dadurch ist Dozer in der Lage diese Objekte generisch zu übersetzen.
+Dadurch ist der Bean Mapper in der Lage diese Objekte generisch zu übersetzen.
 
 In den Service-Implementierungen wird außerdem die Transaktionssteuerung durchgeführt.
 Diese wird per Spring-AOP über Annotations konfiguriert (siehe Kapitel <<datenhaltung>>).
@@ -349,14 +347,14 @@ Das RemoteBean-Interface, die Transportobjekte und -Exceptions müssen im Schnit
 Im Projekt der eigentlichen Anwendung müssen die Exception-Fassade, das Service-Interface (z.B. `AuskunftService`) und
 die Implementierung dieses Interfaces angelegt werden.
 
-Im Rahmen der Implementierung muss ggf. das Dozer-Mapping für die Transformation der Transport- auf die Entitätsobjekte
+Im Rahmen der Implementierung muss ggf. die Bean-Mapping-Konfiguration für die Transformation der Transport- auf die Entitätsobjekte
 angelegt werden.
-Dozer wird als Spring-Bean konfiguriert.
-Dabei werden die zuvor angelegten Mapping-Dateien in Dozer konfiguriert.
+Der Bean Mapper wird als Spring-Bean konfiguriert.
+Dabei werden die zuvor angelegten Mapping-Dateien im Mapper konfiguriert.
 
 Die Exception-Fassade und die Service-Implementierung werden als Spring-Beans konfiguriert.
 Die Exception-Fassade erhält eine Referenz auf die Service-Implementierung per Dependency Injection.
-Genauso erhält die Service-Implementierung eine Referenz auf Dozer per Dependency Injection.
+Genauso erhält die Service-Implementierung eine Referenz auf den Bean Mapper per Dependency Injection.
 
 Vor der Exception-Fassade wird mit Hilfe der Annotation `@StelltLoggingKontextBereit` die mit dem Aufrufkontext mitkommende Correlation-Id für das Logging registriert.
 
@@ -425,14 +423,14 @@ In die Build-Konfiguration des Hauptprojekts des Anwendungssystems müssen folge
 |de.bund.bva.isyfact |isy-serviceapi-core
 |de.bund.bva.isyfact |isy-exception-core
 |org.springframework.boot |spring-boot-starter-web
-|net.sf.dozer |dozer
+|ma.glasnost.orika |orika-core
 |====
 
 [NOTE]
 ====
 `<systemname>-httpinvoker-sst` fügt das Schnittstellen-Projekt als Abhängigkeit hinzu.
 
-Die verwendete Version von Dozer ist dem Produktkatalog zu entnehmen.
+Die verwendete Version von _Orika_ ist dem Produktkatalog zu entnehmen.
 ====
 
 [[nutzen-von-service-schnittstellen]]
@@ -560,7 +558,7 @@ Dieser `RequestExecutor` ist der Spring-HttpInvokerProxyFactoryBean bekannt zu m
 
 Zur Entkopplung des eigenen Anwendungskerns von der Schnittstelle wird ein Wrapper für die Schnittstelle implementiert.
 Der Wrapper führt das Mapping der internen Datenobjekte auf die Transportobjekte durch.
-Dieses kann bei Bedarf mit Dozer gemacht werden.
+Dieses kann bei Bedarf mit einem Bean Mapper gemacht werden.
 
 Zusätzlich führt der Wrapper das Exception-Handling durch.
 Der Wrapper kann auftretende Exceptions in eigene Exceptions umwandeln (Exception-Chaining) oder explizit behandeln.
@@ -662,7 +660,7 @@ Zustätzlich müssen folgende Beans erstellt werden:
 * Eine Bean für einen `JpaTransactionManager`.
 * Die Konfigurationsklasse der Batch-Schicht muss mit der Annotation
 +
- @EntityScan({"de.bund.bva.isyfact.batchrahmen.persistence.rahmen")
+ @EntityScan("de.bund.bva.isyfact.batchrahmen.persistence.rahmen")
 +
 versehen werden, damit die Entitäten des Batchrahmens gefunden werden.
 

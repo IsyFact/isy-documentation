@@ -99,7 +99,7 @@ public class BeispielExceptionFassade implements BeispielRemoteBean
 *Service-Fassade:* Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
 
 * Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt.
-Hierzu wird in der Regel die Java-Bibliothek Dozer verwendet.
+Hierzu wird in der Regel ein Bean Mapper verwendet.
 Falls die Transformation kompliziert ist, kann die Transformation auch vollständig ausprogrammiert werden.
 Hierbei sind Kosten und Nutzen genau abzuwägen.
 * Sie öffnet und schließt die Transaktionsklammer und führt gegebenenfalls Rollbacks durch.
@@ -126,12 +126,11 @@ Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet
 Autorisierung erfordern.
 Die Annotationen sind Bestandteil der T-Komponente Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
 
-Das Mapping im Beispiel wird durch dozer umgesetzt.
+Das Mapping im Beispiel wird durch einen Bean Mapper umgesetzt.
 Vor dem Aufruf werden die Parameter gemappt (Klasse `BeispielHolenAnfrageTo` auf Klasse `BeispielHolenAnfrage`),
 nach dem Aufruf der Rückgabewert (Klasse `BeispielHolenAntwort` auf Klasse `BeispielHolenAntwortTo`).
 
-Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurationsdatei „service.xml“
-verschaltet (siehe <<listing-BspeServicexml>>).
+Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurationsklasse verschaltet.
 
 :desc-listing-BSPServiceFassade: Beispiel für eine Service-Fassade
 [id="listing-BSPServiceFassade",reftext="{listing-caption} {counter:listings }"]
@@ -142,7 +141,7 @@ verschaltet (siehe <<listing-BspeServicexml>>).
 public class BeispielServiceFassade {
     private static final IsyLoggerStandard logger = ...;
 
-    private Mapper dozer;
+    private MapperFacade beanMapper;
     private Beispiel beispiel;
 
     @StelltAufrufKontextBereit
@@ -150,10 +149,10 @@ public class BeispielServiceFassade {
     public BeispielHolenAntwortTo holeBeispielAnfrage(AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage) {
 
         try {
-            BeispielHolenAnfrage anfrageAwk = (BeispielHolenAnfrage) dozer.map(anfrage, BeispielHolenAnfrage.class);
+            BeispielHolenAnfrage anfrageAwk = beanMapper.map(anfrage, BeispielHolenAnfrage.class);
             BeispielHolenAntwort antwortAwk = beispiel.holeBeispielAnfrage(anfrageAwk);
 
-            return (BeispielHolenAntwortTo)dozer.map(antwortAwk, BeispielHolenAntwortTo.class);
+            return beanMapper.map(antwortAwk, BeispielHolenAntwortTo.class);
         } catch (MappingException e) {
             logger.error("...", e);
             throw new TechnicalException(...);
