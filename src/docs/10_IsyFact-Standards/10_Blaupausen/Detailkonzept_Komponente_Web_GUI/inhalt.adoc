@@ -4377,10 +4377,10 @@ In diesem Kapitel wird die Behandlung von Fehlern beschrieben.
 Dabei sind folgende Arten von Fehlern zu unterscheiden:
 
 * Validierungsfehler
-* Exceptions innerhalb des Dialogablaufs (AWK)
-* Exceptions innerhalb des Dialogablaufs (GUI)
-* Exceptions außerhalb des Dialogablaufs
-* Exceptions innerhalb des Clients
+* Fehler innerhalb des Dialogablaufs (AWK)
+* Fehler innerhalb des Dialogablaufs (GUI)
+* Fehler außerhalb des Dialogablaufs
+* Fehler innerhalb des Clients
 
 *Darstellung von Fehlern*
 
@@ -4408,7 +4408,7 @@ Die Validierung über JSF ist derzeit nicht vorgesehen.
 
 
 [[behandlung-von-exceptions-innerhalb-der-verarbeitung-im-awk]]
-=== Behandlung von Exceptions innerhalb der Verarbeitung im AWK
+=== Behandlung von Fehlern innerhalb der Verarbeitung im AWK
 
 Innerhalb der Verarbeitung von Dialogaktionen können Exceptions auftreten.
 Sofern diese nicht ohnehin behandelt werden, müssen sie innerhalb der GUI-Komponenten behandelt werden.
@@ -4418,7 +4418,7 @@ Der `MessageController` bietet hierzu Methoden (`writeException`, `writeAndLogEx
 Das dort implementierte Exception Handling unterscheidet fachliche und technische Exceptions.
 Während fachliche Fehler mit einer möglichst aussagekräftigen Fehlermeldung in der Oberfläche angezeigt werden müssen, soll für technische Fehler nur eine allgemeine Fehlermeldung angezeigt werden.
 
-==== Ausgabe für fachliche Exceptions
+==== Ausgabe für fachliche Fehler
 
 * Im Error-Log und über die GUI: *{Fehler-ID}: {Fehlernachricht} (Referenzcode: {UUID})*
 
@@ -4426,7 +4426,7 @@ Weil die Fehlertexte der fachlichen Fehler in der GUI angezeigt werden, ist die 
 Hierzu finden sich weitere Informationen im Dokument <<KonzeptFehlerbehandlung>>.
 
 [[ausgabe-fuer-technische-exceptions]]
-==== Ausgabe für technische Exceptions
+==== Ausgabe für technische Fehler
 
 * Im Error-Log: *{Fehler-ID}: {Fehlernachricht} (Referenzcode: {UUID})*
 * Über die GUI: *„Es ist ein technischer Fehler aufgetreten {Fehler-ID}. Bitte versuchen Sie es später
@@ -4438,7 +4438,7 @@ Dadurch wird verhindert, dass interne oder nur für die Systementwicklung oder d
 Meldungen nach außen getragen werden.
 
 [[behandlung-von-exceptions-innerhalb-des-dialogablaufs]]
-=== Behandlung von Exceptions innerhalb des Dialogablaufs
+=== Behandlung von Fehlern innerhalb des Dialogablaufs
 
 Exceptions, welche während der Ausführung von Logik der GUI-Komponenten (z.B. Datenaufbereitung, Rendering) entstehen, werden immer als technische Exception angesehen.
 Für diese wird eine standardisierte Fehlerseite mit der in Punkt <<ausgabe-fuer-technische-exceptions>> angegebenen Fehlermeldung für technische Fehler ausgegeben.
@@ -4476,35 +4476,19 @@ Um die Behandlung solcher Fehler zu ermöglichen, stellt die Bibliothek `isy-web
 *Bereitstellung des globalen Error-Flows:* Der Flow `errorFlow` bietet eine globale Fehlerseite an.
 
 [[behandlung-von-exceptions-außerhalb-des-dialogablaufs]]
-==== Behandlung von Exceptions außerhalb des Dialogablaufs
+=== Behandlung von Fehlern außerhalb des Dialogablaufs
 
 Es gibt Exceptions, die außerhalb des “normalen“ Dialogablaufs auftreten.
 Beispiele dazu sind fehlende Flow-Definitionen, abgelaufene Sessions und Fehler bei der Autorisierung.
-Solche Fehler werden im Rahmen der HTTP-Request-Bearbeitung durch einen `ExceptionResolver` behandelt.
-Hierfür stellt Spring Web Flow einen Handler zur Verfügung, über welchen ein Mapping der Fehler
-auf spezielle Fehlerseiten möglich ist.
+Solche Fehler werden im Rahmen der HTTP-Request-Bearbeitung auf erster Ebene durch einen `FlowHandler` behandelt, den Spring Web Flow mitbringt.
+Kann dieser den Fehler nicht behandeln, wird er auf zweiter Ebene durch einen `ExceptionResolver` von Spring MVC behandelt.
+Hierfür stellt die Bibliothek `isy-web` Implementierungen zur Verfügung, über welche ein Mapping der Fehler auf spezielle Flows und Fehlerseiten möglich ist, und konfiguriert diese automatisch.
 
 Es gibt keine anwendungsspezifischen Fehlerseiten.
 Alle IsyFact-Anwendungen verwenden eine einheitliche Fehlerseite.
 
 Die Fehlerseite gibt aus Sicherheitsgründen keine Informationen über die Art des Fehlers preis.
 Die eigentliche Fehlerursache kann nur aus den Server-Logs ermittelt werden.
-
-Die Fehlerbehandlung wird in der Spring Konfiguration konfiguriert:
-
-:desc-listing-SnipConfigxml30: Ausschnitt aus config.xml
-[id="listing-SnipConfigxml30",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-SnipConfigxml30}
-[source,xml]
-----
-<bean
-  class="de.bund.bva.isyfact.common.web.exception.web.SimpleMappingExceptionResolverWithAdvancedLogging">
-  <property name="defaultErrorView" value="common/flow/error/errorViewState"/>
-  <property name="snapshotNotFoundView" value="common/flow/error/snapshotNotFoundViewState" />
-  <property name="accessDeniedView" value="common/flow/error/accessDeniedViewState" />
-  <property name="ausnahmeIdMapper" ref="ausnahmeIdMapper"/>
-</bean>
-----
 
 === Behandlung von OptimisticLockExceptions
 
@@ -4515,7 +4499,7 @@ Sonst wird in den allgemeinen Fehlerzustand (`fehler`) gewechselt.
 
 
 [[behandlung-von-exceptions-innerhalb-des-clients]]
-=== Behandlung von Exceptions innerhalb des Clients
+=== Behandlung von Fehlern innerhalb des Clients
 
 Durch die Nutzung von AJAX entstehen clientseitige HTTP-Requests, welche durch die JSF-JavaScript-Bibliothek gesteuert werden.
 Auftretende Fehler (z.B. Server nicht erreichbar, Serverfehler) werden daher nicht durch den Browser direkt, sondern durch die JS Bibliothek behandelt.
