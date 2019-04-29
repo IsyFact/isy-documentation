@@ -479,12 +479,11 @@ Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die b
 Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht. Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen. Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
 
 [[erste-schritte]]
-= Erste Schritte
+= Nächste Schritte
 
 IsyFact ist modular aufgebaut und gibt keine strikte Lese-Reihenfolge vor.
 Um die IsyFact als Ganzes kennenzulernen, zu verstehen und einzu­setzen, empfehlen wir das Folgende an den 5 Säulen orientierte Vorgehen:
 
-.  **IsyFact-Einstieg**: Das Einstiegsdokument sollte im Ganzen gelesen werden, um einen Einblick in die Grundideen der Factory und die existierenden Rahmenbedingungen zu erhalten.
 .  **IsyFact-Tutorial**: Das Tutorial gibt einen Überblick über wichtige Aspekte der IsyFact-konformen Anwendungsentwicklung. Es erleichtert dem Nutzer, die für ihn relevanten Aspekte der IsyFact zu identifizieren, die im Detail durchgearbeitet werden sollten.
 .  **Blaupausen**: Die Blaupausen beschreiben auf mehreren Ebenen die Architektur, die allen anderen Konzepten der IsyFact zugrunde liegt und führen häufig verwendete Begriffe ein. Es bietet sich daher an, bei der Einarbeitung mit dieser „Säule“ zu beginnen.
 .  **Bausteine**: Danach sollten die _relevanten_ Bausteine im Detail gelesen werden.
