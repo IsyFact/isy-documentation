@@ -130,6 +130,10 @@
                 <configuration>
                     <outputDirectory>${project.build.directory}</outputDirectory>
 
+                    <requires>
+                        <require>${project.basedir}/src/docs/common/lib/isyfact-admonitions.rb</require>
+                    </requires>
+
                     <attributes>
                         <revnumber>IF-${project.version}</revnumber>
                         <revdate>${maven.build.timestamp}</revdate>
