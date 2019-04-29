@@ -241,7 +241,7 @@ Bei den automatisch erzeugten Verzeichnissen handelt es sich um folgende:
 
 Literaturverzeichnis:: Quellenangaben, Referenzen auf Bücher oder andere IsyFact-Dokumente
 // Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
-Abbildungsverzeichnis:: enthaltene Bilder mit Nummer und Bildunterschrift
+Abbildungsverzeichnis:: enthaltene Abbildungen mit Nummer und Beschreibung
 Quelltextverzeichnis:: enthaltene Listings, beispielsweise Java, SQL etc.
 Tabellenverzeichnis:: enthaltene Tabellen mit Tabellennummer und Tabellenunterschrift
 
@@ -299,31 +299,31 @@ Ferner muss die ID des Anchors durchgängig mit kleinen Buchstaben geschrieben w
 .{desc-listing-kapitelueberschriften-final}
 [source,asciidoc]
 ----
-[[hallowelt-kapitel]]
-= Hallo Welt Kapitel
-Das ist ein Hallo Welt Text zum Kapitel.
+[[beispiel-kapitel]]
+= Beispiel-Kapitel
+Das ist ein Beispieltext zum Kapitel.
 
-[[hallowelt-unterkapitel]]
-== Hallo Welt Unterkapitel
-Das ist ein Hallo Welt Text zum Unterkapitel.
+[[beispiel-unterkapitel]]
+== Beispiel-Unterkapitel
+Das ist ein Beispieltext zum Unterkapitel.
 ----
 
-[[hallowelt-kapitel]]
-Einen Querverweis auf eine Kapitelüberschrift setzt man bei einem IsyFact-Dokument über zwei spitze Klammerpaare.
+Einen Querverweis auf eine Kapitelüberschrift setzt man über zwei spitze Klammerpaare.
 
 :desc-listing-querverweis: Querverweis auf eine Kapitelüberschrift
 [id="listing-querverweis",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-querverweis}
 [source,asciidoc]
 ----
-Zum <<hallowelt-kapitel, Hallo Welt Kapitel>> gelangen Sie über einen Mausklick.
+Zum <<beispiel-kapitel, Beispiel-Kapitel>> gelangen Sie über einen Mausklick.
 ----
 
-Der erste Parameter in dem Klammer-Paar legt die ID des Anchors fest.
-Der zweite Parameter enthält einen Schriftzug, der anstelle der ID angezeigt wird.
-Der gerenderte Texte sollte wie folgt aussehen:
+Der erste Parameter in dem Klammer-Paar legt die ID des Querverweises fest.
+Der zweite Parameter kann gesetzt werden, wenn statt dem Namen des Kapitels ein eigener Text verwendet werden soll.
+Der erzeugte Text sollte wie folgt aussehen:
 
-`Zum <<hallowelt-kapitel, Hallo-Welt Kapitel>> gelangen Sie über einen Mausklick.`
+_Zum <<kapitelueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
+_Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<kapitelueberschriften>>._
 
 == Zusätzliche Admonition-Blocks
 
@@ -376,72 +376,76 @@ Der Text der Regel.
 ----
 
 [[bilder]]
-== Bilder
+== Abbildungen
 
-Genauso wie Kapitelüberschriften werden auch Bilder über einen Querverweis referenziert.
+Das Einbinden von Abbildungen gelingt in AsciiDoc über die folgende Syntax:
 
-TIP: Beachten Sie, dass die Bilder nicht im Verzeichnis des aufrufenden Dokuments abgelegt werden, sondern in dem Unterordner `/images`.
-
-Bilder werden bei AsciiDoc über folgende Syntax eingebunden.
-
-:desc-listing-bild-einfuegen: Bild einfügen
+:desc-listing-bild-einfuegen: Abbildung einfügen (AsciiDoc)
 [id="listing-bild-einfuegen",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen}
 [source,asciidoc]
 ----
-image::hallowelt.png
+image::beispiel.png
 ----
 
-Bei einem IsyFact-Dokument ist diese Syntax aber nicht ausreichend.
-Denn bei IsyFact soll zum Bild eine ID und eine Abbildungsunterschrift hinzukommen.
-Auch bei der ID muss wieder beachtet werden, dass sie werder Großbuchstaben, noch Leer- und Sonderzeichen enthalten darf.
+In einem IsyFact-Dokument muss eine Abbildung zusätzlich:
 
-:desc-listing-bild-einfuegen2: Bild einfügen in IsyFact
+* eine Beschreibung enthalten,
+* eindeutig identifizierbar und referenzierbar sein,
+* am Ende des Dokuments in einem Abbildungsverzeichnis erscheinen.
+
+Deswegen werden Abbildungen in IsyFact-Dokumenten wiefolgt definiert:
+
+:desc-listing-bild-einfuegen2: Abbildung einfügen (IsyFact)
 [id="listing-bild-einfuegen2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen2}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-image-hallowelt: Das HalloWelt Bild
-[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hallowelt}
-image::hallowelt.png
+:desc-image-beispiel: Beispiel
+[{id-equals}"image-beispiel",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-beispiel}
+image::beispiel.png
 ----
 
-Für Ihre eigenen Bilder ersetzen Sie den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner.
+Für Ihre eigenen Abbildungen ersetzen Sie den Bezeichner `beispiel` durch Ihren eigenen Bezeichner.
 
-TIP: Beachten Sie, dass die vorgegebene Syntax zwingend eingehalten werden muss, weil die Bilder ansonsten vom entsprechenden Skript nicht erkannt werden.
+IMPORTANT: Beachten Sie, dass die Abbildungen nicht im Verzeichnis des Dokuments abgelegt werden, sondern im Unterordner `/images`.
 
-Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht alle Bilder in dem IsyFact-Dokument und erstellt hieraus ein Abbildungsverzeichnis.
-Ferner kann das Bild im AsciiDoc-Text über seine ID referenziert werden:
+Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht alle Abbildungen im Dokument und erstellt hieraus ein Verzeichnis am Ende des Dokuments.
 
- <<image-hallowelt>>
+IMPORTANT: Beachten Sie, dass die vorgegebene Syntax zwingend eingehalten werden muss, weil die Abbildungen ansonsten vom  Skript nicht erkannt werden.
 
-Wenn das Bild zentriert werden soll, fügt man das Attribut `[align="center"]` hinzu.
+Abbildungen können wie üblich über einen Querverweis referenziert werden:
 
-:desc-listing-bild-einfuegen3: Bild zentriert einfügen
+ <<image-beispiel>>
+
+Wenn die Abbildung zentriert werden soll, fügt man das Attribut `[align="center"]` hinzu.
+
+:desc-listing-bild-einfuegen3: Abbildung zentriert einfügen
 [id="listing-bild-einfuegen3",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen3}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-image-hallowelt: Das HalloWelt Bild
-[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hallowelt}
-image::hallowelt.png[align="center"]
+:desc-image-beispiel: Beispiel
+[{id-equals}"image-beispiel",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-beispiel}
+image::beispiel.png[align="center"]
 ----
 
-Eine Skalierung des Bildes ist auch möglich.
-In dem folgenden Beispiel wird das Bild auf 80% minimiert.
-Die doppelte Angabe der Breite ist leider nötig, damit das Bild sowohl im HTML-Dokument als auch im PDF-Dokument richtig skaliert wird.
+Eine Skalierung der Abbildung ist auch möglich.
+Im folgenden Beispiel wird die Abbildung auf 80% skaliert.
+Die doppelte Angabe der Breite ist leider nötig, damit die Abbildung in allen Ausgabeformaten richtig skaliert wird.
+HTML-Dokumente benötigen die Angabe von `scaledwidth`, PDF-Dokumente wiederum `pdfwidth`.
 
-:desc-listing-bild-einfuegen4: Bild zentriert und skaliert einfügen
+:desc-listing-bild-einfuegen4: Abbildung zentriert und skaliert einfügen
 [id="listing-bild-einfuegen4",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen4}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-image-hallowelt: Das HalloWelt Bild
-[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hallowelt}
-image::hallowelt.png[align="center",pdfwidth=80%,scaledwidth=80%]
+:desc-image-beispiel: Beispiel
+[{id-equals}"image-beispiel",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-beispiel}
+image::beispiel.png[align="center",pdfwidth=80%,scaledwidth=80%]
 ----
 
 [[tabellen]]
@@ -482,9 +486,9 @@ Hierfür soll folgende Syntax verwendet werden:
 .{desc-listing-tabelle2}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-table-hallowelt: Eine hallowelt-Tabelle
-[{id-equals}"table-hallowelt",reftext="{table-caption} {counter:tables}"]
-.{desc-table-hallowelt}
+:desc-table-beispiel: Beispiel-Tabelle
+[{id-equals}"table-beispiel",reftext="{table-caption} {counter:tables}"]
+.{desc-table-beispiel}
 [options="header"]
 |====
 |Spalte 1|Spalte 2|Spalte 3|Spalte 4
@@ -496,9 +500,9 @@ Hierfür soll folgende Syntax verwendet werden:
 
 Das Ergebnis sieht dann so aus:
 
-:desc-table-hallowelt: Eine hallowelt-Tabelle
-[id="table-hallowelt",reftext="{table-caption} {counter:tables}"]
-.{desc-table-hallowelt}
+:desc-table-beispiel: Beispiel-Tabelle
+[id="table-beispiel",reftext="{table-caption} {counter:tables}"]
+.{desc-table-beispiel}
 [options="header"]
 |====
 |Spalte 1|Spalte 2|Spalte 3|Spalte 4
@@ -507,10 +511,10 @@ Das Ergebnis sieht dann so aus:
 |Zelle 31|Zelle 32|Zelle 33|Zelle 34
 |====
 
-Auch hier können Sie den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner ersetzen.
+Auch hier können Sie den Bezeichner `beispiel` mit Ihrem eigenen Bezeichner ersetzen.
 Ferner kann die Tabelle im AsciiDoc-Text über ihre ID referenziert werden:
 
- <<table-hallowelt>>
+ <<table-beispiel>>
 
 [[listings]]
 == Listings
