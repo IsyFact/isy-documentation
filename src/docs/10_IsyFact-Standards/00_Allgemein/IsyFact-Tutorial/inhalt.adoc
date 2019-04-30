@@ -286,6 +286,12 @@ image::RAIT.png[align="center"]
 
 Dieser Abschnitt beschreibt die Realisierung von HttpInvoker-Schnittstellen (siehe <<Spring>>).
 HttpInvoker-Schnittstellen sind interne Service-Schnittstellen, die innerhalb der Anwendungslandschaft durch andere Anwendungen genutzt werden dürfen.
+
+[INFO]
+Ab IsyFact 2.0 ist die Verwendung von REST-Schnittstellen erlaubt.
+Spring HTTP-Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
+Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
+
 Extern verfügbare Services sind durch WebService-Schnittstellen anzubieten, über einen ServiceGateway.
 
 [[designvorgaben-2]]
