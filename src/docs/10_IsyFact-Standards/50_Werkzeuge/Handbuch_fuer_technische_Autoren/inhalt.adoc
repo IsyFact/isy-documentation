@@ -459,8 +459,11 @@ Die Tags werden jeweils am Anfang und am Ende des Blocks gesetzt (<<listing-tags
 ====
 Hier steht der Text.
 ====
+
 // end::architekturregel[]
 ----
+
+WARNING: Die Leerzeile zwischen dem Block und dem Ende des Tags ist wichtig, damit das Zusammenziehen der Inhalte korrekt funktioniert.
 
 [[bilder]]
 == Abbildungen
@@ -498,12 +501,14 @@ Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht a
 
 // tag::important[]
 IMPORTANT: Die vorgegebene Syntax zu Abbildungen muss zwingend eingehalten werden, da die Abbildungen ansonsten nicht bei der Generierung des Abbildungsverzeichnisses berücksichtigt werden.
+
 // end::important[]
 
 Für Ihre eigenen Abbildungen ersetzen Sie den Bezeichner `beispiel` durch Ihren eigenen Bezeichner.
 
 // tag::important[]
 IMPORTANT: Abbildungen zu einem Dokument werden stets im Unterordner `/images` abgelegt.
+
 // end::important[]
 
 Abbildungen können wie üblich über einen Querverweis referenziert werden:
