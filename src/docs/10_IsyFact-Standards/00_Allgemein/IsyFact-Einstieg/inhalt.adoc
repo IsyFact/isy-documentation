@@ -282,13 +282,12 @@ Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 == Vorgaben für die Spezifikation
 
 Für die Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
-Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage
-für die Systemspezifikation <<IsyFactSystemspezifikation>>. Bereits bei der Systemspezifikation ist auf die
-Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
+Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage für die Systemspezifikation <<IsyFactSystemspezifikation>>.
+Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
+Bei der Erstellung von Diagrammen mit dem Enterprise Architect hilft das Dokument <<NutzungEnterpriseArchitect>>.
 
-Für die Erfassung von Anforderungslisten ist ebenfalls eine Vorlage vorhanden <<IsyFactVorlageAnforderungsliste>>. Die
-Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller
-Anforderungen an ein System im gesamten Projektlebenszyklus zu erhalten.
+Für die Erfassung von Anforderungslisten ist ebenfalls eine Vorlage vorhanden <<IsyFactVorlageAnforderungsliste>>.
+Die Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller Anforderungen an ein System im gesamten Projektlebenszyklus zu erhalten.
 Weitere Erläuterungen finden sich in der Vorlage.
 
 Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine
@@ -392,16 +391,18 @@ Die zu verwendende Infrastruktur ist z. T. durch den <<ProduktKatalog>> vorgege
 [[vorgaben-für-die-realisierung]]
 == Vorgaben für die Realisierung
 
-Die Realisierung hat gemäß den <<JavaProgrammierkonventionen>> zu erfolgen. Die Versionierung von Bibliotheken und Anwendungen muss sich nach den Vorgaben zur <<IsyFactVersionierung>> richten, die im Wesentlichen auf https://semver.org[Semantic Versioning] basieren. Für die Entwicklungsumgebung gelten wenige Vorgaben, die in <<LeitfadenEntwicklungsumgebung>> und <<EinrichtungEntwicklungsumgebung>> zusammengefasst sind.
+Die Realisierung hat gemäß den <<JavaProgrammierkonventionen>> zu erfolgen.
+Die Versionierung von Bibliotheken und Anwendungen muss sich nach den Vorgaben zur <<IsyFactVersionierung>> richten, die im Wesentlichen auf https://semver.org[Semantic Versioning] basieren.
+Für die Entwicklungsumgebung gelten wenige Vorgaben, die in <<EinrichtungEntwicklungsumgebung>> zusammengefasst sind.
 
-Die Bibliotheken der IsyFact werden als JAR (Java Archive) bereitgestellt und können über ihre
-Maven-Koordinaten leicht als Abhängigkeit in die Anwendungsentwicklung eingebunden werden.
+Die Bibliotheken der IsyFact werden als JAR (Java Archive) bereitgestellt und können über ihre Maven-Koordinaten leicht als Abhängigkeit in die Anwendungsentwicklung eingebunden werden.
 
 Darüber hinaus existiert eine <<Vorlageanwendung>>, die eine einfache Fachanwendung („Terminfindung“) auf Grundlage der IsyFact implementiert.
 
 Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> eine weitere Handreichung, um sich in die Implementierungsvorgaben einzuarbeiten.
 
-Für jedes realisierte System ist ein Handbuch für die Installation, Konfiguration und den Systembetrieb zu erstellen. Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
+Für jedes realisierte System ist ein Handbuch für die Installation, Konfiguration und den Systembetrieb zu erstellen.
+Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
 
 [[bausteine-der-isyfact-standards]]
 == Bausteine der IsyFact-Standards
