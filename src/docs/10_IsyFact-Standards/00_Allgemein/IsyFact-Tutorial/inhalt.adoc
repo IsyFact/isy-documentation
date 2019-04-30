@@ -473,7 +473,7 @@ des Bean-Namens.
 [[bibliotheken-für-das-service-schnittstellen-projekt]]
 ===== Bibliotheken für das Service-Schnittstellen-Projekt
 
-Das Projekt der Service-Schnittstelle benötigt die in Tabelle <<listing-bib-sst>> aufgelisteten Bibliotheken:
+Das Projekt der Service-Schnittstelle benötigt die in <<listing-bib-sst>> aufgelisteten Bibliotheken:
 
 :desc-listing-bib-sst: Einbindung der Bibliotheken für das Service-Schnittstellen-Projekt
 [id="listing-bib-sst",reftext="{listing-caption} {counter:listings}"]
@@ -588,7 +588,7 @@ Dieses befindet sich im Deployment-Repository der zu nutzenden Anwendung.
 Das Jar wird in das eigene Projekt-Repository kopiert und via Maven eingebunden.
 
 Zusätzlich müssen die HttpInvoker-Bibliotheken von Spring eingebunden werden.
-Eine vollständige Liste zeigt Tabelle <<listing-bib-sst-nutzung>>.
+Eine vollständige Liste zeigt <<listing-bib-sst-nutzung>>.
 
 :desc-listing-bib-sst-nutzung: Einbindung der Bibliotheken zur Nutzung von Service-Schnittstellen
 [id="listing-bib-sst-nutzung",reftext="{listing-caption} {counter:listings}"]
@@ -740,7 +740,7 @@ Die Größe der Transaktion (Commit-Rate) wird über den Batchrahmen konfigurier
 [[einbinden-der-bibliothek]]
 ==== Einbinden der Bibliothek
 
-Zur Realisierung von Batches muss die in Tabelle <<listing-bib-batch>> aufgelistete Bibliothek eingebunden werden.
+Zur Realisierung von Batches muss die in <<listing-bib-batch>> aufgelistete Bibliothek eingebunden werden.
 
 :desc-listing-bib-batch: Einbindung der Bibliotheken zur Realisierung von Batches
 [id="listing-bib-batch",reftext="{listing-caption} {counter:listings}"]
@@ -885,7 +885,7 @@ public int cdErworben(AufrufKontext kontext, …)
 [[einbinden-der-bibliotheken-1]]
 ==== Einbinden der Bibliotheken
 
-Um die Logging Funktionen in der eigenen Anwendung nutzen zu können müssen die in Tabelle <<listing-bib-logging>> aufgelisteten Bibliotheken eingebunden werden.
+Um die Logging Funktionen in der eigenen Anwendung nutzen zu können müssen die in <<listing-bib-logging>> aufgelisteten Bibliotheken eingebunden werden.
 
 :desc-listing-bib-logging: Einbindung der Bibliotheken zur Nutzung des Logging
 [id="listing-bib-logging",reftext="{listing-caption} {counter:listings}"]
@@ -1078,12 +1078,11 @@ werden lediglich die Transport-Exceptions aus `isy-exception-sst` benötigt
 [[einbinden-der-bibliothek-1]]
 ==== Einbinden der Bibliothek
 
-Zur Realisierung der Fehlerbehandlung und Implementierung von Exceptions müssen die in <<listing-bib-config>>
-aufgelisteten Bibliotheken eingebunden werden.
+Zur Realisierung der Fehlerbehandlung und Implementierung von Exceptions müssen die in <<listing-bib-fehler>> aufgelisteten Bibliotheken eingebunden werden.
 
-:desc-listing-bib-config: Einbindung der Bibliotheken zur Nutzung der Konfiguration
-[id="listing-bib-config",reftext="{listing-caption} {counter:listings}"]
-.{desc-listing-bib-config}
+:desc-listing-bib-fehler: Einbindung der Bibliotheken zur Nutzung der Fehlerbehandlung
+[id="listing-bib-fehler",reftext="{listing-caption} {counter:listings}"]
+.{desc-listing-bib-fehler}
 [source,xml]
 ----
 <dependencies>
