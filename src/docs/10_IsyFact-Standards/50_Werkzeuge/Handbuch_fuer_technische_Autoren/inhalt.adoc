@@ -94,9 +94,6 @@ image::verzeichnis3.png[align="center"]
 
 Genauso wie in der obigen Abbildung für das IsyFact-Dokument "Handbuch_fuer_technische_Autoren", so muss auch für Ihr IsyFact-Dokument ein neues Verzeichnis innerhalb der korrekt zugeordneten Säule erstellt werden.
 
-TIP: In manchen Fällen wird das Verzeichnis eines IsyFact-Dokuments nicht unmittelbar unterhalb der zugeordneten Säule, sondern in einem weiteren Unterverzeichnis abgelegt.
-Bitte halten Sie hierbei die bereits vorhandene Systematik ein.
-
 Wenn Sie das neue Verzeichnis anlegen, stellt sich als Nächstes die Frage, wie das Verzeichnis benannt werden soll. Dazu vergeben Sie eine neue _Dokument-ID_. Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird. Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
 
 [[die-mustervorlage-vorbereiten]]
@@ -189,7 +186,6 @@ Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel
 ----
 
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
-
 
 In der Vorschau sollten die Änderungen unmittelbar erscheinen. Ihre Änderungen speichern Sie über kbd:[Strg + S].
 
@@ -325,53 +321,144 @@ Der erzeugte Text sollte wie folgt aussehen:
 _Zum <<kapitelueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
 _Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<kapitelueberschriften>>._
 
-== Zusätzliche Admonition-Blocks
+== Admonition-Blocks
 
-Wichtige Hinweise oder zusätzliche Informationen (Tipps, Warnungen, etc.) können in AsciiDoc in sogenannten _Admonition Blocks_ hervorgehoben werden.
-AsciiDoc bringt dazu eine Reihe von vordefinierten Blöcken mit (`NOTE`, `TIP`, `WARNING`, `CAUTION`, `IMPORTANT`).
-Zusätzlich zu diesen werden in der IsyFact weitere Blöcke bereitgestellt.
+Mit Admonition Blocks können Inhalte in Dokumenten exponiert dargestellt werden, so dass ihnen besondere Aufmerksamkeit zuteil wird.
+Standardmäßig werden fünf verschiedene Blöcke angeboten.
+Die IsyFact-Dokumentation erweitert diese Liste um weitere Blöcke für verbindliche Regeln.
+
+Es gibt zwei Möglichkeiten zur Definition von Admonition Blocks.
+Die syntaktisch ausführlichere Variante funktioniert sowohl mit den vordefinierten, als auch mit den selbst definierten Blöcken.
+
+:desc-listing-admonition: Definition eines Admonition Blocks (als Block)
+[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition}
+[source,asciidoc]
+----
+[BLOCKTYP]
+====
+Hier steht der Text.
+====
+----
+
+Die syntaktisch schlankere Variante funktioniert nur mit den vordefinierten Blöcken (NOTE, TIP, IMPORTANT, WARNING, CAUTION).
+
+:desc-listing-admonition: Definition eines Admonition Blocks (inline)
+[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition}
+[source,asciidoc]
+----
+BLOCKTYP: Hier steht der Text.
+----
+
+=== Vordefinierte Blöcke
+
+Den folgenden, vordefinierten Blöcken fallen in der IsyFact-Dokumentation einheitliche Bedeutungen zu.
+Sie helfen dabei, optionale oder ergänzende Inhalte zu markieren, geben Erfahrungswerte weiter und warnen vor typischen Fehlersituationen oder Fallstricken.
+
+[NOTE]
+====
+Der Block NOTE enthält weiterführenden Inhalte, die optionale Ergänzungen des Textes darstellen.
+Dies können z.B. interessante Randnotizen oder weiterführende Links, Dokumente sowie Artikel sein.
+Der Inhalt der Verweise ist in jedem Fall für die Nutzung der IsyFact optional.
+
+Die Verwendung ist ähnlich zu einer Fußnote gedacht, wobei Verweise von einem erklärenden Satz begleitet sein sollten.
+====
+
+[TIP]
+====
+Der Block TIP enthält optionale Inhalte, die eigene Erfahrungwerte (Good / Best Practices, Tipps & Tricks, ...) einbringen.
+Die Inhalte stellen Empfehlungen, aber keine verpflichtenden Regeln dar.
+Allgemeine Vorgaben oder Regeln zur Anwendungsentwicklung, Architektur, Sicherheit oder das Styling müssen in jedem Fall über die jeweils dafür gedachten Blöcke formuliert werden!
+====
+
+[IMPORTANT]
+====
+Der Block IMPORTANT beschreibt allgemeine Vorgaben der IsyFact, die sich nicht einem der selbst definierten Blöcke zuordnen lassen.
+Die Inhalte stellen verpflichtende Regeln oder Konventionen dar und können bei Nichtbeachtung, je nach Kontext, zu Fehlern, Workarounds oder eingeschränkter Funktionalität führen.
+====
+
+[WARNING]
+====
+Der Block WARNING beschreibt typische Fallstricke, die sich bei der Nutzung der IsyFact (z.B. der beschriebenen Blaupause oder eines Bausteins) ergeben können.
+Er warnt davor und bietet Lösungsmöglichkeiten oder hilft, den Fallstrick aktiv zu vermeiden.
+====
+
+[CAUTION]
+====
+Der Block CAUTION beschreibt typische Fehler, die bei der Nutzung der IsyFact passieren können oder in der Vergangenheit häufiger aufgetreten sind.
+Die Inhalte sollen diesen Fehlern vorbeugen, um Mehraufwände insbesondere durch subtile Unterschiede, "false friends" oder dergleichen zu vermeiden.
+
+In der Abgrenzung zum Block WARNING stellen die Situationen, die in Blöcken des Typs CAUTION beschrieben werden, entweder eine größere Bedrohung für die korrekte oder rechtzeitige Umsetzung von Anforderungen dar, oder sind, gemessen an ihren Auswirkungen, in der Regel schwer oder erst (zu) spät zu erkennen.
+====
+
+=== Selbst definierte Blöcke
+
+Die folgenden, selbst definierten Blöcke, bilden Regeln und Vorgaben der IsyFact ab, die verpflichtend einzuhalten sind.
+Sie bilden die Grundlage für eine zur IsyFact konforme Umsetzung von Anforderungen und definieren so maßgeblich, wie Konformität zur IsyFact erzielt wird.
 
 [ANWENDUNGSANFORDERUNG]
-`ANWENDUNGSANFORDERUNG`: Anforderungen an die Entwicklung von Anwendungen wie z.B. Architektur, Quellcodestruktur und Inhalt der Auslieferung.
+====
+Der Block ANWENDUNGSANFORDERUNG beschreibt Anforderungen, welche die IsyFact an die Entwicklung von IT-Systemen stellt.
+Die Anforderungen kommen typischerweise aus den Bereichen:
+
+* Struktur des Quellcodes oder der Quellcodeablage,
+* Format und Inhalt der Auslieferung,
+* Detailaspekte der Verwendung von Bausteinen.
+
+Sie bilden die Grundlage für eine einheitliche Umsetzung von Anforderungen, die in gleichartig strukturierten IT-Systemen münden.
+====
 
 [ARCHITEKTURREGEL]
-`ARCHITEKTURREGEL`: Regeln für die Architektur der Anwendung oder der IsyFact.
+====
+Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
+Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
+====
 
 [SICHERHEIT]
-`SICHERHEIT`: Hinweise zur IT-Sicherheit.
+====
+Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
+====
 
 [STYLEGUIDE]
-`STYLEGUIDE`: Hinweise zum Styling.
+====
+Der Block STYLEGUIDE beschreibt Regeln, welche die IsyFact an die Gestaltung der grafischen Oberflächen stellt.
+Die Regeln kommen typischerweise aus den Bereichen:
 
-[INFO]
-`INFO`: Allgemeine Informationen.
+* Allgemeine Gestaltungsrichlinien,
+* Grundlegender Aufbau von Masken,
+* Vorgaben zur Ein- und Ausgabe von Daten sowie zu Interaktionsmustern,
+* Barrierefreiheit und Usability.
 
-Die Verwendung erfolgt in AsciiDoc (im Beispiel für die Admonition `SICHERHEIT`) über
-
-  [SICHERHEIT]
-  Hier steht der Text.
-
-Die für die eingebauten Admonitions auch mögliche Schreibweise
-
-  NOTE: Hier steht der Text.
-
-funktioniert nicht für die zusätzlichen Admonitions.
+Die Regeln stellen vor allem sicher, dass grafische Oberflächen ein einheitliches Look&Feel besitzen und gleichartig bedient werden.
+====
 
 === Verwendung von Tags zur Kennzeichnung
 
-Die Inhalte von Admonitions vom Typ `ARCHITEKTURREGEL` und `ANWENDUNGSANFORDERUNG` sind zusätzlich mit einem Tag zu kennzeichnen.
+Folgende Blöcke sind zusätzlich mit einem Tag zu kennzeichnen:
+
+* IMPORTANT (Tag-Name: `important`)
+* ANWENDUNGSANFORDERUNG (Tag-Name: `anwendungsanforerung`)
+* ARCHITEKTURREGEL (Tag-Name: `architekturregel`)
+* SICHERHEIT (Tag-Name: `sicherheit`)
+* STYLEGUIDE (Tag-Name: `styleguide`)
+
 Damit lassen sich die Regeln oder Anforderungen aus der gesamten Dokumentation zusammenziehen und gebündelt bereitstellen, z.B. als Checklisten oder zur Grundlage automatischer Überprüfungen.
 
 Die Tags werden jeweils am Anfang und am Ende des Blocks gesetzt (<<listing-tags>>).
 
-:desc-listing-tags: Setzen eines Tags
+:desc-listing-tags: Setzen des Tags am Beispiel einer Architekturregel
 [id="listing-tags",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-tags}
 [source,asciidoc]
 ----
 // tag::architekturregel[]
 [ARCHITEKTURREGEL]
-Der Text der Regel.
+====
+Hier steht der Text.
+====
 // end::architekturregel[]
 ----
 
@@ -407,13 +494,17 @@ Deswegen werden Abbildungen in IsyFact-Dokumenten wiefolgt definiert:
 image::beispiel.png
 ----
 
-Für Ihre eigenen Abbildungen ersetzen Sie den Bezeichner `beispiel` durch Ihren eigenen Bezeichner.
-
-IMPORTANT: Beachten Sie, dass die Abbildungen nicht im Verzeichnis des Dokuments abgelegt werden, sondern im Unterordner `/images`.
-
 Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht alle Abbildungen im Dokument und erstellt hieraus ein Verzeichnis am Ende des Dokuments.
 
-IMPORTANT: Beachten Sie, dass die vorgegebene Syntax zwingend eingehalten werden muss, weil die Abbildungen ansonsten vom  Skript nicht erkannt werden.
+// tag::important[]
+IMPORTANT: Die vorgegebene Syntax zu Abbildungen muss zwingend eingehalten werden, da die Abbildungen ansonsten nicht bei der Generierung des Abbildungsverzeichnisses berücksichtigt werden.
+// end::important[]
+
+Für Ihre eigenen Abbildungen ersetzen Sie den Bezeichner `beispiel` durch Ihren eigenen Bezeichner.
+
+// tag::important[]
+IMPORTANT: Abbildungen zu einem Dokument werden stets im Unterordner `/images` abgelegt.
+// end::important[]
 
 Abbildungen können wie üblich über einen Querverweis referenziert werden:
 
