@@ -723,7 +723,7 @@ p { margin-bottom: 1.25rem; }
 
 .admonitionblock > table td.content { color: #f3aa02; }
 
-.admonitionblock td.icon .icon-note:before { content: "\f0f6"; color: #003D86; }
+.admonitionblock td.icon .icon-note:before { content: "\f05a"; color: #003D86; }
 
 .admonitionblock td.icon .icon-tip:before { content: "\f0eb"; color: #003D86; }
 
