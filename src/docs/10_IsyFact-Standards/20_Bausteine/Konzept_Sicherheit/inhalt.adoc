@@ -2,174 +2,142 @@
 include::../../../common/isyfact-attributes.adoc[]
 include::../../../common/attributes.adoc[]
 
+
 [[das-rollenbasierte-berechtigungskonzept]]
 = Das rollenbasierte Berechtigungskonzept
 
-[[konfiguration-von-rollen-in-der-anwendung]]
-== Konfiguration von Rollen in der Anwendung
+Die Vergabe von Rollen ist _das_ Mittel der Benutzeradministration, um Benutzer der Anwendungslandschaft mit Berechtigungen auszustatten.
+Die Vergabe von Rollen an einen Benutzer (menschliche und technische) erfolgt in der Anwendung Benutzerverzeichnis.
 
-Für jede fachliche oder technische Rolle, die innerhalb einer Anwendung zum Zwecke der Autorisierung eines Benutzers ausgewertet werden soll, müssen in der Anwendung Anwendungsrollen konfiguriert und die erforderlichen Rechte zugeordnet werden.
-Dies erfolgt in der Datei `/resources/sicherheit/rollenrechte.xml` der Anwendung. (Die zugehörige Schema-Datei RollenRechteSchema.xsd findet sich im <<rollen-rechte-schema>>)
+Es ist konzeptionell beabsichtigt, dass die Administration per Rollen recht grobgranular erfolgt.
+Eine administrative Vergabe feingranularer Rechte ist konzeptionell nicht erwünscht.
+Die individuelle Zuordnung von Rechten zu Benutzern ist daher im Benutzerverzeichnis nicht möglich.
 
-:desc-listing-RollenRechte: Definition von Rollen und Rechten
-[id="listing-RollenRechte",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-RollenRechte}
-[source,xml]
-----
-<tns:Anwendung AnwendungsId="AnwendungsId" xmlns:tns="http://www.example.org/RollenRechteSchema"
+Rechte werden ausschließlich indirekt über Rollen (in denen sie enthalten sind) den Benutzern zugeordnet.
+Welche Rechte einer Rolle zugeordnet sind, wird innerhalb der Konfiguration einer Anwendung definiert und ist damit Teil der Software.
 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" +
-xsi:schemaLocation="http://www.example.org/RollenRechteSchema RollenRechteSchema.xsd ">
+Ein Beispiel: Bietet eine Anwendung X zwei Dialoge zur Administration von Anwendungseigenschaften, so könnten diese Dialoge über eine Rolle AnwendungX_Administrator abgesichert werden.
+Innerhalb der Anwendung ist Dialog 1 mit Recht AdministrierenDialog1 und Dialog 2 mit dem Recht AdministrierenDialog2 abgesichert.
+Im Benutzerverzeichnis kann die Rolle AnwendungX_Administrator an einen Anwender vergeben werden (grobgranular). Innerhalb der Anwendungskonfiguration werden die beiden Rechte konfiguriert und der Rolle AnwendungX_Administrator zugeordnet.
+Alle Anwender mit der Rolle AnwendungX_Administrator sind somit innerhalb der Anwendung autorisiert die beiden Admin-Dialoge zu verwenden.
 
-<!-- Definition von in der Anwendung verwendeten Rechten -->
-<tns:rechte>
-  <tns:rechtId Id="Recht_A" />
-</tns:rechte>
+Wie Rollen und Rechte spezifiziert, bereitgestellt, konfiguriert und Benutzern zugeordnet werden, wird im Folgenden beschrieben.
 
-<tns:rechte>
-  <tns:rechtId Id="Recht_B" />
-</tns:rechte>
+[[spezifikation-der-rollen]]
+== Spezifikation der Rollen
 
-<!-- Definition von in der Anwendung verwendeten Rollen -->
-<tns:rollen RolleId="Rolle_A">
-  <tns:rechtId Id="Recht_A" />
-</tns:rollen>
+Die Grundlage für die Umsetzung einer angemessenen Absicherung einer Anwendung wird in der Spezifikation der Anwendung gelegt.
 
-<tns:rollen RolleId="Rolle_AB">
-  <tns:rechtId Id="Recht_A" />
-  <tns:rechtId Id="Recht_B"/>
-</tns:rollen>
+Hier werden zunächst in geeigneter Granularität Rechte definiert, die zur Benutzung bestimmter Funktionalität der Anwendung berechtigt.
 
-</tns:Anwendung>
-----
+Diese Rechte werden fachlichen Rollen zugeordnet, die den Benutzern der Anwendung zugeordnet werden können.
+Dies sind Rollen die entweder pauschal den Zugriff auf die Anwendung erlauben, oder im Sinne einer fachlichen Sachbearbeiter-Rolle die Nutzung ausgewählter Anwendungsfälle ermöglicht.
+Zu jeder fachlichen Rolle wird festgelegt:
 
-Die Konfiguration muss die folgenden Anforderungen erfüllen:
+* Name: Der interne Name der Rolle, wie er für die Autorisierung im Access-Manager und innerhalb von Anwendungen zur Überprüfung bereitgestellt wird. +
+ +
+Der Rollenname sollte dem folgenden Schema entsprechen:
+<Anwendungskürzel>_<Zweck/Funktionalität>[_<Zugang>]. +
+ +
+Das Suffix <Zugang> ist optional, sollte jedoch wenn möglich verwendet werden. +
+Folgende Werte sind als <Zugang> sinnvoll:
+** Schnittstellennutzer für technische Rollen, die zur Verwendung einer internen Service-Schnittstelle berechtigt)
+** Webservicenutzer (für technische Rollen, die zur Verwendung einer Web-Service-Schnittstelle eines Service-Gateways berechtigt)
+** Nutzer (für fachliche Rollen, die zur Nutzung der Oberfläche einer Anwendung berechtigt)
+** Servicenutzer (für fachliche Rollen, die zur Verwendung eines Service-Gateways berechtigt)
+** Batch (für fachliche Rollen, die zur Ausführung eines Batches zu einer Anwendung berechtigt)
+** Launcher (für fachliche Rollen, die zur Ausführung eines internen Tasks einer Anwendung berechtigt)
+* Label: Der Name der Rolle, wie sie in der Benutzeroberfläche des Benutzerverzeichnisses anzuzeigen ist.
+In der Regel identisch mit dem Namen der Rolle.
+Eine Umbenennung ist nur dann sinnvoll, wenn die Rollenvergabe durch den Administrator dadurch intuitiver wird.
+* Typ: Eine Rolle kann fachlich oder technisch sein.
+Nur fachliche Rollen können administriert werden.
+Technische Rollen können fachlichen Rollen untergeordnet werden (siehe Untergeordnete Rollen).
+* Enthaltene Rechte: Die Ausstattung einer fachlichen Rolle mit Rechten beschreibt den Funktionsumfang, den der Rolleninhaber bei der Nutzung der Anwendung vorfindet.
+* Untergeordnete Rollen (optional): Fachliche Rollen können technische Unterrollen besitzen.
+Wofür wird das benutzt? Berechtigt eine fachliche Rolle für einen Anwendungsfall der die Dienste eines Nachbarsystems (z.B. eines Schlüsselverzeichnisses) verwendet, so wird die von diesem Nachbarsystem zur Verwendung der Serviceschnittstelle definierte technische Rolle der fachlichen Rolle untergeordnet.
+* Sichtbarkeit der Rolle: die Sichtbarkeit der Rollen bei der Rollenzuordnung an Anwender, externe Systeme und interne Systeme kann eingeschränkt werden, um die Administration zu vereinfachen.
+* Beschreibung der Rolle: Eine kurze Beschreibung der Rolle in einer fachlichen Sprache, die für Dienstleister und Administration verständlich ist, erleichtert die Nutzung der Rolle.
 
-* Es sind alle in der Anwendung überprüften Rechte definiert.
-Wird in der Anwendung ein Recht überprüft, das hier nicht definiert ist, so wird ein Fehler erzeugt.
-Die Konfiguration gibt also verlässlich Auskunft darüber, welche Rechte in der Anwendung überprüft werden.
-* Es sind alle den Benutzern der Anwendung angebotenen Rollen definiert.
-Die Konfiguration gibt also verlässlich Auskunft darüber, welche Rollen durch die Anwendung angeboten werden.
-Innerhalb jeder Rolle werden gemäß Spezifikation die zugeordneten Rechte festgelegt.
-Rollen können überlappende Teilmengen von Rechten enthalten.
+Bietet die Anwendung Funktionalität über Service-Schnittstellen an, so ist die Nutzung jeder Service-Schnittstelle zumindest durch eine technische Rolle abzusichern.
+Diese Rollen werden nicht direkt an Benutzer vergeben, sondern fachlichen Rollen anderer Anwendungen untergeordnet.
 
-Die Komponente Sicherheit ermöglicht innerhalb der Anwendung eine Autorisierung nur auf Basis von Rechten, nicht von Rollen.
-Jeder Rolle muss also zumindest ein Recht zugeordnet werden, um eine Autorisierung durchführen zu können.
-Werden im Lebens­zyklus der Anwendung weitere Rollen (für neu hinzukommende Akteure) definiert (und mit einer neuen Kombination von Rechten ausgestattet),
-so muss die Anwendung dafür nicht umprogrammiert werden.
+Wenn die Anwendung fachliche oder technische Batches enthält, dann müssen für diese Batches in der Spezifikation entsprechende „interne Systeme“ definiert werden.
+Die Systemnamen sollten dem folgenden Schema entsprechen: <Anwendungskürzel>_BAT_<Batchname in CamelCase>. Für jedes interne System müssen die fachlichen Rollen definiert werden, die diesem System zugeordnet sind.
 
-[[bereitstellen-von-rollen-im-benutzerverzeichnis]]
-== Bereitstellen von Rollen im Benutzerverzeichnis
-
-Damit Rollen auch an Benutzer im Benutzerverzeichnis vergeben werden können, müssen die Rollen in das Benutzerverzeichnis eingespielt werden.
-
-Dies erfolgt für Testsysteme und das Produktivsystem (im Rahmen von Inbetriebnahmen) per Import-Batch, bei dem ein Excel-Dokument mit zu importierenden Rollen
-in das Benutzerverzeichnis geladen wird.
-Der Import ist der einzige Weg, um Rollen hinzuzufügen.
-
-Mit dem Batch ist es möglich Rollen hinzuzufügen (Add), zu verändern (Upd) oder zu löschen (Del).
-
-Das Excel-Dokument zum Einspielen von Rollen benötigt ein Arbeitsblatt „Rollen“ und hat folgendes Format:
-
-:desc-table-EinspielenVonRollen: Einspielen von Rollen in das Benutzerverzeichnis (Beispiel)
-[id="table-EinspielenVonRollen",reftext="{table-caption} {counter:tables}"]
-.{desc-table-EinspielenVonRollen}
-[cols="1,2,2,2,3",options="header"]
-|====
-|*Aktion* |*Rollenlabel* |*Rollenname* |*Rollentyp* |*Unterrollen*
-|Add |BNVZ_Rolle1 |BNVZ_Rolle1 |fachlich |BHVZ_Schnittstellennutzer
-|Upd |BNVZ_Rolle2 |BNVZ_Rolle2 |fachlich |BHVZ_Schnittstellennutzer, +
-SVZ_Schnittstellennutzer
-|Del | |BNVZ_Rolle3 |  | 
-|====
-
-Zusätzlich zu den oben abgebildeten Spalten enthält das Excel-Dokument die folgenden weiteren Spalten, deren Inhalt bereits in Kapitel <<spezifikation-der-rollen>> beschrieben wurde:
-
-* *Rollenbeschreibung*
-* *SichtbarkeitAnwender*
-* *SichtbarkeitSystemeExtern*
-* *SichtbarkeitSystemeIntern*
-
-Nach der letzten zu importierenden Zeile des Arbeitsblatts sollte eine Zeile mit der Aktion „End“ eingefügt werden.
-Dies verbessert die Performance beim Import.
-Bei allen anderen Werten in der Spalte „Aktion“ wird die Zeile ignoriert.
-
-Zusätzlich kann das Excel-Dokument ein weiteres Tabellenblatt „Systeme“ enthalten.
-Dieses folgt demselben Schema zum Hinzufügen (Add), Ändern (Upd) und Löschen (Del) von Einträgen.
-Es dient dazu, die Systeme (interne und ggf. auch externe) zu pflegen, wie in Kapitel <<spezifikation-der-rollen>> beschrieben.
-Systeme sind im Benutzerverzeichnis spezialisierte Benutzer.
-Sie haben daher alle Attribute der Entitäten ETY_Benutzer, ETY_System und ETY_Rollenträger.
-
-Das Tabellenblatt „Systeme“ enthält die folgenden Spalten, deren Inhalte in den Attributbeschreibungen im Datenmodell des Benutzerverzeichnisses erklärt werden:
-
-* *Aktion*: „Add“, „Upd“, „Del“ oder „End“
-* *InterneKennung*
-* *Name*
-* *Status*: „gueltig“ oder „ungueltig“
-* *BHKNZ*: Kennzeichen der Organisation (Behördenkennzeichen) durch die das System genutzt wird.
-* *Anbieter*
-* *Intern*: „true“ oder „false“
-* *PasswortPlain*: Passwort im Klartext, wird beim Import verschlüsselt
-* *Anlagedatum*
-* *PasswortLaeuftAb*: „true“ oder „false“ (für Systeme sinnvollerweise „false“)
-* *PasswortLetzteAenderung*
-* *PasswortMussGeaendertWerden*: „true“ oder „false“
-* *Beschreibung*
-* *LetzteAenderung*
-* *LetzteAenderungDurch*
-* *RollenDirekt*: Die kommagetrennte Liste der direkt zugeordneten fachlichen Rollen des Systems
-
-*Motivation für die Updatefunktion*
-
-Die Löschung einer bereits verwendeten Rolle kann große Auswirkungen auf die Rollenzuordnung des Benutzerbestandes haben, da diese allen besitzenden Benutzern weggenommen werden muss.
-Eine nachträgliche hinzugefügte Ersatzrolle müsste dann manuell administrativ den Benutzern wieder zugeordnet werden.
-Das ist nicht praktikabel.
-Daher wird für eine Aktualisierung einer Rolle das Ändern einer Rolle (Upd) angeboten.
-Die Rollendefinition wird dabei verändert, während die Rolle allen Benutzern und Nutzergruppen zugeordnet bleibt.
-
-*Einschränkungen für den Rollenimport*
-
-Folgende Einschränkungen bestehen beim Import von Rollen:
-
-* Erzeugen einer Rolle:
-** Der Name der Rolle darf noch nicht vergeben sein.
-** Eine fachliche Rolle darf nur technische Unterrollen haben.
-Im Excel-Dokument referenzierte Unterrollen müssen im Datenbestand bereits bekannt sein, bzw.
-im Excel-Dokument weiter oben stehen.
-* Ändern einer Rolle
-** Der Typ der Rolle (fachlich, technisch) kann nicht geändert werden.
-** Der (neue) Name der Rolle darf nicht bereits an eine andere Rolle vergeben sein.
-* Löschen der Rolle: Handelt es sich um eine technische Rolle, so darf diese Rolle zum Zeitpunkt der Löschung nicht mehr in einer anderen Rolle als Unterrolle verwendet werden.
-Die fachliche Rolle ist zunächst explizit zu löschen.
-
-[[verwaltung-des-rollen-masters]]
-== Verwaltung des Rollen-Masters
-
-Die Rollendefinition der Anwendungslandschaft (in Form eines Excel-Dokuments) ist ein zentral zu verwaltendes Dokument, welches zur Befüllung von Testumgebungen verwendet wird.
-Es repräsentiert den insgesamt verfügbaren Rollenvorrat über alle Anwendungssysteme.
-Das Dokument trägt den Namen **Rollen-Master**.
-
-Änderungen am Rollenmodell im Rahmen von Wartungsarbeiten werden in dieses Dokument übertragen.
-Zum Einspielen einer Rollenänderung in ein produktiv- oder Testsystem wird jedoch ein passendes *Rollen-Delta* (ebenfalls Excel) verwendet, welches nach einer Inbetriebnahme gelöscht wird.
-
-Die Koordination der Änderungen am Rollen-Master obliegt dem Release-Verantwortlichen.
-
-[[releases-und-rollen-deltas]]
-== Releases und Rollen-Deltas
-
-Für jedes Release, welches Änderungen an dem Rollenbestand der Anwendungslandschaft vornimmt, werden ein oder mehrere Rollen-Deltas aufbauend auf dem Rollen-Master erstellt, die das Rollenmodell vom Ist-Zustand in den Soll-Zustand überführen.
-Die Rollen-Deltas werden in den Sourcen des zugehörigen IT-Systems im Verzeichnis `/src/main/skripte/sicherheit` abgelegt
-
-Diese Rollen-Deltas werden auf Testumgebungen im Rahmen der Integrationstests getestet und mit dem Release ausgeliefert.
-Die Reihenfolge, in der sie eingespielt werden müssen, wird im Releaseletter für die Rollendeltas definiert.
-Sie hängt von den Abhängigkeiten der Systeme ab, die in den Releaselettern der jeweiligen Systeme beschrieben sind.
 
 [[einbindung-der-komponente-sicherheit]]
 = Einbindung der Komponente Sicherheit
 
+Die Komponente Sicherheit ist eine Querschnittkomponente der <<IsyFactReferenzarchitektur>>.
+Diese Komponente ist von jeder konformen Anwendung zur Autorisierung von Zugriffen und Vorgängen zu verwenden.
+
+Für ein korrektes Funktionieren benötigt die Komponente Sicherheit die Komponente AufrufKontextVerwalter, deren Verwendung ebenfalls in diesem Kapitel erläutert wird.
+
+[[sicherheitsarchitektur-einer-anwendung]]
+== Sicherheitsarchitektur einer Anwendung
+
+[[ziele]]
+=== Ziele
+
+Die Ausgestaltung der Sicherheitsmechanismen für IsyFact-konforme Anwendungen hat das Ziel, die Autorisierung von Zugriffen auf IT-Systeme einer Anwendungslandschaft systematisch, einheitlich und einfach umzusetzen.
+
+* Die *Systematik* und Vollständigkeit der Berechtigungsprüfungen wird dadurch erreicht, dass Berechtigungsprüfungen in den IT-Systemen an definierten Stellen und auf identische Weise stattfinden.
+* Die *Einheitlichkeit* wird durch Bereitstellung der Komponente Sicherheit und Nutzungsvorgaben gewährleistet, die von allen IT-Systemen der Anwendungslandschaft zu verwenden sind.
+Berechtigungsprüfungen erfolgen innerhalb einer Anwendung immer über die Komponente Sicherheit.
+* Die *Einfachheit* der Nutzung der Komponente Sicherheit wird durch weitgehende Transparenz bei der Initialisierung, kompakte Schnittstellen und deklarative (z.B. per Annotation) statt programmatischer Implementierung erreicht.
+
+[[praemissen]]
+=== Prämissen
+
+Aus den im Abschnitt <<prinzipien-der-sicherheitsarchitektur>> beschriebenen Prinzipien leiten sich die folgenden Randbedingungen für die Umsetzung der Berechtigungsprüfung innerhalb einer Anwendung ab:
+
+* Anfragen die am Dialog einer Anwendung eingehen, sind immer bereits durch den Access-Manager authentifiziert.
+Der http-Header der Anfrage enthält die Identifikation des Benutzers und dessen Rollen.
+Die Informationen aus diesem Header werden in die Anwendung als `AufrufKontext` übernommen.
+* Anfragen die an einer Service-Schnittstelle einer Anwendung eingehen, sind immer bereits durch den Access-Manager authentifiziert.
+Das mit der Anfrage an eine Anwendung als Parameter übergebene `AufrufKontextTo` enthält die Identifikation des Benutzers und dessen Rollen und wird in der Anwendung als `AufrufKontext` verwendet.
+* Prozesse, die unabhängig von eingehenden Anfragen (über GUI und Service) durch eine Anwendung gestartet werden, müssen zunächst einen (meist technischen) Benutzer gegen den Access-Manager authentifizieren, dessen Rollen ermitteln und diese Informationen als `AufrufKontext` in der Anwendung hinterlegen.
+* Einem innerhalb der Logik- und Verarbeitungszone einer Anwendung übergebenen `AufrufKontext` kann vertraut und ohne erneute Rückfrage an den Access-Manager verwendet werden.
+
+[[software-architektur]]
+=== Software-Architektur
+
+Die folgende Abbildung zeigt den logischen Aufbau für die Authentifizierung und für die Bereitstellung von Berechtigungsinformationen an die Komponenten einer Anwendung.
+
+:desc-image-Berechtigungspruefung: Software-Architektur der Berechtigungsprüfung
+[id="image-Berechtigungspruefung",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-Berechtigungspruefung}
+image::sicherheit_001.png[align="center"]
+
+Im Folgenden werden die Aufgaben und grobe Funktionsweise der Komponenten für die Autorisierung von Anfragen in einer Fachanwendung erläutert.
+
+Die Komponente `AufrufKontextVerwalter` stellt für eine laufende Anfrage Kontextinformationen zur Anfrage bereit, die in einem `AufrufKontext` hinterlegt werden.
+Das sind insbesondere die mit der Anfrage über die Außenschnittstelle eingehenden Informationen zum Benutzer und dessen Rollen, die Korrelations-ID und anwendungsspezifisch ggf.
+weitere Informationen.
+Die Komponente bringt Hilfsmittel zur transparenten Nutzung des AufrufKontextVerwalters mit.
+So wird kann über den StelltaufrufkontextBereitInterceptor der `AufrufKontext` bei Serviceaufrufen transparent über Spring AOP gesetzt werden.
+Weiterhin wird der Aufrufkontext durch die Komponente Sicherheit im Rahmen der Authentifizierung automatisch befüllt.
+Nach Initialisierung des AufrufKontextVerwalters für eine laufende Anfrage kann die Anwendung fortan transparent mit den im `AufrufKontextVerwalter` hinterlegten Benutzerinformationen arbeiten (ohne deren Herkunft zu kennen) und damit auch weitere Nachbarsysteme aufrufen.
+
+Die Komponente Sicherheit bietet folgende Funktionen:
+
+* für Service-Aufrufe werden Interceptoren angeboten, welche über Spring AOP eine deklarative Berechtigungsprüfung ermöglichen.
+* für den Kontext der Anfrage stellt die Komponente einen Berechtigungsmanager zur Verfügung, der die Rollen des anfragenden Benutzers kennt.
+Die Informationen zum anfragenden Benutzer werden – falls vorhanden – aus dem `AufrufKontextVerwalter` entnommen.
+Die Fachkomponenten einer Anwendung nutzen den Berechtigungsmanager für spezielle Berechtigungsprüfungen, die nicht deklarativ über Annotationen erfolgen.
+* Benutzer können anhand der übergebenen Benutzerkennung (und Passwort) authentifiziert werden.
+Dazu wird der Access-Manager angesprochen.
+Die gewonnenen Informationen werden im `AufrufKontextVerwalter` hinterlegt.
+* Der AccessManager kann für verschiedene Berechtigungsquellen implementiert werden.
+Mit Sicherheit-CAMS wird eine Implementierung für den CAMS angeboten.
+
+Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring-Security durchgeführt.
+Die Integration von Spring-Security und Sicherheit werden in <<DetailkonzeptKomponenteWebGUI>> beschrieben.
+
 [[aussensicht-der-komponente-sicherheit]]
 == Außensicht der Komponente Sicherheit
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
+// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Im Folgenden wird die Schnittstelle der Komponente Sicherheit beschrieben.
 
@@ -192,7 +160,7 @@ Die Implementierung des zu verwendenden Aufrufkontexts richtet sich nach dem ver
 
 [[erzeugen-eines-berechtigungsmanagers]]
 == Erzeugen eines Berechtigungsmanagers
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
+// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Die Komponente erzeugt für einen angegebenen Benutzer eine Instanz des Berechtigungsmanagers.
 Der Berechtigungsmanager ist ein Container für die Berechtigungsinformationen des Benutzers, also für Rechte und Rollen.
@@ -213,7 +181,7 @@ Aus Sicht des CAMS erfolgt anschließend erfolgt sofort der Logout.
 
 [[verwendung-des-berechtigungsmanagers]]
 == Verwendung des Berechtigungsmanagers
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
+// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Der Berechtigungsmanager wird selten direkt im Programmcode verwendet, da die meisten Berechtigungsprüfungen deklarativ per Annotationen oder
 Webflow-Tags (siehe Abschnitt <<autorisierung-innerhalb-einer-anwendung>>) umgesetzt werden.
@@ -243,214 +211,10 @@ Diese Methode prüft, ob der Benutzer das angegebene Recht hat.
 `pruefeRecht()`::
 Diese Methode prüft, ob der Benutzer das angegebene Recht hat und löste eine AutorisierungFehlgeschlagenException aus, wenn das nicht der Fall ist.
 
-[[pruefung-der-erreichbarkeit-des-access-managers-ping]]
-== Prüfung der Erreichbarkeit des Access Managers (Ping)
-
-Die Komponente Sicherheit bietet über das Bean SicherheitAdmin die Möglichkeit die Verfügbarkeit des Nachbarsystems Access-Manager zu prüfen.
-
-:desc-image-schnittstelle-von-sicherheitadmin: Schnittstelle von SicherheitAdmin
-[id="image-schnittstelle-von-sicherheitadmin",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-schnittstelle-von-sicherheitadmin}
-image::sicherheit_004.png[pdfwidth=45%,width=45%,align="center"]
-
-`pingAccessManager`::
-Es wird ein Ping gegen den Access-Manager durchgeführt, um dessen Erreichbarkeit zu prüfen.
-Diese Methode kann von nutzenden Anwendungen in die Watchdog-Test-Methode der Überwachung eingebunden werden.
-
-[[konfiguration]]
-== Konfiguration
-
-Zum Einbinden der Sicherheitskomponente und des AufrufKontextVerwalters sind wenige Konfigurationen erforderlich.
-
-[[maven-konfiguration]]
-=== Maven-Konfiguration
-
-Die Komponente Sicherheit wird per Maven-Dependency in das Projekt eingebunden:
-
-:desc-listing-konfiguration-fuer-maven: Konfiguration für Maven
-[id="listing-konfiguration-fuer-maven",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-fuer-maven}
-[source, xml]
-----
-<dependency>
-  <groupId>de.bund.bva.pliscommon</groupId>
-  <artifactId>plis-sicherheit-cams</artifactId>
-  <version>AKTUELLE VERSION DER KOMPONENTE SICHERHEIT</version>
-</dependency>
-----
-
-[[spring-konfiguration]]
-=== Spring-Konfiguration
-
-Die benötigten Beans für Sicherheit, `AufrufKontext` und angebotener Annotationen werden in der separaten Spring-Konfigurationsdatei `/resources/spring/querschnitt/sicherheit.xml` konfiguriert.
-
-:desc-listing-konfiguration-fuer-spring: Konfiguration für Spring
-[id="listing-konfiguration-fuer-spring",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-fuer-spring}
-[source, xml]
-----
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:sec="http://www.springframework.org/schema/security" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-  <!-- @StelltAufrufKontextBereit Annotation einschalten -->
-  <bean id="aufrufKontextInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereitInterceptor">
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="aufrufKontextPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit)"/>
-    <aop:advisor pointcut-ref="aufrufKontextPointcut" advice-ref="aufrufKontextInterceptor"/>
-  </aop:config>
-  <!-- @NutzerAuthentifizierung Annotation einschalten -->
-  <bean id="nutzerAuthentifizierungInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierungInterceptor">
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="konfiguration" ref="konfiguration"/>
-    <property name="sicherheit" ref="sicherheit"/>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="nutzerAuthentifizierungPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung) || @within(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung)"/>
-    <aop:advisor pointcut-ref="nutzerAuthentifizierungPointcut" advice-ref="nutzerAuthentifizierungInterceptor"/>
-  </aop:config>
-  <!-- `@Gesichert` Annotation einschalten -->
-  <bean id="gesichertInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.GesichertInterceptor">
-    <property name="sicherheit" ref="sicherheit"/>
-    <property name="sicherheitAttributeSource">
-      <bean class="de.bund.bva.pliscommon.sicherheit.annotation.AnnotationSicherheitAttributeSource"/>
-    </property>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="gesichertPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert) || @within(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert)"/>
-    <aop:advisor pointcut-ref="gesichertPointcut" advice-ref="gesichertInterceptor"/>
-  </aop:config>
-  <!-- @StelltLoggingKontextBereit Annotation einschalten -->
-  <bean id="stelltLoggingKontextBereitInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"></bean>
-  <aop:config>
-    <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
-    <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut" advice-ref="stelltLoggingKontextBereitInterceptor"/>
-  </aop:config>
-  <!-- Factory zum Erzeugen neuer Aufruf-Kontexte -->
-  <bean id="aufrufKontextFactory" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
-    <property name="aufrufKontextKlasse" value="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl"/>
-  </bean>
-  <!--
-    `AufrufKontextVerwalter` definieren (jeder Request hat einen eigenen Kontext (-Verwalter))
-  -->
-  <bean id="aufrufKontextVerwalter" scope="thread" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl">
-    <aop:scoped-proxy/>
-  </bean>
-  <!--
-  ===================================================================== Über diese Bean wird die Komponente
-  Sicherheit Einsatzbereit gemacht =====================================================================
-  -->
-  <bean id="sicherheit" class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitImpl">
-    <property name="rollenRechteDateiPfad" value="/resources/sicherheit/rollenrechte.xml"/>
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="accessManager" ref="camsAccessManager"/>
-    <property name="konfiguration" ref="konfiguration"/>
-    <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
-  </bean>
-  <!-- Zur Überwachung der Verfügbarkeit des Cams -->
-  <bean id="sicherheitAdmin" class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitAdminImpl">
-    <property name="accessManager" ref="camsAccessManager"/>
-  </bean>
-  <!--
-  ===================================================================== Konfiguration der CAMS Implementierung
-  des AccessManagers =====================================================================
-  -->
-  <bean id="camsAccessManager" class="de.bund.bva.pliscommon.sicherheit.cams.CamsAccessManagerImpl" depends-on="konfiguration">
-    <constructor-arg index="0">
-      <value>classpath:/config/cams-webagent.conf</value>
-    </constructor-arg>
-    <constructor-arg index="1">
-      <ref bean="konfiguration"/>
-    </constructor-arg>
-  </bean>
-</beans>
-----
-
-Die Property `cacheKonfiguration` der Bean `sicherheit` beinhaltet den Pfad zu einer Cache-Konfiguration.
-Dieser Parameter ist optional.
-Der Client besitzt schon eine Standard-Konfiguration für den Cache.
-Muss die Konfiguration der Authentifizierungs-Caches angepasst werden, so wird diese Cache-Konfiguration benötigt.
-Der Standard-Wert für die Lebensdauer von Cache-Elemente liegt bei 5 Minuten, die maximale Anzahl an Elementen in einem Schlüsselcache Cache liegt bei `1000`.
-Die Standard-Konfiguration befindet sich im Anhang.
-Die Werte für die Lebensdauer von Cache-Elementen und die Anzahl der Elemente kann über die betriebliche Konfiguration angepasst werden (siehe <<konfiguration-des-caches>>).
-
-Die Spring-Konfiguration der Komponente Sicherheit wird in die allgemeine Spring-Konfiguration der Querschnittsfunktionalität der Anwendung in `/resources/spring/querschnitt.xml` eingebunden.
-
-:desc-listing-konfiguration-in-querschnitt: Konfiguration Sicherheit in querschnitt.xml
-[id="listing-konfiguration-in-querschnitt",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-in-querschnitt}
-[source, xml]
-----
-[…]
-  <import resource="querschnitt/sicherheit.xml" />
-[…]
-----
-
-[[scope-des-aufrufkontextverwalters]]
-=== Scope des AufrufKontextVerwalters
-
-Der `AufrufKontextVerwalter` ist in einem geeigneten Spring-Scope zu halten.
-Welcher Scope geeignet ist, ist abhängig von der Art der Verarbeitung:
-
-* für Anfragen über die GUI oder über eine Service-Schnittstelle wird der Request-Scope (alternativ Thread-Scope) verwendet
-
-[source, xml]
-----
-<!-- definiere AufrufKontextVerwalter; jeder Request hat einen eigenen -->
-<bean id="aufrufKontextVerwalter" scope="request" class="..." >
-----
-* für Batches wird ein Singleton (alternativ Thread-Scope) verwendet
-
-[source, xml]
-----
-<!-- definiere `AufrufKontextVerwalter` für Batches als Singleton -->
-<bean id="aufrufKontextVerwalter" class="..." >
-----
-
-* für Workflow-Threads innerhalb einer Fachanwendung wird der Thread-Scope verwendet.
-
-[source, xml]
-----
-<!-- definiere `AufrufKontextVerwalter` für interne Threads mit ThreadScope -->
-<bean id="aufrufKontextVerwalter" scope="thread" class="..." >
-----
-
-Ab Spring 3 kann auch generell der Thread-Scope verwendet werden.
-
-[[konfiguration-fuer-den-access-manager]]
-=== Konfiguration für den Access Manager
-
-Die Komponente Sicherheit verwendet eine Client-Bibliothek des Access-Managers, um einen Benutzer gegen den Access-Manager-Service zu authentifizieren.
-
-Wenn als Access-Manager CAMS verwendet wird, ist eine Konfiguration in der betrieblichen Konfigurationsdatei `_/config/cams-webagent.conf_` erforderlich.
-Da diese Konfiguration in der Regel langjährig unverändert verwendet wird und lediglich die Aufrufadresse anzupassen ist, wird auf die Darstellung der Konfiguration hier verzichtet.
-
-[[konfiguration-des-caches]]
-=== Konfiguration des Caches
-
-Um den Access Manager zu entlasten, kann ein Cache eingeschaltet werden.
-Die Konfiguration des Caches erfolgt über die betriebliche Konfiguration.
-Hierzu sind folgende Parameter zu setzen:
-
-[source,java]
-----
-# Zeit in Sekunden, die ein Eintrag im Cache verweilt, bis er als ungültig
-# markiert wird.
-# Time-To-Live 0 deaktiviert den Cache.
-sic.caching.ttl=300
-
-# Maximale Anzahl an Elementen, die im Cache vorgehalten werden. Die Elemente, # die am
-# längsten nicht verwendet wurden, werden aus dem Cache entfernt.
-# Der Cache hat eine unbegrenzte Größe, wenn der Wert auf 0 gesetzt wird.
-sic.caching.max.elements=10000
-----
-
-Wird der Parameter `sic.caching.ttl` auf 0 gesetzt oder nicht konfiguriert, ist der Cache deaktiviert.
-Wird der Parameter `sic.caching.max.elements` auf 0 gesetzt, werden beliebig viele Elemente im Cache vorgehalten.
 
 [[autorisierung-innerhalb-einer-anwendung]]
 = Autorisierung innerhalb einer Anwendung
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
+// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Vor Durchführung von Autorisierungsprüfungen bei der Bearbeitung einer Anfrage ist einmalig für die laufende Anfrage der `AufrufKontextVerwalter` mit dem `AufrufKontext` zu füllen, damit die Komponente Sicherheit während der Bearbeitung der Anfrage korrekt funktioniert.
 Sowohl für die Entgegennahme des AufrufKontextes, als auch für die eigentliche Autorisierung werden mit den Komponenten Sicherheit und Aufrufkontext einige Hilfsmittel angeboten.
@@ -781,7 +545,7 @@ Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfigurati
 
 [[aufrufen-von-nachbarsystemen]]
 == Aufrufen von Nachbarsystemen
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
+// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 So wie eine Anwendung bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, welches von der eigenen Anwendung aufgerufen wird.
 Das aufrufende System muss daher einen Aufrufkontext mitliefern.
@@ -811,86 +575,3 @@ Das Beispiel enthält folgende Schritte:
 * Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird vom `AufrufKontextVerwalter` abgerufen.
 * Es wird ein Dozer-Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
 * Das erzeugte `AufrufKontextTo` der Service-API wird an die Schnittstelle des Service-Client übergeben.
-
-[[verwendung-der-korrelations-id]]
-== Verwendung der Korrelations-ID
-
-Der `AufrufKontext` enthält auch die Korrelations-ID, die während der Bearbeitung einer Anfrage in der Anwendungslandschaft alle zusammen­ge­hö­ren­den Log-Ausgaben einer Anfrage durch eine gemeinsame ID kennzeichnet – auch wenn die Anfrage mehrere Teilsysteme der Anwendungslandschaft verwendet.
-Dies erfordert eine Entgegennahme, Verwendung und Weiterleitung einer Korrelations-ID über alle Service-Aufrufe hinweg.
-Details zum Aufbau der Korrelations-ID sind in <<NutzungsvorgabenLogging>> beschrieben.
-
-Eine Korrelations-ID wird entweder bereits im eingehenden Aufruf mitgeliefert, oder muss neu erzeugt werden.
-
-[[entgegennahme-der-korrelations-id-in-der-gui]]
-=== Entgegennahme der Korrelations-ID in der GUI
-
-Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb des `HttpHeaderParser` der Bibliothek `plis-sicherheit`-cams.
-
-[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
-=== Entgegennahme der Korrelations-ID an einer Service-SST
-
-Die Entgegennahme (ggf. Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der Http-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
-
-[[ablage-und-weiterleitung-der-korrelations-id]]
-=== Ablage und Weiterleitung der Korrelations-ID
-
-Die Korrelations-ID wird für das Logging im MDC abgelegt.
-Gleichzeitig wird diese jedoch auch im vom `AufrufKontextVerwalter` verwalteten `AufrufKontext` hinterlegt.
-Ist dies der Fall, so wird die Korrelations-ID beim Aufruf des RemoteBeans des Nachbar­systems als Bestandteil des AufrufKontextes automatisch weitergeleitet.
-
-[[verwenden-anwendungsspezifischer-aufrufkontexte]]
-== Verwenden anwendungsspezifischer Aufrufkontexte
-
-Gelegentlich möchte eine Anwendung zusätzliche Informationen im `AufrufKontextVerwalter` ablegen.
-Hierzu lässt sich eine anwendungs­spezifische Spezialisierung des `de.bund.bva.pliscommon.kontext.AufrufKontextImpl` verwenden, der den `AufrufKontext` um zusätzliche Attribute erweitert.
-
-:desc-listing-verwendung-des-aufrufkontextes: Verwendung eines anwendungsspezifischen AufrufKontext
-[id="listing-verwendung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-verwendung-des-aufrufkontextes}
-[source,xml]
-----
-<!—- Erstellt den anwendungsspezifischen `AufrufKontext` -->
-  <bean
-      id="aufrufKontextFactory"
-      class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
-
-    <property
-      name="aufrufKontextKlasse"
-      value="de.bund.bva.pliscommon.aufrufkontext.impl.<Anwendungsspezifisch>AufrufKontextImpl" />
-  </bean>
-----
-
-Die zusätzlichen Attribute können bereits beim automatischen Befüllen des AufrufKontextVerwalters gesetzt werden.
-So wäre es beispielsweise möglich, bei der Annahme eines Requests den Anfragezeitpunkt im Aufrufkontext festzuhalten.
-Dazu kann eine anwendungsspezifische AufrufKontextFactory verwendet werden.
-
-[[entwickeln-und-testen-ohne-access-manager-service]]
-== Entwickeln und Testen ohne Access-Manager-Service
-
-Hier wird erläutert, wie ein konfigurierbarer Stub des Aufruf­KontextVerwalters verwendet werden kann, um für eine in Entwicklung oder Test befindliche Anwendung das Vorliegen eines Aufrufkontextes (mit Informationen zu einem Benutzer und dessen Rollen) zu simulieren, obwohl bei einer Anfrage gar kein Aufrufkontext übergeben wurde.
-
-Mit Hilfe dieses Stubs kann auf die Verwendung eines Access Managers in der Software-Entwicklungsumgebung verzichtet werden.
-Der Stub gibt bei jeder Anfrage die statisch konfigurierten Benutzerdaten zurück.
-Die Konfiguration erfolgt in _/resources/spring/querschnitt/sicherheit.xml_.
-
-:desc-listing-konfiguration-aufrufkontext-stub: Konfiguration Aufrufkontext-Stub
-[id="listing-konfiguration-aufrufkontext-stub",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-aufrufkontext-stub}
-[source,xml]
-----
-<!-- Verwende Stub Implementierung für die Entwicklung -->
-<bean id="aufrufKontextVerwalter" class="de.bund.bva.pliscommon.
-aufrufkontext.stub.AufrufKontextVerwalterStub" scope="request">
-  <aop:scoped-proxy/>
-  <property name="rollen">
-    <list>
-      <value><Rolle1, die der Benutzer im Test haben soll></value>
-       <value><Rolle2, die der Benutzer im Test haben soll></value>
-    </list>
-  </property>
-  <property name="durchfuehrendeBehoerde" value="42" />
-  <property name="aufrufKontextFactory" ref="aufrufKontextFactory" />
-</bean>
-----
-
-Neben der gezeigten Eigenschaft „Rollen“ und durchführende Behörde lassen sich auch alle weiteren Eigenschaften des Benutzers konfigurieren.
