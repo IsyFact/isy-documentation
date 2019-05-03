@@ -11,8 +11,6 @@ include::../../../common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -24,10 +22,10 @@ endif::[]
 toc::[]
 
 // Einleitung
-include::thisdoc.adoc[]
+include::thisdoc.adoc[tags=inhalt]
 
 // Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 

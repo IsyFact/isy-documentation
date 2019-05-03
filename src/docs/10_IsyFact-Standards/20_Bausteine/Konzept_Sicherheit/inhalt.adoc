@@ -1,10 +1,29 @@
-// ASCIIDOC Attribute
+= Konzept Sicherheit: Inhalt
 include::../../../common/isyfact-attributes.adoc[]
 include::../../../common/attributes.adoc[]
 
+// tag::inhalt[]
+[[prinzipien-der-sicherheitsarchitektur]]
+== Prinzipien der Sicherheitsarchitektur
+
+Die Sicherheitsarchitektur einer konkreten Anwendungslandschaft wird zum großen Teil innerhalb des spezifischen Berechtigungskonzepts für diese Landschaft festgelegt.
+Sie kann daher nicht Teil des vorliegenden Nutzerdokumentation der Sicherheitskomponente sein.
+
+Auf der technischen Ebene macht jedoch die IsyFact-Referenzarchitektur bestimmte Vorgaben für die Sicherheitsarchitektur und für die Prinzipien, nach denen sie aufgebaut ist.
+
+Die konkrete Sicherheitsarchitektur einer Anwendungslandschaft muss nach folgenden Prinzipien gestaltet sein:
+
+* Authentifizierung und grobgranulare Autorisierung an den Außenschnittstellen des Systems (Portal, Service-Gateway, Native-Client-Serviceproxy). Hier finden der Session-Aufbau und die Rollenermittlung durch den Access-Manager statt.
+* Grobgranulare Autorisierung vor den GUI-Schnittstellen der Anwendungen, z.B. mittels Servlet-Agent des Access-Managers.
+* Feingranulare Autorisierung in den Schnittstellen und im Anwendungskern der Anwendungen über die Komponente Sicherheit.
+
+
+IsyFact-konforme Anwendungen sind gegen nicht autorisierte Nutzung zu schützen.
+Authentifizierung und Autorisierung finden nach den Vorgaben des Berechtigungskonzepts <<Berechtigungskonzept>> statt, welches wesentliche Aspekte der Sicherheitsarchitektur beschreibt.
+Das Berechtigungskonzept muss für jede Anwendungslandschaft individuell erstellt werden und ist daher kein Bestandteil der IsyFact.
 
 [[das-rollenbasierte-berechtigungskonzept]]
-= Das rollenbasierte Berechtigungskonzept
+== Das rollenbasierte Berechtigungskonzept
 
 Die Vergabe von Rollen ist _das_ Mittel der Benutzeradministration, um Benutzer der Anwendungslandschaft mit Berechtigungen auszustatten.
 Die Vergabe von Rollen an einen Benutzer (menschliche und technische) erfolgt in der Anwendung Benutzerverzeichnis.
@@ -24,7 +43,7 @@ Alle Anwender mit der Rolle AnwendungX_Administrator sind somit innerhalb der An
 Wie Rollen und Rechte spezifiziert, bereitgestellt, konfiguriert und Benutzern zugeordnet werden, wird im Folgenden beschrieben.
 
 [[spezifikation-der-rollen]]
-== Spezifikation der Rollen
+=== Spezifikation der Rollen
 
 Die Grundlage für die Umsetzung einer angemessenen Absicherung einer Anwendung wird in der Spezifikation der Anwendung gelegt.
 
@@ -67,7 +86,7 @@ Die Systemnamen sollten dem folgenden Schema entsprechen: <Anwendungskürzel>_BA
 
 
 [[einbindung-der-komponente-sicherheit]]
-= Einbindung der Komponente Sicherheit
+== Einbindung der Komponente Sicherheit
 
 Die Komponente Sicherheit ist eine Querschnittkomponente der <<IsyFactReferenzarchitektur>>.
 Diese Komponente ist von jeder konformen Anwendung zur Autorisierung von Zugriffen und Vorgängen zu verwenden.
@@ -75,10 +94,10 @@ Diese Komponente ist von jeder konformen Anwendung zur Autorisierung von Zugriff
 Für ein korrektes Funktionieren benötigt die Komponente Sicherheit die Komponente AufrufKontextVerwalter, deren Verwendung ebenfalls in diesem Kapitel erläutert wird.
 
 [[sicherheitsarchitektur-einer-anwendung]]
-== Sicherheitsarchitektur einer Anwendung
+=== Sicherheitsarchitektur einer Anwendung
 
 [[ziele]]
-=== Ziele
+==== Ziele
 
 Die Ausgestaltung der Sicherheitsmechanismen für IsyFact-konforme Anwendungen hat das Ziel, die Autorisierung von Zugriffen auf IT-Systeme einer Anwendungslandschaft systematisch, einheitlich und einfach umzusetzen.
 
@@ -88,7 +107,7 @@ Berechtigungsprüfungen erfolgen innerhalb einer Anwendung immer über die Kompo
 * Die *Einfachheit* der Nutzung der Komponente Sicherheit wird durch weitgehende Transparenz bei der Initialisierung, kompakte Schnittstellen und deklarative (z.B. per Annotation) statt programmatischer Implementierung erreicht.
 
 [[praemissen]]
-=== Prämissen
+==== Prämissen
 
 Aus den im Abschnitt <<prinzipien-der-sicherheitsarchitektur>> beschriebenen Prinzipien leiten sich die folgenden Randbedingungen für die Umsetzung der Berechtigungsprüfung innerhalb einer Anwendung ab:
 
@@ -101,7 +120,7 @@ Das mit der Anfrage an eine Anwendung als Parameter übergebene `AufrufKontextTo
 * Einem innerhalb der Logik- und Verarbeitungszone einer Anwendung übergebenen `AufrufKontext` kann vertraut und ohne erneute Rückfrage an den Access-Manager verwendet werden.
 
 [[software-architektur]]
-=== Software-Architektur
+==== Software-Architektur
 
 Die folgende Abbildung zeigt den logischen Aufbau für die Authentifizierung und für die Bereitstellung von Berechtigungsinformationen an die Komponenten einer Anwendung.
 
@@ -136,7 +155,7 @@ Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring-Secu
 Die Integration von Spring-Security und Sicherheit werden in <<DetailkonzeptKomponenteWebGUI>> beschrieben.
 
 [[aussensicht-der-komponente-sicherheit]]
-== Außensicht der Komponente Sicherheit
+=== Außensicht der Komponente Sicherheit
 // TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Im Folgenden wird die Schnittstelle der Komponente Sicherheit beschrieben.
@@ -159,7 +178,7 @@ Diese Zuordnung erfolgt über die Konfigurationsdatei `rollenrechte.xml`.
 Die Implementierung des zu verwendenden Aufrufkontexts richtet sich nach dem verwendeten AccessManager.
 
 [[erzeugen-eines-berechtigungsmanagers]]
-== Erzeugen eines Berechtigungsmanagers
+=== Erzeugen eines Berechtigungsmanagers
 // TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Die Komponente erzeugt für einen angegebenen Benutzer eine Instanz des Berechtigungsmanagers.
@@ -180,7 +199,7 @@ Der AccessManager ermittelt dann die Rollen des Benutzers und diese werden im `A
 Aus Sicht des CAMS erfolgt anschließend erfolgt sofort der Logout.
 
 [[verwendung-des-berechtigungsmanagers]]
-== Verwendung des Berechtigungsmanagers
+=== Verwendung des Berechtigungsmanagers
 // TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Der Berechtigungsmanager wird selten direkt im Programmcode verwendet, da die meisten Berechtigungsprüfungen deklarativ per Annotationen oder
@@ -213,7 +232,7 @@ Diese Methode prüft, ob der Benutzer das angegebene Recht hat und löste eine A
 
 
 [[autorisierung-innerhalb-einer-anwendung]]
-= Autorisierung innerhalb einer Anwendung
+== Autorisierung innerhalb einer Anwendung
 // TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Vor Durchführung von Autorisierungsprüfungen bei der Bearbeitung einer Anfrage ist einmalig für die laufende Anfrage der `AufrufKontextVerwalter` mit dem `AufrufKontext` zu füllen, damit die Komponente Sicherheit während der Bearbeitung der Anfrage korrekt funktioniert.
@@ -245,13 +264,13 @@ Für die Autorisierungsprüfung stellt die `isy-sicherheit` neben dem Berechtigu
 * Für Autorisierungen im Anwendungskern kann die Annotation `@Gesichert` oder direkt der `Berechtigungsmanager` verwendet werden.
 
 [[autorisierung-in-der-gui]]
-== Autorisierung in der GUI
+=== Autorisierung in der GUI
 
 Hier wird erklärt, wie der Dialog einer Geschäftsanwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
 Die Umsetzung der Autorisierungsprüfung in der GUI ist in <<DetailkonzeptKomponenteWebGUI>> beschrieben.
 
 [[implementierung-im-webflow]]
-=== Implementierung im Webflow
+==== Implementierung im Webflow
 
 Ein Webflow (oder auch ausgewählte Zustände und Transitionen) können durch das <secured/> Tag gesichert werden.
 Hier kann geprüft werden, ob ein Benutzer ein oder mehrere erforderliche Recht(e), aufgrund der ihm zugeordneten Rolle besitzt.
@@ -280,7 +299,7 @@ Die Bibliothek `plis-sicherheit-cams` enthält einen `CamsAuthentication­Proces
 Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontexts transparent für sämtliche Aufrufe der GUI.
 
 [[konfiguration-1]]
-=== Konfiguration
+==== Konfiguration
 
 Folgende Konfiguration in `/resources/spring/querschnitt/sicherheit.xml` ist erforderlich:
 
@@ -320,14 +339,14 @@ Folgende Konfiguration in `/resources/spring/querschnitt/sicherheit.xml` ist erf
 ----
 
 [[autorisierung-an-einer-service-schnittstelle]]
-== Autorisierung an einer Service-Schnittstelle
+=== Autorisierung an einer Service-Schnittstelle
 
 Hier wird erklärt, wie eine Service-Schnittstelle einer Anwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
 
 Die Umsetzung der Autorisierungsprüfung in angebotenen Schnittstellen ist in <<DetailkonzeptKomponenteService>> beschrieben.
 
 [[implementierung]]
-=== Implementierung
+==== Implementierung
 
 Methoden der Service-Implementierung werden durch die Annotation `@Gesichert` gesichert.
 Die Annotation hat das Feld Recht, mit der ein oder mehrere geforderte Rechte konfiguriert werden können.
@@ -367,7 +386,7 @@ wird nicht empfohlen, diese Ausnahme spezifisch zu behandeln.
 Das normale Fehlerhandling greift.
 
 [[autorisierung-eines-batches]]
-== Autorisierung eines Batches
+=== Autorisierung eines Batches
 
 Hier wird erklärt, wie ein Batchlauf einer Anwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
 Die Integration der T-Komponente Sicherheit ist im Batchrahmen ab Version 1.1 enthalten.
@@ -384,7 +403,7 @@ In Ausnahmefällen ist es auch möglich, einen Batch zu implementieren, der ohne
 Dies ist nur möglich, wenn bei Aufrufen des Anwendungskerns keine Autorisierungsprüfungen stattfinden und auch keine Nachbarsystemschnittstellen aufgerufen werden.
 
 [[implementierung-1]]
-=== Implementierung
+==== Implementierung
 
 Der Batchrahmen fordert vom BatchAusführungsBean die Implementierung der Methode: `getAuthenticationCredentials()`, in der dem Batchrahmen bekanntgegeben wird mit welchem Benutzer der Batch laufen soll.
 
@@ -422,7 +441,7 @@ public BatchAuthenticationCredentials getAuthenticationCredentials(
 Soll der Batch ohne Benutzer laufen, so ist `null` zurückzugeben.
 
 [[konfiguration-2]]
-=== Konfiguration
+==== Konfiguration
 
 Für eine korrekte Funktion wird in der Anwendung die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
 
@@ -456,14 +475,14 @@ sic.camsagent.nutzertyp=unbekannt
 Hier wird festgelegt, dass ein Aufrufer gegen die im Access-Manager konfigurierte Security-Domain applicationplatform authentifiziert wird.
 
 [[autorisierung-im-service-gateway]]
-==  Autorisierung im Service-Gateway
+===  Autorisierung im Service-Gateway
 
 Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet die T-Komponente Sicherheit, um den Benutzer einer eingehenden Anfrage zu
 authentifizieren und zu autorisieren.
 Sie verwendet dazu die Bibliothek `plis-sgw-util`, in der `isy-sicherheit` eingebunden ist.
 
 [[autorisierung-einer-anfrage-an-ein-service-gateway]]
-=== Autorisierung einer Anfrage an ein Service-Gateway
+==== Autorisierung einer Anfrage an ein Service-Gateway
 
 Ein Service eines Service-Gateways wird aufgerufen.
 Mit der Anfrage wird die Benutzerkennung des anfragenden Benutzers übermittelt.
@@ -476,7 +495,7 @@ Beim Weiterleiten der Anfrage an den Service der Fachanwendung wird der `AufrufK
 Kapitel <<aufrufen-von-nachbarsystemen>>).
 
 [[konfiguration-3]]
-=== Konfiguration
+==== Konfiguration
 
 Für eine korrekte Funktion wird im Service-Gateway die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
 
@@ -497,13 +516,13 @@ sic.camsagent.nutzertyp=unbekannt
 Hier wird festgelegt, dass ein Aufrufer gegen die Security-Domain des Access-Managers servicegateway authentifiziert wird.
 
 [[autorisierung-im-anwendungskern]]
-== Autorisierung im Anwendungskern
+=== Autorisierung im Anwendungskern
 
 Im Regelfall wird die Autorisierung einer Anfrage an den Schnittstellen der Anwendung durchgeführt.
 Es ist jedoch bei Bedarf auch möglich, Prüfungen innerhalb des Anwendungskerns durchzuführen.
 
 [[autorisierung-an-methoden-des-anwendungskerns]]
-=== Autorisierung an Methoden des Anwendungskerns
+==== Autorisierung an Methoden des Anwendungskerns
 
 Im Anwendungskern kann durch Verwendung der Annotation `@Gesichert` an Methoden des Anwendungskerns deklarativ festgelegt werden, wo eine Berechtigungsprüfung erfolgen soll.
 Hier wird ausgewertet, welche Rollen und/oder Rechte der Benutzer haben muss, damit der Zugriff gewährt wird.
@@ -512,7 +531,7 @@ Die Anwendung fragt bei der Komponente Sicherheit die Rollen und Rechte des Benu
 Voraussetzung für das Funktionieren der Annotation `@Gesichert` ist, dass im Rahmen des Aufrufs der Anwendung der `AufrufKontextVerwalter` bereits gefüllt wurde.
 
 [[autorisierung-in-methoden-des-anwendungskerns]]
-=== Autorisierung in Methoden des Anwendungskerns
+==== Autorisierung in Methoden des Anwendungskerns
 
 Prüfungen können auch ausprogrammiert werden.
 Dabei wird die Komponente Sicherheit verwendet.
@@ -520,7 +539,7 @@ Hierzu wird das Bean Sicherheit in die Komponente des Anwendungskerns injiziert 
 Der Berechtigungsmanager stellt die Methoden `getRechte()`, `getRecht()`, `hatRecht()` und `pruefeRecht()` bereit, mit denen die gewünschte Prüfung vorgenommen werden kann.
 
 [[autorisierung-innerhalb-des-regelwerk]]
-=== Autorisierung innerhalb des Regelwerk
+==== Autorisierung innerhalb des Regelwerk
 
 Werden Regelwerke verwendet, so sind hier häufig Prüfungen zur Sichtbarkeit, Melde- und Auskunftsrechten, sowie von Primärdaten abhängigen Rechten umzusetzen.
 Hierbei handelt es sich meist nicht um eine Autorisierung gegen Rollen, sondern um datenbezogene Prüfungen (z.B. Prüfung der Behördengruppe des Benutzers). Für diese Fälle gibt es keine Vorgaben, wie das zu erfolgen hat.
@@ -529,7 +548,7 @@ Sie können zum Beispiel innerhalb des Regelwerks als Regeln hinterlegt werden.
 Soll innerhalb des Regelwerks auf Rollen geprüft werden, so ist eine individuelle Lösung unter Nutzung der Komponente Sicherheit möglich.
 
 [[asynchrone-prozesse]]
-=== Asynchrone Prozesse
+==== Asynchrone Prozesse
 
 Einige Anwendungen (z.B. Nachrichtenempfang an einem Email-Service-Gateway) verwenden asynchrone Prozesse, bzw.
 starten Prozesse ereignis- oder zeitgesteuert.
@@ -540,11 +559,11 @@ Es ist ein analoger Ablauf wie beim Start von Batches (siehe Kapitel <<autorisie
 Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfiguration-2>>) vorzunehmen.
 
 [[weitere-konzepte]]
-= Weitere Konzepte
+== Weitere Konzepte
 // TODO Überschrift abschaffen, sondern Aspekte einzeln beleuchten!
 
 [[aufrufen-von-nachbarsystemen]]
-== Aufrufen von Nachbarsystemen
+=== Aufrufen von Nachbarsystemen
 // TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 So wie eine Anwendung bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, welches von der eigenen Anwendung aufgerufen wird.
@@ -575,3 +594,5 @@ Das Beispiel enthält folgende Schritte:
 * Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird vom `AufrufKontextVerwalter` abgerufen.
 * Es wird ein Dozer-Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
 * Das erzeugte `AufrufKontextTo` der Service-API wird an die Schnittstelle des Service-Client übergeben.
+
+// end::inhalt[]
