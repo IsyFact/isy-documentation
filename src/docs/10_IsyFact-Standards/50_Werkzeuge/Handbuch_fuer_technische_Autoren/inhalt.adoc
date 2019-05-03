@@ -463,7 +463,19 @@ Hier steht der Text.
 // end::architekturregel[]
 ----
 
-WARNING: Die Leerzeile zwischen dem Block und dem Ende des Tags ist wichtig, damit das Zusammenziehen der Inhalte korrekt funktioniert.
+WARNING: Die Leerzeile zwischen dem Block und dem Ende des Tags ist wichtig, damit die Bündelung der Inhalte korrekt funktioniert.
+
+Zur Bündelung von Inhalten wird das entsprechende Dokument eingebettet.
+Über den Parameter `tags` werden nur die Inhalte eingefügt, die von den entsprechenden Tags umgeben sind.
+
+:desc-listing-include-tags: Bündelung von Inhalten anhand von Tags
+[id="listing-include-tags",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-include-tags}
+[source,asciidoc]
+----
+\include::pfad_zum_dokument.adoc[tags=beispiel;...]
+----
+
 
 [[bilder]]
 == Abbildungen
