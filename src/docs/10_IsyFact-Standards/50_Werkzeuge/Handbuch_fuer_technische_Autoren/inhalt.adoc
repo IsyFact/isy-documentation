@@ -164,7 +164,7 @@ In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im
 :desc-listing-master: master.adoc
 [id="listing-master",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-master}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  // ASCIIDOC Attribute
  include::../../../common/isyfact-attributes.adoc[]
@@ -179,7 +179,7 @@ Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel
 :desc-listing-revision: Revisionsnummer und Revisionsdatum
 [id="listing-revision",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-revision}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  :revnumber: Revisionsnummer
  :revdate: Revisionsdatum
@@ -632,7 +632,7 @@ Quelltexte können bei AsciiDoc auf folgender Weise mit Syntaxhighlighting angez
 :desc-listing-quelltext1: Quelltext einfügen
 [id="listing-quelltext1",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-quelltext1}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  [source,java]
  ----
@@ -660,7 +660,7 @@ Auch hier wird noch eine Listing-Überschrift und eine ID benötigt:
 :desc-listing-quelltext2: Quelltext einfügen in IsyFact
 [id="listing-quelltext2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-quelltext2}
-[source,asciidoc,subs="attributes+"]
+[source,asciidoc,subs="attributes+",indent=0]
 ----
  :desc-listing-hallowelt: HalloWelt.java
  [{id-equals}"listing-hallowelt",reftext="{listing-caption} {counter:listings }"]
@@ -694,7 +694,7 @@ Beispielsweise muss für die Referenzierung dieses Dokuments folgender Eintrag i
 :desc-listing-literaturverzeichnis: Literaturverzeichnis
 [id="listing-literaturverzeichnis",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-literaturverzeichnis}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  - [[[Handbuch_fuer_technische_Autoren]]] +
    Handbuch für technische Autoren +
