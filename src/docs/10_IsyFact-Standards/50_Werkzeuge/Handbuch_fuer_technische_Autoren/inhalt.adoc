@@ -219,17 +219,23 @@ image::atom5.png[align="center"]
 [[ein-existierendes-dokument-bearbeiten]]
 = Ein existierendes Dokument bearbeiten
 
-Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder ältere bereits bestehende Dateien handelt.
+Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder bereits bestehende Dokumente handelt.
 In beiden Fällen bearbeiten Sie in den meisten Fällen die Dateien `thisdoc.adoc`, `inhalt.adoc` und `anhaenge.adoc`.
-Ausser diesem Handbuch sind hierzu Kenntnisse der AsciiDoc-Syntax erforderlich.
-Dieses Handbuch soll die AsciiDoc-Syntax aber nicht erklären, denn die folgenden Webseiten bieten bereits ausführliche Tutorials an:
 
-* https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual]
+Außer diesem Handbuch sind hierzu Kenntnisse der AsciiDoc-Syntax erforderlich.
+
+[NOTE]
+====
+Dieses Handbuch erklärt die Grundlagen der AsciiDoc-Syntax nicht weiter.
+Die folgenden Webseiten bieten ausführliche Tutorials und weiterführende Informationen an:
+
 * https://asciidoctor.org/docs/what-is-asciidoc/[What is AsciiDoc? Why do we need it?]
+* https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual]
 * https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick Reference]
 * http://www.vogella.com/tutorials/AsciiDoc/article.html[Tutorial: Using AsciiDoc and Asciidoctor to write documentation]
+====
 
-Dennoch sind in IsyFact-Dokumenten bestimmte Besonderheiten zu beachten.
+Des Weiteren sind in IsyFact-Dokumenten bestimmte Besonderheiten zu beachten.
 Eine wichtige Besonderheit ist beispielsweise, dass man auf Kapitelüberschriften, aber auch auf Einträge wie Quellen, Fachbegriffen, Abbildungen oder Tabellen über einen Querverweis referenzieren können muss.
 Das setzt voraus, dass dafür zu sorgen ist, dass jeder Eintrag einen eindeutigen _Inline-Anchor_ erhält.
 Hinzu kommt, dass bei der Umwandlung in die Ausgabeformate HTML und PDF vorgefertigte Skripte ausgeführt werden, die automatisch Verzeichnisse am Ende des Dokuments einfügen und man auch auf die Einträge dieser Verzeichnisse per Querverweis referenzieren können muss.
@@ -241,7 +247,7 @@ Abbildungsverzeichnis:: enthaltene Abbildungen mit Nummer und Beschreibung
 Quelltextverzeichnis:: enthaltene Listings, beispielsweise Java, SQL etc.
 Tabellenverzeichnis:: enthaltene Tabellen mit Tabellennummer und Tabellenunterschrift
 
-Die Verzeichnise listen ihre jeweiligen Einträge entweder nach der Position im Dokument oder alphanumerisch auf und dienen so vor allem dazu, Einträge nachzuschlagen.
+Die Verzeichnisse listen ihre jeweiligen Einträge entweder nach der Position im Dokument oder alphanumerisch auf und dienen so vor allem dazu, Einträge nachzuschlagen.
 Die Skripte gehen hierbei von einer bestimmten Syntax aus, die in den folgenden Abschnitten erläutert wird.
 Je nachdem, ob es sich um eine Abbildung, eine Tabelle, ein Begriff oder ein referenziertes Medium handelt, werden jeweils unterschiedliche Bestandteile vorgesehen, die gesetzt werden müssen.
 
