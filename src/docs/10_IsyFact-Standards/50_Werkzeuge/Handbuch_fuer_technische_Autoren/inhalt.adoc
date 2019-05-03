@@ -272,16 +272,16 @@ Merge-Konflikte passieren häufig auf Ebene eines Satzes.
 Sie sind daher leicht verständlich, lokal begrenzt und daher in den meisten Fällen gut zu lösen.
 
 
-[[kapitelueberschriften]]
-== Kapitelüberschriften
+[[ueberschriften]]
+== Überschriften
 
-Kapitelüberschriften können bei AsciiDoc auf unterschiedlicher Weise gesetzt werden.
-Bei einem IsyFact-Dokument ist hingegen stets die Variante zu wählen, bei der die Anzahl der vorgesetzten Gleichheitszeichen die Kapitelebene anzeigt.
-Im folgenden Beispiel wird ein Kapitel und ein Unterkapitel definiert.
+Überschriften können bei AsciiDoc auf unterschiedlicher Weise gesetzt werden.
+Bei einem IsyFact-Dokument ist hingegen stets die Variante zu wählen, bei der die Anzahl der vorgesetzten Gleichheitszeichen die Ebene der Überschrift anzeigt.
+Das folgende Beispiel definiert ein Kapitel und ein Unterkapitel.
 
-:desc-listing-kapitelueberschriften: Kapitelüberschriften
-[id="listing-kapitelueberschriften",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-kapitelueberschriften}
+:desc-listing-ueberschriften: Syntax von Überschriften
+[id="listing-ueberschriften",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ueberschriften}
 [source,asciidoc]
 ----
 = Hallo Welt Kapitel
@@ -291,14 +291,13 @@ Das ist ein Hallo Welt Text zum Kapitel.
 Das ist ein Hallo Welt Text zum Unterkapitel.
 ----
 
-Für ein IsyFact-Dokument sind diese Kapitelüberschriften aber noch nicht vollkommen, denn es fehlen noch die _Inline-Anchor_.
-
+Für ein IsyFact-Dokument sind diese Überschriften aber noch nicht vollkommen, denn es fehlen noch die _Inline-Anchor_.
 Der Inline-Anchor wird über eckige Klammern gesetzt.
 Ferner muss die ID des Anchors durchgängig mit kleinen Buchstaben geschrieben werden und darf weder Leer- oder Sonderzeichen enthalten.
 
-:desc-listing-kapitelueberschriften-final: Kapitelüberschriften mit Inline Anchors
-[id="listing-kapitelueberschriften-final",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-kapitelueberschriften-final}
+:desc-listing-ueberschriften-final: Überschriften mit Inline Anchors
+[id="listing-ueberschriften-final",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ueberschriften-final}
 [source,asciidoc]
 ----
 [[beispiel-kapitel]]
@@ -310,9 +309,9 @@ Das ist ein Beispieltext zum Kapitel.
 Das ist ein Beispieltext zum Unterkapitel.
 ----
 
-Einen Querverweis auf eine Kapitelüberschrift setzt man über zwei spitze Klammerpaare.
+Einen Querverweis auf eine Überschrift setzt man über zwei Paare spitzer Klammern.
 
-:desc-listing-querverweis: Querverweis auf eine Kapitelüberschrift
+:desc-listing-querverweis: Querverweis auf eine Überschrift
 [id="listing-querverweis",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-querverweis}
 [source,asciidoc]
@@ -324,8 +323,8 @@ Der erste Parameter in dem Klammer-Paar legt die ID des Querverweises fest.
 Der zweite Parameter kann gesetzt werden, wenn statt dem Namen des Kapitels ein eigener Text verwendet werden soll.
 Der erzeugte Text sollte wie folgt aussehen:
 
-_Zum <<kapitelueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
-_Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<kapitelueberschriften>>._
+_Zum <<ueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
+_Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>._
 
 == Admonition-Blocks
 
