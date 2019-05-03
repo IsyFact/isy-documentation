@@ -316,12 +316,13 @@ Einen Querverweis auf eine Überschrift setzt man über zwei Paare spitzer Klamm
 .{desc-listing-querverweis}
 [source,asciidoc]
 ----
-Zum <<beispiel-kapitel, Beispiel-Kapitel>> gelangen Sie über einen Mausklick.
+Zum <<ueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick.
+Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>.
 ----
 
 Der erste Parameter in dem Klammer-Paar legt die ID des Querverweises fest.
 Der zweite Parameter kann gesetzt werden, wenn statt dem Namen des Kapitels ein eigener Text verwendet werden soll.
-Der erzeugte Text sollte wie folgt aussehen:
+Der erzeugte Text sieht wie folgt aus:
 
 _Zum <<ueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
 _Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>._
@@ -346,7 +347,7 @@ Hier steht der Text.
 ====
 ----
 
-Die syntaktisch schlankere Variante funktioniert nur mit den vordefinierten Blöcken (NOTE, TIP, IMPORTANT, WARNING, CAUTION).
+Die syntaktisch schlankere Variante funktioniert nur mit den vordefinierten Blöcken (NOTE, TIP, IMPORTANT, WARNING und CAUTION).
 
 :desc-listing-admonition: Definition eines Admonition Blocks (inline)
 [id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
