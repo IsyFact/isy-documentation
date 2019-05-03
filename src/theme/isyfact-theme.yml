@@ -71,7 +71,7 @@ admonition:
       name: fa-bullhorn
     caution:
       stroke_color: #003D86
-      name: fa-exclamation-circle
+      name: fa-ban
     warning:
       stroke_color: #003D86
     tip:
