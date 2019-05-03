@@ -9,11 +9,6 @@ require 'asciidoctor/extensions'
 #   Lorem Ipsum
 #   ====
 #
-# oder
-#
-#   [ARCHITEKTURREGEL]
-#   Lorem Ipsum
-#
 class ArchitekturAdmonitionBlock < Asciidoctor::Extensions::BlockProcessor
   use_dsl
   named :ARCHITEKTURREGEL
@@ -54,26 +49,13 @@ class AnwendungsanforderungAdmonitionBlock < Asciidoctor::Extensions::BlockProce
 end
 
 class SicherheitAdmonitionBlock < Asciidoctor::Extensions::BlockProcessor
-     use_dsl
-     named :SICHERHEIT
-     on_contexts :example, :paragraph
-
-     def process parent, reader, attrs
-       attrs['name'] = 'sicherheit'
-       attrs['caption'] = 'Sicherheit'
-       create_block parent, :admonition, reader.lines, attrs, content_model: :compound
-     end
-
-   end
-
-class InfoAdmonitionBlock < Asciidoctor::Extensions::BlockProcessor
   use_dsl
-  named :INFO
+  named :SICHERHEIT
   on_contexts :example, :paragraph
 
   def process parent, reader, attrs
-    attrs['name'] = 'info'
-    attrs['caption'] = 'Info'
+    attrs['name'] = 'sicherheit'
+    attrs['caption'] = 'Sicherheit'
     create_block parent, :admonition, reader.lines, attrs, content_model: :compound
   end
 
@@ -84,7 +66,6 @@ class IsyFactAdmonitionBlockDocinfo < Asciidoctor::Extensions::DocinfoProcessor
 
   def process doc
     '<style>
-.admonitionblock td.icon .icon-info:before {content:"\f05a";color:#003D86;}
 .admonitionblock td.icon .icon-architekturregel:before {content:"\f19c";color:#003D86;}
 .admonitionblock td.icon .icon-sicherheit:before {content:"\f132";color:#003D86;}
 .admonitionblock td.icon .icon-styleguide:before {content:"\f1fc";color:#003D86;}
@@ -98,6 +79,5 @@ Asciidoctor::Extensions.register do
   block StyleguideAdmonitionBlock
   block AnwendungsanforderungAdmonitionBlock
   block SicherheitAdmonitionBlock
-  block InfoAdmonitionBlock
   docinfo_processor IsyFactAdmonitionBlockDocinfo
 end
