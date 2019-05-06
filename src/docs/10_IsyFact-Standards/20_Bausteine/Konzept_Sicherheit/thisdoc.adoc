@@ -21,7 +21,7 @@ Dazu erläutert das Kapitel <<prinzipien-der-sicherheitsarchitektur>> zunächst,
 
 Das Kapitel <<rollen-und-rechte>> beschreibt dann, wie Rollen und Rechte für eine neue Fachanwendung spezifiziert werden.
 
-Danach beleuchtet das Kapitel <<sicherheitsarchitektur-einer-anwendung>> die Einbettung des Bausteins Sicherheit in ein konkretes IT-System.
+Danach beleuchtet das Kapitel <<sicherheitsarchitektur-eines-it-systems>> die Einbettung des Bausteins Sicherheit in ein konkretes IT-System.
 Zentrale Schnittstellen beschreibt das Kapitel <<aussensicht-der-komponente-sicherheit>>.
 
 Schließlich befasst sich das Kapitel <<aufruf-von-nachbarsystemen>> mit Vorgaben und Konventionen beim Einbinden von Nachbarsystemen.
