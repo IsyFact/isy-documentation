@@ -122,17 +122,14 @@ Die Systemnamen sollten dem folgenden Schema entsprechen: `<Anwendungskürzel>_B
 Für jedes dieser internen System müssen eigene fachliche Rollen definiert werden.
 
 
-[[einbindung-des-bausteins-sicherheit]]
-== Einbindung des Bausteins Sicherheit
+[[sicherheitsarchitektur-einer-anwendung]]
+== Sicherheitsarchitektur einer Anwendung
 
 Der Baustein Sicherheit bildet eine Komponente des Querschnitts der <<IsyFactReferenzarchitekturITSystem>>.
 Er ist von jedem IT-System zur Autorisierung von Zugriffen und Vorgängen zu verwenden.
 Für ein korrektes Funktionieren benötigt der Baustein die Komponente `AufrufKontextVerwalter`, deren Verwendung ebenfalls in diesem Kapitel erläutert wird.
 
-[[sicherheitsarchitektur-einer-anwendung]]
-=== Sicherheitsarchitektur einer Anwendung
-
-Die Mechanismen zur Absicherung IsyFact-konformer IT-Systeme hat zum Ziel, die Autorisierung von Zugriffen systematisch, einheitlich und einfach umzusetzen.
+Die Mechanismen zur Absicherung IsyFact-konformer IT-Systeme haben zum Ziel, die Autorisierung von Zugriffen _systematisch_, _einheitlich_ und _einfach_ umzusetzen.
 
 Die *Systematik* und Vollständigkeit der Berechtigungsprüfungen wird dadurch erreicht, dass Berechtigungsprüfungen in den IT-Systemen an definierten Stellen und auf identische Weise stattfinden.
 
@@ -142,7 +139,7 @@ Berechtigungsprüfungen erfolgen innerhalb eines IT-Systems immer über die Bibl
 Die *Einfachheit* der Nutzung der Bibliothek `isy-sicherheit` wird durch weitgehende Transparenz bei der Initialisierung, kompakte Schnittstellen und deklarative (z.B. per Annotation) statt programmatischer Implementierung erreicht.
 
 [[praemissen]]
-==== Prämissen
+=== Prämissen
 
 Aus den <<prinzipien-der-sicherheitsarchitektur>> leiten sich die folgenden Randbedingungen für die Umsetzung der Berechtigungsprüfung innerhalb eines IT-Systems ab:
 
@@ -155,7 +152,7 @@ Das mit der Anfrage an das IT-System als Parameter übergebene Transportobjekt `
 * Einem innerhalb der Logik- und Verarbeitungszone eines IT-Systems übergebenen `AufrufKontext` kann vertraut und ohne erneute Rückfrage an das IAM-System bzw. die lokale Authentifizierung verwendet werden.
 
 [[software-architektur]]
-==== Software-Architektur
+=== Software-Architektur
 
 Die folgende Abbildung zeigt den logischen Aufbau für die Authentifizierung und für die Bereitstellung von Berechtigungsinformationen an die Komponenten eines IT-Systems.
 
@@ -188,7 +185,7 @@ Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring Secu
 Die Integration von Spring Security und des Bausteins Sicherheit wird im <<DetailkonzeptKomponenteWebGUI>> beschrieben.
 
 [[aussensicht-der-komponente-sicherheit]]
-=== Außensicht der Komponente Sicherheit
+== Außensicht der Komponente Sicherheit
 
 Im Folgenden wird die Schnittstelle der Komponente Sicherheit beschrieben.
 
@@ -206,369 +203,18 @@ Der Berechtigungsmanager verwendet die Schnittstellen `Rolle` und `Recht`.
 Rollen werden über die Benutzeradministration Anwendern zugewiesen.
 Rechte sind anwendungsspezifisch und an Rollen gebunden.
 
-
-[[autorisierung-innerhalb-einer-anwendung]]
-== Autorisierung innerhalb einer Anwendung
-// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
-
-Vor Durchführung von Autorisierungsprüfungen bei der Bearbeitung einer Anfrage ist einmalig für die laufende Anfrage der `AufrufKontextVerwalter` mit dem `AufrufKontext` zu füllen, damit die Komponente Sicherheit während der Bearbeitung der Anfrage korrekt funktioniert.
-Sowohl für die Entgegennahme des AufrufKontextes, als auch für die eigentliche Autorisierung werden mit den Komponenten Sicherheit und Aufrufkontext einige Hilfsmittel angeboten.
-
-Durch Verwendung dieser Hilfsmittel lässt sich die Autorisierung weitgehend deklarativ und transparent abwickeln.
-Autorisierung wird zum Querschnittsaspekt und weitgehend aus dem Programmcode eliminiert, und fachliche Schnittstellen werden von Parametern befreit.
-
-_Befüllen des AufrufKontextVerwalters_
-
-Der `AufrufKontext` ist aus der eingehenden Anfrage auszulesen (so früh wie möglich, bevorzugt noch vor dem Aufruf der Schnittstellenmethode) und im `AufrufKontextVerwalter` zu registrieren, damit nachfolgend die Komponente Sicherheit verwendet werden kann.
-Dies soll transparent für den Entwickler mit geringem Aufwand erfolgen.
-
-Dazu stellt die Bibliothek isy-aufrufkontext Hilfsmittel (Annotationen, Filter) bereit, die diese Aufgabe transparent für den Entwickler durchführen:
-
-* Für Aufrufe der GUI wird ein Processing-Filter aus Spring-Security verwendet (siehe <<autorisierung-in-der-gui>>).
-* Für Aufrufe von Service-Schnittstellen wird eine Annotation an den Service-Methoden verwendet (siehe <<autorisierung-an-einer-service-schnittstelle>>).
-* Die Autorisierung eines Batch-Benutzers und die Befüllung des `AufrufKontextVerwalters` erfolgt über den Batchrahmen (siehe <<autorisierung-eines-batches>>).
-
-_Durchführung der Autorisierungsprüfung_
-
-Nach Übernehmen des `AufrufKontext` in den `AufrufKontextVerwalter` erfolgt die Autorisierungsprüfung dann über die Komponente Sicherheit.
-
-Für die Autorisierungsprüfung stellt die `isy-sicherheit` neben dem Berechtigungsmanager (erlaubt Autorisierung per API-Aufruf) zusätzliche Hilfsmittel (Annotationen, Tags zur Verwendung in Flow-Definitionen) bereit, mit denen die Autorisierungsprüfung deklarativ erfolgen kann:
-
-* Für Aufrufe der GUI wird das `secured`-Tag zur Autorisierung verwendet (siehe <<autorisierung-in-der-gui>>).
-* Für Aufrufe der Service-Schnittstellen wird eine Annotation `@Gesichert` zur Autorisierung verwendet (siehe <<autorisierung-an-einer-service-schnittstelle>>).
-* Für Batchläufe ist im Batchrahmen bereit eine Autorisierung eines konfigurierten Benutzers enthalten (siehe <<autorisierung-eines-batches>>).
-* Für Autorisierungen im Anwendungskern kann die Annotation `@Gesichert` oder direkt der `Berechtigungsmanager` verwendet werden.
-
-[[autorisierung-in-der-gui]]
-=== Autorisierung in der GUI
-
-Hier wird erklärt, wie der Dialog einer Geschäftsanwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
-Die Umsetzung der Autorisierungsprüfung in der GUI ist in <<DetailkonzeptKomponenteWebGUI>> beschrieben.
-
-[[implementierung-im-webflow]]
-==== Implementierung im Webflow
-
-Ein Webflow (oder auch ausgewählte Zustände und Transitionen) können durch das <secured/> Tag gesichert werden.
-Hier kann geprüft werden, ob ein Benutzer ein oder mehrere erforderliche Recht(e), aufgrund der ihm zugeordneten Rolle besitzt.
-Beispiel:
-
-:desc-listing-absichern-eines-flow: Absichern eines Flow
-[id="listing-absichern-eines-flow",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-absichern-eines-flow}
-[source, xml]
-----
-[…]
-<flow>
-  <secured attributes="lesen" />
-[…]
-----
-
-Die Nutzung des <secured> Tags setzt voraus, dass vor Verarbeitung des Requests der Aufrufkontext im `AufrufKontextVerwalter` registriert wird.
-
-Aufrufe der GUI erfolgen per HTTP.
-Der Access-Manager stellt am Webserver vor Weiterleitung der Anfrage an eine Fachanwendung sicher, dass nur authentifizierte Anfragen an der GUI der Anwendung eingehen.
-Mit der Authentifizierung des Anwenders fügt der Access-Manager http-Header in die Anfrage ein.
-Diese Header enthalten neben Informationen der Identifikation des anfragenden Benutzers auch die Gesamtheit seiner Rollen.
-Die Informationen aus dem Http-Header werden in den `AufrufKontext` übertragen.
-
-Die Bibliothek `plis-sicherheit-cams` enthält einen `CamsAuthentication­ProcessingFilter`, der den Aufrufkontext bei jeder Anfrage an die GUI aus dem HTTP-Header ermittelt und damit den `AufrufKontextVerwalter` befüllt.
-Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontexts transparent für sämtliche Aufrufe der GUI.
-
-[[konfiguration-1]]
-==== Konfiguration
-
-Folgende Konfiguration in `/resources/spring/querschnitt/sicherheit.xml` ist erforderlich:
-
-:desc-listing-konfiguration-fuer-autorisierung-in-der-gui: Konfiguration für Autorisierung in der GUI
-[id="listing-konfiguration-fuer-autorisierung-in-der-gui",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-fuer-autorisierung-in-der-gui}
-[source, xml]
-----
-    <sec:http entry-point-ref="camsPreAuthenticatedProcessingFilterEntryPoint" create-session="never" />
-    <sec:authentication-manager alias="authenticationManager" />
-    <bean id="camsPreAuthenticatedProcessingFilterEntryPoint" class="org.spring framework.security.ui.preauth.PreAuthenticatedProcessingFilterEntryPoint" />
-    <!-- Für Tests ohne Cams das folgende Bean auskommentieren. -->
-    <bean id="camsProcessingFilter" class="de.bund.bva.pliscommon.aufrufkontext.http.CamsAuthenticationProcessingFilter">
-      <sec:custom-filter position="PRE_AUTH_FILTER" />
-      <property name="authenticationManager" ref="authenticationManager" />
-      <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter" />
-      <property name="httpHeaderParser">
-        <bean class="de.bund.bva.pliscommon.sicherheit.cams.web.HttpHeaderParser"/>
-      </property>
-    </bean>
-    <bean id="accessDecisionManager" class="de.bund.bva.pliscommon.sicherheit.web.DelegatingAccessDecisionManager">
-       <property name="sicherheit" ref="sicherheit" />
-    </bean>
-    <!-- ======================================================================
-      custom authentication provider setzen um Sicherheits Komponente für Rollen Ermittlung zu verwenden
-    ====================================================================== -->
-  
-    <bean id="webflowAuthenticationProvider" class="de.bund.bva.pliscommon.aufrufkontext.http.WebFlowAuthenticationProvider">
-        <sec:custom-authentication-provider />
-    </bean>
-    <!--======================================================================
-      Dummy User Service
-    ====================================================================== -->
-    <sec:user-service>
-        <sec:user authorities="ROLE" name="name" password="password" disabled="true" />
-    </sec:user-service>
-----
-
-[[autorisierung-an-einer-service-schnittstelle]]
-=== Autorisierung an einer Service-Schnittstelle
-
-Hier wird erklärt, wie eine Service-Schnittstelle einer Anwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
-
-Die Umsetzung der Autorisierungsprüfung in angebotenen Schnittstellen ist in <<DetailkonzeptKomponenteService>> beschrieben.
-
-[[implementierung]]
-==== Implementierung
-
-Methoden der Service-Implementierung werden durch die Annotation `@Gesichert` gesichert.
-Die Annotation hat das Feld Recht, mit der ein oder mehrere geforderte Rechte konfiguriert werden können.
-Der Benutzer muss alle geforderten Rechte besitzen, damit ihm Zugang gewährt wird.
-
-Um die Prüfung der Rechte vornehmen zu können, müssen zuvor Informationen über den aufrufenden Benutzer im `AufrufKontext` hinterlegt werden.
-Im Gegensatz zu Aufrufen der GUI, werden bei Aufrufen von Serviceschnittstellen (über http-Invoker) keine http-Header zum Transport des Aufrufkontextes verwendet.
-Stattdessen wird entsprechend der Vorgaben der IsyFact an Service-Schnittstellen der Aufrufkontext als Schnittstellenparameter `AufrufKontextTo` mit jeder Serviceanfrage übergeben.
-Im Regelfall enthält dieses `AufrufKontextTo` bereits die Informationen zum anfragenden Benutzer und dessen Rollen.
-
-Ist dies der Fall kann die Annotation `@StelltAufrufKontextBereit` verwendet werden, um die bereitgestellten Informationen in den `AufrufKontextVerwalter` zu übertragen.
-
-Nachfolgend ist es möglich mittels der Annotation `@Gesichert` die Berechtigungsprüfung durchzuführen.
-
-Die Annotationen nutzen Spring-AOP.
-Daher sind die Annotationen nur an public-Methoden von Spring-Beans funktionsfähig.
-Für Http-Invoker-Schnittstellen sind hier die ServiceMethoden der <Service>Impl (unterhalb der ExceptionFassade mit den Annotationen auszustatten.
-
-Folgendes Beispiel zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch in den `AufrufKontextVerwalter` übernommen wird und
-anschließend die Autorisierung gegen die Komponente Sicherheit durchgeführt wird.
-
-:desc-listing-absichern-einer-servicemethode: Absichern einer Servicemethode
-[id="listing-absichern-einer-servicemethode",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-absichern-einer-servicemethode}
-[source,java]
-----
-@StelltAufrufKontextBereit
-@Gesichert("Recht_A", "Recht_B")
-public void gesichertDurch_RechtAundB(AufrufKontextTo kontext, ...) {
-  //…
-}
-----
-
-Erfüllt ein Aufrufer nicht die Forderungen der Annotation `@Gesichert`, so wird die `AutorisierungFehlgeschlagenException` geworfen.
-Da eine fehlende Berechtigung nicht behandelt werden kann und dies letztlich auf einen Konfigurationsfehler in einer anderen Anwendung zurückzuführen ist (oder einen Angriff),
-wird nicht empfohlen, diese Ausnahme spezifisch zu behandeln.
-Das normale Fehlerhandling greift.
-
-[[autorisierung-eines-batches]]
-=== Autorisierung eines Batches
-
-Hier wird erklärt, wie ein Batchlauf einer Anwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
-Die Integration der T-Komponente Sicherheit ist im Batchrahmen ab Version 1.1 enthalten.
-
-Ein Batch wird innerhalb der Anwendungslandschaft gestartet.
-Dazu verwendet der Batch die Benutzerkennung eines Systems (Benutzer), die in seiner Startkonfiguration (als Konfigurationsdatei) hinterlegt und im Benutzerverzeichnis vorhanden ist.
-
-Damit der Benutzer bei der Ausführung des Batches authentifiziert wird, muss die Methode `initialisieren()`, die durch das BatchAusfuehrungsBean vorgegeben wird, mittels der Annotation `@Gesichert` geschützt werden.
-Der Access-Manager authentifiziert den Benutzer anhand der angegebenen Benutzerkennung und des Passwortes, registriert alle Informationen zum Benutzer im `AufrufKontextVerwalter` und schließt die Session des Benutzers im Access-Manager.
-
-Da alle Informationen zum Benutzer als Aufrufkontext im `AufrufKontextVerwalter` hinterlegt wurden, kann die Anwendung jederzeit auf diese Kontextinformationen zugreifen, also im Zuge des Batchlaufes Berechtigungsprüfungen vornehmen oder auch Services von Nachbarsystemen (vergleiche Kapitel <<aufrufen-von-nachbarsystemen>>) unter Bereitstellung des Aufrufkontextes aufrufen.
-
-In Ausnahmefällen ist es auch möglich, einen Batch zu implementieren, der ohne Benutzer laufen soll.
-Dies ist nur möglich, wenn bei Aufrufen des Anwendungskerns keine Autorisierungsprüfungen stattfinden und auch keine Nachbarsystemschnittstellen aufgerufen werden.
-
-[[implementierung-1]]
-==== Implementierung
-
-Der Batchrahmen fordert vom BatchAusführungsBean die Implementierung der Methode: `getAuthenticationCredentials()`, in der dem Batchrahmen bekanntgegeben wird mit welchem Benutzer der Batch laufen soll.
-
-In der Regel wird der Benutzer aus der Konfiguration gelesen, wie im folgenden Beispiel veranschaulicht wird:
-
-:desc-listing-benutzerdaten: Implementierungsbeispiel für die Versorgung des Batchrahmens mit Benutzerdaten
-[id="listing-benutzerdaten",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-benutzerdaten}
-[source,java]
-----
-@Override
-public BatchAuthenticationCredentials getAuthenticationCredentials(
-    BatchKonfiguration konfiguration) {
-  BatchAuthenticationCredentials auth = new BatchAuthentifizierung();
-
-  //Wenn der Benutzer nicht auf der Kommandozeile angegeben wird, lade die Daten aus der betrieblichen Konfigurationsdatei
-  String bhknz = this.behoerdenVerzeichnisKonfiguration.
-    getAsString(KonfigurationSchluessel.CONFBATCH_BEHOERDE, null);
-  String benutzer = this.behoerdenVerzeichnisKonfiguration.
-    getAsString(KonfigurationSchluessel.CONF_BATCH_BENUTZER, null);
-  String passwort = this.behoerdenVerzeichnisKonfiguration.
-    getAsString(KonfigurationSchluessel.CONF_BATCH_PASSWORT, null);
-
-  //Lade Nutzer aus Kommandozeile / Batchkonfiguration
-  auth.setBehoerdenkennzeichen(konfiguration.getAsString(
-    KonfigurationSchluessel.CONF_BATCH_BEHOERDE, bhknz));
-  auth.setBenutzerkennung(konfiguration.getAsString(
-    KonfigurationSchluessel.CONF_BATCH_BENUTZER, benutzer));
-  auth.setPasswort(konfiguration.getAsString(
-    KonfigurationSchluessel.CONF_BATCH_PASSWORT, passwort));
-  return auth;
-}
-----
-
-Soll der Batch ohne Benutzer laufen, so ist `null` zurückzugeben.
-
-[[konfiguration-2]]
-==== Konfiguration
-
-Für eine korrekte Funktion wird in der Anwendung die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
-
-Zusätzlich wird der Benutzer, über den der Batch laufen soll, wie folgt konfiguriert:
-
-:desc-listing-batchbenutzer: Konfiguration des Batchbenutzers
-[id="listing-batchbenutzer",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-batchbenutzer}
-[source,java]
-----
-# Benutzerkennung für den Batch Anschriftenverzeichniserzeugung
-batch.anschriftenverzeichnis.benutzerkennung = BHVZ_BAT_Anschriftenverzeichnis
-batch.anschriftenverzeichnis.benutzerpasswort = changePassword
-batch.anschriftenverzeichnis.benutzerbehoerde = 42
-----
-
-Damit eine Authentifizierung über den Access-Manager möglich ist, sind einige zusätzliche Konfigurationen für die Komponente Sicherheit erforderlich:
-
-:desc-listing-cams: Konfiguration der plis-sicherheit-cams für Batches
-[id="listing-cams",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-cams}
-[source,java]
-----
-# Konfiguration fuer den CAMS-Zugriff zur Autorisierung von Benutzern
-sic.camsagent.login.config.entry=applicationplatform
-sic.camsagent.login.medium=applicationplatform
-sic.camsagent.security.domain=applicationplatform
-sic.camsagent.nutzertyp=unbekannt
-----
-
-Hier wird festgelegt, dass ein Aufrufer gegen die im Access-Manager konfigurierte Security-Domain applicationplatform authentifiziert wird.
-
-[[autorisierung-im-service-gateway]]
-===  Autorisierung im Service-Gateway
-
-Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet die T-Komponente Sicherheit, um den Benutzer einer eingehenden Anfrage zu
-authentifizieren und zu autorisieren.
-Sie verwendet dazu die Bibliothek `plis-sgw-util`, in der `isy-sicherheit` eingebunden ist.
-
-[[autorisierung-einer-anfrage-an-ein-service-gateway]]
-==== Autorisierung einer Anfrage an ein Service-Gateway
-
-Ein Service eines Service-Gateways wird aufgerufen.
-Mit der Anfrage wird die Benutzerkennung des anfragenden Benutzers übermittelt.
-
-Die im Service-Gateway verwendete Komponente Serviceanbieter nutzt die Komponente Sicherheit, um den anfragenden Benutzer bereits in der Informations- und Dienstezone zu authentifizieren.
-Der Access-Manager authentifiziert den Benutzer anhand des Zertifikats, der angegebenen Benutzerkennung und des Passwortes, registriert alle Informationen zum
-Benutzer im `AufrufKontextVerwalter` und schließt die Session des Benutzers im Access-Manager wieder.
-
-Beim Weiterleiten der Anfrage an den Service der Fachanwendung wird der `AufrufKontext` an die aufzurufende Schnittstelle der Anwendung übergeben (vergleiche
-Kapitel <<aufrufen-von-nachbarsystemen>>).
-
-[[konfiguration-3]]
-==== Konfiguration
-
-Für eine korrekte Funktion wird im Service-Gateway die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
-
-Damit eine Authentifizierung über den Access-Manager möglich ist, sind einige zusätzliche Konfigurationen für die Komponente Sicherheit erforderlich:
-
-:desc-listing-cams-service-gateways: Konfiguration der plis-sicherheit-cams für Service-Gateways
-[id="listing-cams-service-gateways",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-cams-service-gateways}
-[source,java]
-----
-# Konfiguration fuer den CAMS-Zugriff zur Autorisierung von Benutzern
-sic.camsagent.login.config.entry=servicegateway
-sic.camsagent.login.medium=servicegateway
-sic.camsagent.security.domain=servicegateway
-sic.camsagent.nutzertyp=unbekannt
-----
-
-Hier wird festgelegt, dass ein Aufrufer gegen die Security-Domain des Access-Managers servicegateway authentifiziert wird.
-
-[[autorisierung-im-anwendungskern]]
-=== Autorisierung im Anwendungskern
-
-Im Regelfall wird die Autorisierung einer Anfrage an den Schnittstellen der Anwendung durchgeführt.
-Es ist jedoch bei Bedarf auch möglich, Prüfungen innerhalb des Anwendungskerns durchzuführen.
-
-[[autorisierung-an-methoden-des-anwendungskerns]]
-==== Autorisierung an Methoden des Anwendungskerns
-
-Im Anwendungskern kann durch Verwendung der Annotation `@Gesichert` an Methoden des Anwendungskerns deklarativ festgelegt werden, wo eine Berechtigungsprüfung erfolgen soll.
-Hier wird ausgewertet, welche Rollen und/oder Rechte der Benutzer haben muss, damit der Zugriff gewährt wird.
-Die Anwendung fragt bei der Komponente Sicherheit die Rollen und Rechte des Benutzers ab und autorisiert die Anfrage.
-
-Voraussetzung für das Funktionieren der Annotation `@Gesichert` ist, dass im Rahmen des Aufrufs der Anwendung der `AufrufKontextVerwalter` bereits gefüllt wurde.
-
-[[autorisierung-in-methoden-des-anwendungskerns]]
-==== Autorisierung in Methoden des Anwendungskerns
-
-Prüfungen können auch ausprogrammiert werden.
-Dabei wird die Komponente Sicherheit verwendet.
-Hierzu wird das Bean Sicherheit in die Komponente des Anwendungskerns injiziert und der Berechtigungsmanager über die Methode `getBerechtigungsManager()` beschafft.
-Der Berechtigungsmanager stellt die Methoden `getRechte()`, `getRecht()`, `hatRecht()` und `pruefeRecht()` bereit, mit denen die gewünschte Prüfung vorgenommen werden kann.
-
-[[autorisierung-innerhalb-des-regelwerk]]
-==== Autorisierung innerhalb des Regelwerk
-
-Werden Regelwerke verwendet, so sind hier häufig Prüfungen zur Sichtbarkeit, Melde- und Auskunftsrechten, sowie von Primärdaten abhängigen Rechten umzusetzen.
-Hierbei handelt es sich meist nicht um eine Autorisierung gegen Rollen, sondern um datenbezogene Prüfungen (z.B. Prüfung der Behördengruppe des Benutzers). Für diese Fälle gibt es keine Vorgaben, wie das zu erfolgen hat.
-Sie können zum Beispiel innerhalb des Regelwerks als Regeln hinterlegt werden.
-
-Soll innerhalb des Regelwerks auf Rollen geprüft werden, so ist eine individuelle Lösung unter Nutzung der Komponente Sicherheit möglich.
-
-[[asynchrone-prozesse]]
-==== Asynchrone Prozesse
-
-Einige Anwendungen (z.B. Nachrichtenempfang an einem Email-Service-Gateway) verwenden asynchrone Prozesse, bzw.
-starten Prozesse ereignis- oder zeitgesteuert.
-Diesen Prozessen geht im Moment der Bearbeitung keine Benutzeranfrage voraus.
-Daher kann die Bearbeitung im Regelfall nicht mit dem Aufrufkontext eines anfragenden Benutzers durchgeführt werden.
-Stattdessen wird zum Start des Prozesses ein hinreichend berechtigter Benutzer (System) verwendet.
-Es ist ein analoger Ablauf wie beim Start von Batches (siehe Kapitel <<autorisierung-eines-batches>>) umzusetzen.
-Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfiguration-2>>) vorzunehmen.
-
-[[weitere-konzepte]]
-== Weitere Konzepte
-// TODO Überschrift abschaffen, sondern Aspekte einzeln beleuchten!
-
 [[aufrufen-von-nachbarsystemen]]
-=== Aufrufen von Nachbarsystemen
-// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
+== Aufruf von Nachbarsystemen
 
 So wie eine Anwendung bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, welches von der eigenen Anwendung aufgerufen wird.
 Das aufrufende System muss daher einen Aufrufkontext mitliefern.
 Im Regelfall soll dabei der Aufrufkontext der originären Anfrage verwendet und unverändert weitergeleitet werden.
 
-Zum Aufruf des Nachbarsystems werden entweder die mit dem Nachbarsystem bereit gestellten Service-Client-Bibliotheken oder direkt die RemoteBean der aufzurufenden Schnittstelle verwendet.
+Zum Aufruf von Nachbarsystemen sollen, falls vorhanden, dedizierte Client-Bibliotheken verwendet werden.
+Diese enthalten bereits die Logik zur Weiterleitung des Aufrufkontextes.
 
-Wenn ein Service über eine spezifische Client-Implementierung (z.B. den Schlüsselverzeichnis-Client) verwendet wird, so enthält diese (konform zum Berechtigungskonzept) bereits die Logik zur Weiterleitung des Aufrufkontextes.
-
-Wenn der Service direkt über Spring HTTP-Invoker und das zugehörige RemoteBean-Interface aufgerufen wird, so ist die Weiterleitung des AufrufKontextes unter Nutzung des AufrufKontextVerwalters (per Spring injizieren) manuell zu programmieren.
-Hierbei ist es wichtig, dass immer ein AufrufKontextTo-Objekt der Service-API verwendet wird, da nur dieses bei einem HTTP-Invoker-Aufruf im Server korrekt deserialisiert werden kann.
-
-:desc-listing-weiterleitung-des-aufrufkontextes: Weiterleitung des Aufrufkontextes beim Serviceaufruf
-[id="listing-weiterleitung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-weiterleitung-des-aufrufkontextes}
-[source,java]
-----
-AufrufKontext aufrufKontext = aufrufKontextVerwalter.getAufrufKontext();
-if (aufrufKontext == null) {
-  throw new ...Exception(...);
-}
-remoteBean.methodeX((AufrufKontextTo) dozer.map(aufrufKontext, AufrufKontextTo.class, weitere, parameter);
-----
-
-Das Beispiel enthält folgende Schritte:
-
-* Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird vom `AufrufKontextVerwalter` abgerufen.
-* Es wird ein Dozer-Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
-* Das erzeugte `AufrufKontextTo` der Service-API wird an die Schnittstelle des Service-Client übergeben.
+Gibt es diese nicht, muss das Nachbarsystem direkt aufgerufen werden.
+Hierbei muss das aufrufende IT-System stets ein entsprechendes Transportobjekt befüllen und mit dem Aufruf an das Nachbarsystem übergeben.
+Für die Technologie Spring HTTP-Invoker stellt die IsyFact passende Transportobjekte in der Bibliothek `isy-serviceapi-sst` bereit.
 
 // end::inhalt[]
