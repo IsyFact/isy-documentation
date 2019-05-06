@@ -5,84 +5,121 @@ include::../../../common/attributes.adoc[]
 // tag::inhalt[]
 [[prinzipien-der-sicherheitsarchitektur]]
 == Prinzipien der Sicherheitsarchitektur
+Die IsyFact-Referenzarchitektur beinhaltet auf der technischen Ebene Vorgaben für die Sicherheitsarchitektur und für die Prinzipien, nach denen sie aufgebaut ist.
 
-Die Sicherheitsarchitektur einer konkreten Anwendungslandschaft wird zum großen Teil innerhalb des spezifischen Berechtigungskonzepts für diese Landschaft festgelegt.
-Sie kann daher nicht Teil des vorliegenden Nutzerdokumentation der Sicherheitskomponente sein.
+Die konkrete Sicherheitsarchitektur einer Systemlandschaft muss nach folgenden Prinzipien gestaltet sein:
 
-Auf der technischen Ebene macht jedoch die IsyFact-Referenzarchitektur bestimmte Vorgaben für die Sicherheitsarchitektur und für die Prinzipien, nach denen sie aufgebaut ist.
+* IsyFact-konforme IT-Systeme sind gegen nicht autorisierte Nutzung zu schützen.
+* Die Authentifizierung und grobgranulare Autorisierung erfolgt an den Außenschnittstellen der Systemlandschaft (Portal, Service-Gateway).
+* Liegt kein Aufruf über eine Außenschnittstelle vor (z.B. bei einem Batch-Aufruf), so geschieht die Authentifizierung und grobgranulare Autorisierung innerhalb der Nutzungsschicht (Batch) des konkreten IT-Systems.
+* Die feingranulare Autorisierung geschieht in der Nutzungsschicht und im Anwendungskern der IT-Systeme über den IsyFact-Baustein Sicherheit.
 
-Die konkrete Sicherheitsarchitektur einer Anwendungslandschaft muss nach folgenden Prinzipien gestaltet sein:
+Existiert keine Systemlandschaft (d.h. IT-Systeme stehen für sich allein), gilt grundsätzlich, dass die Authentifizierung und grobgranulare Autorisierung in der Nutzungsschicht (GUI, Service oder Batch) des IT-Systems geschehen muss.
 
-* Authentifizierung und grobgranulare Autorisierung an den Außenschnittstellen des Systems (Portal, Service-Gateway, Native-Client-Serviceproxy). Hier finden der Session-Aufbau und die Rollenermittlung durch den Access-Manager statt.
-* Grobgranulare Autorisierung vor den GUI-Schnittstellen der Anwendungen, z.B. mittels Servlet-Agent des Access-Managers.
-* Feingranulare Autorisierung in den Schnittstellen und im Anwendungskern der Anwendungen über die Komponente Sicherheit.
+Darüber hinaus finden Authentifizierung und Autorisierung nach den Vorgaben des <<Berechtigungskonzept,Berechtigungskonzepts>> statt.
+Dieses Dokument beschreibt wesentliche Aspekte der Sicherheitsarchitektur für eine konkrete Anwendungslandschaft.
+Da das Berechtigungskonzept individuell für jede Anwendungslandschaft erstellt wird und sich im einzelnen stark von Inhalt und Umfang her unterscheidet, ist es kein Bestandteil des Bausteins Sicherheit oder der IsyFact.
+
+=== Authentifizierung
+In der Regel erfolgt die Authentifizierung von Anwendern über eine zentrale Komponente der Systemlandschaft, in welche das IT-System eingebettet ist.
+Die Authentifizierung darf auch lokal, d.h. vom IT-System selbst, durchgeführt werden, falls es beispielsweise nicht in eine Systemlandschaft eingebettet ist.
+
+Für die zentrale Authentifizierung wird üblicherweise ein IAM-System verwendet.
+
+NOTE: IAM steht für https://en.wikipedia.org/wiki/Identity_management[Identity and Access Management].
+
+Das IAM-System verwaltet *Anwender* und ihre *Rollen*.
+
+Die Authentifizierung und grobgranulare Autorisierung erfolgt, gemäß der <<prinzipien-der-sicherheitsarchitektur>>, an den Außenschnittstellen der Systemlandschaft.
+Hierbei wird eine Session aufgebaut und das IAM-System ermittelt nach erfolgreiche Authentifizierung die Rollen des Anwenders.
+Die Rollen allein sind jedoch noch nicht ausreichend, um Anwender vollständig zu autorisieren.
+
+=== Autorisierung
+Die Autorisierung geschieht in jedem Fall im jeweiligen IT-System.
+Nach der erfolgreichen Authentifizierung eines Anwenders leitet das IAM-System die Anfrage an das IT-System weiter.
+Hier wird die Anfrage – je nach Schutzbedarf und Funktionalität – autorisiert.
+Dazu weist das IT-System einem Anwender anhand seiner Rollen *Rechte* zu und prüft diese gegen die für die Anfrage benötigten Rechte.
+Wie genau Rollen und Rechte spezifiziert werden, beschreibt das nächste Kapitel.
 
 
-IsyFact-konforme Anwendungen sind gegen nicht autorisierte Nutzung zu schützen.
-Authentifizierung und Autorisierung finden nach den Vorgaben des Berechtigungskonzepts <<Berechtigungskonzept>> statt, welches wesentliche Aspekte der Sicherheitsarchitektur beschreibt.
-Das Berechtigungskonzept muss für jede Anwendungslandschaft individuell erstellt werden und ist daher kein Bestandteil der IsyFact.
+[[rollen-und-rechte]]
+== Rollen & Rechte
 
-[[das-rollenbasierte-berechtigungskonzept]]
-== Das rollenbasierte Berechtigungskonzept
-
-Die Vergabe von Rollen ist _das_ Mittel der Benutzeradministration, um Benutzer der Anwendungslandschaft mit Berechtigungen auszustatten.
-Die Vergabe von Rollen an einen Benutzer (menschliche und technische) erfolgt in der Anwendung Benutzerverzeichnis.
+Die Vergabe von Rollen ist _das_ Mittel der Benutzeradministration, um Anwender der Anwendungslandschaft mit Berechtigungen auszustatten.
+Die Vergabe von Rollen an einen Anwender (menschliche und technische) erfolgt im Querschnitt:
+entweder in der Querschnittsanwendung Benutzerverzeichnis oder in der Querschnittskomponente Benutzerverwaltung.
 
 Es ist konzeptionell beabsichtigt, dass die Administration per Rollen recht grobgranular erfolgt.
 Eine administrative Vergabe feingranularer Rechte ist konzeptionell nicht erwünscht.
-Die individuelle Zuordnung von Rechten zu Benutzern ist daher im Benutzerverzeichnis nicht möglich.
+Die individuelle Zuordnung von Rechten zu Anwendern ist daher prinzipiell nicht möglich.
+Rechte werden Anwendern ausschließlich indirekt über Rollen zugeordnet.
+Welche Rechte einer Rolle zugeordnet sind, wird innerhalb der statischen Konfiguration eines IT-Systems definiert und ist damit Teil der Software.
 
-Rechte werden ausschließlich indirekt über Rollen (in denen sie enthalten sind) den Benutzern zugeordnet.
-Welche Rechte einer Rolle zugeordnet sind, wird innerhalb der Konfiguration einer Anwendung definiert und ist damit Teil der Software.
+====
+Die Fachanwendung X bietet zwei Dialoge zur Administration von Anwendungseigenschaften.
+Die Dialoge sind über die Rolle `AnwendungX_Administrator` abgesichert.
+Innerhalb der Anwendung ist Dialog 1 mit dem Recht `AdministrierenDialog1` und Dialog 2 mit dem Recht `AdministrierenDialog2` abgesichert.
+Grobgranular wird die Rolle `AnwendungX_Administrator` einem Anwender zugeordnet.
+Innerhalb der Konfiguration des IT-Systems X sind beide Rechte konfiguriert und der Rolle `AnwendungX_Administrator` zugeordnet.
+Alle Anwender mit der Rolle `AnwendungX_Administrator` sind somit innerhalb der Anwendung autorisiert, die beiden Admin-Dialoge zu verwenden.
+====
 
-Ein Beispiel: Bietet eine Anwendung X zwei Dialoge zur Administration von Anwendungseigenschaften, so könnten diese Dialoge über eine Rolle AnwendungX_Administrator abgesichert werden.
-Innerhalb der Anwendung ist Dialog 1 mit Recht AdministrierenDialog1 und Dialog 2 mit dem Recht AdministrierenDialog2 abgesichert.
-Im Benutzerverzeichnis kann die Rolle AnwendungX_Administrator an einen Anwender vergeben werden (grobgranular). Innerhalb der Anwendungskonfiguration werden die beiden Rechte konfiguriert und der Rolle AnwendungX_Administrator zugeordnet.
-Alle Anwender mit der Rolle AnwendungX_Administrator sind somit innerhalb der Anwendung autorisiert die beiden Admin-Dialoge zu verwenden.
-
-Wie Rollen und Rechte spezifiziert, bereitgestellt, konfiguriert und Benutzern zugeordnet werden, wird im Folgenden beschrieben.
+Der Vorteil an diesem Vorgehen ist, dass Änderungen an der Zuordnung von Anwendern zu Rollen oder von Rollen zu Rechten nur zu lokalen Änderungen führen.
+Soll eine Rolle andere Rechte in einer Fachanwendung bekommen (z.B. durch das Hinzufügen neuer Dialoge), so kann dies für die Benutzeradministration transparent geschehen.
+Ebenso sind Änderungen an Anwendern oder ihren zugehörigen Rollen transparent für einzelne Fachanwendungen.
 
 [[spezifikation-der-rollen]]
 === Spezifikation der Rollen
 
-Die Grundlage für die Umsetzung einer angemessenen Absicherung einer Anwendung wird in der Spezifikation der Anwendung gelegt.
+Rollen werden bereits auf fachlicher Ebene als Teil der Systemspezifikation einer Fachanwendung spezifiziert.
+Dazu werden zunächst in geeigneter Granularität Rechte definiert, die zur Benutzung bestimmter Funktionalität der Fachanwendung berechtigen.
+Diese Rechte werden fachlichen Rollen zugeordnet, die dann wiederum den Anwendern der Anwendung zugeordnet werden können.
+Die fachlichen Rollen ermöglichen in der Regel pauschal den Zugriff auf die Fachanwendung oder, im Sinne der Rolle eines fachlichen Sachbearbeiters, die Nutzung ausgewählter Anwendungsfälle.
 
-Hier werden zunächst in geeigneter Granularität Rechte definiert, die zur Benutzung bestimmter Funktionalität der Anwendung berechtigt.
+=== Struktur einer Rolle
 
-Diese Rechte werden fachlichen Rollen zugeordnet, die den Benutzern der Anwendung zugeordnet werden können.
-Dies sind Rollen die entweder pauschal den Zugriff auf die Anwendung erlauben, oder im Sinne einer fachlichen Sachbearbeiter-Rolle die Nutzung ausgewählter Anwendungsfälle ermöglicht.
-Zu jeder fachlichen Rolle wird festgelegt:
+Alle Rollen besitzen die folgende Struktur:
 
-* Name: Der interne Name der Rolle, wie er für die Autorisierung im Access-Manager und innerhalb von Anwendungen zur Überprüfung bereitgestellt wird. +
- +
-Der Rollenname sollte dem folgenden Schema entsprechen:
-<Anwendungskürzel>_<Zweck/Funktionalität>[_<Zugang>]. +
- +
-Das Suffix <Zugang> ist optional, sollte jedoch wenn möglich verwendet werden. +
-Folgende Werte sind als <Zugang> sinnvoll:
-** Schnittstellennutzer für technische Rollen, die zur Verwendung einer internen Service-Schnittstelle berechtigt)
-** Webservicenutzer (für technische Rollen, die zur Verwendung einer Web-Service-Schnittstelle eines Service-Gateways berechtigt)
-** Nutzer (für fachliche Rollen, die zur Nutzung der Oberfläche einer Anwendung berechtigt)
-** Servicenutzer (für fachliche Rollen, die zur Verwendung eines Service-Gateways berechtigt)
-** Batch (für fachliche Rollen, die zur Ausführung eines Batches zu einer Anwendung berechtigt)
-** Launcher (für fachliche Rollen, die zur Ausführung eines internen Tasks einer Anwendung berechtigt)
-* Label: Der Name der Rolle, wie sie in der Benutzeroberfläche des Benutzerverzeichnisses anzuzeigen ist.
-In der Regel identisch mit dem Namen der Rolle.
-Eine Umbenennung ist nur dann sinnvoll, wenn die Rollenvergabe durch den Administrator dadurch intuitiver wird.
-* Typ: Eine Rolle kann fachlich oder technisch sein.
-Nur fachliche Rollen können administriert werden.
-Technische Rollen können fachlichen Rollen untergeordnet werden (siehe Untergeordnete Rollen).
-* Enthaltene Rechte: Die Ausstattung einer fachlichen Rolle mit Rechten beschreibt den Funktionsumfang, den der Rolleninhaber bei der Nutzung der Anwendung vorfindet.
-* Untergeordnete Rollen (optional): Fachliche Rollen können technische Unterrollen besitzen.
-Wofür wird das benutzt? Berechtigt eine fachliche Rolle für einen Anwendungsfall der die Dienste eines Nachbarsystems (z.B. eines Schlüsselverzeichnisses) verwendet, so wird die von diesem Nachbarsystem zur Verwendung der Serviceschnittstelle definierte technische Rolle der fachlichen Rolle untergeordnet.
-* Sichtbarkeit der Rolle: die Sichtbarkeit der Rollen bei der Rollenzuordnung an Anwender, externe Systeme und interne Systeme kann eingeschränkt werden, um die Administration zu vereinfachen.
-* Beschreibung der Rolle: Eine kurze Beschreibung der Rolle in einer fachlichen Sprache, die für Dienstleister und Administration verständlich ist, erleichtert die Nutzung der Rolle.
+*Name:* Interner Name der Rolle, wie er für die Autorisierung und innerhalb von Anwendungen zur Überprüfung bereitgestellt wird.
 
-Bietet die Anwendung Funktionalität über Service-Schnittstellen an, so ist die Nutzung jeder Service-Schnittstelle zumindest durch eine technische Rolle abzusichern.
-Diese Rollen werden nicht direkt an Benutzer vergeben, sondern fachlichen Rollen anderer Anwendungen untergeordnet.
+Der Rollenname sollte dem folgenden Schema entsprechen: `<Anwendungskürzel>_<Zweck/Funktionalität>[_<Zugang>]`.
+
+Das Suffix `<Zugang>`  ist optional, sollte jedoch wenn möglich verwendet werden. Folgende Werte sind sinnvoll:
+
+* `Schnittstellennutzer` für technische Rollen, die zur Verwendung einer internen Service-Schnittstelle berechtigen,
+* `Webservicenutzer` für technische Rollen, die zur Verwendung einer Web-Service-Schnittstelle eines Service-Gateways berechtigen,
+* `Nutzer` für fachliche Rollen, die zur Nutzung der Oberfläche einer Anwendung berechtigen,
+* `Servicenutzer` für fachliche Rollen, die zur Verwendung eines Service-Gateways berechtigen,
+* `Batch` für fachliche Rollen, die zur Ausführung eines Batches zu einer Anwendung berechtigen,
+* `Launcher` für fachliche Rollen, die zur Ausführung eines internen Tasks einer Anwendung berechtigen.
+
+*Label:* Name der Rolle, wie sie in der Oberfläche der Benutzeradministration angezeigt wird.
+In der Regel ist dieser Name identisch mit dem technischen Namen der Rolle.
+Eine Abweichung ist nur dann sinnvoll, wenn die Vergabe der Rollen durch den Administrator dadurch intuitiver wird.
+
+*Beschreibung:* Eine kurze Beschreibung der Rolle in einer fachlichen Sprache, die für die Benutzeradministration verständlich ist, erleichtert die Nutzung der Rolle.
+
+*Typ:* Eine Rolle kann fachlich oder technisch sein.
+Nur fachliche Rollen können über die Benutzeradministration verwaltet werden.
+Technische Rollen können fachlichen Rollen allerdings untergeordnet werden (siehe weiter unten: *Untergeordnete Rollen*).
+
+*Enthaltene Rechte:* Die Ausstattung einer fachlichen Rolle mit Rechten beschreibt den Funktionsumfang, den diese Rolle bei Nutzung der Fachanwendung ermöglicht.
+
+*Untergeordnete Rollen:* Optional können fachliche Rollen untergeordnete technische Rollen besitzen.
+Dies ist z.B. immer dann notwendig, wenn ein Anwendungsfall die Dienste eines Nachbarsystems verwendet.
+Somit muss im Rahmen des Anwendungsfalls die Service-Schnittstelle des Nachbarsystems aufgerufen werden.
+Die dazu benötigte, technische Rolle muss der fachlichen Rolle untergeordnet werden, damit dies funktioniert.
+
+*Sichtbarkeit der Rolle:* Die Sichtbarkeit der Rollen bei der Zuordnung an Anwender, externe Systeme und interne Systeme kann eingeschränkt werden, um die Administration zu vereinfachen.
+
+Die meisten Rollen sind fachlicher Natur.
+Technische Rollen treten oft im Rahmen von Service-Schnittstellen auf.
+Bietet eine Fachanwendung Funktionalität über Service-Schnittstellen an, so ist die Nutzung jeder Service-Schnittstelle zumindest durch eine technische Rolle abzusichern.
+Diese Rollen werden nicht direkt an Anwender vergeben, sondern fachlichen Rollen anderer Fachanwendungen untergeordnet.
 
 Wenn die Anwendung fachliche oder technische Batches enthält, dann müssen für diese Batches in der Spezifikation entsprechende „interne Systeme“ definiert werden.
-Die Systemnamen sollten dem folgenden Schema entsprechen: <Anwendungskürzel>_BAT_<Batchname in CamelCase>. Für jedes interne System müssen die fachlichen Rollen definiert werden, die diesem System zugeordnet sind.
+Die Systemnamen sollten dem folgenden Schema entsprechen: `<Anwendungskürzel>_BAT_<Batchname>`.
+Für jedes dieser internen System müssen eigene fachliche Rollen definiert werden.
 
 
 [[einbindung-der-komponente-sicherheit]]

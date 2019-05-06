@@ -6,44 +6,24 @@ include::../../../common/attributes.adoc[]
 [[einleitung]]
 == Einleitung
 
-Sicherheit ist ein zentrales Thema einer jeden Anwendung.
-Bei der Umsetzung von Anwendungen in IT-Systeme werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
+Sicherheit ist ein zentrales Thema einer jeden Fachanwendung.
+Bei der Umsetzung von Fachanwendungen in IT-Systeme werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
 Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowie De-Facto-Standards aus der Industrie:
 
 * <<ITGrundschutz>>
 * <<OWASP10>>
 
 Dieses Dokument konzentriert sich auf die konzeptionellen Aspekte der Authentifizierung und Autorisierung.
-In der Regel erfolgt die *Authentifizierung* von Benutzern über eine zentrale Komponente der Anwendungslandschaft, in welche die Anwendung eingebettet ist.
-Die Authentifizierung kann alternativ auch lokal, d.h. von der Anwendung selbst, durchgeführt werden, falls sie beispielsweise nicht Teil einer Anwendungslandschaft ist.
-
-Für die zentrale Authentifizierung wird üblicherweise ein IAM-Produkt verwendet.
-
-NOTE: IAM steht für https://en.wikipedia.org/wiki/Identity_management[Identity and Access Management].
-
-Das IAM-Produkt verwaltet *Benutzer* und ihre *Rollen*. Die Rollen allein sind jedoch noch nicht ausreichend, um Benutzer zu autorisieren.
-
-Die *Autorisierung* geschieht in jedem Fall in der jeweiligen Fachanwendung.
-Nach der erfolgreichen Authentifizierung eines Benutzers leitet das IAM-Produkt die Anfrage an die Fachanwendung weiter.
-Hier wird die Anfrage – je nach Schutzbedarf und Funktionalität – autorisiert.
-Dazu weist die Fachanwendung einem Benutzer anhand seiner Rolle *Rechte* zu und prüft diese gegen die für die Anfrage benötigten Rechte.
-
-Der Baustein Sicherheit der IsyFact sorgt dafür, dass die Authentifizierung und Autorisierung in allen Fachanwendungen gleichartig umgesetzt wird und grundlegende Anforderungen an die Sicherheit eingehalten werden.
-
-[[inhalt-und-aufbau]]
-=== Inhalt & Aufbau dieses Dokuments
-
-Dieses Dokument beschreibt, welche Konzepte dem Baustein Sicherheit zugrundeliegen.
-Es richtet sich vor allem an Software-Architekten, die eine Anwendung gemäß den Vorgaben der IsyFact absichern müssen.
-Es beschreibt, wie und in welchen Teilen einer Anwendung die Authentifizierung und Autorisierung umzusetzen ist.
+Es sorgt dafür, dass Authentifizierung und Autorisierung in allen IT-Systemen gleichartig umgesetzt wird und grundlegende Anforderungen an die IT-Sicherheit eingehalten werden.
+Es richtet sich vor allem an Software-Architekten, die eine Fachanwendung gemäß den Vorgaben der IsyFact absichern müssen und beschreibt, wie und in welchen Teilen eines IT-Systems die Authentifizierung und Autorisierung umzusetzen ist.
 
 // TODO Nach Bearbeitung des Dokuments noch einmal nachziehen!
-Dazu wird zunächst in einem Überblick erläutert, wie die Sicherheitsarchitektur auf Ebene der Anwendungslandschaft und auf Ebene einer einzelnen Anwendung aussieht.
+Dazu wird zunächst in einem Überblick erläutert, wie die Sicherheitsarchitektur auf Ebene der Systemlandschaft und auf Ebene eines einzelnen IT-Systems aussieht.
 
-Im Abschnitt <<das-rollenbasierte-berechtigungskonzept>> wird erläutert, wie für eine neue Anwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Anwendung konfiguriert wird.
+Im Abschnitt <<rollen-und-rechte>> wird erläutert, wie für eine neue Fachanwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Fachanwendung konfiguriert wird.
 
-Im Abschnitt <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in der Anwendung eingegangen.
-Dieser Abschnitt erläutert die Verwendung der Komponente Sicherheit innerhalb einer Anwendung.
+Im Abschnitt <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in denen der Fachanwendung entsprechenden IT-Systemen eingegangen.
+Dieser Abschnitt erläutert die Verwendung des Bausteins Sicherheit innerhalb einer Anwendung.
 
 Im Abschnitt <<weitere-konzepte>> werden weitere Vorgaben zur Verwendung der Komponente Sicherheit gemacht.
 Hier wird der Aufruf von Nachbarsystemen, Behandlung der Korrelations-ID und der Test von Anwendungen erläutert.
