@@ -19,19 +19,19 @@
   00_Allgemein/IsyFact-Einstieg.pdf
 
 - [[[IsyFactGlossar]]] +
-  IsyFact Glossar +
+  IsyFact-Glossar +
   00_Allgemein/IsyFact-Glossar.pdf
 
 - [[[IsyFactNamenskonventionen]]] +
-  IsyFact – Namenskonventionen +
+  IsyFact-Namenskonventionen +
   00_Allgemein/IsyFact-Namenskonventionen.pdf
 
 - [[[IsyFactReferenzarchitektur]]] +
-  IsyFact – Referenzarchitektur +
+  IsyFact-Referenzarchitektur +
   10_Blaupausen/IsyFact-Referenzarchitektur.pdf
 
 - [[[IsyFactReferenzarchitekturITSystem]]] +
-  IsyFact – Referenzarchitektur für IT-Systeme +
+  IsyFact-Referenzarchitektur für IT-Systeme +
   10_Blaupausen/technische_Architektur/IsyFact-Referenzarchitektur-IT-System.pdf
 
 - [[[TailoringVorlage]]] +
@@ -47,11 +47,11 @@
   00_Allgemein/IsyFact-Versionierung.pdf
 
 - [[[ProduktKatalog]]] +
-  IsyFact Produktkatalog +
+  IsyFact-Produktkatalog +
   00_Allgemein/Produktkatalog_IsyFact.xlsx
 
 - [[[Aenderungshistorie]]] +
-  IsyFact Änderungshistorie +
+  IsyFact-Änderungshistorie +
   00_Allgemein/Aenderungshistorie.xlsx
 
 - [[[DetailkonzeptKomponenteAnwendungskern]]] +
