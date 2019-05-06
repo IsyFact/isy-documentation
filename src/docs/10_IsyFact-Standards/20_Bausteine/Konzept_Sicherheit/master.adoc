@@ -29,9 +29,6 @@ include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
-// Anhänge
-include::anhaenge.adoc[]
-
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
