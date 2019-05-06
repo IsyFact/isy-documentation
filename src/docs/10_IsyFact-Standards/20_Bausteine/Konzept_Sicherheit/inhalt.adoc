@@ -122,44 +122,42 @@ Die Systemnamen sollten dem folgenden Schema entsprechen: `<Anwendungskürzel>_B
 Für jedes dieser internen System müssen eigene fachliche Rollen definiert werden.
 
 
-[[einbindung-der-komponente-sicherheit]]
-== Einbindung der Komponente Sicherheit
+[[einbindung-des-bausteins-sicherheit]]
+== Einbindung des Bausteins Sicherheit
 
-Die Komponente Sicherheit ist eine Querschnittkomponente der <<IsyFactReferenzarchitektur>>.
-Diese Komponente ist von jeder konformen Anwendung zur Autorisierung von Zugriffen und Vorgängen zu verwenden.
-
-Für ein korrektes Funktionieren benötigt die Komponente Sicherheit die Komponente AufrufKontextVerwalter, deren Verwendung ebenfalls in diesem Kapitel erläutert wird.
+Der Baustein Sicherheit bildet eine Komponente des Querschnitts der <<IsyFactReferenzarchitekturITSystem>>.
+Er ist von jedem IT-System zur Autorisierung von Zugriffen und Vorgängen zu verwenden.
+Für ein korrektes Funktionieren benötigt der Baustein die Komponente `AufrufKontextVerwalter`, deren Verwendung ebenfalls in diesem Kapitel erläutert wird.
 
 [[sicherheitsarchitektur-einer-anwendung]]
 === Sicherheitsarchitektur einer Anwendung
 
-[[ziele]]
-==== Ziele
+Die Mechanismen zur Absicherung IsyFact-konformer IT-Systeme hat zum Ziel, die Autorisierung von Zugriffen systematisch, einheitlich und einfach umzusetzen.
 
-Die Ausgestaltung der Sicherheitsmechanismen für IsyFact-konforme Anwendungen hat das Ziel, die Autorisierung von Zugriffen auf IT-Systeme einer Anwendungslandschaft systematisch, einheitlich und einfach umzusetzen.
+Die *Systematik* und Vollständigkeit der Berechtigungsprüfungen wird dadurch erreicht, dass Berechtigungsprüfungen in den IT-Systemen an definierten Stellen und auf identische Weise stattfinden.
 
-* Die *Systematik* und Vollständigkeit der Berechtigungsprüfungen wird dadurch erreicht, dass Berechtigungsprüfungen in den IT-Systemen an definierten Stellen und auf identische Weise stattfinden.
-* Die *Einheitlichkeit* wird durch Bereitstellung der Komponente Sicherheit und Nutzungsvorgaben gewährleistet, die von allen IT-Systemen der Anwendungslandschaft zu verwenden sind.
-Berechtigungsprüfungen erfolgen innerhalb einer Anwendung immer über die Komponente Sicherheit.
-* Die *Einfachheit* der Nutzung der Komponente Sicherheit wird durch weitgehende Transparenz bei der Initialisierung, kompakte Schnittstellen und deklarative (z.B. per Annotation) statt programmatischer Implementierung erreicht.
+Die *Einheitlichkeit* wird durch Bereitstellung der Bibliothek `isy-sicherheit` und Nutzungsvorgaben gewährleistet, die von allen IT-Systemen zu verwenden sind.
+Berechtigungsprüfungen erfolgen innerhalb eines IT-Systems immer über die Bibliothek `isy-sicherheit`.
+
+Die *Einfachheit* der Nutzung der Bibliothek `isy-sicherheit` wird durch weitgehende Transparenz bei der Initialisierung, kompakte Schnittstellen und deklarative (z.B. per Annotation) statt programmatischer Implementierung erreicht.
 
 [[praemissen]]
 ==== Prämissen
 
-Aus den im Abschnitt <<prinzipien-der-sicherheitsarchitektur>> beschriebenen Prinzipien leiten sich die folgenden Randbedingungen für die Umsetzung der Berechtigungsprüfung innerhalb einer Anwendung ab:
+Aus den <<prinzipien-der-sicherheitsarchitektur>> leiten sich die folgenden Randbedingungen für die Umsetzung der Berechtigungsprüfung innerhalb eines IT-Systems ab:
 
-* Anfragen die am Dialog einer Anwendung eingehen, sind immer bereits durch den Access-Manager authentifiziert.
-Der http-Header der Anfrage enthält die Identifikation des Benutzers und dessen Rollen.
-Die Informationen aus diesem Header werden in die Anwendung als `AufrufKontext` übernommen.
-* Anfragen die an einer Service-Schnittstelle einer Anwendung eingehen, sind immer bereits durch den Access-Manager authentifiziert.
-Das mit der Anfrage an eine Anwendung als Parameter übergebene `AufrufKontextTo` enthält die Identifikation des Benutzers und dessen Rollen und wird in der Anwendung als `AufrufKontext` verwendet.
-* Prozesse, die unabhängig von eingehenden Anfragen (über GUI und Service) durch eine Anwendung gestartet werden, müssen zunächst einen (meist technischen) Benutzer gegen den Access-Manager authentifizieren, dessen Rollen ermitteln und diese Informationen als `AufrufKontext` in der Anwendung hinterlegen.
-* Einem innerhalb der Logik- und Verarbeitungszone einer Anwendung übergebenen `AufrufKontext` kann vertraut und ohne erneute Rückfrage an den Access-Manager verwendet werden.
+* Anfragen, die am Dialog eines IT-Systems eingehen, sind immer bereits durch das IAM-System bzw. die lokale Authentifizierung erfolgreich  authentifiziert.
+Sorgt ein IAM-System für die Authentifizierung, enthält der HTTP-Header der Anfrage die Identifikation des Anwenders und dessen Rollen.
+Die Informationen aus dem HTTP-Header werden in die als `AufrufKontext` in das IT-System übernommen.
+* Anfragen, die an einer Service-Schnittstelle eines IT-Systems eingehen, sind ebenso bereits authentifiziert.
+Das mit der Anfrage an das IT-System als Parameter übergebene Transportobjekt `AufrufKontextTo` enthält die Identifikation des Anwenders und dessen Rollen und wird als `AufrufKontext` in das IT-System übernommen.
+* Prozesse, die unabhängig von eingehenden Anfragen (über Dialog und Service) durch ein IT-System gestartet werden, müssen zunächst einen (meist technischen) Anwender gegen das IAM-System bzw. die lokale Authentifizierung erfolgreich authentifizieren, dessen Rollen ermitteln und diese Informationen als `AufrufKontext` im IT-System hinterlegen.
+* Einem innerhalb der Logik- und Verarbeitungszone eines IT-Systems übergebenen `AufrufKontext` kann vertraut und ohne erneute Rückfrage an das IAM-System bzw. die lokale Authentifizierung verwendet werden.
 
 [[software-architektur]]
 ==== Software-Architektur
 
-Die folgende Abbildung zeigt den logischen Aufbau für die Authentifizierung und für die Bereitstellung von Berechtigungsinformationen an die Komponenten einer Anwendung.
+Die folgende Abbildung zeigt den logischen Aufbau für die Authentifizierung und für die Bereitstellung von Berechtigungsinformationen an die Komponenten eines IT-Systems.
 
 :desc-image-Berechtigungspruefung: Software-Architektur der Berechtigungsprüfung
 [id="image-Berechtigungspruefung",reftext="{figure-caption} {counter:figures}"]
@@ -169,31 +167,28 @@ image::sicherheit_001.png[align="center"]
 Im Folgenden werden die Aufgaben und grobe Funktionsweise der Komponenten für die Autorisierung von Anfragen in einer Fachanwendung erläutert.
 
 Die Komponente `AufrufKontextVerwalter` stellt für eine laufende Anfrage Kontextinformationen zur Anfrage bereit, die in einem `AufrufKontext` hinterlegt werden.
-Das sind insbesondere die mit der Anfrage über die Außenschnittstelle eingehenden Informationen zum Benutzer und dessen Rollen, die Korrelations-ID und anwendungsspezifisch ggf.
-weitere Informationen.
-Die Komponente bringt Hilfsmittel zur transparenten Nutzung des AufrufKontextVerwalters mit.
-So wird kann über den StelltaufrufkontextBereitInterceptor der `AufrufKontext` bei Serviceaufrufen transparent über Spring AOP gesetzt werden.
-Weiterhin wird der Aufrufkontext durch die Komponente Sicherheit im Rahmen der Authentifizierung automatisch befüllt.
-Nach Initialisierung des AufrufKontextVerwalters für eine laufende Anfrage kann die Anwendung fortan transparent mit den im `AufrufKontextVerwalter` hinterlegten Benutzerinformationen arbeiten (ohne deren Herkunft zu kennen) und damit auch weitere Nachbarsysteme aufrufen.
+Das sind insbesondere die mit der Anfrage über die Außenschnittstelle eingehenden Informationen zum Anwender und dessen Rollen, die Korrelations-ID und anwendungsspezifisch ggf. weitere Informationen.
+Die Komponente bringt Hilfsmittel zur transparenten Nutzung des `AufrufKontextVerwalter` mit.
+So wird kann über Interceptoren der `AufrufKontext` bei Serviceaufrufen transparent über Spring AOP gesetzt werden.
+Weiterhin wird der Aufrufkontext im Rahmen der Authentifizierung automatisch befüllt.
+Nach Initialisierung des `AufrufKontextVerwalter` für eine laufende Anfrage kann das IT-System fortan transparent mit den im `AufrufKontextVerwalter` hinterlegten Anwenderinformationen arbeiten (ohne deren Herkunft zu kennen) und damit auch weitere Nachbarsysteme aufrufen.
 
-Die Komponente Sicherheit bietet folgende Funktionen:
+Der Baustein Sicherheit bietet folgende Funktionen:
 
-* für Service-Aufrufe werden Interceptoren angeboten, welche über Spring AOP eine deklarative Berechtigungsprüfung ermöglichen.
-* für den Kontext der Anfrage stellt die Komponente einen Berechtigungsmanager zur Verfügung, der die Rollen des anfragenden Benutzers kennt.
-Die Informationen zum anfragenden Benutzer werden – falls vorhanden – aus dem `AufrufKontextVerwalter` entnommen.
-Die Fachkomponenten einer Anwendung nutzen den Berechtigungsmanager für spezielle Berechtigungsprüfungen, die nicht deklarativ über Annotationen erfolgen.
-* Benutzer können anhand der übergebenen Benutzerkennung (und Passwort) authentifiziert werden.
-Dazu wird der Access-Manager angesprochen.
+* Für Service-Aufrufe werden Interceptoren angeboten, welche über Spring AOP eine deklarative Berechtigungsprüfung ermöglichen.
+* Für den Kontext der Anfrage stellt die Komponente einen Berechtigungsmanager zur Verfügung, der die Rollen des anfragenden Anwenders kennt.
+Die Informationen zum anfragenden Anwender werden – falls vorhanden – aus dem `AufrufKontextVerwalter` entnommen.
+Die Fachkomponenten eines IT-Systems nutzen den Berechtigungsmanager für spezielle Berechtigungsprüfungen, die nicht deklarativ über Annotationen erfolgen können.
+* Anwender können anhand der übergebenen Benutzerkennung (und Passwort) authentifiziert werden.
+Dazu wird das IAM-System bzw. die lokale Authentifizierung angesprochen.
 Die gewonnenen Informationen werden im `AufrufKontextVerwalter` hinterlegt.
-* Der AccessManager kann für verschiedene Berechtigungsquellen implementiert werden.
-Mit Sicherheit-CAMS wird eine Implementierung für den CAMS angeboten.
+* Das Interface `AccessManager` bietet eine Abstraktion für verschiedene Berechtigungsquellen an.
 
-Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring-Security durchgeführt.
-Die Integration von Spring-Security und Sicherheit werden in <<DetailkonzeptKomponenteWebGUI>> beschrieben.
+Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring Security durchgeführt.
+Die Integration von Spring Security und des Bausteins Sicherheit wird im <<DetailkonzeptKomponenteWebGUI>> beschrieben.
 
 [[aussensicht-der-komponente-sicherheit]]
 === Außensicht der Komponente Sicherheit
-// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
 
 Im Folgenden wird die Schnittstelle der Komponente Sicherheit beschrieben.
 
@@ -202,70 +197,14 @@ Im Folgenden wird die Schnittstelle der Komponente Sicherheit beschrieben.
 .{desc-image-aussensicht-der-komponente-sicherheit}
 image::sicherheit_002.png[align="center"]
 
-Die Außensicht der Komponente enthält folgende Objekte:
+Die Außensicht der Komponente ist folgendermaßen aufgebaut:
 
-Zentrales Interface für den Zugriff auf Rollen und Rechte eines Benutzers ist `Berechtigungsmanager`.
-Instanzen des Berechtigungsmanagers zur Autorisierung einer Anfrage werden über `Sicherheit` erzeugt.
+Die zentrale Schnittstelle für den Zugriff auf Rollen und Rechte eines Anwenders ist `Berechtigungsmanager`.
+Instanzen des Berechtigungsmanagers zur Autorisierung einer Anfrage werden über die Schnittstelle `Sicherheit` erzeugt.
 
-Vom Berechtigungsmanager werden die Interfaces `Recht` und `Rolle` verwendet.
-Rollen werden über das Benutzerverzeichnis Benutzern zugewiesen.
-Berechtigungen sind anwendungsspezifisch und an Rollen gebunden.
-Diese Zuordnung erfolgt über die Konfigurationsdatei `rollenrechte.xml`.
-
-Die Implementierung des zu verwendenden Aufrufkontexts richtet sich nach dem verwendeten AccessManager.
-
-[[erzeugen-eines-berechtigungsmanagers]]
-=== Erzeugen eines Berechtigungsmanagers
-// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
-
-Die Komponente erzeugt für einen angegebenen Benutzer eine Instanz des Berechtigungsmanagers.
-Der Berechtigungsmanager ist ein Container für die Berechtigungsinformationen des Benutzers, also für Rechte und Rollen.
-Die Instanz des Berechtigungsmanagers kann auf mehrere Arten erzeugt werden:
-
-`getBerechtigungsManager()`
-
-Die Komponente Sicherheit ermittelt die Informationen zum Benutzer und zugehörige Rollen aus dem `AufrufKontextVerwalter` der Anwendung.
-Diese Methode soll verwendet werden, wenn der Benutzer bereits in der Informations- und Dienstezone authentifiziert wurde und die Benutzerinformationen (inklusive Rollen) in der Anwendung im `AufrufKontextVerwalter` vorliegen.
-
-`getBerechtigungsManagerUndAuthentifiziere +
-(AufrufKontext unauthentifzierterAufrufkontext)`
-
-Die Komponente Sicherheit authentifiziert zunächst den Benutzer durch eine Anfrage am Access-Manager, dabei werden die zur Authentifizierung benötigten Informationen über ein AufrufKontext-Objekt übergeben.
-Für CAMS sind dies das Zertifikat (alternativ ZertifikatDn), Kennung und Passwort.
-Der AccessManager ermittelt dann die Rollen des Benutzers und diese werden im `AufrufKontextVerwalter` der Anwendung hinterlegt.
-Aus Sicht des CAMS erfolgt anschließend erfolgt sofort der Logout.
-
-[[verwendung-des-berechtigungsmanagers]]
-=== Verwendung des Berechtigungsmanagers
-// TODO Umschreiben, so dass hier nur konzeptionelle Aspekte übrig bleiben!
-
-Der Berechtigungsmanager wird selten direkt im Programmcode verwendet, da die meisten Berechtigungsprüfungen deklarativ per Annotationen oder
-Webflow-Tags (siehe Abschnitt <<autorisierung-innerhalb-einer-anwendung>>) umgesetzt werden.
-
-Trotzdem kann eine Berechtigungsprüfung auch ausprogrammiert werden.
-Dafür stellte die Komponente Sicherheit den Berechtigungsmanager mit folgender Schnittstelle bereit:
-
-:desc-image-schnittstelle-des-berechtigungsmanagers: Schnittstelle des Berechtigungsmanagers
-[id="image-schnittstelle-des-berechtigungsmanagers",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-schnittstelle-des-berechtigungsmanagers}
-image::sicherheit_003.png[pdfwidth=45%,width=45%,align="center"]
-
-Die Klasse Berechtigungsmanager bietet die folgenden Methoden an:
-
-`getAktuellerBenutzer()`::
-Liefert die Benutzerkennung des Benutzers (Login und Behörden-/Organisationskennzeichen) für den der Berechtigungsmanager erzeugt wurde.
-
-`getRechte()`::
-Diese Methode liefert eine Liste aller Rechte des Benutzers.
-
-`getRecht()`::
-Diese Methode liefert zu einer ID das zugehörige Recht, falls der Benutzer es besitzt.
-
-`hatRecht()`::
-Diese Methode prüft, ob der Benutzer das angegebene Recht hat.
-
-`pruefeRecht()`::
-Diese Methode prüft, ob der Benutzer das angegebene Recht hat und löste eine AutorisierungFehlgeschlagenException aus, wenn das nicht der Fall ist.
+Der Berechtigungsmanager verwendet die Schnittstellen `Rolle` und `Recht`.
+Rollen werden über die Benutzeradministration Anwendern zugewiesen.
+Rechte sind anwendungsspezifisch und an Rollen gebunden.
 
 
 [[autorisierung-innerhalb-einer-anwendung]]
