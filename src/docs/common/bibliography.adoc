@@ -230,11 +230,7 @@
   https://facelets.dev.java.net/
 
 - [[[ITGrundschutz]]] +
-  IT-Grundschutz +
-  https://www.bsi.bund.de/DE/Themen/ITGrundschutz/itgrundschutz_node.html
-
-- [[[ITGS06]]] +
-  IT-Grundschutzkatalog, Baustein B 1.12, Stand 2006 +
+  IT-Grundschutz des BSI +
   https://www.bsi.bund.de/DE/Themen/ITGrundschutz/itgrundschutz_node.html
 
 - [[[jenerate]]] +
