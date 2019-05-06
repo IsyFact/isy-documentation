@@ -203,7 +203,7 @@ Der Berechtigungsmanager verwendet die Schnittstellen `Rolle` und `Recht`.
 Rollen werden über die Benutzeradministration Anwendern zugewiesen.
 Rechte sind anwendungsspezifisch und an Rollen gebunden.
 
-[[aufrufen-von-nachbarsystemen]]
+[[aufruf-von-nachbarsystemen]]
 == Aufruf von Nachbarsystemen
 
 So wie eine Anwendung bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, welches von der eigenen Anwendung aufgerufen wird.

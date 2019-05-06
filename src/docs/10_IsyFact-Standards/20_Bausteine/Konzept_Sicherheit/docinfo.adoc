@@ -2,7 +2,7 @@
 **Dokumentinformationen**
 
 |====
-|Dokumenten-ID:| Nutzungsvorgaben_Sicherheit
+|Dokumenten-ID:| Konzept_Sicherheit
 |====
 
 //|Datum |Version |Änderungsgrund
@@ -27,13 +27,3 @@
 //|27.03.2015 |1.12 |Lizenz auf CC 4.0 geändert
 //|02.07.2015 |1.13 |Kleinere Korrekturen: an zwei Stellen Register(-Plattform) auf IsyFact korrigiert.
 //|29.08.2016 |1.14 |Verwendung der Korrelations-ID aktualisiert. Inkonsistenzen bereinigt.
-
-*Java Bibliothek / IT-System*
-
-[cols="5,2,3"]
-|====
-|Name |Art |Version
-|isy-sicherheit |Bibliothek |siehe isyfact-bom v1.5.x
-|rf-sicherheit-cams |Bibliothek |siehe rf-bom v1.8.x
-|isy-aufrufkontext (Teil isyfact-base) |Bibliothek |siehe isyfact-bom v1.5.x
-|====

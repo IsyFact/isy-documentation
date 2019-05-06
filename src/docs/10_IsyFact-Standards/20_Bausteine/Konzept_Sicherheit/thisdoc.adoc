@@ -15,17 +15,15 @@ Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowi
 
 Dieses Dokument konzentriert sich auf die konzeptionellen Aspekte der Authentifizierung und Autorisierung.
 Es sorgt dafür, dass Authentifizierung und Autorisierung in allen IT-Systemen gleichartig umgesetzt wird und grundlegende Anforderungen an die IT-Sicherheit eingehalten werden.
-Es richtet sich vor allem an Software-Architekten, die eine Fachanwendung gemäß den Vorgaben der IsyFact absichern müssen und beschreibt, wie und in welchen Teilen eines IT-Systems die Authentifizierung und Autorisierung umzusetzen ist.
+Es richtet sich vor allem an Software-Architekten, die eine Fachanwendung gemäß den Vorgaben der IsyFact absichern müssen und beschreibt, wie und in welchen Teilen eines IT-Systems die Authentifizierung und Autorisierung stattfindet.
 
-// TODO Nach Bearbeitung des Dokuments noch einmal nachziehen!
-Dazu wird zunächst in einem Überblick erläutert, wie die Sicherheitsarchitektur auf Ebene der Systemlandschaft und auf Ebene eines einzelnen IT-Systems aussieht.
+Dazu erläutert das Kapitel <<prinzipien-der-sicherheitsarchitektur>> zunächst, wie sich die Sicherheitsarchitektur auf Ebene der Systemlandschaft und auf Ebene eines einzelnen IT-Systems darstellt.
 
-Im Abschnitt <<rollen-und-rechte>> wird erläutert, wie für eine neue Fachanwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Fachanwendung konfiguriert wird.
+Das Kapitel <<rollen-und-rechte>> beschreibt dann, wie Rollen und Rechte für eine neue Fachanwendung spezifiziert werden.
 
-Im Abschnitt <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in denen der Fachanwendung entsprechenden IT-Systemen eingegangen.
-Dieser Abschnitt erläutert die Verwendung des Bausteins Sicherheit innerhalb einer Anwendung.
+Danach beleuchtet das Kapitel <<sicherheitsarchitektur-einer-anwendung>> die Einbettung des Bausteins Sicherheit in ein konkretes IT-System.
+Zentrale Schnittstellen beschreibt das Kapitel <<aussensicht-der-komponente-sicherheit>>.
 
-Im Abschnitt <<weitere-konzepte>> werden weitere Vorgaben zur Verwendung der Komponente Sicherheit gemacht.
-Hier wird der Aufruf von Nachbarsystemen, Behandlung der Korrelations-ID und der Test von Anwendungen erläutert.
+Schließlich befasst sich das Kapitel <<aufruf-von-nachbarsystemen>> mit Vorgaben und Konventionen beim Einbinden von Nachbarsystemen.
 
 // end::inhalt[]
