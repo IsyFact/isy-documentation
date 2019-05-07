@@ -106,6 +106,10 @@
   Konzept Protokollierung +
   20_Bausteine/Polling/Nutzungsvorgaben_Polling.pdf
 
+- [[[KonzeptSicherheit]]] +
+  Konzept Sicherheit +
+  20_Bausteine/Sicherheitskomponente/Konzept_Sicherheit.pdf
+
 - [[[NutzungsvorgabenSicherheit]]] +
   Nutzerdokumentation Sicherheit +
   20_Bausteine/Sicherheitskomponente/Nutzungsvorgaben_Sicherheit.pdf
