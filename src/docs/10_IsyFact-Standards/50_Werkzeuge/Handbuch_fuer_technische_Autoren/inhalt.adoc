@@ -40,7 +40,7 @@ image::atom0.png[align="center",pdfwidth=80%,width=80%]
 
 Nach der Einrichtung der Arbeitsumgebung kann es mit der Bearbeitung der IsyFact-Dokumentation losgehen.
 Allerdings ist schon beim Anlegen der ersten Dateien einiges zu beachten, denn ein IsyFact-Dokument muss der festgelegten Struktur entsprechen.
-In diesem Kapitel wird gezeigt, wie hierfür zunächst das Gesamtprojekt aus dem Git-Repository heruntergeladen wird, um anschließend die darin enthaltene Dokument-Vorlage für das eigene IsyFact-Dokument vorzubereiten.
+In diesem Kapitel wird gezeigt, wie hierfür zunächst das Gesamtprojekt aus dem Git-Repository heruntergeladen wird, um anschließend die Dokument-Vorlage für das eigene IsyFact-Dokument vorzubereiten.
 
 [[ein-neues-verzeichnis-anlegen]]
 == Ein neues Verzeichnis anlegen
@@ -49,33 +49,24 @@ Das neue IsyFact-Dokument muss in einem bestimmten Ordner der vorhandenen Verzei
 Dies setzt voraus, dass das Gesamtprojekt zunächst vom Git-Repository heruntergeladen wird.
 Hierfür wechseln Sie auf der Kommandozeile auf eine geeignete Stelle Ihrer lokalen Festplatte und geben dort folgendes Kommando ein.
 
-====
-C:\tmp\> *git clone* https://github.com/IsyFact/isy-documentation
-====
+----
+$> git clone https://github.com/IsyFact/isy-documentation
+----
 
 [[den-richtigen-standort-bestimmen]]
 === Den richtigen Standort bestimmen
 
-Beim Herunterladen des GitLab-Projekts wird an der betroffenen Stelle das Verzeichnis isy-documentation angelegt, das einen einzigen Ordner enthält, nämlich den Ordner `/src`.
-Unterhalb von `/src` befinden sich die Verzeichnisse `/docs`, `/scripts` und `/theme`.
+Beim Herunterladen des Git-Repositories wird an der betroffenen Stelle das Verzeichnis `isy-documentation` angelegt.
+Innerhalb von `isy-documentation` liegt das Verzeichnis `/src/docs`, das die Dokumente beinhaltet.
 
 :desc-image-verzeichnis1: Die Verzeichnisse der IsyFact-Dokumentation
 [id="image-verzeichnis1",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-verzeichnis1}
-image::verzeichnis1.png[align="center"]
-
-Während `/scripts` und `/theme` die Skripte zur automatisierten Verarbeitung enthalten, befinden sich unterhalb von `/docs` die Verzeichnisse der IsyFact-Dokumentation, aber auch die allgemeinen Verzeichnisse `/common` und `/Dokument-Vorlage`.
-Das Verzeichnis `/common` beinhaltet globale Einstellungen für die gesamte IsyFact-Dokumentation.
-Das Verzeichnis `/Dokument-Vorlage` enthält hingegen die Musterdateien für Ihr neues Dokument.
-
-:desc-image-verzeichnis2: Die Verzeichnisse der IsyFact-Dokumentation
-[id="image-verzeichnis2",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-verzeichnis2}
-image::verzeichnis2.png[align="center"]
+image::verzeichnis1.png[align="center",width=20%]
 
 Bei den Verzeichnissen der IsyFact-Dokumentation wird darin unterschieden, ob es sich bei dem Dokument thematisch um ein Modul der _IsyFact-Standards_  (das Fundament von IsyFact) oder ein Modul der _IsyFact-Erweiterungen_ (die optionalen wiederverwendbaren Lösungen) handelt.
-Entsprechend beinhaltet das Verzeichnis `/docs` die zwei Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterungen`.
-Die Unterordner der beiden Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterung` gliedern sich nach den Säulen der IsyFact.
+Entsprechend beinhaltet das Verzeichnis `docs` die zwei Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterungen`.
+Die Unterordner der beiden Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterungen` gliedern sich nach den Säulen der IsyFact.
 
 00_Allgemein;; Einstiegsdokumente, Tutorial, Konventionen
 10_Blaupausen;; Grundlagendokumente und Detailkonzepte für Architektur und Anwendungslandschaft
@@ -84,13 +75,18 @@ Die Unterordner der beiden Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_
 40_Methodik;; Methodische Dokumente bspw. zum V-Model XT oder Programmierkonventionen
 50_Werkzeuge;; Dokumente zur Verwendung von Werkzeugen und der Einrichtung der Entwicklungsumgebung (hierzu gehört auch dieses Dokument)
 
+:desc-image-verzeichnis2: Die Verzeichnisse der IsyFact-Dokumentation
+[id="image-verzeichnis2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-verzeichnis2}
+image::verzeichnis2.png[align="center",width=30%]
+
 Unterhalb der Säulen werden in der Regel die Verzeichnisse der IsyFact-Dokumente angelegt.
-In der folgenden Abbildung sehen Sie beispielsweise, dass das "Handbuch für technische Autoren" unterhalb der Säule 50_Werkzeuge angelegt wurde.
+In der folgenden Abbildung sehen Sie beispielsweise, dass das "Handbuch für technische Autoren" unterhalb der Säule _50_Werkzeuge_ angelegt wurde.
 
 :desc-image-verzeichnis3: Die Verzeichnisse der IsyFact-Dokumentation mit den IsyFact-Säulen
 [id="image-verzeichnis3",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-verzeichnis3}
-image::verzeichnis3.png[align="center"]
+image::verzeichnis3.png[align="center",width=40%]
 
 Genauso wie in der obigen Abbildung für das IsyFact-Dokument "Handbuch_fuer_technische_Autoren", so muss auch für Ihr IsyFact-Dokument ein neues Verzeichnis innerhalb der korrekt zugeordneten Säule erstellt werden.
 
@@ -99,10 +95,22 @@ Wenn Sie das neue Verzeichnis anlegen, stellt sich als Nächstes die Frage, wie 
 [[die-mustervorlage-vorbereiten]]
 == Die Mustervorlage vorbereiten
 
-Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wurde das Verzeichnis mit dem Namen `/src/docs/Dokument-Vorlage` bereitgestellt.
+Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wird eine Dokomentvorlage bereitgestellt.
+
+Die zum Build der Dokumentation notwendigen allgemeinen Anteile (globale Einstellungen, Themes, etc.) und die Dokumentvorlage für neue Dokumente befinden sich im gesonderten Maven-Artefakt `isy-dokumentvorlagen`.
+Beim Build werden die Inhalte von `isy-dokumentvorlagen` nach `/target` unterhalb von `isy-documentation` entpackt.
+Um an die Dokumentvorlage zu gelangen, ohne den kompletten Build zu starten, wird `isy-dokumentvorlagen` mit dem Kommando
+
+----
+$> mvn generate-sources
+----
+
+unter `/target/isy-dokumentvorlagen` entpackt.
+Die Dokumentvorlage befindet sich dann unter `/target/isy-dokumentvorlagen/docs/Dokument-Vorlage`.
+
 In diesem Verzeichnis befinden sich die Musterinhalte, die sie als Grundlage für Ihre neues Dokument  verwenden können.
-Zusätzlich enthält die Dokument-Vorlage das Unterverzeichnis `/images` für die Abbildungen Ihres IsyFact-Dokuments.
-Sobald Sie also das Zielverzeichnis für Ihr IsyFact-Dokument angelegt haben, kopieren Sie darin die Musterdateien und das Unterverzeichnis `/images` aus dem Ordner `/src/docs/Dokument-Vorlage`.
+Sobald Sie also das Zielverzeichnis für Ihr IsyFact-Dokument angelegt haben, kopieren Sie darin die Musterdateien aus dem Ordner `/target/isy-dokumentvorlagen/docs/Dokument-Vorlage`.
+Erstellen Sie danach im Zielverzeichnis das Unterverzeichnis `images` für die Abbildungen Ihres IsyFact-Dokuments.
 
 Bei den Musterdateien handelt sich um folgende AsciiDoc-Dokumente:
 
@@ -111,7 +119,7 @@ In der Datei `anhaenge.adoc` werden Anhänge des IsyFact-Dokuments aufgelistet.
 
 docinfo.adoc::
 `docinfo.adoc` beinhalt Informationen für das IsyFact-Dokument.
-Die Datei `docInfo.adoc` enthält derzeitig lediglich die Dokument-ID.
+Die Datei `docinfo.adoc` enthält derzeitig lediglich die Dokument-ID.
 
 inhalt.adoc::
 `inhalt.adoc` enthält alle Inhaltskapitel des IsyFact-Dokuments.
@@ -167,8 +175,8 @@ In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im
 [source,asciidoc,indent=0]
 ----
  // ASCIIDOC Attribute
- include::../../../common/isyfact-attributes.adoc[]
- include::../../../common/attributes.adoc[]
+ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
  //
  :doctitle: Titel des Dokuments
  :title: {doctitle}
@@ -336,9 +344,9 @@ Die IsyFact-Dokumentation erweitert diese Liste um weitere Blöcke für verbindl
 Es gibt zwei Möglichkeiten zur Definition von Admonition Blocks.
 Die syntaktisch ausführlichere Variante funktioniert sowohl mit den vordefinierten, als auch mit den selbst definierten Blöcken.
 
-:desc-listing-admonition: Definition eines Admonition Blocks (als Block)
-[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-admonition}
+:desc-listing-admonition-block: Definition eines Admonition Blocks (als Block)
+[id="listing-admonition-block",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition-block}
 [source,asciidoc]
 ----
 [BLOCKTYP]
@@ -349,9 +357,9 @@ Hier steht der Text.
 
 Die syntaktisch schlankere Variante funktioniert nur mit den vordefinierten Blöcken (NOTE, TIP, IMPORTANT, WARNING und CAUTION).
 
-:desc-listing-admonition: Definition eines Admonition Blocks (inline)
-[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-admonition}
+:desc-listing-admonition-inline: Definition eines Admonition Blocks (inline)
+[id="listing-admonition-inline",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition-inline}
 [source,asciidoc]
 ----
 BLOCKTYP: Hier steht der Text.

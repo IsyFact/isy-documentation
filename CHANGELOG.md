@@ -12,6 +12,7 @@
 - `IFS-298`: Tutorial auf Maven Central umgestellt
 - `IFS-299`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
 - `IFS-222`: Filter Reihenfolge für Encoding angepasst
+- `IFS-311`: Vorlagen und Skripte nach isy-dokumentvorlagen überführt
 - `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
 
 # 1.6.0
