@@ -173,7 +173,7 @@ Nach Initialisierung des `AufrufKontextVerwalter` für eine laufende Anfrage kan
 Der Baustein Sicherheit bietet folgende Funktionen:
 
 * Für Service-Aufrufe werden Interceptoren angeboten, welche über Spring AOP eine deklarative Berechtigungsprüfung ermöglichen.
-* Für den Kontext der Anfrage stellt die Komponente einen Berechtigungsmanager zur Verfügung, der die Rollen des anfragenden Anwenders kennt.
+* Für den Kontext der Anfrage stellt der Baustein einen Berechtigungsmanager zur Verfügung, der die Rollen des anfragenden Anwenders kennt.
 Die Informationen zum anfragenden Anwender werden – falls vorhanden – aus dem `AufrufKontextVerwalter` entnommen.
 Die Fachkomponenten eines IT-Systems nutzen den Berechtigungsmanager für spezielle Berechtigungsprüfungen, die nicht deklarativ über Annotationen erfolgen können.
 * Anwender können anhand der übergebenen Benutzerkennung (und Passwort) authentifiziert werden.
@@ -185,16 +185,14 @@ Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring Secu
 Die Integration von Spring Security und des Bausteins Sicherheit wird im <<DetailkonzeptKomponenteWebGUI>> beschrieben.
 
 [[aussensicht-der-komponente-sicherheit]]
-== Außensicht der Komponente Sicherheit
+== Schnittstelle des Bausteins Sicherheit
 
-Im Folgenden wird die Schnittstelle der Komponente Sicherheit beschrieben.
+Im Folgenden wird die Schnittstelle des Bausteins Sicherheit beschrieben.
 
-:desc-image-aussensicht-der-komponente-sicherheit: Außensicht der Komponente „Sicherheit“
-[id="image-aussensicht-der-komponente-sicherheit",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-aussensicht-der-komponente-sicherheit}
+:desc-image-schnittstelle-sicherheit: Schnittstelle des Bausteins Sicherheit
+[id="image-schnittstelle-sicherheit",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-schnittstelle-sicherheit}
 image::sicherheit_002.png[align="center"]
-
-Die Außensicht der Komponente ist folgendermaßen aufgebaut:
 
 Die zentrale Schnittstelle für den Zugriff auf Rollen und Rechte eines Anwenders ist `Berechtigungsmanager`.
 Instanzen des Berechtigungsmanagers zur Autorisierung einer Anfrage werden über die Schnittstelle `Sicherheit` erzeugt.
