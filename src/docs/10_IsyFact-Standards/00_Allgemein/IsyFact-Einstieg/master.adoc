@@ -34,6 +34,9 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Glossar
+include::glossary.adoc[]
+
 // Literaturverzeichnis  (gebaut)
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis  (gebaut)
@@ -42,8 +45,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
-// Glossar  (gebaut)
-//include::glossary.adoc[]
+
 // Index
 include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 
