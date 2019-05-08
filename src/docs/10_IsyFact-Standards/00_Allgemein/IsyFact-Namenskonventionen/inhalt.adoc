@@ -2,7 +2,7 @@
 = Namenskonventionen
 
 Dieser Abschnitt beschreibt die Namenskonventionen der IsyFact.
-In komplexen Anwendungslandschaften werden Anwendungssysteme in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen). 
+In komplexen Anwendungslandschaften werden <<glossar-Anwendungssystem>>e in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen). 
 Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Fachanwendungen existieren, wird meist allgemein von „Fachanwendungen“ gesprochen.
 
 In folgenden Vorgaben wird daher zwischen Fachanwendungen, Registern und Geschäftsanwendungen unterschieden.
@@ -468,7 +468,7 @@ AkteDaoImpl
 [[business-objekte]]
 === Business-Objekte
 
-Unter Business-Objekten werden nicht-persistente Objekte verstanden, die in Schnittstellen im Anwendungskern verwendet werden.
+Unter Business-Objekten werden nicht-persistente Objekte verstanden, die in Schnittstellen im <<glossar-Anwendungskern>> verwendet werden.
 
 :desc-table-busiobj: Business-Objekte
 [id="table-busiobj",reftext="{table-caption} {counter:tables}"]
