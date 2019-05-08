@@ -184,12 +184,40 @@ Die Reihenfolge, in der sie eingespielt werden müssen, wird im Releaseletter f�
 Sie hängt von den Abhängigkeiten der Systeme ab, die in den Releaselettern der jeweiligen Systeme beschrieben sind.
 
 
-[[konfiguration-cams]]
+[[cams-konfiguration]]
 === Anhang D: Konfiguration des CAMS Single-Sign On Servers
 
 Die IsyFact kommt standardmäßig mit Unterstützung für CAMS als IAM-System.
 In diesem Anhang wird die spezifische Konfiguration für den CAMS-Server beschrieben.
 
+[[cams-access-manager]]
+==== Konfiguration des Access Managers
+
+Die Bibliothek `rf-sicherheit-cams` enthält eine Implementierung der Schnittstelle `AccessManager`, die als Spring Bean konfiguriert werden muss.
+
+:desc-listing-konfiguration-cams: Grundlegende Konfiguration des CAMS-Servers
+[id="listing-konfiguration-cams",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfiguration-cams}
+[source, xml]
+----
+<beans>
+    <bean id="camsAccessManager"
+        class="de.bund.bva.pliscommon.sicherheit.cams.CamsAccessManagerImpl"
+        depends-on="konfiguration">
+        <constructor-arg index="0">
+            <value>classpath:/config/cams-webagent.conf</value>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <ref bean="konfiguration"/>
+        </constructor-arg>
+    </bean>
+</beans>
+----
+
+Zusätzlich zur Spring-Konfiguration muss die betriebliche Konfigurationsdatei `/config/cams-webagent.conf` angelegt werden.
+Da diese Konfiguration in der Regel langjährig unverändert verwendet wird und lediglich die Aufrufadresse anzupassen ist, wird auf die Darstellung der Konfiguration hier verzichtet.
+
+[[cams-autorisierung-gui]]
 ==== Autorisierung in der GUI: Spring Konfiguration
 
 Die Aufrufe der GUI erfolgen über HTTP.
@@ -219,5 +247,41 @@ Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontextes transparent für
         </property>
     </bean>
 ----
+
+[[cams-authentifizierung-batch]]
+==== Authentifizierung in Batches: Konfiguration
+
+Damit eine Authentifizierung in Batches über den CAMS-Server möglich ist, sind einige zusätzliche Konfigurationen erforderlich.
+
+:desc-listing-konfiguration-batch-cams: Konfiguration zur Authentifizierung in Batches mit CAMS
+[id="listing-konfiguration-batch-cams",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfiguration-batch-cams}
+[source,java]
+----
+sic.camsagent.login.config.entry=applicationplatform
+sic.camsagent.login.medium=applicationplatform
+sic.camsagent.security.domain=applicationplatform
+sic.camsagent.nutzertyp=unbekannt
+----
+
+Hier wird festgelegt, dass ein Aufrufer gegen die im CAMS-Server konfigurierte Security-Domain `applicationplatform` authentifiziert wird.
+
+[[cams-authentifizierung-sgw]]
+==== Authentifizierung im Service-Gateway: Konfiguration
+
+Damit eine Authentifizierung im Service-Gateway über den CAMS-Server möglich ist, sind einige zusätzliche Konfigurationen erforderlich.
+
+:desc-listing-konfiguration-sgw-cams: Konfiguration zur Authentifizierung im Service-Gateway mit CAMS
+[id="listing-konfiguration-sgw-cams",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfiguration-sgw-cams}
+[source,java]
+----
+sic.camsagent.login.config.entry=servicegateway
+sic.camsagent.login.medium=servicegateway
+sic.camsagent.security.domain=servicegateway
+sic.camsagent.nutzertyp=unbekannt
+----
+
+Hier wird festgelegt, dass ein Aufrufer gegen die im CAMS-Server konfigurierte Security-Domain `servicegateway` authentifiziert wird.
 
 // end::inhalt[]

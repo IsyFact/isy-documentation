@@ -163,7 +163,7 @@ Dieses Beispiel führt zu folgender Konfigurationsdatei.
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.isyfact.de/RollenRechteSchema RollenRechteSchema.xsd ">
 
-<!-- Definition der Rechten -->
+<!-- Definition der Rechte -->
 <tns:rechte>
   <tns:rechtId Id="DialogA.Aufrufen" />
 </tns:rechte>
@@ -212,7 +212,7 @@ Durch Verwendung dieser Hilfsmittel lässt sich die Autorisierung weitgehend dek
 Die Autorisierung wird zum Aspekt des Querschnitts und beschränkt sich auf deklarative Elemente des Quellcodes.
 Fachliche Schnittstellen werden von Parametern befreit und Prüfungen auf vorhandene Rechte können nur schwer vergessen werden.
 
-[[autorisierung-in-der-gui]]
+[[gui-autorisierung]]
 === Autorisierung in der GUI
 
 Beim Aufruf grafischer Oberflächen wird der Aufrufkontext über einen `AbstractAuthenticationProcessingFilter` aus Spring Security ausgelesen.
@@ -264,16 +264,14 @@ Die Implementierung der Beans `authenticationProvider` sowie `processingFilter` 
 Eine Beschreibung der Konfiguration findet sich in den jeweiligen Nutzungsvorgaben.
 ====
 
-// TODO Überarbeitung bis hier!
-
 [[gui-absicherung]]
 ==== Absicherung der Flows
 
-Ein Webflow (oder auch ausgewählte Zustände und Transitionen) können durch das Tag `<secured/>` abgesichert werden.
+Ein Webflow wird durch das Tag `<secured/>` abgesichert.
+Das Tag kann den ganzen Flow, einzelne Zustände oder einzelne Transitionen betreffen und ermöglicht so eine feingranulare Vergabe von Rechten.
 Im Parameter `attributes` stehen die für den Zugriff erforderlichen Rechte.
-Beispiel:
 
-:desc-listing-absichern-eines-flow: Absichern eines Flow / Zustands / Transition
+:desc-listing-absichern-eines-flow: Absichern eines Flow, Zustands und einer Transition
 [id="listing-absichern-eines-flow",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-absichern-eines-flow}
 [source, xml]
@@ -291,106 +289,117 @@ Beispiel:
 </flow>
 ----
 
-[[autorisierung-an-einer-service-schnittstelle]]
+[[service-autorisierung]]
 === Autorisierung an einer Service-Schnittstelle
 
-_Befüllen des AufrufKontextVerwalters_
+Beim Aufruf von Service-Schnittstellen wird der Aufrufkontext über Annotationen und Interceptoren an den Service-Methoden ausgelesen.
+Die Autorisierung geschieht ebenfalls auf Ebene der Service-Methoden.
+Weitere Details zur Umsetzung der Autorisierung an Service-Schnittstellen sind in <<DetailkonzeptKomponenteService>> beschrieben.
 
-* Für Aufrufe von Service-Schnittstellen wird eine Annotation an den Service-Methoden verwendet (siehe <<autorisierung-an-einer-service-schnittstelle>>).
+[[service-spring-konfiguration]]
+==== Spring-Konfiguration
 
+Zur Absicherung der Service-Schnittstellen sowie zum Auslesen des Aufrufkontextes ist folgende Spring-Konfiguration erforderlich.
 
-_Durchführung der Autorisierungsprüfung_
+:desc-listing-konfiguration-service: Spring-Konfiguration für Autorisierung an Service-Schnittstellen
+[id="listing-konfiguration-service",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfiguration-service}
+[source, xml]
+----
+<beans>
+    <bean id="aufrufKontextInterceptor"
+        class="de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereitInterceptor">
+        <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
+        <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
+    </bean>
+    <aop:config>
+        <aop:pointcut id="aufrufKontextPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit)"/>
+        <aop:advisor pointcut-ref="aufrufKontextPointcut" advice-ref="aufrufKontextInterceptor"/>
+    </aop:config>
 
-Nach Übernehmen des `AufrufKontext` in den `AufrufKontextVerwalter` erfolgt die Autorisierungsprüfung dann über die Komponente Sicherheit.
+    <bean id="gesichertInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.GesichertInterceptor">
+        <property name="sicherheit" ref="sicherheit"/>
+        <property name="sicherheitAttributeSource">
+          <bean class="de.bund.bva.pliscommon.sicherheit.annotation.AnnotationSicherheitAttributeSource"/>
+        </property>
+    </bean>
+    <aop:config>
+        <aop:pointcut id="gesichertPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert) || @within(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert)"/>
+        <aop:advisor pointcut-ref="gesichertPointcut" advice-ref="gesichertInterceptor"/>
+    </aop:config>
+</beans>
+----
 
-Für die Autorisierungsprüfung stellt die `isy-sicherheit` neben dem Berechtigungsmanager (erlaubt Autorisierung per API-Aufruf) zusätzliche Hilfsmittel (Annotationen, Tags zur Verwendung in Flow-Definitionen) bereit, mit denen die Autorisierungsprüfung deklarativ erfolgen kann:
+[[service-absicherung]]
+==== Absicherung der Service-Methoden
 
-* Für Aufrufe der Service-Schnittstellen wird eine Annotation `@Gesichert` zur Autorisierung verwendet (siehe <<autorisierung-an-einer-service-schnittstelle>>).
+Im Gegensatz zu Aufrufen der grafischen Oberfläche werden bei Aufrufen von Service-Methoden keine HTTP-Header zum Transport des Aufrufkontextes verwendet.
+Stattdessen wird der Aufrufkontext als Schnittstellenparameter in Form eines Transportobjekts mit jedem Aufruf übergeben.
+Dieses Transportobjekt, eine Instanz der Klasse `AufrufKontextTo`, muss die Informationen zum anfragenden Anwender und dessen Rollen enthalten.
 
+Die Annotation `@StelltAufrufKontextBereit` signalisiert einem Interceptor, das Transportobjekt auszulesen und die bereitgestellten Informationen in den Aufrufkontext zu übertragen.
 
+Mit dieser Voraussetzung können Service-Methoden durch die Annotation `@Gesichert` abgesichert werden.
+Als Standard-Parameter werden alle Rechte aufgelistet, die eine Anfrage für einen Aufruf beinhalten muss.
+Die Rechte sind immer konjunktiv verknüpft.
+Eine disjunktive Verknüpfung von Rechten ist nicht möglich.
 
+Alle Annotationen nutzen Spring AOP.
+Daher sind sie nur an Methoden mit öffentlicher Sichtbarkeit (`public`) von Spring-Beans funktionsfähig.
+Für HTTP-Invoker-Schnittstellen werden die Service-Methoden der Service-Implementierung (hinter der Exception-Fassade) mit den Annotationen ausgestattet.
 
-Hier wird erklärt, wie eine Service-Schnittstelle einer Anwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
+Folgendes Beispiel zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch ausgelesen und anschließend die Autorisierung gegen die Baustein Sicherheit durchgeführt wird.
 
-Die Umsetzung der Autorisierungsprüfung in angebotenen Schnittstellen ist in <<DetailkonzeptKomponenteService>> beschrieben.
-
-[[implementierung]]
-==== Implementierung
-
-Methoden der Service-Implementierung werden durch die Annotation `@Gesichert` gesichert.
-Die Annotation hat das Feld Recht, mit der ein oder mehrere geforderte Rechte konfiguriert werden können.
-Der Benutzer muss alle geforderten Rechte besitzen, damit ihm Zugang gewährt wird.
-
-Um die Prüfung der Rechte vornehmen zu können, müssen zuvor Informationen über den aufrufenden Benutzer im `AufrufKontext` hinterlegt werden.
-Im Gegensatz zu Aufrufen der GUI, werden bei Aufrufen von Serviceschnittstellen (über http-Invoker) keine http-Header zum Transport des Aufrufkontextes verwendet.
-Stattdessen wird entsprechend der Vorgaben der IsyFact an Service-Schnittstellen der Aufrufkontext als Schnittstellenparameter `AufrufKontextTo` mit jeder Serviceanfrage übergeben.
-Im Regelfall enthält dieses `AufrufKontextTo` bereits die Informationen zum anfragenden Benutzer und dessen Rollen.
-
-Ist dies der Fall kann die Annotation `@StelltAufrufKontextBereit` verwendet werden, um die bereitgestellten Informationen in den `AufrufKontextVerwalter` zu übertragen.
-
-Nachfolgend ist es möglich mittels der Annotation `@Gesichert` die Berechtigungsprüfung durchzuführen.
-
-Die Annotationen nutzen Spring-AOP.
-Daher sind die Annotationen nur an public-Methoden von Spring-Beans funktionsfähig.
-Für Http-Invoker-Schnittstellen sind hier die ServiceMethoden der <Service>Impl (unterhalb der ExceptionFassade mit den Annotationen auszustatten.
-
-Folgendes Beispiel zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch in den `AufrufKontextVerwalter` übernommen wird und
-anschließend die Autorisierung gegen die Komponente Sicherheit durchgeführt wird.
-
-:desc-listing-absichern-einer-servicemethode: Absichern einer Servicemethode
-[id="listing-absichern-einer-servicemethode",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-absichern-einer-servicemethode}
+:desc-listing-absichern-einer-service-methode: Absichern einer Service-Methode
+[id="listing-absichern-einer-service-methode",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-absichern-einer-service-methode}
 [source,java]
 ----
 @StelltAufrufKontextBereit
-@Gesichert("Recht_A", "Recht_B")
-public void gesichertDurch_RechtAundB(AufrufKontextTo kontext, ...) {
-  //…
+@Gesichert("DialogA.Aufrufen", "DialogB.Aufrufen")
+public void abgesicherteMethode(AufrufKontextTo kontext, ...) {
+    ...
 }
 ----
 
-Erfüllt ein Aufrufer nicht die Forderungen der Annotation `@Gesichert`, so wird die `AutorisierungFehlgeschlagenException` geworfen.
-Da eine fehlende Berechtigung nicht behandelt werden kann und dies letztlich auf einen Konfigurationsfehler in einer anderen Anwendung zurückzuführen ist (oder einen Angriff),
-wird nicht empfohlen, diese Ausnahme spezifisch zu behandeln.
-Das normale Fehlerhandling greift.
+Erfüllt ein Aufrufer nicht die Forderungen der Annotation `@Gesichert`, so wird ein Fehler des Typs `AutorisierungFehlgeschlagenException` erzeugt.
+Der Fehler wird in der Regel nicht lokal behandelt, sondern einfach zurückgegeben.
+Letztlich deuten fehlende Rechte meist auf einen unberechtigten Zugriff oder einen Fehler in der Konfiguration einer aufrufenden Anwendung hin, so dass hier die normale Fehlerbehandlung greift.
 
-[[autorisierung-eines-batches]]
+[[batch-autorisierung]]
 === Autorisierung eines Batches
 
-_Befüllen des AufrufKontextVerwalters_
+Beim Aufruf von Batches stellt der Batchrahmen das Auslesen des Aufrufkontextes und die Autorisierung des Batches sicher.
+Zur Autorisierung ist im Batchrahmen bereits die Möglichkeit enthalten, einen Anwender zu konfigurieren.
+Weitere Details zur Umsetzung der Autorisierung bei Batches sind in <<DetailkonzeptKomponenteBatch>> beschrieben.
 
-* Die Autorisierung eines Batch-Benutzers und die Befüllung des `AufrufKontextVerwalters` erfolgt über den Batchrahmen (siehe <<autorisierung-eines-batches>>).
+[[batch-spring-konfiguration]]
+==== Spring-Konfiguration
 
-_Durchführung der Autorisierungsprüfung_
+Zur Absicherung von Batches ist folgende, betriebliche Konfiguration erforderlich.
 
-Nach Übernehmen des `AufrufKontext` in den `AufrufKontextVerwalter` erfolgt die Autorisierungsprüfung dann über die Komponente Sicherheit.
+:desc-listing-batchbenutzer: Konfiguration zur Autorisierung von Batches
+[id="listing-batchbenutzer",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-batchbenutzer}
+[source,java]
+----
+batch.<batchname>.anwenderkennung = FAX_BAT_Fristenkontrolle
+batch.<batchname>.anwenderpasswort = <secret>
+batch.<batchname>.anwenderbehoerde = 4200
+----
 
-Für die Autorisierungsprüfung stellt die `isy-sicherheit` neben dem Berechtigungsmanager (erlaubt Autorisierung per API-Aufruf) zusätzliche Hilfsmittel (Annotationen, Tags zur Verwendung in Flow-Definitionen) bereit, mit denen die Autorisierungsprüfung deklarativ erfolgen kann:
+Neben der Kennung und dem Passwort kann auch eine Behörde (über eine ID oder Kennzeichen) angegeben werden, falls diese Information zur Authentifizierung oder zur Ermittlung der Rollen benötigt wird.
+Weiterhin ermöglicht der Batchrahmen die Konfiguration von Benutzern für mehrere Batches über den Parameter `<batchname>`.
 
-* Für Batchläufe ist im Batchrahmen bereit eine Autorisierung eines konfigurierten Benutzers enthalten (siehe <<autorisierung-eines-batches>>).
+[[batch-absicherung]]
+==== Absicherung eines Batches
 
+Damit der Benutzer bei der Ausführung des Batches authentifiziert wird, muss die Methode `initialisieren` der Klasse `BatchAusfuehrungsBean`  mittels der Annotation `@Gesichert` geschützt werden.
+Der Batchrahmen authentifiziert den Benutzer anhand der betrieblichen Konfiguration (s. <<batch-spring-konfiguration>>), erstellt einen neuen Aufrufkontext und speichert ihn im Verwalter.
+Der eigentliche Prozess der Authentifizierung sowie die Ermittlung der Rollen ist für Nutzer des Batchrahmens vollständig transparent.
 
-
-Hier wird erklärt, wie ein Batchlauf einer Anwendung mit Hilfe der Komponente Sicherheit abgesichert wird.
-Die Integration der T-Komponente Sicherheit ist im Batchrahmen ab Version 1.1 enthalten.
-
-Ein Batch wird innerhalb der Anwendungslandschaft gestartet.
-Dazu verwendet der Batch die Benutzerkennung eines Systems (Benutzer), die in seiner Startkonfiguration (als Konfigurationsdatei) hinterlegt und im Benutzerverzeichnis vorhanden ist.
-
-Damit der Benutzer bei der Ausführung des Batches authentifiziert wird, muss die Methode `initialisieren()`, die durch das BatchAusfuehrungsBean vorgegeben wird, mittels der Annotation `@Gesichert` geschützt werden.
-Der Access-Manager authentifiziert den Benutzer anhand der angegebenen Benutzerkennung und des Passwortes, registriert alle Informationen zum Benutzer im `AufrufKontextVerwalter` und schließt die Session des Benutzers im Access-Manager.
-
-Da alle Informationen zum Benutzer als Aufrufkontext im `AufrufKontextVerwalter` hinterlegt wurden, kann die Anwendung jederzeit auf diese Kontextinformationen zugreifen, also im Zuge des Batchlaufes Berechtigungsprüfungen vornehmen oder auch Services von Nachbarsystemen (vergleiche Kapitel <<aufrufen-von-nachbarsystemen>>) unter Bereitstellung des Aufrufkontextes aufrufen.
-
-In Ausnahmefällen ist es auch möglich, einen Batch zu implementieren, der ohne Benutzer laufen soll.
-Dies ist nur möglich, wenn bei Aufrufen des Anwendungskerns keine Autorisierungsprüfungen stattfinden und auch keine Nachbarsystemschnittstellen aufgerufen werden.
-
-[[implementierung-1]]
-==== Implementierung
-
-Der Batchrahmen fordert vom BatchAusführungsBean die Implementierung der Methode: `getAuthenticationCredentials()`, in der dem Batchrahmen bekanntgegeben wird mit welchem Benutzer der Batch laufen soll.
-
-In der Regel wird der Benutzer aus der Konfiguration gelesen, wie im folgenden Beispiel veranschaulicht wird:
+Des Weiteren muss die Methode `getAuthenticationCredentials` der Klasse `BatchAusfuehrungsBean` implementiert werden, damit der Batchrahmen den korrekten Anwender zur Authentifizierung nutzt.
+So ist es möglich, neben dem üblichen Auslesen der Information aus der Konfiguration weitere Berechnungen oder Default-Werte anzugeben.
 
 :desc-listing-benutzerdaten: Implementierungsbeispiel für die Versorgung des Batchrahmens mit Benutzerdaten
 [id="listing-benutzerdaten",reftext="{listing-caption} {counter:listings }"]
@@ -398,106 +407,49 @@ In der Regel wird der Benutzer aus der Konfiguration gelesen, wie im folgenden B
 [source,java]
 ----
 @Override
-public BatchAuthenticationCredentials getAuthenticationCredentials(
+public AuthenticationCredentials getAuthenticationCredentials(
     BatchKonfiguration konfiguration) {
-  BatchAuthenticationCredentials auth = new BatchAuthentifizierung();
 
-  //Wenn der Benutzer nicht auf der Kommandozeile angegeben wird, lade die Daten aus der betrieblichen Konfigurationsdatei
-  String bhknz = this.behoerdenVerzeichnisKonfiguration.
-    getAsString(KonfigurationSchluessel.CONFBATCH_BEHOERDE, null);
-  String benutzer = this.behoerdenVerzeichnisKonfiguration.
-    getAsString(KonfigurationSchluessel.CONF_BATCH_BENUTZER, null);
-  String passwort = this.behoerdenVerzeichnisKonfiguration.
-    getAsString(KonfigurationSchluessel.CONF_BATCH_PASSWORT, null);
+    AuthenticationCredentials auth = new AuthenticationCredentials();
 
-  //Lade Nutzer aus Kommandozeile / Batchkonfiguration
-  auth.setBehoerdenkennzeichen(konfiguration.getAsString(
-    KonfigurationSchluessel.CONF_BATCH_BEHOERDE, bhknz));
-  auth.setBenutzerkennung(konfiguration.getAsString(
-    KonfigurationSchluessel.CONF_BATCH_BENUTZER, benutzer));
-  auth.setPasswort(konfiguration.getAsString(
-    KonfigurationSchluessel.CONF_BATCH_PASSWORT, passwort));
-  return auth;
+    auth.setBehoerdenkennzeichen(
+        konfiguration.getAsString("batch.<batchname>.anwenderbehoerde"));
+    auth.setBenutzerkennung(
+        konfiguration.getAsString("batch.<batchname>.anwenderkennung"));
+    auth.setPasswort(
+        konfiguration.getAsString("batch.<batchname>.anwenderpasswort"));
+
+    return auth;
 }
 ----
 
-Soll der Batch ohne Benutzer laufen, so ist `null` zurückzugeben.
+Ab diesem Punkt kann der Batch jederzeit auf den Aufrufkontext zugreifen, um im Zuge des Batchlaufes Berechtigungsprüfungen vorzunehmen oder Services von Nachbarsystemen (vgl. <<aufrufen-von-nachbarsystemen>>) unter Bereitstellung des Aufrufkontextes aufzurufen.
 
-[[konfiguration-2]]
-==== Konfiguration
+[TIP]
+====
+In Ausnahmefällen ist es auch möglich, einen Batch zu implementieren, der ohne authentifizierten Benutzer laufen soll.
+Dies ist allerdings nur möglich, wenn bei Aufrufen des Anwendungskerns keine Berechtigungsprüfungen stattfinden und keine Nachbarsystemschnittstellen aufgerufen werden.
+In diesem Fall muss die Methode `getAuthenticationCredentials` so implementiert werden, dass sie `null` zurückgibt.
+====
 
-Für eine korrekte Funktion wird in der Anwendung die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
+[[sgw-autorisierung]]
+=== Autorisierung im Service-Gateway
 
-Zusätzlich wird der Benutzer, über den der Batch laufen soll, wie folgt konfiguriert:
-
-:desc-listing-batchbenutzer: Konfiguration des Batchbenutzers
-[id="listing-batchbenutzer",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-batchbenutzer}
-[source,java]
-----
-# Benutzerkennung für den Batch Anschriftenverzeichniserzeugung
-batch.anschriftenverzeichnis.benutzerkennung = BHVZ_BAT_Anschriftenverzeichnis
-batch.anschriftenverzeichnis.benutzerpasswort = changePassword
-batch.anschriftenverzeichnis.benutzerbehoerde = 42
-----
-
-Damit eine Authentifizierung über den Access-Manager möglich ist, sind einige zusätzliche Konfigurationen für die Komponente Sicherheit erforderlich:
-
-:desc-listing-cams: Konfiguration der plis-sicherheit-cams für Batches
-[id="listing-cams",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-cams}
-[source,java]
-----
-# Konfiguration fuer den CAMS-Zugriff zur Autorisierung von Benutzern
-sic.camsagent.login.config.entry=applicationplatform
-sic.camsagent.login.medium=applicationplatform
-sic.camsagent.security.domain=applicationplatform
-sic.camsagent.nutzertyp=unbekannt
-----
-
-Hier wird festgelegt, dass ein Aufrufer gegen die im Access-Manager konfigurierte Security-Domain applicationplatform authentifiziert wird.
-
-[[autorisierung-im-service-gateway]]
-===  Autorisierung im Service-Gateway
-
-Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet die T-Komponente Sicherheit, um den Benutzer einer eingehenden Anfrage zu
-authentifizieren und zu autorisieren.
-Sie verwendet dazu die Bibliothek `plis-sgw-util`, in der `isy-sicherheit` eingebunden ist.
-
-[[autorisierung-einer-anfrage-an-ein-service-gateway]]
-==== Autorisierung einer Anfrage an ein Service-Gateway
+Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet den Baustein Sicherheit, um den Benutzer einer eingehenden Anfrage zu authentifizieren und zu autorisieren.
+Er verwendet dazu die Bibliothek `rf-sgw-util`, in der `isy-sicherheit` eingebunden ist.
 
 Ein Service eines Service-Gateways wird aufgerufen.
 Mit der Anfrage wird die Benutzerkennung des anfragenden Benutzers übermittelt.
 
-Die im Service-Gateway verwendete Komponente Serviceanbieter nutzt die Komponente Sicherheit, um den anfragenden Benutzer bereits in der Informations- und Dienstezone zu authentifizieren.
-Der Access-Manager authentifiziert den Benutzer anhand des Zertifikats, der angegebenen Benutzerkennung und des Passwortes, registriert alle Informationen zum
-Benutzer im `AufrufKontextVerwalter` und schließt die Session des Benutzers im Access-Manager wieder.
+Die im Service-Gateway verwendete Komponente Serviceanbieter nutzt den Baustein Sicherheit, um den anfragenden Benutzer bereits in der Informations- und Dienstezone zu authentifizieren.
+Dazu benutzt der Serviceanbieter ein Client-Zertifikat, eine Benutzerkennung und ein Passwort.
+Bei erfolgreicher Authentifizierung erstellt der Serviceanbieter einen neuen Aufrufkontext und speichert ihn im Verwalter.
+Der eigentliche Prozess der Authentifizierung sowie die Ermittlung der Rollen ist für Nutzer des Service-Gateways vollständig transparent.
 
-Beim Weiterleiten der Anfrage an den Service der Fachanwendung wird der `AufrufKontext` an die aufzurufende Schnittstelle der Anwendung übergeben (vergleiche
-Kapitel <<aufrufen-von-nachbarsystemen>>).
+Das Service-Gateway übergibt den Fachanwendungen bei der Weiterleitung der Anfragen den Aufrufkontext als Transportobjekt an die jeweilige Service-Schnittstelle (vgl. <<aufrufen-von-nachbarsystemen>>).
 
-[[konfiguration-3]]
-==== Konfiguration
 
-Für eine korrekte Funktion wird im Service-Gateway die Komponente Sicherheit konfiguriert (vergleiche Abschnitt <<konfiguration>>).
-
-Damit eine Authentifizierung über den Access-Manager möglich ist, sind einige zusätzliche Konfigurationen für die Komponente Sicherheit erforderlich:
-
-:desc-listing-cams-service-gateways: Konfiguration der plis-sicherheit-cams für Service-Gateways
-[id="listing-cams-service-gateways",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-cams-service-gateways}
-[source,java]
-----
-# Konfiguration fuer den CAMS-Zugriff zur Autorisierung von Benutzern
-sic.camsagent.login.config.entry=servicegateway
-sic.camsagent.login.medium=servicegateway
-sic.camsagent.security.domain=servicegateway
-sic.camsagent.nutzertyp=unbekannt
-----
-
-Hier wird festgelegt, dass ein Aufrufer gegen die Security-Domain des Access-Managers servicegateway authentifiziert wird.
-
+// TODO Ab hier umschreiben!
 [[autorisierung-im-anwendungskern]]
 === Autorisierung im Anwendungskern
 
@@ -564,15 +516,6 @@ Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfigurati
 [source, xml]
 ----
 <beans>
-  <!-- @StelltAufrufKontextBereit Annotation einschalten -->
-  <bean id="aufrufKontextInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereitInterceptor">
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="aufrufKontextPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltAufrufKontextBereit)"/>
-    <aop:advisor pointcut-ref="aufrufKontextPointcut" advice-ref="aufrufKontextInterceptor"/>
-  </aop:config>
   <!-- @NutzerAuthentifizierung Annotation einschalten -->
   <bean id="nutzerAuthentifizierungInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierungInterceptor">
     <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
@@ -583,35 +526,12 @@ Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfigurati
     <aop:pointcut id="nutzerAuthentifizierungPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung) || @within(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung)"/>
     <aop:advisor pointcut-ref="nutzerAuthentifizierungPointcut" advice-ref="nutzerAuthentifizierungInterceptor"/>
   </aop:config>
-  <!-- `@Gesichert` Annotation einschalten -->
-  <bean id="gesichertInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.GesichertInterceptor">
-    <property name="sicherheit" ref="sicherheit"/>
-    <property name="sicherheitAttributeSource">
-      <bean class="de.bund.bva.pliscommon.sicherheit.annotation.AnnotationSicherheitAttributeSource"/>
-    </property>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="gesichertPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert) || @within(de.bund.bva.pliscommon.sicherheit.annotation.Gesichert)"/>
-    <aop:advisor pointcut-ref="gesichertPointcut" advice-ref="gesichertInterceptor"/>
-  </aop:config>
   <!-- @StelltLoggingKontextBereit Annotation einschalten -->
   <bean id="stelltLoggingKontextBereitInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"></bean>
   <aop:config>
     <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
     <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut" advice-ref="stelltLoggingKontextBereitInterceptor"/>
   </aop:config>
-  <!--
-  ===================================================================== Konfiguration der CAMS Implementierung
-  des AccessManagers =====================================================================
-  -->
-  <bean id="camsAccessManager" class="de.bund.bva.pliscommon.sicherheit.cams.CamsAccessManagerImpl" depends-on="konfiguration">
-    <constructor-arg index="0">
-      <value>classpath:/config/cams-webagent.conf</value>
-    </constructor-arg>
-    <constructor-arg index="1">
-      <ref bean="konfiguration"/>
-    </constructor-arg>
-  </bean>
 </beans>
 ----
 
@@ -683,21 +603,6 @@ image::sicherheit_004.png[pdfwidth=45%,width=45%,align="center"]
 `pingAccessManager`::
 Es wird ein Ping gegen den Access-Manager durchgeführt, um dessen Erreichbarkeit zu prüfen.
 Diese Methode kann von nutzenden Anwendungen in die Watchdog-Test-Methode der Überwachung eingebunden werden.
-
-[[konfiguration]]
-=== Konfiguration
-
-Zum Einbinden der Sicherheitskomponente und des AufrufKontextVerwalters sind wenige Konfigurationen erforderlich.
-
-
-
-[[konfiguration-fuer-den-access-manager]]
-==== Konfiguration für den Access Manager
-
-Die Komponente Sicherheit verwendet eine Client-Bibliothek des Access-Managers, um einen Benutzer gegen den Access-Manager-Service zu authentifizieren.
-
-Wenn als Access-Manager CAMS verwendet wird, ist eine Konfiguration in der betrieblichen Konfigurationsdatei `_/config/cams-webagent.conf_` erforderlich.
-Da diese Konfiguration in der Regel langjährig unverändert verwendet wird und lediglich die Aufrufadresse anzupassen ist, wird auf die Darstellung der Konfiguration hier verzichtet.
 
 
 
