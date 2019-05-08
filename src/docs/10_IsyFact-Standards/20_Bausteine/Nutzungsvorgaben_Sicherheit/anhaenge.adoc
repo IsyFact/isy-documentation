@@ -248,6 +248,12 @@ Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontextes transparent für
     </bean>
 ----
 
+[[entgegennahme-der-korrelations-id-in-der-gui]]
+==== Entgegennahme der Korrelations-ID in der GUI
+
+Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb des Spring Beans `HttpHeaderParser` der Bibliothek `rf-sicherheit-cams`.
+
+
 [[cams-authentifizierung-batch]]
 ==== Authentifizierung in Batches: Konfiguration
 
@@ -283,5 +289,16 @@ sic.camsagent.nutzertyp=unbekannt
 ----
 
 Hier wird festgelegt, dass ein Aufrufer gegen die im CAMS-Server konfigurierte Security-Domain `servicegateway` authentifiziert wird.
+
+[[cams-authentifizierung-awk]]
+==== Authentifizierung im Anwendungskern
+
+Ergänzend zur <<awk-autorisierung>> sei erwähnt, welche Informationen der CAMS-Server zur manuellen Authentifizierung beim Erstellen eines Berechtigungsmanagers benötigt:
+
+* Zertifikat (alternativ ZertifikatDn),
+* Kennung,
+* Passwort.
+
+
 
 // end::inhalt[]

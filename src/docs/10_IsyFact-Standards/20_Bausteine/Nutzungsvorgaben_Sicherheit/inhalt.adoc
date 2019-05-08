@@ -448,86 +448,140 @@ Der eigentliche Prozess der Authentifizierung sowie die Ermittlung der Rollen is
 
 Das Service-Gateway übergibt den Fachanwendungen bei der Weiterleitung der Anfragen den Aufrufkontext als Transportobjekt an die jeweilige Service-Schnittstelle (vgl. <<aufrufen-von-nachbarsystemen>>).
 
-
-// TODO Ab hier umschreiben!
-[[autorisierung-im-anwendungskern]]
+[[awk-autorisierung]]
 === Autorisierung im Anwendungskern
-
-
-_Durchführung der Autorisierungsprüfung_
-
-Nach Übernehmen des `AufrufKontext` in den `AufrufKontextVerwalter` erfolgt die Autorisierungsprüfung dann über die Komponente Sicherheit.
-
-Für die Autorisierungsprüfung stellt die `isy-sicherheit` neben dem Berechtigungsmanager (erlaubt Autorisierung per API-Aufruf) zusätzliche Hilfsmittel (Annotationen, Tags zur Verwendung in Flow-Definitionen) bereit, mit denen die Autorisierungsprüfung deklarativ erfolgen kann:
-
-* Für Autorisierungen im Anwendungskern kann die Annotation `@Gesichert` oder direkt der `Berechtigungsmanager` verwendet werden.
-
-
-
 
 Im Regelfall wird die Autorisierung einer Anfrage an den Schnittstellen der Anwendung durchgeführt.
 Es ist jedoch bei Bedarf auch möglich, Prüfungen innerhalb des Anwendungskerns durchzuführen.
 
-[[autorisierung-an-methoden-des-anwendungskerns]]
+[[awk-autorisierung-an-methoden]]
 ==== Autorisierung an Methoden des Anwendungskerns
 
-Im Anwendungskern kann durch Verwendung der Annotation `@Gesichert` an Methoden des Anwendungskerns deklarativ festgelegt werden, wo eine Berechtigungsprüfung erfolgen soll.
-Hier wird ausgewertet, welche Rollen und/oder Rechte der Benutzer haben muss, damit der Zugriff gewährt wird.
-Die Anwendung fragt bei der Komponente Sicherheit die Rollen und Rechte des Benutzers ab und autorisiert die Anfrage.
+An den Schnittstellen des Anwendungskerns können durch Verwendung der Annotation `@Gesichert` einzelne Methoden deklarativ abgesichert werden.
+Die Verwendung funktioniert genauso wie bei der <<service-autorisierung>>.
+Die wichtigste Voraussetzung für das Funktionieren dieses Ansatzes ist, dass im Rahmen des Aufrufs der Anwendung der Aufrufkontext bereits gefüllt wurde.
 
-Voraussetzung für das Funktionieren der Annotation `@Gesichert` ist, dass im Rahmen des Aufrufs der Anwendung der `AufrufKontextVerwalter` bereits gefüllt wurde.
-
-[[autorisierung-in-methoden-des-anwendungskerns]]
+[[awk-autorisierung-in-methoden]]
 ==== Autorisierung in Methoden des Anwendungskerns
 
-Prüfungen können auch ausprogrammiert werden.
-Dabei wird die Komponente Sicherheit verwendet.
-Hierzu wird das Bean Sicherheit in die Komponente des Anwendungskerns injiziert und der Berechtigungsmanager über die Methode `getBerechtigungsManager()` beschafft.
-Der Berechtigungsmanager stellt die Methoden `getRechte()`, `getRecht()`, `hatRecht()` und `pruefeRecht()` bereit, mit denen die gewünschte Prüfung vorgenommen werden kann.
+Berechtigungsprüfungen können ebenso an beliebiger Stelle im Quellcode erfolgen.
+Dazu bietet der Baustein Sicherheit über die Schnittstelle `Berechtigungsmanager` entsprechende Funktionen bereit.
+Der Berechtigungsmanager ist ein Container für die Rechte und Rollen des aktuell authentifizierten Anwenders.
 
-[[autorisierung-innerhalb-des-regelwerk]]
+Zur Erzeugung eines Berechtigungsmanagers muss das Spring Bean des Typs `Sicherheit` verfügbar sein.
+Die folgenden zwei Methoden des Beans erzeugen einen Berechtigungsmanager:
+
+`getBerechtigungsManager()`::
+Die Methode ermittelt die Informationen zum Anwender und zugehörige Rollen aus dem Aufrufkontext.
+Diese Methode muss verwendet werden, wenn der Anwender bereits anderweitig authentifiziert und der Aufrufkontext bereits gefüllt wurde.
+
+`getBerechtigungsManagerUndAuthentifiziere(AufrufKontext unauthentifzierterAufrufkontext)`::
+Die Methode authentifiziert den Anwender zunächst und füllt mit dem Ergebnis den übergebenen Aufrufkontext.
+Welche Informationen für eine erfolgreiche Authentifizierung benötigt werden, hängt von dem dafür eingesetzten IsyFact-Baustein ab.
+Diese Methode muss verwendet werden, wenn der Anwender noch nicht anderweitig authentifiziert wurde.
+
+Zur Formulierung von Berechtigungsprüfungen stehen folgende Methoden des Berechtigungsmanagers zur Verfügung:
+
+`Set<Rolle> getRollen()`:: Liefert die Menge aller Rollen des Anwenders.
+`Set<Recht> getRechte()`:: Liefert die Menge aller Rechte des Anwenders.
+`Recht getRecht(String recht)`:: Gibt das Recht mit dem angegebenen Namen zurück, falls es der Anwender besitzt.
+`boolean hatRecht(String recht)`:: Ermittelt, ob der Anwender ein bestimmtes Recht besitzt.
+`void pruefeRecht(String recht)`:: Prüft, ob der Anwender das angegebene Recht hat und erzeugt einen Fehler vom Typ `AutorisierungFehlgeschlagenException`, wenn das nicht der Fall ist.
+
+[[regelwerk-autorisierung]]
 === Autorisierung innerhalb des Regelwerk
 
-Werden Regelwerke verwendet, so sind hier häufig Prüfungen zur Sichtbarkeit, Melde- und Auskunftsrechten, sowie von Primärdaten abhängigen Rechten umzusetzen.
-Hierbei handelt es sich meist nicht um eine Autorisierung gegen Rollen, sondern um datenbezogene Prüfungen (z.B. Prüfung der Behördengruppe des Benutzers). Für diese Fälle gibt es keine Vorgaben, wie das zu erfolgen hat.
-Sie können zum Beispiel innerhalb des Regelwerks als Regeln hinterlegt werden.
+In einem Regelwerk sind oft Prüfungen zur Sichtbarkeit, Melde- und Auskunftsrechten sowie von Primärdaten abhängigen Rechten umzusetzen.
+Hierbei handelt es sich meist nicht um eine Autorisierung gegen Rollen, sondern um datenbezogene Prüfungen (z.B. Prüfung der Behördengruppe des Anwenders).
+Für diese Fälle stellt der Bausteins Sicherheit keine Funktionalität bereit.
+Es wird empfohlen, solche Regeln direkt im Regelwerk zu hinterlegen.
 
-Soll innerhalb des Regelwerks auf Rollen geprüft werden, so ist eine individuelle Lösung unter Nutzung der Komponente Sicherheit möglich.
+Soll in einem Regelwerk doch auf Rollen geprüft werden, bietet sich die Lösung aus dem Abschnitt <<awk-autorisierung-in-methoden>> an.
 
-[[asynchrone-prozesse]]
-==== Asynchrone Prozesse
+[[asynchrone-prozesse-autorisierung]]
+=== Autorisierung in asynchronen Prozessen
 
-Einige Anwendungen (z.B. Nachrichtenempfang an einem Email-Service-Gateway) verwenden asynchrone Prozesse, bzw.
-starten Prozesse ereignis- oder zeitgesteuert.
-Diesen Prozessen geht im Moment der Bearbeitung keine Benutzeranfrage voraus.
+Einige Anwendungsfälle (z.B. Nachrichtenempfang über einen Mailserver) verwenden asynchrone Prozesse.
+Diese Prozesse starten nicht aufgrund einer Anfrage eines Anwenders, sondern ereignis- oder zeitgesteuert.
+Somit geht diesen Prozessen im Moment der Bearbeitung keine Benutzeranfrage voraus.
 Daher kann die Bearbeitung im Regelfall nicht mit dem Aufrufkontext eines anfragenden Benutzers durchgeführt werden.
-Stattdessen wird zum Start des Prozesses ein hinreichend berechtigter Benutzer (System) verwendet.
-Es ist ein analoger Ablauf wie beim Start von Batches (siehe Kapitel <<autorisierung-eines-batches>>) umzusetzen.
-Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfiguration-2>>) vorzunehmen.
+Stattdessen wird zum Start des Prozesses ein hinreichend berechtigter Anwender (technischer Anwender bzw. System) verwendet.
+Es ist ein analoger Ablauf wie beim Start von Batches (s. <<batch-autorisierung>>) umzusetzen.
 
+[[aufrufen-von-nachbarsystemen]]
+== Aufrufen von Nachbarsystemen
 
+So wie ein IT-System bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, das aufgerufen wird.
+Der Aufrufer muss daher einen Aufrufkontext mitliefern.
+Im Regelfall soll dabei der Aufrufkontext der originären Anfrage verwendet und unverändert weitergeleitet werden.
 
+Zum Aufruf des Nachbarsystems werden entweder die mit dem Nachbarsystem bereit gestellten Service-Client-Bibliotheken oder direkt die Schnittstelle des Nachbarsystems verwendet.
+Wenn ein Nachbarsystem über eine spezifische Client-Bibliothek aufgerufen wird, so enthält diese bereits die Logik zur Weiterleitung des Aufrufkontextes.
+Wenn ein Nachbarsystem direkt aufgerufen wird, so ist die Weiterleitung des AufrufKontextes manuell zu leisten.
+Hierbei muss immer das Transportobjekt (`AufrufKontextTo`) der Bibliothek `isy-serviceapi-sst` verwendet werden, da in der Regel nur dieses im Nachbarsystem korrekt deserialisiert werden kann.
 
-== Restliche Spring-Konfiguration
+:desc-listing-weiterleitung-des-aufrufkontextes: Weiterleitung des Aufrufkontextes beim Aufruf eines Nachbarsystems
+[id="listing-weiterleitung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-weiterleitung-des-aufrufkontextes}
+[source,java]
+----
+AufrufKontext aufrufKontext = aufrufKontextVerwalter.getAufrufKontext();
+AufrufKontextTo transportobjekt = (AufrufKontextTo) dozer.map(aufrufKontext, AufrufKontextTo.class);
+nachbarService.aufruf(transportobjekt, weitere, parameter);
+----
 
-:desc-listing-konfiguration-fuer-spring: Konfiguration für Spring
-[id="listing-konfiguration-fuer-spring",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-fuer-spring}
+<<listing-weiterleitung-des-aufrufkontextes>> enthält folgende Schritte:
+
+* Der Aufrufkontext der Anwendung wird vom Spring Bean `aufrufKontextVerwalter` abgerufen.
+* Es wird ein Dozer-Mapping verwendet, um das für den Aufruf zu verwendende Transportobjekt zu erstellen.
+* Das erzeugte Transportobjekt wird an die Schnittstelle des Nachbarsystems übergeben.
+
+[[verwendung-der-korrelations-id]]
+== Verwendung der Korrelations-ID
+
+Der Aufrufkontext enthält neben Informationen zur Authentifizierung und Rollen auch die Korrelations-ID, die alle Log-Ausgaben einer Anfrage durch eine gemeinsame ID kennzeichnet – auch wenn die Anfrage mehrere IT-Systeme durchläuft.
+Dies erfordert eine korrekte Entgegennahme, Verwendung und Weiterleitung der Korrelations-ID über alle Service-Aufrufe hinweg.
+Details zum Aufbau der Korrelations-ID sind in <<NutzungsvorgabenLogging>> beschrieben.
+
+Eine Korrelations-ID wird entweder bereits im eingehenden Aufruf mitgeliefert, oder muss neu erzeugt werden.
+Sie wird stets im MDC (_Mapped Diagnostic Context_) der IT-Systeme abgelegt.
+
+Eine Korrelations-ID wird folgendermaßen manuell erzeugt.
+
+:desc-listing-manuelle-erzeugung-korrelations-id: Manuelle Erzeugung einer Korrelations-ID
+[id="listing-manuelle-erzeugung-korrelations-id",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-manuelle-erzeugung-korrelations-id}
+[source,java]
+----
+String korrelationsId = UUID.randomUUID().toString();
+MdcHelper.pushKorrelationsId(korrelationsId);
+----
+
+Neben dem MDC wird die Korrelations-ID ebenfalls im Aufrufkontext hinterlegt.
+So wird die Korrelations-ID beim Aufruf eines Nachbar­systems als Bestandteil des AufrufKontextes automatisch weitergeleitet.
+
+[[entgegennahme-der-korrelations-id-in-der-gui]]
+=== Entgegennahme der Korrelations-ID in der GUI
+
+Im Fall einer zentralen Authentifizierung kümmert sich die mitgelieferte Implementierung des Bausteins Sicherheit um die Entgegennahme der Korrelations-ID.
+
+Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übertragen und das IT-System muss für jede Anfrage eine neue Korrelations-ID manuell erzeugen (s. <<listing-manuelle-erzeugung-korrelations-id>>).
+
+[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
+=== Entgegennahme der Korrelations-ID an einer Service-SST
+
+Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der Http-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+
+Dazu ist die folgende Spring-Konfiguration nötig.
+
+:desc-listing-konfiguration-korrelations-id: Spring-Konfiguration zur Entgegennahme der Korrelations-ID
+[id="listing-konfiguration-korrelations-id",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfiguration-korrelations-id}
 [source, xml]
 ----
 <beans>
-  <!-- @NutzerAuthentifizierung Annotation einschalten -->
-  <bean id="nutzerAuthentifizierungInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierungInterceptor">
-    <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
-    <property name="konfiguration" ref="konfiguration"/>
-    <property name="sicherheit" ref="sicherheit"/>
-  </bean>
-  <aop:config>
-    <aop:pointcut id="nutzerAuthentifizierungPointcut" expression="@annotation(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung) || @within(de.bund.bva.pliscommon.sicherheit.annotation.NutzerAuthentifizierung)"/>
-    <aop:advisor pointcut-ref="nutzerAuthentifizierungPointcut" advice-ref="nutzerAuthentifizierungInterceptor"/>
-  </aop:config>
-  <!-- @StelltLoggingKontextBereit Annotation einschalten -->
-  <bean id="stelltLoggingKontextBereitInterceptor" class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"></bean>
+  <bean id="stelltLoggingKontextBereitInterceptor"
+      class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"/>
   <aop:config>
     <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
     <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut" advice-ref="stelltLoggingKontextBereitInterceptor"/>
@@ -536,191 +590,80 @@ Es ist eine analoge Konfiguration wie bei Batches (siehe Abschnitt <<konfigurati
 ----
 
 
-
-[[erzeugen-eines-berechtigungsmanagers]]
-=== Erzeugen eines Berechtigungsmanagers
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
-
-Die Komponente erzeugt für einen angegebenen Benutzer eine Instanz des Berechtigungsmanagers.
-Der Berechtigungsmanager ist ein Container für die Berechtigungsinformationen des Benutzers, also für Rechte und Rollen.
-Die Instanz des Berechtigungsmanagers kann auf mehrere Arten erzeugt werden:
-
-`getBerechtigungsManager()`
-
-Die Komponente Sicherheit ermittelt die Informationen zum Benutzer und zugehörige Rollen aus dem `AufrufKontextVerwalter` der Anwendung.
-Diese Methode soll verwendet werden, wenn der Benutzer bereits in der Informations- und Dienstezone authentifiziert wurde und die Benutzerinformationen (inklusive Rollen) in der Anwendung im `AufrufKontextVerwalter` vorliegen.
-
-`getBerechtigungsManagerUndAuthentifiziere +
-(AufrufKontext unauthentifzierterAufrufkontext)`
-
-Die Komponente Sicherheit authentifiziert zunächst den Benutzer durch eine Anfrage am Access-Manager, dabei werden die zur Authentifizierung benötigten Informationen über ein AufrufKontext-Objekt übergeben.
-Für CAMS sind dies das Zertifikat (alternativ ZertifikatDn), Kennung und Passwort.
-Der AccessManager ermittelt dann die Rollen des Benutzers und diese werden im `AufrufKontextVerwalter` der Anwendung hinterlegt.
-Aus Sicht des CAMS erfolgt anschließend erfolgt sofort der Logout.
-
-[[verwendung-des-berechtigungsmanagers]]
-=== Verwendung des Berechtigungsmanagers
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
-
-Der Berechtigungsmanager wird selten direkt im Programmcode verwendet, da die meisten Berechtigungsprüfungen deklarativ per Annotationen oder
-Webflow-Tags (siehe Abschnitt <<autorisierung>>) umgesetzt werden.
-
-Trotzdem kann eine Berechtigungsprüfung auch ausprogrammiert werden.
-Dafür stellte die Komponente Sicherheit den Berechtigungsmanager mit folgender Schnittstelle bereit:
-
-:desc-image-schnittstelle-des-berechtigungsmanagers: Schnittstelle des Berechtigungsmanagers
-[id="image-schnittstelle-des-berechtigungsmanagers",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-schnittstelle-des-berechtigungsmanagers}
-image::sicherheit_003.png[pdfwidth=45%,width=45%,align="center"]
-
-Die Klasse Berechtigungsmanager bietet die folgenden Methoden an:
-
-`getAktuellerBenutzer()`::
-Liefert die Benutzerkennung des Benutzers (Login und Behörden-/Organisationskennzeichen) für den der Berechtigungsmanager erzeugt wurde.
-
-`getRechte()`::
-Diese Methode liefert eine Liste aller Rechte des Benutzers.
-
-`getRecht()`::
-Diese Methode liefert zu einer ID das zugehörige Recht, falls der Benutzer es besitzt.
-
-`hatRecht()`::
-Diese Methode prüft, ob der Benutzer das angegebene Recht hat.
-
-`pruefeRecht()`::
-Diese Methode prüft, ob der Benutzer das angegebene Recht hat und löste eine AutorisierungFehlgeschlagenException aus, wenn das nicht der Fall ist.
-
-[[pruefung-der-erreichbarkeit-des-access-managers-ping]]
-=== Prüfung der Erreichbarkeit des Access Managers (Ping)
-
-Die Komponente Sicherheit bietet über das Bean SicherheitAdmin die Möglichkeit die Verfügbarkeit des Nachbarsystems Access-Manager zu prüfen.
-
-:desc-image-schnittstelle-von-sicherheitadmin: Schnittstelle von SicherheitAdmin
-[id="image-schnittstelle-von-sicherheitadmin",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-schnittstelle-von-sicherheitadmin}
-image::sicherheit_004.png[pdfwidth=45%,width=45%,align="center"]
-
-`pingAccessManager`::
-Es wird ein Ping gegen den Access-Manager durchgeführt, um dessen Erreichbarkeit zu prüfen.
-Diese Methode kann von nutzenden Anwendungen in die Watchdog-Test-Methode der Überwachung eingebunden werden.
-
-
-
-
-[[aufrufen-von-nachbarsystemen]]
-== Aufrufen von Nachbarsystemen
-// TODO Umschreiben, so dass hier nur Entwicklungsaspekte übrig bleiben!
-
-So wie eine Anwendung bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, welches von der eigenen Anwendung aufgerufen wird.
-Das aufrufende System muss daher einen Aufrufkontext mitliefern.
-Im Regelfall soll dabei der Aufrufkontext der originären Anfrage verwendet und unverändert weitergeleitet werden.
-
-Zum Aufruf des Nachbarsystems werden entweder die mit dem Nachbarsystem bereit gestellten Service-Client-Bibliotheken oder direkt die RemoteBean der aufzurufenden Schnittstelle verwendet.
-
-Wenn ein Service über eine spezifische Client-Implementierung (z.B. den Schlüsselverzeichnis-Client) verwendet wird, so enthält diese (konform zum Berechtigungskonzept) bereits die Logik zur Weiterleitung des Aufrufkontextes.
-
-Wenn der Service direkt über Spring HTTP-Invoker und das zugehörige RemoteBean-Interface aufgerufen wird, so ist die Weiterleitung des AufrufKontextes unter Nutzung des AufrufKontextVerwalters (per Spring injizieren) manuell zu programmieren.
-Hierbei ist es wichtig, dass immer ein AufrufKontextTo-Objekt der Service-API verwendet wird, da nur dieses bei einem HTTP-Invoker-Aufruf im Server korrekt deserialisiert werden kann.
-
-:desc-listing-weiterleitung-des-aufrufkontextes: Weiterleitung des Aufrufkontextes beim Serviceaufruf
-[id="listing-weiterleitung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-weiterleitung-des-aufrufkontextes}
-[source,java]
-----
-AufrufKontext aufrufKontext = aufrufKontextVerwalter.getAufrufKontext();
-if (aufrufKontext == null) {
-  throw new ...Exception(...);
-}
-remoteBean.methodeX((AufrufKontextTo) dozer.map(aufrufKontext, AufrufKontextTo.class, weitere, parameter);
-----
-
-Das Beispiel enthält folgende Schritte:
-
-* Der `AufrufKontext` der Anwendung (dies ist meist eine anwendungsspezifische Implementierung des AufrufKontextes) wird vom `AufrufKontextVerwalter` abgerufen.
-* Es wird ein Dozer-Default-Mapper verwendet, um das für Serviceaufrufe zu verwendende `AufrufKontextTo` der Service-API zu erstellen.
-* Das erzeugte `AufrufKontextTo` der Service-API wird an die Schnittstelle des Service-Client übergeben.
-
-[[verwendung-der-korrelations-id]]
-== Verwendung der Korrelations-ID
-
-Der `AufrufKontext` enthält auch die Korrelations-ID, die während der Bearbeitung einer Anfrage in der Anwendungslandschaft alle zusammen­ge­hö­ren­den Log-Ausgaben einer Anfrage durch eine gemeinsame ID kennzeichnet – auch wenn die Anfrage mehrere Teilsysteme der Anwendungslandschaft verwendet.
-Dies erfordert eine Entgegennahme, Verwendung und Weiterleitung einer Korrelations-ID über alle Service-Aufrufe hinweg.
-Details zum Aufbau der Korrelations-ID sind in <<NutzungsvorgabenLogging>> beschrieben.
-
-Eine Korrelations-ID wird entweder bereits im eingehenden Aufruf mitgeliefert, oder muss neu erzeugt werden.
-
-[[entgegennahme-der-korrelations-id-in-der-gui]]
-=== Entgegennahme der Korrelations-ID in der GUI
-
-Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb des `HttpHeaderParser` der Bibliothek `plis-sicherheit`-cams.
-
-[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
-=== Entgegennahme der Korrelations-ID an einer Service-SST
-
-Die Entgegennahme (ggf. Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der Http-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
-
-[[ablage-und-weiterleitung-der-korrelations-id]]
-=== Ablage und Weiterleitung der Korrelations-ID
-
-Die Korrelations-ID wird für das Logging im MDC abgelegt.
-Gleichzeitig wird diese jedoch auch im vom `AufrufKontextVerwalter` verwalteten `AufrufKontext` hinterlegt.
-Ist dies der Fall, so wird die Korrelations-ID beim Aufruf des RemoteBeans des Nachbar­systems als Bestandteil des AufrufKontextes automatisch weitergeleitet.
-
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
-Gelegentlich möchte eine Anwendung zusätzliche Informationen im `AufrufKontextVerwalter` ablegen.
-Hierzu lässt sich eine anwendungs­spezifische Spezialisierung des `de.bund.bva.pliscommon.kontext.AufrufKontextImpl` verwenden, der den `AufrufKontext` um zusätzliche Attribute erweitert.
+Gelegentlich möchte eine Fachanwendung zusätzliche Informationen im Aufrufkontext ablegen.
+Hierzu kann von der Standard-Implementierung (`de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl`) geerbt und die neue, anwendungsspezifische Klasse um zusätzliche Attribute erweitert werden.
 
-:desc-listing-verwendung-des-aufrufkontextes: Verwendung eines anwendungsspezifischen AufrufKontext
+Die anwendungsspezifische Implementierung muss in der Spring-Konfiguration hinterlegt werden.
+
+:desc-listing-verwendung-des-aufrufkontextes: Verwendung eines anwendungsspezifischen Aufrufkontext
 [id="listing-verwendung-des-aufrufkontextes",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-verwendung-des-aufrufkontextes}
 [source,xml]
 ----
-<!—- Erstellt den anwendungsspezifischen `AufrufKontext` -->
-  <bean
-      id="aufrufKontextFactory"
-      class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
+<beans>
+    <bean id="aufrufKontextFactory"
+        class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
 
-    <property
-      name="aufrufKontextKlasse"
-      value="de.bund.bva.pliscommon.aufrufkontext.impl.<Anwendungsspezifisch>AufrufKontextImpl" />
+    <property name="aufrufKontextKlasse"
+        value="<fqcn.des.anwendungsspezifischen.aufrufkontext>" />
   </bean>
 ----
 
-Die zusätzlichen Attribute können bereits beim automatischen Befüllen des AufrufKontextVerwalters gesetzt werden.
-So wäre es beispielsweise möglich, bei der Annahme eines Requests den Anfragezeitpunkt im Aufrufkontext festzuhalten.
-Dazu kann eine anwendungsspezifische AufrufKontextFactory verwendet werden.
+Die zusätzlichen Attribute können bereits beim automatischen Befüllen des Aufrufkontextes gesetzt werden.
+Dazu kann eine anwendungsspezifische `AufrufKontextFactory` verwendet werden.
 
-[[entwickeln-und-testen-ohne-access-manager-service]]
-== Entwickeln und Testen ohne Access-Manager-Service
 
-Hier wird erläutert, wie ein konfigurierbarer Stub des Aufruf­KontextVerwalters verwendet werden kann, um für eine in Entwicklung oder Test befindliche Anwendung das Vorliegen eines Aufrufkontextes (mit Informationen zu einem Benutzer und dessen Rollen) zu simulieren, obwohl bei einer Anfrage gar kein Aufrufkontext übergeben wurde.
+[[ueberwachung-baustein-sicherheit]]
+== Überwachung des Bausteins Sicherheit
 
-Mit Hilfe dieses Stubs kann auf die Verwendung eines Access Managers in der Software-Entwicklungsumgebung verzichtet werden.
-Der Stub gibt bei jeder Anfrage die statisch konfigurierten Benutzerdaten zurück.
-Die Konfiguration erfolgt in _/resources/spring/querschnitt/sicherheit.xml_.
+Der Baustein Sicherheit bietet über die Schnittstelle `SicherheitAdmin` die Möglichkeit, die Verfügbarkeit eines IAM-Systems kontinuierlich zu prüfen.
+Dazu gibt es folgende Methode:
 
-:desc-listing-konfiguration-aufrufkontext-stub: Konfiguration Aufrufkontext-Stub
+`boolean pingAccessManager()`:: Prüft die Erreichbarkeit des `AccessManager` mittels einer trivialen Anfrage.
+
+Diese Methode kann in den Watchdog des IT-Systems (s. <<KonzeptUeberwachungKonfiguration>>) eingebunden werden.
+
+
+[[entwickeln-und-testen]]
+== Entwickeln und Testen ohne externe Authentifizierung
+
+In der Entwicklung und im Test steht nicht immer ein externes System zur Authentifizierung zur Verfügung.
+Hierzu stellt der Baustein Sicherheit einen konfigurierbaren Stub für die Klasse `Aufruf­KontextVerwalter` bereit.
+Der Stub simuliert das Vorliegen eines Aufrufkontextes (mit Informationen zu einem Anwender und dessen Rollen), ohne dass dieser von außen übergeben werden muss.
+Er gibt bei jeder Anfrage statisch konfigurierte Daten eines Anwenders zurück.
+
+TIP: Die Konfiguration des Stubs sollte in einem eigenen Spring-Profil für die Entwicklung und den Test erfolgen.
+
+:desc-listing-konfiguration-aufrufkontext-stub: Konfiguration des Stubs
 [id="listing-konfiguration-aufrufkontext-stub",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-konfiguration-aufrufkontext-stub}
 [source,xml]
 ----
-<!-- Verwende Stub Implementierung für die Entwicklung -->
-<bean id="aufrufKontextVerwalter" class="de.bund.bva.pliscommon.
-aufrufkontext.stub.AufrufKontextVerwalterStub" scope="request">
-  <aop:scoped-proxy/>
-  <property name="rollen">
-    <list>
-      <value><Rolle1, die der Benutzer im Test haben soll></value>
-       <value><Rolle2, die der Benutzer im Test haben soll></value>
-    </list>
-  </property>
-  <property name="durchfuehrendeBehoerde" value="42" />
-  <property name="aufrufKontextFactory" ref="aufrufKontextFactory" />
-</bean>
+<beans>
+    <bean id="aufrufKontextVerwalter" scope="thread"
+        class="de.bund.bva.pliscommon.aufrufkontext.stub.AufrufKontextVerwalterStub">
+        <aop:scoped-proxy/>
+        <property name="rollen">
+            <list>
+                <value>FAX_DialogNutzerA</value>
+                <value>FAX_DialogNutzerAlle</value>
+            </list>
+        </property>
+        <property name="durchfuehrenderBenutzerKennung" value="<kennung>" />
+        <property name="durchfuehrenderBenutzerPasswort" value="<passwort>" />
+        <property name="durchfuehrendeBehoerde" value="<behoerde>" />
+
+        <property name="aufrufKontextFactory" ref="aufrufKontextFactory" />
+
+        <property name="festerAufrufKontext" value="true/false" />
+    </bean>
+</beans>
 ----
 
-Neben der gezeigten Eigenschaft „Rollen“ und durchführende Behörde lassen sich auch alle weiteren Eigenschaften des Benutzers konfigurieren.
+Neben den gezeigten Eigenschaften lassen sich auch alle weiteren Eigenschaften des Aufrufkontextes konfigurieren.
+Mit der Eigenschaft `festerAufrufKontext` lässt sich darüber hinaus steuern, ob bei jeder Anfrage der selbe Aufrufkontext (`true`) oder jedes Mal eine neue Instanz mit den gleichen, konfigurierten Werten (`false`) zurückgegeben wird.
 
 // end::inhalt[]
