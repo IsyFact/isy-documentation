@@ -75,7 +75,8 @@ Am Wichtigsten ist die Definition der Spring Bean für die Schnittstelle `Sicher
 [source, xml]
 ----
 <beans>
-    <bean id="sicherheit" class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitImpl">
+    <bean id="sicherheit"
+        class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitImpl">
         <property name="rollenRechteDateiPfad" value="/resources/sicherheit/rollenrechte.xml"/>
         <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
         <property name="accessManager" ref="accessManager"/>
@@ -83,15 +84,18 @@ Am Wichtigsten ist die Definition der Spring Bean für die Schnittstelle `Sicher
         <property name="aufrufKontextFactory" ref="aufrufKontextFactory"/>
     </bean>
 
-    <bean id="sicherheitAdmin" class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitAdminImpl">
+    <bean id="sicherheitAdmin"
+        class="de.bund.bva.pliscommon.sicherheit.impl.SicherheitAdminImpl">
         <property name="accessManager" ref="accessManager"/>
     </bean>
 
-    <bean id="aufrufKontextFactory" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
+    <bean id="aufrufKontextFactory"
+        class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
         <property name="aufrufKontextKlasse" value="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl"/>
     </bean>
 
-    <bean id="aufrufKontextVerwalter" scope="thread" class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl">
+    <bean id="aufrufKontextVerwalter" scope="thread"
+        class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl">
         <aop:scoped-proxy/>
     </bean>
 
@@ -163,25 +167,24 @@ Dieses Beispiel führt zu folgender Konfigurationsdatei.
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.isyfact.de/RollenRechteSchema RollenRechteSchema.xsd ">
 
-<!-- Definition der Rechte -->
-<tns:rechte>
-  <tns:rechtId Id="DialogA.Aufrufen" />
-</tns:rechte>
+    <!-- Definition der Rechte -->
+    <tns:rechte>
+        <tns:rechtId Id="DialogA.Aufrufen" />
+    </tns:rechte>
 
-<tns:rechte>
-  <tns:rechtId Id="DialogB.Aufrufen" />
-</tns:rechte>
+    <tns:rechte>
+        <tns:rechtId Id="DialogB.Aufrufen" />
+    </tns:rechte>
 
-<!-- Definition der Rollen -->
-<tns:rollen RolleId="FAX_DialogNutzerA">
-  <tns:rechtId Id="DialogA.Aufrufen" />
-</tns:rollen>
+    <!-- Definition der Rollen -->
+    <tns:rollen RolleId="FAX_DialogNutzerA">
+        <tns:rechtId Id="DialogA.Aufrufen" />
+    </tns:rollen>
 
-<tns:rollen RolleId="FAX_DialogNutzerAlle">
-  <tns:rechtId Id="DialogA.Aufrufen" />
-  <tns:rechtId Id="DialogB.Aufrufen"/>
-</tns:rollen>
-
+    <tns:rollen RolleId="FAX_DialogNutzerAlle">
+        <tns:rechtId Id="DialogA.Aufrufen" />
+        <tns:rechtId Id="DialogB.Aufrufen"/>
+    </tns:rollen>
 </tns:Anwendung>
 ----
 
@@ -317,7 +320,8 @@ Zur Absicherung der Service-Schnittstellen sowie zum Auslesen des Aufrufkontexte
         <aop:advisor pointcut-ref="aufrufKontextPointcut" advice-ref="aufrufKontextInterceptor"/>
     </aop:config>
 
-    <bean id="gesichertInterceptor" class="de.bund.bva.pliscommon.sicherheit.annotation.GesichertInterceptor">
+    <bean id="gesichertInterceptor"
+        class="de.bund.bva.pliscommon.sicherheit.annotation.GesichertInterceptor">
         <property name="sicherheit" ref="sicherheit"/>
         <property name="sicherheitAttributeSource">
           <bean class="de.bund.bva.pliscommon.sicherheit.annotation.AnnotationSicherheitAttributeSource"/>
@@ -362,7 +366,7 @@ public void abgesicherteMethode(AufrufKontextTo kontext, ...) {
 }
 ----
 
-Erfüllt ein Aufrufer nicht die Forderungen der Annotation `@Gesichert`, so wird ein Fehler des Typs `AutorisierungFehlgeschlagenException` erzeugt.
+Erfüllt ein Aufrufer die Forderungen der Annotation `@Gesichert` nicht, so wird ein Fehler des Typs `AutorisierungFehlgeschlagenException` erzeugt.
 Der Fehler wird in der Regel nicht lokal behandelt, sondern einfach zurückgegeben.
 Letztlich deuten fehlende Rechte meist auf einen unberechtigten Zugriff oder einen Fehler in der Konfiguration einer aufrufenden Anwendung hin, so dass hier die normale Fehlerbehandlung greift.
 
@@ -373,8 +377,8 @@ Beim Aufruf von Batches stellt der Batchrahmen das Auslesen des Aufrufkontextes 
 Zur Autorisierung ist im Batchrahmen bereits die Möglichkeit enthalten, einen Anwender zu konfigurieren.
 Weitere Details zur Umsetzung der Autorisierung bei Batches sind in <<DetailkonzeptKomponenteBatch>> beschrieben.
 
-[[batch-spring-konfiguration]]
-==== Spring-Konfiguration
+[[batch-konfiguration]]
+==== Konfiguration
 
 Zur Absicherung von Batches ist folgende, betriebliche Konfiguration erforderlich.
 
@@ -395,7 +399,7 @@ Weiterhin ermöglicht der Batchrahmen die Konfiguration von Benutzern für mehre
 ==== Absicherung eines Batches
 
 Damit der Benutzer bei der Ausführung des Batches authentifiziert wird, muss die Methode `initialisieren` der Klasse `BatchAusfuehrungsBean`  mittels der Annotation `@Gesichert` geschützt werden.
-Der Batchrahmen authentifiziert den Benutzer anhand der betrieblichen Konfiguration (s. <<batch-spring-konfiguration>>), erstellt einen neuen Aufrufkontext und speichert ihn im Verwalter.
+Der Batchrahmen authentifiziert den Benutzer anhand der betrieblichen Konfiguration, erstellt einen neuen Aufrufkontext und speichert ihn im Verwalter.
 Der eigentliche Prozess der Authentifizierung sowie die Ermittlung der Rollen ist für Nutzer des Batchrahmens vollständig transparent.
 
 Des Weiteren muss die Methode `getAuthenticationCredentials` der Klasse `BatchAusfuehrungsBean` implementiert werden, damit der Batchrahmen den korrekten Anwender zur Authentifizierung nutzt.
@@ -440,7 +444,6 @@ Er verwendet dazu die Bibliothek `rf-sgw-util`, in der `isy-sicherheit` eingebun
 
 Ein Service eines Service-Gateways wird aufgerufen.
 Mit der Anfrage wird die Benutzerkennung des anfragenden Benutzers übermittelt.
-
 Die im Service-Gateway verwendete Komponente Serviceanbieter nutzt den Baustein Sicherheit, um den anfragenden Benutzer bereits in der Informations- und Dienstezone zu authentifizieren.
 Dazu benutzt der Serviceanbieter ein Client-Zertifikat, eine Benutzerkennung und ein Passwort.
 Bei erfolgreicher Authentifizierung erstellt der Serviceanbieter einen neuen Aufrufkontext und speichert ihn im Verwalter.
@@ -493,7 +496,7 @@ Zur Formulierung von Berechtigungsprüfungen stehen folgende Methoden des Berech
 
 In einem Regelwerk sind oft Prüfungen zur Sichtbarkeit, Melde- und Auskunftsrechten sowie von Primärdaten abhängigen Rechten umzusetzen.
 Hierbei handelt es sich meist nicht um eine Autorisierung gegen Rollen, sondern um datenbezogene Prüfungen (z.B. Prüfung der Behördengruppe des Anwenders).
-Für diese Fälle stellt der Bausteins Sicherheit keine Funktionalität bereit.
+Für diese Fälle stellt der Baustein Sicherheit keine Funktionalität bereit.
 Es wird empfohlen, solche Regeln direkt im Regelwerk zu hinterlegen.
 
 Soll in einem Regelwerk doch auf Rollen geprüft werden, bietet sich die Lösung aus dem Abschnitt <<awk-autorisierung-in-methoden>> an.
@@ -506,7 +509,7 @@ Diese Prozesse starten nicht aufgrund einer Anfrage eines Anwenders, sondern ere
 Somit geht diesen Prozessen im Moment der Bearbeitung keine Benutzeranfrage voraus.
 Daher kann die Bearbeitung im Regelfall nicht mit dem Aufrufkontext eines anfragenden Benutzers durchgeführt werden.
 Stattdessen wird zum Start des Prozesses ein hinreichend berechtigter Anwender (technischer Anwender bzw. System) verwendet.
-Es ist ein analoger Ablauf wie beim Start von Batches (s. <<batch-autorisierung>>) umzusetzen.
+Auch hier bietet sich die Lösung aus dem Abschnitt <<awk-autorisierung-in-methoden>> an.
 
 [[aufrufen-von-nachbarsystemen]]
 == Aufrufen von Nachbarsystemen
@@ -558,7 +561,7 @@ MdcHelper.pushKorrelationsId(korrelationsId);
 ----
 
 Neben dem MDC wird die Korrelations-ID ebenfalls im Aufrufkontext hinterlegt.
-So wird die Korrelations-ID beim Aufruf eines Nachbar­systems als Bestandteil des AufrufKontextes automatisch weitergeleitet.
+So wird die Korrelations-ID beim Aufruf eines Nachbar­systems als Bestandteil des Aufrufkontextes automatisch weitergeleitet.
 
 [[entgegennahme-der-korrelations-id-in-der-gui]]
 === Entgegennahme der Korrelations-ID in der GUI
@@ -570,7 +573,7 @@ Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übe
 [[entgegennahme-der-korrelations-id-an-einer-service-sst]]
 === Entgegennahme der Korrelations-ID an einer Service-SST
 
-Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der Http-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
 
 Dazu ist die folgende Spring-Konfiguration nötig.
 
@@ -584,7 +587,8 @@ Dazu ist die folgende Spring-Konfiguration nötig.
       class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"/>
   <aop:config>
     <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
-    <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut" advice-ref="stelltLoggingKontextBereitInterceptor"/>
+    <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut"
+        advice-ref="stelltLoggingKontextBereitInterceptor"/>
   </aop:config>
 </beans>
 ----
@@ -607,9 +611,10 @@ Die anwendungsspezifische Implementierung muss in der Spring-Konfiguration hinte
     <bean id="aufrufKontextFactory"
         class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
 
-    <property name="aufrufKontextKlasse"
-        value="<fqcn.des.anwendungsspezifischen.aufrufkontext>" />
-  </bean>
+        <property name="aufrufKontextKlasse"
+            value="<fqcn.des.anwendungsspezifischen.aufrufkontext>" />
+    </bean>
+</beans>
 ----
 
 Die zusätzlichen Attribute können bereits beim automatischen Befüllen des Aufrufkontextes gesetzt werden.
@@ -619,12 +624,12 @@ Dazu kann eine anwendungsspezifische `AufrufKontextFactory` verwendet werden.
 [[ueberwachung-baustein-sicherheit]]
 == Überwachung des Bausteins Sicherheit
 
-Der Baustein Sicherheit bietet über die Schnittstelle `SicherheitAdmin` die Möglichkeit, die Verfügbarkeit eines IAM-Systems kontinuierlich zu prüfen.
+Der Baustein Sicherheit bietet über die Schnittstelle `SicherheitAdmin` die Möglichkeit, die Verfügbarkeit des jeweils verwendeten `AccessManager` kontinuierlich zu prüfen.
 Dazu gibt es folgende Methode:
 
 `boolean pingAccessManager()`:: Prüft die Erreichbarkeit des `AccessManager` mittels einer trivialen Anfrage.
 
-Diese Methode kann in den Watchdog des IT-Systems (s. <<KonzeptUeberwachungKonfiguration>>) eingebunden werden.
+Diese Methode kann in den Watchdog des IT-Systems (siehe <<KonzeptUeberwachungKonfiguration>>) eingebunden werden.
 
 
 [[entwickeln-und-testen]]
@@ -664,6 +669,6 @@ TIP: Die Konfiguration des Stubs sollte in einem eigenen Spring-Profil für die 
 ----
 
 Neben den gezeigten Eigenschaften lassen sich auch alle weiteren Eigenschaften des Aufrufkontextes konfigurieren.
-Mit der Eigenschaft `festerAufrufKontext` lässt sich darüber hinaus steuern, ob bei jeder Anfrage der selbe Aufrufkontext (`true`) oder jedes Mal eine neue Instanz mit den gleichen, konfigurierten Werten (`false`) zurückgegeben wird.
+Mit der Eigenschaft `festerAufrufKontext` lässt sich darüber hinaus steuern, ob bei jeder Anfrage derselbe Aufrufkontext (`true`) oder jedes Mal eine neue Instanz mit den gleichen, konfigurierten Werten (`false`) zurückgegeben wird.
 
 // end::inhalt[]

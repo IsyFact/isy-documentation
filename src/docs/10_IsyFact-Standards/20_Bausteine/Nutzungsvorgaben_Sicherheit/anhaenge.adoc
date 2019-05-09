@@ -45,32 +45,34 @@ include::../../../common/attributes.adoc[]
 [[rollen-rechte-schema]]
 === Anhang B: Rollen-Rechte-Schema
 
-Im Folgenden ist der Inhalt der Datei RollenRechteSchema.xsd wiedergegeben, die das Format der Konfigurationsdatei für Rollen und Rechte (rollenrechte.xml) festlegt.
+Im Folgenden ist der Inhalt der Datei `RollenRechteSchema.xsd` wiedergegeben, die das Format der Konfigurationsdatei für Rollen und Rechte (`rollenrechte.xml`) festlegt.
 
 [source, xml]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/RollenRechteSchema" xmlns:tns="http://www.example.org/RollenRechteSchema" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.isyfact.de/RollenRechteSchema"
+    xmlns:tns="http://www.isyfact.de/RollenRechteSchema"
+    elementFormDefault="qualified">
   <include schemaLocation=""></include>
   <complexType name="Rolle">
     <sequence>
       <element name="rechtId" type="tns:RechtId" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-    <attribute name="RolleId" type="string" use="required"></attribute>
+    <attribute name="RolleId" type="string" use="required"/>
   </complexType>
   <complexType name="Recht">
     <sequence>
       <element name="rechtId" type="tns:RechtId" minOccurs="1" maxOccurs="1"/>
     </sequence>
   </complexType>
-  <element name="Anwendung" type="tns:Anwendung"></element>
+  <element name="Anwendung" type="tns:Anwendung"/>
   <complexType name="Anwendung">
     <sequence>
-      <element name="rollen" type="tns:Rolle" minOccurs="1" maxOccurs="unbounded">
-      </element>
-      <element name="rechte" type="tns:Recht" minOccurs="0" maxOccurs="unbounded"></element>
+      <element name="rollen" type="tns:Rolle" minOccurs="1" maxOccurs="unbounded"/>
+      <element name="rechte" type="tns:Recht" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-    <attribute name="AnwendungsId" type="string" use="required"></attribute>
+    <attribute name="AnwendungsId" type="string" use="required"/>
   </complexType>
   <complexType name="RechtId">
     <attribute name="Id" type="string" use="required"/>
@@ -187,7 +189,7 @@ Sie hängt von den Abhängigkeiten der Systeme ab, die in den Releaselettern der
 [[cams-konfiguration]]
 === Anhang D: Konfiguration des CAMS Single-Sign On Servers
 
-Die IsyFact kommt standardmäßig mit Unterstützung für CAMS als IAM-System.
+Standardmäßig wird CAMS als IAM-System unterstützt.
 In diesem Anhang wird die spezifische Konfiguration für den CAMS-Server beschrieben.
 
 [[cams-access-manager]]
@@ -221,7 +223,7 @@ Da diese Konfiguration in der Regel langjährig unverändert verwendet wird und 
 ==== Autorisierung in der GUI: Spring Konfiguration
 
 Die Aufrufe der GUI erfolgen über HTTP.
-Der CAMS-Server stellt am Webserver vor Weiterleitung der Anfrage an eine Fachanwendung sicher, dass diese erfolgreich authentifiziert wurden.
+Der CAMS-Server stellt am Webserver vor Weiterleitung der Anfrage an eine Fachanwendung sicher, dass diese erfolgreich authentifiziert wurde.
 Mit der Authentifizierung des Anwenders fügt der CAMS-Server HTTP-Header in die Anfrage ein.
 Diese Header enthalten neben Informationen der Identifikation des anfragenden Anwenders auch die Gesamtheit seiner Rollen.
 Die Informationen aus dem HTTP-Header werden in den Aufrufkontext übertragen.
@@ -235,9 +237,11 @@ Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontextes transparent für
 [source, xml]
 ----
 <beans>
-    <bean id="authenticationProvider" class="de.bund.bva.pliscommon.sicherheit.cams.web.CamsAuthenticationProvider"/>
+    <bean id="authenticationProvider"
+        class="de.bund.bva.pliscommon.sicherheit.cams.web.CamsAuthenticationProvider"/>
 
-    <bean id="processingFilter" class="de.bund.bva.pliscommon.sicherheit.cams.web.CamsAuthenticationProcessingFilter">
+    <bean id="processingFilter"
+        class="de.bund.bva.pliscommon.sicherheit.cams.web.CamsAuthenticationProcessingFilter">
         <property name="authenticationManager" ref="authenticationManager"/>
         <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>
         <property name="httpHeaderParser">

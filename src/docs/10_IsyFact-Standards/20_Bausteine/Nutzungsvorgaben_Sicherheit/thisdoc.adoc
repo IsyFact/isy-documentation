@@ -11,16 +11,18 @@ Das Dokument <<KonzeptSicherheit>> konzentriert sich auf die konzeptionellen Asp
 Dieses Dokument beschreibt, wie der Baustein Sicherheit und die von ihm bereitgestellte Bibliothek `isy-sicherheit` verwendet werden, um die Autorisierung innerhalb von IT-Systemen umzusetzen.
 Es richtet sich an Entwickler, die ein IT-System gemäß den Vorgaben der IsyFact mit der Fähigkeit zur Autorisierung ausstatten müssen und beschreibt, wie und in welchen Teilen einer Anwendung die Autorisierung umzusetzen ist.
 
-// TODO UMschreiben!
-Dazu wird zunächst in einem Überblick erläutert, wie die Sicherheitsarchitektur auf Ebene der Anwendungslandschaft und auf Ebene einer einzelnen Anwendung aussieht.
+Dazu beschreibt das Kapitel <<grundkonzepte-und-konfiguration>> zunächst die grundlegenden Konfiguration, um den Baustein in ein IT-System einzubinden.
 
-Im Abschnitt <<das-rollenbasierte-berechtigungskonzept>> wird erläutert, wie für eine neue Anwendung das Rollenmodell definiert, in das Benutzerverzeichnis eingespielt und für eine Anwendung konfiguriert wird.
+Die folgenden Kapitel leiten durch die Funktionen des Bausteins Sicherheit.
+Zuerst wird die wichtigste Funktion - die <<autorisierung>> in IT-Systemen - erklärt.
+Dann folgen weitere Themen:
 
-Im Abschnitt <<autorisierung-innerhalb-einer-anwendung>> wird auf die Umsetzung der Autorisierung in der Anwendung eingegangen.
-Dieser Abschnitt erläutert die Verwendung der Komponente Sicherheit innerhalb einer Anwendung.
+* <<aufrufen-von-nachbarsystemen>>,
+* <<verwendung-der-korrelations-id>>,
+* <<verwenden-anwendungsspezifischer-aufrufkontexte>>,
+* <<ueberwachung-baustein-sicherheit>>.
 
-Im Abschnitt <<weitere-konzepte>> werden weitere Vorgaben zur Verwendung der Komponente Sicherheit gemacht.
-Hier wird der Aufruf von Nachbarsystemen, Behandlung der Korrelations-ID und der Test von Anwendungen erläutert.
+Schließlich beschreibt das letzte Kapitel, wie <<entwickeln-und-testen>> mit dem Baustein Sicherheit möglich ist.
 
 Viele der in diesem Dokument beschriebenen Vorgaben sind in der <<Vorlageanwendung>> umgesetzt.
 
