@@ -3233,7 +3233,7 @@ Ein Anwender sieht den jeweiligen Eintrag, sobald er mindestens eine der benöti
 :desc-image-navigationMitSubmenu: Navigation mit ausgeklapptem Flyout Menü
 [id="image-navigationMitSubmenu",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-navigationMitSubmenu}
-image::horizontale-navigation-submenu.png[align="center", pdfwidth="60%"]
+image::horizontale-navigation-submenu.png[align="center", width="60%", pdfwidth="60%"]
 
 Das folgende Beispiel zeigt, wie die Navigationsleiste um einen weiteren Eintrag samt Flyout Menü erweitert werden könnte:
 
@@ -4967,9 +4967,9 @@ Hier wird die Ablage der Konfigurations-Files definiert.
 ----
 
 [[konfiguration-maskentexte]]
-=== Konfiguration der Maskentexte
+== Konfiguration der Maskentexte
 
-Maskentexte, die nur innerhalb eines bestimmten Flows verwendet werden, können in der Konfigurationsdatei `<Flow-Name>.properties` im Ordner `resources/nachrichten/maskentexte` definiert werden.
+Maskentexte, die nur innerhalb eines bestimmten Flows verwendet werden, können in der Konfigurationsdatei `<FlowName>.properties` im Ordner `resources/nachrichten/maskentexte` definiert werden.
 Wenn die jeweilige Konfigurationsdatei vorhanden ist, werden die Maskentexte automatisch geladen und in die Variable `msg_currentflow` abgespeichert.
 Die Maskentexte des jeweiligen Flows können dann beispielsweise wie folgt ausgelesen werden:
 
