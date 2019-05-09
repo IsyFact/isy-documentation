@@ -1420,9 +1420,9 @@ image::image57.png[align="center", width="629",height="526"]
 * Inhaltsbereich
 
 [[header-bereich]]
-==== Header Bereich
+==== Header-Bereich
 
-Der Header Bereich enthält allgemeine Informationen zur Anwendungslandschaft, den in ihr verfügbaren Fachanwendungen und zum angemeldeten Anwender.
+Der Header-Bereich enthält allgemeine Informationen zur Anwendungslandschaft, den in ihr verfügbaren Fachanwendungen und zum angemeldeten Anwender.
 
 :desc-image-header-aufbau: Aufbau des Header-Bereiches
 [id="image-header-aufbau",reftext="{figure-caption} {counter:figures}"]
