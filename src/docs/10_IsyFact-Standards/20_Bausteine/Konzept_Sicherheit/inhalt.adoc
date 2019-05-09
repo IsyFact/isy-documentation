@@ -16,7 +16,7 @@ Die konkrete Sicherheitsarchitektur einer Systemlandschaft muss nach folgenden P
 
 Existiert keine Systemlandschaft (d.h. IT-Systeme stehen für sich allein), gilt grundsätzlich, dass die Authentifizierung und grobgranulare Autorisierung in der Nutzungsschicht (GUI, Service oder Batch) des IT-Systems geschehen muss.
 
-Darüber hinaus finden Authentifizierung und Autorisierung nach den Vorgaben des <<Berechtigungskonzept,Berechtigungskonzepts>> statt.
+Darüber hinaus finden Authentifizierung und Autorisierung nach den Vorgaben des Berechtigungskonzepts statt.
 Dieses Dokument beschreibt wesentliche Aspekte der Sicherheitsarchitektur für eine konkrete Anwendungslandschaft.
 Da das Berechtigungskonzept individuell für jede Anwendungslandschaft erstellt wird und sich im einzelnen stark von Inhalt und Umfang her unterscheidet, ist es kein Bestandteil des Bausteins Sicherheit oder der IsyFact.
 
@@ -31,7 +31,7 @@ NOTE: IAM steht für https://en.wikipedia.org/wiki/Identity_management[Identity 
 Das IAM-System verwaltet *Anwender* und ihre *Rollen*.
 
 Die Authentifizierung und grobgranulare Autorisierung erfolgt, gemäß der <<prinzipien-der-sicherheitsarchitektur>>, an den Außenschnittstellen der Systemlandschaft.
-Hierbei wird eine Session aufgebaut und das IAM-System ermittelt nach erfolgreiche Authentifizierung die Rollen des Anwenders.
+Hierbei wird eine Session aufgebaut und das IAM-System ermittelt nach erfolgreicher Authentifizierung die Rollen des Anwenders.
 Die Rollen allein sind jedoch noch nicht ausreichend, um Anwender vollständig zu autorisieren.
 
 === Autorisierung
@@ -97,7 +97,7 @@ Das Suffix `<Zugang>`  ist optional, sollte jedoch wenn möglich verwendet werde
 In der Regel ist dieser Name identisch mit dem technischen Namen der Rolle.
 Eine Abweichung ist nur dann sinnvoll, wenn die Vergabe der Rollen durch den Administrator dadurch intuitiver wird.
 
-*Beschreibung:* Eine kurze Beschreibung der Rolle in einer fachlichen Sprache, die für die Benutzeradministration verständlich ist, erleichtert die Nutzung der Rolle.
+*Beschreibung:* Eine kurze Beschreibung der Rolle in einer fachlichen Sprache, die für die Benutzeradministration verständlich ist.
 
 *Typ:* Eine Rolle kann fachlich oder technisch sein.
 Nur fachliche Rollen können über die Benutzeradministration verwaltet werden.
@@ -145,11 +145,12 @@ Aus den <<prinzipien-der-sicherheitsarchitektur>> leiten sich die folgenden Rand
 
 * Anfragen, die am Dialog eines IT-Systems eingehen, sind immer bereits durch das IAM-System bzw. die lokale Authentifizierung erfolgreich  authentifiziert.
 Sorgt ein IAM-System für die Authentifizierung, enthält der HTTP-Header der Anfrage die Identifikation des Anwenders und dessen Rollen.
-Die Informationen aus dem HTTP-Header werden in die als `AufrufKontext` in das IT-System übernommen.
+Die Informationen aus dem HTTP-Header werden als `AufrufKontext` in das IT-System übernommen.
 * Anfragen, die an einer Service-Schnittstelle eines IT-Systems eingehen, sind ebenso bereits authentifiziert.
 Das mit der Anfrage an das IT-System als Parameter übergebene Transportobjekt `AufrufKontextTo` enthält die Identifikation des Anwenders und dessen Rollen und wird als `AufrufKontext` in das IT-System übernommen.
 * Prozesse, die unabhängig von eingehenden Anfragen (über Dialog und Service) durch ein IT-System gestartet werden, müssen zunächst einen (meist technischen) Anwender gegen das IAM-System bzw. die lokale Authentifizierung erfolgreich authentifizieren, dessen Rollen ermitteln und diese Informationen als `AufrufKontext` im IT-System hinterlegen.
-* Einem innerhalb der Logik- und Verarbeitungszone eines IT-Systems übergebenen `AufrufKontext` kann vertraut und ohne erneute Rückfrage an das IAM-System bzw. die lokale Authentifizierung verwendet werden.
+* Ein innerhalb der Logik- und Verarbeitungszone eines IT-Systems übergebener `AufrufKontext` ist vertrauenswürdig.
+Er kann ohne erneute Rückfrage an das IAM-System bzw. die lokale Authentifizierung verwendet werden.
 
 [[software-architektur]]
 === Software-Architektur
@@ -166,7 +167,7 @@ Im Folgenden werden die Aufgaben und grobe Funktionsweise der Komponenten für d
 Die Komponente `AufrufKontextVerwalter` stellt für eine laufende Anfrage Kontextinformationen zur Anfrage bereit, die in einem `AufrufKontext` hinterlegt werden.
 Das sind insbesondere die mit der Anfrage über die Außenschnittstelle eingehenden Informationen zum Anwender und dessen Rollen, die Korrelations-ID und anwendungsspezifisch ggf. weitere Informationen.
 Die Komponente bringt Hilfsmittel zur transparenten Nutzung des `AufrufKontextVerwalter` mit.
-So wird kann über Interceptoren der `AufrufKontext` bei Serviceaufrufen transparent über Spring AOP gesetzt werden.
+So wird der `AufrufKontext` bei Serviceaufrufen transparent über Interceptoren via Spring AOP gesetzt.
 Weiterhin wird der Aufrufkontext im Rahmen der Authentifizierung automatisch befüllt.
 Nach Initialisierung des `AufrufKontextVerwalter` für eine laufende Anfrage kann das IT-System fortan transparent mit den im `AufrufKontextVerwalter` hinterlegten Anwenderinformationen arbeiten (ohne deren Herkunft zu kennen) und damit auch weitere Nachbarsysteme aufrufen.
 
