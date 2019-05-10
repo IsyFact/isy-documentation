@@ -799,25 +799,23 @@ Dafür wird eine Spring-Konfiguration benötigt.
 Als Basis können die Spring-Konfigurationen der Anwendung verwendet werden.
 Diese werden anschließend wie in Tabelle <<table-KonfBatchAWK>> beschrieben angepasst:
 
-INFO: Hier das Problem der Tabellen-Farben
 
 :desc-table-KonfBatchAWK: Spring Konfiguration für den Anwendungskern für Batches
 [id="table-KonfBatchAWK",reftext="{table-caption} {counter:tables}"]
 .{desc-table-KonfBatchAWK}
-[cols="2m,2m,5",options="header"]
+[cols="2,2,5",options="header"]
 |====
 |Pfad  |Datei    |Beschreibung
-.4+|src/main/resources/resources/batch/register  |jpa.xml  |In der Bean `EntityManagerFactory` muss der
+.4+|`src/main/resources/resources/batch/register`  |`jpa.xml`  |In der Bean `EntityManagerFactory` muss der
 Parameter `PersistenceUnitName` so umkonfiguriert werden, dass die `PersitenceUnit` für den Batch (siehe `persistence.xml`) verwendet wird.
- |komponenten.xml |Bei der Bean `AufrufKontext` muss der Scope `request` entfernt werden. Alternativ
+|`komponenten.xml`  |Bei der Bean `AufrufKontext` muss der Scope `request` entfernt werden. Alternativ
 dazu kann über die Klasse `SimpleRequestContextAttributes` aus isy-util auch der Request-Kontext für den Batch nachgebildet werden.
- |querschnitt.xml  a|Die Beans für die JMX-Überwachungs­schnittstelle werden entfernt.
+|`querschnitt.xml`  |Die Beans für die JMX-Überwachungs­schnittstelle werden entfernt.
 
 Die Timer für Watchdog und Systemprüfung werden entfernt.
- |hibernate.cfg.xml |Die Klassen BatchStatus und BatchKon­figurationsparameter werden über
+ |`hibernate.cfg.xml`  |Die Klassen BatchStatus und BatchKon­figurationsparameter werden über
 `<mapping resource="resources/plis-batchrahmen/hibernate/hibernate-mapping.xml"/>` eingebunden.
-|src/main/resources/META-INF |persistence.xml |Hier muss die spezielle Hibernate­konfiguration (`hibernate.cfg.xml`)
-als neue Persistence-Unit eingetragen werden.
+|`src/main/resources/META-INF` |`persistence.xml` |Hier muss die spezielle Hibernatekonfiguration (`hibernate.cfg.xml`) als neue Persistence-Unit eingetragen werden.
 |====
 
 Bei geeigneter Aufteilung der Spring-Konfiguration kann auch die Konfiguration der Anwendung direkt verwendet werden.

@@ -13,6 +13,7 @@
 - `IFS-299`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
 - `IFS-222`: Filter Reihenfolge für Encoding angepasst
 - `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
+- `IFS-361`: Template Anpassung Tutorial (Tabellenformatierung)
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
