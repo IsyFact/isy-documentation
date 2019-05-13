@@ -5,6 +5,8 @@
 |Dokumenten-ID:| Detailkonzept_Komponente_Batch
 |====
 
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
 //|Datum |Version |Änderungsgrund
 //|10.10.2007 |0.1 |Erstellung
 //|21.02.2008 |0.9.1 |Änderung Batch-Ergebnisdateiformat. Ergänzungen für Konfigurationsparameter.
