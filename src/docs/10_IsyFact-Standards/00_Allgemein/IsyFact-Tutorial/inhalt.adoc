@@ -782,7 +782,7 @@ Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebli
 [[spring-konfiguration-anlegen]]
 ==== Spring-Konfiguration anlegen
 
-Für den Batchrahmen werden die in Tabelle 10 aufgelisteten Konfigurationsdateien benötigt.
+Für den Batchrahmen werden die in <<table-KonfBatchRahmen>> aufgelisteten Konfigurationsdateien benötigt.
 
 :desc-table-KonfBatchRahmen: Spring Konfiguration für den Batchrahmen
 [id="table-KonfBatchRahmen",reftext="{table-caption} {counter:tables}"]
@@ -797,7 +797,7 @@ Zusätzlich muss für jeden existierenden Batch die Ausführungs-Bean als Spring
 Der Batch verwendet den Anwendungskern der eigentlichen Anwendung.
 Dafür wird eine Spring-Konfiguration benötigt.
 Als Basis können die Spring-Konfigurationen der Anwendung verwendet werden.
-Diese werden anschließend wie in Tabelle <<table-KonfBatchAWK>> beschrieben angepasst:
+Diese werden anschließend wie in <<table-KonfBatchAWK>> beschrieben angepasst:
 
 
 :desc-table-KonfBatchAWK: Spring Konfiguration für den Anwendungskern für Batches
