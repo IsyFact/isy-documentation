@@ -3,14 +3,14 @@
 
 // Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
 
-Die *IsyFact* ist eine freie allgemeine Software Factory zum Bau von IT-Systemen, die vom Bundesverwaltungsamt bereitgestellt wird.
-Sie wurde entwickelt, um unterschiedliche Fachanwendungen effizient entwerfen, realisieren und betreiben zu können.
-Der Begriff Factory steht für die schnelle Erzeugung neuer Anwendungen durch Anpassung und Ausgestaltung vorgefertigter Elemente, die in eine standardisierte Plattform integriert werden können.
+Die *IsyFact* ist eine freie allgemeine <<glossar-Software-Factory>> zum Bau von <<glossar-IT-System>>en, die vom Bundesverwaltungsamt bereitgestellt wird.
+Sie wurde entwickelt, um unterschiedliche <<glossar-Fachanwendung>>en effizient entwerfen, realisieren und betreiben zu können.
+Der Begriff Factory steht für die schnelle Erzeugung neuer <<glossar-Anwendung>>en durch Anpassung und Ausgestaltung vorgefertigter Elemente, die in eine standardisierte <<glossar-Plattform>> integriert werden können.
 
 Die IsyFact besteht aus den IsyFact-Standards und IsyFact-Erweiterungen:
 
 Die *IsyFact-Standards* bilden das architektonische, technologische und methodische Fundament der IsyFact.
-Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant sind.
+Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant und verpflichend sind.
 Bspw.: Allgemeine Softwarereferenzarchitektur, Vorgaben zur Fehlerbehandlung, Logging etc.
 
 Die *IsyFact-Erweiterungen* sind optionale wiederverwendbare Lösungen für verschiedene Problemstellungen, die aufgrund spezifischer Anforderungen des BVA oder seiner
@@ -31,7 +31,7 @@ Die Referenzarchitektur unterscheidet zwischen den folgenden Architektursichten:
 *Fachliche Referenzarchitektur:* Dies umfasst eine fachliche Beschreibung der Anwendungslandschaft.
 Diese wird in fachliche Komponenten zerlegt, die miteinander über fachliche Schnittstellen interagieren.
 
-*Software-Referenzarchitektur:* Dies ist eine software-technische Beschreibung der Systemlandschaft.
+*Software-Referenzarchitektur:* Dies ist eine software-technische Beschreibung der <<glossar-Systemlandschaft>>.
 Die gesamte Systemlandschaft wird in technische Komponenten mit technischen Schnittstellen zerlegt.
 
 *Referenzarchitektur der technischen Infrastruktur:* Hierunter fällt eine Beschreibung der Systemlandschaft aus dem Blickwinkel der technischen Infrastruktur.
@@ -51,28 +51,28 @@ Dies ist in <<image-FA-AW>> dargestellt.
 .{desc-image-FA-AW}
 image::FA-AW.png[align="center"]
 
-*Anwendungsdomänen:* Anwendungsdomänen sind fachlich eng zusammengehörige Mengen von Anwendungssystemen zur Unterstützung von Geschäftsprozessen, die als eine Einheit angesehen werden können.
+*Anwendungsdomänen:* Eine <<glossar-Anwendungsdomaene>> gruppiert fachlich zusammengehörende Anwendungssysteme zur Unterstützung von Geschäftsprozessen, die als eine Einheit angesehen werden können.
 
-*Anwendungssysteme:* Ein Anwendungssystem ist eine zusammen­gehörende, logische Einheit aus Funktionen, Daten und Benutzungsschnittstellen.
-Anwendungssysteme können monolithisch aufgebaut so dass sie nicht auf andere Anwendungssysteme angewiesen sind, um ihre Funktion zu erfüllen.
-Es ist jedoch auch möglich, bestimmte Funktionen und Schnittstellen über mehrere Anwendungssysteme zu verteilen, um so eine klare architektonische
-Strukturierung der Anwendungslandschaft zu erreichen.
-Die Gesamtfunktionalität wird dann durch das Zusammenwirken der Anwendungssysteme erbracht.
+*Anwendungssysteme:* Ein <<glossar-Anwendungssystem>> ist eine zusammen­gehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
+Es besteht aus Anwendungskomponenten und Querschnittskomponenten.
+Anwendungssysteme unterstützen Geschäftsprozesse.
+Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine Fachanwendung.
+Ein Anwendungssystem ist Bestandteil der A-Architektur.
+Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzung eines Anwendungssystems ab.
 
-Ein häufig anzutreffendes Beispiel hierfür ist die Trennung in ein Anwendungssystem zur Bestandsverwaltung (Register) und ein Anwendungssystem zur
-Benutzerinteraktion, die auf die Bestandsverwaltung zugreift.
+Ein häufig anzutreffendes Beispiel hierfür ist die Trennung in ein Anwendungssystem zur Bestandsverwaltung (Register) und einem Anwendungssystem für die Benutzerinteraktion, die auf die Bestandsverwaltung zugreift.
 Im Zuge einer solchen Aufgabenteilung werden auch weitergehende Regeln definiert, wie Anwendungssysteme aufeinander zugreifen dürfen.
 Derartige Strukturierungsprinzipien und Regeln sind jedoch immer spezifisch für den jeweiligen Kontext der Anwendungslandschaft und können nicht allgemeingültig festgelegt werden.
-Im vorliegenden Dokument verwenden wir daher den neutralen Begriff *Fachanwendung* für alle Arten von Anwendungssystemen, die eine bestimmte fachliche Funktionalität innerhalb
+Im vorliegenden Dokument verwenden wir daher den neutralen Begriff *<<glossar-Fachanwendung>>* für alle Arten von Anwendungssystemen, die eine bestimmte fachliche Funktionalität innerhalb
 einer Anwendungsdomäne realisieren.
 
-*Querschnittssysteme* sind Anwendungssysteme, die Dienste für mehrere Fachanwendungen bereitstellen.
+*Querschnittssysteme* sind Anwendungssysteme, die <<glossar-Basisdienst>>e für mehrere Fachanwendungen bereitstellen.
 Diese Dienste sind oft technisch motiviert.
 
-*Portal:* Das Portal stellt den Benutzern eine einheitliche Dialogoberfläche für den Zugriff auf die Dienste der Anwendungslandschaft zur Verfügung.
+*Portal:* Das <<glossar-Portal>> stellt den Benutzern eine einheitliche Dialogoberfläche für den Zugriff auf die Dienste der Anwendungslandschaft zur Verfügung.
 Einzelne Fachanwendungen stellen Nutzerschnittstellen zur Verfügung, das Portal integriert diese, bildet einen zentralen Einstiegspunkt für alle Web-Anwendungen und übernimmt die Aufgabe der Authentifizierung und der Autorisierung auf Anwendungsebene.
 
-*Service-Gateway:* Im Service-Gateway werden alle Services der Anwendungssysteme bereitgestellt, die externe Nutzer direkt nutzen dürfen.
+*Service-Gateway:* Im <<glossar-Service-Gateway>> werden alle Services der Anwendungssysteme bereitgestellt, die externe Nutzer direkt nutzen dürfen.
 Dazu führt das Service-Gateway die Authentifizierung und Autorisierung der Service-Aufrufer auf Anwendungsebene durch.
 Weiterhin transformiert das Service-Gateway das interne Kommunikationsprotokoll einer IsyFact-Systemlandschaft in das vom Service-Aufrufer erwartete Protokoll.
 Dies sind in der Regel Web Service-Aufrufe.
@@ -81,7 +81,7 @@ Dies sind in der Regel Web Service-Aufrufe.
 ==== Software Referenzarchitektur
 
 Die individuell erstellten Anwendungssysteme der Anwendungslandschaft sind technisch gleichartig aufgebaut.
-Daher wird eine Referenzarchitektur aufgestellt, nach denen Anwendungssysteme (Fachanwendungen und Querschnittssysteme) software-technisch in IT-Systeme umgesetzt werden.
+Daher wird eine Referenzarchitektur aufgestellt, nach denen Anwendungssysteme (Fachanwendungen und Querschnittssysteme) software-technisch in <<glossar-IT-System>>e umgesetzt werden.
 Das Dokument <<IsyFactReferenzarchitekturITSystem>> beschreibt diese Referenzarchitektur.
 
 Skalierbarkeit und Hochverfügbarkeit sind wichtige Anforderungen an die Referenzarchitektur.
@@ -99,7 +99,7 @@ Im Falle eines Serverausfalls kann die Aufgabe des ausgefallenen Servers durch e
 Die Skalierung des Systems ist in <<image-horSkal>> dargestellt.
 
 Die Referenzarchitektur ist die Umsetzung einer Serviceorientierten Architektur.
-Im Design des Anwendungskerns (siehe <<DetailkonzeptKomponenteAnwendungskern>> ) finden sich explizit Komponenten und Services.
+Im Design des <<glossar-Anwendungskern>>s (siehe <<DetailkonzeptKomponenteAnwendungskern>> ) finden sich explizit Komponenten und Services.
 Der Anwendungskern unterscheidet dabei noch zwischen Anwendungs-internen Services, die nur innerhalb der Anwendung aufgerufen werden und Anwendungs-externen Services, die über eine Nutzungsschnittstelle als Service anderen Anwendungen zur Verfügung gestellt werden.
 
 Der Entwurf der Services leitet sich in der Referenzarchitektur aus fachlichen Kriterien her.
@@ -113,7 +113,7 @@ Es hat zur Folge, dass als Application Server ein Servlet-Container ausreichend 
 [[referenzarchitektur-der-technischen-infrastruktur]]
 ==== Referenzarchitektur der technischen Infrastruktur
 
-Im Bereich der technischen Infrastruktur (TI-Architektur) werden folgende Umgebungen beschrieben:
+Im Bereich der technischen Infrastruktur (<<glossar-TI-Architektur>>) werden folgende Umgebungen beschrieben:
 
 * Produktionsumgebung
 * Staging-Umgebung
