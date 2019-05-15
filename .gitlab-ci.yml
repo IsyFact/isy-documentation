@@ -19,7 +19,6 @@ cache:
    - ZIII4
   before_script:
    - mvn -v
-   - echo "$SETTINGSSECURITY" > ~/.m2/settings-security.xml
    - PFAD=$(pwd)
    - mkdir -p aptcache
    - apt-get update
