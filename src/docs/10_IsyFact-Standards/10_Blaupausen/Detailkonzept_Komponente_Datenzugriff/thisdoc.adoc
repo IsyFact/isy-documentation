@@ -1,29 +1,12 @@
+= Detailkonzept Datenzugriff: Einleitung
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+
+// tag::inhalt[]
 [[Einleitung]]
 == Einleitung
 
-// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
-
-In den Anwendungen der IsyFact werden dauerhaft zu speichernde Daten über eine Zugriffsschicht in einer relationalen Datenbank abgelegt.
-Die Zugriffsschicht wird für alle Datenbankzugriffe verwendet.
-
-Die Implementierung der Zugriffsschicht wird durch die Verwendung eines standardisierten Frameworks erleichtert.
-Als Framework wird hier JPA mit einer Implementierung durch Hibernate verwendet.
-
-In diesem Dokument werden allgemeine Vorgaben für das Persistenzmodell (die dauerhaft zu speichernden Objekte), für die Transaktionssteuerung der Datenbank-Zugriffe sowie für die Verwendung von JPA und Hibernate festgelegt.
-Weiterhin wird das Thema Historisierung von Daten behandelt.
-
-Die Vorgaben zum Thema JPA/Hibernate betreffen die folgenden Themenbereiche:
-
-* Die Definition des Mappings zwischen Persistenzobjekten und der Datenbank.
-
-* Die Konfiguration von JPA.
-* Die Konfiguration von Hibernate.
-* Die Verwendung von JPA in der Anwendung, vor allem das Zusammenspiel mit dem Spring Framework.
-
-[[ueberblick]]
-== Überblick
-
-Gemäß den Vorgaben der Referenzarchitektur der <<IsyFactReferenzarchitektur>> basiert die Architektur eines IT-Systems auf der bekannten Drei-Schichten-Architektur.
+Gemäß den Vorgaben der <<IsyFactReferenzarchitektur>> basiert die Architektur eines IT-Systems auf der bekannten Drei-Schichten-Architektur.
 Eine dieser Schichten ist die Persistenzschicht.
 In dieser Schicht ist alle Funktionalität enthalten, die zum Erzeugen, Suchen, Bearbeiten und Löschen von Datensätzen benötigt wird.
 Der Zugriff auf eine relationale Datenbank ist in dieser Schicht vollständig gekapselt.
@@ -31,26 +14,46 @@ In Richtung Datenbank kommuniziert diese Schicht mittels JDBC und SQL, in Richtu
 
 In <<image-IFRefArcITSsysPers>> ist die Referenzarchitektur eines IT-Systems noch einmal dargestellt, wobei die Persistenzschicht mit der Komponente Datenhaltung hervorgehoben ist.
 
-//F1
 :desc-image-IFRefArcITSsysPers: Referenzarchitektur eines IT-Systems
 [id="image-IFRefArcITSsysPers",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFRefArcITSsysPers}
 image::IFRefArcITSsysPers.png[align="center"]
 
-In diesem Dokument werden die Vorgaben zum Bau der Komponente Datenzugriff im Detail beschrieben.
-Die Implementierung der Zugriffsschicht wird durch die Verwendung des standardisierten Frameworks JPA erleichtert.
-JPA wird hier mit einer Implementierung durch Hibernate verwendet.
+In diesem Dokument werden die Vorgaben zur Umsetzung einer solchen Persistenzschicht im Detail beschrieben.
+Die Implementierung der Zugriffsschicht wird durch die Verwendung eines standardisierten Frameworks erleichtert.
+Als Framework wird hier JPA mit einer Implementierung durch Hibernate verwendet.
 
-Dieses Dokument ist aber keine allgemeine Anleitung zur Verwendung von JPA.
+In diesem Dokument werden allgemeine Vorgaben für das Persistenzmodell (die dauerhaft zu speichernden Objekte) sowie für die Verwendung von JPA und Hibernate festgelegt.
+Weiterhin wird das Thema Historisierung von Daten behandelt.
+
+[WARNING]
+====
+Das Thema Transaktionssteuerung wird nicht, wie üblich, im Rahmen des Datenzugriffs behandelt, da Transaktionen in der IsyFact über den Anwendungskern bzw. die Nutzungsschicht gesteuert werden.
+Mehr zu diesem Thema ist in den anderen Detailkonzepten enthalten:
+
+* <<DetailkonzeptKomponenteAnwendungskern>>
+* <<DetailkonzeptKomponenteBatch>>
+* <<DetailkonzeptKomponenteService>>
+* <<DetailkonzeptKomponenteWebGUI>>
+
+====
+
+Die Vorgaben zum Thema JPA/Hibernate betreffen die folgenden Themenbereiche:
+
+* Die Definition des Mappings zwischen Persistenzobjekten und der Datenbank.
+* Die Konfiguration von JPA.
+* Die Konfiguration von Hibernate.
+* Die Verwendung von JPA in der Anwendung, vor allem das Zusammenspiel mit dem Spring Framework.
+
+NOTE: Dieses Dokument ist keine allgemeine Anleitung zur Verwendung von JPA.
 Für den Einstieg in JPA mit Hibernate ist das Buch „Java Persistence with Hibernate“ <<BaKi07>> sehr zu empfehlen.
 
-Für ein Verständnis der in diesem Dokument geforderten JPA-Nutzung ist vor allem das Codebeispiel
-Vorlage-Anwendung <<Vorlageanwendung>> zu empfehlen:
+Für ein Verständnis der in diesem Dokument geforderten JPA-Nutzung ist vor allem die <<Vorlageanwendung>> zu empfehlen.
+Die:
 
-* seine Konfiguration in den Dateien `jpa.properties`, `jpa.xml`, `persistence.xml` und `hibernate.cfg.xml`,
-* seine Persistenzklassen `Terminfindung` und `Teilnehmer`,
-* seine Data Access Objects `TerminfindungDao` und `TeilnehmerDao`,
-* seine JPQL Queries in der Datei `NamedQueries.hbm.xml`
+* Konfiguration in der Datei `application.properties`,
+* Persistenzklassen `Terminfindung` und `Teilnehmer`,
+* Data Access Objects `TerminfindungDao` und `TeilnehmerDao`
 
 entsprechen den in diesem Dokument gemachten Vorgaben und können bequem als Vorlage für eigene Implementierungen verwendet werden.
 Die in diesem Dokument gezeigten Code-Beispiele stammen in der Regel auch aus der Vorlage-Anwendung.
@@ -63,22 +66,19 @@ Die in diesem Dokument aufgestellten Vorgaben für die Verwendung von JPA verfol
 
 Auf Grund dieser Anforderungen wird versucht, möglichst ausschließlich die Mechanismen von JPA zu verwenden.
 Nur wo dies nicht möglich ist, darf auf die Hibernate-Implementierung zugegriffen werden.
-Dabei wird in diesem Dokument die Verwendung bestimmter Hibernate-Features verboten bzw.
-wird von ihrer Verwendung abgeraten.
-Diese Ausnahmen sind (falls nur abgeraten wurde) mit dem Technischen Chefdesigner des Teilprojekts bzw. (falls sie verboten wurden) mit dem Chefarchitekten des Gesamtprojekts abzustimmen und vom Architekturboard genehmigen zu lassen.
-Einzig Ausnahmen, die in diesem Dokument beschrieben werden, sind von diesem Verfahren ausgenommen.
+Dabei wird in diesem Dokument die Verwendung bestimmter Hibernate-Features verboten bzw. von ihrer Verwendung abgeraten.
+
+Abweichungen zu den Vorgaben dieses Dokuments müssen als Architekturentscheidung im <<IsyFactSystementwurf>> dokumentiert werden.
 
 Dieses Dokument ist wie folgt aufgebaut:
 
 * Zunächst werden in Kapitel <<anforderungen>> die Anforderungen an die Komponente Datenzugriff kurz motiviert.
-* Anschließend werden in Kapitel <<persistenz>> grundsätzliche Regeln vorgestellt, wie die Abbildung von Objekten
-auf Datenbanken stattfinden soll.
-* Kapitel <<die-definition-des-mappings-zwischen-objekten-und-datenbank>> vertieft anschließend das Thema Mapping,
-wobei konkrete Hinweise zur Abbildung von Attributen auf Datenbankfelder gegeben werden.
+* Anschließend werden in Kapitel <<persistenz>> grundsätzliche Regeln vorgestellt, wie die Abbildung von Objekten auf Datenbanken stattfinden soll.
+* Kapitel <<die-definition-des-mappings-zwischen-objekten-und-datenbank>> vertieft anschließend das Thema Mapping, wobei konkrete Hinweise zur Abbildung von Attributen auf Datenbankfelder gegeben werden.
 * Im Anschluss daran wird die konkrete Nutzung des Datenbankzugriffs in der Anwendung beschrieben.
 Zunächst wird gezeigt, wie die JPA aus der Anwendung heraus genutzt werden soll (Kapitel <<vergabe-von-indizes>>).
 Anschließend wird erläutert, wie Datenbank-Abfragen durchgeführt werden (Kapitel <<jpql-fuer-datenbank-abfragen-nutzen>>).
-* Die generelle Konfiguration von JPA und Hibernate ist in
-Kapitel <<konfiguration-von-jpa-und-hibernate-in-der-anwendung>> beschreiben.
-* Abschließend werden noch die weiterführenden Themen Transaktionssteuerung (Kapitel <<transaktionssteuerung>>) und
-Historisierung (Kapitel <<historisierung>>) behandelt.
+* Die generelle Konfiguration von JPA und Hibernate ist in Kapitel <<konfiguration-von-jpa-und-hibernate-in-der-anwendung>> beschreiben.
+* Abschließend wird noch das Thema Historisierung (Kapitel <<historisierung>>) behandelt.
+
+// end::inhalt[]
