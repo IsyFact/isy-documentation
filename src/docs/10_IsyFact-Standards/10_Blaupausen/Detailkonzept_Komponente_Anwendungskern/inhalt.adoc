@@ -458,6 +458,143 @@ Die entsprechenden Hilfsklassen werden als _Holder_ bezeichnet.
 Sie besitzen eine statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung
 zu stellenden Bean initialisiert werden.
 
+[[transaktionssteuerung]]
+=== Transaktionssteuerung
+
+An der Schnittstelle des Anwendungskerns findet die Transaktionssteuerung statt.
+Jeder Aufruf wird in einer eigenen Transaktion abgearbeitet.
+Die Transaktion wird beim Aufruf des Anwendungskerns gestartet und mit der Rückgabe des Ergebnisses abgeschlossen (Commit) und somit beendet.
+Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer
+zurück übermittelt.
+In diesem Fall wird die Transaktion nicht fortgeschrieben, sondern zurückgerollt (Rollback).
+
+Der Anwendungskern bietet an seiner Schnittstelle fachliche Operationen, in fachliche Komponenten gruppiert, an.
+Die fachlichen Operationen sind in der Regel zustandslos.
+Daher ist eine Transaktion über mehrere Aufrufe des Anwendungskerns oder ein Caching über Transaktionsgrenzen hinaus nicht notwendig und nach Möglichkeit zu vermeiden.
+Ist eine solche Steuerung trotzdem unumgänglich, muss sie über die jeweils zuständige Nutzungsschicht (GUI, Batch oder Service) erfolgen.
+
+[NOTE]
+====
+Details zur Umsetzung von Transaktionen in der Nutzungsschicht finden sich in den jeweiligen Detailkonzepten:
+
+* <<DetailkonzeptKomponenteBatch>>
+* <<DetailkonzeptKomponenteService>>
+* <<DetailkonzeptKomponenteWebGUI>>
+
+====
+
+[[transaktionssteuerung-mit-jpa]]
+==== Transaktionssteuerung mit JPA
+
+Spring ermöglicht es, die Transaktionssteuerung mit Annotationen zu definieren.
+Hierbei kann auf Ebene einzelner Methoden oder der gesamten Klasse das Verhalten von Transaktionen vorgegeben werden.
+
+Im Anwendungskern bieten sich dazu sich die Klassen der Implementierung der Schnittstelle an, die Aufrufer weiter an die Anwendungsfall-Klassen verweisen.
+Üblicherweise werden für eine feingranulare Steuerung die Methoden mit Annotationen versehen.
+Gibt es ein für die Klasse gemeinsames Verhalten, kann stattdessen auch die Klasse mit der Annotation versehen werden.
+
+:desc-listing-transactional: Verwendung der Annotation @Transactional an Klassen und Methoden
+[id="listing-transactional",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-transactional}
+[source,java]
+----
+@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+public class FachkomponenteAImpl implements FachkomponenteA {
+    ...
+    @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+    public Ergebnis fachlicheOperation(Aufrufparameter parameter) {
+        ...
+    }
+    ...
+}
+----
+
+Standardmäßig sollte der Propagation-Level auf `Propagation.REQUIRED` gesetzt sein.
+Damit wird eine neue Transaktion gestartet, falls noch keine Transaktion vorliegt.
+Hat aber die Nutzungsschicht bereits eine Transaktion gestartet, wird diese verwendet.
+Des Weiteren wird festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
+
+Damit Spring die Annotation `@Transactional` auswertet, muss folgende Spring-Konfiguration aktiv sein:
+
+:desc-listing-transaction-spring-config: Spring-Konfiguration zur Verwendung von @Transactional
+[id="listing-transaction-spring-config",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-transaction-spring-config}
+[source,xml]
+----
+<beans>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+</beans>
+----
+
+Durch diese Konfiguration erzeugt Spring passende AOP-Proxies, welche die Transaktionssteuerung übernehmen.
+Außerdem wird standardmäßig der `JpaTransactionManager` verwendet, passend zur Implementierung des Datenzugriffs.
+
+[NOTE]
+====
+Die Abhängigkeiten des `JpaTransactionManager` kommen aus der Implementierung des Datenzugriffs.
+Weitere Details sind im <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
+====
+
+//==== TX-Steuerung an Service-Schnittstellen
+//
+//an Implementiwird im Normalfall pro Service-Klasse vorgegeben.
+//Wichtig ist, dass die Fehlerbehandlung auf jeden Fall die Transaktion umschließt. Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen von der Fehlerbehandlung erfasst werden.
+//
+//Die Transaktionssteuerung wird per Annotation in der Service-Implementierung realisiert.
+//Dabei wird im Normalfall der Propagation-Level auf `required` gesetzt und festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
+//
+//In der Beispiel-Anwendung ist das wie folgt umgesetzt:
+//
+//[source,java]
+//----
+//@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+//public class AwkWrapperImpl implements AwkWrapper {
+//----
+//
+//Damit Spring die Annotationen auswertet, muss folgende Konfiguration durchgeführt werden:
+//
+//[source,xml]
+//----
+//<!-- Transaktionssteuerung per Annotationen -->
+//<tx:annotation-driven transaction-manager="transactionManager"/>
+//----
+//
+//Durch diese Konfiguration erzeugt Spring für die Annotationen passende AOP-Proxies, welche die
+//Transaktionssteuerung übernehmen.
+//
+//[[bei-batch-verarbeitung-regelmaessig-session-cache-leeren]]
+//==== Bei Batch-Verarbeitung regelmäßig Session-Cache leeren
+//
+//Im Batch wird die Transaktionssteuerung über den „Batch-Rahmen“ definiert.
+//Da hier eine große Anzahl an Transaktionen innerhalb einer Session durchgeführt werden, muss der
+// Session-Cache in regelmäßigen Abständen geflushed und geleert werden: Ansonsten würden die Objekte
+// aller Transaktionen im Cache gehalten werden und könnten nicht durch die Garbage Collection entfernt werden.
+//
+//Die Logik des Batch-Rahmens inklusive seiner Wiederaufsetzpunkte und Commit-Raten wird in einem
+//separaten Konzept beschrieben (siehe <<Batch>>). Im gleichen Konzept wird auch der Code genannt, der zum
+//Löschen des Caches notwendig ist.
+//
+//
+//
+//[[bei-rest-webservices-rollback-explizit-anfordern]]
+//==== Bei REST-Webservices Rollback explizit anfordern
+//
+//Eine Sonderstellung nehmen REST-Webservices ein, da diese im Fehlerfall keine Exceptions werfen, sondern die
+//Fehler in der Antwortnachricht übermitteln: Der AOP-Transaktionsmanager wird niemals ein Rollback durchführen,
+//da alle Exceptions abgefangen werden, auf die er reagieren könnte.
+//Um auch in diesem Fall ein Rollback der Transaktion zu erzwingen, ist ein expliziter Aufruf durchzuführen:
+//
+//[source,java]
+//----
+//TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//----
+//
+//Im der Vorlage-Anwendung findet man hierfür kein Beispiel, da auf ein separates REST-Skeleton verzichtet wurde.
+
 [[aspektorientierte-programmierung-in-spring]]
 === Aspektorientierte Programmierung in Spring
 
@@ -478,13 +615,13 @@ Zu intensive Nutzung kann leicht zu einem schwer durchschaubaren Programmfluss f
 [[aop-fuer-transaktionssteuerung-verwenden]]
 ==== AOP für Transaktionssteuerung verwenden
 
-Für die Steuerung von Transaktionen ist Spring-AOP einzusetzen: Es ist die Standard Spring-Transaktions-Advice zu verwenden.
-Ihre Verwendung wird in den Hibernate Nutzungsvorgaben (siehe <<DetailkonzeptKomponenteDatenzugriff>>) beschrieben.
+Für die Transaktionssteuerung ist Spring-AOP mit den dafür vorgesehenen Klassen von Spring einzusetzen.
+Die Verwendung wird im Kapitel <<transaktionssteuerung-mit-jpa>> beschrieben.
 Zusammengefasst gilt:
 
-* Instrumentiert werden alle Methoden der Anwendungs-Schnittstellen.
-* Für jeden Request wird eine Transaktion gestartet.
-* Falls keine Ausnahme auftritt, wird die Transaktion fortgeschrieben, sonst zurückgerollt.
+* Instrumentiert werden alle Schnittstellenmethoden des Anwendungskerns.
+* Für jeden Aufruf des Anwendungskerns wird eine Transaktion gestartet.
+* Falls kein Fehler auftritt, wird die Transaktion abgeschlossen (Commit), sonst zurückgerollt (Rollback).
 
 [[aop-für-berechtigungsprüfungen-verwenden]]
 ==== AOP für Berechtigungsprüfungen verwenden
@@ -505,89 +642,5 @@ Es würden nicht alle relevanten Informationen geloggt werden:
 
 Eine HttpInvoker-Bean fängt alle Ausnahmen und wirft statt der erhaltenen Exceptions eigene Schnittstellen-Exceptions,
 welche den Stacktrace der erhaltenen Exception nicht enthalten.
-
-
-
-
-
-
-[[transaktionssteuerung]]
-== Transaktionssteuerung
-
-Die Transaktionssteuerung definiert, wann im Kontext der Anfragebearbeitung eine Transaktion gestartet wird, wann sie beendet wird und wie auf Fehler reagiert wird.
-Das geforderte Verhalten hierzu wird im folgenden Abschnitt definiert.
-Danach wird die Umsetzung dieses Verhaltens mit JPA und Spring beschrieben.
-
-[[eine-transaktion-pro-anfrage-verwenden]]
-=== Eine Transaktion pro Anfrage verwenden
-
-Eine Anfrage wird innerhalb einer einzelnen Transaktion abgearbeitet: Die Transaktion wird beim Eintreffen
-des Aufrufs gestartet und mit der Rückgabe des Ergebnisses beendet.
-Da eine Fachanwendung zustandslose Dienste anbietet, ist eine langlebige Transaktion oder ein Caching über
-Transaktionsgrenzen hinaus nicht notwendig und zu vermeiden.
-Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer
-zurück übermittelt.
-In diesem Fall wird die Transaktion nicht fortgeschrieben (committet), sondern zurückgerollt.
-
-Geschachtelte Transaktionen, etwa um Tabellen nur kurz zu blockieren, sind zu vermeiden.
-Abweichungen sind mit dem Chefdesigner des Teilprojekts abzustimmen.
-
-[[bei-batch-verarbeitung-regelmaessig-session-cache-leeren]]
-=== Bei Batch-Verarbeitung regelmäßig Session-Cache leeren
-
-Im Batch wird die Transaktionssteuerung über den „Batch-Rahmen“ definiert.
-Da hier eine große Anzahl an Transaktionen innerhalb einer Session durchgeführt werden, muss der
- Session-Cache in regelmäßigen Abständen geflushed und geleert werden: Ansonsten würden die Objekte
- aller Transaktionen im Cache gehalten werden und könnten nicht durch die Garbage Collection entfernt werden.
-
-Die Logik des Batch-Rahmens inklusive seiner Wiederaufsetzpunkte und Commit-Raten wird in einem
-separaten Konzept beschrieben (siehe <<Batch>>). Im gleichen Konzept wird auch der Code genannt, der zum
-Löschen des Caches notwendig ist.
-
-[[transaktionssteuerung-fuer-jpa-ueber-annotationen]]
-=== Transaktionssteuerung für JPA über Annotationen
-
-Spring ermöglicht die Transaktionssteuerung mit Annotationen zu definieren.
-Hierbei kann auf Klassen oder Methoden-Ebene das Transaktionsverhalten vorgegeben werden.
-
-Die Transaktionssteuerung wird im Normalfall pro Service-Klasse vorgegeben.
-Wichtig ist, dass die Fehlerbehandlung auf jeden Fall die Transaktion umschließt. Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen von der Fehlerbehandlung erfasst werden.
-
-Die Transaktionssteuerung wird per Annotation in der Service-Implementierung realisiert.
-Dabei wird im Normalfall der Propagation-Level auf `required` gesetzt und festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
-
-In der Beispiel-Anwendung ist das wie folgt umgesetzt:
-
-[source,java]
-----
-@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
-public class AwkWrapperImpl implements AwkWrapper {
-----
-
-Damit Spring die Annotationen auswertet, muss folgende Konfiguration durchgeführt werden:
-
-[source,xml]
-----
-<!-- Transaktionssteuerung per Annotationen -->
-<tx:annotation-driven transaction-manager="transactionManager"/>
-----
-
-Durch diese Konfiguration erzeugt Spring für die Annotationen passende AOP-Proxies, welche die
-Transaktionssteuerung übernehmen.
-
-[[bei-rest-webservices-rollback-explizit-anfordern]]
-=== Bei REST-Webservices Rollback explizit anfordern
-
-Eine Sonderstellung nehmen REST-Webservices ein, da diese im Fehlerfall keine Exceptions werfen, sondern die
-Fehler in der Antwortnachricht übermitteln: Der AOP-Transaktionsmanager wird niemals ein Rollback durchführen,
-da alle Exceptions abgefangen werden, auf die er reagieren könnte.
-Um auch in diesem Fall ein Rollback der Transaktion zu erzwingen, ist ein expliziter Aufruf durchzuführen:
-
-[source,java]
-----
-TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-----
-
-Im der Vorlage-Anwendung findet man hierfür kein Beispiel, da auf ein separates REST-Skeleton verzichtet wurde.
 
 // end::inhalt[]
