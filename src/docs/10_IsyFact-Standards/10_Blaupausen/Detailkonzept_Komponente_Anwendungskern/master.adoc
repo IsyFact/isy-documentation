@@ -26,8 +26,8 @@ toc::[]
 // Einleitung 
 include::thisdoc.adoc[]
 
-// Inhalt 
-include::inhalt.adoc[leveloffset=1]
+// Inhalt
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
