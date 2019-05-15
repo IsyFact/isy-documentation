@@ -539,33 +539,6 @@ Die Abhängigkeiten des `JpaTransactionManager` kommen aus der Implementierung d
 Weitere Details sind im <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
 ====
 
-//==== TX-Steuerung an Service-Schnittstellen
-//
-//an Implementiwird im Normalfall pro Service-Klasse vorgegeben.
-//Wichtig ist, dass die Fehlerbehandlung auf jeden Fall die Transaktion umschließt. Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen von der Fehlerbehandlung erfasst werden.
-//
-//Die Transaktionssteuerung wird per Annotation in der Service-Implementierung realisiert.
-//Dabei wird im Normalfall der Propagation-Level auf `required` gesetzt und festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
-//
-//In der Beispiel-Anwendung ist das wie folgt umgesetzt:
-//
-//[source,java]
-//----
-//@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
-//public class AwkWrapperImpl implements AwkWrapper {
-//----
-//
-//Damit Spring die Annotationen auswertet, muss folgende Konfiguration durchgeführt werden:
-//
-//[source,xml]
-//----
-//<!-- Transaktionssteuerung per Annotationen -->
-//<tx:annotation-driven transaction-manager="transactionManager"/>
-//----
-//
-//Durch diese Konfiguration erzeugt Spring für die Annotationen passende AOP-Proxies, welche die
-//Transaktionssteuerung übernehmen.
-//
 //[[bei-batch-verarbeitung-regelmaessig-session-cache-leeren]]
 //==== Bei Batch-Verarbeitung regelmäßig Session-Cache leeren
 //
@@ -580,20 +553,6 @@ Weitere Details sind im <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
 //
 //
 //
-//[[bei-rest-webservices-rollback-explizit-anfordern]]
-//==== Bei REST-Webservices Rollback explizit anfordern
-//
-//Eine Sonderstellung nehmen REST-Webservices ein, da diese im Fehlerfall keine Exceptions werfen, sondern die
-//Fehler in der Antwortnachricht übermitteln: Der AOP-Transaktionsmanager wird niemals ein Rollback durchführen,
-//da alle Exceptions abgefangen werden, auf die er reagieren könnte.
-//Um auch in diesem Fall ein Rollback der Transaktion zu erzwingen, ist ein expliziter Aufruf durchzuführen:
-//
-//[source,java]
-//----
-//TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-//----
-//
-//Im der Vorlage-Anwendung findet man hierfür kein Beispiel, da auf ein separates REST-Skeleton verzichtet wurde.
 
 [[aspektorientierte-programmierung-in-spring]]
 === Aspektorientierte Programmierung in Spring
