@@ -94,9 +94,6 @@ image::verzeichnis3.png[align="center"]
 
 Genauso wie in der obigen Abbildung für das IsyFact-Dokument "Handbuch_fuer_technische_Autoren", so muss auch für Ihr IsyFact-Dokument ein neues Verzeichnis innerhalb der korrekt zugeordneten Säule erstellt werden.
 
-TIP: In manchen Fällen wird das Verzeichnis eines IsyFact-Dokuments nicht unmittelbar unterhalb der zugeordneten Säule, sondern in einem weiteren Unterverzeichnis abgelegt.
-Bitte halten Sie hierbei die bereits vorhandene Systematik ein.
-
 Wenn Sie das neue Verzeichnis anlegen, stellt sich als Nächstes die Frage, wie das Verzeichnis benannt werden soll. Dazu vergeben Sie eine neue _Dokument-ID_. Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird. Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
 
 [[die-mustervorlage-vorbereiten]]
@@ -167,7 +164,7 @@ In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im
 :desc-listing-master: master.adoc
 [id="listing-master",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-master}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  // ASCIIDOC Attribute
  include::../../../common/isyfact-attributes.adoc[]
@@ -182,14 +179,13 @@ Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel
 :desc-listing-revision: Revisionsnummer und Revisionsdatum
 [id="listing-revision",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-revision}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  :revnumber: Revisionsnummer
  :revdate: Revisionsdatum
 ----
 
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
-
 
 In der Vorschau sollten die Änderungen unmittelbar erscheinen. Ihre Änderungen speichern Sie über kbd:[Strg + S].
 
@@ -223,17 +219,23 @@ image::atom5.png[align="center"]
 [[ein-existierendes-dokument-bearbeiten]]
 = Ein existierendes Dokument bearbeiten
 
-Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder ältere bereits bestehende Dateien handelt.
+Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder bereits bestehende Dokumente handelt.
 In beiden Fällen bearbeiten Sie in den meisten Fällen die Dateien `thisdoc.adoc`, `inhalt.adoc` und `anhaenge.adoc`.
-Ausser diesem Handbuch sind hierzu Kenntnisse der AsciiDoc-Syntax erforderlich.
-Dieses Handbuch soll die AsciiDoc-Syntax aber nicht erklären, denn die folgenden Webseiten bieten bereits ausführliche Tutorials an:
 
-* https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual]
+Außer diesem Handbuch sind hierzu Kenntnisse der AsciiDoc-Syntax erforderlich.
+
+[NOTE]
+====
+Dieses Handbuch erklärt die Grundlagen der AsciiDoc-Syntax nicht weiter.
+Die folgenden Webseiten bieten ausführliche Tutorials und weiterführende Informationen an:
+
 * https://asciidoctor.org/docs/what-is-asciidoc/[What is AsciiDoc? Why do we need it?]
+* https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual]
 * https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick Reference]
 * http://www.vogella.com/tutorials/AsciiDoc/article.html[Tutorial: Using AsciiDoc and Asciidoctor to write documentation]
+====
 
-Dennoch sind in IsyFact-Dokumenten bestimmte Besonderheiten zu beachten.
+Des Weiteren sind in IsyFact-Dokumenten bestimmte Besonderheiten zu beachten.
 Eine wichtige Besonderheit ist beispielsweise, dass man auf Kapitelüberschriften, aber auch auf Einträge wie Quellen, Fachbegriffen, Abbildungen oder Tabellen über einen Querverweis referenzieren können muss.
 Das setzt voraus, dass dafür zu sorgen ist, dass jeder Eintrag einen eindeutigen _Inline-Anchor_ erhält.
 Hinzu kommt, dass bei der Umwandlung in die Ausgabeformate HTML und PDF vorgefertigte Skripte ausgeführt werden, die automatisch Verzeichnisse am Ende des Dokuments einfügen und man auch auf die Einträge dieser Verzeichnisse per Querverweis referenzieren können muss.
@@ -241,11 +243,11 @@ Bei den automatisch erzeugten Verzeichnissen handelt es sich um folgende:
 
 Literaturverzeichnis:: Quellenangaben, Referenzen auf Bücher oder andere IsyFact-Dokumente
 // Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
-Abbildungsverzeichnis:: enthaltene Bilder mit Nummer und Bildunterschrift
+Abbildungsverzeichnis:: enthaltene Abbildungen mit Nummer und Beschreibung
 Quelltextverzeichnis:: enthaltene Listings, beispielsweise Java, SQL etc.
 Tabellenverzeichnis:: enthaltene Tabellen mit Tabellennummer und Tabellenunterschrift
 
-Die Verzeichnise listen ihre jeweiligen Einträge entweder nach der Position im Dokument oder alphanumerisch auf und dienen so vor allem dazu, Einträge nachzuschlagen.
+Die Verzeichnisse listen ihre jeweiligen Einträge entweder nach der Position im Dokument oder alphanumerisch auf und dienen so vor allem dazu, Einträge nachzuschlagen.
 Die Skripte gehen hierbei von einer bestimmten Syntax aus, die in den folgenden Abschnitten erläutert wird.
 Je nachdem, ob es sich um eine Abbildung, eine Tabelle, ein Begriff oder ein referenziertes Medium handelt, werden jeweils unterschiedliche Bestandteile vorgesehen, die gesetzt werden müssen.
 
@@ -270,16 +272,16 @@ Merge-Konflikte passieren häufig auf Ebene eines Satzes.
 Sie sind daher leicht verständlich, lokal begrenzt und daher in den meisten Fällen gut zu lösen.
 
 
-[[kapitelueberschriften]]
-== Kapitelüberschriften
+[[ueberschriften]]
+== Überschriften
 
-Kapitelüberschriften können bei AsciiDoc auf unterschiedlicher Weise gesetzt werden.
-Bei einem IsyFact-Dokument ist hingegen stets die Variante zu wählen, bei der die Anzahl der vorgesetzten Gleichheitszeichen die Kapitelebene anzeigt.
-Im folgenden Beispiel wird ein Kapitel und ein Unterkapitel definiert.
+Überschriften können bei AsciiDoc auf unterschiedlicher Weise gesetzt werden.
+Bei einem IsyFact-Dokument ist hingegen stets die Variante zu wählen, bei der die Anzahl der vorgesetzten Gleichheitszeichen die Ebene der Überschrift anzeigt.
+Das folgende Beispiel definiert ein Kapitel und ein Unterkapitel.
 
-:desc-listing-kapitelueberschriften: Kapitelüberschriften
-[id="listing-kapitelueberschriften",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-kapitelueberschriften}
+:desc-listing-ueberschriften: Syntax von Überschriften
+[id="listing-ueberschriften",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ueberschriften}
 [source,asciidoc]
 ----
 = Hallo Welt Kapitel
@@ -289,159 +291,275 @@ Das ist ein Hallo Welt Text zum Kapitel.
 Das ist ein Hallo Welt Text zum Unterkapitel.
 ----
 
-Für ein IsyFact-Dokument sind diese Kapitelüberschriften aber noch nicht vollkommen, denn es fehlen noch die _Inline-Anchor_.
-
+Für ein IsyFact-Dokument sind diese Überschriften aber noch nicht vollkommen, denn es fehlen noch die _Inline-Anchor_.
 Der Inline-Anchor wird über eckige Klammern gesetzt.
 Ferner muss die ID des Anchors durchgängig mit kleinen Buchstaben geschrieben werden und darf weder Leer- oder Sonderzeichen enthalten.
 
-:desc-listing-kapitelueberschriften-final: Kapitelüberschriften mit Inline Anchors
-[id="listing-kapitelueberschriften-final",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-kapitelueberschriften-final}
+:desc-listing-ueberschriften-final: Überschriften mit Inline Anchors
+[id="listing-ueberschriften-final",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ueberschriften-final}
 [source,asciidoc]
 ----
-[[hallowelt-kapitel]]
-= Hallo Welt Kapitel
-Das ist ein Hallo Welt Text zum Kapitel.
+[[beispiel-kapitel]]
+= Beispiel-Kapitel
+Das ist ein Beispieltext zum Kapitel.
 
-[[hallowelt-unterkapitel]]
-== Hallo Welt Unterkapitel
-Das ist ein Hallo Welt Text zum Unterkapitel.
+[[beispiel-unterkapitel]]
+== Beispiel-Unterkapitel
+Das ist ein Beispieltext zum Unterkapitel.
 ----
 
-[[hallowelt-kapitel]]
-Einen Querverweis auf eine Kapitelüberschrift setzt man bei einem IsyFact-Dokument über zwei spitze Klammerpaare.
+Einen Querverweis auf eine Überschrift setzt man über zwei Paare spitzer Klammern.
 
-:desc-listing-querverweis: Querverweis auf eine Kapitelüberschrift
+:desc-listing-querverweis: Querverweis auf eine Überschrift
 [id="listing-querverweis",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-querverweis}
 [source,asciidoc]
 ----
-Zum <<hallowelt-kapitel, Hallo Welt Kapitel>> gelangen Sie über einen Mausklick.
+Zum <<ueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick.
+Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>.
 ----
 
-Der erste Parameter in dem Klammer-Paar legt die ID des Anchors fest.
-Der zweite Parameter enthält einen Schriftzug, der anstelle der ID angezeigt wird.
-Der gerenderte Texte sollte wie folgt aussehen:
+Der erste Parameter in dem Klammer-Paar legt die ID des Querverweises fest.
+Der zweite Parameter kann gesetzt werden, wenn statt dem Namen des Kapitels ein eigener Text verwendet werden soll.
+Der erzeugte Text sieht wie folgt aus:
 
-`Zum <<hallowelt-kapitel, Hallo-Welt Kapitel>> gelangen Sie über einen Mausklick.`
+_Zum <<ueberschriften, Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
+_Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>._
 
-== Zusätzliche Admonition-Blocks
+== Admonition-Blocks
 
-Wichtige Hinweise oder zusätzliche Informationen (Tipps, Warnungen, etc.) können in AsciiDoc in sogenannten _Admonition Blocks_ hervorgehoben werden.
-AsciiDoc bringt dazu eine Reihe von vordefinierten Blöcken mit (`NOTE`, `TIP`, `WARNING`, `CAUTION`, `IMPORTANT`).
-Zusätzlich zu diesen werden in der IsyFact weitere Blöcke bereitgestellt.
+Mit Admonition Blocks können Inhalte in Dokumenten exponiert dargestellt werden, so dass ihnen besondere Aufmerksamkeit zuteil wird.
+Standardmäßig werden fünf verschiedene Blöcke angeboten.
+Die IsyFact-Dokumentation erweitert diese Liste um weitere Blöcke für verbindliche Regeln.
+
+Es gibt zwei Möglichkeiten zur Definition von Admonition Blocks.
+Die syntaktisch ausführlichere Variante funktioniert sowohl mit den vordefinierten, als auch mit den selbst definierten Blöcken.
+
+:desc-listing-admonition: Definition eines Admonition Blocks (als Block)
+[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition}
+[source,asciidoc]
+----
+[BLOCKTYP]
+====
+Hier steht der Text.
+====
+----
+
+Die syntaktisch schlankere Variante funktioniert nur mit den vordefinierten Blöcken (NOTE, TIP, IMPORTANT, WARNING und CAUTION).
+
+:desc-listing-admonition: Definition eines Admonition Blocks (inline)
+[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition}
+[source,asciidoc]
+----
+BLOCKTYP: Hier steht der Text.
+----
+
+=== Vordefinierte Blöcke
+
+Den folgenden, vordefinierten Blöcken fallen in der IsyFact-Dokumentation einheitliche Bedeutungen zu.
+Sie helfen dabei, optionale oder ergänzende Inhalte zu markieren, geben Erfahrungswerte weiter und warnen vor typischen Fehlersituationen oder Fallstricken.
+
+[NOTE]
+====
+Der Block NOTE enthält weiterführenden Inhalte, die optionale Ergänzungen des Textes darstellen.
+Dies können z.B. interessante Randnotizen oder weiterführende Links, Dokumente sowie Artikel sein.
+Der Inhalt der Verweise ist in jedem Fall für die Nutzung der IsyFact optional.
+
+Die Verwendung ist ähnlich zu einer Fußnote gedacht, wobei Verweise von einem erklärenden Satz begleitet sein sollten.
+====
+
+[TIP]
+====
+Der Block TIP enthält optionale Inhalte, die eigene Erfahrungwerte (Good / Best Practices, Tipps & Tricks, ...) einbringen.
+Die Inhalte stellen Empfehlungen, aber keine verpflichtenden Regeln dar.
+Allgemeine Vorgaben oder Regeln zur Anwendungsentwicklung, Architektur, Sicherheit oder das Styling müssen in jedem Fall über die jeweils dafür gedachten Blöcke formuliert werden!
+====
+
+[IMPORTANT]
+====
+Der Block IMPORTANT beschreibt allgemeine Vorgaben der IsyFact, die sich nicht einem der selbst definierten Blöcke zuordnen lassen.
+Die Inhalte stellen verpflichtende Regeln oder Konventionen dar und können bei Nichtbeachtung, je nach Kontext, zu Fehlern, Workarounds oder eingeschränkter Funktionalität führen.
+====
+
+[WARNING]
+====
+Der Block WARNING beschreibt typische Fallstricke, die sich bei der Nutzung der IsyFact (z.B. der beschriebenen Blaupause oder eines Bausteins) ergeben können.
+Er warnt davor und bietet Lösungsmöglichkeiten oder hilft, den Fallstrick aktiv zu vermeiden.
+====
+
+[CAUTION]
+====
+Der Block CAUTION beschreibt typische Fehler, die bei der Nutzung der IsyFact passieren können oder in der Vergangenheit häufiger aufgetreten sind.
+Die Inhalte sollen diesen Fehlern vorbeugen, um Mehraufwände insbesondere durch subtile Unterschiede, "false friends" oder dergleichen zu vermeiden.
+
+In der Abgrenzung zum Block WARNING stellen die Situationen, die in Blöcken des Typs CAUTION beschrieben werden, entweder eine größere Bedrohung für die korrekte oder rechtzeitige Umsetzung von Anforderungen dar, oder sind, gemessen an ihren Auswirkungen, in der Regel schwer oder erst (zu) spät zu erkennen.
+====
+
+=== Selbst definierte Blöcke
+
+Die folgenden, selbst definierten Blöcke, bilden Regeln und Vorgaben der IsyFact ab, die verpflichtend einzuhalten sind.
+Sie bilden die Grundlage für eine zur IsyFact konforme Umsetzung von Anforderungen und definieren so maßgeblich, wie Konformität zur IsyFact erzielt wird.
 
 [ANWENDUNGSANFORDERUNG]
-`ANWENDUNGSANFORDERUNG`: Anforderungen an die Entwicklung von Anwendungen wie z.B. Architektur, Quellcodestruktur und Inhalt der Auslieferung.
+====
+Der Block ANWENDUNGSANFORDERUNG beschreibt Anforderungen, welche die IsyFact an die Entwicklung von IT-Systemen stellt.
+Die Anforderungen kommen typischerweise aus den Bereichen:
+
+* Struktur des Quellcodes oder der Quellcodeablage,
+* Format und Inhalt der Auslieferung,
+* Detailaspekte der Verwendung von Bausteinen.
+
+Sie bilden die Grundlage für eine einheitliche Umsetzung von Anforderungen, die in gleichartig strukturierten IT-Systemen münden.
+====
 
 [ARCHITEKTURREGEL]
-`ARCHITEKTURREGEL`: Regeln für die Architektur der Anwendung oder der IsyFact.
+====
+Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
+Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
+====
 
 [SICHERHEIT]
-`SICHERHEIT`: Hinweise zur IT-Sicherheit.
+====
+Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
+====
 
 [STYLEGUIDE]
-`STYLEGUIDE`: Hinweise zum Styling.
+====
+Der Block STYLEGUIDE beschreibt Regeln, welche die IsyFact an die Gestaltung der grafischen Oberflächen stellt.
+Die Regeln kommen typischerweise aus den Bereichen:
 
-[INFO]
-`INFO`: Allgemeine Informationen.
+* Allgemeine Gestaltungsrichlinien,
+* Grundlegender Aufbau von Masken,
+* Vorgaben zur Ein- und Ausgabe von Daten sowie zu Interaktionsmustern,
+* Barrierefreiheit und Usability.
 
-Die Verwendung erfolgt in AsciiDoc (im Beispiel für die Admonition `SICHERHEIT`) über
-
-  [SICHERHEIT]
-  Hier steht der Text.
-
-Die für die eingebauten Admonitions auch mögliche Schreibweise
-
-  NOTE: Hier steht der Text.
-
-funktioniert nicht für die zusätzlichen Admonitions.
+Die Regeln stellen vor allem sicher, dass grafische Oberflächen ein einheitliches Look&Feel besitzen und gleichartig bedient werden.
+====
 
 === Verwendung von Tags zur Kennzeichnung
 
-Die Inhalte von Admonitions vom Typ `ARCHITEKTURREGEL` und `ANWENDUNGSANFORDERUNG` sind zusätzlich mit einem Tag zu kennzeichnen.
+Folgende Blöcke sind zusätzlich mit einem Tag zu kennzeichnen:
+
+* IMPORTANT (Tag-Name: `important`)
+* ANWENDUNGSANFORDERUNG (Tag-Name: `anwendungsanforerung`)
+* ARCHITEKTURREGEL (Tag-Name: `architekturregel`)
+* SICHERHEIT (Tag-Name: `sicherheit`)
+* STYLEGUIDE (Tag-Name: `styleguide`)
+
 Damit lassen sich die Regeln oder Anforderungen aus der gesamten Dokumentation zusammenziehen und gebündelt bereitstellen, z.B. als Checklisten oder zur Grundlage automatischer Überprüfungen.
 
 Die Tags werden jeweils am Anfang und am Ende des Blocks gesetzt (<<listing-tags>>).
 
-:desc-listing-tags: Setzen eines Tags
+:desc-listing-tags: Setzen des Tags am Beispiel einer Architekturregel
 [id="listing-tags",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-tags}
 [source,asciidoc]
 ----
 // tag::architekturregel[]
 [ARCHITEKTURREGEL]
-Der Text der Regel.
+====
+Hier steht der Text.
+====
+
 // end::architekturregel[]
 ----
 
+WARNING: Die Leerzeile zwischen dem Block und dem Ende des Tags ist wichtig, damit die Bündelung der Inhalte korrekt funktioniert.
+
+Zur Bündelung von Inhalten wird das entsprechende Dokument eingebettet.
+Über den Parameter `tags` werden nur die Inhalte eingefügt, die von den entsprechenden Tags umgeben sind.
+
+:desc-listing-include-tags: Bündelung von Inhalten anhand von Tags
+[id="listing-include-tags",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-include-tags}
+[source,asciidoc]
+----
+\include::pfad_zum_dokument.adoc[tags=beispiel;...]
+----
+
+
 [[bilder]]
-== Bilder
+== Abbildungen
 
-Genauso wie Kapitelüberschriften werden auch Bilder über einen Querverweis referenziert.
+Das Einbinden von Abbildungen gelingt in AsciiDoc über die folgende Syntax:
 
-TIP: Beachten Sie, dass die Bilder nicht im Verzeichnis des aufrufenden Dokuments abgelegt werden, sondern in dem Unterordner `/images`.
-
-Bilder werden bei AsciiDoc über folgende Syntax eingebunden.
-
-:desc-listing-bild-einfuegen: Bild einfügen
+:desc-listing-bild-einfuegen: Abbildung einfügen (AsciiDoc)
 [id="listing-bild-einfuegen",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen}
 [source,asciidoc]
 ----
-image::hallowelt.png
+image::beispiel.png
 ----
 
-Bei einem IsyFact-Dokument ist diese Syntax aber nicht ausreichend.
-Denn bei IsyFact soll zum Bild eine ID und eine Abbildungsunterschrift hinzukommen.
-Auch bei der ID muss wieder beachtet werden, dass sie werder Großbuchstaben, noch Leer- und Sonderzeichen enthalten darf.
+In einem IsyFact-Dokument muss eine Abbildung zusätzlich:
 
-:desc-listing-bild-einfuegen2: Bild einfügen in IsyFact
+* eine Beschreibung enthalten,
+* eindeutig identifizierbar und referenzierbar sein,
+* am Ende des Dokuments in einem Abbildungsverzeichnis erscheinen.
+
+Deswegen werden Abbildungen in IsyFact-Dokumenten wiefolgt definiert:
+
+:desc-listing-bild-einfuegen2: Abbildung einfügen (IsyFact)
 [id="listing-bild-einfuegen2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen2}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-image-hallowelt: Das HalloWelt Bild
-[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hallowelt}
-image::hallowelt.png
+:desc-image-beispiel: Beispiel
+[{id-equals}"image-beispiel",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-beispiel}
+image::beispiel.png
 ----
 
-Für Ihre eigenen Bilder ersetzen Sie den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner.
+Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht alle Abbildungen im Dokument und erstellt hieraus ein Verzeichnis am Ende des Dokuments.
 
-TIP: Beachten Sie, dass die vorgegebene Syntax zwingend eingehalten werden muss, weil die Bilder ansonsten vom entsprechenden Skript nicht erkannt werden.
+// tag::important[]
+IMPORTANT: Die vorgegebene Syntax zu Abbildungen muss zwingend eingehalten werden, da die Abbildungen ansonsten nicht bei der Generierung des Abbildungsverzeichnisses berücksichtigt werden.
 
-Das Skript für die automatische Erstellung des Abbildungsverzeichnisses sucht alle Bilder in dem IsyFact-Dokument und erstellt hieraus ein Abbildungsverzeichnis.
-Ferner kann das Bild im AsciiDoc-Text über seine ID referenziert werden:
+// end::important[]
 
- <<image-hallowelt>>
+Für Ihre eigenen Abbildungen ersetzen Sie den Bezeichner `beispiel` durch Ihren eigenen Bezeichner.
 
-Wenn das Bild zentriert werden soll, fügt man das Attribut `[align="center"]` hinzu.
+// tag::important[]
+IMPORTANT: Abbildungen zu einem Dokument werden stets im Unterordner `/images` abgelegt.
 
-:desc-listing-bild-einfuegen3: Bild zentriert einfügen
+// end::important[]
+
+Abbildungen können wie üblich über einen Querverweis referenziert werden:
+
+ <<image-beispiel>>
+
+Wenn die Abbildung zentriert werden soll, fügt man das Attribut `[align="center"]` hinzu.
+
+:desc-listing-bild-einfuegen3: Abbildung zentriert einfügen
 [id="listing-bild-einfuegen3",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen3}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-image-hallowelt: Das HalloWelt Bild
-[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hallowelt}
-image::hallowelt.png[align="center"]
+:desc-image-beispiel: Beispiel
+[{id-equals}"image-beispiel",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-beispiel}
+image::beispiel.png[align="center"]
 ----
 
-Eine Skalierung des Bildes ist auch möglich.
-In dem folgenden Beispiel wird das Bild auf 80% minimiert.
-Die doppelte Angabe der Breite ist leider nötig, damit das Bild sowohl im HTML-Dokument als auch im PDF-Dokument richtig skaliert wird.
+Eine Skalierung der Abbildung ist auch möglich.
+Im folgenden Beispiel wird die Abbildung auf 80% skaliert.
+Die doppelte Angabe der Breite ist leider nötig, damit die Abbildung in allen Ausgabeformaten richtig skaliert wird.
+HTML-Dokumente benötigen die Angabe von `scaledwidth`, PDF-Dokumente wiederum `pdfwidth`.
 
-:desc-listing-bild-einfuegen4: Bild zentriert und skaliert einfügen
+:desc-listing-bild-einfuegen4: Abbildung zentriert und skaliert einfügen
 [id="listing-bild-einfuegen4",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-bild-einfuegen4}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-image-hallowelt: Das HalloWelt Bild
-[{id-equals}"image-hallowelt",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-hallowelt}
-image::hallowelt.png[align="center",pdfwidth=80%,scaledwidth=80%]
+:desc-image-beispiel: Beispiel
+[{id-equals}"image-beispiel",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-beispiel}
+image::beispiel.png[align="center",pdfwidth=80%,scaledwidth=80%]
 ----
 
 [[tabellen]]
@@ -482,9 +600,9 @@ Hierfür soll folgende Syntax verwendet werden:
 .{desc-listing-tabelle2}
 [source,asciidoc,subs="attributes+"]
 ----
-:desc-table-hallowelt: Eine hallowelt-Tabelle
-[{id-equals}"table-hallowelt",reftext="{table-caption} {counter:tables}"]
-.{desc-table-hallowelt}
+:desc-table-beispiel: Beispiel-Tabelle
+[{id-equals}"table-beispiel",reftext="{table-caption} {counter:tables}"]
+.{desc-table-beispiel}
 [options="header"]
 |====
 |Spalte 1|Spalte 2|Spalte 3|Spalte 4
@@ -496,9 +614,9 @@ Hierfür soll folgende Syntax verwendet werden:
 
 Das Ergebnis sieht dann so aus:
 
-:desc-table-hallowelt: Eine hallowelt-Tabelle
-[id="table-hallowelt",reftext="{table-caption} {counter:tables}"]
-.{desc-table-hallowelt}
+:desc-table-beispiel: Beispiel-Tabelle
+[id="table-beispiel",reftext="{table-caption} {counter:tables}"]
+.{desc-table-beispiel}
 [options="header"]
 |====
 |Spalte 1|Spalte 2|Spalte 3|Spalte 4
@@ -507,10 +625,10 @@ Das Ergebnis sieht dann so aus:
 |Zelle 31|Zelle 32|Zelle 33|Zelle 34
 |====
 
-Auch hier können Sie den Bezeichner `hallowelt` mit Ihrem eigenen Bezeichner ersetzen.
+Auch hier können Sie den Bezeichner `beispiel` mit Ihrem eigenen Bezeichner ersetzen.
 Ferner kann die Tabelle im AsciiDoc-Text über ihre ID referenziert werden:
 
- <<table-hallowelt>>
+ <<table-beispiel>>
 
 [[listings]]
 == Listings
@@ -520,7 +638,7 @@ Quelltexte können bei AsciiDoc auf folgender Weise mit Syntaxhighlighting angez
 :desc-listing-quelltext1: Quelltext einfügen
 [id="listing-quelltext1",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-quelltext1}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  [source,java]
  ----
@@ -548,7 +666,7 @@ Auch hier wird noch eine Listing-Überschrift und eine ID benötigt:
 :desc-listing-quelltext2: Quelltext einfügen in IsyFact
 [id="listing-quelltext2",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-quelltext2}
-[source,asciidoc,subs="attributes+"]
+[source,asciidoc,subs="attributes+",indent=0]
 ----
  :desc-listing-hallowelt: HalloWelt.java
  [{id-equals}"listing-hallowelt",reftext="{listing-caption} {counter:listings }"]
@@ -582,7 +700,7 @@ Beispielsweise muss für die Referenzierung dieses Dokuments folgender Eintrag i
 :desc-listing-literaturverzeichnis: Literaturverzeichnis
 [id="listing-literaturverzeichnis",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-literaturverzeichnis}
-[source,asciidoc]
+[source,asciidoc,indent=0]
 ----
  - [[[Handbuch_fuer_technische_Autoren]]] +
    Handbuch für technische Autoren +

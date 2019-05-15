@@ -48,14 +48,11 @@ heading:
   h4_font_style: bold
   h5_font_style: normal
   h6_font_style: normal
-  margin_bottom: 4
 table:
   head:
     background_color: #d9d9d9
   body:
     stripe_background_color: #ffffff
-link:
-  font_color: #000000
 code:
   border_color: #000000
   font_size: 9
@@ -68,13 +65,13 @@ admonition:
   icon:
     note:
       stroke_color: #003D86
-      name: fa-file-text-o
+      name: fa-info-circle
     important:
       stroke_color: #003D86
       name: fa-bullhorn
     caution:
       stroke_color: #003D86
-      name: fa-exclamation-circle
+      name: fa-ban
     warning:
       stroke_color: #003D86
     tip:
@@ -94,10 +91,6 @@ admonition:
     styleguide:
       stroke_color: #003D86
       name: fa-paint-brush
-      size: 24
-    info:
-      stroke_color: #003D86
-      name: fa-info-circle
       size: 24
 header:
   height: 2cm
