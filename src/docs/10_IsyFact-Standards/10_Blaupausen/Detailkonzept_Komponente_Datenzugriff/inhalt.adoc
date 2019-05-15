@@ -719,9 +719,7 @@ Wrapper für die wirkliche Datasource des Connections-Pools, dessen Konfiguratio
 [[oracle-universal-connection-pool-ucp-verwenden]]
 === Oracle Universal Connection Pool (UCP) verwenden
 
-Bei der Verwendung von JPA mit Spring *muss* zwingend ein Datenbank-Connection-Pooling verwendet
-werden: Die aktuelle Spring Implementierung der EntityManagerFactory fragt bei jedem Entity Manager
-(und somit bei jeder Transaktion) eine Datenbank-Verbindung an.
+Bei der Verwendung von JPA mit Spring *muss* zwingend ein Datenbank-Connection-Pooling verwendet werden: Die aktuelle Spring Implementierung der `EntityManagerFactory` fragt bei jeder Erzeugung eines Entity Managers (und somit bei jeder Anfrage) eine Datenbank-Verbindung an.
 
 Für das Datenbank-Connection-Pooling ist der Oracle Universal Connection Pool (UCP) einzusetzen.
 Dieser kann auf der Oracle Website heruntergeladen werden.
@@ -729,12 +727,10 @@ Dieser kann auf der Oracle Website heruntergeladen werden.
 Zur Laufzeit bietet der Pool Informationen per JMX an, die zur Überwachung der Poolaktivität nützlich sind.
 Dazu zählt unter anderem die Anzahl aktuell ausgeliehener Verbindungen.
 
-Die Konfiguration des Pools beschränkt sich auf die Konfiguration der Klasse `oracle.ucp.jdbc.PoolDataSource`
-in der DataSource-Bean.
+Die Konfiguration des Pools beschränkt sich auf die Konfiguration der Klasse `oracle.ucp.jdbc.PoolDataSource` in der DataSource-Bean.
 Eine Instanz dieser Klasse kann über die Bean `oracle.ucp.jdbc.PoolDataSourceFactory` erzeugt werden.
 
-Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue
-Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
+Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
 
 [source,xml]
 ----
@@ -908,24 +904,29 @@ Dieses Feld wird einzig von Hibernate verwaltet. Es ist weder zu lesen noch zu s
 Falls für einen Teil der Entitäten konkurrierende Zugriffe möglich sind, ist für genau diese Entitäten ein
 explizites (pessimistisches) Locking zu verwenden.
 
-[[transaktionsübergreifendes-caching-vermeiden]]
-=== Transaktionsübergreifendes Caching vermeiden
+[[aufrufübergreifendes-caching-vermeiden]]
+=== Aufrufübergreifendes Caching vermeiden
 
 Caching-Strategien sind kein Teil der JPA-Spezifikation.
-Für das definieren von Caching muss deswegen auf Hibernate-Spezifische Mechanismen zugegriffen werden.
+Für das Definieren eines Caches muss deswegen auf Hibernate-spezifische Mechanismen zugegriffen werden.
 
-Hibernate bietet für das Cachen von Objekten über Transaktionsgrenzen hinweg zwei Cache-Möglichkeiten:
+Jeder Aufruf der Persistenzschicht geschieht innerhalb einer Transaktion.
+In der Regel läuft jeder Aufruf in einer eigenen Transaktion, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
+Außer in Ausnahmefällen ist dies jedoch auch nicht notwendig.
 
-* Den Cache im `Session`-Objekt. Da ein `Session`-Objekt Thread-gebunden ist, gilt dieser nur für den aktuellen Thread.
-In IsyFact-Anwendungen wird bei jedem Aufruf ein neues Session-Objekt verwendet, weshalb dieser Cache nicht verwendet werden kann.
-+
-Bei Batches muss (wie im Kapitel <<bei-batch-verarbeitung-regelmaessig-session-cache-leeren>> erwähnt) der Session-Cache regelmäßig geleert werden.
-* Der VM-weite „2nd Level Cache“. Dieser Cache macht vor allem für unveränderliche, häufig verwendete Informationen wie Schlüsseldaten Sinn.
-In IsyFact-Anwendungen werden Schlüsseldaten jedoch durch einen separaten Service-Aufruf erhalten und können nicht im Hibernate 2nd Level Cache gespeichert werden.
-Deshalb ist eine Verwendung dieses Caches meist unnötig.
+Sollte es doch notwendig sein, sollte das Caching nicht in der Persistenzschicht und nicht mittels Hibernate geschehen.
+Hibernate bietet für das Caching von Objekten prinzipiell zwei Möglichkeiten:
 
-Die Verwendung von über eine Transaktion hinausgehenden Caches ist deshalb zu vermeiden.
-Falls auf Grund von Spezial-Anforderungen (etwa in einer Fachanwendung selbst abgelegt Sekundärdaten) ein 2nd Level Cache benötigt wird, ist auf folgende Punkte zu achten:
+* *Cache in der Hibernate-Session:* Die Hibernate-Session ist an einen Thread gebunden.
+Die Nutzungsschicht verwendet für jeden Anfrage einen neuen Thread (und damit eine frische Hibernate-Session).
+Deshalb kann dieser Cache höchstens im Rahmen einer Anfrage an das IT-System gelten.
+Diese Nutzung eines Caches ist nicht sinnvoll.
+* *VM-weiter „2nd Level Cache“:* Dieser Cache ist vor allem für unveränderliche, häufig verwendete Informationen (z.B. Schlüsseldaten) gedacht.
+In der IsyFact werden solche Daten jedoch bereits durch andere Mechanismen vorgehalten.
+Deshalb ist eine Verwendung dieses Caches ebenfalls unnötig.
+
+Die Verwendung von über einen Aufruf hinausgehenden Cache ist deshalb zu vermeiden.
+Falls aufgrund spezieller Anforderungen trotzdem ein 2nd Level Cache benötigt wird, ist auf folgende Punkte zu achten:
 
 * Für den Cache ist eine gesonderte Cache-Region zu verwenden.
 * Nur unveränderliche Daten dürfen in den Cache.
@@ -943,7 +944,7 @@ Nutzung über JPA, die in Kapitel <<konfiguration-von-jpa-ueber-spring-beans-dur
 Dabei erfolgt der Zugriff auf die zweite Datenbank getrennt über einen weiteren Entity Manager und eine weitere
 Data Source.
 
-In der Konfigurationsdatei `jpa.xml` werden die Spring-Beans für die Transaktionskontrolle, `EntityManager`
+In der Konfigurationsdatei `jpa.xml` werden die Spring-Beans `EntityManager`
 und `DataSource` dupliziert und mit den Werten der zweiten Datenbank versehen.
 Um zu vermeiden, dass die zweite Datenbank an Stellen genutzt wird, wo es nicht geplant ist,
 muss allen Beans das Attribut `autowire-candidate="false"` hinzugefügt werden.
@@ -970,85 +971,6 @@ Ein Konfigurationsbeispiel kann folgendermaßen aussehen:
 @GeneratedValue(strategy=GenerationType.AUTO, generator="my_seq")
 @SequenceGenerator(name="my_seq",sequenceName="MY_SEQ", allocationSize=50)
 ----
-
-[[transaktionssteuerung]]
-== Transaktionssteuerung
-
-Die Transaktionssteuerung definiert, wann im Kontext der Anfragebearbeitung eine Transaktion gestartet wird, wann sie beendet wird und wie auf Fehler reagiert wird.
-Das geforderte Verhalten hierzu wird im folgenden Abschnitt definiert.
-Danach wird die Umsetzung dieses Verhaltens mit JPA und Spring beschrieben.
-
-[[eine-transaktion-pro-anfrage-verwenden]]
-=== Eine Transaktion pro Anfrage verwenden
-
-Eine Anfrage wird innerhalb einer einzelnen Transaktion abgearbeitet: Die Transaktion wird beim Eintreffen
-des Aufrufs gestartet und mit der Rückgabe des Ergebnisses beendet.
-Da eine Fachanwendung zustandslose Dienste anbietet, ist eine langlebige Transaktion oder ein Caching über
-Transaktionsgrenzen hinaus nicht notwendig und zu vermeiden.
-Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer
-zurück übermittelt.
-In diesem Fall wird die Transaktion nicht fortgeschrieben (committet), sondern zurückgerollt.
-
-Geschachtelte Transaktionen, etwa um Tabellen nur kurz zu blockieren, sind zu vermeiden.
-Abweichungen sind mit dem Chefdesigner des Teilprojekts abzustimmen.
-
-[[bei-batch-verarbeitung-regelmaessig-session-cache-leeren]]
-=== Bei Batch-Verarbeitung regelmäßig Session-Cache leeren
-
-Im Batch wird die Transaktionssteuerung über den „Batch-Rahmen“ definiert.
-Da hier eine große Anzahl an Transaktionen innerhalb einer Session durchgeführt werden, muss der
- Session-Cache in regelmäßigen Abständen geflushed und geleert werden: Ansonsten würden die Objekte
- aller Transaktionen im Cache gehalten werden und könnten nicht durch die Garbage Collection entfernt werden.
-
-Die Logik des Batch-Rahmens inklusive seiner Wiederaufsetzpunkte und Commit-Raten wird in einem
-separaten Konzept beschrieben (siehe <<Batch>>). Im gleichen Konzept wird auch der Code genannt, der zum
-Löschen des Caches notwendig ist.
-
-[[transaktionssteuerung-fuer-jpa-ueber-annotationen]]
-=== Transaktionssteuerung für JPA über Annotationen
-
-Spring ermöglicht die Transaktionssteuerung mit Annotationen zu definieren.
-Hierbei kann auf Klassen oder Methoden-Ebene das Transaktionsverhalten vorgegeben werden.
-
-Die Transaktionssteuerung wird im Normalfall pro Service-Klasse vorgegeben.
-Wichtig ist, dass die Fehlerbehandlung auf jeden Fall die Transaktion umschließt. Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen von der Fehlerbehandlung erfasst werden.
-
-Die Transaktionssteuerung wird per Annotation in der Service-Implementierung realisiert.
-Dabei wird im Normalfall der Propagation-Level auf `required` gesetzt und festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
-
-In der Beispiel-Anwendung ist das wie folgt umgesetzt:
-
-[source,java]
-----
-@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
-public class AwkWrapperImpl implements AwkWrapper {
-----
-
-Damit Spring die Annotationen auswertet, muss folgende Konfiguration durchgeführt werden:
-
-[source,xml]
-----
-<!-- Transaktionssteuerung per Annotationen -->
-<tx:annotation-driven transaction-manager="transactionManager"/>
-----
-
-Durch diese Konfiguration erzeugt Spring für die Annotationen passende AOP-Proxies, welche die
-Transaktionssteuerung übernehmen.
-
-[[bei-rest-webservices-rollback-explizit-anfordern]]
-=== Bei REST-Webservices Rollback explizit anfordern
-
-Eine Sonderstellung nehmen REST-Webservices ein, da diese im Fehlerfall keine Exceptions werfen, sondern die
-Fehler in der Antwortnachricht übermitteln: Der AOP-Transaktionsmanager wird niemals ein Rollback durchführen,
-da alle Exceptions abgefangen werden, auf die er reagieren könnte.
-Um auch in diesem Fall ein Rollback der Transaktion zu erzwingen, ist ein expliziter Aufruf durchzuführen:
-
-[source,java]
-----
-TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-----
-
-Im der Vorlage-Anwendung findet man hierfür kein Beispiel, da auf ein separates REST-Skeleton verzichtet wurde.
 
 [[historisierung]]
 == Historisierung
