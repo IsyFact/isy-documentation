@@ -24,7 +24,7 @@ endif::[]
 toc::[]
 
 // Einleitung
-include::thisdoc.adoc[]
+include::thisdoc.adoc[tags=inhalt]
 
 // Inhalt
 include::inhalt.adoc[leveloffset=1]
