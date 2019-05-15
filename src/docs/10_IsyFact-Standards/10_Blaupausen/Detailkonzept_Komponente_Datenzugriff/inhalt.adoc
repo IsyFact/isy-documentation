@@ -1,4 +1,4 @@
-= Detailkonzept Datenzugriff: Einleitung
+= Detailkonzept Datenzugriff: Inhalt
 include::../../../common/isyfact-attributes.adoc[]
 include::../../../common/attributes.adoc[]
 
