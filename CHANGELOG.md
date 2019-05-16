@@ -15,6 +15,7 @@
 - `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
 - `IFE-240`: Verweis auf Änderungshistorie in jedes Dokument aufgenommen.
 - `IFS-361`: Template Anpassung Tutorial (Tabellenformatierung)
+- `IFS-225`: Anpassung der Logging-Nutzungsvorgaben aufgrund Änderungen im Logging-Framework (Begrenzung Log-Länge)
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls
