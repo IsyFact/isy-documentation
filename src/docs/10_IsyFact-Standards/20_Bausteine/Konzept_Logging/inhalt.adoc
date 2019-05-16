@@ -356,7 +356,7 @@ Diese erweitert die Klasse `JsonLayout` von _logback_ um die Auswertung der `Isy
 Wird ein entsprechender Marker übergeben, so schreibt die Klasse diesen und alle enthaltenen Marker als Name/Wert-Paare (JSON-Attribute) in das Log.
 Diese Klasse übernimmt außerdem die Funktion zur Kontrolle der Länge eines Logeintrags und kürzt den Logeintrag, falls dieser die maximale Länge überschreitet.
 Die Kürzung eines zu langen Logeintrags findet auf Attributebene in folgender Reihenfolge statt: Kürzung von Parameter (bereits in Nachricht enthalten), Exception, Nachricht.
-Gekürzte Logeinträge erhalten einen zusätzlichen Schlüssel `gekuerzt` mit dem Wert `true`. Es werden nur Logeinträge ab Level INFO gekürzt.
+Gekürzte Logeinträge erhalten einen zusätzlichen Schlüssel `gekuerzt` mit dem Wert `true`. Es werden nur Logeinträge der Levels `INFO`, `WARN` und `ERROR` gekürzt.
 
 Nähere Informationen zur Festlegung der maximalen Länge von Logeinträgen finden sich in den Nutzungsvorgaben <<NutzungsvorgabenLogging>>.
 
