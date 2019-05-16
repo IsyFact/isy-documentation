@@ -1,8 +1,6 @@
 
 == Einleitung
 
-// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
-
 Die in diesem Dokument beschriebene technische Architektur eines IT-Systems, erläutert wie ein IT-System der Anwendungslandschaft zu beschreiben und umzusetzen ist.
 
 [[kurzüberblick-referenzarchitektur-eines-it-systems]]
