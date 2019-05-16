@@ -793,9 +793,11 @@ die bei Bedarf genutzt werden können:
 [[maximale-logeintragslaenge-festlegen]]
 ==== Maximale Länge des Logeintrags festlegen
 
-Es kann die maximale Länge eines Logeintrags in Bytes festgelegt werden. Sollte ein Logeintrag länger als dieser Wert sein,
-so wird der Logeintrag gekürzt (siehe <<KonzeptLogging>>). Wird kein Wert angegeben, so beträgt der Standardwert 32000 Bytes. Wird der Wert auf 0
-festgelegt, so gibt es keine Begrenzung in der Länge des Logeintrags. Die Beschränkung der Länge gilt nur für Logeinträge ab INFO-Level.
+Es kann die maximale Länge eines Logeintrags in Bytes festgelegt werden. 
+Sollte ein Logeintrag länger als dieser Wert sein, so wird der Logeintrag gekürzt (siehe <<KonzeptLogging>>).
+Wird kein Wert angegeben, so beträgt der Standardwert 32000 Bytes. 
+Wird der Wert auf 0 festgelegt, so gibt es keine Begrenzung in der Länge des Logeintrags.
+Die Beschränkung der Länge gilt nur für Logeinträge der Levels `INFO`, `WARN` und `ERROR`.
 
 Die maximale Länge eines Logeintrags wird wie folgt gesetzt:
 [source,xml]
