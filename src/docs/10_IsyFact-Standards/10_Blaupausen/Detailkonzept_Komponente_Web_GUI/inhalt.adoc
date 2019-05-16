@@ -5555,6 +5555,6 @@ beschriebenen Regeln müssen überprüft werden.
 == Regeln der sicheren Softwareentwicklung
 
 Bei der Entwicklung von Web-Anwendungen müssen in besonderem Maße Sicherheitsaspekte berücksichtigt werden.
-Die entsprechenden Regeln sind in beschrieben.
+Die entsprechenden Regeln sind im <<KonzeptSicherheit>> beschrieben.
 
 // end::inhalt[]
