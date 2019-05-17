@@ -18,8 +18,8 @@ image::../../../../common/images/RF-Logo.jpg[width=200]
 endif::[]
 endif::[]
 Dieses Dokument ist ein Teil der {factory}.
-Alle Inhalte dieses Dokuments, insbesondere Texte, Fotografien und Grafiken, sind urheberrechtlich geschützt.
-Das Urheberrecht liegt beim Bundesverwaltungsamt.
+Alle Inhalte dieses Dokuments, insbesondere Texte und Grafiken, sind urheberrechtlich geschützt.
+Alle urheberrechtlichen Nutzungs- und Verwertungsrechte liegen beim Bundesverwaltungsamt.
 
 ifdef::license-oss[]
 [.right]
@@ -30,15 +30,10 @@ Die Lizenzbestimmungen sind unter folgender URL erhältlich: +
 https://creativecommons.org/licenses/by/4.0/legalcode.de
 endif::[]
 ifndef::license-oss[]
-Die Nutzung ist nur unter den folgenden Bedingungen gestattet.
+Für eine Nutzung muss eine Vereinbarung mit dem Bundesverwaltungsamt vorliegen.
+Falls keine Vereinbarung vorliegt oder Sie sich unsicher sind, wenden Sie sich bitte an den unten genannten Ansprechpartner im Bundesverwaltungsamt.
 
-*Für Bundesbehörden:* Es muss eine Verwaltungsvereinbarung mit dem Bundesverwaltungsamt zur Nutzung der {factory} vorliegen.
-
-*Für Landes- und Kommunalbehörden:* Es muss eine Vereinbarung im Rahmen der Kieler Beschlüsse zur Nutzung der {factory} vorliegen.
-
-*Für Privatpersonen und Unternehmen:* Es muss eine Beauftragung durch eine Behörde erfolgen, die selbst eine der zuvor genannten Vereinbarungen mit dem Bundesverwaltungsamt geschlossen hat und die eine Nutzung der {factory} im Rahmen der Auftragserfordernis ermöglicht.
-
-Falls keine solche Vereinbarung vorliegt, wenden Sie sich bitte an den unten genannten Ansprechpartner im Bundesverwaltungsamt, falls Sie eine der oben genannten Behörden vertreten, oder an Ihre auftraggebende Behörde, falls sie eine Privatperson sind oder ein Unternehmen vertreten.
+Ohne eine Vereinbarung darf dieses Dokument insbesondere nicht verwendet, verändert, vervielfältigt oder weitergegeben werden.
 endif::[]
 ****
 
