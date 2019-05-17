@@ -496,10 +496,11 @@ Danach gibt die Klasse die Kontrolle an die Batchrahmen-Bean weiter.
 Sie aktualisiert die Batchrahmen-Tabellen und initialisiert die Ausführungsbean in dieser Transaktion.
 Die Ausführungsbean führt im Rahmen dieser Transaktion das „Vorlesen“ bis zum letzten Checkpoint sowie ggf. nötige Initialisierungen durch.
 Die Transaktion wird beendet.
+Danach beginnt die Satz-Verarbeitung.
 * Für die Satz-Verarbeitung wird eine neue Transaktion gestartet.
-* Die einzelnen Datensätze werden verarbeitet.
+Die einzelnen Datensätze werden verarbeitet.
 Bei Erreichung eines Checkpoints wird die Status-Tabelle aktualisiert, die Transaktion abgeschlossen (Commit) und eine neue gestartet.
-* Sobald der letzte Datensatz verarbeitet wurde, wird die Status-Tabelle aktualisiert, auf der Ausführungsbean eine Shutdown-Methode aufgerufen und die (letzte) Transaktion beendet.
+* Sobald der letzte Datensatz verarbeitet wurde, wird in einer letzten Transaktion die Status-Tabelle aktualisiert, auf der Ausführungsbean eine Shutdown-Methode aufgerufen und die Transaktion abgeschlossen.
 
 Das Verhalten in Fehlerfällen ist zu jedem Zeitpunkt während der Verarbeitung gleich: Der Fehler wird geloggt und die Transaktion zurückgerollt.
 Danach wird versucht, eine neue Transaktion zu starten, um die Status-Tabelle zu aktualisieren: Der Status wird auf `abgebrochen` gesetzt und die Spalte `DatumLetzterAbbruch` auf den aktuellen Zeitpunkt.

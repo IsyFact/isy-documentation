@@ -497,10 +497,12 @@ Gibt es ein für die Klasse gemeinsames Verhalten, kann stattdessen auch die Kla
 .{desc-listing-transactional}
 [source,java]
 ----
-@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+@Transactional(rollbackFor = Throwable.class,
+               propagation = Propagation.REQUIRED)
 public class FachkomponenteAImpl implements FachkomponenteA {
     ...
-    @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+    @Transactional(rollbackFor = Throwable.class,
+                   propagation = Propagation.REQUIRED)
     public Ergebnis fachlicheOperation(Aufrufparameter parameter) {
         ...
     }
@@ -523,7 +525,8 @@ Damit Spring die Annotation `@Transactional` auswertet, muss folgende Spring-Kon
 <beans>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 </beans>

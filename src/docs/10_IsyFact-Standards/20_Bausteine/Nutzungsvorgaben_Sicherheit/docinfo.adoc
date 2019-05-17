@@ -35,5 +35,5 @@
 |Name |Art |Version
 |isy-sicherheit |Bibliothek |siehe isyfact-bom v1.5.x
 |rf-sicherheit-cams |Bibliothek |siehe rf-bom v1.8.x
-|isy-aufrufkontext (Teil isyfact-base) |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-aufrufkontext |Bibliothek |siehe isyfact-bom v1.5.x
 |====

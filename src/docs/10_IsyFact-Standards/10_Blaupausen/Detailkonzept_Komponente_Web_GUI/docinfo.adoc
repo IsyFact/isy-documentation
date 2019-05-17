@@ -44,6 +44,6 @@ NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden
 [cols="5,2,3",options="header"]
 |====
 |Name |Art |Version
-|isy-web |Bibliothek |siehe isyfact-bom v1.5.x
-|isy-style |Bibliothek |3.1.x
+|isy-web |Bibliothek |siehe isyfact-bom v{version-ifs}
+|isy-style |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
