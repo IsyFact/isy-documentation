@@ -38,10 +38,12 @@ Intern besteht die Komponente „Service“ aus zwei Komponenten, dem Service-Fr
 Anwendungskerns zur Verfügung gestellt werden.
 Hierfür wird das Framework Spring HTTP-Invoker verwendet.
 
-[INFO]
+[NOTE]
+====
 Ab IsyFact 2.0 ist die Verwendung von REST-Schnittstellen erlaubt.
 Spring HTTP-Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
 Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
+====
 
 In der Regel wird ein extern angebotener Service noch durch zusätzliche Daten oder Logik ergänzt.
 Diese werden in der Komponente Service-Logik implementiert.

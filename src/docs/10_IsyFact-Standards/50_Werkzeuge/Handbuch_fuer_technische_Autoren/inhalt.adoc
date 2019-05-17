@@ -336,9 +336,9 @@ Die IsyFact-Dokumentation erweitert diese Liste um weitere Blöcke für verbindl
 Es gibt zwei Möglichkeiten zur Definition von Admonition Blocks.
 Die syntaktisch ausführlichere Variante funktioniert sowohl mit den vordefinierten, als auch mit den selbst definierten Blöcken.
 
-:desc-listing-admonition: Definition eines Admonition Blocks (als Block)
-[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-admonition}
+:desc-listing-admonition-block: Definition eines Admonition Blocks (als Block)
+[id="listing-admonition-block",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition-block}
 [source,asciidoc]
 ----
 [BLOCKTYP]
@@ -349,9 +349,9 @@ Hier steht der Text.
 
 Die syntaktisch schlankere Variante funktioniert nur mit den vordefinierten Blöcken (NOTE, TIP, IMPORTANT, WARNING und CAUTION).
 
-:desc-listing-admonition: Definition eines Admonition Blocks (inline)
-[id="listing-admonition",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-admonition}
+:desc-listing-admonition-inline: Definition eines Admonition Blocks (inline)
+[id="listing-admonition-inline",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-admonition-inline}
 [source,asciidoc]
 ----
 BLOCKTYP: Hier steht der Text.

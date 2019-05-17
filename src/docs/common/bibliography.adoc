@@ -19,19 +19,19 @@
   00_Allgemein/IsyFact-Einstieg.pdf
 
 - [[[IsyFactGlossar]]] +
-  IsyFact Glossar +
+  IsyFact-Glossar +
   00_Allgemein/IsyFact-Glossar.pdf
 
 - [[[IsyFactNamenskonventionen]]] +
-  IsyFact – Namenskonventionen +
+  IsyFact-Namenskonventionen +
   00_Allgemein/IsyFact-Namenskonventionen.pdf
 
 - [[[IsyFactReferenzarchitektur]]] +
-  IsyFact – Referenzarchitektur +
+  IsyFact-Referenzarchitektur +
   10_Blaupausen/IsyFact-Referenzarchitektur.pdf
 
 - [[[IsyFactReferenzarchitekturITSystem]]] +
-  IsyFact – Referenzarchitektur für IT-Systeme +
+  IsyFact-Referenzarchitektur für IT-Systeme +
   10_Blaupausen/technische_Architektur/IsyFact-Referenzarchitektur-IT-System.pdf
 
 - [[[TailoringVorlage]]] +
@@ -47,11 +47,11 @@
   00_Allgemein/IsyFact-Versionierung.pdf
 
 - [[[ProduktKatalog]]] +
-  IsyFact Produktkatalog +
+  IsyFact-Produktkatalog +
   00_Allgemein/Produktkatalog_IsyFact.xlsx
 
 - [[[Aenderungshistorie]]] +
-  IsyFact Änderungshistorie +
+  IsyFact-Änderungshistorie +
   00_Allgemein/Aenderungshistorie.xlsx
 
 - [[[DetailkonzeptKomponenteAnwendungskern]]] +
@@ -105,6 +105,10 @@
 - [[[NutzungsvorgabenPolling]]] +
   Konzept Protokollierung +
   20_Bausteine/Polling/Nutzungsvorgaben_Polling.pdf
+
+- [[[KonzeptSicherheit]]] +
+  Konzept Sicherheit +
+  20_Bausteine/Sicherheitskomponente/Konzept_Sicherheit.pdf
 
 - [[[NutzungsvorgabenSicherheit]]] +
   Nutzerdokumentation Sicherheit +
@@ -229,8 +233,8 @@
   Facelets +
   https://facelets.dev.java.net/
 
-- [[[ITGS06]]] +
-  IT-Grundschutzkatalog, Baustein B 1.12, Stand 2006 +
+- [[[ITGrundschutz]]] +
+  IT-Grundschutz des BSI +
   https://www.bsi.bund.de/DE/Themen/ITGrundschutz/itgrundschutz_node.html
 
 - [[[jenerate]]] +

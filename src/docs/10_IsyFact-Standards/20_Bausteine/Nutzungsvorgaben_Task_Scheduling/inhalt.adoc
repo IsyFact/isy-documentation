@@ -26,7 +26,7 @@ Sie sichert die Aufgaben selbst allerdings nicht gegen unerlaubte Ausführungen 
 Die Verantwortlichkeit dafür liegt bei den jeweiligen Fachkomponenten der Anwendungen, die sich gemäß den Sicherheitsrichtlinien der IsyFact und den Anforderungen an die Anwendung schützen müssen.
 Authentifizierung und Autorisierung finden nach den Vorgaben des Berechtigungskonzepts statt.
 Dazu wird die IsyFact-Bibliothek `isy-sicherheit` eingesetzt.
-Die Nutzung von `isy-sicherheit` wird im Dokument <<NutzungsvorgabenSicherheit>> beschrieben.
+Die Nutzung der Bibliothek wird im Dokument <<NutzungsvorgabenSicherheit>> beschrieben.
 
 Um die Verwendung von `isy-sicherheit` für die Authentifizierung und Autorisierung zu konfigurieren, wird die Property `isy.task.authentication.enabled`
 in `application.properties` auf `true` oder `false` gesetzt.
