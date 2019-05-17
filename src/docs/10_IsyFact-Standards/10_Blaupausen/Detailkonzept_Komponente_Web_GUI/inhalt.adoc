@@ -529,8 +529,7 @@ In den Models der GUI-Komponenten werden eigene Datentypen und nicht die des Anw
 
 Die primäre Aufgabe des AWK-Wrappers ist es, die Daten vom Anwendungskern in die der GUI zu mappen.
 Falls die GUI darüber hinaus Transaktionen über mehrere Aufrufe des Anwendungskerns hinweg aufspannen möchte, geschieht dies ebenfalls im AWK-Wrapper.
-Damit der Datenzugriff in diesem Fall funktioniert, müssen die Spring Beans des AWK-Wrappers im selben Spring-Applikationskontext wie der
-Anwendungskern definiert werden.
+Damit der Datenzugriff in diesem Fall funktioniert, müssen die Spring Beans des AWK-Wrappers im selben Spring-Applikationskontext wie der Anwendungskern definiert werden.
 Nur dann ist der Transaktionskontext aus der Hibernate-Konfiguration auch für den AWK-Wrapper nutzbar.
 
 [[schnittstellen-zwischen-komponenten]]

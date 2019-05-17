@@ -464,8 +464,7 @@ zu stellenden Bean initialisiert werden.
 An der Schnittstelle des Anwendungskerns findet die Transaktionssteuerung statt.
 Jeder Aufruf wird in einer eigenen Transaktion abgearbeitet.
 Die Transaktion wird beim Aufruf des Anwendungskerns gestartet und mit der Rückgabe des Ergebnisses abgeschlossen (Commit) und somit beendet.
-Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer
-zurück übermittelt.
+Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer zurück übermittelt.
 In diesem Fall wird die Transaktion nicht fortgeschrieben, sondern zurückgerollt (Rollback).
 
 Der Anwendungskern bietet an seiner Schnittstelle fachliche Operationen, in fachliche Komponenten gruppiert, an.
