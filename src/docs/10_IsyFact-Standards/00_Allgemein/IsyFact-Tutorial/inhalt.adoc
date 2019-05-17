@@ -473,7 +473,7 @@ des Bean-Namens.
 [[bibliotheken-für-das-service-schnittstellen-projekt]]
 ===== Bibliotheken für das Service-Schnittstellen-Projekt
 
-Das Projekt der Service-Schnittstelle benötigt die in Tabelle <<listing-bib-sst>> aufgelisteten Bibliotheken:
+Das Projekt der Service-Schnittstelle benötigt die in <<listing-bib-sst>> aufgelisteten Bibliotheken:
 
 :desc-listing-bib-sst: Einbindung der Bibliotheken für das Service-Schnittstellen-Projekt
 [id="listing-bib-sst",reftext="{listing-caption} {counter:listings}"]
@@ -588,7 +588,7 @@ Dieses befindet sich im Deployment-Repository der zu nutzenden Anwendung.
 Das Jar wird in das eigene Projekt-Repository kopiert und via Maven eingebunden.
 
 Zusätzlich müssen die HttpInvoker-Bibliotheken von Spring eingebunden werden.
-Eine vollständige Liste zeigt Tabelle <<listing-bib-sst-nutzung>>.
+Eine vollständige Liste zeigt <<listing-bib-sst-nutzung>>.
 
 :desc-listing-bib-sst-nutzung: Einbindung der Bibliotheken zur Nutzung von Service-Schnittstellen
 [id="listing-bib-sst-nutzung",reftext="{listing-caption} {counter:listings}"]
@@ -740,7 +740,7 @@ Die Größe der Transaktion (Commit-Rate) wird über den Batchrahmen konfigurier
 [[einbinden-der-bibliothek]]
 ==== Einbinden der Bibliothek
 
-Zur Realisierung von Batches muss die in Tabelle <<listing-bib-batch>> aufgelistete Bibliothek eingebunden werden.
+Zur Realisierung von Batches muss die in <<listing-bib-batch>> aufgelistete Bibliothek eingebunden werden.
 
 :desc-listing-bib-batch: Einbindung der Bibliotheken zur Realisierung von Batches
 [id="listing-bib-batch",reftext="{listing-caption} {counter:listings}"]
@@ -782,7 +782,7 @@ Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebli
 [[spring-konfiguration-anlegen]]
 ==== Spring-Konfiguration anlegen
 
-Für den Batchrahmen werden die in Tabelle 10 aufgelisteten Konfigurationsdateien benötigt.
+Für den Batchrahmen werden die in <<table-KonfBatchRahmen>> aufgelisteten Konfigurationsdateien benötigt.
 
 :desc-table-KonfBatchRahmen: Spring Konfiguration für den Batchrahmen
 [id="table-KonfBatchRahmen",reftext="{table-caption} {counter:tables}"]
@@ -797,27 +797,25 @@ Zusätzlich muss für jeden existierenden Batch die Ausführungs-Bean als Spring
 Der Batch verwendet den Anwendungskern der eigentlichen Anwendung.
 Dafür wird eine Spring-Konfiguration benötigt.
 Als Basis können die Spring-Konfigurationen der Anwendung verwendet werden.
-Diese werden anschließend wie in Tabelle <<table-KonfBatchAWK>> beschrieben angepasst:
+Diese werden anschließend wie in <<table-KonfBatchAWK>> beschrieben angepasst:
 
-INFO: Hier das Problem der Tabellen-Farben
 
 :desc-table-KonfBatchAWK: Spring Konfiguration für den Anwendungskern für Batches
 [id="table-KonfBatchAWK",reftext="{table-caption} {counter:tables}"]
 .{desc-table-KonfBatchAWK}
-[cols="2m,2m,5",options="header"]
+[cols="2,2,5",options="header"]
 |====
 |Pfad  |Datei    |Beschreibung
-.4+|src/main/resources/resources/batch/register  |jpa.xml  |In der Bean `EntityManagerFactory` muss der
+.4+|`src/main/resources/resources/batch/register`  |`jpa.xml`  |In der Bean `EntityManagerFactory` muss der
 Parameter `PersistenceUnitName` so umkonfiguriert werden, dass die `PersitenceUnit` für den Batch (siehe `persistence.xml`) verwendet wird.
- |komponenten.xml |Bei der Bean `AufrufKontext` muss der Scope `request` entfernt werden. Alternativ
+|`komponenten.xml`  |Bei der Bean `AufrufKontext` muss der Scope `request` entfernt werden. Alternativ
 dazu kann über die Klasse `SimpleRequestContextAttributes` aus isy-util auch der Request-Kontext für den Batch nachgebildet werden.
- |querschnitt.xml  a|Die Beans für die JMX-Überwachungs­schnittstelle werden entfernt.
+|`querschnitt.xml`  |Die Beans für die JMX-Überwachungs­schnittstelle werden entfernt.
 
 Die Timer für Watchdog und Systemprüfung werden entfernt.
- |hibernate.cfg.xml |Die Klassen BatchStatus und BatchKon­figurationsparameter werden über
+ |`hibernate.cfg.xml`  |Die Klassen BatchStatus und BatchKon­figurationsparameter werden über
 `<mapping resource="resources/plis-batchrahmen/hibernate/hibernate-mapping.xml"/>` eingebunden.
-|src/main/resources/META-INF |persistence.xml |Hier muss die spezielle Hibernate­konfiguration (`hibernate.cfg.xml`)
-als neue Persistence-Unit eingetragen werden.
+|`src/main/resources/META-INF` |`persistence.xml` |Hier muss die spezielle Hibernatekonfiguration (`hibernate.cfg.xml`) als neue Persistence-Unit eingetragen werden.
 |====
 
 Bei geeigneter Aufteilung der Spring-Konfiguration kann auch die Konfiguration der Anwendung direkt verwendet werden.
@@ -885,7 +883,7 @@ public int cdErworben(AufrufKontext kontext, …)
 [[einbinden-der-bibliotheken-1]]
 ==== Einbinden der Bibliotheken
 
-Um die Logging Funktionen in der eigenen Anwendung nutzen zu können müssen die in Tabelle <<listing-bib-logging>> aufgelisteten Bibliotheken eingebunden werden.
+Um die Logging Funktionen in der eigenen Anwendung nutzen zu können müssen die in <<listing-bib-logging>> aufgelisteten Bibliotheken eingebunden werden.
 
 :desc-listing-bib-logging: Einbindung der Bibliotheken zur Nutzung des Logging
 [id="listing-bib-logging",reftext="{listing-caption} {counter:listings}"]
@@ -1078,12 +1076,11 @@ werden lediglich die Transport-Exceptions aus `isy-exception-sst` benötigt
 [[einbinden-der-bibliothek-1]]
 ==== Einbinden der Bibliothek
 
-Zur Realisierung der Fehlerbehandlung und Implementierung von Exceptions müssen die in <<listing-bib-config>>
-aufgelisteten Bibliotheken eingebunden werden.
+Zur Realisierung der Fehlerbehandlung und Implementierung von Exceptions müssen die in <<listing-bib-fehler>> aufgelisteten Bibliotheken eingebunden werden.
 
-:desc-listing-bib-config: Einbindung der Bibliotheken zur Nutzung der Konfiguration
-[id="listing-bib-config",reftext="{listing-caption} {counter:listings}"]
-.{desc-listing-bib-config}
+:desc-listing-bib-fehler: Einbindung der Bibliotheken zur Nutzung der Fehlerbehandlung
+[id="listing-bib-fehler",reftext="{listing-caption} {counter:listings}"]
+.{desc-listing-bib-fehler}
 [source,xml]
 ----
 <dependencies>

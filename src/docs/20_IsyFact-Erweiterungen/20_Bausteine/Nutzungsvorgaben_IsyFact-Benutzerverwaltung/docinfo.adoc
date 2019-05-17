@@ -5,9 +5,7 @@
 |Dokumenten-ID:| Nutzungsvorgaben_IsyFact-Benutzerverwaltung
 |====
 
-//|Datum |Version |Änderungsgrund
-//|13.10.2016 |0.1   |Angelegt - Erstellung des Nutzungskonzepts
-//|20.12.2016 |0.9   |Vorgelegt - Review, Anpassung an die Auslieferung der Implementierung
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
 Java Bibliothek / IT-System
 
