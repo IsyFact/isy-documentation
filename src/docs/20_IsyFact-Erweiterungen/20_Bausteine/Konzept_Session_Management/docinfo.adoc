@@ -3,3 +3,5 @@
 |====
 |Dokumenten-ID:| Konzept_Sessionmanagement
 |====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.

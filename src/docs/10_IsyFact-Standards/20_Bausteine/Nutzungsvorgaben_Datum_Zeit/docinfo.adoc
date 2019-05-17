@@ -5,5 +5,5 @@
 |Dokumenten-ID:| Nutzungsvorgaben_Datum_Zeit
 |====
 
-//|Datum |Version |Änderungsgrund
-//|04.09.2017 |0.1 |initiale Version
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
