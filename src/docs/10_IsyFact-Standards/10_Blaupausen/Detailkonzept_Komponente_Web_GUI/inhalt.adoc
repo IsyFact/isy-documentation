@@ -1,3 +1,8 @@
+= Detailkonzept Komponente Web-GUI: Inhalt
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+
+// tag::inhalt[]
 [[anforderungen]]
 = Anforderungen
 
@@ -1410,82 +1415,42 @@ image::image57.png[align="center", width="629",height="526"]
 
 *Aufbau*
 
-* Header Bereich
+* Header-Bereich
 * Linksnavigation (optional)
 * Inhaltsbereich
 
-
 [[header-bereich]]
-==== Header Bereich
+==== Header-Bereich
 
-Der Header Bereich enthält allgemeine Informationen der Applikation.
+Der Header-Bereich enthält allgemeine Informationen zur Anwendungslandschaft, den in ihr verfügbaren Fachanwendungen und zum angemeldeten Anwender.
 
-:desc-image-headersolo: Header
-[id="image-headersolo",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-headersolo}
-image::image36.png[align="center", width="629",height="104"]
+:desc-image-header-aufbau: Aufbau des Header-Bereiches
+[id="image-header-aufbau",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-header-aufbau}
+image::header-aufbau.png[align="center", width=80%, pdfwidth=80%]
 
-:desc-image-aufbaudesheaderbereichs: Aufbau des Header-Bereiches
-[id="image-aufbaudesheaderbereichs",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-aufbaudesheaderbereichs}
-image::image37.png[align="center", width="629",height="149"]
+<<image-header-aufbau>> verdeutlicht die Teile, aus denen er besteht:
 
+* *A* Logo des Anbieters der Anwendungslandschaft
+* *B* Balken in der Standardfarbe der Anwendungslandschaft ("Portalfarbe")
+* *C* Logo des Anwendungslandschaft
+* *D* Informationen zum angemeldeten Anwender ("Nutzerbereich")
+* *E + F* Hauptnavigation und Subnavigation als Flyout (zur Nutzung siehe <<hauptnavigation>>)
 
-*Aufbau*
+===== Nutzerbereich
 
-* *A* Logo des Portalanbieters
-* *B* Farbmarkierung des Applikationsportals
-* *C* Logo des Applikationsportals
-* *D* Login-Information
-* *E + F* Hauptnavigation und Subnavigation als Flyout (siehe Kapitel <<horizontale-navigation>>)
+Der Nutzerbereich wird nicht von der `isy-web` zur Verfügung gestellt.
+Es gelten die Anforderungen aus dem Styleguide, vor allem hinsichtlich des Verhaltens des Logout-Buttons.
 
-
-[[headerbereich-bestandteile]]
-===== Headerbereich Bestandteile
-
-*_Navigationsleiste und Nutzerbereich_*
-
-Derzeit wird die Navigationsleiste im Header Bereich noch statisch geladen.
-Jede Anwendung muss daher die Ressource +
-   `/WEB-INF/gui/common/seitenelemente/navigation.xhtml` +
-mit einer spezifischen Anpassung überschreiben.
-
-
-Der Nutzerbereich wird nicht von der `isy-web` zur Verfügung gestellt, da sich z.B. das Verhalten des Logout Buttons in verschiedenen Betriebsumgebungen unterscheiden kann (unterschiedliche HTTP Parameter, etc.). Konkrete Anwendungen müssen über die Konfigurationseinstellung `gui.header.nutzerbereich.xhtml.src` das XHTML angeben, welches den Nutzerbereich definiert.
+Konkrete Anwendungen müssen über die Konfigurationseinstellung `gui.header.nutzerbereich.xhtml.src` die Datei angeben, welche den Nutzerbereich definiert.
 Die Angabe der Konfiguration ist verpflichtend.
 
-*_Titel_*
-
-Den Titel gibt es nur auf Applikations-Detailseiten (s. Implementierungshinweise dort).
-
-
-*_Maskentexte_*
-
-Maskentexte, die nur innerhalb eines bestimmten Flows verwendet werden, können in der Konfigurationsdatei <Flow-Name>.properties im Ordner `resources/nachrichten/maskentexte` definiert werden.
-Wenn die jeweilige Konfigurationsdatei vorhanden ist, werden die Maskentexte automatisch geladen und in die Variable `msg_currentflow` abgespeichert.
-Die Maskentexte des jeweiligen Flows können dann beispielsweise wie folgt ausgelesen werden:
-
-:desc-listing-maskentexteKonfigurierbar: Maskentexte über Konfiguratiosdatei
-[id="listing-maskentexteKonfigurierbar",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-maskentexteKonfigurierbar}
-[source, xml]
-----
-<h:outputText value="#{msg_currentflow.MAS_Ueberschrift}" />
-----
-
-Auf übergreifende Maskentexte aus der Konfigurationsdatei 
-`resources/nachrichten/maskentexte.properties` 
-kann über die Variable `msg` zugegriffen werden.
-
-
-[logos-texte-headerbereich]
-===== Logos und Texte im Headerbereich
+===== Logos und Texte im Header-Bereich
 Es besteht die Möglichkeit, für jeden Flow die folgenden Teile des Seitenrahmens anzupassen:
 
-- Linkes Logo im Header (`gui.header.logo.links.pfad`)
-- Rechtes Logo im Header (`gui.header.logo.rechts.pfad`)
-- Text unterhalb des rechten Logos im Header (`gui.header.text.logo.rechts`)
-
+* Linkes Logo im Header (`gui.header.logo.links.pfad`)
+* Rechtes Logo im Header (`gui.header.logo.rechts.pfad`)
+* Text unterhalb des rechten Logos im Header (`gui.header.text.logo.rechts`)
 
 Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über die Bean-Definition eingebunden werden:
 
@@ -1509,7 +1474,8 @@ Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über 
 </beans>
 ----
 
-Anwendung können globale Standardwerte definieren. Definieren sie diese nicht, verwendet der Seitenrahmen Standardwerte aus `isy-web`.
+Fachanwendungen können globale Standardwerte definieren.
+Definieren sie diese nicht, verwendet der Seitenrahmen Standardwerte aus `isy-web`.
 
 :desc-table-SeitenrahmenStandardwerte: Globale Standardwerte für den Seitenrahmen
 [id="table-SeitenrahmenStandardwerte",reftext="{table-caption} {counter:tables}"]
@@ -1576,7 +1542,7 @@ Abweichungen vom Standardvorgehen (z.B. Linksnavigation ausblenden) können durc
 Neben dem `ApplikationseiteController` existiert auch der `BasisController`.
 Dieser bietet Zugriff auf seitentypunabhängige Layoutfunktionen (z.B. modalen Dialog anzeigen).
 
-Siehe weiterhin die Hinweise in den Seiten Header Bereich, Linksnavigation und Quicklinks.
+Siehe weiterhin die Hinweise unter <<header-bereich>>, <<linksnavigation>> und <<quicklinks>>.
 
 ==== Applikation Detailseite
 
@@ -1615,7 +1581,7 @@ Weiterhin kann mit `MAS_Global_Title_Prefix` ein globaler Präfix für den Tit
 
 Weiterhin kann über eine Angabe von `<ui:define name="titel"/>` in Seiten definiert werden, welche Inhalte rechts neben dem bereits definierten Title (Title-Tag) ausgegeben werden. Im Folgenden ein Beispiel:
 
-:desc-listing-zusatzmaskentitel: Zusatz-Maskentitel im Headerbereich
+:desc-listing-zusatzmaskentitel: Zusatz-Maskentitel im Header-Bereich
 [id="listing-zusatzmaskentitel",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-zusatzmaskentitel}
 [source, xml]
@@ -3188,7 +3154,7 @@ Außerdem gibt es folgende optionale Parameter:
 [[horizontale-navigation]]
 ==== Horizontale Navigation
 
-Die Navigationsleiste im Header Bereich lässt sich konfigurierbar gestalten.
+Die Navigationsleiste im Header-Bereich lässt sich konfigurierbar gestalten.
 Hierzu muss jede Anwendung zunächst eine Instanz von `NavigationMenuGenerierenAusKonfiguration` im Application-Context zur Verfügung stellen und korrekt konfigurieren.
 Die Bean benötigt lediglich einen `AufrufkontextVerwalter` und eine `Konfiguration`, um korrekt zu funktionieren.
 
@@ -3267,7 +3233,7 @@ Ein Anwender sieht den jeweiligen Eintrag, sobald er mindestens eine der benöti
 :desc-image-navigationMitSubmenu: Navigation mit ausgeklapptem Flyout Menü
 [id="image-navigationMitSubmenu",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-navigationMitSubmenu}
-image::horizontale-navigation-submenu.png[align="center", pdfwidth="60%"]
+image::horizontale-navigation-submenu.png[align="center", width="60%", pdfwidth="60%"]
 
 Das folgende Beispiel zeigt, wie die Navigationsleiste um einen weiteren Eintrag samt Flyout Menü erweitert werden könnte:
 
@@ -5000,6 +4966,23 @@ Hier wird die Ablage der Konfigurations-Files definiert.
 </webflow:flow-registry>
 ----
 
+[[konfiguration-maskentexte]]
+== Konfiguration der Maskentexte
+
+Maskentexte, die nur innerhalb eines bestimmten Flows verwendet werden, können in der Konfigurationsdatei `<FlowName>.properties` im Ordner `resources/nachrichten/maskentexte` definiert werden.
+Wenn die jeweilige Konfigurationsdatei vorhanden ist, werden die Maskentexte automatisch geladen und in die Variable `msg_currentflow` abgespeichert.
+Die Maskentexte des jeweiligen Flows können dann beispielsweise wie folgt ausgelesen werden:
+
+:desc-listing-maskentexteKonfigurierbar: Maskentexte über Konfigurationsdatei
+[id="listing-maskentexteKonfigurierbar",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-maskentexteKonfigurierbar}
+[source, xml]
+----
+<h:outputText value="#{msg_currentflow.MAS_Ueberschrift}" />
+----
+
+Auf übergreifende Maskentexte aus der Konfigurationsdatei `resources/nachrichten/maskentexte.properties` kann über die Variable `msg` zugegriffen werden.
+
 [[konfiguration-logging]]
 == Konfiguration Logging
 
@@ -5572,4 +5555,6 @@ beschriebenen Regeln müssen überprüft werden.
 == Regeln der sicheren Softwareentwicklung
 
 Bei der Entwicklung von Web-Anwendungen müssen in besonderem Maße Sicherheitsaspekte berücksichtigt werden.
-Die entsprechenden Regeln sind in beschrieben.
+Die entsprechenden Regeln sind im <<KonzeptSicherheit>> beschrieben.
+
+// end::inhalt[]
