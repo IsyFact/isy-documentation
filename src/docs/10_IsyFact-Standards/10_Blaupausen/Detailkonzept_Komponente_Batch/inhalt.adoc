@@ -1,7 +1,12 @@
-= Einführung
+= Detailkonzept Batch: Inhalt
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+
+// tag::inhalt[]
+== Einführung
 
 [[vorgehen]]
-== Vorgehen
+=== Vorgehen
 
 Der Begriff „Batch“ bedeutet im Kern lediglich „nicht interaktive Stapelverarbeitung“. Wie ein Batch technisch umgesetzt werden soll, hängt davon ab, was konkret unter einem Batch verstanden wird.
 Im Folgenden wird deshalb zuerst beschrieben, was ein Batch im Sinne der IsyFact ist.
@@ -10,7 +15,7 @@ Ein Batch teilt sich auf in einen „Batchrahmen“, die Batchlogik der einzelne
 Was darunter verstanden wird, wird in Kapitel <<die-aufteilung-in-batchrahmen-und-batchlogik>> beschrieben.
 
 [[was-ist-ein-batch]]
-== Was ist ein Batch?
+=== Was ist ein Batch?
 
 Eine Fachanwendung stellt über ihre Komponenten fachliche Operationen bereit.
 Diese Operationen werden (zum Teil) als Services bereitgestellt.
@@ -19,7 +24,7 @@ Typischerweise verarbeiten Batches dabei Dateilieferungen oder eine definierte M
 Einige der Operationen von Anwendungskomponenten werden nur für Services, einige nur für Batch-Verarbeitungen, andere für beides verwendet.
 
 [[die-bestandteile-eines-batches-und-die-zielarchitektur]]
-=== Die Bestandteile eines Batches und die Zielarchitektur
+==== Die Bestandteile eines Batches und die Zielarchitektur
 
 Ein Batch verwendet für die fachliche Verarbeitungslogik die Operationen der Komponenten der Fachanwendung.
 Neben der fachlichen Verarbeitungslogik besteht die Anwendungslogik eines Batches aus folgenden Bestandteilen:
@@ -48,19 +53,20 @@ Im Dokument wird unter Batchlogik diese Klassensammlung und keine Komponente ver
 image::AnwLogBat.png[align="center"]
 
 [[checkpoint-restart-logik]]
-=== Checkpoint / Restart Logik
+==== Checkpoint / Restart Logik
 
 Da ein Batch in einem Lauf eine große Anzahl an Datensätzen verarbeiten muss, soll seine Verarbeitung nicht in einer Transaktion durchgeführt werden.
-Vielmehr wird ein Batch sein Arbeitspaket in mehreren Paketen, d. h. Transaktionen, abarbeiten.
+Ebenso soll nicht jeder Datensatz in einer eigenen Transaktion verarbeitet werden, wie es die Transaktionssteuerung des Anwendungskerns vorsieht.
+Vielmehr wird ein Batch sein Arbeitspaket in mehreren Paketen, und damit auch Transaktionen, abarbeiten.
 Bei einem Wiederanlauf nach einem Fehler muss der Batch in der Lage sein, die bis zu seinem letzten Commit verarbeiteten Datensätze zu überlesen und nur die „neuen“ Datensätze zu verarbeiten.
 Das Commit einer Transaktion bezeichnet man in diesem Fall als Checkpoint.
-Das Überlesen alter Datensätze nennt man Checkpoint / Restart Fähigkeit.
+Das Überlesen bereits verarbeiteter Datensätze nennt man Checkpoint / Restart Fähigkeit.
 
 Für die Umsetzung der Checkpoint / Restart Fähigkeit muss der Batch in jeder Transaktion speichern, welche Datensätze bis zum Commit verarbeitet wurden. Üblicherweise geschieht das durch die Ablage der Anzahl verarbeiteter Datensätze bis zum Commit.
 Abgelegt werden diese Daten in einer Batch-Statustabelle, welche für jeden Batch eine Zeile enthält.
 
 [[der-unterschied-zwischen-batch-netz-batch-schritt-und-batch-implementierung]]
-=== Der Unterschied zwischen Batch-Netz, Batch-Schritt und Batch-Implementierung
+==== Der Unterschied zwischen Batch-Netz, Batch-Schritt und Batch-Implementierung
 
 Die Verarbeitung von Massendaten durch einen Batch verläuft meist in mehreren Schritten: Die Verarbeitung einer Datei kann beispielsweise aus ihrer Übertragung auf einen internen Server, ihrer nachfolgenden Prüfung und der Verarbeitung ihres Inhalts bestehen.
 Diese Verarbeitungsschritte (_Batch-Schritte_) eines Batches bilden ein „Batch-Netz“. Jeder Schritt wird über den Aufruf eines Shell-Skripts gestartet.
@@ -91,7 +97,7 @@ Wichtig ist jedoch die Unterscheidung zwischen Batch und Batch-Implementierung: 
 Die Implementierung ist Java-Code, der von mehreren Batches verwendet werden darf.
 
 [[die-aufteilung-in-batchrahmen-und-batchlogik]]
-=== Die Aufteilung in Batchrahmen und Batchlogik
+==== Die Aufteilung in Batchrahmen und Batchlogik
 
 Das Einlesen und Verarbeiten von Datensätzen durch den Aufruf fachlicher Komponenten wird in diesem Dokument _Batchlogik_ genannt.
 Diese ist spezifisch für genau eine Batch-Implementierung.
@@ -112,7 +118,7 @@ Diese Funktionalität wird in einer Batch-Implementierung durch eine querschnitt
 Diese wird über eine Bibliothek bereitgestellt, welche in jede Fachanwendung eingebunden wird.
 
 [[grobe-architektur-des-batchrahmens]]
-=== Grobe Architektur des Batchrahmens
+==== Grobe Architektur des Batchrahmens
 
 Für den Batchrahmen wurde folgende grobe Architektur gewählt:
 
@@ -136,7 +142,7 @@ Bei Bedarf können in einem Batch auch weitere Datenbankverbindungen genutzt wer
 Die Einbindung weiterer Datenbanken ist in <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
 
 [[batches-als-eigenes-it-system]]
-== Batches als eigenes IT-System
+=== Batches als eigenes IT-System
 
 Batches existieren meistens als weiterer Zugangsweg in der Nutzungsschicht einer bestehenden Fachanwendung
 (siehe <<image-AnwLogBat>>), da sie auf den Daten des jeweiligen Anwendungssystems operieren.
@@ -154,10 +160,10 @@ In diesem Fall ist das Anwendungssystem architektonisch ein eigenständiges IT-S
 Batches die zu einer Fachanwendung gehören sollen jedoch nicht als eigenständiges IT-System umgesetzt werden.
 
 [[anforderungen]]
-= Anforderungen
+== Anforderungen
 
 [[anforderungen-an-den-batchrahmen]]
-== Anforderungen an den Batchrahmen
+=== Anforderungen an den Batchrahmen
 
 Für den Batchrahmen selbst gelten folgende Anforderungen:
 
@@ -169,7 +175,7 @@ Annahmen in Bezug auf) die Batchlogik stellen.
 * Die Batchrahmen-Implementierung soll programmtechnisch effizient sein.
 
 [[anforderungen-an-die-batchimplementierung]]
-== Anforderungen an die Batchimplementierung
+=== Anforderungen an die Batchimplementierung
 
 Für die umzusetzende Batchlogik gelten folgende Anforderungen:
 
@@ -199,7 +205,7 @@ Es ist eine Datei-Namenskonvention für die Batch-Implementierung festzulegen.
 Die Unterverzeichnisstruktur und die Anzahl der darin enthaltenen Dateien sollen parametrisierbar sein.
 
 [[anforderungen-an-die-dokumentation-von-batches]]
-== Anforderungen an die Dokumentation von Batches
+=== Anforderungen an die Dokumentation von Batches
 
 Für die Dokumentation von Batches gelten neben der lückenlosen und kurzen Beschreibung der durchgeführten Funktionen noch folgende Anforderungen:
 
@@ -212,7 +218,7 @@ Analog zum zuvor genannten Punkt soll dies eine Hilfe für den Betreiber zur Kal
 * Abhängigkeiten von Batches werden dargestellt.
 
 [[ausgrenzungen]]
-= Ausgrenzungen
+== Ausgrenzungen
 
 Der bereitzustellende Batchrahmen soll ein unkompliziertes und einfach zu verwendendes Framework sein.
 Seine Funktionalitäten sollen lediglich die Verarbeitung, nicht andere betriebliche Aspekte abdecken.
@@ -243,7 +249,7 @@ Multithreading innerhalb eines Batches wird nicht unterstützt.
 
 
 [[der-batchrahmen]]
-= Der Batchrahmen
+== Der Batchrahmen
 
 Der Batchrahmen ist das Framework, in welches sich die Logik eines konkreten Batches einfügt.
 Der Batchrahmen ruft (anhand einer Konfiguration) diese Logik auf.
@@ -271,7 +277,7 @@ Im Einzelnen werden die folgenden Aspekte beschrieben:
 * Das Deployment der Batches einer Fachanwendung.
 
 [[die-status-und-startarten-des-batchrahmens]]
-== Die Status und Startarten des Batchrahmens
+=== Die Status und Startarten des Batchrahmens
 
 Im Folgenden werden die Status beschrieben, in welchen sich ein Batch laut den Batchrahmen-Tabellen befinden kann.
 Zusätzlich werden, basierend auf diesen Status, die Möglichkeiten zum Starten eines Batchlaufs beschrieben.
@@ -310,10 +316,10 @@ Folgende Startarten sind möglich:
 `ignoriereRestart`: Der Batch startet neu und beginnt die Verarbeitung mit dem ersten Datensatz.
 
 [[die-konfiguration-des-batchrahmens]]
-== Die Konfiguration des Batchrahmens
+=== Die Konfiguration des Batchrahmens
 
 [[konfigurationsdatei-und-kommandozeilen-parameter]]
-=== Konfigurationsdatei und Kommandozeilen-Parameter
+==== Konfigurationsdatei und Kommandozeilen-Parameter
 
 Die Konfiguration des Batchrahmens wird über zwei Arten durchgeführt: Über Kommandozeilen-Parameter und über eine Konfigurationsdatei.
 
@@ -378,7 +384,7 @@ umgesetzt werden.
 Dateien, egal ob für Kommandozeilenparameter oder für Properties, müssen mit absoluten Pfaden angegeben werden.
 
 [[betriebliche-konfiguration-der-ausfuehrungsbean]]
-=== Betriebliche Konfiguration der Ausführungsbean
+==== Betriebliche Konfiguration der Ausführungsbean
 
 Sämtliche obigen Parameter müssen vom Betrieb nicht angepasst werden.
 Falls im Ausnahmefall die Batch-ID angepasst werden muss, kann dies über den Kommandozeilen-Parameter –BatchId <BatchId> geschehen.
@@ -401,7 +407,7 @@ Diese Datei kann als Properties-Bean geladen und der Ausführer-Bean per Depende
 Diese Möglichkeit ist zu verwenden, falls für verschiedene Batches verschiedene Konfigurationsdateien benötigt werden.
 
 [[die-konfiguration-der-spring-kontexte]]
-=== Die Konfiguration der Spring-Kontexte
+==== Die Konfiguration der Spring-Kontexte
 
 Wie in Kapitel <<grobe-architektur-des-batchrahmens>> beschrieben, werden für einen Batch zwei Spring-Kontexte erzeugt:
 
@@ -422,7 +428,7 @@ Die Spring-Konfiguration für den Kontext des Batchrahmens muss neu erstellt wer
 Hierfür nehme man Datei resources/batch/rahmen/Batchrahmen.xml der Vorlageanwendung und passe die Konfiguration der Ausführungsbeans an.
 
 [[die-tabellen-des-batchrahmens]]
-== Die Tabellen des Batchrahmens
+=== Die Tabellen des Batchrahmens
 
 Der Batchrahmen benötigt für seine Checkpoint / Restart Funktionalität die Möglichkeit, bei jedem Commit den aktuellen Stand des Batches in einer Tabelle zu speichern.
 Dies wird über die Tabelle BatchStatus umgesetzt.
@@ -466,7 +472,7 @@ Die Tabelle liegt im Datenbank-Schema der eigenen Fachanwendung.
 Es darf keine übergreifenden Tabellen oder ein übergreifendes Datenbankschema für alle Batches gemäß IsyFact-Architektur geben.
 
 [[verwaltung-der-tabelle]]
-=== Verwaltung der Tabelle
+==== Verwaltung der Tabelle
 
 Die Tabelle dient nicht der Steuerung des Batches über den Betrieb, sondern nur der Ablage von Informationen zwischen zwei Batch-Läufen.
 Die Befüllung der Tabelle wird deshalb komplett über den Batchrahmen durchgeführt: Es müssen keine Datensätze manuell befüllt werden: Ist ein Datensatz für einen Batch noch nicht vorhanden, wird er angelegt.
@@ -478,61 +484,58 @@ Zusätzlich wird als Hibernate Locking-Strategie LOCK_NOWAIT verwendet: Falls au
 Die parallele Ausführung zweier Batches mit gleicher Batch-ID ist nicht erlaubt und soll zum Fehler führen.
 
 [[die-transaktionssteuerung]]
-== Die Transaktionssteuerung
+=== Die Transaktionssteuerung
 
 In der Property-Datei des Batchrahmens wird die Commit-Rate für den Batch über eine Property konfiguriert.
 Die Transaktionssteuerung für einen Batch arbeitet daraufhin folgendermaßen:
 
-* Die Spring Kontexte werden außerhalb einer Transaktion instanziiert.
-Danach wird die Kontrolle von der BatchLauncher-Klasse an die Batchrahmen-Bean weitergegeben.
-+
-NOTE: BatchLauncher: Die Start-Anwendung, welche die Kommandozeile interpretiert und die Spring-Kontexte erzeugt.
-+
+* Die Klasse `BatchLauncher` liest die Kommandozeile ein, interpretiert die Parameter und erzeugt alle notwendigen Spring-Kontexte.
+Dies geschieht außerhalb einer Transaktion.
+Danach gibt die Klasse die Kontrolle an die Batchrahmen-Bean weiter.
 * Die Batchrahmen-Bean startet eine erste Transaktion.
 Sie aktualisiert die Batchrahmen-Tabellen und initialisiert die Ausführungsbean in dieser Transaktion.
-Die Ausführungsbean führt im Rahmen dieser Transaktion das „Vorlesen“ bis zum letzten Checkpunkt sowie ggf.
-nötige Initialisierungen durch.
+Die Ausführungsbean führt im Rahmen dieser Transaktion das „Vorlesen“ bis zum letzten Checkpoint sowie ggf. nötige Initialisierungen durch.
 Die Transaktion wird beendet.
 * Für die Satz-Verarbeitung wird eine neue Transaktion gestartet.
 * Die einzelnen Datensätze werden verarbeitet.
-Bei Erreichung eines Checkpunkts wird die Status-Tabelle aktualisiert, die Transaktion committed und eine neue gestartet.
-* Sobald der letzte Datensatz verarbeitet wurde, wird die Status-Tabelle aktualisiert, auf der Ausführer-Bean eine shutdown-Methode aufgerufen und die (letzte) Transaktion beendet.
+Bei Erreichung eines Checkpoints wird die Status-Tabelle aktualisiert, die Transaktion abgeschlossen (Commit) und eine neue gestartet.
+* Sobald der letzte Datensatz verarbeitet wurde, wird die Status-Tabelle aktualisiert, auf der Ausführungsbean eine Shutdown-Methode aufgerufen und die (letzte) Transaktion beendet.
 
 Das Verhalten in Fehlerfällen ist zu jedem Zeitpunkt während der Verarbeitung gleich: Der Fehler wird geloggt und die Transaktion zurückgerollt.
-Danach wird versucht, eine neue Transaktion zu starten, um die Status-Tabelle zu aktualisieren: Der Status wird auf „abgebrochen“ gesetzt und die Spalte DatumLetzterAbbruch auf den aktuellen Zeitpunkt.
-Daraufhin wird versucht, diese Transaktion zu committen.
+Danach wird versucht, eine neue Transaktion zu starten, um die Status-Tabelle zu aktualisieren: Der Status wird auf `abgebrochen` gesetzt und die Spalte `DatumLetzterAbbruch` auf den aktuellen Zeitpunkt.
+Daraufhin wird versucht, diese Transaktion abzuschließen.
 
-NOTE: Schlägt die Aktualisierung auf „Abbruch“ der Statustabelle fehl, steht weiterhin „Laeuft“ als Status in der Tabelle.
-Der nächste Lauf muss dann mit „-ignoriereLauf“ gestartet werden.
+WARNING: Schlägt diese Transaktion fehl, kann der Batchrahmen den Abbruch nicht persistent speichern.
+Der nächste Lauf muss dann mit dem Parameter `-ignoriereLauf` gestartet werden.
 
 [[die-restart-funktionalitaet]]
-== Die Restart Funktionalität
+=== Die Restart Funktionalität
 
 Falls ein Batch durch einen Fehler oder durch das Erreichen der Anzahl zu verarbeitender Datensätze abgebrochen ist, muss ein Restart für ihn durchgeführt werden.
 In diesem Fall müssen alle bereits verarbeiteten Datensätze übersprungen werden.
 Ebenso wird die Wiederanlauffähigkeit nach manuellem Terminieren durch das Signal `kill -15` sichergestellt.
 
 [[die-konfiguration-im-restart-fall]]
-=== Die Konfiguration im Restart-Fall
+==== Die Konfiguration im Restart-Fall
 
 Im Restart-Fall wird nicht überprüft, dass die übergebenen Parameter denen entsprechen, die im ursprünglichen Lauf übergeben wurden.
 Es muss daher bei einem Restart manuell darauf geachtet werden, dass die gleichen Parameter übergeben werden.
 
 [[beenden-eines-laufs-mit-kill--15-und-wiederanlauf]]
-=== Beenden eines Laufs mit `kill -15` und Wiederanlauf
+==== Beenden eines Laufs mit `kill -15` und Wiederanlauf
 
 Durch Senden des Signals `kill -15` kann ein aktiver Batchlauf beendet werden.
 Beim Empfang des Signals wird der aktuelle Datensatz zu Ende bearbeitet und der Batch terminiert im wohldefinierten Zustand.
 In der Statustabelle ist dann der Status „abgebrochen“ vermerkt und der Batchlauf kann mit dem Parameter „-restart“ wieder aufgesetzt werden.
 
 [[wiederanlauf-nach-abbruch-durch-die-ueberschreitung-der-maximalen-laufzeit]]
-=== Wiederanlauf nach Abbruch durch die Überschreitung der maximalen Laufzeit
+==== Wiederanlauf nach Abbruch durch die Überschreitung der maximalen Laufzeit
 
 Falls der Batch mit dem „laufzeit“-Parameter gestartet wurde, wird nach Überschreitung der angegebenen maximalen Laufzeit der aktuelle Datensatz zu Ende bearbeitet und der Batch terminiert im wohldefinierten Zustand.
 In der Statustabelle ist dann der Status „abgebrochen“ vermerkt und der Batchlauf kann mit dem Parameter „-restart“ wieder aufgesetzt werden.
 
 [[wiederanlauf-nach-abbruch-durch-kill--9]]
-=== Wiederanlauf nach Abbruch durch `kill -9`
+==== Wiederanlauf nach Abbruch durch `kill -9`
 
 Durch Senden des Signals `kill -9` wird der aktive Batchprozess von Betriebssystemseite beendet.
 Dabei wird der Java-Prozess direkt entfernt ohne die Möglichkeit, den Batchrahmen definiert zu terminieren.
@@ -541,7 +544,7 @@ Da der Batchrahmen in dieser Situation kein Status-Update mehr schreiben kann, b
 Ein Wiederanlauf in dieser Situation ist mit dem Parameter „-restart“ möglich.
 
 [[das-vorlesen-durch-die-ausfuehrungsbean]]
-=== Das Vorlesen durch die Ausführungsbean
+==== Das Vorlesen durch die Ausführungsbean
 
 Um den Batch nach einem Fehler zum nächsten zu bearbeiteten Datensatz „vorlesen“ zu lassen, muss dieser Datensatz identifiziert werden.
 Dies geschieht zum einen durch den Batchrahmen selbst, welcher die Anzahl der bereits verarbeiteten Datensätze speichert.
@@ -556,7 +559,7 @@ Bei einem Restart wird der Ausführungsbean in der Initialisierungsmethode über
 Der Bean ist es überlassen, das Vorlesen effizient durchzuführen (etwa durch die Aufnahme des Schlüssels in das Selektionskriterium einer Query).
 
 [[die-ueberwachungs-funktionalitaet]]
-== Die Überwachungs-Funktionalität
+=== Die Überwachungs-Funktionalität
 
 Die Verarbeitung eines Batches soll überwacht und nachverfolgt werden können.
 Für die Nachverfolgung können durch die Verarbeitungsbean zu verschiedenen Zeitpunkten Log-, Statistik- oder Protokoll-Einträge erstellt werden:
@@ -618,7 +621,7 @@ Die Datei benötigt einen Eintrag für die Rolle controlRole oder für eine beli
 Datei `JRE_HOME/lib/management/jmxremote.access` readwrite-Zugriff erlaubt ist.
 
 [[authentifizierung-und-autorisierung]]
-== Authentifizierung und Autorisierung
+=== Authentifizierung und Autorisierung
 
 Ein Batch wird innerhalb der Plattform gestartet.
 Dazu verwendet der Batch die Benutzerkennung eines technischen Benutzers „internes System“, die in seiner Startkonfiguration (als Konfigurationsdatei) hinterlegt und im Benutzerverzeichnis vorhanden ist.
@@ -660,7 +663,7 @@ Enthält eine Anwendung mehrere Batches, so enthält sie auch mehrere BatchAusf�
 eigenen Benutzer ausstatten.
 
 [[das-deployment-eines-batches]]
-== Das Deployment eines Batches
+=== Das Deployment eines Batches
 
 Die Batches werden nicht einzeln deployed.
 Stattdessen wird ein Paket angeboten, welches sämtliche Batches der Fachanwendung enthält.
@@ -702,7 +705,7 @@ Falls der Batch nicht auf dem Server der Webanwendung läuft, muss die Konfigura
 Beim Deployment des Batch-Pakets werden über symbolische Links diese betriebliche Konfigurationsdatei referenziert.
 
 [[rueckgabewerte-des-batchrahmens]]
-== Rückgabewerte des Batchrahmens
+=== Rückgabewerte des Batchrahmens
 
 Der Batchrahmen endet mit einem Returncode und erzeugt optional zusätzlich noch ein ausführliches Verarbeitungsergebnis in Form einer Ergebnisdatei im XML-Format.
 Die Ergebnisdatei ist eine *fachliche Datei*, sie enthält keine betrieblichen Informationen.
@@ -795,7 +798,7 @@ Ereignis eingetreten ist:
 |====
 
 [[testmodus]]
-== Testmodus
+=== Testmodus
 
 Der Batch im Testmodus arbeitet analog zum normalen Wirkbetrieb, jedoch werden keine Änderungen an Datenbeständen vom Anwendungssystem oder Nachbarsystemen durchgeführt.
 Der Testmodus ist für den Betrieb wichtig, um Abschätzungen der Laufzeit durchführen zu können und somit den Batchbetrieb planen können.
@@ -810,7 +813,7 @@ Nachbarsystemen statt, welche Änderungen in deren Datenbestand zur Folge hätte
 Kapitel <<testmodus-ohne-schreiboperationen>>).
 
 [[testmodus-mit-rollback]]
-=== Testmodus mit Rollback
+==== Testmodus mit Rollback
 
 Dieses Muster sieht vor, dass bei der Batchverarbeitung statt eines Commits ein Rollback ausgeführt wird, so dass die Änderungen, die durch den Batch erzeugt werden, nicht in die Datenbank geschrieben werden.
 Das Muster ist für datenbankorientierte Batches gut geeignet, die keine Änderungen an Nachbarsystemen erfordern.
@@ -852,7 +855,7 @@ und bei der Bestimmung der Laufzeit eines Batches.
 Zusätzlich ist bei einer entsprechenden Protokollierung nachvollziehbar, welche Datensätze der Batch verarbeitet hat.
 
 [[testmodus-ohne-schreiboperationen]]
-=== Testmodus ohne Schreiboperationen
+==== Testmodus ohne Schreiboperationen
 
 Ein weiteres Konzept für die Umsetzung des Testmodus sieht vor, dass ändernde Operationen in der Datenbank unterbunden werden. Änderungen in der Datenbank oder in Nachbarsystemen werden durch entsprechende If-Abfragen abgefangen.
 
@@ -864,21 +867,21 @@ durchgeführten Änderungen eines Batches vorab zu überprüfen.
 Es ist nicht geeignet zur Bestimmung der Laufzeit oder für die vollständige Sicherstellung der fehlerfreien Batchausführung, da Fehler bei Schreiboperationen in die Datenbank oder dem Aufruf von Nachbarsystemen nicht auftreten können.
 
 [[die-ausfuehrungsbeans]]
-= Die Ausführungsbeans
+== Die Ausführungsbeans
 
 Im vorangegangenen Kapitel wurden die Eigenschaften des Batchrahmens erläutert.
 Dieser existiert bereits und muss verwendet werden, indem Ausführungsbeans dafür entwickelt werden.
 In diesem Kapitel werden Vorgaben für die Ausführungsbeans definiert.
 
 [[keine-transaktionssteuerung-in-einer-ausfuehrungsbean]]
-== Keine Transaktionssteuerung in einer Ausführungsbean
+=== Keine Transaktionssteuerung in einer Ausführungsbean
 
 Eine Ausführungsbean darf keine Transaktionen starten oder beenden.
-Sämtliche vom Batchrahmen aufgerufenen Operationen (Operationen von Interface BatchAusfuehrungsBean) werden innerhalb einer Transaktion aufgerufen.
+Sämtliche vom Batchrahmen aufgerufenen Operationen (Operationen von Interface `BatchAusfuehrungsBean`) werden innerhalb einer Transaktion aufgerufen.
 Die Ausführungsbean muss sich hiermit nicht befassen.
 
 [[logging-protokollierung-und-statistik-aufrufe-implementieren]]
-== Logging, Protokollierung und Statistik-Aufrufe implemen­tieren
+=== Logging, Protokollierung und Statistik-Aufrufe implementieren
 
 Der Batchrahmen führt Logging nur im Fehlerfall durch.
 Die restlichen Informationen müssen durch die Ausführungsbean geloggt, protokolliert oder einer Statistik-Komponente übergeben.
@@ -892,13 +895,12 @@ Dazu wird die Ausführungsbean bei allen wichtigen Ereignissen aufgerufen:
 
 Jeder Batch erhält beim Logging eine eigene Korrelations-ID.
 
-[INFO]
-Die Korrelations-ID für Batches war in älteren Versionen des Batchrahmens die ID des Batches statt einer UUID.
+WARNING: Die Korrelations-ID für Batches war in älteren Versionen des Batchrahmens die ID des Batches statt einer UUID.
 
 Zusätzlich erhält jeder zu verarbeitende Satz eine die Satznummer als Korrelations-ID.
 
 [[fachliche-logik-in-den-komponenten-der-fachanwendung-implementieren]]
-== Fachliche Logik in den Komponenten der Fachanwendung implementieren
+=== Fachliche Logik in den Komponenten der Fachanwendung implementieren
 
 Falls für die Verarbeitung im Batch Fachlogik benötigt wird, welche für die Webanwendung nicht benötigt wird, ist diese trotzdem den Fachanwendungskomponenten hinzuzufügen.
 Die Ausführungsbean erhält die Referenzen auf die Komponenten über Dependency Injection und ruft die Fachlogik dort auf.
@@ -906,14 +908,14 @@ Die Ausführungsbean erhält die Referenzen auf die Komponenten über Dependency
 Auch wenn in Sonderfällen Datenbank-Aufrufe direkt durch die Ausführungsbean ausgeführt werden müssen, ist die sonstige fachliche Logik an die Fachkomponenten der Fachanwendung zu delegieren.
 
 [[plausibilitaetspruefung-in-der-initialisierung]]
-== Plausibilitätsprüfung in der Initialisierung
+=== Plausibilitätsprüfung in der Initialisierung
 
 Im Rahmen der Initialisierung hat die Ausführungsbean unter anderem die Aufgabe, die Konsistenz und Korrektheit der Eingabedaten zu prüfen.
 Dies kann beispielsweise ein erstes Durchlaufen der zu verarbeitenden Datei beinhalten.
 Werden hierbei Fehler erkannt, muss ein entsprechender Fehler geworfen werden.
 
 [[in-initialisierung-schluessel-lesen-satz-verarbeitung-ueber-lookups]]
-== In Initialisierung Schlüssel lesen, Satz-Verarbeitung über Lookups
+=== In Initialisierung Schlüssel lesen, Satz-Verarbeitung über Lookups
 
 Falls die zu verarbeitenden Sätze eines Batches das Ergebnis einer Datenbank-Query sind, ist folgendermaßen vorzugehen:
 
@@ -935,14 +937,14 @@ NOTE: Falls (in einem ungewöhnlichen Sonderfall) mit `ResultSet`-Iteratoren gea
 * Durch das Ablegen der Schlüssel in einer Liste ist die Gesamtanzahl der Datensätze bekannt.
 
 [[informationen-zum-batch-benutzer-bereitstellen]]
-== Informationen zum Batch-Benutzer bereitstellen
+=== Informationen zum Batch-Benutzer bereitstellen
 
 Batches müssen beim Start einen Benutzer authentifizieren und autorisieren, bevor der fachliche Teil der Batchverarbeitung starten kann.
 Der Batchrahmen fordert von der Ausführungsbean die Bereitstellung der Informationen zum Benutzer, um diesen über die T-Komponente Sicherheit zu authentifizieren.
 Dazu ist für das Ausführungsbean die Methode `getAuthenticationCredentials()` umzusetzen.
 
 [[fehlerbehandlung-in-ausfuehrungsbeans-durchfuehren]]
-== Fehlerbehandlung in Ausführungsbeans durchführen
+=== Fehlerbehandlung in Ausführungsbeans durchführen
 
 Die Batches sind möglichst robust zu konstruieren: Falls auf ein fachliches Problem in der Ausführungsbean reagiert werden kann, sollte dies getan werden.
 
@@ -957,7 +959,7 @@ Wichtig ist, dass ein Batch bei einem Fehler, den der Batch nicht behandeln kann
 Dieses Vorgehen ermöglicht es dem Betrieb, die Ursache des Fehlers zu korrigieren und den Batch neu zu starten.
 
 [[beispiele-satzverarbeitung]]
-== Beispiele Satzverarbeitung
+=== Beispiele Satzverarbeitung
 
 Abschließend ist in die beispielhafte Satzverarbeitung in einer Batch-Ausführungsbean zu sehen Die gezeigte Satzverarbeitung setzt den Testmodus um, die Anwendungslogik ist weiterhin im Anwendungskern umgesetzt und sie übernimmt Logging, Protokollierung und Statistik-Zählung.
 
@@ -1000,7 +1002,7 @@ public VerarbeitungsErgebnis verarbeiteSatz() throws BatchAusfuehrungsException 
 ----
 
 [[sonderfall-blockloeschung]]
-=== Sonderfall Blocklöschung
+==== Sonderfall Blocklöschung
 
 Es ist nicht zwingend erforderlich, dass in einem Satz nur eine einzelne Aktion (bspw.
 Löschung) durchgeführt wird. Bei großen Datenmengen kann es durchaus Sinn sinnvoll sein, pro Satz eine bestimmte Anzahl Datensätze auf einmal zu verarbeiten, wie im folgenden Codebeispiel zu sehen ist.
@@ -1029,21 +1031,21 @@ public VerarbeitungsErgebnis verarbeiteSatz() throws BatchAusfuehrungsException 
 ----
 
 [[sonderfall-eigenstaendige-transaktionssteuerung]]
-=== Sonderfall eigenständige Transaktionssteuerung
+==== Sonderfall eigenständige Transaktionssteuerung
 
 Unter bestimmten Umständen kann es notwendig sein, die Transaktionssteuerung des Batchrahmens zu umgehen.
-Dies ist beispielsweise der Fall, wenn eine im Anwendungskern auftretende DatenbankException ignoriert werden soll.
-Das Auftreten einer solchen Exception führt dazu dass die Transaktion nicht mehr commitbar ist, selbst wenn die Exception gefangen und ignoriert wird.
+Dies ist beispielsweise der Fall, wenn ein im Datenzugriff auftretender Fehler aus der Datenbank ignoriert werden soll.
+Das Auftreten einer solchen Exception führt dazu, dass die Transaktion nur noch zurückgerollt werden kann, selbst wenn die Exception gefangen und ignoriert wird.
 
-Um dieser Problematik zu begegnen, kann in der Satzverarbeitung selber die Transaktionsklammer immer für einen Satz geöffnet und nach der Verarbeitung entweder commited oder zurückgerollt werden.
+Um dieser Problematik zu begegnen, kann in der Satzverarbeitung selbst die Transaktionsklammer nur für einen Satz geöffnet und nach der Verarbeitung entweder commited oder zurückgerollt werden.
 
 In diesem Fall sollte der Commit-Intervall des Batchrahmens entsprechend hoch konfiguriert werden, um unnötige Commits zu vermeiden, auch wenn in dieser Transaktion nichts passiert.
 
 [[shell-batches]]
-= Shell-Batches
+== Shell-Batches
 
 [[was-ist-ein-shell-batch]]
-== Was ist ein Shell-Batch?
+=== Was ist ein Shell-Batch?
 
 Als Shell-Batch wird ein Shell-Skript bezeichnet, das Stapelverarbeitungsbefehle ausführt, die direkt in diesem Skript definiert sind.
 Reguläre Batches werden meist ebenfalls über ein Shell-Skript gestartet, ihre Logik ist aber in Java programmiert.
@@ -1059,7 +1061,7 @@ Es gibt aber auch Systeme die im regulären Wirkbetrieb regelmäßig Shell-Batch
 um Datenbankabzüge für statistische Auswertungen zu erstellen.
 
 [[aufbau-von-shell-batches]]
-== Aufbau von Shell-Batches
+=== Aufbau von Shell-Batches
 
 Ein Shell-Batch besteht aus einem SH-Skript und ggf.
 weiteren Dateien:
@@ -1187,7 +1189,7 @@ unter `src/main/skripte/shellbatch_template/` eingecheckt.
 Um dieses ausführen zu können, muss eine funktionierende Datenbankverbindung auf ein leeres Schema in der jpa.properties Datei angegeben werden.
 
 [[ausnahmeregelungen]]
-= Ausnahmeregelungen
+== Ausnahmeregelungen
 
 In bestimmten Situationen, z. B. bei der Verarbeitung extrem großer Datenmengen, kann der Fall auftreten, dass die Implementierung eines Batchschritts in Java nicht sinnvoll ist.
 In solchen Fällen muss dann eine Sonderlösung, wie z. B. ein SQL-Skript, gefunden werden.
@@ -1200,3 +1202,5 @@ Dabei muss die Abwägung getroffen werden zwischen der Einhaltung der nicht-funk
 Wichtig ist, dass die einheitliche Außenschnittstelle der Batchschritte erhalten bleibt, d. h. anhand der übergebenen Parameter, Rückgabewerte, geloggten Daten darf für den Nutzer des Batchschritts nicht erkennbar sein, dass dieser in einer anderen Technologie umgesetzt ist.
 
 Die Dokumentation der abweichenden Batchimplementierung erfolgt im Systementwurf und wird daraus in die Systemdokumentation übernommen.
+
+// end::inhalt[]

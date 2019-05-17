@@ -37,5 +37,5 @@ Java Bibliothek / IT-System
 [cols="3,1,2",options="header"]
 |====
 |Name |Art |Version
-|isy-batchrahmen |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-batchrahmen |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

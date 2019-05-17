@@ -535,24 +535,9 @@ Außerdem wird standardmäßig der `JpaTransactionManager` verwendet, passend zu
 
 [NOTE]
 ====
-Die Abhängigkeiten des `JpaTransactionManager` kommen aus der Implementierung des Datenzugriffs.
+Die Abhängigkeiten des `JpaTransactionManager` kommen aus der Datenzugriffsschicht.
 Weitere Details sind im <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
 ====
-
-//[[bei-batch-verarbeitung-regelmaessig-session-cache-leeren]]
-//==== Bei Batch-Verarbeitung regelmäßig Session-Cache leeren
-//
-//Im Batch wird die Transaktionssteuerung über den „Batch-Rahmen“ definiert.
-//Da hier eine große Anzahl an Transaktionen innerhalb einer Session durchgeführt werden, muss der
-// Session-Cache in regelmäßigen Abständen geflushed und geleert werden: Ansonsten würden die Objekte
-// aller Transaktionen im Cache gehalten werden und könnten nicht durch die Garbage Collection entfernt werden.
-//
-//Die Logik des Batch-Rahmens inklusive seiner Wiederaufsetzpunkte und Commit-Raten wird in einem
-//separaten Konzept beschrieben (siehe <<Batch>>). Im gleichen Konzept wird auch der Code genannt, der zum
-//Löschen des Caches notwendig ist.
-//
-//
-//
 
 [[aspektorientierte-programmierung-in-spring]]
 === Aspektorientierte Programmierung in Spring
