@@ -423,7 +423,7 @@ Wie bereits erwähnt, wird Polling in der Regel in einem Verarbeitungszyklus imp
 Der Verarbeitungszyklus kann eine oder nacheinander mehrere Datenquellen abfragen, für die jeweils ein Polling-Cluster definiert sein kann.
 Für jeden Polling-Cluster werden in einem Verarbeitungszyklus die folgenden Schritte ausgeführt:
 
-1. <<listing-AbfragePollingVerwalter>>, ob das Polling für den Cluster gestartet werden darf.
+. <<listing-AbfragePollingVerwalter>>, ob das Polling für den Cluster gestartet werden darf.
 Ist das nicht der Fall, ist die Verarbeitung für den Cluster beendet.
 
 :desc-listing-AbfragePollingVerwalter: Abfrage des Polling-Verwalters
@@ -442,7 +442,7 @@ fuehreVerarbeitungDurch();
 ----
 
 [start=2]
-2. Durchführen der Verarbeitung für jeden Datensatz.
+. Durchführen der Verarbeitung für jeden Datensatz.
 Am Ende der Verarbeitung eines Datensatzes wird der Zeitpunkt der letzten Polling-Aktivität aktualisiert.
 
 :desc-listing-VerarbeitungDatensatz: Verarbeitung für jeden Datensatz
