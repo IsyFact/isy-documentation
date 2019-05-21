@@ -4,6 +4,7 @@ include::../../../common/attributes.adoc[]
 //
 :doctitle: Nutzungsvorgaben IsyFact-Benutzerverwaltung
 :title: {doctitle}
+:factory: IsyFact-Erweiterungen
 
 // Zwangsplatz des TOC
 

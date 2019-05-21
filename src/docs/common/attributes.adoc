@@ -98,7 +98,7 @@ ifeval::["{lang}" == "de"]
 :listing-caption: Listing
 :manname-title: BEZEICHNUNG
 :note-caption: Anmerkung
-:preface-title: Lizenz und Ansprechpartner
+:preface-title: Nutzungsbedingungen und Ansprechpartner
 :table-caption: Tabelle
 :tip-caption: Hinweis
 :toc-title: Inhaltsverzeichnis

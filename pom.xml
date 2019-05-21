@@ -1134,8 +1134,8 @@
                                 ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/10_Systemspezifikation/Nutzung-Enterprise-Architect.pdf
                             </outputFile>
                         </configuration>
-                    </execution>  
-                    
+                    </execution>
+
                     <execution>
                         <id>Java-Programmierkonventionen-html</id>
                         <phase>generate-resources</phase>
@@ -1308,6 +1308,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Session-Management/Konzept_Session_Management.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 
@@ -1343,6 +1346,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Session-Management/Nutzungsvorgaben_Isy-session.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 
@@ -1378,6 +1384,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/30_Plattform/Konzept_Logging-Intrastruktur_ELK.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 
@@ -1413,6 +1422,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/30_Plattform/Nutzungsvorgaben_Redis.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 

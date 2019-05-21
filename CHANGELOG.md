@@ -3,6 +3,7 @@
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
 - `IFE-35`: Dokumentation von List Picker Filterung mit Servlets hinzugefügt.
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- `IFE-45`: Vorlagen um Colophon und PDF-Theme für Closed-Source-Dokumente erweitert
 - `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
 - `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
