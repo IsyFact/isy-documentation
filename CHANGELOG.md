@@ -1,11 +1,21 @@
 # 1.7.0
+- `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
+- `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
+- `IFE-35`: Dokumentation von List Picker Filterung mit Servlets hinzugefügt.
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
+- `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
 - `IFS-241`: Custom Admonition Blocks
+- `IFS-270`: Hinweis zu Korrelations-IDs (UUID statt Batch-ID) bei Batches hinzugefügt
 - `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 - `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
 - `IFS-298`: Tutorial auf Maven Central umgestellt
 - `IFS-299`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
+- `IFS-222`: Filter Reihenfolge für Encoding angepasst
+- `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
+- `IFE-240`: Verweis auf Änderungshistorie in jedes Dokument aufgenommen.
+
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls

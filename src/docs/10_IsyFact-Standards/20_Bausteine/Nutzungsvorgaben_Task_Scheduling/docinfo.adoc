@@ -5,10 +5,9 @@
 |Dokumenten-ID:| Nutzungsvorgaben_Task_Scheduling
 |====
 
-//|Datum |Version |Änderungsgrund
-//|16.10.2017 |0.1 |Initiale Version
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
-Java Bibliothek / IT-System
+*Java Bibliothek / IT-System*
 
 [cols="5,2,3"]
 |====
