@@ -493,7 +493,7 @@ Die Tabelle liegt im Datenbank-Schema der eigenen Fachanwendung.
 Es darf keine übergreifenden Tabellen oder ein übergreifendes Datenbankschema für alle Batches gemäß IsyFact-Architektur geben.
 
 [[verwaltung-der-tabelle]]
-==== Verwaltung der Tabelle
+=== Verwaltung der Tabelle
 
 Die Tabelle dient nicht der Steuerung des Batches über den Betrieb, sondern nur der Ablage von Informationen zwischen zwei Batch-Läufen.
 Die Befüllung der Tabelle wird deshalb komplett über den Batchrahmen durchgeführt: Es müssen keine Datensätze manuell befüllt werden: Ist ein Datensatz für einen Batch noch nicht vorhanden, wird er angelegt.
