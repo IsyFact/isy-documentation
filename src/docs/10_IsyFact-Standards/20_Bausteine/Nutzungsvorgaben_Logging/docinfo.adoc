@@ -34,6 +34,6 @@ Java Bibliothek / IT-System
 [options="header",cols="3,1,2"]
 |====
 |Name |Art |Version
-|isy-logging |Bibliothek |siehe isyfact-bom v1.5.x
-|Isy-logging-log4j-bridge |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-logging |Bibliothek |siehe isyfact-bom v{version-ifs}
+|Isy-logging-log4j-bridge |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

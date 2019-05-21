@@ -33,6 +33,7 @@
 [cols="5,2,3"]
 |====
 |Name |Art |Version
-|`isy-sicherheit` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
-|`isy-aufrufkontext` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
+|isy-sicherheit |Bibliothek |siehe isyfact-bom v{version-ifs}
+|rf-sicherheit-cams |Bibliothek |siehe rf-bom v1.10.x
+|isy-aufrufkontext |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

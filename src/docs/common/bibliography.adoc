@@ -201,10 +201,6 @@
 - [[[BaKi07]]] +
   Christian Bauer, Gavin King. Java Persistence with Hibernate. 2007. Manning Publications
 
-- [[[Batch]]] +
-  Batch-Verarbeitung mit Hibernate +
-  http://www.hibernate.org/hib_docs/v3/reference/en/html/batch.html (Zugriff am 10.12.2014)
-
 - [[[ITGrundschutzM471]]] +
   M 4.71 Restriktive Handhabung von Datenbank-Links +
   https://www.bsi.bund.de/DE/Themen/ITGrundschutz/ITGrundschutzKataloge/Inhalt/_content/m/m04/m04071.html +

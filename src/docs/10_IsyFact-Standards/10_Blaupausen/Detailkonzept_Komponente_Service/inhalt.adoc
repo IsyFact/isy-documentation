@@ -1,31 +1,30 @@
+= Detailkonzept Service: Inhalt
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+
+// tag::inhalt[]
 [[namenskonventionen]]
-= Namenskonventionen
+== Namenskonventionen
 
 Die Service-URLs der HTTP-Invoker-Schnittstellen müssen einheitlich aufgebaut sein.
 Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben definiert.
 
 [[aufgaben-der-service-logik]]
-= Aufgaben der Service-Logik
+== Aufgaben der Service-Logik
 
 Die Service-Logik hat die folgenden Aufgaben:
 
-*Transformation:* Bei einem Serviceaufruf müssen die Transportobjekte der Service-Schnittstelle in passende Objekte des
-Anwendungskerns umgewandelt werden.
+*Transformation:* Bei einem Serviceaufruf müssen die Transportobjekte der Service-Schnittstelle in passende Objekte des Anwendungskerns umgewandelt werden.
 Außerdem muss das Ergebnis des Anwendungskerns wieder in ein Transportobjekt der Service-Schnittstelle umgewandelt werden.
 
-*Exception-Behandlung:* Tritt bei der Verarbeitung eines Service-Aufrufs im Anwendungskern oder in der Komponente
-"Service" eine Exception auf, so muss diese Exception in eine Exception der Service-Schnittstelle umgewandelt werden.
+*Exception-Behandlung:* Tritt bei der Verarbeitung eines Service-Aufrufs im Anwendungskern oder in der Komponente "Service" eine Exception auf, so muss diese Exception in eine Exception der Service-Schnittstelle umgewandelt werden.
 
-*Transaktion:* Die Komponente „Service“ übernimmt in der Regel auch die vollständige Transaktionssteuerung.
-Das bedeutet, die Komponente öffnet und schließt Transaktionsklammern und führt im Fehlerfall ein Rollback durch.
+*Autorisierung:* Für einen Service-Aufruf muss eine Anwendung überprüfen, ob der Aufrufer autorisiert ist die Service-Operation auszuführen.
 
-*Autorisierung:* Für einen Service-Aufruf muss eine Anwendung überprüfen, ob der Aufrufer autorisiert ist die
-Service-Operation auszuführen.
-
-*Logging:* Die Komponente muss die Korrelations-ID in den Logging-Kontext einfügen.
+*Logging:* Die Komponente muss die Korrelation-ID in den Logging-Kontext einfügen.
 
 [[aufbau-der-service-logik]]
-= Aufbau der Service-Logik
+== Aufbau der Service-Logik
 
 Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
 
@@ -36,39 +35,33 @@ image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
 
 Eine Service-Schnittstelle wird durch eine Fachanwendung entsprechend der Referenzarchitektur in Form einer
 HTTP-Invoker-Schnittstelle angeboten.
-Zum Aufruf dieser HTTP-Invoker-Schnittstelle definiert die Fachanwendung eine JAR-Datei, die die `RemoteBean`
-definiert und alle direkt oder indirekt verwendeten Transportobjekte der `RemoteBean`. Die JAR-Datei hat typischerweise
+Zum Aufruf dieser HTTP-Invoker-Schnittstelle definiert die Fachanwendung eine JAR-Datei, die die `RemoteBean` definiert und alle direkt oder indirekt verwendeten Transportobjekte der `RemoteBean`. Die JAR-Datei hat typischerweise
 den Namen `<Anwendungsname>-httpinvoker-sst-<servicename>-vx.y-z.jar`.
 
-NOTE: Als `RemoteBean` wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert. Mit diesem
-Interface wird durch die passende Spring-Konfiguration in der Fachanwendung die  HTTP-Invoker-Schnittstelle definiert.
+NOTE: Als `RemoteBean` wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert. Mit diesem Interface wird durch die passende Spring-Konfiguration in der Fachanwendung die  HTTP-Invoker-Schnittstelle definiert.
 
 Jeder Methode der RemoteBean wird eine Instanz der Klasse `AufrufKontextTo` übergeben.
-Diese Klasse ist Teil der Bibliothek `isy-serviceapi-sst`.
+Diese Klasse ist in der Bibliothek `isy-serviceapi-sst` definiert.
 Durch die Klasse werden jeder Methode der internen Service-Schnittstelle die Login-Daten (Benutzer,
-Behörde, Passwort), die Rollen und die Korrelations-ID übergeben.
+Behörde, Passwort), die Rollen und die Correlation-ID übergeben.
 
-Im Wesentlichen besteht die Service-Logik aus zwei Klassen:
+Im Wesentlichen besteht die Service-Logik aus zwei Klassen, die im folgenden näher beleuchtet werden.
 
-*Exception-Fassade:* Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern
-oder die Service-Logik geworfenen Exceptions in Exceptions der Service-Schnittstelle.
-Hierzu implementiert die Exception-Fassade das Remote-Bean-Interface der Service-Schnittstelle und definiert
-in jeder Methode einen `try`-`catch`-Block, der alle `Throwables` abfängt und in Exceptions der Service-Schnittstelle
-umwandelt.
+=== Aufbau der Exception-Fassade
+
+Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Logik geworfenen Exceptions in Exceptions der Service-Schnittstelle.
+Hierzu implementiert die Exception-Fassade das Remote-Bean-Interface der Service-Schnittstelle und definiert in jeder Methode einen try-catch-Block, der alle Fehler des Anwendungskerns abfängt und in Fehler der Service-Schnittstelle umwandelt.
 
 In <<listing-BSPExceptionFassade>> ist ein Beispiel für eine Exception-Fassade einer Fachanwendung angegeben.
 Die Service-Operationen sind in diesem Fall die Methoden des Interfaces `BeispielRemoteBean`.
 Konkret handelt es sich lediglich um eine Service-Operation nämlich `holeBeispielAnfrage`.
-Die Service-Operation ist mit der Annotation `@StelltLoggingKontextBereit` versehen, die eine mit dem `AufrufKontext`
-übergebene Korrelations-ID im Logging-Kontext registriert und diesen beim Verlassen der Methode wieder aufräumt.
+Die Service-Operation ist mit der Annotation `@StelltLoggingKontextBereit` versehen, die eine mit dem `AufrufKontext` übergebene Korrelations-ID im Logging-Kontext registriert und diesen beim Verlassen der Methode wieder aufräumt.
 
 NOTE: Falls im AufrufKontext keine Korrelations-ID vorhanden ist, so erzeugt die Annotation eine neue Korrelations-ID.
 
 Es ist wichtig den Logging-Kontext zu setzen, bevor die Exception-Fassade aktiv wird.
-Die Implementierung der Service-Operation reicht den Methodenaufruf an die implementierende Klasse (`BeispielService`)
-weiter, fängt auftretende Fehler jedoch über einen `try`-`catch`-Block ab.
-Der `try`-`catch`-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`DataAccessException`) und
-allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log-Dateien zu schreiben.
+Die Implementierung der Service-Operation reicht den Methodenaufruf an die implementierende Klasse (`BeispielService`) weiter, fängt auftretende Fehler jedoch über einen `try`-`catch`-Block ab.
+Der `try`-`catch`-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`DataAccessException`) und allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log-Dateien zu schreiben.
 
 :desc-listing-BSPExceptionFassade: Beispiel für eine Exception-Fassade
 [id="listing-BSPExceptionFassade",reftext="{listing-caption} {counter:listings }"]
@@ -96,34 +89,30 @@ public class BeispielExceptionFassade implements BeispielRemoteBean
 }
 ----
 
-*Service-Fassade:* Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
+=== Aufbau der Service-Fassade
+
+Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
 
 * Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt.
 Hierzu wird in der Regel ein Bean Mapper verwendet.
 Falls die Transformation kompliziert ist, kann die Transformation auch vollständig ausprogrammiert werden.
 Hierbei sind Kosten und Nutzen genau abzuwägen.
-* Sie öffnet und schließt die Transaktionsklammer und führt gegebenenfalls Rollbacks durch.
-Hierzu werden Annotationen verwendet (siehe <<DetailkonzeptKomponenteDatenzugriff>>).
 * Sie führt gegebenenfalls die Autorisierung des Aufrufs aus.
 Hierzu verwendet sie den Berechtigungsmanager (siehe <<NutzungsvorgabenSicherheit>>).
 
 In <<listing-BSPServiceFassade>> ist ein Beispiel für eine Service-Fassade angegeben.
 Die Implementierung der Service-Fassade erfolgt hier analog zur Implementierung der Exception-Fassade.
-Die nach außen angebotene Service-Operation (`holeBeispielAnfrage`) wird jedoch nicht 1:1 an die implementierende
-Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs unterscheiden.
+Die nach außen angebotene Service-Operation (`holeBeispielAnfrage`) wird jedoch nicht 1:1 an die implementierende Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs unterscheiden.
 Nach außen hin werden Transportobjekte angeboten.
 Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
-Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z. B. weil sie zusätzliche
-Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als
-die Transportobjekte.
+Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z. B. weil sie zusätzliche Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
 
 In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Servicemethode.
 Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die
 Annotation `@StelltAufrufKontextBereit` an der Servicemethode.
 Anschließend kann über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode geprüft werden.
 Hier werden alle benötigten Rechte des Aufrufers überprüft.
-Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche
-Autorisierung erfordern.
+Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche Autorisierung erfordern.
 Die Annotationen sind Bestandteil der T-Komponente Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
 
 Das Mapping im Beispiel wird durch einen Bean Mapper umgesetzt.
@@ -137,7 +126,6 @@ Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurations
 .{desc-listing-BSPServiceFassade}
 [source,java]
 ----
-@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
 public class BeispielServiceFassade {
     private static final IsyLoggerStandard logger = ...;
 
@@ -161,8 +149,50 @@ public class BeispielServiceFassade {
 }
 ----
 
+==== Transaktionssteuerung
+
+In der Regel geschieht die Transaktionssteuerung im Anwendungskern.
+Gibt es allerdings Anforderungen, aus denen heraus die Service-Fassade eine Transaktion über mehrere Aufrufe des Anwendungskerns hinweg bilden muss, so muss diese Transaktion über die Service-Fassade gesteuert werden.
+Die Aufgabe fällt der Service-Fassade zu, weil es wichtig ist, dass die Fehlerbehandlung auf jeden Fall die Transaktion umschließt.
+Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen, von der Fehlerbehandlung erfasst werden.
+
+Die Transaktionssteuerung wird an der jeweiligen Service-Methode angesetzt.
+Für das obige Beispiel verdeutlich dies <<listing-service-fassade-tx>>.
+
+:desc-listing-service-fassade-tx: Transaktionssteuerung in der Service-Fassade
+[id="listing-service-fassade-tx",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-service-fassade-tx}
+[source,java]
+----
+public class BeispielServiceFassade {
+    ...
+    @StelltAufrufKontextBereit
+    @Gesichert(Rechte.RECHT_ZUGRIFFBEISPIEL)
+    @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+    public BeispielHolenAntwortTo holeBeispielAnfrage(
+        AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage)
+        throws BeispielException {
+        ...
+    }
+    ...
+}
+----
+
+Eine Sonderstellung nehmen Services ein, die im Fehlerfall keinen Fehler zurückgeben, sondern die Fehler in der Antwortnachricht übermitteln.
+Der AOP-Transaktionsmanager wird niemals ein Rollback durchführen, da alle Exceptions abgefangen werden, auf die er reagieren könnte.
+Um auch in diesem Fall ein Rollback der Transaktion zu erzwingen, ist folgender Aufruf durchzuführen:
+
+:desc-listing-service-fassade-tx-rollback-only: Rollback von Transaktionen im Fehlerfall ohne Exceptions
+[id="listing-service-fassade-tx-rollback-only",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-service-fassade-tx-rollback-only}
+[source,java]
+----
+TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+----
+
+
 [[realisierung]]
-= Realisierung
+== Realisierung
 
 Service-Gateway (d. h. Service-Consumer oder Service-Provider) und Fachanwendungen teilen sich die Java-Klassen der
 RemoteBean-Schnittstelle:
@@ -197,46 +227,40 @@ HTTP-Invoker-Schnittstelle enthält:
 <Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1-0.jar
 ----
 
-Um die Implementierung einer Schnittstelle in zwei unterschiedlichen Versionen zu ermöglichen, wird die
-zweistellige Versionsnummer Teil der Maven-Artifact-ID.
-Um analog zu Komponenten eine dreistellige Versionsnummer zu erhalten, wird in der Maven-Datei eine einstellige
-Versionsnummer gesetzt.
+Um die Implementierung einer Schnittstelle in zwei unterschiedlichen Versionen zu ermöglichen, wird die zweistellige Versionsnummer Teil der Maven-Artifact-ID.
+Um analog zu Komponenten eine dreistellige Versionsnummer zu erhalten, wird in der Maven-Datei eine einstellige Versionsnummer gesetzt.
 Dies würde im Beispiel wie folgt aussehen:
 
 [source,xml]
 ----
-<project ...>
-    <groupId><Organisation>.<Domaene>.<Anwendungsname></groupId>
-    <artifactId><Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1</artifactId>
-    <version>0</version>
+<dependencies>
+    ...
+    <dependency>
+        <groupId><Organisation>.<Domäne>.<Anwendungsname></groupId>
+        <artifactId><Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1</artifactId>
+        <version>0</version>
+    </dependency>
+    ...
+</dependencies>
 ----
 
 Diese einstellige Version kann bei kompatiblen Änderungen erhöht werden, ohne dass eine neue ArtifactID vergeben werden muss.
 Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
 
-Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst und
-damit ein neues Projekt erzeugt.
+Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst und damit ein neues Projekt erzeugt.
+Inkompatible Änderungen der Schnittstelle sind z.B. das Entfernen von Attributen oder Operationen oder das Hinzufügen von Pflichtfeldern.
+Bei umfangreichen Anpassungen kann eine Erhöhung der ersten Stelle gerechtfertigt sein.
 
-NOTE: Inkompatible Änderungen der Schnittstelle sind das Entfernen von Attributen oder Operationen, das Hinzufügen von
-Pflichtfeldern und sonstige inkompatible Änderungen.
-
-Bei umfangreichen Anpassungen kann eine Erhöhung der ersten Stelle gerechtfertigt sein, dies ist mit den
-entsprechenden Gremien abzustimmen.
-
-Die Schnittstelle wird in der Regel in einer älteren Java-Version kompiliert als die Anwendung kompiliert ist,
-um die Schnittstelle auch in älteren Anwendungen einsetzen zu können.
-Wenn die Schnittstelle jedoch ausschließlich von einem Service Gateway bzw.
-einer Fachanwendung genutzt wird, welche die aktuelle Java-Version einsetzen, kann auch die Schnittstelle in der
-aktuellen Java-Version kompiliert werden.
+Die Schnittstelle wird in der Regel in einer älteren Java-Version kompiliert als die Anwendung kompiliert ist, um die Schnittstelle auch in älteren Anwendungen einsetzen zu können.
+Wenn die Schnittstelle jedoch ausschließlich von einem Service Gateway bzw. einer Fachanwendung genutzt wird, welche die aktuelle Java-Version einsetzen, kann auch die Schnittstelle in der aktuellen Java-Version kompiliert werden.
 
 [[nutzung]]
-= Nutzung
+== Nutzung
 
 Zur Nutzung einer entfernten Schnittstelle bindet ein Anwendungssystem das erstellte Schnittstellen-JAR ein und
 initialisiert die RemoteBeans damit.
 
-Das geschieht über die vom Spring Framework bereitgestellte Factory-Klasse `HttpInvokerProxyFactoryBean`, wie in
-<<listing-invokerconfig>> dargestellt.
+Das geschieht über die vom Spring Framework bereitgestellte Factory-Klasse `HttpInvokerProxyFactoryBean`, wie in <<listing-invokerconfig>> dargestellt.
 Auf dieser Bean können dann die entfernten Methoden aufgerufen werden.
 
 :desc-listing-invokerconfig: Konfiguration für die Nutzung einer entfernten Schnittstelle
@@ -274,10 +298,8 @@ Die Nutzung des hier im Beispiel verwendeten `TimeoutWiederholungHttpInvokerRequ
 Dieser Executor bricht nach dem angegebenen Timeout die Anfrage ab und wiederholt sie bis zur maximalen angegebenen
 Wiederholungsanzahl.
 
-Wenn die Anwendung isy-logging (<<NutzungsvorgabenLogging>>) nutzt, muss statt der Spring-eigenen Factory die
-erweiterte `IsyHttpInvokerProxyFactoryBean` genutzt werden.
-Sie versieht die RemoteBeans automatisch mit einem `LogMethodInterceptor`, der die Aufrufzeiten der ausgehenden
-Aufrufe misst und loggt.
+Wenn die Anwendung isy-logging (<<NutzungsvorgabenLogging>>) nutzt, muss statt der Spring-eigenen Factory die erweiterte `IsyHttpInvokerProxyFactoryBean` genutzt werden.
+Sie versieht die RemoteBeans automatisch mit einem `LogMethodInterceptor`, der die Aufrufzeiten der ausgehenden Aufrufe misst und loggt.
 Die Konfiguration erfolgt wie in <<listing-isyinvokerconfig>> gezeigt:
 
 :desc-listing-isyinvokerconfig: Konfiguration mit IsyHttpInvokerProxyFactoryBean
@@ -298,3 +320,5 @@ public IsyHttpInvokerProxyFactoryBean virenscanRemoteBean(HttpInvokerRequestExec
 
 Die erweiterte ProxyFactoryBean erwartet nur einen zusätzlichen Parameter `remoteSystemName`.
 Dieser wird genutzt, um einen sprechenden Systemnamen bei den Logausgaben auszugeben.
+
+// end::inhalt[]

@@ -1,5 +1,10 @@
+= Detailkonzept Datenzugriff: Inhalt
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+
+// tag::inhalt[]
 [[anforderungen]]
-= Anforderungen
+== Anforderungen
 
 Die in diesem Dokument aufgestellten Vorgaben setzen folgende Anforderungen um:
 
@@ -22,14 +27,14 @@ Unnötige Zugriffe und doppelte Zugriffe sollen vermieden werden.
 über die gleichen Mechanismen und zum anderen an den gleichen Stellen vorgenommen werden.
 
 [[persistenz]]
-= Persistenz
+== Persistenz
 
 Ein Persistenz-Klassenmodell ist das Modell der Entitäten, welche dauerhaft abgespeichert werden sollen.
 Bevor auf den Einsatz von JPA eingegangen wird, werden in diesem Kapitel gewünschte Eigenschaften des Persistenz-Klassenmodells beschrieben.
 Für das Modell werden Verwendungsregeln aufgestellt.
 
 [[persistenz-klassenmodell-und-datenbank-schema-sollen-moeglichst-aehnlich-sein]]
-== Persistenz-Klassenmodell und Datenbank-Schema sollen möglichst ähnlich sein
+=== Persistenz-Klassenmodell und Datenbank-Schema sollen möglichst ähnlich sein
 
 Im Idealfall wird jedes Persistenzobjekt auf eine Tabelle des Datenbankschemas abgebildet.
 Eine solche Abbildung ist intuitiv und erleichtert das Verständnis der Anwendung und des Datenbankschemas, was wiederum in der Wartung ein großer Vorteil ist.
@@ -42,7 +47,7 @@ Hier wird der Inhalt einer Datenbank Tabelle durch ein entsprechendes JPA-Mappin
 Solche Persistenzobjekte können dann über das Lesen einer einzigen Tabellenzeile aus der Datenbank gefüllt werden.
 
 [[verwendung-generischer-datenstrukturen-vermeiden]]
-== Verwendung generischer Datenstrukturen vermeiden
+=== Verwendung generischer Datenstrukturen vermeiden
 
 JPA ermöglicht die Verwendung generischer Datenstrukturen.
 Dabei können die Spalten einer Tabelle in Abhängigkeit eines Deskriptorwertes in einer speziell definierten Spalte auf unterschiedliche Attribute verschiedener Persistenzklassen abgebildet werden.
@@ -57,7 +62,7 @@ Dieser Datenbank-View enthält alle Attribute der Persistenzklasse mit einem spr
 Diese Datenbank-Views können dann beim direkten Zugriff mit Datenbankwerkzeugen und bei der Fehleranalyse verwendet werden.
 
 [[vererbung-im-persistenz-klassenmodell-vermeiden]]
-== Vererbung im Persistenz-Klassenmodell vermeiden
+=== Vererbung im Persistenz-Klassenmodell vermeiden
 
 Klassenhierarchien (der Einsatz von Vererbung) sind bei Persistenz­objekten zu vermeiden.
 Abweichungen sind nur für eine Reduzierung der Komplexität des Persistenz-Klassenmodells erlaubt.
@@ -72,7 +77,7 @@ Die Vor- und Nachteile der einzelnen Strategien sind in <<BaKi07>> beschrieben.
 Die Klassenhierarchie ist in jedem Fall möglichst flach zu halten: Soweit möglich sollen nur zwei Stufen verwendet werden.
 
 [[fachlogik-in-persistenzklassen-vermeiden]]
-== Fachlogik in Persistenzklassen vermeiden
+=== Fachlogik in Persistenzklassen vermeiden
 
 Die Implementierung von fachlicher Logik in den Persistenzklassen ist zu vermeiden.
 Idealerweise sollten die Persistenzklassen lediglich `get-` und `set-` Methoden für die persistierten Daten enthalten.
@@ -81,7 +86,7 @@ Jegliche Logik sollte im Anwendungskern implementiert werden.
 Zur Fachlogik gehören auch Validierungen.
 
 [[methoden-equals-und-hashcode-implementieren]]
-== Methoden equals und hashCode implementieren
+=== Methoden equals und hashCode implementieren
 
 Im Normalfall müssen für Entitätsklassen die Methoden `equals` und `hashCode` nicht überschrieben werden.
 
@@ -94,7 +99,7 @@ Für Beispiele zu den `equals-` und `hashCode-` Implementierungen siehe die Klas
 Vorlage-Anwendung <<Vorlageanwendung>>.
 
 [[initialisieren-von-string-feldern]]
-== Initialisieren von String-Feldern
+=== Initialisieren von String-Feldern
 
 Für die Verarbeitung im Regelwerk (siehe ) ist es hilfreich, dass String-Felder initialisiert werden, da
 ansonsten in nahezu allen Regeln zwischen `""` und `null` differenziert werden müsste.
@@ -109,13 +114,13 @@ public class Teilnehmer {
 ----
 
 [[die-definition-des-mappings-zwischen-objekten-und-datenbank]]
-= Die Definition des Mappings zwischen Objekten und Datenbank
+== Die Definition des Mappings zwischen Objekten und Datenbank
 
 Im vorherigen Abschnitt wurden allgemeine Regeln für das Persistenz-Klassenmodell aufgestellt.
 In diesem Kapitel wird die Abbildung dieses Modells auf ein Datenbankschema in JPA beschrieben.
 
 [[definition-des-mappings-über-annotationen]]
-== Definition des Mappings über Annotationen
+=== Definition des Mappings über Annotationen
 
 Die Definition des Mappings wird über Annotationen in den Persistenzklassen (Entitätsklassen) durchgeführt.
 Pro Klasse wird über die Annotationen definiert, auf welche Tabelle sie abgebildet werden und wie ihre Variablen auf
@@ -132,7 +137,7 @@ Falls eine XML-Mapping-Konfiguration für eine Klasse notwendig ist, ist die Kon
 Diese wird automatisch von JPA verwendet.
 
 [[n-assoziationen-in-der-regel-als-set-ohne-reihenfolge-definieren]]
-== 1:n Assoziationen in der Regel als Set (ohne Reihenfolge) definieren
+=== 1:n Assoziationen in der Regel als Set (ohne Reihenfolge) definieren
 
 Beim Abbilden einer 1:n Assoziation („Collection Mapping“, siehe <<Collections>>) ist in der Regel als Java-Typ `Set` zu
 definieren, da in einem `Set` keine Reihenfolge definiert ist.
@@ -156,7 +161,7 @@ private List<Tag> termine = new ArrayList<>();
 ----
 
 [[identifizierende-attribute-verwenden]]
-== Identifizierende Attribute verwenden
+=== Identifizierende Attribute verwenden
 
 Falls für eine Entität genau ein identifizierendes Attribut existiert, ist dieses sowohl in der Datenbank als auch
 im Hibernate Mapping als Primärschlüssel zu verwenden. Künstliche ID-Spalten sind nur dann als Schlüssel
@@ -166,7 +171,7 @@ zusammen die Entität eindeutig identifizieren. Zusammengesetzte Schlüssel dür
 Das identifizierende Attribut darf beliebige Typen besitzen: Es dürfen Zeichenketten oder Datumsangaben sein.
 
 [[bidirektionale-assoziationen-vermeiden]]
-== Bidirektionale Assoziationen vermeiden
+=== Bidirektionale Assoziationen vermeiden
 
 Bidirektional traversierbare Assoziationen (`get` -Methoden auf beiden Seiten) sind zu vermeiden.
 Für die Traversierung in Gegenrichtung sollte eine Query verwendet werden.
@@ -179,13 +184,13 @@ Explizit verboten sind bidirektional traversierbare n:m Assoziationen.
 Hierfür sind zwei 1:n (bzw. n:1) Mappings zu definieren.
 
 [[behandlung-von-zeitangaben]]
-== Behandlung von Datums- und Zeitangaben
+=== Behandlung von Datums- und Zeitangaben
 
 Es werden die Datums- und Zeitklassen aus der _Java 8 Date Time API_ verwendet.
 Hinweise zu deren Verwendung finden sich im <<KonzeptDatumZeit>>.
 Zur Persistierung von Zeiträumen und ungewissen Datums- und Zeitangaben im Sinne des <<KonzeptDatumZeit>> werden die `@Entity`-Klasse `ZeitraumEntitaet` und die `@Embeddable`-Klassen `UngewisseZeitEntitaet` und `UngewissesDatumEntitaet` bereitgestellt.
 
-=== Altanwendungen
+==== Altanwendungen
 
 Für alte Anwendungen, die nicht die _Java 8 Date Time API_ verwenden, sondern noch `java.util.Date` verwenden, gelten die folgenden Vorgaben.
 
@@ -240,13 +245,13 @@ cal.set(Calendar.MONTH, 11); // Monat auf Dezember setzen
 ----
 
 [[boolesche-variablen]]
-== Boolesche Variablen
+=== Boolesche Variablen
 
 Für die Ablage von booleschen Werten in der Datenbank ist stets ein `NUMBER` Feld zu verwenden, kein Textfeld.
 Der Wert wird über das default Hibernate-Mapping auf 1 für wahr und 0 für falsch abgebildet.
 
 [[enum-variablen]]
-== Enum-Variablen
+=== Enum-Variablen
 
 Für die Ablage von Enum-Feldern persistenter Entitäten in der Datenbank sind in JPA zwei Modi vorgesehen, die
 jedoch beide mit Nachteilen verbunden sind:
@@ -318,7 +323,7 @@ public class Person {
 ----
 
 [[datenbankschema-anfangs-ueber-hbm2ddl-erzeugen]]
-== Datenbankschema anfangs über hbm2ddl erzeugen
+=== Datenbankschema anfangs über hbm2ddl erzeugen
 
 Für die Erstellung des Datenbank-Schemas wird empfohlen, es initial über Hibernate zu erzeugen.
 Dies ist einfach zu konfigurieren: In `application.properties` wird dazu die folgende Property gesetzt:
@@ -340,7 +345,7 @@ wird überprüft, ob in der Datenbank die Schemaversion vorliegt, die die Anwend
 Die Funktionalität hierzu ist in Abschnitt <<pruefen-der-schema-version>> beschrieben.
 
 [[vergabe-von-indizes]]
-== Vergabe von Indizes
+=== Vergabe von Indizes
 
 Indizes sind ein wichtiges Element, um eine gute Performance des Datenbankzugriffs sicherzustellen.
 Indizes müssen dabei gezielt vergeben werden.
@@ -357,7 +362,7 @@ Initial sind folgende Indizes vorzusehen:
 Beispiel Nummer eines Registereintrags, Kennung einer Nachricht usw.
 
 [[verwendung-von-jpa-in-der-anwendung]]
-= Verwendung von JPA in der Anwendung
+== Verwendung von JPA in der Anwendung
 
 Nachdem ein Persistenzmodell erstellt und das Mapping auf ein Datenbankschema definiert wurde
 (siehe Kapitel <<persistenz>> und <<die-definition-des-mappings-zwischen-objekten-und-datenbank>>),
@@ -365,13 +370,9 @@ können die Persistenzobjekte in der Anwendung verwendet werden.
 In diesem Kapitel wird der Zugriff auf Persistenzobjekte mit der Hilfe von Spring Data beschrieben.
 
 [[zugriff-auf-jpa-nur-ueber-data-access-objects-daos]]
-== Zugriff auf JPA nur über Data-Access-Objects (DAOs)
+=== Zugriff auf JPA nur über Data-Access-Objects (DAOs)
 
 Die Persistenzfunktionen werden in Data-Access-Objects (DAOs) mithilfe des JPA Entity Managers implementiert.
-
-#Für DAO-Klassen wird in der `isy-persistence` die Basisschnittstelle `Dao` und deren Implementierung `AbstractDao` bereitgestellt.
-#Diese stellen Methoden zum Anlegen, Löschen und Suchen über den Primärschlüssel bereit.
-#Sie benötigen zwei Typparameter: Den Entitätstyp und den Typ des Primärschlüssels.
 
 Um den Anteil an Boilerplate Code bei der Implementierung von Data Access Objects deutlich zu reduzieren, wird die Abstraktion für Data Access Object von Spring Data eingesetzt.
 Die häufig verwendeten CRUD-Methoden (Create, Read, Update, Delete) werden vom Interface `CrudRepository` (siehe <<listing-crudrepository>>) aus Spring Data zur direkten Verwendung angeboten.
@@ -449,7 +450,7 @@ Als Beispiel für DAOs siehe die Klassen `TerminfindungDao` und `TeilnehmerDao` 
 Vorlage-Anwendung <<Vorlageanwendung>>.
 
 [[definition-von-query-methoden]]
-== Definition von Query Methoden
+=== Definition von Query Methoden
 
 Der von Spring Data erzeugte Proxy für das Repository Interface kann die Queries auf zwei Arten ableiten.
 
@@ -508,7 +509,7 @@ Bevorzugt wird die Ableitung der Queries über den Methodennamen.
 Kann die Query nicht über den Methodennamen ausgedrückt werden, wird Variante 2 verwendet.
 
 [[jpql-fuer-datenbank-abfragen-nutzen]]
-== JPQL für Datenbank-Abfragen nutzen
+=== JPQL für Datenbank-Abfragen nutzen
 
 Für Datenbank-Abfragen stellt JPA die Java Persistence Query Language JPQL bereit.
 In dieser werden Queries über Objekte und Variablen, nicht über Tabellen und Felder definiert.
@@ -517,7 +518,7 @@ Wann immer möglich sollten JPQL Abfragen und keine „nativen“ SQL Abfragen v
 Der einzige Grund für die Verwendung von SQL ist die Verwendung von Oracle SQL Features, welche durch JPQL nicht angeboten werden.
 
 [[verwendung-von-oracle-hints-bei-optimizer-problemen]]
-== Verwendung von Oracle Hints bei Optimizer-Problemen
+=== Verwendung von Oracle Hints bei Optimizer-Problemen
 
 NamedQueries werden als JDBC `PreparedStatements` umgesetzt.
 Deshalb werden sie vom Oracle Optimizer bereits analysiert und ein Ausführungsplan erstellt, bevor
@@ -552,7 +553,7 @@ Eine Kurzanleitung zur Verwendung von Oracle-Traces für die Ermittlung von Ausf
 `alter system set sql_trace=false;`
 
 [[verwendung-von-hibernate-filtern]]
-== Verwendung von Hibernate Filtern
+=== Verwendung von Hibernate Filtern
 
 Parametrisierte Hibernate Filter bieten die Möglichkeit Daten zur Laufzeit mit Sichtbarkeitsregeln auszuwerten,
 ohne viele verschiedene Varianten von Abfragen schreiben zu müssen.
@@ -565,7 +566,7 @@ Das ersetzt eine Multiplizierung aller Abfragen.
 Filter müssen als Annotationen mit `@FilterDef`, `@Filters` und `@Filter` umgesetzt werden.
 
 [[verbot-von-bulk-queries]]
-== Verbot von Bulk-Queries
+=== Verbot von Bulk-Queries
 
 JPA bietet über die Methode `query.executeUpdate()` die Möglichkeit in JPQL formulierte `DELETE`- und `UPDATE`-Statements, sog.
 Bulk-Queries, auszuführen.
@@ -587,7 +588,7 @@ Um die Einhaltung dieser Anforderung sicherzustellen, sollten auch in der Entwic
 bei frühen Tests die Rechte auf die Testdatenbanken entsprechend beschränkt werden.
 
 [[sicherheitsaspekte-von-anfragen]]
-== Sicherheitsaspekte von Anfragen
+=== Sicherheitsaspekte von Anfragen
 
 Bei der Formulierung von Anfragen sind einige Aspekte zu beachten, da ansonsten negative Auswirkungen auf die Stabilität, die Verfügbarkeit oder Sicherheit der Anwendung die Folge sind.
 
@@ -601,12 +602,12 @@ Im Zweifel, insbesondere bei freien Anfragen, die aus Benutzereingaben erzeugt w
 * Um die SQL-Injection Attacken zu verhindern sollen Named-Queries oder Criteria-Queries verwendeten werden, bei denen der OR-Mapper für ein Escaping der Query-Parameter sorgt.
 
 [[konfiguration-von-jpa-und-hibernate-in-der-anwendung]]
-= Konfiguration von JPA und Hibernate in der Anwendung
+== Konfiguration von JPA und Hibernate in der Anwendung
 
 In den folgenden Abschnitten werden konkrete Vorgaben gemacht, welche Konfigurationen für die Umsetzung des Datenzugriffs verwendet werden sollen.
 
 [[konfiguration-von-jpa-ueber-spring-beans-durchfuehren]]
-== Konfiguration von JPA über Spring Beans durchführen
+=== Konfiguration von JPA über Spring Beans durchführen
 
 Die für die Verwendung von JPA benötigten Beans werden von Spring Boot beim Start der Anwendung automatisch instanziiert.
 
@@ -622,7 +623,7 @@ Das gleiche gilt für die Anbindung einer zweiten Datenbank, siehe dazu <<nutzun
 //image::JPAoverSprBeans.png[align="center"]
 
 [[konfiguration-des-entitymanagers]]
-== Konfiguration des EntityManagers
+=== Konfiguration des EntityManagers
 
 Der EntityManager wird von Spring Boot automatisch konfiguriert.
 Eine zusätzliche Konfiguration kann über `application.properties` erfolgen.
@@ -648,7 +649,7 @@ spring.jpa.properties.hibernate.ejb.metamodel.generation=enabled
 ----
 
 [[konfiguration-der-datasource]]
-== Konfiguration der Datasource
+=== Konfiguration der Datasource
 
 Als Datasource-Implementierung muss die Implementierung aus `de.bund.bva.isyfact.persistence.datasource.IsyDataSource` genutzt werden.
 Bei der Verwendung von `isy-persistence` wird automatisch eine Bean mit dem Namen `appDataSource` erzeugt.
@@ -656,11 +657,9 @@ Diese prüft die Version des Datenbankschemas (siehe Abschnitt <<pruefen-der-sch
 Wrapper für die wirkliche Datasource des Connections-Pools, dessen Konfiguration im nächsten Abschnitt erläutert wird.
 
 [[oracle-universal-connection-pool-ucp-verwenden]]
-== Oracle Universal Connection Pool (UCP) verwenden
+=== Oracle Universal Connection Pool (UCP) verwenden
 
-Bei der Verwendung von JPA mit Spring *muss* zwingend ein Datenbank-Connection-Pooling verwendet
-werden: Die aktuelle Spring Implementierung der EntityManagerFactory fragt bei jedem Entity Manager
-(und somit bei jeder Transaktion) eine Datenbank-Verbindung an.
+Bei der Verwendung von JPA mit Spring *muss* zwingend ein Datenbank-Connection-Pooling verwendet werden: Die aktuelle Spring Implementierung der `EntityManagerFactory` fragt bei jeder Erzeugung eines Entity Managers (und somit bei jeder Anfrage) eine Datenbank-Verbindung an.
 
 Für das Datenbank-Connection-Pooling ist der Oracle Universal Connection Pool (UCP) einzusetzen.
 Dieser kann auf der Oracle Website heruntergeladen werden.
@@ -668,8 +667,7 @@ Dieser kann auf der Oracle Website heruntergeladen werden.
 Zur Laufzeit bietet der Pool Informationen per JMX an, die zur Überwachung der Poolaktivität nützlich sind.
 Dazu zählt unter anderem die Anzahl aktuell ausgeliehener Verbindungen.
 
-Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue
-Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
+Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
 
 Die Konfiguration des UCP erfolgt in `application.properties` über folgende Properties:
 
@@ -726,7 +724,7 @@ Hierbei ist zu beachten, dass die hier angegebenen Werte der Konfigurationsparam
 Sie müssen je nach Anwendung und Lastprofil angepasst werden.
 
 [[standardmaessig-lazy-loading-verwenden]]
-== Standardmäßig Lazy Loading verwenden
+=== Standardmäßig Lazy Loading verwenden
 
 Standardmäßig verwendet Hibernate für alle 1:n und n:m Assoziationen ein Lazy Loading über dynamische Proxies und für n:1 oder 1:1 Assoziationen wird Eager Loading eingesetzt.
 Standardmäßig soll für alle Assoziationen Lazy Loading verwendet werden, wobei Bytecode-Manipulationen für Lazy Loading nicht verwendet werden sollen.
@@ -753,7 +751,7 @@ Hierfür ist das Attribute `fetch` der jeweiligen Mapping-Annotation wie folgt z
 Die Verwendung der Annotationen `@LazyToOne` und `@LazyCollection` ist zu vermeiden, falls man nicht den `@LazyCollection` Wert „Extra“ für extra große Collections benötigt.
 
 [[standardmaessig-optimistisches-locking-verwenden]]
-== Standardmäßig optimistisches Locking verwenden
+=== Standardmäßig optimistisches Locking verwenden
 
 Standardmäßig ist für Hibernate ein optimistisches Locking zu verwenden: Objekte werden bei dieser Locking-Strategie nicht per „select for update“ gesperrt.
 Stattdessen wird am Ende der Transaktion geprüft, ob lokal veränderte Objekte parallel in der Datenbank geändert wurden.
@@ -779,36 +777,41 @@ public int getVersion() {
 Dieses Feld wird einzig von Hibernate verwaltet. Es ist weder zu lesen noch zu schreiben.
 
 [[bei-bedarf-explizites-locking-verwenden]]
-== Bei Bedarf explizites Locking verwenden
+=== Bei Bedarf explizites Locking verwenden
 
 Falls für einen Teil der Entitäten konkurrierende Zugriffe möglich sind, ist für genau diese Entitäten ein
 explizites (pessimistisches) Locking zu verwenden.
 
-[[transaktionsübergreifendes-caching-vermeiden]]
-== Transaktionsübergreifendes Caching vermeiden
+[[aufrufübergreifendes-caching-vermeiden]]
+=== Aufrufübergreifendes Caching vermeiden
 
 Caching-Strategien sind kein Teil der JPA-Spezifikation.
-Für das definieren von Caching muss deswegen auf Hibernate-Spezifische Mechanismen zugegriffen werden.
+Für das Definieren eines Caches muss deswegen auf Hibernate-spezifische Mechanismen zugegriffen werden.
 
-Hibernate bietet für das Cachen von Objekten über Transaktionsgrenzen hinweg zwei Cache-Möglichkeiten:
+Jeder Aufruf der Persistenzschicht geschieht innerhalb einer Transaktion.
+In der Regel läuft jeder Aufruf in einer eigenen Transaktion, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
+Außer in Ausnahmefällen ist dies jedoch auch nicht notwendig.
 
-* Den Cache im `Session`-Objekt. Da ein `Session`-Objekt Thread-gebunden ist, gilt dieser nur für den aktuellen Thread.
-In IsyFact-Anwendungen wird bei jedem Aufruf ein neues Session-Objekt verwendet, weshalb dieser Cache nicht verwendet werden kann.
-+
-Bei Batches muss (wie im Kapitel <<bei-batch-verarbeitung-regelmaessig-session-cache-leeren>> erwähnt) der Session-Cache regelmäßig geleert werden.
-* Der VM-weite „2nd Level Cache“. Dieser Cache macht vor allem für unveränderliche, häufig verwendete Informationen wie Schlüsseldaten Sinn.
-In IsyFact-Anwendungen werden Schlüsseldaten jedoch durch einen separaten Service-Aufruf erhalten und können nicht im Hibernate 2nd Level Cache gespeichert werden.
-Deshalb ist eine Verwendung dieses Caches meist unnötig.
+Sollte es doch notwendig sein, sollte das Caching nicht in der Persistenzschicht und nicht mittels Hibernate geschehen.
+Hibernate bietet für das Caching von Objekten prinzipiell zwei Möglichkeiten:
 
-Die Verwendung von über eine Transaktion hinausgehenden Caches ist deshalb zu vermeiden.
-Falls auf Grund von Spezial-Anforderungen (etwa in einer Fachanwendung selbst abgelegt Sekundärdaten) ein 2nd Level Cache benötigt wird, ist auf folgende Punkte zu achten:
+* *Cache in der Hibernate-Session:* Die Hibernate-Session ist an einen Thread gebunden.
+Die Nutzungsschicht verwendet für jeden Anfrage einen neuen Thread (und damit eine frische Hibernate-Session).
+Deshalb kann dieser Cache höchstens im Rahmen einer Anfrage an das IT-System gelten.
+Diese Nutzung eines Caches ist nicht sinnvoll.
+* *VM-weiter „2nd Level Cache“:* Dieser Cache ist vor allem für unveränderliche, häufig verwendete Informationen (z.B. Schlüsseldaten) gedacht.
+In der IsyFact werden solche Daten jedoch bereits durch andere Mechanismen vorgehalten.
+Deshalb ist eine Verwendung dieses Caches ebenfalls unnötig.
+
+Die Verwendung von über einen Aufruf hinausgehenden Cache ist deshalb zu vermeiden.
+Falls aufgrund spezieller Anforderungen trotzdem ein 2nd Level Cache benötigt wird, ist auf folgende Punkte zu achten:
 
 * Für den Cache ist eine gesonderte Cache-Region zu verwenden.
 * Nur unveränderliche Daten dürfen in den Cache.
 * Man kann nicht davon ausgehen, dass der Cache bei Änderungen der Objekte aktualisiert wird.
 
 [[nutzung-und-anbindung-einer-zweiten-datenbank]]
-== Nutzung und Anbindung einer zweiten Datenbank
+=== Nutzung und Anbindung einer zweiten Datenbank
 
 Einige Anwendungsfälle machen es notwendig, eine zweite Datenbank zu nutzen.
 Das ist beispielsweise notwendig, wenn Daten aus einem Altsystem über die Datenbank für andere Systeme bereitgestellt werden und diese Daten in eine IsyFact-Anwendung über einen Batch importiert werden sollen.
@@ -906,7 +909,7 @@ public class Persistence2Config {
 Die Datei `application.properties` wird um den neuen Konfigurationsparameter `datasource.second.url` für die zweite Datenbankverbindung erweitert.
 
 [[konfiguration-der-id-und-sequenz]]
-== Konfiguration der ID und Sequenz
+=== Konfiguration der ID und Sequenz
 
 Primärschlüssel werden in JPA mittels der `@Id` und `@GeneratedValue` Annotation markiert.
 Der `GenerationType` der `@GeneratedValue` Annotation muss in jedem Fall `AUTO` sein.
@@ -923,91 +926,11 @@ Ein Konfigurationsbeispiel kann folgendermaßen aussehen:
 @SequenceGenerator(name="my_seq",sequenceName="MY_SEQ", allocationSize=50)
 ----
 
-[[transaktionssteuerung]]
-= Transaktionssteuerung
-
-Die Transaktionssteuerung definiert, wann im Kontext der Anfragebearbeitung eine Transaktion gestartet wird, wann sie beendet wird und wie auf Fehler reagiert wird.
-Das geforderte Verhalten hierzu wird im folgenden Abschnitt definiert.
-Danach wird die Umsetzung dieses Verhaltens mit JPA und Spring beschrieben.
-
-[[eine-transaktion-pro-anfrage-verwenden]]
-== Eine Transaktion pro Anfrage verwenden
-
-Eine Anfrage wird innerhalb einer einzelnen Transaktion abgearbeitet: Die Transaktion wird beim Eintreffen
-des Aufrufs gestartet und mit der Rückgabe des Ergebnisses beendet.
-Da eine Fachanwendung zustandslose Dienste anbietet, ist eine langlebige Transaktion oder ein Caching über
-Transaktionsgrenzen hinaus nicht notwendig und zu vermeiden.
-Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer
-zurück übermittelt.
-In diesem Fall wird die Transaktion nicht fortgeschrieben (committet), sondern zurückgerollt.
-
-Geschachtelte Transaktionen, etwa um Tabellen nur kurz zu blockieren, sind zu vermeiden.
-Abweichungen sind mit dem Chefdesigner des Teilprojekts abzustimmen.
-
-[[bei-batch-verarbeitung-regelmaessig-session-cache-leeren]]
-== Bei Batch-Verarbeitung regelmäßig Session-Cache leeren
-
-Im Batch wird die Transaktionssteuerung über den „Batch-Rahmen“ definiert.
-Da hier eine große Anzahl an Transaktionen innerhalb einer Session durchgeführt werden, muss der
- Session-Cache in regelmäßigen Abständen geflushed und geleert werden: Ansonsten würden die Objekte
- aller Transaktionen im Cache gehalten werden und könnten nicht durch die Garbage Collection entfernt werden.
-
-Die Logik des Batch-Rahmens inklusive seiner Wiederaufsetzpunkte und Commit-Raten wird in einem
-separaten Konzept beschrieben (siehe <<Batch>>). Im gleichen Konzept wird auch der Code genannt, der zum
-Löschen des Caches notwendig ist.
-
-[[transaktionssteuerung-fuer-jpa-ueber-annotationen]]
-== Transaktionssteuerung für JPA über Annotationen
-
-Spring ermöglicht die Transaktionssteuerung mit Annotationen zu definieren.
-Hierbei kann auf Klassen oder Methoden-Ebene das Transaktionsverhalten vorgegeben werden.
-
-Die Transaktionssteuerung wird im Normalfall pro Service-Klasse vorgegeben.
-Wichtig ist, dass die Fehlerbehandlung auf jeden Fall die Transaktion umschließt. Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen von der Fehlerbehandlung erfasst werden.
-
-Die Transaktionssteuerung wird per Annotation in der Service-Implementierung realisiert.
-Dabei wird im Normalfall der Propagation-Level auf `required` gesetzt und festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
-
-In der Beispiel-Anwendung ist das wie folgt umgesetzt:
-
-[source,java]
-----
-@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
-public class AwkWrapperImpl implements AwkWrapper {
-----
-
-Damit Spring die Annotationen auswertet, muss eine der Konfigurationsklassen der Anwendung mit `@EnableTransactionManagement` annotiert werden.
-
-[source,java]
-----
-@Configuration
-@EnableTransactionMangement
-public class PersistenceConfig { ... }
-----
-
-Durch diese Konfiguration erzeugt Spring für die Annotationen passende AOP-Proxies, welche die
-Transaktionssteuerung übernehmen.
-
-[[bei-rest-webservices-rollback-explizit-anfordern]]
-== Bei REST-Webservices Rollback explizit anfordern
-
-Eine Sonderstellung nehmen REST-Webservices ein, da diese im Fehlerfall keine Exceptions werfen, sondern die
-Fehler in der Antwortnachricht übermitteln: Der AOP-Transaktionsmanager wird niemals ein Rollback durchführen,
-da alle Exceptions abgefangen werden, auf die er reagieren könnte.
-Um auch in diesem Fall ein Rollback der Transaktion zu erzwingen, ist ein expliziter Aufruf durchzuführen:
-
-[source,java]
-----
-TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-----
-
-Im der Vorlage-Anwendung findet man hierfür kein Beispiel, da auf ein separates REST-Skeleton verzichtet wurde.
-
 [[historisierung]]
-= Historisierung
+== Historisierung
 
 [[grundlagen]]
-== Grundlagen
+=== Grundlagen
 
 Unter Historisierung (auch temporale Datenhaltung genannt <<Deme05>>) versteht man das Festhalten der zeitlichen
 Entwicklung von Daten durch Speichern in einer Datenbank.
@@ -1022,7 +945,7 @@ Der Bearbeitungszeitpunkt definiert den Zeitpunkt wann eine Entscheidung getroff
 Eine Historisierung von Datensätzen wird durchgeführt, wenn Fragen über den Wert eines Datensatzes zu einem vergangenen Zeitpunkt beantwortet werden müssen (z. B. Was kostete X zum Zeitpunkt Y), oder wenn der Verlauf eines Wertes über die Zeit beobachtet werden muss (z. B. Wann und warum wurde welche Änderung durchgeführt?).
 
 [[abgrenzung-archivierung]]
-=== Abgrenzung Archivierung
+==== Abgrenzung Archivierung
 
 Bei der Archivierung handelt es sich um die Aufbewahrung eines Datensatzes über eine längere Zeit.
 Dies ist meist aus rechtlichen Gründen notwendig z. B. wegen gesetzlicher Aufbewahrungsfristen.
@@ -1030,26 +953,26 @@ Bei der Archivierung sind dementsprechend Randbedingungen wie Integrität, Unver
 Vertraulichkeit einzuhalten <<ITGrundschutz>>.
 
 [[abgrenzung-datensicherung-backup]]
-=== Abgrenzung Datensicherung (Backup)
+==== Abgrenzung Datensicherung (Backup)
 
 Bei der Datensicherung handelt es sich um das redundante Aufbewahren von Datensätzen.
 Das Ziel ist es, bei Verlust oder ungewünschter Manipulation von Datensätzen diese Datensätze auf den gespeicherten Stand zurücksetzen zu können.
 
 [[abgrenzung-protokollierung]]
-=== Abgrenzung Protokollierung
+==== Abgrenzung Protokollierung
 
 Ziel der Protokollierung ist das Nachvollziehen von Änderungen und Auskünften.
 Dazu werden je nach Bedarf die Suchschlüssel und Nettodaten von Aufrufen gespeichert.
 
 [[abgrenzung-logging]]
-=== Abgrenzung Logging
+==== Abgrenzung Logging
 
 Beim Logging werden Notizen zu technischen Aufrufen innerhalb eines Systems oder zwischen Anwendungen in Dateien abgelegt.
 Das Logging hat einen technischen Fokus und dient in der Regel als Hilfsinstrument zur Fehlerbehebung.
 
 // S 36 9.2
 [[anforderungen-1]]
-== Anforderungen
+=== Anforderungen
 
 Die beabsichtigte Nutzung der Historisierung lässt sich mit Blick auf die Referenzarchitektur zu Anforderungen
 verallgemeinern, die in diesem Abschnitt dargestellt werden.
@@ -1070,7 +993,7 @@ Diese Anforderungen führen zu folgenden Festlegungen:
 Die Referenzarchitektur dieses Historienverwalters ist im folgenden Kapitel beschrieben.
 
 [[architektur-für-die-umsetzung-von-historisierung]]
-== Architektur für die Umsetzung von Historisierung
+=== Architektur für die Umsetzung von Historisierung
 
 In diesem Kapitel wird beschrieben, wie die technische Umsetzung der Historisierung erfolgt.
 Dabei werden die beiden in Kapitel <<grundlagen>> eingeführten Aspekte der Historisierung „Gültigkeitszeitraum“
@@ -1078,7 +1001,7 @@ und „Verlauf der Bearbeitung“ getrennt beschrieben, wobei der zweite Aspekt 
 den Großteil des Kapitels einnimmt.
 
 [[abbildung-eines-gültigkeitszeitraums]]
-=== Abbildung eines Gültigkeitszeitraums
+==== Abbildung eines Gültigkeitszeitraums
 
 Manche Daten haben einen Zeitbezug, d. h. der Inhalt eines Datensatzes bezieht sich nur auf einen bestimmten Zeitraum.
 Man möchte z. B. beschreiben, dass für eine Ware in einem bestimmten Zeitraum ein Rabatt gewährt wird.
@@ -1089,7 +1012,7 @@ Sonst werden die Namen `gueltigVon` und `gueltigBis` benutzt.
 Diese Attribute werden durch die Anwendung genauso gepflegt wie alle anderen Attribute des Datensatzes auch.
 
 [[abbildung-der-historie-der-bearbeitung]]
-=== Abbildung der Historie der Bearbeitung
+==== Abbildung der Historie der Bearbeitung
 
 In diesem Abschnitt wird beschrieben, wie die Historie der Bearbeitung gepflegt werden soll, z. B. wenn die letzten
 zehn Änderungen zu einem Datensatz abgespeichert werden sollen.
@@ -1117,10 +1040,10 @@ Deshalb wird in diesem Dokument ein Entwurfsmuster vorgegeben, nach dem die Hist
 Diese Entwurfsmuster sind für den Entwickler leichter zu handhaben.
 
 [[vorgehen-zur-historisierung-der-bearbeitung]]
-== Vorgehen zur Historisierung der Bearbeitung
+=== Vorgehen zur Historisierung der Bearbeitung
 
 [[schritt-1-ergänzen-von-datumsattributen]]
-=== Schritt 1: Ergänzen von Datumsattributen
+==== Schritt 1: Ergänzen von Datumsattributen
 
 Historisierte Versionen und die aktuelle Version eines Datensatzes werden in der gleichen Tabelle gepflegt.
 Dazu wird die Tabelle um zwei neue Datumsattribute erweitert: `aktuellVon` und `aktuellBis`.
@@ -1141,7 +1064,7 @@ Der somit aus mehreren Attributen zusammengesetzte fachliche Schlüssel wird gen
 zusammengesetzte fachliche Schlüssel auch.
 
 [[schritt-2-erweiterung-des-daos]]
-=== Schritt 2: Erweiterung des DAOs
+==== Schritt 2: Erweiterung des DAOs
 
 Alle Datenzugriffe auf zu persistierende Objekte werden über das zugehörige DAO (Data Access Object) vorgenommen.
 Insbesondere muss das DAO auch dafür sorgen, dass die Attribute `aktuellVon` und `aktuellBis` mit den korrekten
@@ -1211,7 +1134,7 @@ Dies ist allerdings ein fachlicher Ausnahmefall.
 Im Regelfall darf die Historie nicht verändert werden. Änderungen der Historie dürfen nur in Abstimmung mit den fachlichen Chefarchitekten vorgenommen werden.
 
 [[beispiel]]
-=== Beispiel
+==== Beispiel
 
 Das fachliche Szenario für dieses Beispiel ist das Folgende: Der Bestand einer CD soll historisiert werden.
 
@@ -1273,7 +1196,7 @@ Die Methode `leseBestandHistorie(String)` wurde eingefügt.
 Die Methode `speichereBestand(Bestand)` wurde entfernt.
 
 [[versionierung-von-datenbankschemas]]
-= Versionierung von Datenbankschemas
+== Versionierung von Datenbankschemas
 
 Die Struktur der Daten, die von einer Anwendung dauerhaft gespeichert werden, kann sich im Laufe des Lebenszyklus der Anwendung ändern.
 Das bedeutet, dass sich neben der Anwendung auch das Datenbankschema ändert.
@@ -1294,13 +1217,13 @@ Das ist z.B. dann der Fall, wenn zusätzliche Indexe angelegt werden oder Views,
 Im Folgenden wird ein Verfahren festgelegt das diese Anforderungen umsetzt.
 
 [[struktur-der-versionsmetadaten]]
-== Struktur der Versionsmetadaten
+=== Struktur der Versionsmetadaten
 
 Die Informationen über Versionen und durchgeführte Änderungen an einem Datenbankschema werden innerhalb des Schemas in eigenen Metadatentabellen gespeichert.
 Hierzu muss jedes Datenbankschema die folgenden Tabellen enthalten.
 
 [[tabelle-m_schema_version]]
-=== Tabelle M_SCHEMA_VERSION
+==== Tabelle M_SCHEMA_VERSION
 
 Die Tabelle M_SCHEMA_VERSION enthält die Information über die aktuelle Version des Schemas.
 Die Tabelle hat die folgende Struktur:
@@ -1326,7 +1249,7 @@ Das Schema kann nicht verwendet werden und muss überprüft werden.
 |====
 
 [[tabelle-m_schema_log]]
-=== Tabelle M_SCHEMA_LOG
+==== Tabelle M_SCHEMA_LOG
 
 Die Tabelle M_SCHEMA_LOG enthält Information über eingespielte Skripte zur Anpassung des Schemas.
 Die Tabelle hat die folgende Struktur:
@@ -1353,7 +1276,7 @@ Status der Skriptausführung:
 |====
 
 [[installationsablauf-bei-der-neuanlage]]
-== Installationsablauf bei der Neuanlage
+=== Installationsablauf bei der Neuanlage
 
 Die Neuinstallation eines Datenbankschemas erfolgt in mehreren Schritten, die jeweils aufeinander aufbauen.
 Für die automatisierte Installation werden diese Schritte von einem Datenbankskript nacheinander durchgeführt.
@@ -1390,7 +1313,7 @@ Die nachfolgende Abbildung zeigt noch einmal die einzelnen Schritte der Installa
 image::instbeineuan.png[align="center"]
 
 [[struktur-der-installationsskripte-fuer-die-neuanlage]]
-=== Struktur der Installationsskripte für die Neuanlage
+==== Struktur der Installationsskripte für die Neuanlage
 
 Für die automatisierte Installation wird eine Strukturierung der Installationsskripte festgelegt.
 Es existieren folgende Aufrufbeziehungen:
@@ -1423,7 +1346,7 @@ image::BezzwischInst.png[align="center"]
 Templates für die Skripte sind als Ressourcen in der Bibliothek `isy-persistence` abgelegt.
 
 [[installationsablauf-bei-der-schemaaenderung]]
-== Installationsablauf bei der Schemaänderung
+=== Installationsablauf bei der Schemaänderung
 
 Die Änderung eines Datenbankschemas erfolgt analog zur Neuanlage ebenfalls in mehreren Schritten, die jeweils aufeinander aufbauen.
 Für die automatisierte Änderung werden diese Schritte von einem Datenbankskript nacheinander durchgeführt.
@@ -1454,7 +1377,7 @@ Die nachfolgende Abbildung zeigt noch einmal die einzelnen Schritte der Installa
 image::instbeineuan.png[align="center"]
 
 [[struktur-der-aenderungsskripte]]
-=== Struktur der Änderungsskripte
+==== Struktur der Änderungsskripte
 
 Für die automatisierte Änderung wird eine Strukturierung der Änderungsskripte festgelegt.
 Diese ist analog zur Struktur der Installationsskripte aus
@@ -1488,7 +1411,7 @@ image::bezzwischenAend.png[align="center"]
 Templates für die Skripte sind als Ressourcen in der Bibliothek `isy-persistence` abgelegt.
 
 [[ablage-der-skripte-und-namenskonventionen]]
-== Ablage der Skripte und Namenskonventionen
+=== Ablage der Skripte und Namenskonventionen
 
 Die Skripte werden im Source-Projekt der Anwendung, zu der sie gehören, im Verzeichnis `src/main/skripte/sql/<dbschema-name>` abgelegt.
 In diesem Verzeichnis liegen die Unterverzeichnisse `db-install-<Versionsnummer>` für Installationsskripte und `db-update-<Versionsnummer>` für Updateskripte.
@@ -1506,7 +1429,7 @@ Falls zu einem Schritt mehrere Skripte gehören, gibt die Unterschrittnummer die
 Der Name kann frei vergeben werden, sollte aber sprechend sein.
 
 [[schemauebergreifende-operationen]]
-== Schemaübergreifende Operationen
+=== Schemaübergreifende Operationen
 
 Sollte eine Anwendung schemaübergreifende Operationen haben wird das vorgestellte DB-Versionierungskonzept wie folgt erweitert.
 Die Skripte der schemaübergreifenden Operationen werden gemäß Kapitel <<ablage-der-skripte-und-namenskonventionen>> in einen eigenen Ordner unter `src/main/skripte/sql/uebergreifend` abgelegt.
@@ -1529,7 +1452,7 @@ In einem Skript `93-X.sql` können dann die Rechte je nach Bedarf vergeben werde
 Auf diese Weise legt das Anwendungssystem selbst fest, welche anderen Systeme Zugriff auf die Queue(s) haben.
 
 [[datenbankuebergreifende-operationen]]
-== Datenbankübergreifende Operationen
+=== Datenbankübergreifende Operationen
 
 Im Gegensatz zu schemaübergreifenden Operationen wird von datenbankübergreifenden Operationen dringlichst abgeraten.
 Nur eine Lösung, Oracle Database Links, bietet im Zusammenspiel mit Oracle-Datenbanken eine generische, transaktionssichere Lösung für dieses Problem an.
@@ -1539,7 +1462,7 @@ Mit dem Wegfall dieser Lösung gibt es aus Sicht der IsyFact keine geeignete Lö
 Unabhängig von der Lösung erschweren datenbankübergreifende Operationen die Fehlersuche im Falle einer fehlgeschlagenen Installation oder Aktualisierung wesentlich.
 
 [[pruefen-der-schema-version]]
-== Prüfen der Schema-Version
+=== Prüfen der Schema-Version
 
 Jede Anwendung prüft beim Start, ob das DB-Schema die erwartete Version hat.
 Diese Prüfung ist in der Bibliothek `isy-persistence` fest eingebaut.
@@ -1572,3 +1495,5 @@ SELECT version
 
 Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schemaversion vorhanden.
 Liefert es keinen Wert zurück, dann ist die erwartete Schemaversion nicht vorhanden.
+
+// end::inhalt[]

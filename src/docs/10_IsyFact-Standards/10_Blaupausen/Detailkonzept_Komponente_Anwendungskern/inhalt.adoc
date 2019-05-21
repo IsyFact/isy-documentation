@@ -1,5 +1,10 @@
+= Detailkonzept Anwendungskern: Inhalt
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+
+// tag::inhalt[]
 [[aufbau-des-anwendungskerns]]
-= Aufbau des Anwendungskerns
+== Aufbau des Anwendungskerns
 
 Der Anwendungskern ist der zentrale Baustein eines IT-Systems.
 Hier werden die fachlichen Funktionen der Anwendung realisiert.
@@ -14,7 +19,7 @@ Diese drei Aspekte werden im Folgenden im Detail beschrieben.
 image::IFBestAWK.png[align="center",width=90%, pdfwidth=90%]
 
 [[die-fachkomponenten]]
-== Die Fachkomponenten
+=== Die Fachkomponenten
 
 Die Umsetzung einer Komponente aus der fachlichen Architektur erfolgt durch eine Fachkomponente.
 Damit entsprechen die Fachkomponenten dem fachlichen Komponentenschnitt aus der fachlichen Architektur.
@@ -30,7 +35,7 @@ Es kann aber auch den Fall geben, dass ein Geschäftsobjekt fachlich nicht genau
 Hierfür wird die Komponente _Basisdaten_ definiert, die nur die eine Aufgabe hat, solche Geschäftsobjekte an zentraler Stelle effizient zu verwalten.
 
 [[das-anwendungskern-framework]]
-== Das Anwendungskern-Framework
+=== Das Anwendungskern-Framework
 
 Für querschnittliche Funktionalität innerhalb des Anwendungskerns wird das Spring-Framework genutzt.
 Hauptaufgabe des Frameworks ist es, die Komponenten zu konfigurieren und miteinander bekannt zu machen.
@@ -41,7 +46,7 @@ Die Vorgaben zur Nutzung und Konfiguration des Spring-Frameworks werden in Kapit
 beschrieben.
 
 [[externe-services]]
-== Externe Services
+=== Externe Services
 
 Wenn der Anwendungskern fachliche Services benötigt, die von anderen IT-Systemen innerhalb der Plattform angeboten werden, so werden diese Services als Komponente im Anwendungskern abgebildet.
 Dadurch ist die Funktionalität sauber gekapselt, was die Wartbarkeit erhöht: Wenn der externe Service ausgetauscht werden soll, ist keine Änderung der gesamten Anwendung notwendig – es ist lediglich eine interne Änderung der externen Service-Komponente notwendig.
@@ -50,7 +55,7 @@ Komponenten, die externe Services kapseln, sind im Idealfall von außen nicht vo
 Neben der technischen Kommunikation erfolgt durch diese Komponenten auch die Abbildung von Schnittstellendaten und Exceptions auf die Daten der Anwendung.
 
 [[austausch-von-geschäftsobjekten]]
-== Austausch von Geschäftsobjekten
+=== Austausch von Geschäftsobjekten
 
 Der Anwendungskern hat die Hoheit über die Geschäftsobjekte des IT-Systems.
 In <<IsyFactReferenzarchitektur>> wurde bereits beschrieben, dass zur Strukturierung eines IT-Systems zwei Sichten verwendet werden können:
@@ -87,7 +92,7 @@ In der Vorlageanwendung ist z.B. „Terminfindung“ eine Teilanwendung.
 Zu dieser Teilanwendung gehören in der Schicht Nutzung die Oberfläche _Terminfindung_ und der Batch `TerminfindungLoeschBatch`, in der Schicht Anwendungslogik die Fachkomponenten _Erstellen_, _Teilnehmen_, _Verwalten_ und _Datenpflege_ und der Schicht Datenhaltung die Entitäten `Terminfindung`, `Tag`, `Teilnehmer`, `Zeitraum` und `Teilnehmerzeitraum`.
 
 [[verwendung-des-spring-frameworks]]
-= Verwendung des Spring-Frameworks
+== Verwendung des Spring-Frameworks
 
 Das Spring-Framework ist ein Java EE Framework, welches im Kern sehr verständlich und leicht zu verwenden ist.
 In ihm werden die Bestandteile eines Systems als „Beans“ definiert.
@@ -117,7 +122,7 @@ Dieses Kapitel teilt sich in vier Teile:
 Nicht beschrieben wird hier der Einsatz von Tools für die Entwicklung von Spring-Anwendungen.
 
 [[anforderungen]]
-== Anforderungen
+=== Anforderungen
 
 Dies bezieht sich unter anderem auf die Bestandteile von Spring: Spring bietet verschiedene Komponenten, welche getrennt voneinander eingesetzt werden können.
 Es sollen nur die Komponenten eingesetzt werden, welche zu geringerer Komplexität und geringerem Entwicklungsaufwand führen.
@@ -131,7 +136,7 @@ werden Komponenten außerhalb der Anwendung über Java-Konfigurationsklassen kon
 *Komponentenorientierung wahren:* Über Spring sollen Komponenten konfiguriert werden: Es soll nicht möglich sein, direkt auf Implementierungsklassen einer Komponente zuzugreifen.
 
 [[konfiguration-von-spring]]
-== Konfiguration von Spring
+=== Konfiguration von Spring
 
 Das grundlegende Konzept von Spring ist das der Spring-Bean.
 Die Konfiguration von Spring teilt sich deshalb in zwei Teile: In die Konfiguration der Spring-Beans sowie in die Konfiguration von Spring selbst (innerhalb eines Tomcat Servers).
@@ -139,7 +144,7 @@ Um die Konfiguration von Spring und der eingesetzten Baustein einfach zu halten,
 Diese Konfigurationsarten werden in den folgenden Kapiteln beschrieben.
 
 [[die-konfiguration-von-spring-beans]]
-=== Die Konfiguration von Spring-Beans
+==== Die Konfiguration von Spring-Beans
 
 Spring ist ein Applikations-Container, welcher sogenannte Spring-Beans instanziiert, per _Dependency Injection_
 konfiguriert und bereitstellt.
@@ -165,7 +170,7 @@ Generell gilt, dass jede zentrale und wichtige Klasse aber als Spring Bean konfi
 Für die Modellierung und Konfiguration der Spring-Beans werden im Folgenden Vorgaben aufgestellt.
 
 [[konfiguration-einer-komponente]]
-==== Konfiguration einer Komponente
+===== Konfiguration einer Komponente
 
 Anwendungen werden in Form von Komponenten implementiert.
 Jede Komponente besitzt ein Interface mit den Operationen aller Anwendungsfallklassen der Komponente.
@@ -194,7 +199,7 @@ Wenn eine Klasse nur an einer Stelle genutzt wird, kann sie als Kompromiss auch 
 Sind Klassen nicht von relevanter Bedeutung, so können sie beim Erzeugen der Spring Bean programmatisch erzeugt werden.
 
 [[querschnittsdienste-als-beans-konfigurieren]]
-==== Querschnittsdienste als Beans konfigurieren
+===== Querschnittsdienste als Beans konfigurieren
 
 Querschnittsdienste (etwa für JMX, für Nachrichten, für die Versendung von Mails) sind als Beans zu konfigurieren.
 Dies gilt unabhängig davon, ob die Querschnittsdienste statisch verfügbar sind oder über Dependency Injection
@@ -204,7 +209,7 @@ Ebenfalls über Beans durchzuführen ist die Konfiguration diverser Frameworks, 
 Die Konfiguration dieser Frameworks wird in ihren Nutzungsvorgaben beschrieben.
 
 [[beans-standardmäßig-als-singletons-definieren]]
-==== Beans standardmäßig als Singletons definieren
+===== Beans standardmäßig als Singletons definieren
 
 Beans können entweder als Singletons mit nur einer Instanz, mit einer Instanz pro Aufruf oder mit einer Instanz
 pro Abhängigkeit (Prototype) erzeugt werden.
@@ -213,7 +218,7 @@ Wo technisch erforderlich, können auch andere Scopes verwendet werden.
 
 // TODO Überarbeiten, hier beschreiben, wie Java-Konfiguration aufgebaut sein soll
 [[vorgaben-zur-spring-konfiguration]]
-==== Vorgaben zur Spring-Konfiguration
+===== Vorgaben zur Spring-Konfiguration
 
 Die Spring-Konfiguration der Anwendung ist nach folgenden Vorgaben zu erstellen.
 
@@ -286,7 +291,7 @@ Das Setzen einzelner Konfigurationsparameter über `set`-Methoden ist nur in Aus
 Abweichungen für technische Beans sind erlaubt.
 
 [[abhaengigkeiten-von-komponenten-konfigurieren]]
-==== Abhängigkeiten von Komponenten konfigurieren
+===== Abhängigkeiten von Komponenten konfigurieren
 
 Benötigte Beans müssen über Konstruktor-Parameter injiziert werden.
 Falls eine benötigte Bean nicht zum Zeitpunkt der Objekterzeugung vorhanden sein muss, sollte sie über
@@ -299,7 +304,7 @@ Generell sind die standardisierten Lifecycle-Annotationen `@PostConstruct` und `
 Interfaces `InitializingBean` und `DisposableBean` vorzuziehen.
 
 [[explizite-abhaengigkeits-konfiguration-bei-nachrichten]]
-==== Explizite Abhängigkeitskonfiguration bei Nachrichten
+===== Explizite Abhängigkeits-Konfiguration bei Nachrichten
 
 Falls man innerhalb des Konstruktors eine andere Bean benötigt, so konfiguriert man diese per Konstruktor-Argument
 (siehe Kapitel <<abhaengigkeiten-von-komponenten-konfigurieren>>). In einigen Fällen wird
@@ -319,7 +324,7 @@ Hierzu ist eine `@DependsOn`-Annotation in die Bean-Konfiguration einzufügen.
 Diese muss den Bean-Namen der benutzten Holder-Klassen enthalten.
 
 [[webapprootkey-konfigurieren]]
-=== webAppRootKey konfigurieren
+==== webAppRootKey konfigurieren
 
 Der Kontextparameter `webAppRootKey` muss in der `web.xml` auf den eindeutigen Namen der Webanwendung gesetzt werden, wie in <<listing-webAppRootKey>> gezeigt.
 
@@ -345,7 +350,7 @@ Da jede Webanwendung einen eindeutigen Namen besitzt, und damit einen eigenen Ko
 wird das Überschreiben vermieden.
 
 [[die-direkte-verwendung-des-spring-frameworks]]
-== Die direkte Verwendung des Spring-Frameworks
+=== Die direkte Verwendung des Spring-Frameworks
 
 Neben der Konfiguration der Beans enthält eine Anwendung kaum Abhängigkeiten von Spring: Da die benötigten Objekte per
 Dependency Injection konfiguriert werden, müssen diese nach ihrer Konfiguration lediglich verwendet werden.
@@ -365,7 +370,7 @@ Hierüber entstehen Abhängigkeiten zur Instanziierungsreihenfolge der Beans dur
 Für die noch nicht in anderen Konzepten besprochenen (letzten beiden) Themen werden im Folgenden Vorgaben aufgestellt.
 
 [[keine-beans-per-namen-auslesen]]
-=== Keine Beans per Namen auslesen
+==== Keine Beans per Namen auslesen
 
 Über den Anwendungskontext könnten Beans explizit per Namen ausgelesen werden.
 Dies ist mit einer Ausnahme verboten: Die Namen von Beans sollen nicht im Anwendungscode verwendet werden.
@@ -379,23 +384,100 @@ Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>), soll si
 Kontext gelesen werden.
 
 [[statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen]]
-=== Statischer Zugriff auf Bean-Instanzen nur in Sonderfällen
+==== Statischer Zugriff auf Bean-Instanzen nur in Sonderfällen
 
 Üblicherweise werden Spring-Beans per Dependency-Injection an die Beans weitergegeben, welche sie verwenden.
-In einigen Fällen muss eine Bean jedoch von sehr vielen Klassen verwendet werden: Die entsprechende Bean müsste in
-sämtlichen Komponenten-Beans injiziert und von dort in das komplette Objektgeflecht der Komponente (unter anderem an
-sämtliche Anwendungsfallklassen) weitergeleitet werden.
+In einigen Fällen muss eine Bean jedoch von sehr vielen Klassen verwendet werden: Die entsprechende Bean müsste in sämtlichen Komponenten-Beans injiziert und von dort in das komplette Objektgeflecht der Komponente (unter anderem an sämtliche Anwendungsfallklassen) weitergeleitet werden.
 
-In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die Konfiguration und Weiterleitung verzichtet
-wird, indem die Bean-Instanz über eine statische Methode zugreifbar gemacht wird.
+In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die Konfiguration und Weiterleitung verzichtet wird, indem die Bean-Instanz über eine statische Methode zugreifbar gemacht wird.
 Dies entspricht nicht den Konventionen des Spring-Frameworks und ist nur in Ausnahmefällen erlaubt.
 
 Die entsprechenden Hilfsklassen werden als _Holder_ bezeichnet.
 Sie besitzen eine statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung
 zu stellenden Bean initialisiert werden.
 
+[[transaktionssteuerung]]
+=== Transaktionssteuerung
+
+An der Schnittstelle des Anwendungskerns findet die Transaktionssteuerung statt.
+Jeder Aufruf wird in einer eigenen Transaktion abgearbeitet.
+Die Transaktion wird beim Aufruf des Anwendungskerns gestartet und mit der Rückgabe des Ergebnisses abgeschlossen (Commit) und somit beendet.
+Falls bei der Verarbeitung einer Anfrage ein nicht behebbarer Fehler auftritt, wird dieser an den Aufrufer zurück übermittelt.
+In diesem Fall wird die Transaktion nicht fortgeschrieben, sondern zurückgerollt (Rollback).
+
+Der Anwendungskern bietet an seiner Schnittstelle fachliche Operationen, in fachliche Komponenten gruppiert, an.
+Die fachlichen Operationen sind in der Regel zustandslos.
+Daher ist eine Transaktion über mehrere Aufrufe des Anwendungskerns oder ein Caching über Transaktionsgrenzen hinaus nicht notwendig und nach Möglichkeit zu vermeiden.
+Ist eine solche Steuerung trotzdem unumgänglich, muss sie über die jeweils zuständige Nutzungsschicht (GUI, Batch oder Service) erfolgen.
+
+[NOTE]
+====
+Details zur Umsetzung von Transaktionen in der Nutzungsschicht finden sich in den jeweiligen Detailkonzepten:
+
+* <<DetailkonzeptKomponenteBatch>>
+* <<DetailkonzeptKomponenteService>>
+* <<DetailkonzeptKomponenteWebGUI>>
+
+====
+
+[[transaktionssteuerung-mit-jpa]]
+==== Transaktionssteuerung mit JPA
+
+Spring ermöglicht es, die Transaktionssteuerung mit Annotationen zu definieren.
+Hierbei kann auf Ebene einzelner Methoden oder der gesamten Klasse das Verhalten von Transaktionen vorgegeben werden.
+
+Im Anwendungskern bieten sich dazu sich die Klassen der Implementierung der Schnittstelle an, die Aufrufer weiter an die Anwendungsfall-Klassen verweisen.
+Üblicherweise werden für eine feingranulare Steuerung die Methoden mit Annotationen versehen.
+Gibt es ein für die Klasse gemeinsames Verhalten, kann stattdessen auch die Klasse mit der Annotation versehen werden.
+
+:desc-listing-transactional: Verwendung der Annotation @Transactional an Klassen und Methoden
+[id="listing-transactional",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-transactional}
+[source,java]
+----
+@Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+public class FachkomponenteAImpl implements FachkomponenteA {
+    ...
+    @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
+    public Ergebnis fachlicheOperation(Aufrufparameter parameter) {
+        ...
+    }
+    ...
+}
+----
+
+Standardmäßig sollte der Propagation-Level auf `Propagation.REQUIRED` gesetzt sein.
+Damit wird eine neue Transaktion gestartet, falls noch keine Transaktion vorliegt.
+Hat aber die Nutzungsschicht bereits eine Transaktion gestartet, wird diese verwendet.
+Des Weiteren wird festgelegt, dass bei jedem Fehler ein Rollback durchgeführt wird.
+
+Damit Spring die Annotation `@Transactional` auswertet, muss folgende Spring-Konfiguration aktiv sein:
+
+:desc-listing-transaction-spring-config: Spring-Konfiguration zur Verwendung von @Transactional
+[id="listing-transaction-spring-config",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-transaction-spring-config}
+[source,xml]
+----
+<beans>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+</beans>
+----
+
+Durch diese Konfiguration erzeugt Spring passende AOP-Proxies, welche die Transaktionssteuerung übernehmen.
+Außerdem wird standardmäßig der `JpaTransactionManager` verwendet, passend zur Implementierung des Datenzugriffs.
+
+[NOTE]
+====
+Die Abhängigkeiten des `JpaTransactionManager` kommen aus der Datenzugriffsschicht.
+Weitere Details sind im <<DetailkonzeptKomponenteDatenzugriff>> beschrieben.
+====
+
 [[aspektorientierte-programmierung-in-spring]]
-== Aspektorientierte Programmierung in Spring
+=== Aspektorientierte Programmierung in Spring
 
 Es ist möglich, für Spring-Beans Funktionalität in Form von Aspekten zu definieren.
 Ihr Einsatz kann über „PointCuts“ konfiguriert werden.
@@ -412,23 +494,23 @@ Zu intensive Nutzung kann leicht zu einem schwer durchschaubaren Programmfluss f
 * Die Verwendung von AOP für andere Bereiche ist nur in begründeten Ausnahmefällen erlaubt.
 
 [[aop-fuer-transaktionssteuerung-verwenden]]
-=== AOP für Transaktionssteuerung verwenden
+==== AOP für Transaktionssteuerung verwenden
 
-Für die Steuerung von Transaktionen ist Spring-AOP einzusetzen: Es ist die Standard Spring-Transaktions-Advice zu verwenden.
-Ihre Verwendung wird in den Hibernate Nutzungsvorgaben (siehe <<DetailkonzeptKomponenteDatenzugriff>>) beschrieben.
+Für die Transaktionssteuerung ist Spring-AOP mit den dafür vorgesehenen Klassen von Spring einzusetzen.
+Die Verwendung wird im Kapitel <<transaktionssteuerung-mit-jpa>> beschrieben.
 Zusammengefasst gilt:
 
-* Instrumentiert werden alle Methoden der Anwendungs-Schnittstellen.
-* Für jeden Request wird eine Transaktion gestartet.
-* Falls keine Ausnahme auftritt, wird die Transaktion fortgeschrieben, sonst zurückgerollt.
+* Instrumentiert werden alle Schnittstellenmethoden des Anwendungskerns.
+* Für jeden Aufruf des Anwendungskerns wird eine Transaktion gestartet.
+* Falls kein Fehler auftritt, wird die Transaktion abgeschlossen (Commit), sonst zurückgerollt (Rollback).
 
 [[aop-für-berechtigungsprüfungen-verwenden]]
-=== AOP für Berechtigungsprüfungen verwenden
+==== AOP für Berechtigungsprüfungen verwenden
 
 Die Berechtigungsprüfung wird über Spring AOP mit den vom Baustein „Sicherheit“ angebotenen Annotationen umgesetzt (siehe <<NutzungsvorgabenSicherheit>>).
 
 [[aop-nicht-fuer-das-logging-von-exceptions-verwenden]]
-=== AOP nicht für das Logging von Exceptions verwenden
+==== AOP nicht für das Logging von Exceptions verwenden
 
 Sämtliche im System geworfenen und nicht behandelten Ausnahmen müssen inklusive ihrer Stacktraces geloggt werden.
 Geloggt wird dies in den Methoden der Schnittstellen-Beans.
@@ -440,3 +522,5 @@ Es würden nicht alle relevanten Informationen geloggt werden:
 
 Eine HttpInvoker-Bean fängt alle Ausnahmen und wirft statt der erhaltenen Exceptions eigene Schnittstellen-Exceptions,
 welche den Stacktrace der erhaltenen Exception nicht enthalten.
+
+// end::inhalt[]

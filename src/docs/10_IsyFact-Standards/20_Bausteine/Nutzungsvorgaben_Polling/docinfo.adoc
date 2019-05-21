@@ -22,5 +22,5 @@
 [cols="5,2,3",options="header"]
 |====
 |Name |Art |Version
-|isy-polling |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-polling |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
