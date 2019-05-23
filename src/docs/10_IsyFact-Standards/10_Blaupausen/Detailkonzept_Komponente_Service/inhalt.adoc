@@ -157,7 +157,7 @@ Die Aufgabe fällt der Service-Fassade zu, weil es wichtig ist, dass die Fehlerb
 Nur so ist gewährleistet, dass auch Fehler, die beim Commit entstehen, von der Fehlerbehandlung erfasst werden.
 
 Die Transaktionssteuerung wird an der jeweiligen Service-Methode angesetzt.
-Für das obige Beispiel verdeutlich dies <<listing-service-fassade-tx>>.
+Für das obige Beispiel verdeutlicht dies <<listing-service-fassade-tx>>.
 
 :desc-listing-service-fassade-tx: Transaktionssteuerung in der Service-Fassade
 [id="listing-service-fassade-tx",reftext="{listing-caption} {counter:listings }"]
