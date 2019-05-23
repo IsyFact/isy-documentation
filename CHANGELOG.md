@@ -1,7 +1,7 @@
 # 1.7.0
-- `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
+- `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
 - `IFE-35`: Dokumentation von List Picker Filterung mit Servlets hinzugefügt.
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
 - `IFE-45`: Vorlagen um Colophon und PDF-Theme für Closed-Source-Dokumente erweitert
@@ -15,7 +15,6 @@
 - `IFS-298`: Tutorial auf Maven Central umgestellt
 - `IFS-299`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
 - `IFS-222`: Filter Reihenfolge für Encoding angepasst
-- `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
 - `IFS-240`: Verweis auf Änderungshistorie in jedes Dokument aufgenommen.
 
 
