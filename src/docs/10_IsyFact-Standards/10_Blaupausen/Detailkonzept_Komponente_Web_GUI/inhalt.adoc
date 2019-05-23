@@ -217,7 +217,7 @@ Dabei muss die Komponente GUI die Brücke schlagen zwischen der _fachlichen Tran
 
 Die fachliche Transaktion entspricht einem Dialogablauf.
 Ein Beispiel dafür: Der Nutzer kann in der Regel über mehrere Masken hinweg Daten eingeben.
-Abschließend drückt er in ein Dialog den „OK“- bzw. den „Abbrechen“-Button.
+Abschließend drückt er in einem Dialog den „OK“- bzw. den „Abbrechen“-Button.
 Für den Nutzer ist klar, dass alle die von ihm eingegebenen Daten im Sinne einer Transaktion behandelt werden müssen, d.h. sie werden entweder vom System komplett übernommen oder komplett verworfen.
 
 Aus technischer Sicht ist die Behandlung dieses Ablaufs etwas komplizierter: Die Daten, die der Nutzer in den verschiedenen Dialogen eingibt, müssen zunächst zwischengespeichert werden, bevor dann bei Betätigung eines Buttons die technische Transaktion in der Datenbank erfolgt.
@@ -527,7 +527,7 @@ In einer GUI-Komponente werden grundsätzlich keine Klassen des Anwendungskerns 
 Stattdessen wird vom Controller-Bean der Komponente (und nur von diesem) auf den zur GUI-Komponente gehörenden Anwendungskern-Wrapper (kurz: AWK-Wrapper) zugegriffen, der den Anwendungskern aufruft.
 In den Models der GUI-Komponenten werden eigene Datentypen und nicht die des Anwendungskerns verwendet.
 
-Die primäre Aufgabe des AWK-Wrappers ist es, die Daten vom Anwendungskern in die der GUI zu mappen.
+Die primäre Aufgabe des AWK-Wrappers ist es, das Datenmodell des Anwendungskerns in das Datenmodell der GUI zu mappen.
 Falls die GUI darüber hinaus Transaktionen über mehrere Aufrufe des Anwendungskerns hinweg aufspannen möchte, geschieht dies ebenfalls im AWK-Wrapper.
 Damit der Datenzugriff in diesem Fall funktioniert, müssen die Spring Beans des AWK-Wrappers im selben Spring-Applikationskontext wie der Anwendungskern definiert werden.
 Nur dann ist der Transaktionskontext aus der Hibernate-Konfiguration auch für den AWK-Wrapper nutzbar.
