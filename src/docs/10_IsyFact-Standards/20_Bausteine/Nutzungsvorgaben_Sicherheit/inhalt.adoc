@@ -427,7 +427,7 @@ Die wichtigste Voraussetzung für das Funktionieren dieses Ansatzes ist, dass im
 ==== Autorisierung in Methoden des Anwendungskerns
 
 Berechtigungsprüfungen können ebenso an beliebiger Stelle im Quellcode erfolgen.
-Dazu bietet der Baustein Sicherheit über die Schnittstelle `Berechtigungsmanager` entsprechende Funktionen bereit.
+Dazu stellt der Baustein Sicherheit über die Schnittstelle `Berechtigungsmanager` entsprechende Funktionen bereit.
 Der Berechtigungsmanager ist ein Container für die Rechte und Rollen des aktuell authentifizierten Anwenders.
 
 Zur Erzeugung eines Berechtigungsmanagers muss das Spring Bean des Typs `Sicherheit` verfügbar sein.
@@ -473,7 +473,7 @@ Auch hier bietet sich die Lösung aus dem Abschnitt <<awk-autorisierung-in-metho
 [[aufrufen-von-nachbarsystemen]]
 == Aufrufen von Nachbarsystemen
 
-So wie ein IT-System bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, das aufgerufen wird.
+Ein Nachbarsystem, das aufgerufen wird, erwartet einen gültigen, vollständigen Aufrufkontext vorzufinden.
 Der Aufrufer muss daher einen Aufrufkontext mitliefern.
 Im Regelfall soll dabei der Aufrufkontext der originären Anfrage verwendet und unverändert weitergeleitet werden.
 
