@@ -11,6 +11,7 @@ include::../../../common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
+
 // Executive Summary
 include::preface.adoc[]
 

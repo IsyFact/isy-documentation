@@ -17,7 +17,7 @@ zu verwalten.
 Die Kommunikation mit der Anwendung erfolgt über sogenannte _Endpoints_.
 Diese können über HTTP oder JMX bereitgestellt werden.
 Actuator bringt eine Reihe von eingebauten Endpoints mit und bietet auch die Möglichkeit, eigene Endpoints hinzuzufügen.
-So wird für Informationen über den Systemzustand der eingebauten Endpoint´ `health` angeboten und über den Endpoint
+So wird für Informationen über den Systemzustand der eingebauten Endpoint `health` angeboten und über den Endpoint
 `metrics` können Metriken gelesen werden.
 
 [[micrometer]]
@@ -342,7 +342,7 @@ gesetzt.
 
 Die im Konzept beschriebenen Überwachungsfunktionen dürfen keinen relevanten negativen Einfluss auf die
 Performance der Anwendung haben.
-Dazu sind neben der Einhaltung der in Kapitel <<entwurf-der-anwendungsueberwachung>> beschriebenen
+Dazu sind neben der Einhaltung der in Kapitel <<festlegungen-und-ausgrenzungen>> beschriebenen
 Vorgaben noch einige grundlegende  Regeln zu beachten:
 
 * Da nicht auszuschließen ist, dass ein Überwachungswerkzeug sehr häufig Informationen aus den Endpoints
@@ -375,7 +375,7 @@ Die Bereistellung der Endpoints erfolgt nur über HTTP.
 Für diese Konfiguration werden die in <<listing-endpointconfig>> gezeigten Porperties in `application.properties` gesetzt.
 
 :desc-listing-endpointconfig: Properties zur Konfiguration der Endpoints
-[id="listing-endpointnfig",reftext="{listing-caption} {counter:listings }"]
+[id="listing-endpointconfig",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-endpointconfig}
 ----
 management.endpoints.enabled-by-default=false

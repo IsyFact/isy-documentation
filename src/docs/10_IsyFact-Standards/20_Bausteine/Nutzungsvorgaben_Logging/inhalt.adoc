@@ -661,7 +661,7 @@ Es werden Methoden zum Setzen und Lesen der Korrelations-ID bereitgestellt:
 Dies bedeutet: Wenn die Korrelations-ID „X“ gesetzt wird, wird diese im Attribut „korrelationsid“ im MDC gesetzt.
 Sollte dieses Attribut bereits gesetzt sein (bspw.
 mit der Korrelations-ID „Y“), so wird das Attribut durch „Y;X“ ersetzt.
-* `liesKorrelaiionsId()`: Liest die Korrelations-ID aus dem MDC.
+* `liesKorrelationsId()`: Liest die Korrelations-ID aus dem MDC.
 * `entferneKorrelationsId()`: Entfernt die zuletzt „gepushte“ Korrelations-ID (bspw. „Y;X“ wird zu „Y“).
 * `entferneKorrelationsIds()`: Entfernt alle Korrelations-IDs.
 +
@@ -1417,7 +1417,7 @@ Es muss ein Logeintrag erstellt werden, der die Änderung des Konfigurationspara
 `log.info("Der Konfigurationsparameter <Parameter> wurde geändert von <Alter Wert> auf <Neuer Wert>",
 <Name des Parameters>, <Alter Wert>, <Neuer Wert>)`
 
-Dies wird durch die Klasse `ReloadablePropertyKonfiguration` der Bibliothek isy-konfiguration bereits umgesetzt,
+Dies wird durch die Klasse `ReloadablePropertyKonfiguration` der Bibliothek `isy-konfiguration` bereits umgesetzt,
 so dass bei deren Verwendung hierfür nichts mehr zu tun ist.
 |Auswertungsszenario a|
 * Systemzustand und -ereignisse überwachen
@@ -1647,78 +1647,18 @@ Im Folgenden werden die spezifischen Ereignisschlüssel der Komponente `isy-logg
 [cols="<6m,^2,<3,<9",options="header"]
 |====
 |Schlüssel (s.u.) |Level |Kategorie |Text
-a|
-`EISYLO01001`
-(`EPLILO01001`)
- |INFO |JOURNAL |Methode <Klasse.Methode> wird aufgerufen.
-a|
-`EISYLO01002`
-(`EPLILO01002`)
- |INFO |METRIK |Aufruf von <Klasse.
-Methode> erfolgreich beendet.
-a|
-`EISYLO01003`
-(`EPLILO01003`)
- |INFO |METRIK |Aufruf von <Klasse.
-Methode> mit Fehler beendet.
-a|
-`EISYLO01004`
-(`EPLILO01004`)
- |INFO |PROFILING |Aufruf von <Klasse.
-Methode> erfolgreich beendet.
-Der Aufruf dauerte <Dauer in Millisekunden> ms.
-a|
-`EISYLO01005`
-(`EPLILO01005`)
- |INFO |PROFILING |Aufruf von <Klasse.
-Methode> mit Fehler beendet.
-Der Aufruf dauerte <Dauer in Millisekunden> ms.
-a|
-`EISYLO01011`
-(`EPLILO01011`)
- |INFO |JOURNAL |Die Methode <Klasse.Methode> des Nachbarssystems <systemname> wird unter der URL <url> aufgerufen.
-a|
-`EISYLO01012`
-(`EPLILO01012`)
- |INFO |METRIK |Aufruf von <Klasse.
-Methode> des Nachbarssystems <systemname> unter der URL <url> erfolgreich beendet.
-a|
-`EISYLO01013`
-(`EPLILO01013`)
- |INFO |METRIK |Aufruf von <Klasse.
-Methode> des Nachbarssystems <systemname> unter der URL <url> mit Fehler beendet.
-a|
-`EISYLO01014`
-(`EPLILO01014`)
- |INFO |PROFILING |Aufruf von <Klasse.
-Methode> des Nachbarssystems <systemname> unter der URL <url> erfolgreich beendet.
-Der Aufruf dauerte <Dauer in Millisekunden> ms.
-a|
-`EISYLO01015`
-(`EPLILO01015`)
- |INFO |PROFILING |Aufruf von <Klasse.
-Methode> des Nachbarssystems <systemname> unter der URL <url> mit Fehler beendet.
-Der Aufruf dauerte <Dauer in Millisekunden> ms.
-a|
-`EISYLO02001`
-(`EPLILO02001`)
- |INFO |JOURNAL |ApplicationContext des Systems <Systemname> (Systemart) wurde gestartet oder aktualisiert.
-a|
-`EISYLO02002`
-(`EPLILO02002`)
- |INFO |JOURNAL |Der ApplicationContext des Systems <Systemname> (Systemart) wurde gestopped.
-a|
-`EISYLO02003`
-(`EPLILO02003`)
- |INFO |JOURNAL |Die Systemversion ist <Versionsnummer>.
-a|
-`EISYLO02004`
-(`EPLILO02004`)
- |INFO |JOURNAL |Der Laufzeitparameter <Parametername> besitzt den Wert <Wert>.
+|EISYLO01001 |INFO |JOURNAL |Methode <Klasse.Methode> wird aufgerufen.
+|EISYLO01002 |INFO |METRIK |Aufruf von <Klasse.Methode> erfolgreich beendet.
+|EISYLO01003 |INFO |METRIK |Aufruf von <Klasse.Methode> mit Fehler beendet.
+|EISYLO01004 |INFO |PROFILING |Aufruf von <Klasse.Methode> erfolgreich beendet. Der Aufruf dauerte <Dauer in Millisekunden> ms.
+|EISYLO01005 |INFO |PROFILING |Aufruf von <Klasse.Methode> mit Fehler beendet. Der Aufruf dauerte <Dauer in Millisekunden> ms.
+|EISYLO01011 |INFO |JOURNAL |Die Methode <Klasse.Methode> des Nachbarsystems <systemname> wird unter der URL <url> aufgerufen.
+|EISYLO01012 |INFO |METRIK |Aufruf von <Klasse.Methode> des Nachbarsystems <systemname> unter der URL <url> erfolgreich beendet.
+|EISYLO01013 |INFO |METRIK |Aufruf von <Klasse.Methode> des Nachbarsystems <systemname> unter der URL <url> mit Fehler beendet.
+|EISYLO01014 |INFO |PROFILING |Aufruf von <Klasse.Methode> des Nachbarsystems <systemname> unter der URL <url> erfolgreich beendet. Der Aufruf dauerte <Dauer in Millisekunden> ms.
+|EISYLO01015 |INFO |PROFILING |Aufruf von <Klasse.Methode> des Nachbarsystems <systemname> unter der URL <url> mit Fehler beendet. Der Aufruf dauerte <Dauer in Millisekunden> ms.
+|EISYLO02001 |INFO |JOURNAL |ApplicationContext des Systems <Systemname> (Systemart) wurde gestartet oder aktualisiert.
+|EISYLO02002 |INFO |JOURNAL |Der ApplicationContext des Systems <Systemname> (Systemart) wurde gestopped.
+|EISYLO02003 |INFO |JOURNAL |Die Systemversion ist <Versionsnummer>.
+|EISYLO02004 |INFO |JOURNAL |Der Laufzeitparameter <Parametername> besitzt den Wert <Wert>.
 |====
-
-[NOTE]
-====
-Bis zur Version 1.0.7 von `isy-logging` wurde `EPLILO` als Präfix der Schlüssel verwendet. Diese alten
-Ereignisschlüssel sind jeweils in Klammer angegeben.
-====

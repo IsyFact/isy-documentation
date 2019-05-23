@@ -446,7 +446,6 @@ public class ServiceConfig {
 
 Die Spring-Konfiguration für den Kontext des Batchrahmens muss neu erstellt werden.
 Hierfür werden gesonderte `@Configuration`-Klassen erstellt.
-/// TODO Hierfür nehme man Datei resources/batch/rahmen/Batchrahmen.xml der Vorlageanwendung und passe die Konfiguration der Ausführungsbeans an.
 
 [[die-tabellen-des-batchrahmens]]
 == Die Tabellen des Batchrahmens
@@ -476,7 +475,7 @@ Die ID sollte aus einem gemeinsamen Präfix für die Fachanwendung, gefolgt von 
 |`BatchStatus` a|
 Einer der folgenden Werte: +
 *laeuft*: Der Batch wurde gestartet und läuft aktuell. +
-*abgebrochen*: Der Batch ist abgebrochen und sollte per RESTART neu gestartet werden. +
+*abgebrochen*: Der Batch ist abgebrochen und sollte per `RESTART` neu gestartet werden. +
 *beendet*: Der Batch ist erfolgreich beendet worden.
 |`SatznummerLetztesCommit` |Die Anzahl an Sätzen, welche beim letzten Commit verarbeitet worden sind.
 Dies wird für die Umsetzung der Restart-Funktionalität verwendet.
@@ -501,7 +500,7 @@ Die Befüllung der Tabelle wird deshalb komplett über den Batchrahmen durchgef�
 Üblicherweise ist das Locking-Verhalten in Fachanwendungen optimistisch: Datensätze werden nicht explizit gelockt.
 Stattdessen wird über Versions-Attribute zum Commit-Zeitpunkt geprüft, ob der Datensatz innerhalb der Transaktion verändert wurde.
 Für die Tabelle des Batchrahmens wird _nicht_ optimistisch, sondern pessimistisch gelockt.
-Zusätzlich wird als Hibernate Locking-Strategie LOCK_NOWAIT verwendet: Falls auf einen Datensatz zugegriffen wird, welcher gerade gelockt ist, wird nicht bis zur Freigabe gewartet, sondern eine Exception geworfen.
+Zusätzlich wird als Hibernate Locking-Strategie `LOCK_NOWAIT` verwendet: Falls auf einen Datensatz zugegriffen wird, welcher gerade gelockt ist, wird nicht bis zur Freigabe gewartet, sondern eine Exception geworfen.
 Die parallele Ausführung zweier Batches mit gleicher Batch-ID ist nicht erlaubt und soll zum Fehler führen.
 
 [[die-transaktionssteuerung]]
@@ -745,7 +744,7 @@ Die Ergebnisdatei hat den folgenden Aufbau:
 |====
 |XML-Pfad |Attribut |Typ |Bedeutung
 |`Batch-Ergebnis` | | |Root-Tag des Batch-Ergebnisses
-|`Batch-Ergebnis / Start` |`Datum |Text |Datum des Starts des Batchlaufs
+|`Batch-Ergebnis / Start` |`Datum` |Text |Datum des Starts des Batchlaufs
 |`Batch-Ergebnis / Start` |`Uhrzeit` |Text |Uhrzeit des Starts des Batchlaufs
 |`Batch-Ergebnis / Start` |`BatchID` |Text |Die Batch-ID des Batchlaufs
 |`Batch-Ergebnis / Start` |`Parameter` |Text |Die Parameter des Batchlaufs
