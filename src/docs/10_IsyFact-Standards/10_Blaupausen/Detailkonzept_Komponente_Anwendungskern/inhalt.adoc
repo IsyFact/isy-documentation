@@ -252,7 +252,7 @@ public class IsyFactApplication extends SpringBootServletInitializer {
 
 
 2. Für jede Schicht wird im Package `<org>.<domäne>.<anwendung>.<schicht>.config` eine mit `@Configuration` annotierte
-Konfigurationsklasse erstellt (<<listing-konfigurationklasse>>).
+Konfigurationsklasse erstellt (<<listing-konfigurationsklasse>>).
 Diese wird zusätzlich mit `@ComponentScan` annotiert.
 Der _Component Scan_ mit wird dem Attribute `basePackages` auf das Package der Schicht beschränkt.
 Annotation, die querschnittliche Aspekte konfigurieren (z.B. `@EnableTransactionManagement`), werden an die jeweilige
@@ -376,12 +376,9 @@ Für die noch nicht in anderen Konzepten besprochenen (letzten beiden) Themen we
 Dies ist mit einer Ausnahme verboten: Die Namen von Beans sollen nicht im Anwendungscode verwendet werden.
 Die Ausnahme gilt für den Zugriff von einem Anwendungskontext auf einen anderen (in Zusammenhang mit dem DispatcherServlet).
 In diesem Fall ist ein explizites Auslesen nicht zu vermeiden.
-Auszulesen ist in diesem Fall keine AWK-Komponente, sondern eine weitere Schnittstellen-Bean, welche nur für
-diesen Zweck verwendet wird (siehe Kapitel <<spring-dispatcherservlet-konfigurieren>>).
+Auszulesen ist in diesem Fall keine AWK-Komponente, sondern eine weitere Schnittstellen-Bean, welche nur für diesen Zweck verwendet wird.
 
-Auch wenn eine Bean statisch zugreifbar gemacht werden soll (siehe
-Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>), soll sie nicht per Namen aus dem
-Kontext gelesen werden.
+Auch wenn eine Bean statisch zugreifbar gemacht werden soll (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>), soll sie nicht per Namen aus dem Kontext gelesen werden.
 
 [[statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen]]
 ==== Statischer Zugriff auf Bean-Instanzen nur in Sonderfällen

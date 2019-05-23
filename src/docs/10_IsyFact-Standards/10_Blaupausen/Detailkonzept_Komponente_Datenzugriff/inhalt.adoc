@@ -101,7 +101,7 @@ Vorlage-Anwendung <<Vorlageanwendung>>.
 [[initialisieren-von-string-feldern]]
 === Initialisieren von String-Feldern
 
-Für die Verarbeitung im Regelwerk (siehe ) ist es hilfreich, dass String-Felder initialisiert werden, da
+Für die Verarbeitung im Regelwerk ist es hilfreich, dass String-Felder initialisiert werden, da
 ansonsten in nahezu allen Regeln zwischen `""` und `null` differenziert werden müsste.
 In Objekten, die in das Regelwerk eingegeben werden sollen, wird daher bei der Definition von
 String-Feldern initial ein Leer-String gesetzt:
@@ -226,7 +226,7 @@ auf dem `java.sql.Timestamp`) aufgerufen werden:
 +
 [source,java]
 ----
-getTimestamp().compareTo(getDate()); // OK
+.getTimestamp().compareTo(getDate()); // OK
 .getDate().compareTo(getTimestamp()); // Nicht OK
 .getDate().equals(getTimestamp()); // Nicht OK
 ----
@@ -454,7 +454,7 @@ Vorlage-Anwendung <<Vorlageanwendung>>.
 
 Der von Spring Data erzeugte Proxy für das Repository Interface kann die Queries auf zwei Arten ableiten.
 
-1. Ableitung des Queries über den Namen der Methode. <<querymethodenname>> zeigt ein Beispiel hierfür.
+1. Ableitung des Queries über den Namen der Methode. <<listing-querymethodenname>> zeigt ein Beispiel hierfür.
 +
 :desc-listing-querymethodenname: Beispiele für die Ableitung des Queries aus dem Methodennamen.
 [id="listing-querymethodenname",reftext="{listing-caption} {counter:listings }"]
@@ -730,7 +730,7 @@ Standardmäßig verwendet Hibernate für alle 1:n und n:m Assoziationen ein Lazy
 Standardmäßig soll für alle Assoziationen Lazy Loading verwendet werden, wobei Bytecode-Manipulationen für Lazy Loading nicht verwendet werden sollen.
 
 Um Lazy Loading auch für 1:1 Assoziationen einzuschalten, wird das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
-Damit das Lazy Loading über Proxies funktioniert, muss die Assoziation nicht optional sein, d.h., dass Feld darf nicht ` null` sein.
+Damit das Lazy Loading über Proxies funktioniert, muss die Assoziation nicht optional sein, d.h., dass Feld darf nicht `null` sein.
 
 [source,java]
 ----

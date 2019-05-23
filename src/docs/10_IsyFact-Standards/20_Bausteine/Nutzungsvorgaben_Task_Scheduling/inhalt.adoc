@@ -233,7 +233,7 @@ Das Passwort das benutzt wird, wenn kein Task-spezifisches Passwort konfiguriert
 
 [source]
 ----
-isy.task.default..asswort
+isy.task.default.passwort
 ----
 
 Das Behördenkennzeichen das benutzt wird, wenn kein Task-spezifisches konfiguriert wird:

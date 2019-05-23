@@ -29,7 +29,7 @@ Ein `Berechtigungsmanager` gibt Instanzen der Schnittstellen `Recht` und `Rolle`
 Anwender bekommen Rollen bereits an anderer Stelle zugewiesen.
 Für den Baustein Sicherheit ist diese Zuordnung fest vorgegeben und nicht änderbar.
 Anhand seiner Rollen werden dem Anwender durch das IT-System Rechte zugewiesen.
-Diese Zuordnung erfolgt über <<konfiguration-von-rollen-in-der-anwendung,eine Konfigurationsdatei>>.
+Diese Zuordnung erfolgt über <<konfiguration-von-rollen-und-rechten,eine Konfigurationsdatei>>.
 
 Die Implementierung des Aufrufkontextes richtet sich nach dem verwendeten IsyFact-Baustein zur Authentifizierung.
 
@@ -67,7 +67,7 @@ Die Autokonfiguration von `isy-sicherheit` führt die folgende Konfiguration dur
 * Die Bean für die `AufrufKontextFactory` wird konfiguriert.
 * Die Bean für die Komponente `SicherheitAdmin` wird konfiguriert, wenn eine AccessManager-Bean vorhanden ist.
 
-Die Beans für Sicherheit und den AufrufKontextVerwalter in einer separaten Spring-Konfigurationsklasse manuell konfiguriert.
+Die Beans für Sicherheit und den AufrufKontextVerwalter werden in einer separaten Spring-Konfigurationsklasse manuell konfiguriert.
 Ein Beispiel dazu findet sich in <<listing-konfiguration-fuer-spring>>.
 Die fehlenden Typparameter sind in der echten Konfiguration zu ergänzen.
 Des Weiteren muss eine Bean für den verwendeten `AccessManager` existieren.
@@ -103,7 +103,7 @@ Eine Beschreibung der Konfiguration findet sich in den jeweiligen Nutzungsvorgab
 ==== Caching von Authentifizierungen
 
 Der Baustein liefert eine <<standard-cache-konfiguration,Standard-Konfiguration für das Caching von Authentifizierungen>> an.
-Der Standardwert für die Lebensdauer von Cache-Elementen liegt bei 5 Minuten, die maximale Anzahl an Elementen im Cache bei 1000.
+Der Standardwert für die Lebensdauer von Cache-Elementen liegt bei 5 Minuten (300 Sekunden), die maximale Anzahl an Elementen im Cache bei 1000.
 Wird die maximale Anzahl an Elementen überschritten, löscht der Cache die am längsten nicht mehr verwendeten Elemente zuerst.
 
 Die Konfiguration des Caches erfolgt über die betriebliche Konfiguration in `application.properties`.
@@ -111,15 +111,8 @@ Hierzu sind folgende Parameter zu setzen:
 
 [source,ruby]
 ----
-# Zeit in Sekunden, die ein Eintrag im Cache verweilt, bis er als ungültig
-# markiert wird.
-# Time-To-Live 0 deaktiviert den Cache.
 isy.sicherheit.cache.ttl=300
-
-# Maximale Anzahl an Elementen, die im Cache vorgehalten werden. Die Elemente, # die am
-# längsten nicht verwendet wurden, werden aus dem Cache entfernt.
-# Der Cache hat eine unbegrenzte Größe, wenn der Wert auf 0 gesetzt wird.
-isy.sicherheit.cache.maxelements=10000
+isy.sicherheit.cache.maxelements=1000
 ----
 
 Wird der Parameter `isy.sicherheit.cache.ttl` auf 0 gesetzt oder nicht konfiguriert, ist der Cache deaktiviert.
