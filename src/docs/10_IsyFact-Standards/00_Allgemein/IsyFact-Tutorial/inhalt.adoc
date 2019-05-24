@@ -449,8 +449,7 @@ Für jede Service-Schnittstelle wird ein Servlet-Mapping auf dieses Servlet konf
 
 Vor der Exception-Fassade wird mit Hilfe der Annotation `@StelltLoggingKontextBereit` die mit dem Aufrufkontext mitkommende Correlation-Id für das Logging registriert.
 
-An den Methoden der Service-Implementierung werden die Annotationen `@StelltAufrufKontextBereit` und `@Gesichert` gemäß <<NutzungsvorgabenSicherheit>> verwendet, um den Zugriff auf
-die Service-Methode zu autorisieren.
+An den Methoden der Service-Implementierung werden die Annotationen `@StelltAufrufKontextBereit` und `@Gesichert` gemäß <<NutzungsvorgabenSicherheit>> verwendet, um den Zugriff auf die Service-Methode zu autorisieren.
 
 Beispiele dafür finden sich in <<Vorlageanwendung>>.
 
@@ -1255,8 +1254,7 @@ Der vom `AufrufKontextVerwalter` verwaltete Aufrufkontext wird beim Aufruf der A
 Komponenten, die diese Informationen benötigen, erhalten dazu einfach eine Referenz auf den
 `AufrufKontextVerwalter` per Dependency Injection.
 
-Zur Entgegennahme des Aufrufkontextes an der Service-Schnittstelle kann eine Annotation
-`@StelltAufrufKontextBereit` verwendet werden.
+Zur Entgegennahme des Aufrufkontextes an der Service-Schnittstelle wird die Annotation `@StelltAufrufKontextBereit` verwendet.
 Die Konfiguration ist in <<NutzungsvorgabenSicherheit>> beschrieben.
 
 [[authentifizierung-und-autorisierung]]
@@ -1325,7 +1323,8 @@ Die einer Rolle zugeordneten Rechte werden in der Datei `/src/main/resources/res
 ==== Prüfen der Berechtigung
 
 Die Berechtigungsprüfung erfolgt in der Regel vor der fachlichen Verarbeitung in der Service-Schnittstelle oder im Dialog-Controller einer Anwendung.
-Dies erfolgt über Annotationen oder im Webflow (siehe <<NutzungsvorgabenSicherheit>>). Es kann auch jederzeit auf das Bean Sicherheit zugegriffen werden, um einen Berechtigungsmanager zu verwenden.
+Dies erfolgt über Annotationen oder im Webflow (siehe <<NutzungsvorgabenSicherheit>>).
+Es kann auch jederzeit auf das Bean Sicherheit zugegriffen werden, um einen Berechtigungsmanager zu verwenden.
 
 [source,java]
 ----

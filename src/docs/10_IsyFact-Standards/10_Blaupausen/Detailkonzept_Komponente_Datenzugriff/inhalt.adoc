@@ -996,7 +996,7 @@ Eine Historisierung von Datensätzen wird durchgeführt, wenn Fragen über den W
 Bei der Archivierung handelt es sich um die Aufbewahrung eines Datensatzes über eine längere Zeit.
 Dies ist meist aus rechtlichen Gründen notwendig z. B. wegen gesetzlicher Aufbewahrungsfristen.
 Bei der Archivierung sind dementsprechend Randbedingungen wie Integrität, Unveränderlichkeit und
-Vertraulichkeit einzuhalten <<ITGS06>>.
+Vertraulichkeit einzuhalten <<ITGrundschutz>>.
 
 [[abgrenzung-datensicherung-backup]]
 ==== Abgrenzung Datensicherung (Backup)

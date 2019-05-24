@@ -572,8 +572,7 @@ Zusammengefasst gilt:
 [[aop-für-berechtigungsprüfungen-verwenden]]
 ==== AOP für Berechtigungsprüfungen verwenden
 
-Die Berechtigungsprüfung wird über AOP mit den von der T-Komponente „Sicherheit“ angebotenen Annotationen umgesetzt
-(siehe <<NutzungsvorgabenSicherheit>>).
+Die Berechtigungsprüfung wird über Spring AOP mit den vom Baustein „Sicherheit“ angebotenen Annotationen umgesetzt (siehe <<NutzungsvorgabenSicherheit>>).
 
 [[aop-nicht-fuer-das-logging-von-exceptions-verwenden]]
 ==== AOP nicht für das Logging von Exceptions verwenden
