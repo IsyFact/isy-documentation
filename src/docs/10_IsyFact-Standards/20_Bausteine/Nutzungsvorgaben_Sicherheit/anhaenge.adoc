@@ -252,7 +252,7 @@ Einmal konfiguriert, erfolgt die Erstellung des Aufrufkontextes transparent für
     </bean>
 ----
 
-[[entgegennahme-der-korrelations-id-in-der-gui]]
+[[cams-entgegennahme-der-korrelations-id-in-der-gui]]
 ==== Entgegennahme der Korrelations-ID in der GUI
 
 Die Neuerzeugung und Registrierung der Korrelations-ID im MDC (_Mapped Diagnostic Context_) erfolgt automatisch innerhalb des Spring Beans `HttpHeaderParser` der Bibliothek `rf-sicherheit-cams`.

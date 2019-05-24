@@ -5,8 +5,4 @@
 |Dokumenten-ID:| IsyFact-Glossar
 |====
 
-//|Datum |Version |Änderungsgrund
-//|7.8.2017|0.1 |Ersterstellung
-//|20.2.2018|1.0 |Review-Kommentare eingearbeitet
-
 Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.

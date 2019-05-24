@@ -125,7 +125,7 @@ Rechte sind anwendungsspezifisch und an Rollen gebunden.
 [[aufruf-von-nachbarsystemen]]
 === Aufruf von Nachbarsystemen
 
-So wie ein IT-System bei einem Aufruf erwartet, einen gültigen, vollständigen Aufrufkontext vorzufinden, erwartet dies auch ein Nachbarsystem, welches vom eigenen IT-System aufgerufen wird.
+Ein Nachbarsystem, das aufgerufen wird, erwartet einen gültigen, vollständigen Aufrufkontext vorzufinden.
 Das aufrufende System muss daher einen Aufrufkontext mitliefern.
 Im Regelfall soll dabei der Aufrufkontext der originären Anfrage verwendet und unverändert weitergeleitet werden.
 

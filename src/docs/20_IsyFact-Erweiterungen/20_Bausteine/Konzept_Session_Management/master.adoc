@@ -4,6 +4,9 @@ include::../../../common/attributes.adoc[]
 //
 :doctitle: Konzept Sessionmanagement
 :title: {doctitle}
+// Dokument unter Closed Source Lizenz
+:license-oss!:
+:factory: IsyFact-Erweiterungen
 
 // Zwangsplatz des TOC
 

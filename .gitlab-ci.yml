@@ -19,7 +19,6 @@ cache:
    - ZIII4
   before_script:
    - mvn -v
-   - echo "$SETTINGSSECURITY" > ~/.m2/settings-security.xml
    - PFAD=$(pwd)
    - mkdir -p aptcache
    - apt-get update
@@ -34,11 +33,9 @@ documentation:branches:
     - target/html/
     - target/pdf/
    expire_in: 1 weeks
-  only:
-   - branches
   except:
-   - master
-    
+   - schedules
+
 documentation:schedule:
   <<: *vorlage
   artifacts:
@@ -47,16 +44,4 @@ documentation:schedule:
     - target/pdf/
    expire_in: 2 days
   only:
-   - schedules
-
-documentation:master:
-  <<: *vorlage
-  artifacts:
-   paths:
-    - target/html/
-    - target/pdf/
-   expire_in: 1 day
-  only:
-   - master
-  except:
    - schedules
