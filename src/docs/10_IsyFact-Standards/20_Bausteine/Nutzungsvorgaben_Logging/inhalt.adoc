@@ -303,15 +303,9 @@ Zwar stellt der Logger eine Vielzahl von Methoden bereit, allerdings unterscheid
 
 [underline]#Anmerkungen#
 
-* Die Schnittstelle bietet nicht alle bzw. andere Methoden an, als bspw.
-SLF4J oder log4j.
-Dies ist beabsichtigt, um die Log-Inhalte in Systemen, die gemäß der IsyFact entwickelt werden, besser
-standardisieren zu können.
-Drittsoftware (bspw.
-Frameworks wie Hibernate, Spring etc.) oder Systeme, die schrittweise auf das Logging-Framework
-migriert werden, nutzen automatisch die Logger-Schnittstelle, die durch logback bereitgestellt
-wird (zum Umgang mit Drittsoftware siehe <<performance-logging>>, zur Migration
-siehe <<anhaenge.adoc#migration-von-log4j-auf-isy-logging>>).
+* Die Schnittstelle bietet nicht alle bzw. andere Methoden an, als bspw. SLF4J.
+Dies ist beabsichtigt, um die Log-Inhalte in Systemen, die gemäß der IsyFact entwickelt werden, besser standardisieren zu können.
+Drittsoftware (bspw. Frameworks wie Hibernate, Spring etc.) oder Systeme, die schrittweise auf das Logging-Framework migriert werden, nutzen automatisch die Logger-Schnittstelle, die durch logback bereitgestellt wird (zum Umgang mit Drittsoftware siehe <<umgang-mit-drittsoftware>>).
 * Die Logeinträge werden beim Schreiben einheitlich mit einem Zeitstempel der Zeitzone „UTC“ versehen.
 Hierauf kann beim Aufruf des Loggers keinen Einfluss genommen werden.
 
@@ -990,20 +984,14 @@ eingerichtet werden, die auch tatsächlich benötigt werden.
 Bei sämtlichen Bridges muss sichergestellt werden, dass das `logback.jar` als einzige SLF4J-Implementierung in der
 Anwendung vorhanden ist.
 
-[[bridge-für-log4j]]
-==== Bridge für log4j
-
-SLF4J stellt mit der Bibliothek `log4j-over-slf4j.jar` eine Bridge von log4j zu slf4j zur Verfügung.
-Diese kann wie folgt eingesetzt werden:
-
-.  `log4j*.jar` aus der Anwendung entfernen (bzw.
-sicherstellen, dass diese durch Maven nicht in die Anwendung integriert werden)
-.  `log4j-over-slf4j.jar` in die Anwendung ergänzen
-
 [[bridge-fuer-commons-logging]]
 ==== Bridge für commons-logging
 
-Analog zu log4j in <<einbinden-der-spring-konfiguration>>, nur dass die Bibliothek `jcl-over-slf4j.jar` verwendet wird.
+SLF4J stellt mit der Bibliothek `jcl-over-slf4j.jar` eine Bridge von commons-logging zu slf4j zur Verfügung.
+Diese kann wie folgt eingesetzt werden:
+
+.  `commons-logging*.jar` aus der Anwendung entfernen (bzw. sicherstellen, dass diese durch Maven nicht in die Anwendung integriert werden)
+.  `jcl-over-slf4j.jar` in die Anwendung ergänzen
 
 [[bridge-fuer-java.util.logging]]
 ==== Bridge für java.util.logging

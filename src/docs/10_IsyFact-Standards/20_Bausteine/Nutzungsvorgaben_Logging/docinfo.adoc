@@ -12,5 +12,4 @@ Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aende
 |====
 |Name |Art |Version
 |isy-logging |Bibliothek |siehe isyfact-bom v{version-ifs}
-|Isy-logging-log4j-bridge |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

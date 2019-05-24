@@ -26,7 +26,7 @@ Beim Aufzeichnen eines Ereignisses wird ein einzelner abgeschlossener Logeintrag
 |Logformat |Format/Struktur in der die Logeinträge abgelegt werden. |
 |Logging |Aufzeichnung von Ereignissen eines Systems zur Analyse von System-, Nutzerverhalten oder Systemzuständen. |
 |Logging-Framework |Framework, welches zum Schreiben der Logeinträge innerhalb der Anwendungen verwendet wird (bspw.
-logback, log4j). |
+logback). |
 |Lognachricht |Menschenlesbare Nachricht, welches ein geloggtes Ereignis näher beschreibt.
 Fester Bestandteil jedes Logeintrags. |
 |Protokollierung |Mitschreiben von Informationen zu durchgeführten Geschäftsvorfällen auf Grund fachlicher Anforderungen. +

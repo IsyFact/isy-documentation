@@ -793,8 +793,16 @@ Für systemabhängige Werte existiert kein Default, diese werden aber bereits w�
 Initialisierung der Anwendung geprüft (siehe Kapitel <<handhabung-von-default-werten>>).
 Fehlende Einstellungen werden so beim Programmstart erkannt.
 
-[[implementierungsvorgaben-für-property-dateien]]
-==== Verwendung von isy-konfiguration
+[[datenbank-basierte-konfigurationen]]
+=== Datenbank-basierte Konfigurationen
+
+Konfigurationen, welche durch die Anwendung geschrieben werden, sind in der Datenbank abzulegen.
+Die Tabellen hierfür sind Teil des Datenmodells der Anwendung.
+Der Zugriff erfolgt genau wie der auf die übrigen Entitätstypen.
+Für weitere Details siehe <<DetailkonzeptKomponenteDatenzugriff>>.
+
+[[verwendung-von-isy-konfiguration]]
+== Verwendung von isy-konfiguration
 
 [WARNING]
 Die Bibliothek `isy-konfiguration` wird nicht mehr weiterentwickelt und ist nur im Ausnahmefall zu verwenden.
@@ -844,16 +852,8 @@ Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurat
 Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine
 Exception geworfen.
 
-[[datenbank-basierte-konfigurationen]]
-=== Datenbank-basierte Konfigurationen
-
-Konfigurationen, welche durch die Anwendung geschrieben werden, sind in der Datenbank abzulegen.
-Die Tabellen hierfür sind Teil des Datenmodells der Anwendung.
-Der Zugriff erfolgt genau wie der auf die übrigen Entitätstypen.
-Für weitere Details siehe <<DetailkonzeptKomponenteDatenzugriff>>.
-
 [[konfigurationsaenderungen-zur-laufzeit]]
-== Konfigurationsänderungen zur Laufzeit
+=== Konfigurationsänderungen zur Laufzeit
 
 Betriebliche Konfigurationen werden in Dateien gespeichert und nur beim Starten der Anwendung geladen.
 Im Normalfall werden Konfigurationsparameter beim Start der Anwendung ausgelesen und in Instanzvariablen gehalten.
@@ -869,7 +869,7 @@ kann die entsprechende Komponente sich als Listener bei der Konfigurations-Bean 
 aktiv über Konfigurationsänderungen informiert werden (siehe Kapitel <<reagieren-auf-konfigurationsaenderungen>>).
 
 [[konfigurationsdateien-auf-änderungen-pruefen]]
-=== Konfigurationsdateien auf Änderungen prüfen
+==== Konfigurationsdateien auf Änderungen prüfen
 
 Damit die Anwendung Änderungen an betrieblichen Konfigurationsdateien erfährt, wird ein Polling auf die
 betrieblichen Konfigurationsdateien durchgeführt.
@@ -888,7 +888,7 @@ Dazu stellt die Bibliothek `isy-task` einen Task bereit.
 Die Konfiguration dieses Tasks ist in <<NutzungsvorgabenTaskScheduling>> beschrieben.
 
 [[reagieren-auf-konfigurationsaenderungen]]
-=== Reagieren auf Konfigurationsänderungen
+==== Reagieren auf Konfigurationsänderungen
 
 Wie zu Beginn des Abschnittes beschrieben, sollen Konfigurationsparameter, für die Änderungen zur Laufzeit zugelassen sind, vorzugsweise bei jeder Verwendung aus der Konfigurations-Bean ausgelesen werden.
 Somit wird automatisch immer der aktuelle Wert verwendet.

@@ -674,50 +674,50 @@ Die Konfiguration des UCP erfolgt in `application.properties` über folgende Pro
 [source,ruby]
 ----
 # Connection-String für die Datenbankverbindung
-oracle.datasource.database-url=jdbc:oracle:thin:@database.local.vm:1521:isyfact
+isy.persistence.oracle.datasource.database-url=jdbc:oracle:thin:@database.local.vm:1521:isyfact
 # Name des Datenbankbenutzers
-oracle.datasource.database-username=anwendungxyz
+isy.persistence.oracle.datasource.database-username=anwendungxyz
 # Passwort für den Datenbankbenutzer
-oracle.datasource.database-password=anwendungxyz
+isy.persistence.oracle.datasource.database-password=anwendungxyz
 # Name des Verbindungspools
-oracle.datasource.pool-name=anwendungxyz
+isy.persistence.oracle.datasource.pool-name=anwendungxyz
 # Anzahl der minimal offenen Verbindungen im Connection Cache
-oracle.datasource.pool-min-active=5
+isy.persistence.oracle.datasource.pool-min-active=5
 # Anzahl der maximal moeglichen Verbindungen im Connection Cache
-oracle.datasource.pool-max-active=40
+isy.persistence.oracle.datasource.pool-max-active=40
 # Anzahl der initialen Connections im Connection Cache
-oracle.datasource.pool-initial-size=10
+isy.persistence.oracle.datasource.pool-initial-size=10
 # Aktiviert/deaktiviert die Pruefung von Datenbankverbindungen vor ihrer Benutzung (validateConnectionOnBorrow)
-oracle.datasource.pool-validate-on-borrow=true
+isy.persistence.oracle.datasource.pool-validate-on-borrow=true
 # Zeit in Sekunden, nach der bei Nichtverfuegbarkeit einer neue Verbindung ein Fehler geworfen wird
-oracle.datasource.pool-wait-timeout=10
+isy.persistence.oracle.datasource.pool-wait-timeout=10
 # Zeit in Sekunden, nach der eine bereitstehende und untätige Verbindung geschlossen und aus dem Pool entfernt wird
-oracle.datasource.pool-inactive-timeout=120
+isy.persistence.oracle.datasource.pool-inactive-timeout=120
 # Zeit in Sekunden, nach der eine ausgeliehene Verbindung wieder zwangsweise zurück in den Pool geholt wird.
 # Offene Transaktionen werden zurückgerollt. Standard ist 0 (deaktiviert).
-oracle.datasource.pool-time-to-live-timeout=0
+isy.persistence.oracle.datasource.pool-time-to-live-timeout=0
 # Zeit in Sekunden, nach der eine ungenutzte aber verliehene Verbindung wieder in den Pool geholt wird.
 # Offene Transaktionen werden zurückgerollt. Standard ist 0 (deaktiviert).
-oracle.datasource.pool-abandoned-timeout=0
+isy.persistence.oracle.datasource.pool-abandoned-timeout=0
 # Zeit in Sekunden, nach der eine physikalische Verbindung im Pool geordnet abgebaut wird. Sie wird erst abgebaut,
 # wenn die Verbindung nicht mehr genutzt wird und zurück im Pool ist. Kann genutzt werden, wenn bspw. Firewalls
 # nach einer zeitlichen Beschränkung Verbindungen schliessen. Standard ist 0, deaktiviert.
-oracle.datasource.pool-max-reuse-time=0
+isy.persistence.oracle.datasource.pool-max-reuse-time=0
 # Maximale Anzahl, die eine Verbindung ausgeliehen werden kann, bevor sie endgueltig abgebaut wird. Standard 0 (deaktiviert)
-oracle.datasource.pool-max-reuse-count=0
+isy.persistence.oracle.datasource.pool-max-reuse-count=0
 # Anzahl der Statements, die pro Verbindung gecacht werden sollen (Statement Cache). Standard ist 0 (deaktiviert).
-oracle.datasource.pool-statement-cache=0
+isy.persistence.oracle.datasource.pool-statement-cache=0
 
 # --- Konfiguration des Oracle JDBC Datenbanktreibers ---
 # Der Wert fuer oracle.net.CONNECT_TIMEOUT des Oracle JDBC Treibers. Der Timeout bestimmt die maximale Zeit in ms,
 # welche zum Aufbau einer Netzwerkverbindung zum Datenbankserver gewartet wird.
-oracle.datasource.jdbc-timeout-connect=10000
+isy.persistence.oracle.datasource.jdbc-timeout-connect=10000
 # Der Wert fuer oracle.jdbc.ReadTimeout des Oracle JDBC Treibers. Der Timeout bestimmt die maximale Zeit in ms,
 # welche auf Socketebene zum Lesen von Daten gewartet wird.Dadurch koennen abgebrochene TCP Verbindungen erkannt werden.
-oracle.datasource.jdbc-timeout-read
+isy.persistence.oracle.datasource.jdbc-timeout-read
 # Verbindungen können im regulären band (inband) oder asynchron (out-of-band) beendet werden. Standardmässig passiert das
 # per OOB. Kann bei Problemen deaktiviert werden.
-oracle.datasource.jdbc-disable-oob
+isy.persistence.oracle.datasource.jdbc-disable-oob
 ----
 
 Hierbei ist zu beachten, dass die hier angegebenen Werte der Konfigurationsparameter nur beispielhaft sind.
@@ -1470,8 +1470,8 @@ In der Anwendungskonfiguration müssen in `application.properties` die folgenden
 
 [source]
 ----
-oracle.datasource.schema-invalid-version-action=fail
-oracle.datasource.schema-version=1.2.3
+isy.persistence.oracle.datasource.schema-invalid-version-action=fail
+isy.persistence.oracle.datasource.schema-version=1.2.3
 ----
 
 In der Property `schemaVersion` wird die Versionsnummer des Datenbankschemas angegeben, das die Anwendung erwartet.
