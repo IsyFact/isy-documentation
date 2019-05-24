@@ -12,5 +12,5 @@ Java Bibliothek / IT-System
 [cols="5,2,3"]
 |====
 |Name |Art |Version
-|_isy-task_ |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-task |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

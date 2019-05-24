@@ -203,7 +203,7 @@ Für das Web-GUI findet primär der Basisteil von Spring Verwendung, in welchem 
 [[transaktionsbehandlung]]
 == Transaktionsbehandlung
 
-Die GUI-Komponente und der Anwendungskern (AWK) sind Teil derselben Web-Applikation und werden per Spring-Konfiguration miteinander verbunden.
+Die GUI-Komponente und der Anwendungskern sind Teil derselben Web-Applikation und werden per Spring-Konfiguration miteinander verbunden.
 
 Oft gibt es den Fall, dass über die GUI eine Aktion in einer anderen Anwendung ausgelöst werden soll.
 Ein Beispiel dafür ist die GUI einer Fachanwendung zur Datenerfassung, wobei die Speicherung der Daten über einen Service einer anderen Fachanwendung implementiert ist.
@@ -211,14 +211,14 @@ In diesem Fall enthält der Anwendungskern der Fachanwendung zur Datenerfassung 
 Wichtig in diesem Fall ist, dass es nach Zielarchitektur keine Transaktionen über Serviceaufrufe hinweg gibt.
 
 In diesem Abschnitt wird die Behandlung von Transaktionen innerhalb einer Anwendung beschrieben.
-Grundregel dabei ist, dass die Komponente GUI die Transaktion steuert.
+Grundregel dabei ist, dass der Anwendungskern die Transaktionssteuerung übernimmt.
+Aus Sicht der Komponente GUI bedeutet dies, dass jeder Aufruf des Anwendungskerns unmittelbar eine Änderung der Daten zufolge hat.
 Dabei muss die Komponente GUI die Brücke schlagen zwischen der _fachlichen Transaktion_, die dem Nutzer dargestellt wird und der _technischen Transaktion,_ die in der Datenbank abgebildet wird.
 
 Die fachliche Transaktion entspricht einem Dialogablauf.
 Ein Beispiel dafür: Der Nutzer kann in der Regel über mehrere Masken hinweg Daten eingeben.
-Abschließend drückt er in ein Dialog den „OK“- bzw.
-den „Abbrechen“-Button.
-Für den Nutzer ist klar, dass alle die von ihm eingegebenen Daten im Sinne einer Transaktion behandelt werden müssen, d. h. sie werden entweder vom System komplett übernommen oder komplett verworfen.
+Abschließend drückt er in einem Dialog den „OK“- bzw. den „Abbrechen“-Button.
+Für den Nutzer ist klar, dass alle die von ihm eingegebenen Daten im Sinne einer Transaktion behandelt werden müssen, d.h. sie werden entweder vom System komplett übernommen oder komplett verworfen.
 
 Aus technischer Sicht ist die Behandlung dieses Ablaufs etwas komplizierter: Die Daten, die der Nutzer in den verschiedenen Dialogen eingibt, müssen zunächst zwischengespeichert werden, bevor dann bei Betätigung eines Buttons die technische Transaktion in der Datenbank erfolgt.
 Das Zwischenspeichern der Werte benötigt allerdings ebenfalls technische Transaktionen.
@@ -230,7 +230,7 @@ Das Zwischenspeichern erfolgt grundsätzlich in einer separaten Transaktion.
 Somit beeinflussen sich die fachliche Transaktion und die technischen Transaktionen nicht.
 
 Mit den technischen Transaktionen ist es jetzt möglich, „Sitzungen“ abzubilden.
-Eine Sitzung ist letztendlich die Summe aller Zwischendaten, die der Nutzer eingegeben hat oder die das System selbst erzeugt hat, wie z. B. interne Zustände, Nutzerinformationen, etc.
+Eine Sitzung ist letztendlich die Summe aller Zwischendaten, die der Nutzer eingegeben hat oder die das System selbst erzeugt hat (z.B. interne Zustände, Nutzerinformationen, ...).
 Innerhalb einer Sitzung werden mehrere fachliche Transaktionen durchgeführt.
 
 Das technische Mittel zur Repräsentation einer Sitzung ist zunächst einmal die Session des Servers.
@@ -245,9 +245,8 @@ Die Variante der Session Serialisierung ist zwar einfacher, beinhaltet aber auch
 Die Session des Servers wird zum Speichern von verschiedensten Daten genutzt, der Zugriff auf sie ist frei möglich.
 Dies führt in der Praxis dazu, dass unkontrolliert große Datenmengen in der Session abgelegt werden.
 Diese großen Datenmengen lassen sich dann nicht mehr effizient persistieren.
-Daher wurde diese Option in <<IsyFact-Referenzarchitektur>> ausgeschlossen.
-Die Details dazu, wie in Spring Web Flow die zu speichernden Daten einer Session ermittelt werden, finden sich
-in Kapitel <<session-behandlung>>.
+Daher wurde diese Option in der <<IsyFact-Referenzarchitektur>> ausgeschlossen.
+Die Details dazu, wie in Spring Web Flow die zu speichernden Daten einer Session ermittelt werden, finden sich in Kapitel <<session-behandlung>>.
 
 [[jquery]]
 == JQuery
@@ -524,24 +523,14 @@ der ID „Geburtsdatum“ fokussiert:
 [[zugriff-auf-anwendungskern]]
 === Zugriff auf Anwendungskern
 
-In einer GUI-Komponente werden grundsätzlich keine Klassen des AWK verwendet.
-Stattdessen wird vom Controller-Bean der Komponente (und nur von diesem) auf den zur GUI-Komponente gehörenden Anwendungskern-Wrapper zugegriffen, der den Anwendungskern aufruft.
+In einer GUI-Komponente werden grundsätzlich keine Klassen des Anwendungskerns verwendet.
+Stattdessen wird vom Controller-Bean der Komponente (und nur von diesem) auf den zur GUI-Komponente gehörenden Anwendungskern-Wrapper (kurz: AWK-Wrapper) zugegriffen, der den Anwendungskern aufruft.
 In den Models der GUI-Komponenten werden eigene Datentypen und nicht die des Anwendungskerns verwendet.
-Die Aufgabe des AWK-Wrappers ist die Daten vom Anwendungskern in die der GUI zu mappen.
 
-Die Transaktionssteuerung findet im AWK-Wrapper per Annotationen an der Wrapperklasse statt.
-
-:desc-listing-DeklTransverhaltAWKWrap: Deklaration des Transaktionsverhaltens am AWK-Wrapper
-[id="listing-DeklTransverhaltAWKWrap",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-DeklTransverhaltAWKWrap}
-[source,java]
-----
-@Transactional(rollbackFor = Throwable.class, propagation=Propagation.REQUIRED)
-public class AwkWrapperImpl implements AwkWrapper {
-----
-
-Damit die Persistierung funktioniert, müssen die AWK-Wrapper-Beans im selben Spring-Applikationskontext wie der
-Anwendungskern definiert werden, damit der Transaktionskontext aus der Hibernate-Konfiguration nutzbar ist.
+Die primäre Aufgabe des AWK-Wrappers ist es, das Datenmodell des Anwendungskerns in das Datenmodell der GUI zu mappen.
+Falls die GUI darüber hinaus Transaktionen über mehrere Aufrufe des Anwendungskerns hinweg aufspannen möchte, geschieht dies ebenfalls im AWK-Wrapper.
+Damit der Datenzugriff in diesem Fall funktioniert, müssen die Spring Beans des AWK-Wrappers im selben Spring-Applikationskontext wie der Anwendungskern definiert werden.
+Nur dann ist der Transaktionskontext aus der Hibernate-Konfiguration auch für den AWK-Wrapper nutzbar.
 
 [[schnittstellen-zwischen-komponenten]]
 === Schnittstellen zwischen Komponenten
@@ -5453,17 +5442,6 @@ Tomcat-Instanz gehen (Sticky Sessions). Die Session-Daten müssen dabei möglich
 die Performance der Anwendung nicht zu verschlechtern.
 Die Größe der Session wird maßgeblich durch die „im Webflow“ gespeicherten Model-Daten bestimmt.
 Daher muss darauf geachtet werden nur unbedingt notwendige Daten im Model zu halten.
-
-
-[[transaktionssteuerung]]
-== Transaktionssteuerung
-
-Alle Zugriffe auf die Datenbank müssen in einer Transaktion verpackt werden.
-Die Transaktionssteuerung wird dabei vom AWK-Wrapper durch Annotation (`@Transactional`) der Klasse übernommen.
-
-Aus Sicht der GUI-Schicht bedeutet dies, dass jeder Aufruf des AWKs unmittelbar eine Änderung der Daten zufolge hat.
-Um eine parallele Aktualisierung eines Datensatzes zu verhindern, können die entsprechenden Versionsnummern der
-JPA-Entiäten verwendet werden, indem diese mit in die GUI-Entitäten geladen werden.
 
 [[checkliste-zur-qs]]
 = Checkliste zur QS

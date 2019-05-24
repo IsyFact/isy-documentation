@@ -13,5 +13,5 @@ Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aende
 [cols="5,2,3"]
 |====
 |Name |Art |Version
-|isy-sonderzeichen |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-sonderzeichen |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

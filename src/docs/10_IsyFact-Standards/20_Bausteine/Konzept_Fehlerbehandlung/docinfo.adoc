@@ -11,6 +11,6 @@ Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aende
 [cols="5,2,3",options="header"]
 |====
 |Name |Art |Version
-|isy-exception-core (Teil isyfact-base) |Bibliothek |siehe isyfact-bom v1.5.x
-|isy-exception-sst (Teil isyfact-base) |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-exception-core |Bibliothek |siehe isyfact-bom v{version-ifs}
+|isy-exception-sst |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
