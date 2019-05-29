@@ -19,11 +19,10 @@ Es richtet sich vor allem an Software-Architekten, die eine Fachanwendung gemä�
 
 Dazu erläutert das Kapitel <<prinzipien-der-sicherheitsarchitektur>> zunächst, wie sich die Sicherheitsarchitektur auf Ebene der Systemlandschaft und auf Ebene eines einzelnen IT-Systems darstellt.
 
-Das Kapitel <<rollen-und-rechte>> beschreibt dann, wie Rollen und Rechte für eine neue Fachanwendung spezifiziert werden.
-
 Danach beleuchtet das Kapitel <<sicherheitsarchitektur-eines-it-systems>> die Einbettung des Bausteins Sicherheit in ein konkretes IT-System.
 Zentrale Schnittstellen beschreibt das Kapitel <<aussensicht-der-komponente-sicherheit>>.
+Das Kapitel <<aufruf-von-nachbarsystemen>> befasst sicht mit Vorgaben und Konventionen beim Einbinden von Nachbarsystemen.
 
-Schließlich befasst sich das Kapitel <<aufruf-von-nachbarsystemen>> mit Vorgaben und Konventionen beim Einbinden von Nachbarsystemen.
+Das Kapitel <<rollen-und-rechte>> beschreibt dann, wie Rollen und Rechte für eine neue Fachanwendung spezifiziert werden.
 
 // end::inhalt[]
