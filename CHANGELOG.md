@@ -1,19 +1,28 @@
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
+- `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
 - `IFE-35`: Dokumentation von List Picker Filterung mit Servlets hinzugefügt.
 - `IFE-39`: Dokumentation zu Breadcrumbs hinzugefügt
+- `IFE-45`: Vorlagen um Colophon und PDF-Theme für Closed-Source-Dokumente erweitert
 - `IFE-46`: ReadOnly-Hinweis bei DropDownWidgets aufgenommen
-- `IFE-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
+- `IFS-175`: Transaktionssteuerung auf Ebene des Anwendungskerns statt in der Nutzungsschicht
+- `IFS-198`: Fehlerbehandlung außerhalb des Dialogablaufs ergänzt
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
+- `IFS-214`: Tabellensortierung - Screenshot ausgetauscht, Beschreibung konkretisiert
+- `IFS-215`: Vorgaben zur Interaktion mit dem Hauptfenster integriert
+- `IFS-222`: Filter Reihenfolge für Encoding angepasst
+- `IFS-225`: Anpassung der Logging-Nutzungsvorgaben aufgrund Änderungen im Logging-Framework (Begrenzung Log-Länge)
+- `IFS-239`: Migration weiterer Dokumente: Anleitung zur Arbeit mit Enterprise Architekt (aus der Vorlage zur Systemspezifikation), IsyFact-Whitepaper
+- `IFS-240`: Verweis auf Änderungshistorie in jedes Dokument aufgenommen.
+- `IFS-241` & `IFS-331`: Neue Admonition Blocks definiert, eigene Icons für alle Blocks festgelegt
 - `IFS-270`: Hinweis zu Korrelations-IDs (UUID statt Batch-ID) bei Batches hinzugefügt
 - `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 - `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
 - `IFS-298`: Tutorial auf Maven Central umgestellt
-- `IFS-299`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
-- `IFS-222`: Filter Reihenfolge für Encoding angepasst
-- `IFS-311`: Vorlagen und Skripte nach isy-dokumentvorlagen überführt
-- `IFE-16`: Unterstützung von IE8 eingestellt, Dokumentation angepasst und row-df Einträge entfernt
+- `IFS-299` & `IFS-374`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
+- `IFS-360`: Ablageorte einzelner Dokumente korrigiert
+- `IFS-361`: Template Anpassung Tutorial (Tabellenformatierung)
 
 # 1.6.0
 - `IFS-96`: Autoscroll-Funktion für Tab-Controls

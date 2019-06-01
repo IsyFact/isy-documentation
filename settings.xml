@@ -53,16 +53,16 @@
 			<repositories>
 				<repository>
 					<id>repository</id>
-					<name>IFS-releases</name>
-					<url>${env.REPOSITORY_IFS_RELEASE}</url>
+					<name>Projekt-release-repository</name>
+					<url>${env.REPOSITORY_PROJECT_RELEASE}</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
 				</repository>
 				<repository>
 					<id>repository-snapshot</id>
-					<name>IFS-snapshot</name>
-					<url>${env.REPOSITORY_IFS_SNAPSHOT}</url>
+					<name>Projekt-snapshot-repository</name>
+					<url>${env.REPOSITORY_PROJECT_SNAPSHOT}</url>
 					<snapshots>
 						<enabled>true</enabled>
 					</snapshots>

@@ -428,6 +428,41 @@
                             </outputFile>
                         </configuration>
                     </execution>
+                    
+                    <execution>
+                        <id>IsyFact-Whitepaper-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactWhitepaper.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Whitepaper-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
 
                     <execution>
                         <id>Detailkonzept_Komponente_Anwendungskern-html</id>
@@ -885,6 +920,41 @@
                     </execution>
 
                     <execution>
+                        <id>Konzept_Sicherheit</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Sicherheit
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptSicherheit.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Konzept_Sicherheit-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Sicherheit
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Sicherheitskomponente/Konzept_Sicherheit.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>Nutzungsvorgaben_Sicherheit</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -1128,8 +1198,8 @@
                                 ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/10_Systemspezifikation/Nutzung-Enterprise-Architect.pdf
                             </outputFile>
                         </configuration>
-                    </execution>  
-                    
+                    </execution>
+
                     <execution>
                         <id>Java-Programmierkonventionen-html</id>
                         <phase>generate-resources</phase>
@@ -1302,6 +1372,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Session-Management/Konzept_Session_Management.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 
@@ -1337,6 +1410,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Session-Management/Nutzungsvorgaben_Isy-session.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 
@@ -1372,6 +1448,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/30_Plattform/Konzept_Logging-Intrastruktur_ELK.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 
@@ -1407,6 +1486,9 @@
                             <outputFile>
                                 ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/30_Plattform/Nutzungsvorgaben_Redis.pdf
                             </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
                         </configuration>
                     </execution>
 

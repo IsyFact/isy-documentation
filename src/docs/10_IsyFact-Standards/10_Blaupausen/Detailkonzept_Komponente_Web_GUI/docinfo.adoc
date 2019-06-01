@@ -4,46 +4,15 @@
 |Dokumenten-ID:| Detailkonzept_Komponente_Web_GUI
 |====
 
-NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden zurzeit grundlegend überarbeitet. Der vorliegende Stand dieses Dokuments beschreibt noch nicht alle neuen Funktionen von isy-web 4.x.
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
-//|Datum |Version |Änderungsgrund
-//|21.07.2008 |0.1 |Erstellung
-//|14.04.2009 |1.0 |Übernahme als PIB-Dokument, Teilweise Übernahme von Reviewanmerkungen
-//|14.01.2011 |2.0 |Einbringen der Architektur zur Komponentenbildung, grundlegende Überarbeitung
-//|16.08.2011 |2.1 |Verbesserung GUI-Architektur bzgl. (Sub-)Komponentenbildung
-//|20.02.2012 |2.2 |Änderungen in Fehlerbehandlung
-//|31.05.2012 |2.3 |Neuer Abschnitt über Trefferlisten
-//|23.07.2012 |2.4 |Präzisierung/Vereinheitlichung Komponentenbildung
-//|06.09.2012 |2.5 |Hinweise zum Thema Sicherheit ergänzt
-//|24.09.2012 |2.6 |Ergänzung zum Startseite Link des Breadcrumbs
-//|31.10.2012 |2.7 |Tabelle Java Bibliothek / IT-System hinzugefügt
-//|17.01.2013 |2.8 |Nutzung von JavaScript dokumentiert
-//|29.01.2013 |2.9 |Partial-State-Saving sollte deaktiviert werden.
-//|30.04.2013 |2.10 |Link für JQuery-Pakete ergänzt
-//|03.05.2013 |2.11 |Partial-State-Saving muss aktiviert bleiben
-//|28.08.2013 |2.12 |Implementierungshinweis für Actionlistener ergänzt. Logging-Anforderung AWK-Aufruf entfernt
-//|29.09.2013 |2.13 |Hinweis zum Druck über Stylesheet ergänzt
-//|21.10.2013 |2.14 |Ergänzung zur Erweiterung der Datenbankanbindung
-//|30.09.2014 |2.15 |Übernahme des Dokuments in die PLIS-Factory
-//|08.12.2014 |2.16 |Namensänderung in IsyFact
-//|11.12.2014 |2.17 |Umstellung auf generiertes Quellenverzeichnis
-//|25.03.2015 |2.18 |Reviewanmerkungen eingearbeitet
-//|27.03.2015 |2.19 |Lizenz auf CC 4.0 geändert
-//|13.05.2015 |2.20 |bereinigt
-//|18.06.2015 |2.21 |Änderungen an der Register Factory-Version des Dokuments seit Übernahme in die IsyFact eingearbeitet: Einbau neuer Styleguide
-//|02.10.2015 |2.22 |Disclaimer bzgl. plis-web 3.x auf Titelseite eingefügt + Logo korrigiert
-//|20.10.2015 |2.23 |Kapitel zu temporären Binärdaten ergänzt
-//|08.03.2016 |2.24 |Versionen der Bibliotheken aktualisiert
-//|13.12.2016 |2.25 |Beschreibung des Ressourcen Cachings
-//|20.01.2017 |2.26 |Vorlageanwendung IsyFact eingepflegt
-//|12.09.2017 |2.27 |Dokumentation des Features _Optionale Anzeige Versionsnummer in Webseitentitel
-//|11.07.2018 |2.28 |Einarbeitung von JSP-spezifischen WebGui Kapiteln aus dem Styleguide (Accso Wiki)
+NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden zurzeit grundlegend überarbeitet. Der vorliegende Stand dieses Dokuments beschreibt noch nicht alle neuen Funktionen von isy-web 4.x.
 
 *Java Bibliothek / IT-System*
 
 [cols="5,2,3",options="header"]
 |====
 |Name |Art |Version
-|isy-web |Bibliothek |siehe isyfact-bom v1.5.x
-|isy-style |Bibliothek |3.1.x
+|isy-web |Bibliothek |siehe isyfact-bom v{version-ifs}
+|isy-style |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

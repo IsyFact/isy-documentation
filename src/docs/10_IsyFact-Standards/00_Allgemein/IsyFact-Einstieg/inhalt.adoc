@@ -437,8 +437,11 @@ Fachanwendungen sollten Logs einheitlich erstellen und auswerten können. Das <<
 [[berechtigungen]]
 === Berechtigungen
 (((Baustein,Berechtigungen)))
-Zum Zugriff auf Informationen zu Berechtigungen eines Nutzers ist die Komponente „Sicherheit“ zu nutzen.
-Die Benutzung ist unter <<NutzungsvorgabenSicherheit>> beschrieben. Zur Nutzung dieser Komponente ist es erforderlich, dass die Rollen und Rechte einer Anwendung in einem speziellen Format abgelegt werden. Ein XML-Schema dazu findet sich im Anhang von <<NutzungsvorgabenSicherheit>>.
+Zum Zugriff auf Informationen zu Berechtigungen eines Nutzers ist der Baustein Sicherheit zu nutzen.
+Das <<KonzeptSicherheit>> beschreibt die konzeptionellen Festlegungen hinsichtlich der Authentifizierung und Autorisierung.
+Die <<NutzungsvorgabenSicherheit>> beschreiben den Einsatz des Bausteins bei der Anwendungsentwicklung.
+Zur Nutzung dieser Komponente ist es erforderlich, dass die Rollen und Rechte einer Anwendung in einem speziellen Format abgelegt werden.
+Ein XML-Schema dazu findet sich im Anhang von <<NutzungsvorgabenSicherheit>>.
 
 [[task-scheduling]]
 === Task Scheduling

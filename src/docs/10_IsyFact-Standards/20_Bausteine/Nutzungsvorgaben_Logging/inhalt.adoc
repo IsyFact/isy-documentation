@@ -790,6 +790,22 @@ Hierfür wird folgende Konfiguration verwendet:
 In diesem Abschnitt werden weitere Möglichkeiten der Konfiguration von logback beschrieben,
 die bei Bedarf genutzt werden können:
 
+[[maximale-logeintragslaenge-festlegen]]
+==== Maximale Länge des Logeintrags festlegen
+
+Es kann die maximale Länge eines Logeintrags in Bytes festgelegt werden. 
+Sollte ein Logeintrag länger als dieser Wert sein, so wird der Logeintrag gekürzt (siehe <<KonzeptLogging>>).
+Wird kein Wert angegeben, so beträgt der Standardwert 32000 Bytes. 
+Wird der Wert auf 0 festgelegt, so gibt es keine Begrenzung in der Länge des Logeintrags.
+Die Beschränkung der Länge gilt nur für Logeinträge der Levels `INFO`, `WARN` und `ERROR`.
+
+Die maximale Länge eines Logeintrags wird wie folgt gesetzt:
+[source,xml]
+----
+<property name="MAX_LENGTH" value="32000" />
+----
+
+
 [[logging-für-einzelne-klassen-deaktivieren]]
 ==== Logging für einzelne Klassen deaktivieren
 
@@ -1453,10 +1469,12 @@ Die Szenarien sind nach folgendem Schema aufgebaut:
 Die folgenden Regeln sind für alle Logeinträge zu beachten:
 
 1.  **Keine Binärdaten loggen**: Binärdaten sind nur schwer auswertbar und führen potentiell zu sehr langen Einträgen.
-Logeinträge größer 64 KByte führen zu Fehlern bei der weiteren Verarbeitung.
 Binärdaten dürfen daher nicht gelogged werden.
 2.  **Größe der Parameter beschränken**: Beim Loggen der Schnittstellenkommunikation können durch große Objektstrukturen ebenfalls sehr große Logeinträge entstehen.
 Das Loggen von Parametern kann durch entsprechende Konfiguration auf eine Maximalgröße beschränkt werden.
+3.  **Größe des Logeintrags beschränken**: Große Logeinträge können zu Fehlern bei der weiteren Verarbeitung führen.
+Daher sollte darauf geachtet werden, dass Logeinträge eine invidiuell definierte maximale Länge nicht überschreiten.
+Zudem sollte diese maximale Länge in der Konfigurationsdatei `logback.xml` definiert sein (s. <<maximale-logeintragslaenge-festlegen>>).
 
 [[konfiguration-1]]
 === Konfiguration

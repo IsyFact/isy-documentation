@@ -5,13 +5,12 @@
 |Dokumenten-ID:| Nutzungsvorgaben_Task_Scheduling
 |====
 
-//|Datum |Version |Änderungsgrund
-//|16.10.2017 |0.1 |Initiale Version
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
 Java Bibliothek / IT-System
 
 [cols="5,2,3"]
 |====
 |Name |Art |Version
-|_isy-task_ |Bibliothek |siehe isyfact-bom v1.5.x
+|isy-task |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====

@@ -4,6 +4,9 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 //
 :doctitle: Nutzungsvorgaben Isy-Session
 :title: {doctitle}
+// Dokument unter Closed Source Lizenz
+:license-oss!:
+:factory: IsyFact-Erweiterungen
 
 // Zwangsplatz des TOC
 
