@@ -14,7 +14,7 @@ Hauptziel von Spring LDAP ist das Vereinfachen von Zugriffen auf LDAP-Systeme, w
 [[benoetigte-bibliotheken]]
 == Benötigte Bibliotheken
 
-Alle von Spring LDAP benötigten Bibliotheken können zusammen mit den eigentlichen Spring LDAP Bibliotheken von <<SpringLDAP>> herunter geladen werden.
+Alle von Spring LDAP benötigten <<glossar-Bibliothek>>en können zusammen mit den eigentlichen Spring LDAP Bibliotheken von <<SpringLDAP>> herunter geladen werden.
 
 [[spring-konfiguration]]
 == Spring Konfiguration
@@ -72,7 +72,8 @@ In der Spring-Konfigurationsdatei müssen drei Einträge für die Nutzung von Sp
 ----
 
 In der Bean vom Typ `LdapContextSource` werden die zum Zugriff auf den LDAP benötigten Parameter definiert.
-Diese Bean wird so konfiguriert, dass sie kein Pooling durchführt (`pooled = false`). Andernfalls würde der LDAP-Pool des JDKs verwendet, welcher keine Prüfung von Verbindungen erlaubt und somit nach einem Failover des LDAPs defekte Verbindungen im Pool behält.
+Diese Bean wird so konfiguriert, dass sie kein Pooling durchführt (`pooled = false`).
+Andernfalls würde der LDAP-Pool des JDKs verwendet, welcher keine Prüfung von Verbindungen erlaubt und somit nach einem Failover des LDAPs defekte Verbindungen im Pool behält.
 
 Anstelle des JDK-Pools wird die Implementierung von Spring verwendet.
 Dazu wird die `LdapContextSource-Bean` durch eine `PoolingContext-Source-Bean` gekapselt.
@@ -203,7 +204,7 @@ Zusammengefasst sucht diese Methode einen Benutzer der durch seinen Anmeldenamen
 [[speichern-eines-anwenders]]
 === Speichern eines Anwenders
 
-Als Beispiel zum Speichern wird hier das Neuanlegen eines Anwenders gezeigt.
+Als Beispiel zum Speichern wird hier das Neuanlegen eines <<glossar-Anwender>>s gezeigt.
 Die Klasse `Anwender` ist ein reines Transportobjekt mit Getter- und Setter- Methoden und wird nicht weiter erläutert.
 
 :desc-listing-SpeichernAnwender: Speichern eines Anwenders
