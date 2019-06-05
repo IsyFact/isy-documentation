@@ -105,7 +105,7 @@ Die Implementierung der Service-Fassade erfolgt hier analog zur Implementierung 
 Die nach außen angebotene Service-Operation (`holeBeispielAnfrage`) wird jedoch nicht 1:1 an die implementierende Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs unterscheiden.
 Nach außen hin werden Transportobjekte angeboten.
 Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
-Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z. B. weil sie zusätzliche Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
+Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z.B. weil sie zusätzliche Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
 
 In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Servicemethode.
 Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die

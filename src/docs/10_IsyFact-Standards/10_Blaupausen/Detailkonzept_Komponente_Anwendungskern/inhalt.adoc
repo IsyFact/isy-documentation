@@ -216,7 +216,6 @@ pro Abhängigkeit (Prototype) erzeugt werden.
 Die Komponenten-Beans einer Anwendung sollen zustandslos sein und werden als Singleton-Beans erzeugt.
 Wo technisch erforderlich, können auch andere Scopes verwendet werden.
 
-// TODO Überarbeiten, hier beschreiben, wie Java-Konfiguration aufgebaut sein soll
 [[vorgaben-zur-spring-konfiguration]]
 ===== Vorgaben zur Spring-Konfiguration
 

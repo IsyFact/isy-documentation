@@ -622,7 +622,7 @@ public class ServiceConfig {
 Auf der Bean können alle Methoden des Interfaces `serviceInterface` aufgerufen werden, der Aufruf erfolgt dann automatisch
 per HttpInvoker gegen das in `serviceUrl` konfigurierte Ziel-System.
 
-NOTE: Die URL wird als betriebliche Konfiguration in `application.properties` ausgelagert und durch eine `@ConfigurationProperties`-Klasse lvon Spring Boot gesetzt.
+NOTE: Die URL wird als betriebliche Konfiguration in `application.properties` ausgelagert und durch eine `@ConfigurationProperties`-Klasse von Spring Boot gesetzt.
 
 [[erweiterung-um-die-aufrufwiederholung-mittels-service-utilities]]
 ==== Erweiterung um die Aufrufwiederholung mittels Service Utilities
@@ -657,8 +657,7 @@ public class ServiceConfig {
 ----
 
 Auf der Bean `executor` sind die `anzahlWiederholungen` und der `timeout` konfiguriert.
-Dieser `RequestExecutor` erweitert den Standard-`RequestExecutor` von Spring um die Möglichkeit Timeouts zu definieren
-und eine konfigurierte Anzahl an Aufruf-Wiederholungen durchzuführen.
+Dieser `RequestExecutor` erweitert den Standard-`RequestExecutor` von Spring um die Möglichkeit Timeouts zu definieren und eine konfigurierte Anzahl an Aufruf-Wiederholungen durchzuführen.
 Dieser `RequestExecutor` ist der Spring-HttpInvokerProxyFactoryBean bekannt zu machen.
 
 [[implementierung-des-wrappers]]
@@ -762,8 +761,7 @@ Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebli
 [[spring-konfiguration-anlegen]]
 ==== Spring-Konfiguration anlegen
 
-Für den Batchrahmen werden in der Konfigurationsklasse der Batch-Schicht die Spring-Beans des Batchrahmens und
-für jeden existierenden Batch die Ausführungs-Bean als Spring-Bean definiert.
+Für den Batchrahmen werden in der Konfigurationsklasse der Batch-Schicht die Spring-Beans des Batchrahmens und für jeden existierenden Batch die Ausführungs-Bean als Spring-Bean definiert.
 
 Zustätzlich müssen folgende Beans erstellt werden:
 
@@ -1149,12 +1147,9 @@ public AufrufKontextVerwalter aufrufKontextVerwalter(){
 
 NOTE: Die Scopes `thread` und `request` werden mit dem Einbinden der Bibliothek `isy-sicherheit` registriert.
 
-Der vom AufrufKontextVerwalter verwaltete AufrufKontext wird beim Aufruf der Anwendung in der Service-Schnittstelle oder
-im Controller der GUI gesetzt und steht fortan, während der Verarbeitung des Requests, in der gesamten Anwendung zur
-Verfügung.
+Der vom AufrufKontextVerwalter verwaltete AufrufKontext wird beim Aufruf der Anwendung in der Service-Schnittstelle oder im Controller der GUI gesetzt und steht fortan, während der Verarbeitung des Requests, in der gesamten Anwendung zur Verfügung.
 
-Komponenten, die diese Informationen benötigen, erhalten dazu einfach eine Referenz auf den
-`AufrufKontextVerwalter` per Dependency Injection.
+Komponenten, die diese Informationen benötigen, erhalten dazu einfach eine Referenz auf den `AufrufKontextVerwalter` per Dependency Injection.
 
 Zur Entgegennahme des Aufrufkontextes an der Service-Schnittstelle wird die Annotation `@StelltAufrufKontextBereit` verwendet.
 Die Konfiguration ist in <<NutzungsvorgabenSicherheit>> beschrieben.
