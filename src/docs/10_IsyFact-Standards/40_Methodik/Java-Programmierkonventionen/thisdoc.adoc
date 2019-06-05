@@ -3,5 +3,4 @@
 
 In diesem Dokument werden die Java-Programmierkonventionen der IsyFact beschrieben.
 
-Die Einhaltung der Programmierkonventionen fördert die Wartbarkeit und Weiterentwicklungsfähigkeit der nach
-IsyFact-Standards erstellten Software.
+Die Einhaltung der Programmierkonventionen fördert die Wartbarkeit und Weiterentwicklungsfähigkeit der nach den <<glossar-IFS>> erstellten Software.
