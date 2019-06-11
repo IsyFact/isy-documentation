@@ -11,12 +11,12 @@ Es wird der Zeitraum und nicht der Zeitpunkt über JMX bereitgestellt, da hiermi
 
 Der Ablauf des Pollings in jeder Instanz ist dann wie folgt:
 
-1.  Es werden die seit der letzten Polling-Aktivität vergangenen Zeiträume aller anderen Instanzen über JMX ermittelt.
-2.  Wenn der Zeitraum seit der letzten Polling-Aktivität einer anderen Instanz kleiner als eine Wartezeit X ist, wird die Verarbeitung abgebrochen.
-3.  In allen anderen Fällen (keine Instanz erreichbar, keine Zeiträume gesetzt, alle Zeiträume größer als eine Wartezeit X) wird mit der Verarbeitung fortgefahren.
-4.  Zu Beginn des Abrufs von Nachrichten wird der eigene Zeitstempel auf den aktuellen Zeitpunkt gesetzt.
-5.  Während der Verarbeitung der einzelnen Nachrichten wird der Zeitstempel aktualisiert.
-6.  Am Ende der Verarbeitung aller abgerufenen Nachrichten wird der Zeitstempel nochmals aktualisiert.
+. Es werden die seit der letzten Polling-Aktivität vergangenen Zeiträume aller anderen Instanzen über JMX ermittelt.
+. Wenn der Zeitraum seit der letzten Polling-Aktivität einer anderen Instanz kleiner als eine Wartezeit X ist, wird die Verarbeitung abgebrochen.
+. In allen anderen Fällen (keine Instanz erreichbar, keine Zeiträume gesetzt, alle Zeiträume größer als eine Wartezeit X) wird mit der Verarbeitung fortgefahren.
+. Zu Beginn des Abrufs von Nachrichten wird der eigene Zeitstempel auf den aktuellen Zeitpunkt gesetzt.
+. Während der Verarbeitung der einzelnen Nachrichten wird der Zeitstempel aktualisiert.
+. Am Ende der Verarbeitung aller abgerufenen Nachrichten wird der Zeitstempel nochmals aktualisiert.
 
 In <<image-002>> wird das Verfahren dargestellt.
 
@@ -64,7 +64,8 @@ Diese Klasse ist dafür zuständig, die Informationen eines Polling-Clusters zu 
 Hierzu zählen insbesondere der Zeitpunkt der letzten Polling-Aktivität und die Wartezeit.
 Die wesentlichen Parameter eines Polling-Clusters werden über die Anwendungskonfiguration festgelegt und beim Start der Anwendung eingelesen.
 
-Die Verwaltung des Pollings für mehrere Nachrichtenquellen erfolgt über einen Polling-Verwalter (Klasse `PollingVerwalter`). Der Polling-Verwalter kennt und verwaltet alle PollingCluster der Anwendung.
+Die Verwaltung des Pollings für mehrere Nachrichtenquellen erfolgt über einen Polling-Verwalter (Klasse `PollingVerwalter`).
+Der Polling-Verwalter kennt und verwaltet alle PollingCluster der Anwendung.
 Die Klasse `PollingVerwalter` ist die einzige Klasse der Bibliothek, die eine Anwendungsimplementierung direkt nutzt.
 
 Die Methode `startePolling` prüft, ob die aufrufende Anwendungsinstanz das Polling durchführen darf.
@@ -141,7 +142,7 @@ Dieses Beispiel zeigt, dass E-Mail-Konten parallel von beiden Instanzen abgearbe
 === Konfiguration über Properties
 
 Polling-Cluster und JMX-Verbindungsparameter werden über Properties in `application.properties` konfiguriert.
-Konfigurationsparameter einer Ausprägung haben dann das Namensschema <Konfigurationsklassen-Präfix>.<ID der Ausprägung>. <Name des Konfigurationsparameters>.
+Konfigurationsparameter einer Ausprägung haben dann das Namensschema <Konfigurationsklassen-Präfix>.<ID der Ausprägung>.<Name des Konfigurationsparameters>.
 
 Das Beispiel in <<listing-PollingKonfiguration>> zeigt folgende Vorgaben:
 
@@ -204,7 +205,7 @@ Kommaseparierte Liste von IDs der Verbindungsparameter zu den übrigen Clusterse
 Dieser Eintrag ist optional und wird in der Regel nicht benötigt.
 Wird er weggelassen, so werden alle für das Polling konfigurierten JMX-Verbindungen zugeordnet.
 
-Die JMX-Domain für den Polling-Verwalter. In der Regel das Basispackage der Anwendung:
+Die JMX-Domain für den Polling-Verwalter ist in der Regel das Basispackage der Anwendung:
 
 `isy.polling.jmx.domain=<Domäne>`
 
