@@ -1,13 +1,13 @@
 // ASCIIDOC Attribute
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
 //
 :doctitle: Konzept Datum & Zeit
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
-include::../../../common/colophon.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]

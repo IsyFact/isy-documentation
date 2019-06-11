@@ -1,6 +1,6 @@
 = Detailkonzept Datenzugriff: Inhalt
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
 
 // tag::inhalt[]
 [[anforderungen]]

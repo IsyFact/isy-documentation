@@ -1,13 +1,12 @@
 // ASCIIDOC Attribute
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 //
 :doctitle: IsyFact-Einstieg
 :title: {doctitle}
 
 // Zwangsplatz TOC
 
-include::../../../common/colophon.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
@@ -46,7 +45,7 @@ include::listoflistings.adoc[]
 // Glossar  (gebaut)
 //include::glossary.adoc[]
 // Index
-include::../../../common/index.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 
 // --------------------------- AB HIER------------------------------------------
 

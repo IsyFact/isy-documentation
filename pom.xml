@@ -18,6 +18,31 @@
         <defaultGoal>compile</defaultGoal>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-assets</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/isy-dokumentvorlagen</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>de.bund.bva.isyfact</groupId>
+                                    <artifactId>isy-dokumentvorlagen</artifactId>
+                                    <version>1.7.0</version>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
@@ -32,9 +57,10 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}/src/docs</workingDirectory>
+                            <workingDirectory>${basedir}/target/isy-dokumentvorlagen/docs</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/src/scripts/bibliography.sh</argument>
+                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/bibliography.sh</argument>
+                                <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -48,9 +74,10 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}/src/docs</workingDirectory>
+                            <workingDirectory>${basedir}/target/isy-dokumentvorlagen/docs</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/src/scripts/glossary.sh</argument>
+                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/glossary.sh</argument>
+                                <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -64,9 +91,10 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}/src/docs</workingDirectory>
+                            <workingDirectory>${basedir}/target/isy-dokumentvorlagen/docs</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/src/scripts/listof.sh</argument>
+                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/listof.sh</argument>
+                                <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -80,7 +108,7 @@
                             <executable>bash</executable>
                             <workingDirectory>${html-output-base-directory}</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/src/scripts/postprocesshtml.sh</argument>
+                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/postprocesshtml.sh</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -131,7 +159,7 @@
                     <outputDirectory>${project.build.directory}</outputDirectory>
 
                     <requires>
-                        <require>${project.basedir}/src/docs/common/lib/isyfact-admonitions.rb</require>
+                        <require>${project.build.directory}/isy-dokumentvorlagen/docs/common/lib/isyfact-admonitions.rb</require>
                     </requires>
 
                     <attributes>
@@ -144,12 +172,13 @@
                         <data-uri/>
                         <idseparator>-</idseparator>
                         <docinfo1>true</docinfo1>
-                        <stylesdir>${project.basedir}/src/theme</stylesdir>
+                        <stylesdir>${project.build.directory}/isy-dokumentvorlagen/theme</stylesdir>
                         <stylesheet>isyfact.css</stylesheet>
-                        <pdf-stylesdir>${project.basedir}/src/theme</pdf-stylesdir>
+                        <pdf-stylesdir>${project.build.directory}/isy-dokumentvorlagen/theme</pdf-stylesdir>
                         <pdf-style>isyfact</pdf-style>
-                        <pdf-fontsdir>${project.basedir}/src/theme/fonts</pdf-fontsdir>
-                        <version-ifs>${project.version}</version-ifs>
+                        <pdf-fontsdir>${project.build.directory}/isy-dokumentvorlagen/theme/fonts</pdf-fontsdir>
+                        <version-ifs>2.0.x</version-ifs>
+                        <isy-dokumentvorlagen>${project.build.directory}/isy-dokumentvorlagen</isy-dokumentvorlagen>
                     </attributes>
                 </configuration>
 

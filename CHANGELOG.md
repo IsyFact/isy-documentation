@@ -23,7 +23,8 @@
 - `IFS-294`: Ablageorte der Referenzarchitektur sowie der Checkstyle-Konfiguration korrigiert
 - `IFS-295`: Abschnitt "Erste Schritte" überarbeitet.
 - `IFS-298`: Tutorial auf Maven Central umgestellt
-- `IFS-299` & `IFS-374`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea 
+- `IFS-299` & `IFS-374`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea
+- `IFS-311`: Auf Nutzung isy-dokumentvorlagen umgestellt
 - `IFS-360`: Ablageorte einzelner Dokumente korrigiert
 - `IFS-361`: Template Anpassung Tutorial (Tabellenformatierung)
 
