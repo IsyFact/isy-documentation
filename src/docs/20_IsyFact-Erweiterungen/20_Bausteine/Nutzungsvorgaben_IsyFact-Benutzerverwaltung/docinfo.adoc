@@ -12,7 +12,7 @@ Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aende
 [options="header",cols="3,1,2"]
 |====
 |Name                               |Art        |Version
-|isy-benutzerverwaltung-core        |Bibliothek |1.3.x
-|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.3.x
-|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.3.x
+|isy-benutzerverwaltung-core        |Bibliothek |1.5.x
+|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
+|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
 |====

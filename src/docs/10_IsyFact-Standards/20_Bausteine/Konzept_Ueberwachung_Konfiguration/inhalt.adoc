@@ -71,7 +71,7 @@ eingebunden.
 ==== Allgemeine Überwachungsinformationen
 
 Actuator stellt über den `metrics` Endpoint allgemeine Überwachungsinformationen bereit.
-Die folgenden Metriken durch Spring Boot automatisch registriert und müssn bereitgestellt werden:
+Die folgenden Metriken müssen durch Spring Boot automatisch registriert und bereitgestellt werden:
 
 * JVM Metriken
   ** Speicher und Puffer
@@ -153,7 +153,7 @@ kein Problem dar.
 [[ueberwachung-von-caches]]
 ==== Überwachung von Caches
 
-Für Caches, die beim Start der Anwendung zur initialisiert sind, werden automatisch im Endpoint `metrics` Statistiken
+Für Caches, die beim Start der Anwendung initialisiert sind, werden automatisch im Endpoint `metrics` Statistiken
 mit dem Präfix `cache.` geführt.
 Die Art der angezeigten Statistiken ist von der verwendeten Cache-Implementierung abhängig.
 
@@ -245,7 +245,7 @@ Diese enthält den Status der Anwedung und kann optional weitere Details zur Anz
 [[implementierung-von-eigenen-metriken]]
 === Implementierung von eigenen Metriken
 
-Zusätzlich zu den durch eingauten Metriken kann eine Anwendung selber Metriken aufzeichnen und über Micrometer registrieren.
+Zusätzlich zu den eingebauten Metriken kann eine Anwendung selber Metriken aufzeichnen und über Micrometer registrieren.
 
 [[implementierung]]
 ==== Implementierung
