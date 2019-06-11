@@ -49,6 +49,7 @@ Das neue IsyFact-Dokument muss in einem bestimmten Ordner der vorhandenen Verzei
 Dies setzt voraus, dass das Gesamtprojekt zunächst vom Git-Repository heruntergeladen wird.
 Hierfür wechseln Sie auf der Kommandozeile auf eine geeignete Stelle Ihrer lokalen Festplatte und geben dort folgendes Kommando ein.
 
+//todo: Was ist mit isy-dokumentvorlagen?
 ====
 C:\tmp\> *git clone* https://github.com/IsyFact/isy-documentation
 ====
@@ -64,6 +65,7 @@ Unterhalb von `/src` befinden sich die Verzeichnisse `/docs`, `/scripts` und `/t
 .{desc-image-verzeichnis1}
 image::verzeichnis1.png[align="center"]
 
+// todo: Dokumentvorlagen sind verschoben worden...
 Während `/scripts` und `/theme` die Skripte zur automatisierten Verarbeitung enthalten, befinden sich unterhalb von `/docs` die Verzeichnisse der IsyFact-Dokumentation, aber auch die allgemeinen Verzeichnisse `/common` und `/Dokument-Vorlage`.
 Das Verzeichnis `/common` beinhaltet globale Einstellungen für die gesamte IsyFact-Dokumentation.
 Das Verzeichnis `/Dokument-Vorlage` enthält hingegen die Musterdateien für Ihr neues Dokument.
@@ -94,11 +96,15 @@ image::verzeichnis3.png[align="center"]
 
 Genauso wie in der obigen Abbildung für das IsyFact-Dokument "Handbuch_fuer_technische_Autoren", so muss auch für Ihr IsyFact-Dokument ein neues Verzeichnis innerhalb der korrekt zugeordneten Säule erstellt werden.
 
-Wenn Sie das neue Verzeichnis anlegen, stellt sich als Nächstes die Frage, wie das Verzeichnis benannt werden soll. Dazu vergeben Sie eine neue _Dokument-ID_. Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird. Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
+Wenn Sie das neue Verzeichnis anlegen, stellt sich als nächstes die Frage, wie das Verzeichnis benannt werden soll.
+Dazu vergeben Sie eine neue _Dokument-ID_.
+Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird.
+Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
 
 [[die-mustervorlage-vorbereiten]]
 == Die Mustervorlage vorbereiten
 
+//todo: Anpassung an neue Struktur notwendig...
 Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wurde das Verzeichnis mit dem Namen `/src/docs/Dokument-Vorlage` bereitgestellt.
 In diesem Verzeichnis befinden sich die Musterinhalte, die sie als Grundlage für Ihre neues Dokument  verwenden können.
 Zusätzlich enthält die Dokument-Vorlage das Unterverzeichnis `/images` für die Abbildungen Ihres IsyFact-Dokuments.
@@ -132,6 +138,7 @@ thisdoc.adoc::
 [[atom-einsetzen]]
 === Atom einsetzen
 
+//todo: aktuell?
 Für die Bearbeitung der Dokument-Vorlagen öffnen Sie Atom über das Startmenü.
 Innerhalb von Atom drücken Sie auf kbd:[Strg + Shift + O] oder öffnen im Hauptmenü menu:File[Open Folder].
 Hierdurch öffnen Sie den Ordner Ihres IsyFact-Dokuments als Atom-Projekt.
@@ -149,6 +156,7 @@ Dann sollte auf der linken Seite die Projektansicht mit dem Verzeichnis Ihres Is
 .{desc-image-atom2}
 image::atom2.png[align="center"]
 
+//todo: Aktuell?
 Sie können sich nun bereits die Dokument-Vorlage in der Vorschau ansehen.
 Hierfür öffnen Sie zunächst die zentrale Datei `master.adoc`.
 Dann drücken Sie entweder kbd:[Strg + Shift + A] oder Sie öffnen im Hauptmenü den Eintrag menu:Packages[AsciiDoc Preview > Toggle Preview].
@@ -158,9 +166,11 @@ Dabei sollte auf der rechten Seite die Vorschau erscheinen.
 == master.adoc bearbeiten
 
 Die erste Datei, die Sie bearbeiten müssen ist die Datei `master.adoc`.
+// todo: kein bearb-Datum und Revisionsnummer mehr.
 Hier müssen der Titel, das Bearbeitungsdatum und die Revisionsnummer gesetzt werden.
 In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im Vorlage-Dokument vorfinden werden.
 
+// todo: veraltet...
 :desc-listing-master: master.adoc
 [id="listing-master",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-master}
@@ -174,7 +184,10 @@ In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im
  :title: {doctitle}
 ----
 
-Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel. Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Veröffentlichung) in Ihrem Projekt nicht zentral gesteuert, fügen Sie die beiden Attribute bitte zur `master.adoc` hinzu.
+
+Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel.
+// todo: veraltet...
+Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Veröffentlichung) in Ihrem Projekt nicht zentral gesteuert, fügen Sie die beiden Attribute bitte zur `master.adoc` hinzu.
 
 :desc-listing-revision: Revisionsnummer und Revisionsdatum
 [id="listing-revision",reftext="{listing-caption} {counter:listings }"]
@@ -242,7 +255,7 @@ Hinzu kommt, dass bei der Umwandlung in die Ausgabeformate HTML und PDF vorgefer
 Bei den automatisch erzeugten Verzeichnissen handelt es sich um folgende:
 
 Literaturverzeichnis:: Quellenangaben, Referenzen auf Bücher oder andere IsyFact-Dokumente
-// Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
+Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
 Abbildungsverzeichnis:: enthaltene Abbildungen mit Nummer und Beschreibung
 Quelltextverzeichnis:: enthaltene Listings, beispielsweise Java, SQL etc.
 Tabellenverzeichnis:: enthaltene Tabellen mit Tabellennummer und Tabellenunterschrift
@@ -446,6 +459,7 @@ Die Regeln stellen vor allem sicher, dass grafische Oberflächen ein einheitlich
 Folgende Blöcke sind zusätzlich mit einem Tag zu kennzeichnen:
 
 * IMPORTANT (Tag-Name: `important`)
+//todo: Typo im Tag-Name? fehlt ein d?
 * ANWENDUNGSANFORDERUNG (Tag-Name: `anwendungsanforerung`)
 * ARCHITEKTURREGEL (Tag-Name: `architekturregel`)
 * SICHERHEIT (Tag-Name: `sicherheit`)
@@ -715,8 +729,6 @@ Das Ergebnis sieht so aus:
 
 `Hier ist das <<Handbuch_fuer_technische_Autoren,Handbuch für technische Autoren>>.`
 
-////
-(Wieder mit hereinnehmen, wenn es ein solches Glossar gibt.)
 [[glossar]]
 == Glossar
 
@@ -745,4 +757,3 @@ Eine Referenz auf einen Begriff des Glossars erfolgt über doppelte spitze Klamm
 Das Ergebnis sieht wie folgt aus:
 
 `Hier wurde ein <<glossar-halloweltbeispiel, Hallo Welt Beispiel>> verwendet.`
-////
