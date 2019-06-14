@@ -748,7 +748,7 @@ Default-Werte werden in den Konfigurationsklassen (mit `@ConfigurationProperties
 
 Für systemabhängige Werte dürfen keine Default-Werte hinterlegt werden.
 Wichtig ist, dass die Anwendung die Existenz dieser Werte (z.B. URLs zu genutzten Services) bereits bei
-der Initialisierung durch Validierung prüft (siehe <<typsichere-bereitstellung-von-konfiguration]>>).
+der Initialisierung durch Validierung prüft (siehe <<typsichere-bereitstellung-von-konfiguration>>).
 Dadurch wird vermieden, dass das Fehlen von Einstellungen erst bei späteren Zugriffen erkannt wird.
 
 Konfigurationsparameter, die nicht zur Laufzeit änderbar sind (siehe Kapitel
@@ -846,7 +846,7 @@ Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des
 String url = konfiguration.getAsString (KonfigurationSchluessel.SERVICE_URL);
 ----
 
-Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double und `Boolean`) jeweils typsichere Zugriffsmethoden an.
+Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double` und `Boolean`) jeweils typsichere Zugriffsmethoden an.
 Für jeden Datentyp wird zusätzlich eine Methode angeboten, welche die Übergabe eines Default-Werts ermöglicht.
 Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurationsdatei vorhanden ist.
 Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine

@@ -425,7 +425,7 @@ In ihnen müssen folgende Anpassungen vorgenommen werden:
 
 Um Beans gezielt aus der Spring-Konfiguration der Anwendung für die Ausführung eines Batches auszuschließen, kann die
 Annotation `@ExludeFromBatchContext` verwendet werden.
-Damit werden mit `@Component` annotierte Klasse oder `@Bean`-Methoden in `@Configuration`-Klassen annotiert (<<listing-excludefrombatchcontext>>).
+Damit werden mit `@Component` annotierte Klassen oder `@Bean`-Methoden in `@Configuration`-Klassen annotiert (<<listing-excludefrombatchcontext>>).
 
 :desc-listing-excludefrombatchcontext: Verwendung der Annotation @ExcludeFromBatchContext
 [id="listing-excludefrombatchcontext",reftext="{listing-caption} {counter:listings }"]
@@ -914,11 +914,12 @@ Dazu wird die Ausführungsbean bei allen wichtigen Ereignissen aufgerufen:
 * Beim Beenden des Batches
 * Bei der Verarbeitung eines Satzes
 
-Jeder Batch erhält beim Logging eine eigene Korrelations-ID.
+Jeder Batch erhält eine eigene Korrelations-ID.
 
-WARNING: Die Korrelations-ID für Batches war in älteren Versionen des Batchrahmens die ID des Batches statt einer UUID.
+WARNING: In älteren Versionen des Batchrahmens handelte es sich bei der Korrelations-ID für Batches um die ID des Batches.
+Mittlerweile wurde dies durch eine UUID ersetzt.
 
-Zusätzlich erhält jeder zu verarbeitende Satz eine die Satznummer als Korrelations-ID.
+Zusätzlich erhält jeder zu verarbeitende Satz die Satznummer als Korrelations-ID, welche an die Korrelations-ID des Batches angehängt wird.
 
 [[fachliche-logik-in-den-komponenten-der-fachanwendung-implementieren]]
 === Fachliche Logik in den Komponenten der Fachanwendung implementieren

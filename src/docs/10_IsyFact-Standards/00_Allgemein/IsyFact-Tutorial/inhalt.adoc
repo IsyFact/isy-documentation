@@ -434,7 +434,7 @@ Beispiele dafür finden sich in <<Vorlageanwendung>>.
 In der Konfigurationsklasse der Service-Schicht wird die HttpInvoker-Konfiguration der
 Service-Schnittstelle durchgeführt.
 Dazu werden das Remote-Bean-Interface und die zugehörige Implementierung in Form der Exception-Fassade als Service
-konfiguriert <<listing-httpinvokerserviceexpoter>>.
+konfiguriert <<listing-httpinvokerserviceexporter>>.
 Der Bean-Name ist für die URL, unter welcher der Service erreichbar sein wird, wichtig.
 
 :desc-listing-httpinvokerserviceexporter: Konfiguration von Remote Bean und Exception Fassade als Service
@@ -874,7 +874,7 @@ Dadurch wird die Bibliothek `isy-logging` sowie Logback als verwendetes Produkt 
 
 In `/src/main/resources/` muss die Datei `logback-spring.xml` angelegt werden.
 Diese definiert, wohin Log-Ausgaben geschrieben werden und wie das Layout dafür ist.
-Die Bibliothek `isy-logging` bringt fertig konfigierte Layouts mit, die dort eingebunden werden.
+Die Bibliothek `isy-logging` bringt fertig konfigurierte Layouts mit, die dort eingebunden werden.
 
 [[konfiguration]]
 == Konfiguration
@@ -973,8 +973,8 @@ werden lediglich die Transport-Exceptions aus `isy-exception-sst` benötigt
 Zur Realisierung der Fehlerbehandlung und Implementierung von Exceptions müssen die in <<listing-bib-fehlerbehandlung>>
 aufgelisteten Bibliotheken eingebunden werden.
 
-:desc-listing-fehlerbehandlung: Einbindung der Bibliotheken für die Fehlerbehandlung
-[id="listing-fehlerbehandlung",reftext="{listing-caption} {counter:listings}"]
+:desc-listing-bib-fehlerbehandlung: Einbindung der Bibliotheken für die Fehlerbehandlung
+[id="listing-bib-fehlerbehandlung",reftext="{listing-caption} {counter:listings}"]
 .{desc-listing-bib-fehlerbehandlung}
 [source,xml]
 ----

@@ -336,12 +336,10 @@ spring.jpa.hibernate.ddl-auto=create
 Grundsätzlich ist es möglich, sämtliche Tabellen-Eigenschaften (etwa auch die Feldlängen und Indizes) über Annotationen zu definieren und das Datenbank-Schema komplett durch hbm2ddl zu erzeugen.
 Hierzu wird keine Vorgabe erstellt: Ob die DDL während der Entwicklung stets generiert wird oder sie nach einer initialen Generierung verändert und parallel gepflegt wird, ist je nach Komplexität des Schemas zu entscheiden.
 
-Befindet sich die Anwendung aber in Produktion, dann muss der Parameter `spring.jpa.hibernate.ddl-auto` auskommentiert werden,
-damit weder eine Generierung noch eine Validierung des Schemas stattfindet.
+Befindet sich die Anwendung in Produktion, dann muss der Parameter `spring.jpa.hibernate.ddl-auto` auskommentiert werden, damit weder eine Generierung noch eine Validierung des Schemas stattfindet.
 Alternativ kann auch der Wert `none` gesetzt werden.
 Eine Validierung durch Setzen des Parameters auf `validate` findet nicht statt.
-Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung
-wird überprüft, ob in der Datenbank die Schemaversion vorliegt, die die Anwendung erwartet.
+Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung wird überprüft, ob in der Datenbank die Schemaversion vorliegt, die die Anwendung erwartet.
 Die Funktionalität hierzu ist in Abschnitt <<pruefen-der-schema-version>> beschrieben.
 
 [[vergabe-von-indizes]]
@@ -398,7 +396,7 @@ public interface CrudRepository<T,ID> {
 }
 ----
 
-Für ein konkretes DAO ist eine eigenes Interface von der Basisschnittstelle `CrudRepository` abzuleiten.
+Für ein konkretes DAO ist ein eigenes Interface von der Basisschnittstelle `CrudRepository` abzuleiten.
 In dieser können weitere DAO-Operationen definiert werden, zum Beispiel zur Durchführung von Queries.
 Ein Beispiel hierfür ist in <<listing-beispielrepository>> zu sehen.
 
@@ -521,11 +519,9 @@ Der einzige Grund für die Verwendung von SQL ist die Verwendung von Oracle SQL 
 === Verwendung von Oracle Hints bei Optimizer-Problemen
 
 NamedQueries werden als JDBC `PreparedStatements` umgesetzt.
-Deshalb werden sie vom Oracle Optimizer bereits analysiert und ein Ausführungsplan erstellt, bevor
-ihre Parameter gebunden werden.
+Deshalb werden sie vom Oracle Optimizer bereits analysiert und ein Ausführungsplan erstellt, bevor ihre Parameter gebunden werden.
 
-Dies führt in Ausnahmefällen dazu, dass ein benötigter Index für die Query-Bearbeitung nicht
-verwendet wird und „Full Tablescans“ durchgeführt werden.
+Dies führt in Ausnahmefällen dazu, dass ein benötigter Index für die Query-Bearbeitung nicht verwendet wird und „Full Tablescans“ durchgeführt werden.
 
 Im Falle von Index-Problemen bei NamedQueries sind Oracle-Hints zu verwenden.
 Die Queries sind als native SQL-Queries in der XML Konfigurationsdatei abzulegen.
@@ -611,16 +607,9 @@ In den folgenden Abschnitten werden konkrete Vorgaben gemacht, welche Konfigurat
 
 Die für die Verwendung von JPA benötigten Beans werden von Spring Boot beim Start der Anwendung automatisch instanziiert.
 
-Teile dieser automatische Konfiguration können bei Bedarf überschrieben werden.
-Soll z.B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean
-durch eine andere überschrieben werden.
+Teile dieser automatischen Konfiguration können bei Bedarf überschrieben werden.
+Soll z.B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean durch eine andere überschrieben werden.
 Das gleiche gilt für die Anbindung einer zweiten Datenbank, siehe dazu <<nutzung-und-anbindung-einer-zweiten-datenbank>>.
-
-// TODO Neues Bild?
-//:desc-image-JPAoverSprBeans: JPA-Konfiguration über Spring Beans
-//[id="image-JPAoverSprBeans",reftext="{figure-caption} {counter:figures}"]
-//.{desc-image-JPAoverSprBeans}
-//image::JPAoverSprBeans.png[align="center"]
 
 [[konfiguration-des-entitymanagers]]
 === Konfiguration des EntityManagers
@@ -739,7 +728,7 @@ private SomeEntity someEntity;
 ----
 
 Ist ein 1:1 assoziiertes Feld optional und kann den Wert `null` annehmen, kann Lazy Loading nur über Bytecode-Manipulation realisiert werden.
-Für n:1 Assoziationen wird genau so verfahren und das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
+Für n:1 Assoziationen wird genauso verfahren und das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
 Es ist erlaubt und erwünscht, dieses Verhalten für Assoziationen zu überschreiben, bei denen Eager Loading Sinn ergibt.
 Hierfür ist das Attribute `fetch` der jeweiligen Mapping-Annotation wie folgt zu setzen:
 
@@ -762,9 +751,8 @@ Sollte dies nicht zutreffen, muss explizites Locking verwendet werden (vgl.
 Abschnitt <<bei-bedarf-explizites-locking-verwenden>>). In der Anwendung ist keine explizite Fehlerbehandlung (etwa durch das Mergen der Daten) zu implementieren.
 Die geworfene Ausnahme ist (gewrappt) an den Aufrufer weiter zu geben.
 
-Um zu erkennen, ob sich das Objekt in der Datenbank verändert hat, empfiehlt Hibernate die Verwendung eines
-numerischen Versions-Felds in jeder Datenbank-Tabelle.
-Dazu wird in den Entitäten eine numerische Property wird der Annotation `@Version` gekennzeichnet.
+Um zu erkennen, ob sich das Objekt in der Datenbank verändert hat, empfiehlt Hibernate die Verwendung eines numerischen Versions-Felds in jeder Datenbank-Tabelle.
+Dazu wird in den Entitäten eine numerische Property mit der Annotation `@Version` gekennzeichnet.
 
 [source,java]
 ----
@@ -789,10 +777,10 @@ Caching-Strategien sind kein Teil der JPA-Spezifikation.
 Für das Definieren eines Caches muss deswegen auf Hibernate-spezifische Mechanismen zugegriffen werden.
 
 Jeder Aufruf der Persistenzschicht geschieht innerhalb einer Transaktion.
-In der Regel läuft jeder Aufruf in einer eigenen Transaktion, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
+In der Regel läuft jeder Aufruf in einer eigenen Transaktion ab, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
 Außer in Ausnahmefällen ist dies jedoch auch nicht notwendig.
 
-Sollte es doch notwendig sein, sollte das Caching nicht in der Persistenzschicht und nicht mittels Hibernate geschehen.
+Ist ein aufrufübergreifendes Caching dennoch notwendig, ist dies nicht in der Persistenzschicht und nicht mittels Hibernate durchzuführen.
 Hibernate bietet für das Caching von Objekten prinzipiell zwei Möglichkeiten:
 
 * *Cache in der Hibernate-Session:* Die Hibernate-Session ist an einen Thread gebunden.

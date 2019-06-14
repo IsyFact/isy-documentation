@@ -138,7 +138,7 @@ Man muss dies je Diagramm wie folgt abschalten: Mit der rechten Maustaste auf de
 [[inhalte-einzelner-elemente-und-aller-elemente-im-diagramm-ausblenden]]
 == Inhalte einzelner Elemente und aller Elemente im Diagramm ausblenden
 
-Um die Inhalte eines Elements (z.B. Elemente in einem Ordner oder Attribute in einer Entität) auszublenden, wählt man in dessen Kontextmenü btn:[Feature Visibility...] und entfernt die Häkchen bei btn:[Attribute Visibility] sowie btn:[Operation Visibility].
+Um die Inhalte eines Elements (z.B. Elemente in einem Ordner oder Attribute in einer Entität) auszublenden, entfernt man in dessen Kontextmenü die Häkchen bei menu:Feature Visibility...[Attribute Visibility] sowie menu:Feature Visibility...[Operation Visibility].
 
 Um die Inhalte aller Elemente in einem Diagramm auszublenden, muss man in dessen Kontextmenü menu:Properties...[Elements] auswählen und die Häkchen btn:[Attributes], btn:[Operations] und btn:[Package Contents] entfernen.
 

@@ -104,7 +104,7 @@ Ein Task wird grundsätzlich als Spring Bean konfiguriert.
 [source, java]
 ----
 @Bean
-public HalloWeltTask halloWeltTak() {
+public HalloWeltTask halloWeltTask() {
     return new HalloWeltTask();
 }
 ----
