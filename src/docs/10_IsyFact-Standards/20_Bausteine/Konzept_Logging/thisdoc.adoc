@@ -3,57 +3,43 @@
 
 Dieses Dokument beschreibt die konzeptionellen Grundlagen des Loggings in der IsyFact.
 Es adressiert die einheitliche Erstellung von Logs in den entwickelten Anwendungen sowie deren Auswertung.
-Es bildet damit die Grundlage der technisch und fachlich einheitlichen Umsetzung des Loggings in der gesamten Anwendungslandschaft und die davon abhängige effiziente Auswertung der Logeinträge.
+Es bildet damit die Grundlage der technisch und fachlich einheitlichen Umsetzung des Loggings in der gesamten <<glossar-Anwendungslandschaft>> und die davon abhängige effiziente Auswertung der Logeinträge.
 Der Aufbau einer Log-Infrastruktur zur Verarbeitung der erstellen Logdateien ist im Dokument <<KonzeptLoggingInfrastrukturELK>> beschrieben.
 
-Die daraus abgeleitete Umsetzung des Loggings im Rahmen einer Anwendungsentwicklung und die möglichen Auswertungen der Logs sind in den
-Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>) beschrieben.
+Die daraus abgeleitete Umsetzung des Loggings im Rahmen einer Anwendungsentwicklung und die möglichen Auswertungen der Logs sind in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>) beschrieben.
 Zu beachten ist, dass die Nutzungsvorgaben an einen größeren Leserkreis gerichtet sind und verschiedene Aspekte sowohl für das Logging-Konzept als auch für die Nutzungsvorgaben relevant sind.
 Um Redundanzen zu vermeiden, werden diese Aspekte alle in den Nutzungsvorgaben beschrieben und im vorliegenden Dokument darauf verwiesen.
 
 [[aufbau-und-zweck-des-dokuments]]
 == Aufbau und Zweck des Dokuments
 
-Ziel des Dokuments ist die Definition eines ganzheitlichen Standards für das Logging, von Erstellung (Inhalt und Ausgabe)
-der Logs durch die Systeme, über Verarbeitung der Logs durch die Infrastruktur, bis hin zur
-anwendungslandschaftsübergreifenden Auswertung der Logeinträge.
+Ziel des Dokuments ist die Definition eines ganzheitlichen Standards für das Logging, von Erstellung (Inhalt und Ausgabe) der Logs durch die Systeme, über Verarbeitung der Logs durch die Infrastruktur, bis hin zur anwendungslandschaftsübergreifenden Auswertung der Logeinträge.
 Hierbei werden die Anforderungen von Betrieb, Test, Softwareentwicklungsreferat und Softwarelieferanten berücksichtigt.
 
 Das Dokument ist entsprechend dieser Zielsetzungen in die folgenden Kapitel untergliedert:
 
-Im Kapitel *<<anforderungen-an-das-logging>>* werden die Zielsetzungen und Anforderungen an das Logging definiert, die
-die Grundlage für die nachfolgenden Kapitel bilden.
+Im Kapitel *<<anforderungen-an-das-logging>>* werden die Zielsetzungen und Anforderungen an das Logging definiert, die die Grundlage für die nachfolgenden Kapitel bilden.
 
-Im Kapitel *<<vorgaben-zur-logerstellung>>* werden die Vorgaben zur Erstellung der Logs innerhalb der Anwendungen gemäß
-der IsyFact definiert.
+Im Kapitel *<<vorgaben-zur-logerstellung>>* werden die Vorgaben zur Erstellung der Logs innerhalb der Anwendungen gemäß der IsyFact definiert.
 
-Im Kapitel *<<log-auswertung>>* werden die Informationen beschrieben, die letztendlich im Auswertungstool zur Verfügung
-stehen und damit die Grundlagen zur Durchführung von Analysen darstellen.
+Im Kapitel *<<log-auswertung>>* werden die Informationen beschrieben, die letztendlich im Auswertungstool zur Verfügung stehen und damit die Grundlagen zur Durchführung von Analysen darstellen.
 
-Im Kapitel *<<anhang-a-logging-glossar>>* werden die Begriffe und Abkürzungen definiert, die spezifisch für das Themenfeld
-„Logging“ sind.
+Im Kapitel *<<anhang-a-logging-glossar>>* werden die Begriffe und Abkürzungen definiert, die spezifisch für das Themenfeld „Logging“ sind.
 
 *Abgrenzung*
 
-Logging ist ein querschnittliches Thema einer Anwendungslandschaft mit Schnittstellen zu zahlreichen weiteren Themen.
+Logging ist ein querschnittliches Thema einer <<glossar-Anwendungslandschaft>> mit Schnittstellen zu zahlreichen weiteren Themen.
 Folgende Abgrenzungen werden dabei getroffen:
 
 * In diesem Dokument werden die Grundlagen geschaffen, um eine effiziente Auswertung der Logs zu ermöglichen.
-Die eigentliche Auswertung mit Hilfe von Analysetools ist nicht Teil des Dokuments und wird
-in <<NutzungsvorgabenLogserver>> beschrieben.
-* Konfiguration von Drittsystemen: Die Konfiguration des Loggings von Systemen, die nicht mit der IsyFact
-entwickelt wurden (bspw.
+Die eigentliche Auswertung mit Hilfe von Analysetools ist nicht Teil des Dokuments und wird in <<NutzungsvorgabenLogserver>> beschrieben.
+* Konfiguration von Drittsystemen: Die Konfiguration des Loggings von Systemen, die nicht mit der IsyFact entwickelt wurden (bspw.
 Apache Webserver, Apache Tomcat, Mailserver), wird in den Konzepten der einzelnen Systeme adressiert.
-Das Logging-Konzept definiert jedoch, welche Informationen durch die einzelnen Systeme bereitgestellt werden
- (Kapitel <<log-auswertung>>).
+Das Logging-Konzept definiert jedoch, welche Informationen durch die einzelnen Systeme bereitgestellt werden (Kapitel <<log-auswertung>>).
 * Monitoring, Logging, Protokollierung: Unter „Logging“ wird in diesem Dokument „Logging zu technischen Zwecken verstanden“.
-Anforderungen
-bezüglich der Protokollierung (das Mitschreiben von Informationen zu durchgeführten Geschäftsvorfällen auf Grund
-fachlicher Anforderungen),
-werden im Konzept _Protokollierung_ <<ProtokollierungKonzept>>) behandelt.
+Anforderungen bezüglich der Protokollierung (das Mitschreiben von Informationen zu durchgeführten Geschäftsvorfällen auf Grund fachlicher Anforderungen werden im Konzept _Protokollierung_ <<ProtokollierungKonzept>>) behandelt.
 +
-Das Monitoring zur betrieblichen Überwachung der Anwendungslandschaft und frühzeitigen Eskalation von Problemen ist
-im Konzept _Überwachung und Konfiguration_ <<KonzeptUeberwachungKonfiguration>> beschrieben.
+Das Monitoring zur betrieblichen Überwachung der Anwendungslandschaft und frühzeitigen Eskalation von Problemen ist im Konzept _Überwachung und Konfiguration_ <<KonzeptUeberwachungKonfiguration>> beschrieben.
 +
 In folgender Tabelle werden die drei verschiedenen Disziplinen detailliert voneinander abgegrenzt:
 
@@ -64,13 +50,11 @@ In folgender Tabelle werden die drei verschiedenen Disziplinen detailliert vonei
 |wo erfasst |Log-Server |zentrales Monitoring System, z.B. Nagios |Datenbank Protokollrecherche
 |Auswertung erfolgt |kontinuierlich |kontinuierlich |bei Verdacht auf security incident
 |Auswerteart a|
-automatisch - inklusive Korrelation von Ereignissen und ggf.
-Meldung an Überwachungs-System
+automatisch - inklusive Korrelation von Ereignissen und ggf. Meldung an Überwachungs-System
 
 anlassbezogen - Prüfung einzelner Logdateien bei Störung oder Verdacht auf security incident
 
  |automatisch - inklusive Alarmierungsfunktionen |nur manuell
 |Einschränkung der Auswertung auf |Administratoren |Administratoren |dedizierte Fachadministratoren der Protokollrecherche
-|Zielsetzung |zeitnahe Feststellung von Störungen und potentiellen Angriffen |Überwachung des Betriebszustands der Anwendungen
-plus Alarmierung bei Störungen |Nachvollziehbarkeit, Vorfallsaufklärung
+|Zielsetzung |zeitnahe Feststellung von Störungen und potentiellen Angriffen |Überwachung des Betriebszustands der Anwendungen plus Alarmierung bei Störungen |Nachvollziehbarkeit, Vorfallsaufklärung
 |====
