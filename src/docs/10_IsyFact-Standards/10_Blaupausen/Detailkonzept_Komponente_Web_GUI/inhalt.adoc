@@ -607,7 +607,7 @@ Ein nicht zu vernachlässigender Aspekt zur Komponentenbildung ist die Paketieru
 Komponente gehörende Elemente gruppiert abgelegt werden.
 Alle Elemente werden in einem Paket mit einheitlichem Paketnamen abgelegt.
 
-Für die Namenskonvention zu Java-Klassen und Paketen wird hier auf das Dokument <<Java-Programmierkonventionen>> verwiesen.
+Für die Namenskonvention zu Java-Klassen und Paketen wird hier auf das Dokument <<JavaProgrammierkonventionen>> verwiesen.
 Zusätzlich gelten die folgenden Konventionen:
 
 * Jede GUI-Komponente hat einen Namen.
@@ -1424,7 +1424,7 @@ image::header-aufbau.png[align="center", width=80%, pdfwidth=80%]
 * *B* Balken in der Standardfarbe der Anwendungslandschaft ("Portalfarbe")
 * *C* Logo des Anwendungslandschaft
 * *D* Informationen zum angemeldeten Anwender ("Nutzerbereich")
-* *E + F* Hauptnavigation und Subnavigation als Flyout (zur Nutzung siehe <<hauptnavigation>>)
+* *E + F* Hauptnavigation und Subnavigation als Flyout (zur Nutzung siehe <<horizontale-navigation>>)
 
 ===== Nutzerbereich
 
@@ -2109,7 +2109,7 @@ Mögliche Werte sind alle Werte für das Feld `type` des HTML-Tags `input`. (Sta
 * `disabled`: Gibt an, ob das Eingabefeld deaktiviert ist. (Standard: `false`)
 * `showPrintView`: Spezifisches Flag zur Erkennung der Druckansicht. (Standard: `basisModel.showPrintView`)
 * `tooltip`: Tooltip, der über dem Eingabefeld angezeigt wird. (Standard: '')
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 * `charpicker`: Gibt an, ob eine Eingabe für Sonderzeichen angezeigt wird. (Standard: `false`)
 
@@ -2149,7 +2149,7 @@ Folgende Parameter sind zusätzlich zu den eben genannten für `<isy:formAction
 * `label`: Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse des Labels. (Standard: `col-lg-6`)
 * `inputStyleClass`: Die CSS-Klasse des Eingabebereiches. (Standard: `col-lg-6`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
 [[eingabefelder-fuer-geldbetraege]]
@@ -2180,7 +2180,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `maxlength`: Die maximale Länge der Eingabe. (Standard: 255)
 * `width`: Die maximale Breite des Eingabefeldes. (Standard: 100%)
 * `tooltip`: Tooltip, der über dem Eingabefeld angezeigt wird. (Standard: '')
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 * `onchange`: JavaScript-Funktion, die bei Verlassen des Feldes aufgerufen wird
 * `onkeyup`: JavaScript-Funktion, die direkt nach einer Eingabe aufgerufen wird
@@ -2208,7 +2208,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `placeholder`: Platzhalter, welcher im Eingabefeld angezeigt wird.
 * `tooltip`: Tooltip, der über dem Eingabefeld angezeigt wird. (Standard: '')
 * `showPrintView`: Spezifisches Flag zur Erkennung der Druckansicht. (Standard: `basisModel.showPrintView`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
 [[text-box]]
@@ -2245,7 +2245,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `cols`: Anzahl an Spalten
 * `maxlength`: Die maximale Länge der Eingabe. (Standard: 4000)
 * `showPrintView`: Spezifisches Flag zur Erkennung der Druckansicht. (Standard: `basisModel.showPrintView`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
 ==== Date Picker
@@ -2275,7 +2275,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `inputmaskInsertMode`: Gibt an, ob der Text bei der Eingabe überschrieben wird. (Standard: `true`)
 * `inputmaskClearOnBlur`: Gibt an, ob beim Verlassen des Feldes die Maskierungsplatzhalter ausgeblendet werden. (Standard: `true`)
 * `showPicker`: Gibt an, ob der Kalender angezeigt wird. (Standard: `true`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
 Für den Datepicker wird ein http://bootstrap-datepicker.readthedocs.io[externes Plug-In] verwendet.
@@ -2325,7 +2325,7 @@ Für das Bedienelement `<isy:formSelectOneDropdown />`gibt es zusätzlich die fo
 * `inputStyleClass`: Die CSS-Klasse des Eingabebereiches. (Standard: `col-lg-6`)
 * `dropdownStyleClass`: Die CSS-Klasse des Dropdown Menüs. (Standard: `form-selectonedropdown`)
 * `showPrintView`: Spezifisches Flag zur Erkennung der Druckansicht. (Standard: `basisModel.showPrintView`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 
 Wenn JavaScript aktiviert ist, wird das Dropdown Menü über ein Bootstrap-Plugin dargestellt, ansonsten als natives Element.
 
@@ -2465,7 +2465,7 @@ Für die Elemente innerhalb von Formularen gibt es zusätzlich die folgenden Par
 * `label`: Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse des Labels. (Standard: `col-lg-6`)
 * `inputStyleClass`: Die CSS-Klasse des Eingabebereiches. (Standard: `col-lg-6`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 
 ==== List Picker (Objektauswahl)
 
@@ -2499,7 +2499,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `header`: sortierte Liste der Spaltenüberschriften
 * `inputComplement`: Nummer der Spalte, dessen Inhalt per JavaScript im Eingabefeld ergänzt werden soll. (Standard: 0 = deaktiviert)
 * `useAutocomplete`: Gibt an, ob Eingaben automatisch vervollständigt werden. (Standard: `true`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
 Falls JavaScript nicht aktiviert ist, dann wird statt dem List Picker ein einfaches <<dropdown-menue>> angezeigt.
@@ -2622,7 +2622,7 @@ Zusätzlich benötigte Parameter können frei gewählt werden und müssen einfac
 	....
   servletUrl="/app/listpicker?weitererFilterParameter1={#eingabeModel.weitererFilterParameter1}&weitererFilterParameter2={#eingabeModel.weitererFilterParameter2}" />
 ----
-In dem Bespiel werden zwei zusätzliche Parameter zur Filterung benötigt (`weitererFilterParameter1` und `weitererFilterParameter2`). Ihre Bezeichnung und woher sie bezogen werden, kann beliebig festgelegt werden.
+In dem Beispiel werden zwei zusätzliche Parameter zur Filterung benötigt (`weitererFilterParameter1` und `weitererFilterParameter2`). Ihre Bezeichnung und woher sie bezogen werden, kann beliebig festgelegt werden.
 Wichtig ist lediglich, dass die konkrete Implementierung des Servlets die Bezeichnungen kennt und diese der Oberklasse über die entsprechende Methode bekannt macht.
 Unabhängig von etwaigen zusätzlichen Filter-Parametern wird der Wert des Filter-Feldes des Listpicker immer übertragen.
 
@@ -2750,7 +2750,7 @@ Folgende optionale Parameter sind zulässig:
 * `rowDefinition`: Pfad zur XHTML-Seite für die Definition des Zeilenaufbaues. Wird mehrfach inkludiert.
 * `detailDefinition`: Pfad zur XHTML-Seite für die Detailansicht. Diese kann zusätzliche Datenfelder zur Zeile enthalten.
 * `preloadingSize`: Die Anzahl an Elementen, die im JavaScript Modus für die Detailansicht vorgeladen werden. (Standard: `0`, Typ: `java.lang.Integer`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 
 
 Beispiel einer Row-Definition:
@@ -3052,7 +3052,7 @@ Außerdem gibt es folgende optionale Parameter:
 showPrintView`: Spezifisches Flag zur Erkennung der Druckansicht. (Standard: `basisModel.showPrintView`)
 
 [[formCheckbox]]
-==== Mehrere Checkbox Felder
+==== Checkbox innerhalb von Formularen
 Für Formulare existiert das Tag `<isy:formCheckbox>`.
 
 Die Komponente besitzt folgende notwendige Parameter:
@@ -3070,9 +3070,9 @@ Außerdem gibt es folgende optionale Parameter:
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
 * `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
 * `optional`: Gibt an, ob die Eingabe ein Optionale-Pflichteingabe ist (blaues Sternchen). (Standard: `false`, Typ: `Boolean`)
-* `validationModel`: Ein Spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
-* `valueChangeListener`: change Event einfach durchwerfen
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `valueChangeListener`: Value Change Listener
 
 [[radio-button-ueberschrift]]
 ==== Radio Button
@@ -3087,8 +3087,8 @@ image::image193.png[align="center"pdfwidth=30%]
 
 Ein Radio Button wird über das Tag `<isy:selectOneRadio>` (bzw. `<isy:selectOneRadioInline>`) und `<isy:formSelectOneRadio>` eingebunden.
 
-[[radio-button-vertikal]]
-==== Vertikal gruppierte Radio Buttons
+[[radio-button-horizontal]]
+==== Horizontal gruppierte Radio Buttons
 Über das Tag `<isy:selectOneRadioInline>` werden Radiobuttons horizontal gruppiert dargestellt.
 Die Komponente besitzt folgende notwendige Parameter:
 
@@ -3099,8 +3099,8 @@ Außerdem gibt es folgende optionale Parameter:
 
 * `disabled`: Gibt an, ob die Darstellung nur lesend erfolgen soll. (Standard: `false`, Typ: `Boolean`)
 
-[[radio-button-horizontal]]
-==== Horizontal gruppierte Radio Buttons
+[[radio-button-vertikal]]
+==== Vertikal gruppierte Radio Buttons
 Über das Tag `<isy:selectOneRadio>` werden Radiobuttons vertikal gruppiert dargestellt.
 
 Die Komponente besitzt folgende notwendige Parameter:
@@ -3132,9 +3132,9 @@ Außerdem gibt es folgende optionale Parameter:
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
 * `inlineInputStyleClass`: Die CSS-Klasse für den Eingabebereich eines einzelnen Inline-Radio-Buttons. (Standard: ``)
 * `required`: On die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
-* `validationModel`: Ein Spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
-* `valueChangeListener`: change Event einfach durchwerfen
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `valueChangeListener`: Value Change Listener
 
 
 [[navigation]]
@@ -3376,7 +3376,8 @@ Ein Beispiel zur Umsetzung eines Suchformulars findet sich im Abschnitt <<layout
 
 ==== Toggle Filter
 
-Ein Toggle-Filter wird über das Tag `<isy:toggleFilter>` eingebunden. Die einzelne Filter sollten als <f:selectItem> angegeben werden.
+Ein Toggle-Filter wird über das Tag `<isy:toggleFilter>` eingebunden.
+Die einzelnen Filter sollten als <f:selectItem> angegeben werden.
 
 Die Komponente besitzt folgende notwendige Parameter:
 
@@ -3423,7 +3424,7 @@ Folgende Parameter sind zusätzlich für `<isy:formBrowseAndCollect>` zulässig
 * `label`: Der Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse für das Label. (Standard: `col-lg-6`)
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
-* `validationModel`: Ein Spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 
 
 [[master-detail]]
@@ -3454,7 +3455,7 @@ Das Tag `<isy:panel>` bietet folgende Facets:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `panelModel`: Model des Panels, das von PanelModel abgeleitet wird, und Teil des Seitenmodels sein sollte. Nur notwendig falls das Panel einklappbar sein soll. (Typ: `de.bund.bva.isyfact.common.web.jsf.components.panel.PanelModel`)
+* `panelModel`: Model des Panels, das von PanelModel abgeleitet wird, und Teil des Seitenmodels sein sollte. Nur notwendig, falls das Panel einklappbar sein soll. (Typ: `de.bund.bva.isyfact.common.web.jsf.components.panel.PanelModel`)
 * `collapse`: Gibt an, ob das Panel einklappbar sein soll. Falls ja, so muss auch ein panelModel angegeben werden. (Standard: `false`, Typ: `Boolean`)
 * `panelId`: ID des Panels.
 * `globalConfig`: Eine spezifische globale Konfiguration, falls notwendig. (Standard: `#{globalConfigurationModel}`)
@@ -3562,6 +3563,7 @@ Die Komponente besitzt folgende notwendige Parameter:
 * `text`: Text, der bei Hover über das Element angezeigt werden soll
 
 Außerdem gibt es folgende optionale Parameter:
+
 * `title`: Optionale Überschrift, die fett über dem Text angezeigt wird.
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `#{globalConfigurationModel}`)
 
@@ -3762,7 +3764,7 @@ Zusätzlich zu den eben genannten Parametern bei `<isy:actionInputWithFourEyes>`
 * `label`: Der Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse des Labels. (Standard: `col-lg-6`)
 * `inputStyleClass`: Die CSS-Klasse des Eingabebereiches. (Standard: `col-lg-6`)
-* `validationModel`: Spezifisches Validation-Model. (Standard: `validationModel`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
 
@@ -3793,9 +3795,9 @@ Folgende Komponentenattribute sind optional:
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
 * `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
 * `optional`: Gibt an, ob die Eingabe eine Optionale-Pflichteingabe ist (blaues Sternchen). (Standard: `false`, Typ: `Boolean`)
-* `validationModel`: Ein Spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
-* `valueChangeListener`: change Event einfach durchwerfen
+* `valueChangeListener`: Value Change Listener
 * `fourEyesLastValue`: Letzter Wert im 4-Augen-Eingabefeld.
 
 Codebeispiel:
@@ -3826,7 +3828,7 @@ Codebeispiel:
 
 [[currency-Input-4eyes]]
 ==== CurrencyInputWithFourEyes
-Die Komponente `<isy:formCurrencyInputWithFourEyes>` stellt ein Eingabefeld für eine Fliesskommazahlnach dem Vier-Augen-Prinzip innerhalb von Formularen zur Verfügung.
+Die Komponente `<isy:formCurrencyInputWithFourEyes>` stellt ein Eingabefeld für eine Fließkommazahl nach dem Vier-Augen-Prinzip innerhalb von Formularen zur Verfügung.
 
 :desc-image-demopanelformCurrencyInput: Ansicht von isy_formCurrencyInputWithFourEyes
 [id="image-demopanelformCurrencyInput",reftext="{figure-caption} {counter:figures}"]
@@ -3851,7 +3853,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `disabled`: Gibt an, ob das Eingabefeld deaktiviert ist. (Standard: `false`, Typ: `Boolean`)
 * `maxlength`: Die maximale Länge der Eingabe. (Standard: `255`, Typ: `Integer`)
 * `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 * `onchange`: onchange JavaScript-Funktion wird aufgerufen, wenn der Cursor das Feld verlässt. (Standard: `formatAmountOfMoney(this)`)
 * `onkeyup`: onkeyup JavaScript-Funktion wird aufgerufen, wenn eine Tastatureingabe in dem Feld gemacht wurde. (Standard: `deleteNonDigitCharacters(this)`)
 * `decimalplaces`: Die Anzahl der Nachkommastellen. (Standard: `2`, Typ: `Integer`)
@@ -3912,11 +3914,11 @@ Folgende Komponentenattribute sind optional:
 * `language`: Die Sprache für den Datepicker. (Standard: `de`)
 * `dateFormat`: Das Datumsformat für den Datepicker. (Standard: `dd.mm.yyyy`)
 * `inputmask`: Das Maskenformat für das Eingabefeld. (Standard: `99.99.9999`)
-* `inputmaskInsertMode`: Die Eingabemaske: Gibt an, ob text soll überschrieben werden beim eintippen.(Standard: `true`, Typ: `Boolean`)
+* `inputmaskInsertMode`: Die Eingabemaske: Gibt an, ob der Text beim Eintippen überschrieben werden soll. (Standard: `true`, Typ: `Boolean`)
 * `inputmaskClearOnBlur`: Die Eingabemaske: Gibt an, ob beim Verlassen des Feldes die Maskierungsplatzhalter ausgeblendet werden sollen. (Standard: `true`, Typ: `Boolean`)
 * `showPicker`: Gibt an, ob Picker angezeigt werden soll. (Standard: `true`, Typ: `java.lang.Boolean`)
 * `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 * `fourEyesLastValue`: Letzter Wert im 4-Augen-Eingabefeld.
 
 Codebeispiel:
@@ -3982,7 +3984,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `tooltip`: Tooltip. (Standard: '')
 * `disabled`: Gibt an, ob das Eingabefeld deaktiviert ist. (Standard: `false`, Typ: `Boolean`)
 * `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 * `charpicker`: Die Referenz des Objekts. (Standard: `false`, Typ: `Boolean`)
 * `type`: Der Typ des Eingabefelds, so dass diese Komponente z.B. auch für Passwort-Felder verwendet werden kann. Mögliche Werte alle Werte für das Feld type des HTML Input Felds. (Standard: `text`)
 * `fourEyesLastValue`: Letzter Wert im 4-Augen-Eingabefeld.
@@ -4040,7 +4042,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `disabled`: Gibt an, ob das Eingabefeld deaktiviert ist. (Standard: `false`, Typ: `Boolean`)
 * `maxlength`: Die maximale Länge der Eingabe. (Standard: `255`, Typ: `Integer`)
 * `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 * `onchange`: onchange JavaScript-Funktion wird aufgerufen, wenn der Cursor das Feld verlässt. (Standard: `formatNumericValue(this)`)
 * `onkeyup`: onkeyup JavaScript-Funktion wird aufgerufen, wenn eine Tastatureingabe in dem Feld gemacht wurde. (Standard: `deleteNonDigitCharacters(this)`)
 * `decimalplaces`: Die Anzahl der Nachkommastellen: Default ist 0. (Standard: `0`, Typ: `Integer`)
@@ -4109,7 +4111,7 @@ NOTE: Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `
 * `inputStyleClass`: Der Text für das Label. (Standard: `col-lg-6`)
 * `dropdownStyleClass`: Die CSS-Klasse für das Label. (Standard: `form-selectonedropdown`)
 * `showPrintView`: Die CSS-Klasse für den Eingabebereich. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
-* `validationModel`: Die CSS-Klasse 'dropdownStyleClass'. (Standard: `#{validationModel}`)
+* `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Zur aktuellen Druckansicht-Anzeige aus dem BasisModel. (Standard: `#{globalConfigurationModel}`)
 
 
@@ -4147,7 +4149,7 @@ Folgende Komponentenattribute sind optional:
 * `maxlength`: Die maximal Anzahl von Zeichen. (Standard: `4000`, Typ: `Integer`)
 * `showPrintView`: Zur aktuellen Druckansicht-Anzeige aus dem BasisModel. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
 * `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
-* `globalConfig`: Eine spezifsche globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
+* `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 * `fourEyesLastValue`: Letzter Wert im 4-Augen-Eingabefeld.
 
 Codebeispiel:
@@ -4175,7 +4177,7 @@ Codebeispiel:
 
 [[selectOneDropdownWithfourEyes]]
 ==== SelectOneDropdownWithFourEyes
-Die Komponente `<isy:selectOneDropdownWithFourEyes>` stellt ein Dropdownfeld nach dem Vier-Augen-Prinzip zur Verfügung aus dem man einen Eintrag auswählen kann.
+Die Komponente `<isy:selectOneDropdownWithFourEyes>` stellt ein Dropdownfeld nach dem Vier-Augen-Prinzip zur Verfügung, aus dem man einen Eintrag auswählen kann.
 
 :desc-image-demopanelselectOneDropdownWithfourEyes: WebGui-Demoanwendung: isy_selectOneDropdownWithfourEyes
 [id="image-demopanelselectOneDropdownWithfourEyes",reftext="{figure-caption} {counter:figures}"]
