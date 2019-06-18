@@ -273,6 +273,9 @@ Verfügung gestellt, um Enum-Werte auf eine VARCHAR-Spalte der Datenbank abzubil
 
 Beispiel für eine Enum-Klasse mit annotierten Persistenzwerten:
 
+:desc-listing-enum-annotated: Enum-Klasse mit annotierten Persistenzwerten
+[id="listing-enum-annotated",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-enum-annotated}
 [source,java]
 ----
 public enum Geschlecht {
@@ -285,6 +288,9 @@ public enum Geschlecht {
 
 Beispiel für eine Enum-Klasse mit natürlichem Schlüssel:
 
+:desc-listing-enum-natural-key: Enum-Klasse mit natürlichem Schlüssel
+[id="listing-enum-natural-key",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-enum-natural-key}
 [source,java]
 ----
 public enum Geschlecht\{
@@ -305,6 +311,9 @@ public enum Geschlecht\{
 
 Beispiel für eine persistente Entität, die ein Enum-Feld enthält:
 
+:desc-listing-entity-enum-field: Enum-Feld an einer persistenten Entität
+[id="listing-entity-enum-field",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-entity-enum-field}
 [source,java]
 ----
 @Entity
@@ -339,7 +348,7 @@ Hierzu wird keine Vorgabe erstellt: Ob die DDL während der Entwicklung stets ge
 Befindet sich die Anwendung in Produktion, dann muss der Parameter `spring.jpa.hibernate.ddl-auto` auskommentiert werden, damit weder eine Generierung noch eine Validierung des Schemas stattfindet.
 Alternativ kann auch der Wert `none` gesetzt werden.
 Eine Validierung durch Setzen des Parameters auf `validate` findet nicht statt.
-Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung wird überprüft, ob in der Datenbank die Schemaversion vorliegt, die die Anwendung erwartet.
+Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung wird überprüft, ob in der Datenbank die Schema-Version vorliegt, die die Anwendung erwartet.
 Die Funktionalität hierzu ist in Abschnitt <<pruefen-der-schema-version>> beschrieben.
 
 [[vergabe-von-indizes]]
@@ -526,8 +535,11 @@ Dies führt in Ausnahmefällen dazu, dass ein benötigter Index für die Query-B
 Im Falle von Index-Problemen bei NamedQueries sind Oracle-Hints zu verwenden.
 Die Queries sind als native SQL-Queries in der XML Konfigurationsdatei abzulegen.
 
-Ein Beispiel für einen Oracle-Hint in einer SQL Query:
+Ein Beispiel für einen Oracle-Hint in einer SQL-Query:
 
+:desc-listing-query-oracle-hint: Beispiel für einen Oracle-Hint in einer SQL-Query
+[id="listing-query-oracle-hint",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-query-oracle-hint}
 [source]
 ----
 select /*+ INDEX(aendno AENDERUNGS_NOTIFIKATION_STATUS) */ aendno from AENDERUNGS_NOTIFIKATION aendno where aendno.status = ?1 and aendno.zeitpunktNotifikation > :datumVon and aendno.zeitpunktNotifikation < :datumBis
@@ -1407,7 +1419,7 @@ In diesem Verzeichnis liegen die Unterverzeichnisse `db-install-<Versionsnummer>
 
 Für die aktuelle Datenbankversion muss es ein vollständiges Installationsskript geben.
 Wurden Änderungen am Schema vorgenommen, gibt es zusätzlich ein entsprechendes Update-Skript von der Vorversion auf die aktuelle Version.
-Das Verzeichnis enthält so immer das Installationsskript für die aktuelle Datenbankversion und Update-Skripte, um jede belieblige Vorversion seit Einführung der Schemaversionierung auf die aktuelle Datenbankversion anheben zu können.
+Das Verzeichnis enthält so immer das Installationsskript für die aktuelle Datenbankversion und Update-Skripte, um jede belieblige Vorversion seit Einführung der Schema-Versionierung auf die aktuelle Datenbankversion anheben zu können.
 
 Die einzelnen Skripte werden auf der Grundlage der Templates aus der Bibliothek `isy-persistence` erstellt und behalten auch deren Namen.
 
@@ -1463,7 +1475,7 @@ isy.persistence.oracle.datasource.schema-version=1.2.3
 ----
 
 In der Property `schemaVersion` wird die Versionsnummer des Datenbankschemas angegeben, das die Anwendung erwartet.
-Wird die Property `schemaVersion` oder der Wert für die Version nicht angegeben, so findet keine Überprüfung der Schemaversion statt.
+Wird die Property `schemaVersion` oder der Wert für die Version nicht angegeben, so findet keine Überprüfung der Schema-Version statt.
 
 In der Property `invalidSchemaVersionAction` wird festgelegt, wie die Data-Source auf eine falsche Schema-Version reagieren soll.
 Der Wert `fail` legt fest, dass eine Exception geworfen wird.
@@ -1473,7 +1485,10 @@ Der Wert `warn` legt fest, dass lediglich eine Warnung in die Log-Datei geschrie
 Bei Datenmigrationen muss jedes Skript vor der Ausführung prüfen, ob die Datenbank die erwartete Version hat.
 Das kann mit dem folgenden SQL-Statement durchgeführt werden:
 
-[source,ruby]
+:desc-listing-pruefung-schema-version: SQL-Query zur Prüfung der Schema-Version
+[id="listing-pruefung-schema-version",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-pruefung-schema-version}
+[source]
 ----
 SELECT version
   FROM m_schema_version
@@ -1481,7 +1496,7 @@ SELECT version
    AND status = 'gueltig';
 ----
 
-Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schemaversion vorhanden.
-Liefert es keinen Wert zurück, dann ist die erwartete Schemaversion nicht vorhanden.
+Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schema-Version vorhanden.
+Liefert es keinen Wert zurück, dann ist die erwartete Schema-Version nicht vorhanden.
 
 // end::inhalt[]
