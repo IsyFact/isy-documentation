@@ -670,8 +670,11 @@ Dazu zählt unter anderem die Anzahl aktuell ausgeliehener Verbindungen.
 
 Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
 
-Die Konfiguration des UCP erfolgt in `application.properties` über folgende Properties:
+Die Konfiguration des UCP erfolgt in `application.properties` über die Properties in <<listing-configpropertiesucp>>.
 
+:desc-listing-configpropertiesucp: Properties zur Konfiguration des UCP
+[id="listing-configpropertiesucp",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-configpropertiesucp}
 [source,ruby]
 ----
 # Connection-String für die Datenbankverbindung
