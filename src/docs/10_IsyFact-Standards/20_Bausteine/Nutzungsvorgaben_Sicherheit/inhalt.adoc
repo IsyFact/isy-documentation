@@ -5,16 +5,20 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 // tag::inhalt[]
 [[grundkonzepte-und-konfiguration]]
 == Grundkonzepte und Konfiguration
+
 Der Baustein Sicherheit definiert in der Bibliothek `isy-sicherheit` folgende, zentrale Schnittstellen:
 
 * `Sicherheit`: Einstiegspunkt in die Bibliothek
 * `Berechtigungsmanager`: Zugriff auf Informationen zur Berechtigung einzelner Anwender (Rollen & Rechte)
 
+// tag::important[]
 [IMPORTANT]
 ====
 Wie im <<KonzeptSicherheit>> beschrieben, fokussiert sich die Bibliothek `isy-sicherheit` auf die Zuordnung von Rechten zu Anwendern anhand ihrer Rollen.
 Die Authentifizierung und die Auflösung der Rollen geschieht in einem anderen Baustein der IsyFact und kann für die Benutzung der Bibliothek als gegeben angenommen werden.
 ====
+
+// end::important[]
 
 Die folgende Abbildung zeigt die Schnittstellen und ihre Verbindung untereinander.
 Die zentrale Schnittstelle für den Zugriff auf Rollen und Rechte eines Anwenders ist der `Berechtigungsmanager`.
@@ -94,14 +98,18 @@ public class SicherheitConfiguration {
 
 Hierbei werden auch direkt die Spring Beans zur Verwaltung der Aufrufkontexte und zur Überwachung des Bausteins konfiguriert.
 
+// tag::important[]
 [IMPORTANT]
 ====
 Die Implementierung der Schnittstelle `AccessManager` stellt einer der IsyFact-Bausteine für die Authentifizierung bereit.
 Eine Beschreibung der Konfiguration findet sich in den jeweiligen Nutzungsvorgaben.
 ====
 
+// end::important[]
+
 ==== Caching von Authentifizierungen
 
+//todo Referenz gibt es in IsyFact nicht?
 Der Baustein liefert eine <<standard-cache-konfiguration,Standard-Konfiguration für das Caching von Authentifizierungen>> an.
 Der Standardwert für die Lebensdauer von Cache-Elementen liegt bei 5 Minuten (300 Sekunden), die maximale Anzahl an Elementen im Cache bei 1000.
 Wird die maximale Anzahl an Elementen überschritten, löscht der Cache die am längsten nicht mehr verwendeten Elemente zuerst.
@@ -121,6 +129,7 @@ Wird der Parameter `isy.sicherheit.cache.maxelements` auf 0 gesetzt, werden beli
 [[konfiguration-von-rollen-und-rechten]]
 === Konfiguration von Rollen und Rechten
 
+//todo Referenz gibt es in IsyFact nicht?
 Jede Fachanwendung spezifiziert im Rahmen ihrer Systemspezifikation Rechte und bildet diese auf fachliche und technische Rollen ab.
 Bei der technischen Umsetzung müssen alle spezifizierten Rollen und Rechte konfiguriert und korrekt zugeordnet werden.
 Dies geschieht in der statischen Konfiguration in der Datei `/resources/sicherheit/rollenrechte.xml`.
@@ -181,7 +190,7 @@ Die Konfiguration gibt also verlässlich Auskunft darüber, welche Rollen und Re
 
 Der Baustein Sicherheit ermöglicht eine Autorisierung nur auf Basis von Rechten, nicht von Rollen.
 Jeder Rolle muss also zumindest ein Recht zugeordnet werden, um anhand ihr eine Autorisierung durchführen zu können.
-Werden im Lebens­zyklus der Fachanwendung weitere Rollen (z.B. für neu hinzukommende Akteure) spezifiziert und mit bestehenden Rechten  ausgestattet, so sind neben den Änderungen in der Konfigurationsdatei keine weiteren Änderungen notwendig.
+Werden im Lebenszyklus der Fachanwendung weitere Rollen (z.B. für neu hinzukommende Akteure) spezifiziert und mit bestehenden Rechten ausgestattet, so sind neben den Änderungen in der Konfigurationsdatei keine weiteren Änderungen notwendig.
 
 
 [[autorisierung]]
@@ -253,11 +262,14 @@ Wichtig ist, dass sich der Filter an der Position `PRE_AUTH_FILTER` befindet.
 Greift er nicht, weil z.B. keine gültige Authentifizierung vorliegt, wird die Anfrage direkt mit einem HTTP-Statuscode 403 (Forbidden) beantwortet.
 Dies stellt das Bean `preAuthenticatedProcessingFilterEntryPoint` sicher.
 
+// tag::important[]
 [IMPORTANT]
 ====
 Die Implementierung der Beans `authenticationProvider` sowie `processingFilter` stellt einer der IsyFact-Bausteine für die Authentifizierung bereit.
 Eine Beschreibung der Konfiguration findet sich in den jeweiligen Nutzungsvorgaben.
 ====
+
+// end::important[]
 
 [[gui-absicherung]]
 ==== Absicherung der Flows
@@ -386,7 +398,7 @@ public AuthenticationCredentials getAuthenticationCredentials(
 }
 ----
 
-Ab diesem Punkt kann der Batch jederzeit auf den Aufrufkontext zugreifen, um im Zuge des Batchlaufes Berechtigungsprüfungen vorzunehmen oder Services von Nachbarsystemen (vgl. <<aufrufen-von-nachbarsystemen>>) unter Bereitstellung des Aufrufkontextes aufzurufen.
+Ab diesem Punkt kann der <<glossar-Batch>> jederzeit auf den Aufrufkontext zugreifen, um im Zuge des Batchlaufes Berechtigungsprüfungen vorzunehmen oder Services von Nachbarsystemen (vgl. <<aufrufen-von-nachbarsystemen>>) unter Bereitstellung des Aufrufkontextes aufzurufen.
 
 [TIP]
 ====
@@ -398,6 +410,7 @@ In diesem Fall muss die Methode `getAuthenticationCredentials` so implementiert 
 [[sgw-autorisierung]]
 === Autorisierung im Service-Gateway
 
+//todo rf-sgw-util in isy-sicherheit?
 Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet den Baustein Sicherheit, um den Benutzer einer eingehenden Anfrage zu authentifizieren und zu autorisieren.
 Er verwendet dazu die Bibliothek `rf-sgw-util`, in der `isy-sicherheit` eingebunden ist.
 
