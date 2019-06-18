@@ -312,7 +312,7 @@ public class Person {
   ...
 
   @Column(nullable = *false*, length = 1)
-  @Type(type = "de.bund.bva.pliscommon.persistence.usertype.Enum(WithId)UserType", parameters = { @Parameter(
+  @Type(type = "de.bund.bva.isyfact.persistence.usertype.Enum(WithId)UserType", parameters = { @Parameter(
     name = "enumClass",
     value = "<Package>.Geschlecht") })
   public Geschlecht getGeschlecht() {

@@ -3697,7 +3697,7 @@ import org.springframework.stereotype.Controller;
 import de.bund.bva.isyfact.common.web.global.AbstractGuiController;
 import de.bund.bva.isyfact.common.web.global.GlobalFlowController;
 import de.bund.bva.isyfact.common.web.validation.ValidationMessage;
-import de.bund.bva.pliscommon.util.spring.MessageSourceHolder;
+import de.bund.bva.isyfact.util.spring.MessageSourceHolder;
 
 @Controller
 public class VieraugenMaskenController extends AbstractGuiController<VieraugenMaskeModel> {
@@ -4927,7 +4927,7 @@ Zusätzlich kann hier noch der Expression Parser für die EL-Implementierung def
 Durch die Definition des EL-Parsers kann die konkrete EL-Implementierung festgelegt werden.
 Standardmäßig sollte hier keine spezifische Konfiguration vorgenommen werden.
 
-:desc-listing-SnipWebflow1xml: Ausschnitt aus Web Flow.xml
+:desc-listing-SnipWebflow1xml: Ausschnitt aus webflow.xml
 [id="listing-SnipWebflow1xml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebflow1xml}
 [source,xml]
@@ -4943,7 +4943,7 @@ Standardmäßig sollte hier keine spezifische Konfiguration vorgenommen werden.
 Innerhalb der Spring-Konfiguration wird für den Web Flow die `flow-registry` konfiguriert.
 Hier wird die Ablage der Konfigurations-Files definiert.
 
-:desc-listing-SnipWebflow2xml: Ausschnitt aus Web Flow.xml
+:desc-listing-SnipWebflow2xml: Ausschnitt aus webflow.xml
 [id="listing-SnipWebflow2xml",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebflow2xml}
 [source,xml]
@@ -5175,8 +5175,8 @@ als „`custom-authentication-provider`“ Spring Security bekannt gemacht.
 custom authentication provider setzen um Sicherheits Komponente für Rollen +
 Ermittlung zu verwenden
 ====================================================================== -->
-<beans:bean id="Web FlowAuthenticationProvider"
-	class="de.bund.bva.pliscommon.plisweb.Web Flow.security.Web FlowAuthenticationProvider">
+<beans:bean id="WebFlowAuthenticationProvider"
+	class="de.bund.bva.pliscommon.plisweb.WebFlow.security.WebFlowAuthenticationProvider">
 	<custom-authentication-provider />
 	<beans:property name="sicherheit" ref="sicherheit" />
 </beans:bean>
@@ -5187,17 +5187,17 @@ Ermittlung zu verwenden
 
 Hier muss ein Listener registriert werden, über welchen die Security Bedürfnisse geprüft werden.
 
-:desc-listing-SnipWebFlowxx: Ausschnitt aus Web Flow.xml (bezüglich Security)
+:desc-listing-SnipWebFlowxx: Ausschnitt aus webflow.xml (bezüglich Security)
 [id="listing-SnipWebFlowxx",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-SnipWebFlowxx}
 [source,xml]
 ----
 <bean name="flowExecutionSecurityListener"
-      class="org.springframework.Web Flow.security.SecurityFlowExecutionListener">
+      class="org.springframework.webflow.security.SecurityFlowExecutionListener">
 </bean>
 
 <bean name="flowExecutionListenerLoaderFactory"
-	  class="org.springframework.Web Flow.config.FlowExecutionListenerLoaderFactoryBean">
+	  class="org.springframework.webflow.config.FlowExecutionListenerLoaderFactoryBean">
 	<property name="listeners">
 		<map>
 			<entry key-ref="flowExecutionSecurityListener"
@@ -5209,7 +5209,7 @@ Hier muss ein Listener registriert werden, über welchen die Security Bedürfnis
 </bean>
 
 <bean name="flowExecutionFactory"
-	  class="org.springframework.Web Flow.engine.impl.FlowExecutionImplFactory">
+	  class="org.springframework.webflow.engine.impl.FlowExecutionImplFactory">
 	  <property name="executionKeyFactory"
 		        ref="flowExecutionRepository"/>
 	  <property name="executionListenerLoader"

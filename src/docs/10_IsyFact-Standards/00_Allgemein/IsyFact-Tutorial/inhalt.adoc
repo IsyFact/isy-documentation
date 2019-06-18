@@ -1017,11 +1017,11 @@ Alle Exceptions der Anwendungen werden hier in Transport-Exceptions umgewandelt.
 Dazu wird das im Folgenden beschrieben Muster verwendet.
 
 Es wird ein Catch-Block für alle auftretenden eigenen Exceptions angelegt.
-In jedem Catch-Block wird die Exception geloggt und über `PlisExceptionMapper.mapException`
+In jedem Catch-Block wird die Exception geloggt und über `ExceptionMapper.mapException()`
 in eine passende Transport-Exception umgewandelt.
 Als letztes wird ein Catch-Throwable-Block eingefügt.
 
-Hier wird für die aufgetretene Exception über `PlisExceptionMapper.createToException`
+Hier wird für die aufgetretene Exception über `ExceptionMapper.createToException()`
 eine neue Transport-Exception erzeugt.
 Zur Ermittlung der Fehler-ID wird eine Klasse AusnahmeIdUtil angelegt.
 Diese implementiert eine statische Methode `getAusnahmeId`, die zu einer übergebenen Exception
@@ -1424,7 +1424,7 @@ public List<String> getRollen(String uid, String orgknz) {
   List alleTreffer = LdapTemplateHolder.getLdapTemplate().
   search(DistinguishedName.EMPTY_PATH, filter.encode(), new RollenContextMapper());
   if (alleTreffer == null || alleTreffer.size() == 0) {
-    throw new MyPlisTechnicalRuntimeException("Kein Benutzer gefunden");
+    throw new MyTechnicalRuntimeException("Kein Benutzer gefunden");
   }
   return (List<String>)alleTreffer.get(0);
 }

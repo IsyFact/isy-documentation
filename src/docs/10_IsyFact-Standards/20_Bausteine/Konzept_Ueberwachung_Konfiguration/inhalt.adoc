@@ -823,7 +823,7 @@ isy.konfiguration.properties = /config/A.properties, /config/B.properties
 ----
 
 Die Klasse `[...].konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt
-über das Interface `de.bund.bva.pliscommon.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
+über das Interface `de.bund.bva.isyfact.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
 Konfigurationsparameter zur Verfügung.
 
 Alle Parameter aus den in der Liste aufgeführten Property-Dateien werden der Anwendung als eine
@@ -900,7 +900,7 @@ In solchen Ausnahmefällen kann daher das im Folgenden beschriebene und von der 
 Um bei Änderungen informiert zu werden, registriert sich die betroffene Komponente als Listener bei der
 Konfigurations-Bean.
 Dafür bietet das von der Konfigurations-Bean implementierte
-Interface `[...].pliscommon.konfiguration.common.ReloadableKonfiguration` die Methode an:
+Interface `[...].isyfact.konfiguration.common.ReloadableKonfiguration` die Methode an:
 
 [source,java]
 ----
@@ -908,7 +908,7 @@ public void addKonfigurationChangeListener(KonfigurationChangeListener listener)
 ----
 
 Die Komponente muss ihrerseits das
-Interface `[...].pliscommon.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor
+Interface `[...].isyfact.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor
 genannte Methode aufrufen. Als Parameter wird die eigene Instanz übergeben.
 
 Bei Änderung der Konfiguration ruft die Konfigurationsbibliothek nun automatisch die Methode

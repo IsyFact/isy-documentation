@@ -539,7 +539,7 @@ Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autoko
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
 Gelegentlich möchte eine Fachanwendung zusätzliche Informationen im Aufrufkontext ablegen.
-Hierzu kann von der Standard-Implementierung (`de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl`) geerbt und die neue, anwendungsspezifische Klasse um zusätzliche Attribute erweitert werden.
+Hierzu kann von der Standard-Implementierung (`de.bund.bva.isyfact.aufrufkontext.impl.AufrufKontextImpl`) geerbt und die neue, anwendungsspezifische Klasse um zusätzliche Attribute erweitert werden.
 
 Die anwendungsspezifische Implementierung muss in der Spring-Konfiguration hinterlegt werden.
 
