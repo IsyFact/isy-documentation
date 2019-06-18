@@ -6,8 +6,8 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[einleitung]]
 == Einleitung
 
-Sicherheit ist ein zentrales Thema einer jeden Fachanwendung.
-Bei der Umsetzung von Fachanwendungen in IT-Systeme werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
+Sicherheit ist ein zentrales Thema einer jeden <<glossar-Fachanwendung>>.
+Bei der Umsetzung von Fachanwendungen in IT-Systemen werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
 Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowie De-Facto-Standards aus der Industrie:
 
 * <<ITGrundschutz>>
@@ -19,7 +19,7 @@ Es richtet sich vor allem an Software-Architekten, die eine Fachanwendung gemä�
 
 Dazu erläutert das Kapitel <<prinzipien-der-sicherheitsarchitektur>> zunächst, wie sich die Sicherheitsarchitektur auf Ebene der Systemlandschaft und auf Ebene eines einzelnen IT-Systems darstellt.
 
-Danach beleuchtet das Kapitel <<sicherheitsarchitektur-eines-it-systems>> die Einbettung des Bausteins Sicherheit in ein konkretes IT-System.
+Danach beleuchtet das Kapitel <<sicherheitsarchitektur-eines-it-systems>> die Einbettung des Bausteins Sicherheit in ein konkretes <<glossar-IT-System>>.
 Zentrale Schnittstellen beschreibt das Kapitel <<aussensicht-der-komponente-sicherheit>>.
 Das Kapitel <<aufruf-von-nachbarsystemen>> befasst sicht mit Vorgaben und Konventionen beim Einbinden von Nachbarsystemen.
 
