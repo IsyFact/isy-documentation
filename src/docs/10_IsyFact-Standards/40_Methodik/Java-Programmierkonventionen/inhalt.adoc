@@ -193,7 +193,7 @@ Namen von Packages dürfen nur Kleinbuchstaben enthalten.
 [green]#Richtig#::
 		`de.bund.bva.cd.registercd.persistence.meldung` +
 		`de.bund.bva.cd.registercd.service.auskunft` +
-		`de.bund.bva.pliscommon.logging.common.layout`
+		`de.bund.bva.isyfact.logging.common.layout`
 
 [red]#Falsch#::
 		`de.bund.bva.cd.CDRegister.persistence.meldung` +

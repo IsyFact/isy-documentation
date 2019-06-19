@@ -168,12 +168,12 @@ Aus den Vorgaben zum Design der Fehlerklassen in Abschnitt <<design-von-fehlerkl
 :desc-image-006: Exception-Hierarchie innerhalb einer Anwendung
 [id="image-006",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-006}
-image::fehlerbehandlung006.png[align="center",width=80%,pdfwidth=80%]
+image::fehlerbehandlung006.png[align="center",width=100%,pdfwidth=100%]
 
 <<image-006>> zeigt die verschiedenen Hierarchiestufen von Fehlern.
-Auf oberster Ebene befinden sich die abstrakten Implementierungen für checked (`PlisException`) und unchecked (`PlisTechnical­RuntimeException`) Exceptions.
+Auf oberster Ebene befinden sich die abstrakten Implementierungen für checked (`BaseException`) und unchecked (`TechnicalRuntimeException`) Exceptions.
 Diese Oberklassen sind für alle Exceptions innerhalb einer Anwendung zu verwenden.
-Diese werden als eigenständige Bibliothek (`isy-exception-core`) angeboten und befinden sich im Paket `de.bund.bva.pliscommon.exception`.
+Diese werden als eigenständige Bibliothek (`isy-exception-core`) angeboten und befinden sich im Paket `de.bund.bva.isyfact.exception`.
 Sie verwalten die Ausnahme-ID, generieren eine UUID und laden den Fehlertext.
 Die Ausnahme-ID referenziert den Fehler(-text) und unterstützt den Nutzer bzw. den Betrieb beim Erkennen der Fehlerart, da ein bestimmter Fehler immer die gleiche Ausnahme-ID besitzt.
 Die generierte UUID ist eine im System eineindeutige Nummer, die beim Erstellen der Exception vergeben wird.
@@ -218,12 +218,12 @@ Dies ist sinnvoll, um Aufwände bei der Erstellung von Exceptions zu sparen, da 
 
 Beispiel für eine fachliche Exception Hierarchie:
 
-:desc-image-007: Exception-Hierarchie innerhalb einer Anwendung
+:desc-image-007: Beispiel fachliche Exception Hierarchie
 [id="image-007",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-007}
-image::fehlerbehandlung007.png[align="center",width=70%,pdfwidth=70%]
+image::fehlerbehandlung007.png[align="center",width=50%,pdfwidth=70%]
 
-Das Beispiel in <<image-007>> zeigt eine fachliche Exception der Vorlage-anwendung.
+Das Beispiel in <<image-007>> zeigt eine fachliche Exception der Vorlageanwendung.
 Die fachliche Exception `TerminfindungNichtGefundenException` besitzt in diesem Beispiel nicht alle möglichen Konstruktoren.
 Dies dient lediglich der Veranschaulichung.
 Wie oben erwähnt ist es nicht notwendig, immer alle Konstruktoren zu implementieren.
@@ -246,7 +246,7 @@ Beispiel für eine technische Runtime-Exception Hierarchie:
 :desc-image-008: Beispiel technische Runtime-Exception Hierarchie
 [id="image-008",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-008}
-image::fehlerbehandlung008.png[align="center",width=65%,pdfwidth=65%]
+image::fehlerbehandlung008.png[align="center",width=45%,pdfwidth=65%]
 
 Die <<image-008>> zeigt die technische Runtime-Exception `KonfigurationException`.
 Diese Exception könnte dafür verwendet werden, um bei einem Konfigurationsfehler z.B. "Konfigurationsparameter nicht gesetzt" geworfen zu werden.
@@ -362,7 +362,7 @@ Die weitere Kommunikation bis zur Erstellung des eigentlichen Fehlertextes ist i
 image::fehlerbehandlung009.png[align="center"]
 
 Die `TerminfindungException` hält eine Referenz zu einem FehlertextProvider (siehe <<fehlertextprovider>>), welcher die Möglichkeit bietet Fehlertexte auszulesen.
-Diese Referenz und die übergebene `Ausnahme-ID` werden an den Konstruktor der `PlisException` übergeben, welcher nun den Fehlertext lädt.
+Diese Referenz und die übergebene `Ausnahme-ID` werden an den Konstruktor der `BaseException` übergeben, welcher nun den Fehlertext lädt.
 Hierzu ruft er auf dem `FehlertextProvider` die `getMessage()`-Methode auf und bekommt den Fehlertext zurückgeliefert.
 Durch einen Aufruf des Konstruktors der Oberklasse `Exception` wird der Fehlertext gesetzt.
 
@@ -370,7 +370,7 @@ Bis dato hat der Text den Aufbau:
 
 *Fehlertext*
 
-Die `Plis-Exception`-Klassen überschreiben aber die `getMessage()`-Methoden von `Exception` und erweitern den Fehlertext bei einem lesenden Zugriff.
+Die IsyFact-Exception-Klassen überschreiben aber die `getMessage()`-Methoden von `Exception` und erweitern den Fehlertext bei einem lesenden Zugriff.
 Der Fehlertext wird um die Ausnahme-ID und die UUID erweitert.
 Dies geschieht über die Klasse `FehlertextUtil`, damit die Formatierung der Fehlertexte an einer zentralen Stelle gekapselt ist.
 
@@ -401,7 +401,7 @@ Neben den Vorgaben zum Design der Fehlerklassen in <<design-von-fehlerklassen>> 
 
 Für Exceptions an den Anwendungsschnittstellen gelten weitere Vorgaben:
 
-* Sie erben immer von `PlisBusinessToException` oder `PlisTechnicalToException` und implementieren somit immer `Serializable`,
+* Sie erben immer von `BusinessToException` oder `TechnicalToException` und implementieren somit immer `Serializable`,
 * stellen die Felder Ausnahme-ID, UUID und Fehlernachricht zur Verfügung und
 * erben nicht von internen Anwendungsexceptions.
 
@@ -512,16 +512,16 @@ public int cdErworben(
     } catch (MaxBestandUeberschrittenException ex) {
         LOG.debug("Methode cdErworben fehlgeschlagen.", ex);
         // Exceptions in Schnittstellen-Exceptions transformieren.
-        throw (MeldungVerarbeitungException)PlisExceptionMapper.mapException(
+        throw (MeldungVerarbeitungException)ExceptionMapper.mapException(
                 ex, MeldungVerarbeitungException.class);
     } catch (CdRegisterTechnicalRunTimeException ex) {
         LOG.error("Methode cdErworben fehlgeschlagen.", ex);
-        throw (MeldungTechnikException)PlisExceptionMapper.mapException(
+        throw (MeldungTechnikException)ExceptionMapper.mapException(
             ex, MeldungTechnikException.class);
     } catch (Throwable t) {
         LOG.error("Methode cdErworben fehlgeschlagen.", t);
         // unbekannte Exceptions in Schnittstellen-Exceptions transformieren.
-        MeldungTechnikException ex = PlisExceptionMapper.createToException(
+        MeldungTechnikException ex = ExceptionMapper.createToException(
                 AusnahmeIdUtil.getAusnahmeId(t),
                 new FehlertextProviderImpl(),
                 MeldungTechnikException.class);
@@ -549,9 +549,9 @@ Der erste Block in diesem Beispiel behandelt eine fachliche Exception.
 Die restlichen Blöcke behandeln unerwartete Exceptions.
 Fachliche Exceptions müssen immer in fachliche Transport-Exceptions umgewandelt werden, alle anderen Exceptions sind in technische Transport-Exceptions umzuwandeln.
 
-Alle Blöcke einer solchen Fassade auf der Anwendungsgrenze verwenden die Klasse `PlisExceptionMapper` (siehe <<mapping-von-exceptions>>) zur Umwandlung der Anwendungs-Exceptions in Transport-Exceptions und zur Erstellung von Transport-Exceptions.
-Letzteres wird im letzten `catch`-Block des obigen Code-Beispiels genutzt, da in diesem Fall keine Exception vom Typ `PlisException` bzw.
-`PlisRuntimeException` vorhanden ist und somit keine Ausnahme-ID, UUID und kein Fehlertext zu übernehmen sind.
+Alle Blöcke einer solchen Fassade auf der Anwendungsgrenze verwenden die Klasse `ExceptionMapper` (siehe <<mapping-von-exceptions>>) zur Umwandlung der Anwendungs-Exceptions in Transport-Exceptions und zur Erstellung von Transport-Exceptions.
+Letzteres wird im letzten `catch`-Block des obigen Code-Beispiels genutzt, da in diesem Fall keine Exception vom Typ `BaseException` bzw.
+`RuntimeException` vorhanden ist und somit keine Ausnahme-ID, UUID und kein Fehlertext zu übernehmen sind.
 In diesem Fall ist die benötigte Ausnahme-ID zu berechnen, mit Hilfe der Klasse `AusnahmeIdUtil` (siehe <<mapping-von-exceptions>>).
 
 Die `catch`-Blöcke für anwendungsinterne Runtime-Exceptions (vom Typ `<anwendung>TechnicalRunTimeException`) und alle übrigen unerwarteten Exceptions (`Throwable`) müssen immer implementiert werden.
@@ -562,26 +562,26 @@ Hierdurch wird verhindert, dass die Schnittstelle nicht spezifizierte Exceptions
 
 Auf der Schnittstelle einer Anwendung müssen interne Anwendungs-Exceptions in Transport-Exceptions umgewandelt werden, bzw.
 es müssen neue Transport-Exceptions erstellt werden.
-Hierfür stellt die Bibliothek `isy-exception` eine eigene Klasse zur Verfügung: `PlisExceptionMapper` (siehe <<image-012>>).
+Hierfür stellt die Bibliothek `isy-exception` eine eigene Klasse zur Verfügung: `ExceptionMapper` (siehe <<image-012>>).
 
-:desc-image-012: PLIS Exception Mapper
+:desc-image-012: Exception Mapper
 [id="image-012",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-012}
-image::fehlerbehandlung012.png[align="center",width=70%,pdfwidth=70%]
+image::fehlerbehandlung012.png[align="center",width=50%,pdfwidth=60%]
 
-Die Klasse `PlisExceptionMapper` bietet zwei statische Methoden an, um aus `PlisException` und `PlisRuntimeException` entsprechende Transport-Exceptions zu erstellen.
+Die Klasse `ExceptionMapper` bietet zwei statische Methoden an, um aus `BaseException` und `RuntimeException` entsprechende Transport-Exceptions zu erstellen.
 Hierfür muss lediglich die umzuwandelnde Exception und die Klasse der gewünschten Transport-Exception mitgegeben werden.
-<<listing-MappingPlisNachPlisTo>> zeigt ein Beispiel für das Mappen einer technischen `PlisException` in eine technische Transport-Exception:
+<<listing-MappingExceptionNachToException>> zeigt ein Beispiel für das Mappen einer technischen `BaseException` in eine technische Transport-Exception:
 
-:desc-listing-MappingPlisNachPlisTo: Mappen einer PlisException in eine technische Transport-Exception
-[id="listing-MappingPlisNachPlisTo",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-MappingPlisNachPlisTo}
+:desc-listing-MappingExceptionNachToException: Mappen einer BaseException in eine technische Transport-Exception
+[id="listing-MappingExceptionNachToException",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MappingExceptionNachToException}
 [source,java]
 ----
-PlisExceptionMapper.mapException(ex, MeldungTechnikException.class)
+ExceptionMapper.mapException(ex, MeldungTechnikException.class)
 ----
 
-Neben den `Plis-(Runtime-)Exceptions` können weitere Exceptions auftreten.
+Neben den IsyFact-(Runtime-)Exceptions können weitere Exceptions auftreten.
 Diese besitzen jedoch keine Ausnahme-ID oder eine UUID, z. B. Runtime-Exceptions von eingesetzten Frameworks wie Hibernate.
 Auch diese Exceptions müssen in Transport-Exceptions umgewandelt werden.
 Diese Transport-Exceptions werden mittels der `createToException()`-Methode erstellt (<<listing-createToException>>).
@@ -591,7 +591,7 @@ Diese Transport-Exceptions werden mittels der `createToException()`-Methode erst
 .{desc-listing-createToException}
 [source,java]
 ----
-MeldungTechnikException ex = PlisExceptionMapper.createToException(
+MeldungTechnikException ex = ExceptionMapper.createToException(
                                   AusnahmeIdUtil.getAusnahmeId(t),
                                   new FehlertextProviderImpl(),
                                   MeldungTechnikException.class);

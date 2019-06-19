@@ -10,7 +10,8 @@ Der Fokus liegt darauf, einen schnellen Überblick über die einzelnen Themen zu
 zusammenfassend darzustellen.
 An vielen Stellen bezieht sich das Tutorial auf die <<Vorlageanwendung>>, die eine kleine Fachanwendung beispielhaft implementiert sind.
 
-In den Kapiteln *<<datenhaltung>>* , *<<fachkomponenten-der-anwendung>>* und *<<anwendungsnutzung>>* werden jeweils einzelne Kernthemen der Anwendungen beschrieben.
+Zunächst beschreibt das Kapitel *<<bezug-isyfact>>*, wie sich die IsyFact in Entwicklungsprojekte einbinden lässt.
+Danach beleuchten die Kapitel *<<datenhaltung>>* , *<<fachkomponenten-der-anwendung>>* und *<<anwendungsnutzung>>* jeweils einzelne Kernthemen der Anwendungsentwicklung.
 Kapitel *<<querschnitt>>* fasst alle Querschnittsthemen zusammen.
 Jedes Teilkapitel beginnt in der Regel mit der Auflistung der wichtigsten Designvorgaben und einem Klassendiagramm.
 Es folgt eine Realisierungsanleitung, die alle wesentlichen Schritte zur Umsetzung in Kurzform enthält.

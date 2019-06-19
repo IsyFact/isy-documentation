@@ -138,21 +138,18 @@ Dieses Beispiel zeigt, dass E-Mail-Konten parallel von beiden Instanzen abgearbe
 
 
 [[konfigurationsklassen]]
-=== Konfigurationsklassen
+=== Konfiguration über Properties
 
-Polling-Cluster und JMX-Verbindungsparameter werden über Konfigurationsklassen konfiguriert.
-Eine Konfigurationsklasse definiert zunächst eine Menge zusammengehöriger Konfigurationsparameter.
-Von jeder Konfigurationsklasse kann es mehrere Ausprägungen geben.
-Eine Konfigurationsklasse wird durch ein festes Namenspräfix der Konfigurationsparameter beschrieben.
-
-Werden Ausprägungen von Konfigurationsklassen konfiguriert, so werden die IDs aller Ausprägungen unter einem Konfigurationsparameter aufgelistet.
+Polling-Cluster und JMX-Verbindungsparameter werden über Properties in `application.properties` konfiguriert.
 Konfigurationsparameter einer Ausprägung haben dann das Namensschema <Konfigurationsklassen-Präfix>.<ID der Ausprägung>. <Name des Konfigurationsparameters>.
 
 Das Beispiel in <<listing-PollingKonfiguration>> zeigt folgende Vorgaben:
 
-* Die Konfigurationsklasse „JMX-Verbindung“ hat das Präfix `polling.jmxverbindung`.
+* Die Properties von für die Konfiguration der JMX-Verbindungen haben das Präfix `isy.polling.jmx.verbindungen`.
+  Das Präfix für die Cluster-Konfiguration ist `isy.polling.cluster`.
 
-* Für die Konfigurationsklasse „JMX-Verbindung“ gibt es die Konfigurationsparameter `host`, `port`, `benutzer` und `passwort`.
+* Für die Konfiguration der JMX-Verbindung gibt es die Konfigurationsparameter `host`, `port`, `benutzer` und `passwort`.
+  Für die Konfiguration der Cluster gibt es die Parameter `name`, `wartezeit`, `jmxverbindungen`.
 
 * Es gilt die Konvention, dass IDs für Ausprägungen großgeschrieben werden.
   Damit kann an einzelnen Konfigurationseinträgen sofort erkannt werden, dass sie zu einer Konfigurationsklasse gehören.
@@ -162,68 +159,54 @@ Das Beispiel in <<listing-PollingKonfiguration>> zeigt folgende Vorgaben:
 .{desc-listing-PollingKonfiguration}
 [source,properties]
 ----
-# Kommaseparierte Liste mit den Ids der Verbindungsparameter zu
-# den übrigen Clusterservern
-polling.jmxverbindung.ids = SERVER2
+isy.polling.jmx.verbindungen.SERVER1.host = host1
+isy.polling.jmx.verbindungen.SERVER1.port = 9001
+isy.polling.jmx.verbindungen.SERVER1.benutzer = userid1
+isy.polling.jmx.verbindungen.SERVER1.passwort = pwd1
 
-# Verbindungsparameter zum anderen Knoten
-# Hostangabe für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.host = localhost
-# Portangabe für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.port = 9010
-# Benutzerkennung für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.benutzer = userid
-# Kennwort für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.passwort = pwd
+isy.polling.cluster.POSTFACH1_CLUSTER.name = Postfachabruf-1
+isy.polling.cluster.POSTFACH1_CLUSTER.wartezeit = 600
+isy.polling.cluster.POSTFACH2_CLUSTER.name = Postfachabruf-2
+isy.polling.cluster.POSTFACH2_CLUSTER.wartezeit = 700
+isy.polling.cluster.POSTFACH2_CLUSTER.jmxverbindungen = server1,server2
 ----
 
-Für das Polling gibt es die folgenden Konfigurationsklassen:
-
-* *JMX-Verbindungen* beinhalten die JMX-Verbindungsparameter zu den anderen Knoten des Clusters.
-Sie werden über eine ID identifiziert.
-Das Präfix der Konfigurationseinträge für JMX-Parameter lautet `polling.jmxverbindung`.
-* *Polling-Cluster* enthalten die Angaben zur Steuerung des Pollings.
-Ein Polling-Cluster wird über eine ID identifiziert.
-Das Präfix der Konfigurationseinträge für Polling-Cluster lautet `polling.cluster`.
-
 [[konfigurationsparameter]]
-=== Konfigurationsparameter
+==== Konfigurationsparameter
 
 JMX-Verbindungen haben die folgenden Attribute:
 
-`polling.jmxverbindung.ids`: +
-Kommaseparierte Liste mit den IDs der Verbindungsparameter zu den übrigen Clusterservern.
-
-`polling.jmxverbindung.<ID>.host`: +
+`isy.polling.jmx.verbindungen.<ID>.host`: +
 Hostangabe für den JMX-Zugriff.
 
-`polling.jmxverbindung.<ID>.port`: +
+`isy.polling.jmx.verbindungen.<ID>.port`: +
 Portangabe für den JMX-Zugriff.
 
-`polling.jmxverbindung.<ID>.benutzer`: +
+`isy.polling.jmx.verbindungen.<ID>.benutzer`: +
 Benutzerkennung für den JMX-Zugriff
 
-`polling.jmxverbindung.<ID>.passwort`: +
+`isy.polling.jmx.verbindungen.<ID>.passwort`: +
 Kennwort für den JMX-Zugriff
 
 Polling-Cluster haben die folgenden Attribute:
 
-`polling.cluster.ids`: +
-Kommaseparierte Liste der Cluster-IDs.
-
-`polling.cluster.<ID>.name`: +
+`isy.polling.cluster.<ID>.name`: +
 Name des Polling-Clusters.
 Der hier festgelegte Name wird zur MBean-Identifikation benutzt und ist in der JMX-Konsole sichtbar.
 
-`polling.cluster.<ID>.wartezeit`: +
+`isy.polling.cluster.<ID>.wartezeit`: +
 Wartezeit in Sekunden, die abgelaufen sein muss, damit diese Anwendung das Polling übernehmen kann.
 Dieser Wert sollte doppelt so groß sein, wie der Delay-Wert des Timers, der den Verarbeitungszyklus auslöst.
 Die Wartezeit muss mindestens 10 Sekunden betragen.
 
-`polling.cluster.<ID>.jmxverbindungen`: +
+`isy.polling.cluster.<ID>.jmxverbindungen`: +
 Kommaseparierte Liste von IDs der Verbindungsparameter zu den übrigen Clusterservern.
 Dieser Eintrag ist optional und wird in der Regel nicht benötigt.
 Wird er weggelassen, so werden alle für das Polling konfigurierten JMX-Verbindungen zugeordnet.
+
+Die JMX-Domain für den Polling-Verwalter. In der Regel das Basispackage der Anwendung:
+
+`isy.polling.jmx.domain=<Domäne>`
 
 [[konfiguration-fuer-den-test]]
 === Konfiguration für den Test
@@ -234,8 +217,7 @@ In diesem Fall kann das konfigurierte Polling die Tests behindern.
 Für Tests kann der Polling-Verwalter in den Standalone-Modus versetzt werden.
 In diesem Modus erkennt der Polling-Verwalter, dass keine Cluster-Partner existieren und die Polling-Aktionen werden immer zugelassen.
 
-Der Standalone-Modus wird automatisch gesetzt, wenn in der Konfiguration der Parameter `polling.jmxverbindung.ids` weggelassen bzw.
-auskommentiert oder der Wert leer gelassen wird.
+Der Standalone-Modus wird automatisch gesetzt, wenn in der Konfiguration der keine JMX-Verbindungen über die Property `isy.polling.jmx.verbindungen` konfiguriert werden.
 Da dieses Verhalten in der Regel im Produktivbetrieb nicht erwünscht ist, wird die folgende Warnung in die Log-Ausgabe geschrieben:
 
 NOTE: Für das Polling der Anwendung wurden keine JMX-Verbindungsparameter angegeben! Der Polling-Modus wurde auf "Standalone" gesetzt!
@@ -253,34 +235,30 @@ In <<listing-BeispielPollingKonfiguration>> ist eine vollständige Polling-Konfi
 # -----------------------------------------------------------
 # Parameter für das Polling
 # -----------------------------------------------------------
-# Kommaseparierte Liste mit den Ids der Verbindungsparameter
-# zu den *übrigen* Clusterservern
-polling.jmxverbindung.ids = SERVER2
 
 # Verbindungsparameter zum anderen Knoten
 # Hostangabe für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.host = localhost
+isy.polling.jmx.verbindungen.SERVER2.host = localhost
 # Portangabe für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.port = 9010
+isy.polling.jmx.verbindungen.SERVER2.port = 9010
 # Benutzerkennung für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.benutzer = userid
+isy.polling.jmx.verbindungen.SERVER2.benutzer = userid
 # Kennwort für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.passwort = pwd
+isy.polling.jmx.verbindungen.SERVER2.passwort = pwd
 
-# Kommaseparierte Liste der Cluster-Ids, zu denen die
-# Anwendung gehört
-polling.cluster.ids = MAILABRUF_CLUSTER
+# JMX-Domain; In der Regel das Basispackage der Anwendung
+isy.polling.jmx.domain=de.bund.bva.domaene.anwendung
+
 # Name des Clusters. Dieser Name wird zur Bildung der MBean-
 # Identifikation verwendet.
-polling.cluster.MAILABRUF_CLUSTER.name = XY-Nachrichten
+isy.polling.cluster.MAILABRUF_CLUSTER.name = XY-Nachrichten
 # Wartezeit in Sekunden, die abgelaufen sein muss, damit
 # diese Anwendung das Polling übernehmen kann.
-polling.cluster.MAILABRUF_CLUSTER.wartezeit = 600
+isy.polling.cluster.MAILABRUF_CLUSTER.wartezeit = 600
 ----
 
 Cluster können nicht dynamisch nur durch die Konfiguration erzeugt werden.
-Sie sind vielmehr eng mit der Anwendungslogik verknüpft.
-Daher ist es sinnvoll, nur die Konfigurationsparameter in die betriebliche Property-Datei der Anwendung zu legen, die sich auf die Verbindungsparameter beziehen.
+Sie sind vielmehr eng mit der Anwendungslogik verknüpft und sollten daher nicht vom Betrieb geändert werden.
 
 [[beispiel-fuer-eine-polling-konfiguration-mit-lastverteilung]]
 === Beispiel für eine Polling-Konfiguration mit Lastverteilung
@@ -297,73 +275,56 @@ Wie in Kapitel <<lastverteilung-ueber-cluster-definition>> beschrieben, kann so 
 # -----------------------------------------------------------
 # Parameter für das Polling
 # -----------------------------------------------------------
-# Kommaseparierte Liste mit den Ids der Verbindungsparameter
-# zu den *übrigen* Clusterservern
-polling.jmxverbindung.ids = SERVER2
 
 # Verbindungsparameter zum anderen Knoten
 # Hostangabe für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.host = localhost
+isy.polling.jmx.verbindungen.SERVER2.host = localhost
 # Portangabe für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.port = 9010
+isy.polling.jmx.verbindungen.SERVER2.port = 9010
 # Benutzerkennung für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.benutzer = userid
+isy.polling.jmx.verbindungen.SERVER2.benutzer = userid
 # Kennwort für den JMX-Zugriff
-polling.jmxverbindung.SERVER2.passwort = pwd
+isy.polling.jmx.verbindungen.SERVER2.passwort = pwd
 
-# Kommaseparierte Liste der Cluster-Ids, zu denen die
-# Anwendung gehört
-polling.cluster.ids = POSTFACH1_CLUSTER,POSTFACH2_CLUSTER
+# JMX-Domain; In der Regel das Basispackage der Anwendung
+isy.polling.jmx.domain=de.bund.bva.domaene.anwendung
+
 # Parameter des POSTFACH1_CLUSTER
 # Name des Clusters. Dieser Name wird zur Bildung der MBean-
 # Identifikation verwendet.
-polling.cluster.POSTFACH1_CLUSTER.name = Postfachabruf-1
+isy.polling.cluster.POSTFACH1_CLUSTER.name = Postfachabruf-1
 # Wartezeit in Sekunden, die abgelaufen sein muss, damit
 # diese Anwendung das Polling übernehmen kann.
-polling.cluster.POSTFACH1_CLUSTER.wartezeit = 600
+isy.polling.cluster.POSTFACH1_CLUSTER.wartezeit = 600
 # Parameter des POSTFACH2_CLUSTER
 # Name des Clusters. Dieser Name wird zur Bildung der MBean-
 # Identifikation verwendet.
-polling.cluster.POSTFACH2_CLUSTER.name = Postfachabruf-2
+isy.polling.cluster.POSTFACH2_CLUSTER.name = Postfachabruf-2
 # Wartezeit in Sekunden, die abgelaufen sein muss, damit
 # diese Anwendung das Polling übernehmen kann.
-polling.cluster.POSTFACH2_CLUSTER.wartezeit = 600
+isy.polling.cluster.POSTFACH2_CLUSTER.wartezeit = 600
 ----
 
 [[spring-konfiguration]]
 == Spring-Konfiguration
 
-Über Spring werden mindestens der Polling-Verwalter und je Cluster eine MBean konfiguriert.
-Wird die PollingAktion-Annotation verwendet, muss der entsprechende Interceptor noch konfiguriert werden.
-
-Im Folgenden werden Beispiele für die Spring-Konfiguration aufgeführt.
-
-:desc-listing-KonfigurationPollingVerwalter: Konfiguration des Polling-Verwalters
-[id="listing-KonfigurationPollingVerwalter",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-KonfigurationPollingVerwalter}
-[source,properties]
-[source, xml]
-----
-<!-- Polling-Verwalter -->
-<bean id="pollingVerwalter" class="de.bund.bva.pliscommon.polling.impl.PollingVerwalterImpl">
-  <property name="konfiguration" ref="konfiguration" />
-  <property name="jmxDomain" value="de.bund.bva.domaene.anwendung" />
-</bean>
-----
-
-<<listing-KonfigurationPollingVerwalter>>: Die Property `konfiguration` enthält die Referenz auf die Komponente „Konfiguration“, die Property `jmxDomain` enthält den Namen der JMX-Domain.
-Das ist in der Regel das Basis-Package der Anwendung.
+Die Bean für den Polling-Verwalter wird automatisch durch `isy-polling` konfiguriert.
+Der Interceptor, der zur Verwendung der `@PollingAktion`-Annotation notwendig, wird ebenfalls automatisch konfiguriert.
+Zusätzlich wird für jeden Cluster eine MBean konfiguriert (<<listing-KonfigurationMBeans>>).
 
 :desc-listing-KonfigurationMBeans: Konfiguration der MBeans
 [id="listing-KonfigurationMBeans",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-KonfigurationMBeans}
-[source, xml]
+[source, java]
 ----
-<bean id="mailabrufClusterMonitor" class="de.bund.bva.pliscommon.polling.PollingMBean"
-    depends-on="mBeanExporter">
-  <property name="pollingVerwalter" ref="pollingVerwalter" />
-  <property name="clusterId" value="MAILABRUF_CLUSTER" />
-</bean>
+@Bean
+public PollingMBean mailabrufClusterMonitor(PollingVerwalter pollingVerwalter) {
+    PollingMBean mBean = new PollingMBean();
+    mBean.setClusterId("MAILABRUF_CLUSTER");
+    mBean.setPollingVerwalter(pollingVerwalter);
+
+    return mBean;
+}
 ----
 
 <<listing-KonfigurationMBeans>>: Die Property `pollingVerwalter` enthält die Referenz auf die Komponente „Polling-Verwalter“, die Property `clusterId` enthält die ID des Polling-Clusters, für den sie den seit der letzten Polling-Aktivität vergangenen Zeitraum liefern soll.
@@ -373,48 +334,27 @@ Die Einbindung in JMX erfolgt über den MBean-Exporter dann wie in <<listing-Ein
 :desc-listing-EinbindungJMX: Einbindung in JMX
 [id="listing-EinbindungJMX",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-EinbindungJMX}
-[source, xml]
+[source, java]
 ----
-<bean id="mBeanExporter" class = "org.springframework.jmx.export.MBeanExporter">
-  <property name="assembler">
-    <bean class = "org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
-      <property name="attributeSource">
-        <bean class = "org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource" />
-      </property>
-    </bean>
-  </property>
-  <property name="autodetect" value="false" />
-  <property name="beans">
-    <map>
-      <entry key=
-        "de.bund.bva.domaene.anwendung:type=PollingStatus,name=Polling-Aktivitaet-${polling.cluster.MAILABRUF_CLUSTER.name}"
-          value-ref="mailabrufClusterMonitor" />
-    </map>
-  </property>
-</bean>
+@Bean
+public MBeanExporter mBeanExporter(@Qualifier("mailabrufClusterMonitor") PollingMBean mailabrufClusterMonitor, IsyPollingProperties isyPollingProperties) {
+    MBeanExporter mBeanExporter = new MBeanExporter();
+    mBeanExporter.setRegistrationPolicy(RegistrationPolicy.REPLACE_EXISTING);
+    mBeanExporter.setAssembler(new MetadataMBeanInfoAssembler(new AnnotationJmxAttributeSource()));
+    mBeanExporter.setAutodetect(false);
+
+    Map<String, Object> mBeans = new HashMap<>();
+    String key = "de.bund.bva.isyfact.polling:type=PollingStatus,name=\"Polling-Aktivitaet-"
+        + isyPollingProperties.getCluster().get("MAILABRUF_CLUSTER").getName() + "\"";
+
+    mBeans.put(key, mailabrufClusterMonitor);
+    mBeanExporter.setBeans(mBeans);
+
+    return mBeanExporter;
+}
 ----
 
 Hierbei ist zu beachten, dass der Cluster-Name aus der Konfiguration hier für die Bildung des Keys für die MBeans verwendet wird.
-
-Zur Konfiguration des Polling-Aktion-Interceptors siehe <<listing-PollingAktionInterceptor>>.
-
-:desc-listing-PollingAktionInterceptor: Konfiguration des Polling-Aktion-Interceptors
-[id="listing-PollingAktionInterceptor",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-PollingAktionInterceptor}
-[source, xml]
-----
-<!-- @PollingAktion Annotation einschalten -->
-<bean id="pollingAktionInterceptor" class="de.bund.bva.pliscommon.polling.annotation.PollingAktionInterceptor">
-  <property name="pollingVerwalter" ref="pollingVerwalter" />
-</bean>
-<aop:config>
-  <aop:pointcut id="pollingAktionPointcut"
-    expression="@annotation(de.bund.bva.pliscommon.polling.annotation.PollingAktion) ||
-      @within(de.bund.bva.pliscommon.polling.annotation.PollingAktion)" />
-  <aop:advisor pointcut-ref="pollingAktionPointcut"
-    advice-ref="pollingAktionInterceptor" />
-</aop:config>
-----
 
 [[nutzung-im-code]]
 == Nutzung im Code
@@ -423,7 +363,7 @@ Wie bereits erwähnt, wird Polling in der Regel in einem Verarbeitungszyklus imp
 Der Verarbeitungszyklus kann eine oder nacheinander mehrere Datenquellen abfragen, für die jeweils ein Polling-Cluster definiert sein kann.
 Für jeden Polling-Cluster werden in einem Verarbeitungszyklus die folgenden Schritte ausgeführt:
 
-1. <<listing-AbfragePollingVerwalter>>, ob das Polling für den Cluster gestartet werden darf.
+. <<listing-AbfragePollingVerwalter>>, ob das Polling für den Cluster gestartet werden darf.
 Ist das nicht der Fall, ist die Verarbeitung für den Cluster beendet.
 
 :desc-listing-AbfragePollingVerwalter: Abfrage des Polling-Verwalters
@@ -442,7 +382,7 @@ fuehreVerarbeitungDurch();
 ----
 
 [start=2]
-2. Durchführen der Verarbeitung für jeden Datensatz.
+. Durchführen der Verarbeitung für jeden Datensatz.
 Am Ende der Verarbeitung eines Datensatzes wird der Zeitpunkt der letzten Polling-Aktivität aktualisiert.
 
 :desc-listing-VerarbeitungDatensatz: Verarbeitung für jeden Datensatz

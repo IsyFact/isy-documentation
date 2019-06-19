@@ -32,7 +32,7 @@ include::inhalt.adoc[leveloffset=1]
 :sectnums!:
 
 // Anhänge
-include::anhaenge.adoc[leveloffset=1]
+//include::anhaenge.adoc[leveloffset=1]
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis

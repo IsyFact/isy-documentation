@@ -1,0 +1,43 @@
+// ASCIIDOC Attribute
+include::../../../common/isyfact-attributes.adoc[]
+include::../../../common/attributes.adoc[]
+//
+:doctitle: Konzept Sicherheit
+:title: {doctitle}
+
+// Zwangsplatz des TOC
+
+include::../../../common/colophon.adoc[]
+
+// Änderungsübersicht
+include::docinfo.adoc[]
+
+// Inhaltsverzeichnis
+ifdef::backend-html5[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// Einleitung
+include::thisdoc.adoc[tags=inhalt]
+
+// Inhalt
+include::inhalt.adoc[tags=inhalt]
+
+:sectnums!:
+
+// Literaturverzeichnis
+include::bibliography.adoc[]
+// ? Tabellenverzeichnis
+include::listoftables.adoc[]
+// ? Abbildungsverzeichnis
+include::listoffigures.adoc[]
+// ? Listings-Verzeichnis
+include::listoflistings.adoc[]
+// Glossar
+include::glossary.adoc[]
+// Index
+//include::../common/index.adoc[]

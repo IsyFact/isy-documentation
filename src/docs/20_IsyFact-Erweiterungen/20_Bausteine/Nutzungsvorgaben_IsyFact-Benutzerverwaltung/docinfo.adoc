@@ -5,16 +5,14 @@
 |Dokumenten-ID:| Nutzungsvorgaben_IsyFact-Benutzerverwaltung
 |====
 
-//|Datum |Version |Änderungsgrund
-//|13.10.2016 |0.1   |Angelegt - Erstellung des Nutzungskonzepts
-//|20.12.2016 |0.9   |Vorgelegt - Review, Anpassung an die Auslieferung der Implementierung
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
-Java Bibliothek / IT-System
+*Java Bibliothek / IT-System*
 
 [options="header",cols="3,1,2"]
 |====
 |Name                               |Art        |Version
-|isy-benutzerverwaltung-core        |Bibliothek |1.3.x
-|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.3.x
-|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.3.x
+|isy-benutzerverwaltung-core        |Bibliothek |1.5.x
+|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
+|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
 |====

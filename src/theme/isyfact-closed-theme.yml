@@ -1,0 +1,131 @@
+font:
+  catalog:
+    Caladea:
+      normal: caladea-regular.ttf
+      italic: caladea-italic.ttf
+      bold: caladea-bold.ttf
+      bold_italic: caladea-bolditalic.ttf
+base:
+  font_family: Caladea
+  font_color: #000000
+  font_size: 10
+  line_height_length: 12
+  line_height: $base_line_height_length / $base_font_size
+  align: justify
+page:
+  layout: portrait
+  margin: [3cm, 3cm, 3cm, 3cm]
+  size: A4
+
+vertical_rhythm: $base_line_height_length
+title_page:
+  background_image: image:front_cover.png[]
+  align: left
+  font_style: bold
+  title:
+    font_size: 26
+    top: 27%
+    font_color: [6, 73, 65]
+  revision:
+    font_size: 14
+    font_color: [6, 73, 65]
+toc:
+  h1_font_style: bold
+  h2_font_style: bold
+  h3_font_style: bold
+heading:
+  font_color: #000000
+  font_style: bold
+  line_height: 1.2
+  margin_bottom: $vertical_rhythm
+  h1_font_size: 12
+  h2_font_size: 11
+  h3_font_size: 10
+  h4_font_size: 10
+  h5_font_size: 10
+  h6_font_size: 10
+  h3_font_style: bold
+  h4_font_style: bold
+  h5_font_style: normal
+  h6_font_style: normal
+table:
+  head:
+    background_color: #d9d9d9
+  body:
+    stripe_background_color: #ffffff
+code:
+  border_color: #000000
+  font_size: 9
+sidebar:
+  background_color: #bfbfbf
+  border_color: #000000
+admonition:
+  column_rule_color: #000000
+  padding: [0, 6, 0, 6]
+  icon:
+    note:
+      stroke_color: #003D86
+      name: fa-file-text-o
+    important:
+      stroke_color: #003D86
+      name: fa-bullhorn
+    caution:
+      stroke_color: #003D86
+      name: fa-exclamation-circle
+    warning:
+      stroke_color: #003D86
+    tip:
+      stroke_color: #003D86
+    anwendungsanforderung:
+      stroke_color: #003D86
+      name: fa-cogs
+      size: 24
+    architekturregel:
+      stroke_color: #003D86
+      name: fa-university
+      size: 24
+    sicherheit:
+      stroke_color: #003D86
+      name: fa-shield
+      size: 24
+    styleguide:
+      stroke_color: #003D86
+      name: fa-paint-brush
+      size: 24
+    info:
+      stroke_color: #003D86
+      name: fa-info-circle
+      size: 24
+header:
+  height: 2cm
+  line_height: 1
+  recto_content:
+    left: '{section-or-chapter-title} '
+  verso_content:
+    right: '{section-or-chapter-title} '
+footer:
+  height: 1.5cm
+  line_height: 1
+  font_color: #000000
+  border_style: solid
+  border_width: 0.25
+  border_color: #000000
+  recto:
+    columns: <35% =0% >65%
+    content:
+      left: 'Seite {page-number} von {page-count}'
+      right: Alle urheberrechtlichen Nutzungs- und Verwertungsrechte liegen beim Bundesverwaltungsamt.
+  verso:
+    columns: <65% =0% >35%
+    content:
+      right: 'Seite {page-number} von {page-count}'
+      left: Alle urheberrechtlichen Nutzungs- und Verwertungsrechte liegen beim Bundesverwaltungsamt.
+image:
+  align: center
+caption:
+  align: center
+  font_color: #000000
+  font_size: 10
+link:
+  text_decoration: underline
+  font_color: #000000
