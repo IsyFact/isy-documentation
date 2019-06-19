@@ -46,8 +46,6 @@ include::listoffigures.adoc[]
 include::listoflistings.adoc[]
 // Glossar  (gebaut)
 include::glossary.adoc[]
-// Index
-//include::../common/index.adoc[]
 
 // --------------------------- AB HIER------------------------------------------
 

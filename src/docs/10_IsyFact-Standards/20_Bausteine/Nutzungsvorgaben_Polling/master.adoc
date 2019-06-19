@@ -41,8 +41,6 @@ include::listoffigures.adoc[]
 include::listoflistings.adoc[]
 // Glossar
 //include::glossary.adoc[]
-// Index
-//include::../common/index.adoc[]
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]

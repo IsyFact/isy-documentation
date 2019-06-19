@@ -40,9 +40,7 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
 // Glossar
-// in 1.5 noch nicht - include::glossary.adoc[]
-// Index
-//include::../common/index.adoc[]
+// include::glossary.adoc[]
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]

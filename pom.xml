@@ -28,7 +28,7 @@
                             <goal>unpack</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/isy-dokumentvorlagen</outputDirectory>
+                            <outputDirectory>${project.build.directory}/isy-dokumentvorlagen</outputDirectory>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>de.bund.bva.isyfact</groupId>
@@ -57,9 +57,9 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}/target/isy-dokumentvorlagen/docs</workingDirectory>
+                            <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/bibliography.sh</argument>
+                                <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/bibliography.sh</argument>
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
@@ -74,9 +74,9 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}/target/isy-dokumentvorlagen/docs</workingDirectory>
+                            <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/glossary.sh</argument>
+                                <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/glossary.sh</argument>
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
@@ -91,9 +91,9 @@
                         </goals>
                         <configuration>
                             <executable>bash</executable>
-                            <workingDirectory>${basedir}/target/isy-dokumentvorlagen/docs</workingDirectory>
+                            <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/listof.sh</argument>
+                                <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/listof.sh</argument>
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
@@ -108,7 +108,7 @@
                             <executable>bash</executable>
                             <workingDirectory>${html-output-base-directory}</workingDirectory>
                             <arguments>
-                                <argument>${basedir}/target/isy-dokumentvorlagen/scripts/postprocesshtml.sh</argument>
+                                <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/postprocesshtml.sh</argument>
                             </arguments>
                         </configuration>
                     </execution>
