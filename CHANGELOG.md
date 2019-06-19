@@ -1,5 +1,7 @@
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
+- `IFS-353`: Ablösung von Dozer durch Orika beschrieben
+- `IFS-354`: REST als Option für interne Schnittstellen beschrieben
 
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
