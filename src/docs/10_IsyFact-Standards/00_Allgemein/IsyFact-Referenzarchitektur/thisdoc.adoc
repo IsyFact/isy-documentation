@@ -26,7 +26,7 @@ Die in diesem Dokument beschriebene Referenzarchitektur ist ein zentraler Teil d
 Dieser Abschnitt gibt einen zusammenfassenden Überblick über die wesentlichen Inhalte der Referenzarchitektur, die in späteren Kapiteln noch einmal ausführlich dargestellt werden.
 Dabei wird die Architektur aus drei verschiedenen Sichten betrachtet, die zunächst eingeführt werden.
 
-Die Referenzarchitektur unterscheidet zwischen den folgenden Architektursichten:
+Die Referenzarchitektur unterscheidet zwischen den folgenden <<glossar-Architektursicht>>en:
 
 *Fachliche Referenzarchitektur:* Dies umfasst eine fachliche Beschreibung der Anwendungslandschaft.
 Diese wird in fachliche Komponenten zerlegt, die miteinander über fachliche Schnittstellen interagieren.

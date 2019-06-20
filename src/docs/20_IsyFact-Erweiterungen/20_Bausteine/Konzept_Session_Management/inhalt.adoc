@@ -1,8 +1,7 @@
 [[session-manager]]
 = Session-Manager
 
-Als Session-Manager wird die Bibliothek `isy-session` verwendet, die eine vereinfachte Konfiguration
-von Spring Session (der eigentlichen Implementierung des Session-Managers) ermöglicht.
+Als Session-Manager wird die Bibliothek `isy-session` verwendet, die eine vereinfachte Konfiguration von Spring Session (der eigentlichen Implementierung des Session-Managers) ermöglicht.
 
 [[entwurf-isy-session]]
 == Entwurf isy-session
@@ -40,12 +39,9 @@ Wie wird mit konkurrierenden Zugriffen auf den Session-Speicher umgegangen?
 
 *Hintergrund:*
 
-Konkurrierende Zugriffe auf eine Session im Session-Speicher treten dann auf, wenn ein Client Requests an 
-den Server sendet, bevor vorhergehende Requests verarbeitet wurden.
+Konkurrierende Zugriffe auf eine Session im Session-Speicher treten dann auf, wenn ein Client Requests an den Server sendet, bevor vorhergehende Requests verarbeitet wurden.
 
-Dies kann bspw.
-bei der Nutzung von Ajax der Fall sein, wenn ein Anwender eine Maske im Browser aktualisiert oder mehrere 
-Fenster parallel genutzt werden.
+Dies kann bspw. bei der Nutzung von Ajax der Fall sein, wenn ein Anwender eine Maske im Browser aktualisiert oder mehrere Fenster parallel genutzt werden.
 
 Je nach Session-Manager sind hierfür nur die Requests relevant, die auch tatsächlich die Session verändern.
 
@@ -62,23 +58,19 @@ Es wird akzeptiert, dass Sessions potentiell überschrieben werden.
 
 Variante 2: Erweiterung Spring Session.
 
-Spring Session könnte erweitert werden, so dass Sessions während der Verarbeitung eines Requests immer 
-gesperrt werden (pessimistische Sperre), oder dass vor Speichern eines Requests geprüft wird, ob die 
-Session verändert wurde (optimistische Sperre). Letzteres könnte mittels einer Redis-Transaktion 
-(Stichwort: _watch_) umgesetzt werden, diese wird aktuell aber nicht durch Spring Data unterstützt
-(`InvalidDataAccessApiUsageException: WATCH is currently not supported in cluster mode`). (siehe 
+Spring Session könnte erweitert werden, so dass Sessions während der Verarbeitung eines Requests immer gesperrt werden (pessimistische Sperre), oder dass vor Speichern eines Requests geprüft wird, ob die Session verändert wurde (optimistische Sperre).
+Letzteres könnte mittels einer Redis-Transaktion (Stichwort: _watch_) umgesetzt werden, diese wird aktuell aber nicht durch Spring Data unterstützt (`InvalidDataAccessApiUsageException: WATCH is currently not supported in cluster mode`). (siehe
 auch: https://redis.io/topics/transactions#cas).
 
 Die Erweiterungspunkte in Spring Session sind nicht klar definiert, so dass diese Variante risikobehaftet ist.
 
 Variante 3: Berücksichtigung in der GUI-Implementierung
 
-Es werden folgende Regeln in das Konzept „Web GUI“ aufgenommen:
+Es werden folgende Regeln in das Detailkonzept „Web GUI“ aufgenommen:
 
 * Die parallele Nutzung mehrerer Browser-Fenster zum Zugriff auf die Anwendung wird nicht unterstützt.
 +
-Anmerkung: Ein Problem mit mehreren parallelen Fenstern kann letztlich nur dann auftreten, wenn in einem 
-Fenster eine Aktion gestartet wird, während sich eine Aktion eines anderen Fensters noch in Bearbeitung befindet.
+Anmerkung: Ein Problem mit mehreren parallelen Fenstern kann letztlich nur dann auftreten, wenn in einem Fenster eine Aktion gestartet wird, während sich eine Aktion eines anderen Fensters noch in Bearbeitung befindet.
 Zur Sicherheit werden parallele Fenster aber grundsätzlich ausgeschlossen.
 
 * Aktualisierung der aktuellen Seite im Browser sollte vermieden werden.
@@ -89,8 +81,7 @@ Optionale Ergänzungen:
 
 * Die parallele Nutzung mehrerer Fenster könnte mit CXRF-Tokens verhindert werden.
 
-* Die parallele Ausführung mehrerer Fenster könnte durch einen Session-Alias ermöglicht werden (Feature von
-  Spring Session). Hierbei wird jedes Fenster in einer eigenen Session verwaltet.
+* Die parallele Ausführung mehrerer Fenster könnte durch einen Session-Alias ermöglicht werden (Feature von Spring Session). Hierbei wird jedes Fenster in einer eigenen Session verwaltet.
 
 Beide Optionen erfordern zusätzlichen Forschungs- und Entwicklungsaufwand.
 
