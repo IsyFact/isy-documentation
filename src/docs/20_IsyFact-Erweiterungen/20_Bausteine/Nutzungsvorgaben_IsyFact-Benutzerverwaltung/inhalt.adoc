@@ -1,13 +1,11 @@
 = Einbinden von isy-benutzerverwaltung-core
 
-In diesem Abschnitt wird beschrieben, wie man das Modul `isy-benutzerverwaltung-core` in die eigene Anwendung 
-integriert.
+In diesem Abschnitt wird beschrieben, wie man das Modul `isy-benutzerverwaltung-core` in die eigene Anwendung integriert.
 Nach der Einbindung kann mit Hilfe der Schnittstelle 
 
     `de.bund.bva.isyfact.benutzerverwaltung.core.benutzerverwaltung.Benutzerverwaltung`
     
-beispielsweise eine eigene grafische Oberfläche geschrieben werden, um auf die Funktionen  (z.B. Anlegen, 
-Suchen und Löschen von Benutzern) der Benutzerverwaltung zuzugreifen.
+beispielsweise eine eigene grafische Oberfläche geschrieben werden, um auf die Funktionen  (z.B. Anlegen, Suchen und Löschen von Benutzern) der Benutzerverwaltung zuzugreifen.
 
 == Maven
 
@@ -39,9 +37,9 @@ Für die Komponente `isy-benutzerverwaltung-core` werden drei Tabellen benötigt
 - `Rollen`
 - `Benutzer_Rollen`
 
-// Ist das so richtig? Die Rollen werden schon in der Datenbank gespeichert, aber die Zuordnung von Rollen
-// zu Rechten geschiet über die rollenrechte.xml.
-// Wechles Attribut RolleName?
+// todo Ist das so richtig? Die Rollen werden schon in der Datenbank gespeichert, aber die Zuordnung von Rollen
+// todo zu Rechten geschiet über die rollenrechte.xml.
+// todo Welches Attribut RolleName?
 
 Die Rollen werden in der Datenbank gespeichert.
 Die Zuordnung von Rechten zu Rollen geschieht aber in der Datei `rollenrechte.xml`.
@@ -97,14 +95,13 @@ In der Datei `persistence.xml` muss ein Eintrag für die Entities `Benutzer` und
 === Integration in Anwendungen
 
 Da Anwendungen nicht direkt auf die Tabellen der Benutzerverwaltung zugreifen und diese ändern dürfen, müssen sie immer über die Schnittstelle des Anwendungskerns gehen.
-Anwendungskomponenten müssen trotzdem Referenzen auf Benutzer speichern können.
+<<glossar-Anwendungskomponente>>n müssen trotzdem Referenzen auf Benutzer speichern können.
 Dazu ist zur Integration in die Entitäten der Anwendung die Klasse `BenutzerReferenz` vorgesehen.
 Hinweise zur Verwendung sind in der API-Dokumentation der Klasse enthalten.
 
 = Einbinden von isy-benutzerverwaltung-sicherheit
 
-Das Modul `isy-benutzerverwaltung-sicherheit` implementiert einen `AccessManager` aus `isy-sicherheit` als 
-zentrale Komponente zur Authentifizierung.
+Das Modul `isy-benutzerverwaltung-sicherheit` implementiert einen `AccessManager` aus `isy-sicherheit` als zentrale Komponente zur Authentifizierung.
 
 == Maven
 
@@ -144,10 +141,8 @@ Wird die Anwendung mittels Annotationen konfiguriert, sieht der Import wie folgt
 public class ...
 ----
 
-Wichtig ist, dass die Anwendung bei der Nutzung der Sicherheitskomponente keine eigenen Sicherheits-Beans 
-instantiieren darf.
-Folgende Bean-Definitionen müssen beim Einbinden der Sicherheitskomponente entfernt werden, damit keine 
-Konflikte entstehen:
+Wichtig ist, dass die Anwendung bei der Nutzung der Sicherheitskomponente keine eigenen Sicherheits-Beans instantiieren darf.
+Folgende Bean-Definitionen müssen beim Einbinden der Sicherheitskomponente entfernt werden, damit keine Konflikte entstehen:
 
 * `Sicherheit`
 * `SicherheitAdmin`
@@ -155,8 +150,7 @@ Konflikte entstehen:
 * `AufrufkontextFactory`
 * `AufrufkontextVerwalter`
 
-Wird die Sicherheitskomponente nicht im Kontext einer Web-Anwendung genutzt – zum Beispiel im Rahmen einer 
-Batch-Anwendung – müssen darüber hinaus noch eigene Scopes definiert werden. 
+Wird die Sicherheitskomponente nicht im Kontext einer Web-Anwendung genutzt – zum Beispiel im Rahmen einer Batch-Anwendung – müssen darüber hinaus noch eigene Scopes definiert werden.
 Dies wird mit folgender Spring-Konfiguration erreicht:
 
 [source,xml]
@@ -195,8 +189,7 @@ Damit können Benutzer gegen eine lokale Datenbank authentifiziert und Benutzer 
 Zusätzlich können Benutzern Rollen zugewiesen und Passwörter geändert werden.
 Das Modul `isy-benutzerverwaltung-gui-tomahawk` nutzt die GUI-Komponenten aus der Bibliothek `isy-web` auf der Grundlage von _Apache MyFaces Tomahawk_.
 
-Im Folgenden wird beschrieben, wie das Modul `isy-benutzerverwaltung-gui-tomahawk` in die eigene 
-Anwendung integriert wird.
+Im Folgenden wird beschrieben, wie das Modul `isy-benutzerverwaltung-gui-tomahawk` in die eigene Anwendung integriert wird.
 
 == Maven
 
@@ -216,8 +209,7 @@ Folgende Abhängigkeit ist in der `pom.xml` zu ergänzen:
 
 == Spring
 
-Die Spring-Konfiguration von `isy-benutzerverwaltung-gui-tomahawk` wird folgendermaßen in die eigene 
-Anwendung integriert:
+Die Spring-Konfiguration von `isy-benutzerverwaltung-gui-tomahawk` wird folgendermaßen in die eigene Anwendung integriert:
 
 :desc-listing-springtomgui: Spring-Konfiguration mit _Tomahawk_-GUI
 [id="listing-springtomgui",reftext="{listing-caption} {counter:listings }"]	
@@ -233,9 +225,8 @@ Anwendung integriert:
 
 == Maskentexte
 
-Um den Titel der Anwendung auf den Seiten der Benutzerverwaltungs zu setzen gibt es mehrere Möglichkeiten.
-Eine davon ist die Datei `/WEB-INF/gui/common/seitenelemente/messageRessources.xhtml` in der 
-eigenen Anwendung zu überschreiben und darin eine eigene _Properties_-Datei für den Anwendungstitel zu laden.
+Um den Titel der Anwendung auf den Seiten der Benutzerverwaltung zu setzen gibt es mehrere Möglichkeiten.
+Eine davon ist die Datei `/WEB-INF/gui/common/seitenelemente/messageRessources.xhtml` in der eigenen Anwendung zu überschreiben und darin eine eigene _Properties_-Datei für den Anwendungstitel zu laden.
 
 :desc-listing-messresstomxml: /WEB-INF/gui/common/seitenelemente/messageRessources.xhtml
 [id="listing-messresstomxml",reftext="{listing-caption} {counter:listings }"]	
@@ -327,13 +318,15 @@ Diese Rechte können in der eigenen Anwendung einer beliebigen Rolle zugeordnet 
 </tns:Anwendung>
 ----
 
-Im gezeigten Beispiel wird eine Rolle `BenutzerAdmin` angelegt, der alle Rechte für 
-die _IsyFact-Benutzerverwaltung_ zugeordnet sind und eine Rolle `Benutzer`, die nur das Recht hat, 
-ihre eigenen Kontaktdaten zu ändern.
+Im gezeigten Beispiel wird eine Rolle `BenutzerAdmin` angelegt, der alle Rechte für die _IsyFact-Benutzerverwaltung_ zugeordnet sind und eine Rolle `Benutzer`, die nur das Recht hat, ihre eigenen Kontaktdaten zu ändern.
 
 === HTML-Beispielseite
 
 Unter `src/main/resources/WEB-INF/gui/` befindet sich eine Seite `index.html`, auf der Links zu den Unterseiten von `isy-benutzerverwaltung-gui-tomahawk` zu finden sind.
 Diese Seite soll nur als Beispiel dienen und zeigen, wie die Unterseiten aufgerufen werden können. 
 
-WARNING: Bis auf die Login-Seite ist der Zugriff auf die anderen Seiten durch Rollen und Rechte gesichert. Diese können daher nur von angemeldeten Benutzern aufgerufen werden.
+[WARNING]
+====
+Bis auf die Login-Seite ist der Zugriff auf die anderen Seiten durch Rollen und Rechte gesichert.
+Diese können daher nur von angemeldeten Benutzern aufgerufen werden.
+====
