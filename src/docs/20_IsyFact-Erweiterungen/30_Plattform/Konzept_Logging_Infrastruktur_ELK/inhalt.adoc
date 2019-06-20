@@ -1,11 +1,9 @@
 [[aufbau-der-log-infrastruktur]]
 = Aufbau der Log-Infrastruktur
 
-Die Log-Infrastruktur beschreibt die IT-Systeme und Mechanismen, die zur Verteilung, Verarbeitung, Auswertung und Archivierung der 
-erstellten Logdateien eingesetzt werden und deren Zusammenspiel untereinander.
+Die Log-Infrastruktur beschreibt die IT-Systeme und Mechanismen, die zur Verteilung, Verarbeitung, Auswertung und Archivierung der erstellten Logdateien eingesetzt werden und deren Zusammenspiel untereinander.
 In <<image-loginfraelkr>> ist eine Übersicht der logischen Komponenten der Log-Infrastruktur dargestellt.
-Dabei kommen ausschließlich freie IT-Systeme zum Einsatz, die auf dem ELK-Stack (Elasticsearch, Logstash und 
-Kibana) basieren.
+Dabei kommen ausschließlich freie IT-Systeme zum Einsatz, die auf dem ELK-Stack (Elasticsearch, Logstash und Kibana) basieren.
 
 NOTE: http://www.elasticsearch.org/overview/
 
@@ -14,16 +12,15 @@ NOTE: http://www.elasticsearch.org/overview/
 .{desc-image-loginfraelkr}
 image::konzept_logging_infrastruktur_elk_001.png[align="center"]
 
-// ist RF im Bild richtig?
+//todo ist RF im Bild richtig?
  
 Die Kernaspekte der Loginfrastruktur sind:
 
 **Quellen**: Die Anwendungen schreiben ihre Logeinträge in Logdateien.
-Die Dateien können dabei als Schnittstelle von der Anwendung zur Log-Infrastruktur gesehen werden – jeder Logeintrag, der in eine Datei geschrieben wurde, 
+Die Dateien können dabei als Schnittstelle von der Anwendung zur Log-Infrastruktur gesehen werden – jeder Logeintrag, der in eine Datei geschrieben wurde,
 wird von da an durch die Infrastruktur verwaltet.
 
-[underline]#Anmerkung#: Das Loggen in Dateien hat gegenüber dem direkten Loggen über eine Netzwerkschnittstelle den Vorteil, dass es robuster gegen Ausfälle der Netzwerkverbindung bzw.
-des empfangenden Systems ist.
+[underline]#Anmerkung#: Das Loggen in Dateien hat gegenüber dem direkten Loggen über eine Netzwerkschnittstelle den Vorteil, dass es robuster gegen Ausfälle der Netzwerkverbindung bzw. des empfangenden Systems ist.
 Zudem erlaubt es eine sehr einfache Sicherung (Archivierung) der Logs auf Dateiebene.
 
 **Indizierung**: Eine Kernanforderung an die Infrastruktur ist es, die verschiedenen Log-Quellen einheitlich, zuverlässig und „nahe Echtzeit“ im zentralen Suchserver zu indizieren.
@@ -52,10 +49,8 @@ Logstash bietet auch hierfür die Möglichkeit, die beiden Systeme (Redis und El
 * **Auswertungstool**: Zur Auswertung der in Elasticsearch gespeicherten Logeinträge wird Kibana verwendet.
 Kibana stellt eine grafische Benutzeroberfläche zum einfachen Formulieren auch komplexer Auswertungen auf dem Datenbestand zur Verfügung.
 
-Die Archivierung der Logs erfolgt auf Ebene der Log-Quellen (Dateien). Durch das Schreiben zeitlich rollierender Logdateien durch die
- Anwendungen (vergleiche dazu <<NutzungsvorgabenLogging>>) 
-ist es möglich, die Logs von Anwendungen in festen Zeitintervallen – bspw.
-stündlich oder täglich – auf einen Archivserver zu verschieben.
+Die Archivierung der Logs erfolgt auf Ebene der Log-Quellen (Dateien).
+Durch das Schreiben zeitlich rollierender Logdateien durch die  Anwendungen (vergleiche dazu <<NutzungsvorgabenLogging>>) ist es möglich, die Logs von Anwendungen in festen Zeitintervallen – bspw. stündlich oder täglich – auf einen Archivserver zu verschieben.
 Die rollierten Logs werden dabei bereits durch die Anwendungen komprimiert.
 Logdateien von Batches können nach Abschluss des jeweiligen Batchlaufes verschoben werden, müssen bei Bedarf aber noch durch die Umgebung komprimiert werden.
 Das Verschieben ist Aufgabe der Betriebsumgebung.
@@ -167,8 +162,7 @@ Der Grund, warum Redis als Puffer eingesetzt wird (und nicht Beispielsweise Rabb
 [[indexer-logstash]]
 == Indexer (Logstash)
 
-Als Indexer wird ebenfalls _logstash_ eingesetzt, dessen grundlegende Funktionsweise bereits in Abschnitt <<shipper-logstash>> beschrieben 
-wurde und an dieser Stelle nicht wiederholt wird.
+Als Indexer wird ebenfalls _logstash_ eingesetzt, dessen grundlegende Funktionsweise bereits in Abschnitt <<shipper-logstash>> beschrieben wurde und an dieser Stelle nicht wiederholt wird.
 
 Die Konfiguration des Indexers umfasst folgende Elemente:
 
@@ -260,7 +254,7 @@ grok {
 }
 ----
 
-* Für jedes System, welches im Format „plain“ (einfacher Text) logged, wird ein spezifischer _grok_-Filter definiert, der die enthaltenen Informationen 
+* Für jedes System, welches im Format „plain“ (einfacher Text) logged, wird ein spezifischer _grok_-Filter definiert, der die enthaltenen Informationen
 in klar definierte JSON-Attribute aufteilt.
 Die Konfigurationen für die verschiedenen Systemtypen sind in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 
@@ -296,7 +290,7 @@ Diese sind ebenfalls in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 ==== mutate
 
 _mutate_-Filter können dazu verwendet werden, Attribute zu setzen oder zu manipulieren.
-Bei allen Log-Quellen, die nicht Register Factory-konform sind, wird ein _mutate_-Filter verwendet, um das Attribut `@timestamp` (siehe Abschnitt <<date>>) 
+Bei allen Log-Quellen, die nicht IsyFact-konform sind, wird ein _mutate_-Filter verwendet, um das Attribut `@timestamp` (siehe Abschnitt <<date>>)
 einheitlich in das Feld `zeitstempel` zu schreiben:
 
 [source,c]
@@ -306,7 +300,7 @@ mutate {
 }
 ----
 
-Dies ist sinnvoll, da der Zeitstempel dadurch unter einem einheitlichen Namen im ISO-Format abgelegt ist, und das Attribut `@timestamp` eher ein 
+Dies ist sinnvoll, da der Zeitstempel dadurch unter einem einheitlichen Namen im ISO-Format abgelegt ist, und das Attribut `@timestamp` eher ein
 internes Attribut zur Steuerung von logstash ist, welches theoretisch später durch logstash überschrieben werden könnte.
 
 [[konfigurationsvorlagen]]
@@ -394,7 +388,7 @@ if [type] == "isy" {
 }
 ----
 
-// Laufwerksbuchstaben.... das ist BVA spezifisches
+//todo Laufwerksbuchstaben.... das ist BVA spezifisches
 
 [[tomcat-access]]
 === Tomcat access
