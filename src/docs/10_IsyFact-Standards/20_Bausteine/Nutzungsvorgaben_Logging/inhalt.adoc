@@ -363,8 +363,8 @@ ergänzt die folgenden Attribute im Logeintrag:
 
 In den Log-Leveln FATAL, ERROR und WARN existieren je drei Methoden zum Loggen von Exceptions:
 
-* `<fatal/error/warn>(String nachricht, PlisException exception, Object... werte)`
-* `<fatal/error/warn>(String nachricht, PlisTechnicalRuntimeException exception, Object... werte)`
+* `<fatal/error/warn>(String nachricht, BaseException exception, Object... werte)`
+* `<fatal/error/warn>(String nachricht, TechnicalRuntimeException exception, Object... werte)`
 * `<fatal/error/warn>(String schluessel, String nachricht, Throwable exception, Object... werte)`
 
 Für das Log-Level INFO wird zusätzlich eine Log-Kategorie benötigt.
@@ -374,7 +374,7 @@ Bei anderen Ausnahmen muss zusätzlich ein Ereignisschlüssel übergeben werden.
 Der Aufruf wird an die entsprechende Methode des SLF4J-Loggers delegiert.
 Als Marker werden dabei übergeben:
 
-* `fehlerschluessel`: Fehlerschlüssel der `PlisException`.
+* `fehlerschluessel`: Fehlerschlüssel der `BaseException`.
 
 * `parameter[1..n]`: siehe oben (<<loggen-einfacher-nachrichten-tracedebugwarninfo>>)
 
@@ -851,7 +851,7 @@ Damit werden alle Service-Schnittstellen, GUI-Controller und Batchausführungsbe
 * `komponentLogInterceptor`: Dieser wird verwendet, um Aufrufe an Komponentengrenzen zu loggen.
 Hierfür wird die analog die Annotation `@Komponentengrenze` bereitgestellt.
 Damit werden alle relevanten Komponenten-Schnittstellen annotiert.
-(siehe Szenario in Abschnitt 5.2.2.3).
+(siehe Szenario in Abschnitt <<aufruf-an-komponentengrenze>>).
 
 Die Standardkonfiguration der Interceptoren zeigt <<table-ESIsyLog>>.
 Sie kann in Ausnahmefällen über `application.properties` geändert werden:

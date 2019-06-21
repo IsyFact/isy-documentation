@@ -100,7 +100,7 @@ Neben seiner Kern-Funktionalität der Verwaltung, Konfiguration und aspektorient
 Die IsyFact verwendet ausgewählte Funktionalitäten des Spring-Frameworks in der Anwendungsentwicklung.
 Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie folgt beschrieben:
 
-* Die Konfiguration der Datenzugriffschicht, beschrieben im <<DetailKonzeptKomponenteDatenzugriff>>.
+* Die Konfiguration der Datenzugriffschicht, beschrieben im <<DetailkonzeptKomponenteDatenzugriff>>.
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
 * Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachungKonfiguration>>.
 * Die Verwendung der HTTP-Invoker-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
@@ -155,7 +155,7 @@ Konfiguriert werden Beans und ihre Abhängigkeiten durch von Spring bereitgestel
 Diese werden beim Start des Applikations-Containers gescannt und ausgewertet (_Component Scan_).
 
 Die folgende Abbildung zeigt einen Ausschnitt der für die Vorlageanwendung erstellten Beans.
-Diese werden grün dargestellt und besitzen „referenziert“ Abhängigkeiten zu benötigten anderen Beans.
+Diese werden grün dargestellt und besitzen „referenzierte“ Abhängigkeiten zu benötigten anderen Beans.
 
 :desc-image-SpringBeansVorlag: Spring-Beans der Vorlageanwendung
 [id="image-SpringBeansVorlag",reftext="{figure-caption} {counter:figures}"]
@@ -223,8 +223,8 @@ Die Spring-Konfiguration der Anwendung ist nach folgenden Vorgaben zu erstellen.
 1. Der zentraler Ausgangspunkt für die Spring-Konfiguration ist die Applikationsklasse der Anwendung (<<listing-applikationsklasse>>).
 Diese wird im Wurzelpackage der Anwendung (`<org>.<domäne>.<anwendung>.<anwendung>Application`) erstellt.
 Sie ist mit `@Configuration` und `@EnableAutoConfiguration` annotiert.
-Damit wird der Autokofiguration von Spring Boot eingeschaltet.
-Zusätzliche erbt die Klasse von `SpringBootServletInitializer`, damit die Anwendung im Tomcat deployt werden kann.
+Damit wird die Autokonfiguration von Spring Boot eingeschaltet.
+Zusätzlich erbt die Klasse von `SpringBootServletInitializer`, damit die Anwendung im Tomcat deployt werden kann.
 Die Konfigurationsklassen der Schichten werden per `@Import`-Annotation eingebunden.
 +
 :desc-listing-applikationsklasse: Applikationsklasse der Anwendung
@@ -252,9 +252,8 @@ public class IsyFactApplication extends SpringBootServletInitializer {
 2. Für jede Schicht wird im Package `<org>.<domäne>.<anwendung>.<schicht>.config` eine mit `@Configuration` annotierte
 Konfigurationsklasse erstellt (<<listing-konfigurationsklasse>>).
 Diese wird zusätzlich mit `@ComponentScan` annotiert.
-Der _Component Scan_ mit wird dem Attribute `basePackages` auf das Package der Schicht beschränkt.
-Annotation, die querschnittliche Aspekte konfigurieren (z.B. `@EnableTransactionManagement`), werden an die jeweilige
-Konfigurationklasse der Schicht geschrieben, zu der sie inhaltlich passen.
+Der _Component Scan_ mit wird dem Attribut `basePackages` auf das Package der Schicht beschränkt.
+Annotationen, die querschnittliche Aspekte konfigurieren (z.B. `@EnableTransactionManagement`), werden an die Konfigurationsklasse der inhaltlich passenden Schicht geschrieben.
 +
 :desc-listing-konfigurationsklasse: Konfigurationsklasse innerhalb einer Schicht
 [id="listing-konfigurationsklasse",reftext="{listing-caption} {counter:listings }"]
@@ -281,9 +280,8 @@ public class CoreConfig {
 [[konfigurationsparameter-ueber-property-objekte-konfigurieren]]
 ==== Konfigurationsparameter über Property-Objekte konfigurieren
 
-Die Konfiguration der Anwendung wird (wie im Detailkonzept Überwachung und Konfiguration <<KonzeptUeberwachungKonfiguration>>
-beschrieben) über die Datei `application.properties` durchgeführt.
-Dieses Datei enthält sämtliche Konfigurationsparameter der Anwendung.
+Die Konfiguration der Anwendung wird (wie im Detailkonzept Überwachung und Konfiguration <<KonzeptUeberwachungKonfiguration>> beschrieben) über die Datei `application.properties` durchgeführt.
+Diese Datei enthält sämtliche Konfigurationsparameter der Anwendung.
 Das Setzen einzelner Konfigurationsparameter über `set`-Methoden ist nur in Ausnahmefällen erlaubt.
 // TODO Ein Beispiel dafür ist die Konfigurations-Bean `konfiguration` in der Datei `konfiguration.xml` der Vorlageanwendung.
 Abweichungen für technische Beans sind erlaubt.
@@ -292,31 +290,22 @@ Abweichungen für technische Beans sind erlaubt.
 ===== Abhängigkeiten von Komponenten konfigurieren
 
 Benötigte Beans müssen über Konstruktor-Parameter injiziert werden.
-Falls eine benötigte Bean nicht zum Zeitpunkt der Objekterzeugung vorhanden sein muss, sollte sie über
-eine `set`-Methode und nicht über einen Konstruktor-Parameter konfiguriert werden.
+Falls eine benötigte Bean nicht zum Zeitpunkt der Objekterzeugung vorhanden sein muss, sollte sie über eine `set`-Methode und nicht über einen Konstruktor-Parameter konfiguriert werden.
 Grund dafür ist, dass bei Konstruktor-Parametern eine zusätzliche Reihenfolge-Abhängigkeit erzeugt wird.
 
-Für den Fall, dass eine Bean Code zur Initialisierung ausführen soll, nachdem ihre Abhängigkeiten gesetzt sind, ist eine mit `@PostConstruct` annotierte
-Methode zu implementieren.
-Generell sind die standardisierten Lifecycle-Annotationen `@PostConstruct` und `@PreDestroy` den spring-spezifischen
-Interfaces `InitializingBean` und `DisposableBean` vorzuziehen.
+Für den Fall, dass eine Bean Code zur Initialisierung ausführen soll, nachdem ihre Abhängigkeiten gesetzt sind, ist eine mit `@PostConstruct` annotierte Methode zu implementieren.
+Generell sind die standardisierten Lifecycle-Annotationen `@PostConstruct` und `@PreDestroy` den spring-spezifischen Interfaces `InitializingBean` und `DisposableBean` vorzuziehen.
 
 [[explizite-abhaengigkeits-konfiguration-bei-nachrichten]]
 ===== Explizite Abhängigkeits-Konfiguration bei Nachrichten
 
-Falls man innerhalb des Konstruktors eine andere Bean benötigt, so konfiguriert man diese per Konstruktor-Argument
-(siehe Kapitel <<abhaengigkeiten-von-komponenten-konfigurieren>>). In einigen Fällen wird
-auf Beans aber nicht über derartige Dependency Injection, sondern über statische Methoden zugegriffen
-(siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>).
-
-Auf Beans kann auch statisch über eine Bean-Holderklasse zugegriffen werden.
-
-NOTE: Holder-Klasse stellen Beans über statische Methoden bereit. Diese sind nur im Ausnahmefall zu verwenden.
+Falls man innerhalb des Konstruktors eine andere Bean benötigt, so konfiguriert man diese per Konstruktor-Argument (siehe Kapitel <<abhaengigkeiten-von-komponenten-konfigurieren>>).
+In einigen Fällen wird auf Beans allerdings statisch, über statische Methoden oder eine Bean-Holderklasse, zugegriffen (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>).
 
 Eine Bean-Holderklasse wird als Spring-Bean mit einer Abhängigkeit definiert.
+Sie stellet Beans über statische Methoden bereit und ist nur im Ausnahmefall zu verwenden.
 Beim Aufruf der `set`-Methode für die abhängige Bean wird diese in eine statische Variable gespeichert.
-Falls in einem Bean-Konstruktor oder einer `set`-Methode statisch auf eine Holder-Klasse zugegriffen
-wird, so kennt Spring die Abhängigkeit zur Bean der Holder-Klasse nicht.
+Falls in einem Bean-Konstruktor oder einer `set`-Methode statisch auf eine Holder-Klasse zugegriffen wird, so kennt Spring die Abhängigkeit zur Bean der Holder-Klasse nicht.
 Es muss sichergestellt werden, dass die Holder-Klasse bereits befüllt wurde.
 Hierzu ist eine `@DependsOn`-Annotation in die Bean-Konfiguration einzufügen.
 Diese muss den Bean-Namen der benutzten Holder-Klassen enthalten.

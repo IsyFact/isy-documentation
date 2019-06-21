@@ -419,7 +419,7 @@ In der POM der Anwendung muss die Abhängigkeit hinzugefügt werden:
 [source,xml]
 ----
 <dependency>
-  <groupId>de.bund.bva.pliscommon</groupId>
+  <groupId>de.bund.bva.isyfact</groupId>
   <artifactId>isy-sonderzeichen</artifactId>
   <version><aktueller Version der Bibliothek></version>
 </dependency>
@@ -432,12 +432,12 @@ Die Transformator-Factory und ein konkreter Transformator werden über Spring in
 
 [source,xml]
 ----
-<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.TransformatorFactory">
+<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.isyfact.sonderzeichen.core.transformation.TransformatorFactory">
   <property name="transformator" ref="sonderzeichenTransformator" >
   <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
 </bean>
 
-<bean id="sonderzeichenTransformator" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.impl.IdentischerTransformator">
+<bean id="sonderzeichenTransformator" class="de.bund.bva.isyfact.sonderzeichen.core.transformation.impl.IdentischerTransformator">
 </bean>
 ----
 

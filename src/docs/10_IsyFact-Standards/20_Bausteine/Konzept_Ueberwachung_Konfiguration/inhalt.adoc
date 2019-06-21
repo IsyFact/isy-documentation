@@ -748,7 +748,7 @@ Default-Werte werden in den Konfigurationsklassen (mit `@ConfigurationProperties
 
 Für systemabhängige Werte dürfen keine Default-Werte hinterlegt werden.
 Wichtig ist, dass die Anwendung die Existenz dieser Werte (z.B. URLs zu genutzten Services) bereits bei
-der Initialisierung durch Validierung prüft (siehe <<typsichere-bereitstellung-von-konfiguration]>>).
+der Initialisierung durch Validierung prüft (siehe <<typsichere-bereitstellung-von-konfiguration>>).
 Dadurch wird vermieden, dass das Fehlen von Einstellungen erst bei späteren Zugriffen erkannt wird.
 
 Konfigurationsparameter, die nicht zur Laufzeit änderbar sind (siehe Kapitel
@@ -823,7 +823,7 @@ isy.konfiguration.properties = /config/A.properties, /config/B.properties
 ----
 
 Die Klasse `[...].konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt
-über das Interface `de.bund.bva.pliscommon.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
+über das Interface `de.bund.bva.isyfact.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die
 Konfigurationsparameter zur Verfügung.
 
 Alle Parameter aus den in der Liste aufgeführten Property-Dateien werden der Anwendung als eine
@@ -846,7 +846,7 @@ Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des
 String url = konfiguration.getAsString (KonfigurationSchluessel.SERVICE_URL);
 ----
 
-Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double und `Boolean`) jeweils typsichere Zugriffsmethoden an.
+Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double` und `Boolean`) jeweils typsichere Zugriffsmethoden an.
 Für jeden Datentyp wird zusätzlich eine Methode angeboten, welche die Übergabe eines Default-Werts ermöglicht.
 Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurationsdatei vorhanden ist.
 Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine
@@ -900,7 +900,7 @@ In solchen Ausnahmefällen kann daher das im Folgenden beschriebene und von der 
 Um bei Änderungen informiert zu werden, registriert sich die betroffene Komponente als Listener bei der
 Konfigurations-Bean.
 Dafür bietet das von der Konfigurations-Bean implementierte
-Interface `[...].pliscommon.konfiguration.common.ReloadableKonfiguration` die Methode an:
+Interface `[...].isyfact.konfiguration.common.ReloadableKonfiguration` die Methode an:
 
 [source,java]
 ----
@@ -908,7 +908,7 @@ public void addKonfigurationChangeListener(KonfigurationChangeListener listener)
 ----
 
 Die Komponente muss ihrerseits das
-Interface `[...].pliscommon.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor
+Interface `[...].isyfact.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor
 genannte Methode aufrufen. Als Parameter wird die eigene Instanz übergeben.
 
 Bei Änderung der Konfiguration ruft die Konfigurationsbibliothek nun automatisch die Methode

@@ -273,6 +273,9 @@ Verfügung gestellt, um Enum-Werte auf eine VARCHAR-Spalte der Datenbank abzubil
 
 Beispiel für eine Enum-Klasse mit annotierten Persistenzwerten:
 
+:desc-listing-enum-annotated: Enum-Klasse mit annotierten Persistenzwerten
+[id="listing-enum-annotated",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-enum-annotated}
 [source,java]
 ----
 public enum Geschlecht {
@@ -285,6 +288,9 @@ public enum Geschlecht {
 
 Beispiel für eine Enum-Klasse mit natürlichem Schlüssel:
 
+:desc-listing-enum-natural-key: Enum-Klasse mit natürlichem Schlüssel
+[id="listing-enum-natural-key",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-enum-natural-key}
 [source,java]
 ----
 public enum Geschlecht\{
@@ -305,6 +311,9 @@ public enum Geschlecht\{
 
 Beispiel für eine persistente Entität, die ein Enum-Feld enthält:
 
+:desc-listing-entity-enum-field: Enum-Feld an einer persistenten Entität
+[id="listing-entity-enum-field",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-entity-enum-field}
 [source,java]
 ----
 @Entity
@@ -312,7 +321,7 @@ public class Person {
   ...
 
   @Column(nullable = *false*, length = 1)
-  @Type(type = "de.bund.bva.pliscommon.persistence.usertype.Enum(WithId)UserType", parameters = { @Parameter(
+  @Type(type = "de.bund.bva.isyfact.persistence.usertype.Enum(WithId)UserType", parameters = { @Parameter(
     name = "enumClass",
     value = "<Package>.Geschlecht") })
   public Geschlecht getGeschlecht() {
@@ -336,12 +345,10 @@ spring.jpa.hibernate.ddl-auto=create
 Grundsätzlich ist es möglich, sämtliche Tabellen-Eigenschaften (etwa auch die Feldlängen und Indizes) über Annotationen zu definieren und das Datenbank-Schema komplett durch hbm2ddl zu erzeugen.
 Hierzu wird keine Vorgabe erstellt: Ob die DDL während der Entwicklung stets generiert wird oder sie nach einer initialen Generierung verändert und parallel gepflegt wird, ist je nach Komplexität des Schemas zu entscheiden.
 
-Befindet sich die Anwendung aber in Produktion, dann muss der Parameter `spring.jpa.hibernate.ddl-auto` auskommentiert werden,
-damit weder eine Generierung noch eine Validierung des Schemas stattfindet.
+Befindet sich die Anwendung in Produktion, dann muss der Parameter `spring.jpa.hibernate.ddl-auto` auskommentiert werden, damit weder eine Generierung noch eine Validierung des Schemas stattfindet.
 Alternativ kann auch der Wert `none` gesetzt werden.
 Eine Validierung durch Setzen des Parameters auf `validate` findet nicht statt.
-Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung
-wird überprüft, ob in der Datenbank die Schemaversion vorliegt, die die Anwendung erwartet.
+Stattdessen wird eine explizite Versionierung des Schemas verwendet: Bei jedem Start der Anwendung wird überprüft, ob in der Datenbank die Schema-Version vorliegt, die die Anwendung erwartet.
 Die Funktionalität hierzu ist in Abschnitt <<pruefen-der-schema-version>> beschrieben.
 
 [[vergabe-von-indizes]]
@@ -398,7 +405,7 @@ public interface CrudRepository<T,ID> {
 }
 ----
 
-Für ein konkretes DAO ist eine eigenes Interface von der Basisschnittstelle `CrudRepository` abzuleiten.
+Für ein konkretes DAO ist ein eigenes Interface von der Basisschnittstelle `CrudRepository` abzuleiten.
 In dieser können weitere DAO-Operationen definiert werden, zum Beispiel zur Durchführung von Queries.
 Ein Beispiel hierfür ist in <<listing-beispielrepository>> zu sehen.
 
@@ -521,17 +528,18 @@ Der einzige Grund für die Verwendung von SQL ist die Verwendung von Oracle SQL 
 === Verwendung von Oracle Hints bei Optimizer-Problemen
 
 NamedQueries werden als JDBC `PreparedStatements` umgesetzt.
-Deshalb werden sie vom Oracle Optimizer bereits analysiert und ein Ausführungsplan erstellt, bevor
-ihre Parameter gebunden werden.
+Deshalb werden sie vom Oracle Optimizer bereits analysiert und ein Ausführungsplan erstellt, bevor ihre Parameter gebunden werden.
 
-Dies führt in Ausnahmefällen dazu, dass ein benötigter Index für die Query-Bearbeitung nicht
-verwendet wird und „Full Tablescans“ durchgeführt werden.
+Dies führt in Ausnahmefällen dazu, dass ein benötigter Index für die Query-Bearbeitung nicht verwendet wird und „Full Tablescans“ durchgeführt werden.
 
 Im Falle von Index-Problemen bei NamedQueries sind Oracle-Hints zu verwenden.
 Die Queries sind als native SQL-Queries in der XML Konfigurationsdatei abzulegen.
 
-Ein Beispiel für einen Oracle-Hint in einer SQL Query:
+Ein Beispiel für einen Oracle-Hint in einer SQL-Query:
 
+:desc-listing-query-oracle-hint: Beispiel für einen Oracle-Hint in einer SQL-Query
+[id="listing-query-oracle-hint",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-query-oracle-hint}
 [source]
 ----
 select /*+ INDEX(aendno AENDERUNGS_NOTIFIKATION_STATUS) */ aendno from AENDERUNGS_NOTIFIKATION aendno where aendno.status = ?1 and aendno.zeitpunktNotifikation > :datumVon and aendno.zeitpunktNotifikation < :datumBis
@@ -611,16 +619,9 @@ In den folgenden Abschnitten werden konkrete Vorgaben gemacht, welche Konfigurat
 
 Die für die Verwendung von JPA benötigten Beans werden von Spring Boot beim Start der Anwendung automatisch instanziiert.
 
-Teile dieser automatische Konfiguration können bei Bedarf überschrieben werden.
-Soll z.B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean
-durch eine andere überschrieben werden.
+Teile dieser automatischen Konfiguration können bei Bedarf überschrieben werden.
+Soll z.B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean durch eine andere überschrieben werden.
 Das gleiche gilt für die Anbindung einer zweiten Datenbank, siehe dazu <<nutzung-und-anbindung-einer-zweiten-datenbank>>.
-
-// TODO Neues Bild?
-//:desc-image-JPAoverSprBeans: JPA-Konfiguration über Spring Beans
-//[id="image-JPAoverSprBeans",reftext="{figure-caption} {counter:figures}"]
-//.{desc-image-JPAoverSprBeans}
-//image::JPAoverSprBeans.png[align="center"]
 
 [[konfiguration-des-entitymanagers]]
 === Konfiguration des EntityManagers
@@ -669,8 +670,11 @@ Dazu zählt unter anderem die Anzahl aktuell ausgeliehener Verbindungen.
 
 Die zu setzenden Parameter können der folgenden Vorlage entnommen werden, wobei die genaue Bedeutung der Parameter der Oracle Dokumentation <<Ucp15>> entnommen werden kann:
 
-Die Konfiguration des UCP erfolgt in `application.properties` über folgende Properties:
+Die Konfiguration des UCP erfolgt in `application.properties` über die Properties in <<listing-configpropertiesucp>>.
 
+:desc-listing-configpropertiesucp: Properties zur Konfiguration des UCP
+[id="listing-configpropertiesucp",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-configpropertiesucp}
 [source,ruby]
 ----
 # Connection-String für die Datenbankverbindung
@@ -739,7 +743,7 @@ private SomeEntity someEntity;
 ----
 
 Ist ein 1:1 assoziiertes Feld optional und kann den Wert `null` annehmen, kann Lazy Loading nur über Bytecode-Manipulation realisiert werden.
-Für n:1 Assoziationen wird genau so verfahren und das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
+Für n:1 Assoziationen wird genauso verfahren und das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
 Es ist erlaubt und erwünscht, dieses Verhalten für Assoziationen zu überschreiben, bei denen Eager Loading Sinn ergibt.
 Hierfür ist das Attribute `fetch` der jeweiligen Mapping-Annotation wie folgt zu setzen:
 
@@ -762,9 +766,8 @@ Sollte dies nicht zutreffen, muss explizites Locking verwendet werden (vgl.
 Abschnitt <<bei-bedarf-explizites-locking-verwenden>>). In der Anwendung ist keine explizite Fehlerbehandlung (etwa durch das Mergen der Daten) zu implementieren.
 Die geworfene Ausnahme ist (gewrappt) an den Aufrufer weiter zu geben.
 
-Um zu erkennen, ob sich das Objekt in der Datenbank verändert hat, empfiehlt Hibernate die Verwendung eines
-numerischen Versions-Felds in jeder Datenbank-Tabelle.
-Dazu wird in den Entitäten eine numerische Property wird der Annotation `@Version` gekennzeichnet.
+Um zu erkennen, ob sich das Objekt in der Datenbank verändert hat, empfiehlt Hibernate die Verwendung eines numerischen Versions-Felds in jeder Datenbank-Tabelle.
+Dazu wird in den Entitäten eine numerische Property mit der Annotation `@Version` gekennzeichnet.
 
 [source,java]
 ----
@@ -789,10 +792,10 @@ Caching-Strategien sind kein Teil der JPA-Spezifikation.
 Für das Definieren eines Caches muss deswegen auf Hibernate-spezifische Mechanismen zugegriffen werden.
 
 Jeder Aufruf der Persistenzschicht geschieht innerhalb einer Transaktion.
-In der Regel läuft jeder Aufruf in einer eigenen Transaktion, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
+In der Regel läuft jeder Aufruf in einer eigenen Transaktion ab, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
 Außer in Ausnahmefällen ist dies jedoch auch nicht notwendig.
 
-Sollte es doch notwendig sein, sollte das Caching nicht in der Persistenzschicht und nicht mittels Hibernate geschehen.
+Ist ein aufrufübergreifendes Caching dennoch notwendig, ist dies nicht in der Persistenzschicht und nicht mittels Hibernate durchzuführen.
 Hibernate bietet für das Caching von Objekten prinzipiell zwei Möglichkeiten:
 
 * *Cache in der Hibernate-Session:* Die Hibernate-Session ist an einen Thread gebunden.
@@ -1419,7 +1422,7 @@ In diesem Verzeichnis liegen die Unterverzeichnisse `db-install-<Versionsnummer>
 
 Für die aktuelle Datenbankversion muss es ein vollständiges Installationsskript geben.
 Wurden Änderungen am Schema vorgenommen, gibt es zusätzlich ein entsprechendes Update-Skript von der Vorversion auf die aktuelle Version.
-Das Verzeichnis enthält so immer das Installationsskript für die aktuelle Datenbankversion und Update-Skripte, um jede belieblige Vorversion seit Einführung der Schemaversionierung auf die aktuelle Datenbankversion anheben zu können.
+Das Verzeichnis enthält so immer das Installationsskript für die aktuelle Datenbankversion und Update-Skripte, um jede belieblige Vorversion seit Einführung der Schema-Versionierung auf die aktuelle Datenbankversion anheben zu können.
 
 Die einzelnen Skripte werden auf der Grundlage der Templates aus der Bibliothek `isy-persistence` erstellt und behalten auch deren Namen.
 
@@ -1475,7 +1478,7 @@ isy.persistence.oracle.datasource.schema-version=1.2.3
 ----
 
 In der Property `schemaVersion` wird die Versionsnummer des Datenbankschemas angegeben, das die Anwendung erwartet.
-Wird die Property `schemaVersion` oder der Wert für die Version nicht angegeben, so findet keine Überprüfung der Schemaversion statt.
+Wird die Property `schemaVersion` oder der Wert für die Version nicht angegeben, so findet keine Überprüfung der Schema-Version statt.
 
 In der Property `invalidSchemaVersionAction` wird festgelegt, wie die Data-Source auf eine falsche Schema-Version reagieren soll.
 Der Wert `fail` legt fest, dass eine Exception geworfen wird.
@@ -1485,7 +1488,10 @@ Der Wert `warn` legt fest, dass lediglich eine Warnung in die Log-Datei geschrie
 Bei Datenmigrationen muss jedes Skript vor der Ausführung prüfen, ob die Datenbank die erwartete Version hat.
 Das kann mit dem folgenden SQL-Statement durchgeführt werden:
 
-[source,ruby]
+:desc-listing-pruefung-schema-version: SQL-Query zur Prüfung der Schema-Version
+[id="listing-pruefung-schema-version",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-pruefung-schema-version}
+[source]
 ----
 SELECT version
   FROM m_schema_version
@@ -1493,7 +1499,7 @@ SELECT version
    AND status = 'gueltig';
 ----
 
-Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schemaversion vorhanden.
-Liefert es keinen Wert zurück, dann ist die erwartete Schemaversion nicht vorhanden.
+Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schema-Version vorhanden.
+Liefert es keinen Wert zurück, dann ist die erwartete Schema-Version nicht vorhanden.
 
 // end::inhalt[]

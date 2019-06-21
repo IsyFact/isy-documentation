@@ -19,16 +19,14 @@ In <<image-IFRefArcITSsysPers>> ist die Referenzarchitektur eines IT-Systems noc
 .{desc-image-IFRefArcITSsysPers}
 image::IFRefArcITSsysPers.png[align="center"]
 
-In diesem Dokument werden die Vorgaben zur Umsetzung einer solchen Persistenzschicht im Detail beschrieben.
+Dieses Dokument beschreibt die Vorgaben zur Umsetzung einer solchen Persistenzschicht im Detail.
 Die Implementierung der Zugriffsschicht wird durch die Verwendung eines standardisierten Frameworks erleichtert.
-Als Framework wird hier JPA mit einer Implementierung durch Hibernate verwendet.
-
-In diesem Dokument werden allgemeine Vorgaben für das Persistenzmodell (die dauerhaft zu speichernden Objekte) sowie für die Verwendung von JPA und Hibernate festgelegt.
-Weiterhin wird das Thema Historisierung von Daten behandelt.
+Als Frameworks werden JPA/Hibernate sowie Spring Data JPA verwendet.
+Das Dokument legt außerdem allgemeine Vorgaben für das Persistenzmodell (die dauerhaft zu speichernden Objekte) fest und behandelt weiterführende Themen wie Historisierung von Daten.
 
 [WARNING]
 ====
-Das Thema Transaktionssteuerung wird nicht, wie üblich, im Rahmen des Datenzugriffs behandelt, da Transaktionen in der IsyFact über den Anwendungskern bzw. die Nutzungsschicht gesteuert werden.
+Das Thema Transaktionssteuerung wird nicht im Rahmen des Datenzugriffs behandelt, da Transaktionen in der IsyFact über den Anwendungskern bzw. die Nutzungsschicht gesteuert werden.
 Mehr zu diesem Thema ist in den anderen Detailkonzepten enthalten:
 
 * <<DetailkonzeptKomponenteAnwendungskern>>
@@ -74,11 +72,11 @@ Dieses Dokument ist wie folgt aufgebaut:
 
 * Zunächst werden in Kapitel <<anforderungen>> die Anforderungen an die Komponente Datenzugriff kurz motiviert.
 * Anschließend werden in Kapitel <<persistenz>> grundsätzliche Regeln vorgestellt, wie die Abbildung von Objekten auf Datenbanken stattfinden soll.
-* Kapitel <<die-definition-des-mappings-zwischen-objekten-und-datenbank>> vertieft anschließend das Thema Mapping, wobei konkrete Hinweise zur Abbildung von Attributen auf Datenbankfelder gegeben werden.
+* Das Kapitel <<die-definition-des-mappings-zwischen-objekten-und-datenbank>> vertieft anschließend das Thema Mapping, wobei konkrete Hinweise zur Abbildung von Attributen auf Datenbankfelder gegeben werden.
 * Im Anschluss daran wird die konkrete Nutzung des Datenbankzugriffs in der Anwendung beschrieben.
-Zunächst wird gezeigt, wie die JPA aus der Anwendung heraus genutzt werden soll (Kapitel <<vergabe-von-indizes>>).
+Zunächst wird gezeigt, wie Spring Data JPA aus der Anwendung heraus genutzt werden soll (Kapitel <<verwendung-von-jpa-in-der-anwendung>>).
 Anschließend wird erläutert, wie Datenbank-Abfragen durchgeführt werden (Kapitel <<jpql-fuer-datenbank-abfragen-nutzen>>).
-* Die generelle Konfiguration von JPA und Hibernate ist in Kapitel <<konfiguration-von-jpa-und-hibernate-in-der-anwendung>> beschreiben.
+* Die generelle Konfiguration von JPA und Hibernate ist in Kapitel <<konfiguration-von-jpa-und-hibernate-in-der-anwendung>> beschrieben.
 * Abschließend wird noch das Thema Historisierung (Kapitel <<historisierung>>) behandelt.
 
 // end::inhalt[]

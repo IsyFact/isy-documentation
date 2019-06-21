@@ -488,14 +488,14 @@ Hierbei muss immer das Transportobjekt (`AufrufKontextTo`) der Bibliothek `isy-s
 [source,java]
 ----
 AufrufKontext aufrufKontext = aufrufKontextVerwalter.getAufrufKontext();
-AufrufKontextTo transportobjekt = (AufrufKontextTo) dozer.map(aufrufKontext, AufrufKontextTo.class);
+AufrufKontextTo transportobjekt = beanMapper.map(aufrufKontext, AufrufKontextTo.class);
 nachbarService.aufruf(transportobjekt, weitere, parameter);
 ----
 
 <<listing-weiterleitung-des-aufrufkontextes>> enthält folgende Schritte:
 
 * Der Aufrufkontext der Anwendung wird vom Spring Bean `aufrufKontextVerwalter` abgerufen.
-* Es wird ein Dozer-Mapping verwendet, um das für den Aufruf zu verwendende Transportobjekt zu erstellen.
+* Es wird ein Bean-Mapping verwendet, um das für den Aufruf zu verwendende Transportobjekt zu erstellen.
 * Das erzeugte Transportobjekt wird an die Schnittstelle des Nachbarsystems übergeben.
 
 [[verwendung-der-korrelations-id]]
@@ -539,7 +539,7 @@ Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autoko
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
 Gelegentlich möchte eine Fachanwendung zusätzliche Informationen im Aufrufkontext ablegen.
-Hierzu kann von der Standard-Implementierung (`de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl`) geerbt und die neue, anwendungsspezifische Klasse um zusätzliche Attribute erweitert werden.
+Hierzu kann von der Standard-Implementierung (`de.bund.bva.isyfact.aufrufkontext.impl.AufrufKontextImpl`) geerbt und die neue, anwendungsspezifische Klasse um zusätzliche Attribute erweitert werden.
 
 Die anwendungsspezifische Implementierung muss in der Spring-Konfiguration hinterlegt werden.
 

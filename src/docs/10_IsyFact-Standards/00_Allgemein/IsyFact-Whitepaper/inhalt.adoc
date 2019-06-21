@@ -185,7 +185,7 @@ Es handelt sich dabei um kleinere Utility-Klassen, wie z.B. Interzeptoren, mit d
 
 *Eine einheitliche Plattform über alle Fachanwendungen ermöglicht einen standardisierten und effizienten Systembetrieb.*
 
-:desc-image-plattform: Bausteine der IsyFact
+:desc-image-plattform: Betriebsplattform der IsyFact
 [id="image-plattform",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-plattform}
 image::plattform.png[align="center"]
@@ -312,15 +312,14 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 3+|*00 Allgemeine Dokumente*
 2+|IsyFact – Dokumentenübersicht |PDF
 2+|IsyFact – Namenskonventionen |PDF
-2+|IsyFact – Referenzarchitektur IT-System |PDF
-2+|IsyFact – Referenzarchitektur |PDF
 2+|IsyFact – Einstieg |PDF
 2+|IsyFact – Tutorial |PDF
 2+|IsyFact – Überblick |PDF
 2+|IsyFact – Tailoring |DOT
 3+|*10 Blaupausen*
-.6+|*Technische Architektur* |Detailkonzept Komponente Web-GUI |PDF
-|Detailkonzept Komponente Native-GUI |PDF
+2+|IsyFact – Referenzarchitektur |PDF
+.6+|*Technische Architektur* |IsyFact – Referenzarchitektur IT-System |PDF
+|Detailkonzept Komponente Web-GUI |PDF
 |Detailkonzept Komponente Batch |PDF
 |Detailkonzept Komponente Service |PDF
 |Detailkonzept Komponente Anwendungskern |PDF
@@ -331,8 +330,8 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 |*LDAP-Zugriffe* |Nutzungskonzept Spring LDAP |PDF
 |*Logging* |Konzept Logging |PDF
 |*Polling* |Nutzerdokumentation Polling |PDF
-|*Portal* |Konzept Portal |PDF
-.2+|*Sicherheits-komponente* |Nutzerdokumentation Sicherheit |PDF
+.3+|*Sicherheits-komponente* |Konzept Sicherheit |PDF
+|Nutzerdokumentation Sicherheit |PDF
 |Rollen und Rechte Schema |XSD
 .3+|*Sonderzeichen* |Konzept Umgang mit Sonderzeigen |PDF
 |Mapping-Tabelle |XLS
