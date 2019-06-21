@@ -18,7 +18,7 @@ Zur Integration der Kernkomponente muss die Anwendung die folgende Abhängigkeit
 <dependency>
     <groupId>de.bund.bva.isyfact.benutzerverwaltung</groupId>
     <artifactId>isy-benutzerverwaltung-core</artifactId>
-    <version>1.3.x</version>
+    <version>1.5.x</version>
 </dependency>
 ----
 
@@ -116,7 +116,7 @@ Zur Integration der Sicherheitskomponente muss die Anwendung die folgende Abhän
 <dependency>
     <groupId>de.bund.bva.isyfact.benutzerverwaltung</groupId>
     <artifactId>isy-benutzerverwaltung-sicherheit</artifactId>
-    <version>1.3.x</version>
+    <version>1.5.x</version>
 </dependency>
 ----
 
@@ -210,7 +210,7 @@ Folgende Abhängigkeit ist in der `pom.xml` zu ergänzen:
 <dependency>
     <groupId>de.bund.bva.isyfact.benutzerverwaltung</groupId>
     <artifactId>isy-benutzerverwaltung-gui-tomahawk</artifactId>
-    <version>1.3.x</version>
+    <version>1.5.x</version>
 </dependency>
 ----
 
