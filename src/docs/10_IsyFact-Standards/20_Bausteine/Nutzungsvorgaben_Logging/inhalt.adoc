@@ -736,7 +736,6 @@ Die maximale Länge eines Logeintrags wird wie folgt gesetzt:
 <property name="MAX_LENGTH" value="32000" />
 ----
 
-
 [[logging-für-einzelne-klassen-deaktivieren]]
 ==== Logging für einzelne Klassen deaktivieren
 
