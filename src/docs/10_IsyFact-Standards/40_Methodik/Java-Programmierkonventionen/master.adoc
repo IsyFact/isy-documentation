@@ -1,13 +1,13 @@
 // ASCIIDOC Attribute
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
 //
 :doctitle: Java Programmierkonventionen
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
-include::../../../common/colophon.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
@@ -40,9 +40,7 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
 // Glossar
-// in 1.5 noch nicht - include::glossary.adoc[]
-// Index
-//include::../common/index.adoc[]
+// include::glossary.adoc[]
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]

@@ -1,5 +1,5 @@
 [[uebersicht]]
-= Übersicht über die Isyfact
+= Übersicht über die IsyFact
 
 Dieses Kapitel führt in die grundlegenden Ideen der IsyFact ein.
 Dazu wird zunächst die IsyFact selbst vorgestellt, danach die Referenzarchitektur in die IsyFact eingeordnet und Ideen und Ziele der Referenzarchitektur beschrieben.

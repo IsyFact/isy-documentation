@@ -1,6 +1,6 @@
 // ASCIIDOC Attribute
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
 //
 :doctitle: Nutzungsvorgaben Isy-Session
 :title: {doctitle}
@@ -10,7 +10,7 @@ include::../../../common/attributes.adoc[]
 
 // Zwangsplatz des TOC
 
-include::../../../common/colophon.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
@@ -48,6 +48,6 @@ include::listoflistings.adoc[]
 // Glossar
 include::glossary.adoc[]
 // Index
-//include::../../../common/index.adoc[]
+//include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 
 

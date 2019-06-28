@@ -167,8 +167,8 @@ In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im
 [source,asciidoc,indent=0]
 ----
  // ASCIIDOC Attribute
- include::../../../common/isyfact-attributes.adoc[]
- include::../../../common/attributes.adoc[]
+ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
  //
  :doctitle: Titel des Dokuments
  :title: {doctitle}

@@ -1,6 +1,6 @@
 = Konzept Sicherheit: Einleitung
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
 
 // tag::inhalt[]
 [[einleitung]]

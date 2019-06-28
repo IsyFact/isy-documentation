@@ -1,13 +1,13 @@
 // ASCIIDOC Attribute
-include::../../../common/isyfact-attributes.adoc[]
-include::../../../common/attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
 //
 :doctitle: Konzept Sicherheit
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
-include::../../../common/colophon.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Änderungsübersicht
 include::docinfo.adoc[]
@@ -39,5 +39,3 @@ include::listoffigures.adoc[]
 include::listoflistings.adoc[]
 // Glossar
 include::glossary.adoc[]
-// Index
-//include::../common/index.adoc[]
