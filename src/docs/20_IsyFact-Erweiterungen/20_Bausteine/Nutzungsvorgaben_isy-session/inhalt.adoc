@@ -68,8 +68,11 @@ IMPORTANT: Die Konfiguration der Anwendung über Annotationen muss aktiviert sei
 // end::important[]
 
 // tag::important[]
-IMPORTANT: Es muss Spring 4.2.8 oder höher verwendet werden.
+[IMPORTANT]
+====
+Es muss Spring 4.2.8 oder höher verwendet werden.
 Andernfalls erhält man die Fehlermeldung: `java.lang.NoSuchMethodError: org.springframework.core.serializer.support.DeserializingConverter.<init>`
+====
 
 // end::important[]
 

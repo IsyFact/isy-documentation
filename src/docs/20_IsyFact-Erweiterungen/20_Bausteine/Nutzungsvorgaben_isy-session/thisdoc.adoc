@@ -6,5 +6,5 @@ Dies wird im <<KonzeptSessionManagement>> erläutert.
 
 Das Session-Management in den Anwendungsservern der Webanwendungen muss so angepasst werden, dass die  Sessions im Session-Speicher verwaltet werden.
 Hierzu wird die Komponente isy-session bereitgestellt.
-Das vorliegende Konzept beschreibt die Einbindung der Komponente isy-session in eine Webanwendung.
+Das vorliegende Konzept beschreibt die Einbindung der <<glossar-Anwendungskomponente>> isy-session in eine Webanwendung.
 Es richtet sich an Architekten und Entwickler von Webanwendungen.
