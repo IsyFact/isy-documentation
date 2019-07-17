@@ -10,7 +10,7 @@ Der Begriff Factory steht für die schnelle Erzeugung neuer <<glossar-Anwendung>
 Die IsyFact besteht aus den IsyFact-Standards und IsyFact-Erweiterungen:
 
 Die *IsyFact-Standards* bilden das architektonische, technologische und methodische Fundament der IsyFact.
-Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant und verpflichend sind.
+Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant sind.
 Bspw.: Allgemeine Softwarereferenzarchitektur, Vorgaben zur Fehlerbehandlung, Logging etc.
 
 Die *IsyFact-Erweiterungen* sind optionale wiederverwendbare Lösungen für verschiedene Problemstellungen, die aufgrund spezifischer Anforderungen des BVA oder seiner

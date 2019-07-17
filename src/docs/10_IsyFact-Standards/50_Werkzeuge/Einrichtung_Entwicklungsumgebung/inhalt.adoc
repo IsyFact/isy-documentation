@@ -71,7 +71,6 @@ Die Größe des Hauptspeichers sollte mindestens 4096 Megabyte betragen.
 .{desc-image-leitfaden_entwicklungsumgebung_vb_03}
 image::leitfaden_entwicklungsumgebung_vb_03.png[align="center",width=60%,pdfwidth=70%]
 
-//todo: Osboxes aktuell?
 Klicken Sie auf Weiter.
 Danach können Sie eine Festplatte zu der virtuellen Maschine erstellen.
 Hierbei handelt es sich um eine Datei mit der Endung .vdi, die VirtualBox in das Verzeichnis der virtuellen Maschine speichert.
@@ -782,7 +781,6 @@ Danach wechseln Sie in die Perspective "Spring".
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_23}
 image::leitfaden_entwicklungsumgebung_bibliotheken_23.png[align="center"]
 
-//todo: aktuell?
 Zuletzt führen Sie im Projekt `isyfact-bom` die Aktion menu:Run As[Maven Install] durch.
 
 == isyfact-projektgenerator

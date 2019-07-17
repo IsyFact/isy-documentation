@@ -149,7 +149,7 @@ public class UpdateKonfigurationTaskConfiguration {
 }
 ----
 
-Der Task `KonfigurationUpdateTask` erwartet task-spezifische Konfigurationsparameter, wie sie im Kapitel <aufgabenspezifische-konfiguration>> beschrieben werden:
+Der Task `KonfigurationUpdateTask` erwartet task-spezifische Konfigurationsparameter, wie sie im Kapitel <<aufgabenspezifische-konfiguration>> beschrieben werden:
 
 [source]
 ----

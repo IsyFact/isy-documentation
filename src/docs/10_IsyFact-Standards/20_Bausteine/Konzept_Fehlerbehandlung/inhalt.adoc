@@ -171,7 +171,6 @@ Aus den Vorgaben zum Design der Fehlerklassen in Abschnitt <<design-von-fehlerkl
 .{desc-image-006}
 image::fehlerbehandlung006.png[align="center",width=100%,pdfwidth=100%]
 
-//todo: plis statt isy hier im Text
 <<image-006>> zeigt die verschiedenen Hierarchiestufen von Fehlern.
 Auf oberster Ebene befinden sich die abstrakten Implementierungen für checked (`BaseException`) und unchecked (`TechnicalRuntimeException`) Exceptions.
 Diese Oberklassen sind für alle Exceptions innerhalb einer Anwendung zu verwenden.

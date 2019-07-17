@@ -386,7 +386,7 @@ Das Controller-Bean ist ein vom Komponenten-Flow aufzurufendes *zustandsloses* S
 Das Model Bean wird dem Controller mit jedem Aufruf übergeben.
 
 // tag::important[]
-[IMPORTANT]
+[ARCHITEKTURREGEL]
 ====
 *Architekturkonvention*
 
@@ -446,7 +446,7 @@ Ein View kann auch auf mehrere zum Flow gehörende Model Beans zugreifen.
 Im View können Actions definiert sein (z.B. Submit durch einen Command-Button). Dabei werden nur Action-Tokens (String, der die Aktion benennt) übergeben, die dann im Flow entgegengenommen werden und dann Methodenaufrufe auf dem Controller auslösen.
 
 // tag::important[]
-[IMPORTANT]
+[ARCHITEKTURREGEL]
 ====
 *Architekturkonvention*
 
@@ -2006,7 +2006,6 @@ Ebenso können Hyperlinks dazu eingesetzt werden, Funktionen aufzurufen.
 Links können mit dem Standard-HTML Tag `<a/>` oder durch Nutzung des JSF Tags `<h:outputLink/>` erzeugt werden.
 
 TIP: Auch die Nutzung des JSF Tags `<h:commandLink />` ist möglich.
-
 Jedoch ist die Funktionalität nur bei aktiviertem JavaScript nutzbar.
 Entsprechende Fallbackmaßnahmen müssen also getroffen werden.
 
@@ -4922,7 +4921,6 @@ Folgende Konfigurationsdatei muss für die in die anwendungsspezifische GUI/Spri
 </beans>
 ----
 
-//todo: plis stattt isy im Dokument
 // Anmerk. (msg systems): Stand 19.07.2018 Pfad plis-web z.Zt. noch richtig, bei einer Verzeichnisstruktur
 // anpassung wäre das obige Beispiel anzupassen
 

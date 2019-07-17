@@ -37,10 +37,6 @@ Für die Komponente `isy-benutzerverwaltung-core` werden drei Tabellen benötigt
 - `Rollen`
 - `Benutzer_Rollen`
 
-// todo Ist das so richtig? Die Rollen werden schon in der Datenbank gespeichert, aber die Zuordnung von Rollen
-// todo zu Rechten geschiet über die rollenrechte.xml.
-// todo Welches Attribut RolleName?
-
 Die Rollen werden in der Datenbank gespeichert.
 Die Zuordnung von Rechten zu Rollen geschieht aber in der Datei `rollenrechte.xml`.
 Damit diese Zuordnung funktioniert, müssen die vergebenen _Rollen-IDs_ der Datenkbank mit denen aus der `rollenrechte.xml` übereinstimmen.

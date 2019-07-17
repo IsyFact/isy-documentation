@@ -256,7 +256,7 @@ Ein Portal im Sinne der Referenzarchitektur besteht aus:
 * Einem Loadbalancer, der die Lastverteilung im Web-Server-Cluster vornimmt und die SSL-Verbindung terminiert.
 * Einem Access-Manager, über den ein Single-Sign-On realisiert wird und in dem pro URL (und damit pro Fachanwendung) konfiguriert ist, welche Berechtigungen für die Nutzung der Anwendung vorhanden sein müssen.
   Innerhalb dieses Systems werden die Authentifizierung, die Prüfung der Sitzungszertifikate und eine grundlegende Autorisierung vorgenommen.
-* Einer zentrale Startseite, welche den eingeloggten Benutzern die Fachanwendungen der Register-Plattform, für welche sie berechtigt sind, präsentiert.
+* Einer zentralen Startseite, welche den eingeloggten Benutzern die Fachanwendungen der Register-Plattform, für welche sie berechtigt sind, präsentiert.
 
 Ein Portal wird somit nicht über ein eigens dafür implementiertes Programm, sondern über konfigurierte Software-Produkte umgesetzt.
 Der Zweck eines Portals ist die gemeinsame Authentifizierung und Autorisierung für alle Fachanwendungen und die Indirektion des Zugriffs von Nutzern auf die Geschäftsanwendungen.
@@ -350,7 +350,7 @@ Um neben dem operativen Betrieb einer IsyFact-Systemlandschaft parallel neue Ver
 .{desc-image-AlleSysUmgeb}
 image::AlleSysUmgeb.png[align="center"]
 
-Es werden sechs Systemumgebungen unterschieden:
+Die IsyFact unterscheidet sechs Systemumgebungen:
 
 * Produktionsumgebung
 * Staging-Umgebung
@@ -583,7 +583,6 @@ Weiterhin wird beschrieben, welche bekannten Fehler und Probleme es mit diesem P
 Im Releaseletter sind auch die Installationsanleitung inklusive der Parameter der Installation und die Aufstellung der mit dem <<<<glossar-Release>> geschlossenen Fehler-Meldungen enthalten.
 Eine Auslieferung umfasst ebenfalls Ergänzungen und Anpassungen der betroffenen Betriebshandbücher.
 Details zum Deployment sind im Dokument <<DeploymentKonzept>> beschrieben.
-
 
 Wie oben bereits erwähnt bezeichnet der Begriff Auslieferung einen Verantwortungsübergang zwischen zwei Organisationseinheiten.
 Die Entwicklung erstellt und testet die Software-Pakete und erzeugt die zugehörigen Dokumentationen.

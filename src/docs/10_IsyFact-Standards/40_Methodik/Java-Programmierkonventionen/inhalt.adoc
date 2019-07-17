@@ -417,12 +417,10 @@ Für die technische Dokumentation hat sich eine klare und schnörkellose Sprache
 Bei der Dokumentation von Programmcode sind zwei Adressatenkreise zu unterscheiden:
 
 Personen, die den Code einsetzen, d. h. nutzen wollen.
-Diese werden auch als <<glossar-Anwender>> bezeichnet.
 Sie sind an den öffentlichen Programmierschnittstellen der Packages und der Klassen bzw. Interfaces interessiert, also an der *Außensicht*.
 
 Personen, die den Code warten und weiterentwickeln müssen.
-Diese werden auch als <<glossar-Nutzer>> bezeichnet.
-Sie sind auch an den öffentlichen Programmierschnittstellen interessiert, aber vor Allem auch an den privaten Schnittstellen und der internen Implementierung, also der *Innensicht*.
+Sie sind auch an den öffentlichen Programmierschnittstellen interessiert, aber vor allem auch an den privaten Schnittstellen und der internen Implementierung, also der *Innensicht*.
 
 [NOTE]
 ====
@@ -568,9 +566,7 @@ Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese spezie
 [[aenderungshistorie]]
 == Änderungshistorie
 
-
 Es wird immer der Ist-Zustand beschrieben.
-// TODO: Ist das noch so?
 Änderungen werden in der Änderungshistorie beschrieben.
 Kommentare werden nicht dazu verwendet, alte Versionen des Codes zu deaktivieren.
 Wenn man alte Versionen wiederherstellen möchte, so ist dazu auf das Konfigurationsmanagement zurückzugreifen.

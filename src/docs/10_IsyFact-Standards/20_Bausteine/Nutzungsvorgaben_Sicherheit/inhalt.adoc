@@ -109,7 +109,6 @@ Eine Beschreibung der Konfiguration findet sich in den jeweiligen Nutzungsvorgab
 
 ==== Caching von Authentifizierungen
 
-//todo Referenz gibt es in IsyFact nicht?
 Der Baustein liefert eine <<standard-cache-konfiguration,Standard-Konfiguration für das Caching von Authentifizierungen>> an.
 Der Standardwert für die Lebensdauer von Cache-Elementen liegt bei 5 Minuten (300 Sekunden), die maximale Anzahl an Elementen im Cache bei 1000.
 Wird die maximale Anzahl an Elementen überschritten, löscht der Cache die am längsten nicht mehr verwendeten Elemente zuerst.
@@ -129,7 +128,6 @@ Wird der Parameter `isy.sicherheit.cache.maxelements` auf 0 gesetzt, werden beli
 [[konfiguration-von-rollen-und-rechten]]
 === Konfiguration von Rollen und Rechten
 
-//todo Referenz gibt es in IsyFact nicht?
 Jede Fachanwendung spezifiziert im Rahmen ihrer Systemspezifikation Rechte und bildet diese auf fachliche und technische Rollen ab.
 Bei der technischen Umsetzung müssen alle spezifizierten Rollen und Rechte konfiguriert und korrekt zugeordnet werden.
 Dies geschieht in der statischen Konfiguration in der Datei `/resources/sicherheit/rollenrechte.xml`.
@@ -410,7 +408,6 @@ In diesem Fall muss die Methode `getAuthenticationCredentials` so implementiert 
 [[sgw-autorisierung]]
 === Autorisierung im Service-Gateway
 
-//todo rf-sgw-util in isy-sicherheit?
 Der Serviceanbieter eines Service-Gateways <<ServiceGatewaySystementwurf>> verwendet den Baustein Sicherheit, um den Benutzer einer eingehenden Anfrage zu authentifizieren und zu autorisieren.
 Er verwendet dazu die Bibliothek `rf-sgw-util`, in der `isy-sicherheit` eingebunden ist.
 

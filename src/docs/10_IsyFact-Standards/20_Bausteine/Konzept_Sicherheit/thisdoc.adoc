@@ -7,7 +7,7 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 == Einleitung
 
 Sicherheit ist ein zentrales Thema einer jeden <<glossar-Fachanwendung>>.
-Bei der Umsetzung von Fachanwendungen in IT-Systemen werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
+Bei der Umsetzung von Fachanwendungen in IT-Systeme werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
 Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowie De-Facto-Standards aus der Industrie:
 
 * <<ITGrundschutz>>

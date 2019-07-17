@@ -18,7 +18,7 @@ Eine <<glossar-Software-Factory>> ist eine Sammlung von Architektur-<<glossar-Bl
 Dabei bedeutet „automatisiert“ hier nicht, dass der Quelltext des Software Systems ohne menschliches Zutun durch einen Automaten erzeugt würde.
 Es bezieht sich vielmehr darauf, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software-Factory getroffen sind, und diese auch entsprechende Komponenten zur Implementierung dieser Architektur bereithält.
 Architekten und Entwickler können sich damit im Normalfall auf die Umsetzung der jeweiligen Fachlichkeit der Anwendung konzentrieren.
-Da die Anwendung jedoch nach wie vor manuell entwickelt (und nicht generiert wird), ist es aber jederzeit möglich, dort von den Vorgaben der Software-Factoryabzuweichen, wo dies erforderlich ist.
+Da die Anwendung jedoch nach wie vor manuell entwickelt (und nicht generiert wird), ist es aber jederzeit möglich, dort von den Vorgaben der Software-Factory abzuweichen, wo dies erforderlich ist.
 
 [[isyfact-standards-und-erweiterungen]]
 == IsyFact: Standards und Erweiterungen
@@ -267,7 +267,7 @@ Darüber hinaus werden die Bausteine der <<glossar-IFS>>s kurz beschrieben.
 [[vorgaben-für-die-spezifikation]]
 == Vorgaben für die Spezifikation
 
-Für der bereitgestellten Vorlage der Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
+Für die Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
 Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage für die Systemspezifikation <<IsyFactSystemspezifikation>>.
 Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
 Bei der Erstellung von Diagrammen mit dem Enterprise Architect hilft das Dokument <<NutzungEnterpriseArchitect>>.
@@ -286,13 +286,14 @@ Diese legt die äußere Form und die Gliederung des Dokuments fest.
 Darin ist auch das Vorgehen zur Modellierung und die zu beschreibenden Inhalte vorgegeben.
 
 Zur Konstruktion des Systems, also den eigentlichen Inhalten des Systementwurfs, existieren eine Reihe von Dokumenten, die inhaltliche Vorgaben machen.
-Grundlage ist das Dokument zur Referenzarchitektur, das die wesentlichen Inhalte auf grober Ebene festlegt <<IsyFactReferenzarchitektur>>. Dieses Dokument wird durch weitere Dokumente konkretisiert.
+Grundlage ist das Dokument zur Referenzarchitektur, das die wesentlichen Inhalte auf grober Ebene festlegt <<IsyFactReferenzarchitektur>>.
+Dieses Dokument wird durch weitere Dokumente konkretisiert.
 Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind in <<ProduktKatalog>> festgelegt.
 Anwendungen müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
 
 Weitere Detaillierungen der Referenzarchitektur werden in den folgenden drei Abschnitten erläutert.
-Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstellenden Architektur:
-Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische Infrastruktur (TI-Architektur). Die genaue Unterscheidung zwischen diesen Sichten ist in <<IsyFactReferenzarchitektur>> beschrieben.
+Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstellenden Architektur: Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische Infrastruktur (TI-Architektur).
+Die genaue Unterscheidung zwischen diesen Sichten ist in <<IsyFactReferenzarchitektur>> beschrieben.
 
 [[vorgaben-für-die-a-architektur]]
 === Vorgaben für die A-Architektur
@@ -348,7 +349,7 @@ Hier ist auch der zu verwendende Batchrahmen beschrieben.
 (((Komponente,Service)))
 Die Art und Weise, wie eine Anwendung einen Service zur Nutzung innerhalb einer Plattform bereitstellt, ist in <<DetailkonzeptKomponenteService>> dargestellt.
 
-Innerhalb einer Plattform kommunizieren die einzelnen IT-Systeme mittels der Technologie Spring HttpInvoker, die eine besonders effiziente Kommunikation über http umsetzt.
+Innerhalb einer Plattform kommunizieren die einzelnen IT-Systeme mittels der Technologie Spring HttpInvoker, die eine besonders effiziente Kommunikation über HTTP umsetzt.
 Die Grundlagen dazu sind in <<GrundlagenInterneServicekommunikation>> beschrieben.
 
 [[gui]]
