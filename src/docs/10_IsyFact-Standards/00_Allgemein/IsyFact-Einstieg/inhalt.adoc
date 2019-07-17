@@ -6,7 +6,7 @@ In diesem Kapitel werden die <<glossar-IsyFact>> und die zugrundeliegenden Prinz
 [[einfuehrung-in-software-factories]]
 == Einführung in Software Factories
 
-Bei der Entwicklung von <<glossar-Anwendungssystem>>en für eine bestimmte <<glossar-domaene>> stehen Architekten und Entwickler häufig vor denselben, wiederkehrenden Problemen.
+Bei der Entwicklung von <<glossar-Anwendungssystem>>en für eine bestimmte <<glossar-Domaene>> stehen Architekten und Entwickler häufig vor denselben, wiederkehrenden Problemen.
 Zwar unterscheiden sich je nach <<glossar-Anwendung>> die Datenstrukturen, die <<glossar-Geschaeftslogik>> und die Benutzeroberflächen, aber die allgemeinen Prinzipien der Architektur, der Datenhaltung und der Gestaltung von Benutzerschnittstellen, sind in der Regel für alle Anwendungen identisch und somit wiederverwendbar.
 Ebenso lässt sich eine Vielzahl von Detailvorgaben, z.B. für den Betrieb von Anwendungen, das Logging, die Benutzerverwaltung oder für die Kommunikation von Systemen untereinander standardisieren.
 Dies ist nicht nur sinnvoll, sondern auch notwendig, wenn die verschiedenen Anwendungssysteme Teil einer <<glossar-Anwendungslandschaft>> in einem Unternehmen oder einer Behörde sind.
