@@ -387,7 +387,7 @@ Die genauen Festlegungen zur Web-GUI-Entwicklung finden sich im Dokument <<Detai
 
 [[vorgaben-für-das-systemhandbuch]]
 === Vorgaben für das Systemhandbuch
-Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen.
+Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen und beschreibt die Installation, Konfiguration und den Betrieb des IT-Systems.
 Die Vorlage legt die äußere Form sowie die Gliederung des Dokuments fest.
 Sie enthält außerdem das Vorgehen zur Erstellung und Beispiele für die zu beschreibenden Inhalte.
 
@@ -409,9 +409,6 @@ Die Bibliotheken der IsyFact werden als JAR (Java Archive) bereitgestellt und k�
 Darüber hinaus existiert eine <<Vorlageanwendung>>, die eine einfache Fachanwendung („Terminfindung“) auf Grundlage der IsyFact implementiert.
 
 Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> eine weitere Handreichung, um sich in die Implementierungsvorgaben einzuarbeiten.
-
-Für jedes realisierte System ist ein Handbuch für die Installation, Konfiguration und den Systembetrieb zu erstellen.
-Eine Vorlage dafür ist in <<IsyFactVorlageSystemhandbuch>> enthalten.
 
 [[bausteine-der-isyfact-standards]]
 === Bausteine der IsyFact-Standards
