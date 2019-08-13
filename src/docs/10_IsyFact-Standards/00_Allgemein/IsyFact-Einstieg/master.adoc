@@ -28,7 +28,7 @@ toc::[]
 include::thisdoc.adoc[]
 
 // Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]
 
 // ---------------------------BIS HIER-----------------------------------------
 
