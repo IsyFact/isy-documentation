@@ -270,9 +270,9 @@ Die Dokumentation der *Methodik* bietet neben Konzepten und Nutzungsvorgaben zu 
 
 Schließlich umfasst die Dokumentation der *Werkzeuge* ein Dokument pro Werkzeug, das die Nutzung begründet und Nutzungsvorgaben festlegt.
 
+(((IsyFact Standards)))
 [id="cisyfact-standards",reftext="IsyFact-Standards"]
 == IsyFact-Standards
-(((IsyFact Standards)))
 Im Folgenden sind die unterschiedlichen Vorgaben und Komponenten der IsyFact-Standards beschrieben.
 Der vorliegende Abschnitt ist als Referenz und als schneller Einstieg in die einzelnen Bestandteile von IsyFact konzipiert.
 Die Unterabschnitte enthalten jeweils eine kurze Erläuterung zu der jeweiligen Komponente und verweisen dann auf die zugehörige
@@ -289,9 +289,9 @@ Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstell
 Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische Infrastruktur (TI-Architektur).
 Die genaue Unterscheidung zwischen diesen Sichten ist in <<IsyFactReferenzarchitektur>> beschrieben.
 
+(((A-Architektur)))
 [[vorgaben-für-die-a-architektur]]
 === Vorgaben für die A-Architektur
-(((A-Architektur)))
 Die allgemeine Referenzarchitektur muss für die zu bauenden Systeme in einer fachlichen Architektur konkretisiert werden.
 
 Die Anwendungsarchitektur strukturiert die Software dabei in Anwendungen, die jeweils bestimmte fachliche Geschäftsprozesse unterstützen.
@@ -315,9 +315,9 @@ Weitere Erläuterungen finden sich in der Vorlage.
 Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine
 Leseanleitung dazu geliefert.
 
+(((T-Architektur)))
 [[vorgaben-für-die-t-architektur]]
 === Vorgaben für die T-Architektur
-(((T-Architektur)))
 Im Dokument <<IsyFactReferenzarchitekturITSystem>> wird die Technische Referenzarchitektur für IT-Systeme eingeführt und erläutert.
 Ein IT-System basiert demnach auf einer Drei-Schichten-Architektur und besteht aus den Komponenten, die in <<image-image008>> dargestellt sind.
 
@@ -330,34 +330,39 @@ Zu den dargestellten Komponenten gibt es detaillierte Konzepte und fertige Baust
 
 Die Komponenten und die erläuternden Konzepte sind die folgenden:
 
+(((Komponente,Datenzugriff)))
+
 Datenzugriff::
 Der Datenzugriff erfolgt über JPA bzw. Hibernate.
 Die genaue Verwendung von JPA/Hibernate und die Prinzipien, nach denen bei der Persistierung von Datenobjekten vorgegangen werden soll, sind im Dokument <<DetailkonzeptKomponenteDatenzugriff>> festgelegt.
-(((Komponente,Datenzugriff)))
+
+(((Komponente,Anwendungskern)))
 
 Anwendungskern::
 Der Anwendungskern ist in Komponenten aufgebaut.
 Diese Komponenten werden durch Spring konfiguriert.
 Der Schnitt der Komponenten ist durch die fachliche Referenzarchitektur vorgegeben.
 Die Ergänzung durch technische Komponenten und die Vorgaben für die Nutzung von Spring zu deren Konfiguration sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
-(((Komponente,Anwendungskern)))
+
+(((Komponente,Batch)))
 
 Batch::
 Vorgaben für Batches befinden sich im Dokument <<DetailkonzeptKomponenteBatch>>.
 Hier ist auch der zu verwendende Batchrahmen beschrieben.
-(((Komponente,Batch)))
+
+(((Komponente,Service)))
 
 Service::
 Die Art und Weise, wie eine Anwendung einen Service zur Nutzung innerhalb einer Plattform bereitstellt, ist
 in <<DetailkonzeptKomponenteService>> dargestellt.
 Innerhalb einer Plattform kommunizieren die einzelnen IT-Systeme mittels der Technologie Spring HttpInvoker, die eine besonders effiziente Kommunikation über HTTP umsetzt.
 Die Grundlagen dazu sind in <<GrundlagenInterneServicekommunikation>> beschrieben.
-(((Komponente,Service)))
+
+(((Komponente,GUI)))
 
 GUI::
 Die Entwicklung von GUIs erfolgt als Web-GUI auf Basis von JSF und Spring WebFlow.
 Die genauen Festlegungen zur Web-GUI-Entwicklung finden sich im Dokument <<DetailkonzeptKomponenteWebGUI>>.
-(((Komponente,GUI)))
 
 [[vorgaben-für-den-systementwurf]]
 ==== Vorgaben für den Systementwurf
@@ -372,9 +377,9 @@ Dieses Dokument wird durch weitere Dokumente konkretisiert.
 Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind im <<ProduktKatalog>> festgelegt.
 Anwendungen müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
 
+(((TI-Architektur)))
 [[vorgaben-für-die-ti-architektur]]
 === Vorgaben für die TI-Architektur
-(((TI-Architektur)))
 Die TI-Architektur von Fachanwendungen ist in <<IsyFactReferenzarchitektur>> beschrieben.
 Die zu verwendende Infrastruktur ist z.T. durch den <<ProduktKatalog>> vorgegeben.
 
@@ -397,65 +402,65 @@ Darüber hinaus existiert eine <<Vorlageanwendung>>, die eine einfache Fachanwen
 
 Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> eine weitere Handreichung, um sich in die Implementierungsvorgaben einzuarbeiten.
 
+(((Baustein)))
 [[bausteine-der-isyfact-standards]]
 === Bausteine der IsyFact-Standards
-(((Baustein)))
 Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind. Diese werden im Folgenden dargestellt:
 
+(((Baustein,Fehlerbehandlung)))
 [[fehlerbehandlung]]
 ==== Fehlerbehandlung
-(((Baustein,Fehlerbehandlung)))
 Im Dokument <<KonzeptFehlerbehandlung>> ist beschrieben, in welchen Fällen und in welcher Form die Fehler- und Ausnahmebehandlung stattfinden soll.
 
+(((Baustein,Datum & Zeit)))
 [[datum-zeit]]
 ==== Datum & Zeit
-(((Baustein,Datum & Zeit)))
 Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact. Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten. Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
 
+(((Baustein,Überwachung und Konfiguration)))
 [[administrative-überwachung-und-konfiguration]]
 ==== Administrative Überwachung und Konfiguration
-(((Baustein,Überwachung und Kommunikation)))
 Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen. Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
 
+(((Baustein,Sonderzeichen)))
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen
-(((Baustein,Behandlung Sonderzeichen)))
 Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen. Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird. In diesem Zusammenhang müssen oft auch Namen transkribiert werden. Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
 
+(((Baustein,Logging)))
 [[logging]]
 ==== Logging
-(((Baustein,Logging)))
 Fachanwendungen sollten Logs einheitlich erstellen und auswerten können. Das <<KonzeptLogging>> beschreibt die einheitliche Erstellung von Logs in Anwendungen sowie deren Auswertung auf fachlicher Ebene. Die <<NutzungsvorgabenLogging>> beschreiben die technische Umsetzung des Loggings und die technischen Möglichkeiten der Auswertung.
 
+(((Baustein,Sicherheit)))
 [[berechtigungen]]
 ==== Berechtigungen
-(((Baustein,Berechtigungen)))
 Zum Zugriff auf Informationen zu Berechtigungen eines Nutzers ist der Baustein Sicherheit zu nutzen.
 Das <<KonzeptSicherheit>> beschreibt die konzeptionellen Festlegungen hinsichtlich der Authentifizierung und Autorisierung.
 Die <<NutzungsvorgabenSicherheit>> beschreiben den Einsatz des Bausteins bei der Anwendungsentwicklung.
 Zur Nutzung dieser Komponente ist es erforderlich, dass die Rollen und Rechte einer Anwendung in einem speziellen Format abgelegt werden.
 Ein XML-Schema dazu findet sich im Anhang von <<NutzungsvorgabenSicherheit>>.
 
+(((Baustein,Task Scheduling)))
 [[task-scheduling]]
 ==== Task Scheduling
-(((Baustein,Task Scheduling)))
 Der Baustein verwendet die _Java Concurrency API_ (`java.util.concurrent`) für die Steuerung (d.h. Planung und Ausführung) periodisch wiederkehrender Aufgaben. Aufgaben sind (in Abgrenzung zu Batches) innerhalb einer Anwendungskomponente angesiedelt und werden von der Anwendung selbstständig ausgeführt. Das <<KonzeptTaskScheduling>> beschreibt die konzeptionellen Grundlagen der Steuerung von Aufgaben. Die <<NutzungsvorgabenTaskScheduling>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind, und alle bereits in der IsyFact definierten Aufgaben (wie z.B. das periodische Neuladen der Anwendungskonfiguration).
 
+(((Baustein,Verzeichnisdienst)))
 [[ldap-zugriffe]]
 ==== LDAP-Zugriffe
-(((Baustein,Verzeichnisdienst)))
 Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight Directory Access Protocol (LDAP) ist, ist im <<NutzungsvorgabenSpringLDAP>> beschrieben.
 
+(((Baustein,Polling)))
 [[polling]]
 ==== Polling
-(((Baustein,Polling)))
 In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden. Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen. Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
 
 Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden. Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden. Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an. Der Baustein Polling definiert ein solches Verfahren. Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
 
+(((Baustein,Util)))
 [[util]]
 ==== Util
-(((Baustein,Util)))
 Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen der IsyFact genutzt werden können. Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen. Diese werden in <<NutzungsvorgabenIsyUtil>> überblicksartig beschrieben.
 
 [[cisyfact-erweiterungen]]
@@ -465,14 +470,14 @@ Aktuell werden nur wenige Erweiterungen unter einer Open-Source-Lizenz zur Verf�
 
 NOTE: Bei Interesse wenden Sie sich bitte per E-Mail (isyfact@bva.bund.de) an uns.
 
+(((Baustein)))
 [[bausteine-der-isyfact-erweiterungen]]
 === Bausteine der IsyFact-Erweiterungen
-(((Baustein)))
 Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die bei Bedarf eingesetzt werden können. Diese werden im Folgenden dargestellt:
 
+(((Baustein,Benutzerverwaltung)))
 [[benutzerverwaltung]]
 ==== Benutzerverwaltung
-(((Baustein,Benutzerverwaltung)))
 Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht. Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen. Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
 
 [[erste-schritte]]
