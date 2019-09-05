@@ -282,9 +282,27 @@ Der Aufbau dieses Kapitels orientiert sich am Entwicklungsprozess einer Fachanwe
 des V-Modells XT: Spezifikation, Systementwurf und Realisierung.
 Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 
-[[vorgaben-für-die-spezifikation]]
-=== Vorgaben für die Spezifikation
+Das Dokument <<IsyFactReferenzarchitektur>> gibt die Grundkonzepte für den Aufbau einer Anwendung vor.
+Dazu ist eine Referenzarchitektur vorgegeben.
+Weitere Detaillierungen der Referenzarchitektur werden in den folgenden drei Abschnitten erläutert.
+Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstellenden Architektur:
+Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische Infrastruktur (TI-Architektur).
+Die genaue Unterscheidung zwischen diesen Sichten ist in <<IsyFactReferenzarchitektur>> beschrieben.
 
+[[vorgaben-für-die-a-architektur]]
+=== Vorgaben für die A-Architektur
+(((A-Architektur)))
+Die allgemeine Referenzarchitektur muss für die zu bauenden Systeme in einer fachlichen Architektur konkretisiert werden.
+
+Die Anwendungsarchitektur strukturiert die Software dabei in Anwendungen, die jeweils bestimmte fachliche Geschäftsprozesse unterstützen.
+Diese fachliche Architektur wird in der softwaretechnischen Architektur abgebildet.
+Der Fachliche Chefarchitekt definiert dabei, aus welchen Komponenten sich die Anwendungslandschaft zusammensetzt, wie diese miteinander oder mit Systemen außerhalb der Anwendungslandschaft über Schnittstellen agieren und welchen fachlichen Domänen diese Systeme zugehörig sind.
+
+Die Facharchitektur beschreibt zudem die Geschäftsprozesse, Funktionalitäten und Regeln, nach denen die unterstützenden Systeme strukturiert sind.
+Daher hält sie eine aktuelle und vollständige Dokumentation dieser vor.
+
+[[vorgaben-für-die-spezifikation]]
+==== Vorgaben für die Spezifikation
 Für die Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
 Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage für die Systemspezifikation <<IsyFactSystemspezifikation>>.
 Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
@@ -297,105 +315,74 @@ Weitere Erläuterungen finden sich in der Vorlage.
 Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine
 Leseanleitung dazu geliefert.
 
-[[vorgaben-für-die-a-architektur]]
-==== Vorgaben für die A-Architektur
-(((A-Architektur)))
-Das Dokument <<IsyFactReferenzarchitektur>> gibt die Grundkonzepte für den Aufbau einer Anwendung vor.
-Dazu ist eine Referenzarchitektur vorgegeben.
-Diese allgemeine Referenzarchitektur muss für die zu bauenden Systeme in einer fachlichen Architektur konkretisiert werden.
-
-Die Anwendungsarchitektur strukturiert die Software dabei in Anwendungen, die jeweils bestimmte fachliche Geschäftsprozesse unterstützen.
-Diese fachliche Architektur wird in der softwaretechnischen Architektur abgebildet.
-Der Fachliche Chefarchitekt definiert dabei, aus welchen Komponenten sich die Anwendungslandschaft zusammensetzt, wie diese miteinander oder mit Systemen außerhalb der Anwendungslandschaft über Schnittstellen agieren und welchen fachlichen Domänen diese Systeme zugehörig sind.
-
-Die Facharchitektur beschreibt zudem die Geschäftsprozesse, Funktionalitäten und Regeln, nach denen die unterstützenden Systeme strukturiert sind.
-Daher hält sie eine aktuelle und vollständige Dokumentation dieser vor.
-
-[[vorgaben-für-den-systementwurf]]
-=== Vorgaben für den Systementwurf
-
-Der Systementwurf ist gemäß der Vorlage zum Systementwurf zu erstellen <<IsyFactSystementwurf>>.
-Diese legt die äußere Form und die Gliederung des Dokuments fest.
-Darin ist auch das Vorgehen zur Modellierung und die zu beschreibenden Inhalte vorgegeben.
-
-Zur Konstruktion des Systems, also den eigentlichen Inhalten des Systementwurfs, existieren eine Reihe von
-Dokumenten, die inhaltliche Vorgaben machen.
-Grundlage ist das Dokument zur Referenzarchitektur, das die wesentlichen Inhalte auf grober Ebene
-festlegt <<IsyFactReferenzarchitektur>>. Dieses Dokument wird durch weitere Dokumente konkretisiert.
-Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind in <<ProduktKatalog>> festgelegt.
-Anwendungen müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
-
-Weitere Detaillierungen der Referenzarchitektur werden in den folgenden drei Abschnitten erläutert.
-Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstellenden Architektur:
-Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische
-Infrastruktur (TI-Architektur). Die genaue Unterscheidung zwischen diesen Sichten
-ist in <<IsyFactReferenzarchitektur>> beschrieben.
-
 [[vorgaben-für-die-t-architektur]]
-==== Vorgaben für die T-Architektur
+=== Vorgaben für die T-Architektur
 (((T-Architektur)))
 Im Dokument <<IsyFactReferenzarchitekturITSystem>> wird die Technische Referenzarchitektur für IT-Systeme eingeführt und erläutert.
-Ein IT-System basiert demnach auf einer Drei-Schichten-Architektur und besteht aus den Komponenten, die in <<image-image008>>
-dargestellt sind.
+Ein IT-System basiert demnach auf einer Drei-Schichten-Architektur und besteht aus den Komponenten, die in <<image-image008>> dargestellt sind.
 
 :desc-image-image008: Technische Referenzarchitektur
 [id="image-image008",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-image008}
 image::image008.png[align="center"]
 
-Zu den dargestellten Komponenten gibt es detaillierte Konzepte und fertige Bausteine in der IsyFact sowie Codebeispiele
-in der <<Vorlageanwendung>>, die eine beispielhafte Umsetzung zeigen.
+Zu den dargestellten Komponenten gibt es detaillierte Konzepte und fertige Bausteine in der IsyFact sowie Codebeispiele in der <<Vorlageanwendung>>, die eine beispielhafte Umsetzung zeigen.
 
 Die Komponenten und die erläuternden Konzepte sind die folgenden:
 
-[[datenzugriff]]
-===== Datenzugriff
+Datenzugriff::
+Der Datenzugriff erfolgt über JPA bzw. Hibernate.
+Die genaue Verwendung von JPA/Hibernate und die Prinzipien, nach denen bei der Persistierung von Datenobjekten vorgegangen werden soll, sind im Dokument <<DetailkonzeptKomponenteDatenzugriff>> festgelegt.
 (((Komponente,Datenzugriff)))
-Der Datenzugriff erfolgt über JPA bzw. Hibernate. Die genaue Verwendung von JPA/Hibernate und die Prinzipien,
-nach denen bei der Persistierung von Datenobjekten vorgegangen werden soll, sind im
-Dokument <<DetailkonzeptKomponenteDatenzugriff>> festgelegt.
 
-[[anwendungskern]]
-===== Anwendungskern
-(((Komponente,Anwendungskern)))
+Anwendungskern::
 Der Anwendungskern ist in Komponenten aufgebaut.
 Diese Komponenten werden durch Spring konfiguriert.
 Der Schnitt der Komponenten ist durch die fachliche Referenzarchitektur vorgegeben.
-Die Ergänzung durch technische Komponenten und die Vorgaben für die Nutzung von Spring zu deren
-Konfiguration sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
+Die Ergänzung durch technische Komponenten und die Vorgaben für die Nutzung von Spring zu deren Konfiguration sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
+(((Komponente,Anwendungskern)))
 
-[[batch]]
-===== Batch
+Batch::
+Vorgaben für Batches befinden sich im Dokument <<DetailkonzeptKomponenteBatch>>.
+Hier ist auch der zu verwendende Batchrahmen beschrieben.
 (((Komponente,Batch)))
-Vorgaben für Batches befinden sich im Dokument <<DetailkonzeptKomponenteBatch>>. Hier ist auch der zu verwendende Batchrahmen beschrieben.
 
-[[service]]
-===== Service
-(((Komponente,Service)))
+Service::
 Die Art und Weise, wie eine Anwendung einen Service zur Nutzung innerhalb einer Plattform bereitstellt, ist
 in <<DetailkonzeptKomponenteService>> dargestellt.
-
-Innerhalb einer Plattform kommunizieren die einzelnen IT-Systeme mittels der Technologie Spring HttpInvoker, die eine
-besonders effiziente Kommunikation über http umsetzt.
+Innerhalb einer Plattform kommunizieren die einzelnen IT-Systeme mittels der Technologie Spring HttpInvoker, die eine besonders effiziente Kommunikation über HTTP umsetzt.
 Die Grundlagen dazu sind in <<GrundlagenInterneServicekommunikation>> beschrieben.
+(((Komponente,Service)))
 
-[[gui]]
-===== GUI
-(((Komponente,GUI)))
+GUI::
 Die Entwicklung von GUIs erfolgt als Web-GUI auf Basis von JSF und Spring WebFlow.
 Die genauen Festlegungen zur Web-GUI-Entwicklung finden sich im Dokument <<DetailkonzeptKomponenteWebGUI>>.
+(((Komponente,GUI)))
 
-[[vorgaben-für-das-systemhandbuch]]
-=== Vorgaben für das Systemhandbuch
-Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen und beschreibt die Installation, Konfiguration und den Betrieb des IT-Systems.
-Die Vorlage legt die äußere Form sowie die Gliederung des Dokuments fest.
-Sie enthält außerdem das Vorgehen zur Erstellung und Beispiele für die zu beschreibenden Inhalte.
+[[vorgaben-für-den-systementwurf]]
+==== Vorgaben für den Systementwurf
+
+Der Systementwurf ist gemäß der Vorlage zum Systementwurf zu erstellen <<IsyFactSystementwurf>>.
+Diese legt die äußere Form und die Gliederung des Dokuments fest.
+Darin ist auch das Vorgehen zur Modellierung und die zu beschreibenden Inhalte vorgegeben.
+
+Zur Konstruktion des Systems, also den eigentlichen Inhalten des Systementwurfs, existieren eine Reihe von Dokumenten, die inhaltliche Vorgaben machen.
+Grundlage ist die <<IsyFactReferenzarchitektur>>, welche die wesentlichen Inhalte auf grober Ebene festlegt.
+Dieses Dokument wird durch weitere Dokumente konkretisiert.
+Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind im <<ProduktKatalog>> festgelegt.
+Anwendungen müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
 
 [[vorgaben-für-die-ti-architektur]]
-==== Vorgaben für die TI-Architektur
+=== Vorgaben für die TI-Architektur
 (((TI-Architektur)))
 Die TI-Architektur von Fachanwendungen ist in <<IsyFactReferenzarchitektur>> beschrieben.
 Die zu verwendende Infrastruktur ist z.T. durch den <<ProduktKatalog>> vorgegeben.
+
+[[vorgaben-für-das-systemhandbuch]]
+==== Vorgaben für das Systemhandbuch
+Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen und beschreibt die Installation, Konfiguration und den Betrieb des IT-Systems.
+Die Vorlage legt die äußere Form sowie die Gliederung des Dokuments fest.
+Sie enthält außerdem das Vorgehen zur Erstellung und Beispiele für die zu beschreibenden Inhalte.
 
 [[vorgaben-für-die-realisierung]]
 === Vorgaben für die Realisierung
