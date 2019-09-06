@@ -284,9 +284,9 @@ Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 Die <<IsyFactReferenzarchitektur>> definiert die Architektur einzelner Anwendungssysteme bis hin zu Anwendungslandschaften.
 Dazu beschreibt sie drei Architektursichten:
 
-* Fachliche Architektur (A-Architektur)
-* Softwaretechnische Architektur (T-Architektur)
-* Architektur der technischen Infrastruktur (TI-Architektur)
+* Fachliche Architektur (A-Architektur),
+* Softwaretechnische Architektur (T-Architektur),
+* Architektur der technischen Infrastruktur (TI-Architektur).
 
 Diese Architektursichten decken die wichtigsten Blickwinkel auf die Architektur ab: fachlich, technisch und betrieblich.
 Ein zentraler Vorteil der IsyFact besteht darin, dass die Architektursichten ineinander überführbar sind.
@@ -326,7 +326,7 @@ Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussd
 
 [[vorgaben-für-die-t-architektur]]
 ==== Vorgaben für die T-Architektur
-Die softwaretechnische Architektur wird nach der Erstellung der Spezifikation aus der fachlichen Architektur entwickelt.
+Die softwaretechnische Architektur wird auf Basis der Spezifikation aus der fachlichen Architektur entwickelt.
 
 Im Dokument <<IsyFactReferenzarchitekturITSystem>> wird die softwaretechnische Architektur eingeführt und erläutert.
 Die technischen Entsprechungen für die fachlich motivierte Anwendungslandschaft und das Anwendungssystem sind die technisch motivierten Begriffe der Systemlandschaft und respektive des IT-Systems.
