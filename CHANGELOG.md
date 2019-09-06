@@ -1,3 +1,6 @@
+# 2.1.0
+- `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
+
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
 - `IFS-353`: Ablösung von Dozer durch Orika beschrieben
