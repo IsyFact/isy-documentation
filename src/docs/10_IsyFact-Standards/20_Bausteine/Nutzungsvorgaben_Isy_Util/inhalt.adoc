@@ -1,3 +1,10 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_Isy_Util
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 [[aufbau-von-isy-util]]
 = Aufbau von isy-util
 

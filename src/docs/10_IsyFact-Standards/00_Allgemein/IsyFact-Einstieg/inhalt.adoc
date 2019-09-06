@@ -1,5 +1,13 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| IsyFact-Einstieg
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 [[vorstellung-der-isyfact]]
 = Vorstellung der IsyFact
+
 
 In diesem Kapitel werden die IsyFact und die zugrundeliegenden Prinzipien erläutert.
 

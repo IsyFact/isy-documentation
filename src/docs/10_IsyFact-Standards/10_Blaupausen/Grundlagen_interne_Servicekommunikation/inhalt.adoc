@@ -1,5 +1,13 @@
 [[grundlagen]]
 = Grundlagen
+**Dokumentinformationen**
+
+[cols="1,4"]
+|====
+|Dokumenten-ID:| Grundlagen_interne_Servicekommunikation
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
 In diesem Abschnitt beschreiben wir die Grundlagen der Kommunikation innerhalb der Plattform.
 Zunächst wird in Abschnitt <<interne-und-externe-servicekommunikation>> die Unterscheidung von internen und externen Services

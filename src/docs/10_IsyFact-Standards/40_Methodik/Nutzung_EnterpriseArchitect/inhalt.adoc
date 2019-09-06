@@ -1,3 +1,11 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzung-Enterprise-Architect
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
 [[vorgehen-zur-erstellung-der-spezifikationsdokumente]]
 = Vorgehen zur Erstellung der Spezifikationsdokumente
 

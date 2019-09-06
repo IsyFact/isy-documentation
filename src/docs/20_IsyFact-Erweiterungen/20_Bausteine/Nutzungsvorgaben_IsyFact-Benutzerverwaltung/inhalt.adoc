@@ -1,3 +1,22 @@
+
+*Dokument-Informationen*
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_IsyFact-Benutzerverwaltung
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
+*Java Bibliothek / IT-System*
+
+[options="header",cols="3,1,2"]
+|====
+|Name                               |Art        |Version
+|isy-benutzerverwaltung-core        |Bibliothek |1.5.x
+|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
+|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
+|====
+
 = Einbinden von isy-benutzerverwaltung-core
 
 In diesem Abschnitt wird beschrieben, wie man das Modul `isy-benutzerverwaltung-core` in die eigene Anwendung 

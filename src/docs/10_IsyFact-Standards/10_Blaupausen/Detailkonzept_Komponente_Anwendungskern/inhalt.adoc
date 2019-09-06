@@ -1,5 +1,15 @@
+
 = Detailkonzept Anwendungskern: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+**Dokumentinformationen**
+
+[cols="1,4"]
+|====
+|Dokumenten-ID:| Detailkonzept_Komponente_Anwendungskern
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
 // tag::inhalt[]
 [[aufbau-des-anwendungskerns]]

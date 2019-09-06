@@ -1,7 +1,17 @@
+Dieses Kapitel enthält einige grundlegende Informationen zum Umgang Dauern und Zeitzonen.
+
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_Datum_Zeit
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 [[dauern-und-zeitzonen]]
 = Dauern und Zeitzonen
 
-Dieses Kapitel enthält einige grundlegende Informationen zum Umgang Dauern und Zeitzonen.
+
 
 [[zeitdauer-mit-period-und-duration]]
 == Zeitdauer mit Period und Duration

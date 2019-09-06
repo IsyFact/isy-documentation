@@ -1,5 +1,13 @@
 [[glossar-isyfact]]
 = Glossar
+*Dokument-Informationen*
+
+[cols="<.^1,<.^2"]
+|====
+|Dokumenten-ID:| IsyFact-Glossar
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 
 Die folgende Tabelle zeigt alle für die IsyFact zentralen Begriffe.
 

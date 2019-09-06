@@ -1,3 +1,11 @@
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Konzept_Task_Scheduling
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
 [[anforderungen]]
 = Anforderungen
 

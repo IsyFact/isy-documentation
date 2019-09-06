@@ -9,8 +9,7 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
-// Änderungsübersicht
-include::docinfo.adoc[]
+
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]

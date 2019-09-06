@@ -49,6 +49,7 @@
                 <executions>
 
                     <!-- Erzeugt das Literaturverzeichnis -->
+                    <!--
                     <execution>
                         <id>generate-bibliography</id>
                         <phase>generate-sources</phase>
@@ -63,9 +64,10 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>
+                    </execution>-->
 
                     <!-- Erzeugt das Glossar -->
+                    <!--
                     <execution>
                         <id>generate-glossary</id>
                         <phase>generate-sources</phase>
@@ -80,9 +82,10 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>
+                    </execution>-->
 
                     <!-- Erzeugt ... -->
+                    <!--
                     <execution>
                         <id>generate-lists</id>
                         <phase>generate-sources</phase>
@@ -97,7 +100,8 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>
+                    </execution>-->
+                    <!--
                     <execution>
                         <id>post-process-html</id>
                         <phase>process-resources</phase>
@@ -111,7 +115,7 @@
                                 <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/postprocesshtml.sh</argument>
                             </arguments>
                         </configuration>
-                    </execution>
+                    </execution>-->
                 </executions>
             </plugin>
             <plugin>
@@ -146,7 +150,7 @@
                     <dependency>
                         <groupId>org.jruby</groupId>
                         <artifactId>jruby-complete</artifactId>
-                        <version>9.1.12.0</version>
+                        <version>9.1.14.0</version>
                     </dependency>
                     <dependency>
                         <groupId>org.asciidoctor</groupId>

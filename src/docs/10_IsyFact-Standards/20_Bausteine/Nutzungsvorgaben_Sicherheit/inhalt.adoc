@@ -3,6 +3,25 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 
 // tag::inhalt[]
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Nutzungsvorgaben_Sicherheit
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
+
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3"]
+|====
+|Name |Art |Version
+|`isy-sicherheit` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
+|`isy-aufrufkontext` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
+|====
+
 [[grundkonzepte-und-konfiguration]]
 == Grundkonzepte und Konfiguration
 Der Baustein Sicherheit definiert in der Bibliothek `isy-sicherheit` folgende, zentrale Schnittstellen:
