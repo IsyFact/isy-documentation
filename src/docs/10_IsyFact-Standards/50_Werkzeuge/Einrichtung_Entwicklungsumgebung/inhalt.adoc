@@ -680,7 +680,7 @@ image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
 In diesem Abschnitt wird gezeigt, wie Sie den IsyFact Projektgenerator in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
 einer neuen Anwendung vorbereiten. Mit dem Projektgenerator werden Sie später die Hello-World-Anwendung erzeugen.
 
-Für den IsyFact Projektgenerator müssen keine Bibliotheken manuell installiert werden. Benötigte Bibliotheken werden während des Build-Vorgangs automatisch aus Maven-Central geladen.
+Für den IsyFact Projektgenerator müssen keine Bibliotheken manuell installiert werden. Benötigte Bibliotheken werden während des Build-Vorgangs automatisch heruntergeladen.
 
 TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten. Die URL zu den
 GitHub-Repositories lautet: https://github.com/isyfact.
@@ -741,7 +741,7 @@ Hier sollte jetzt im Package-Explorer das Maven-Projekt `isyfact-projektgenerato
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_30}
 image::leitfaden_entwicklungsumgebung_bibliotheken_30.png[align="center"]
 
-Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie abermals die Aktion menu:Run As[Maven Install] aus.
+Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie die Aktion menu:Run As[Maven Install] aus.
 
 [[hello-world-anwendung-generieren]]
 = Hello-World-Anwendung generieren
