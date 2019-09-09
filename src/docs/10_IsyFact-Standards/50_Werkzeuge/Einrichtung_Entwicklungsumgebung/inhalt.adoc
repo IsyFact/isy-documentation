@@ -7,7 +7,7 @@ Der Leitfaden führt Sie durch folgende Schritte:
 
 . <<virtuelle-maschine-vorbereiten>> (optional)
 . benötigte <<werkzeuge-installieren>> und konfigurieren
-. <<isyfact-bibliotheken-installieren>>
+. <<isyfact-projektgenerator-installieren>>
 . <<hello-world-anwendung-generieren>>
 
 == Voraussetzungen
@@ -674,27 +674,23 @@ image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
 
 * Das Checkstyle-Fenster kann anschließend über eine Schaltfläche in den _Tool Buttons_ angezeigt werden
 
-[[isyfact-bibliotheken-installieren]]
-= IsyFact-Bibliotheken installieren
+[[isyfact-projektgenerator-installieren]]
+= IsyFact-Projektgenerator installieren
 
-In diesem Abschnitt wird gezeigt, wie Sie das IsyFact-Framework in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
-einer neuen Anwendung vorbereiten.
+In diesem Abschnitt wird gezeigt, wie Sie den IsyFact Projektgenerator in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
+einer neuen Anwendung vorbereiten. Mit dem Projektgenerator werden Sie später die Hello-World-Anwendung erzeugen.
+
+Für den IsyFact Projektgenerator müssen keine Bibliotheken manuell installiert werden. Benötigte Bibliotheken werden während des Build-Vorgangs automatisch heruntergeladen.
 
 TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten. Die URL zu den
 GitHub-Repositories lautet: https://github.com/isyfact.
 
-[[isyfact-standards]]
-== isyfact-standards
-
-Sie benötigen in jedem Fall Bibliotheken der IsyFact-Standards.
-Alle Bibliotheken der IsyFact-Standards liegen im gleichnamigen Repository `isyfact-standards`.
-
-Um die GitHub-Repositories zu klonen, könnten Sie Git auf der Kommandozeile einsetzen.
+Um das GitHub-Repository für den IsyFact Projektgenerator zu klonen, könnten Sie Git auf der Kommandozeile einsetzen.
 In dieser Anleitung wird jedoch das Arbeiten mit Git innerhalb der STS gezeigt.
 Starten Sie also die STS und öffnen Sie dort die Perspektive Git.
 Klicken Sie in der Perspektive Git entweder auf die Clone-Schaltfläche oder auf den Link "Clone a Git repository".
 
-:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_04: Clonen eines Git Repositories
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_04: Clonen des Git Repositories
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_04",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_04}
 image::leitfaden_entwicklungsumgebung_bibliotheken_04.png[align="center"]
@@ -710,75 +706,42 @@ Klicken Sie anschließend auf "Next".
 In dem aufkommenden Fenster können Sie online nach GitHub-Repositories suchen.
 Geben Sie im Suchfeld "IsyFact" ein und klicken Sie auf den Button "Search".
 Daraufhin sollten im Fenster alle GitHub-Repositories aufgelistet werden, bei denen im Namen der Bezeichner "IsyFact" vorkommt.
-Selektieren Sie dort das GitHub-Repository `isyfact-standards` und klicken Sie auf "Next".
-
-Im nächsten Fenster wird der Branch ausgewählt, der lokal heruntergeladen werden soll.
-Wählen Sie den `master`-Branch aus und klicken Sie erneut auf "Next".
-Klicken Sie im nächsten Fenster abschließend auf "Finish".
-
-Als nächstes importieren Sie das Maven-Projekt aus dem heruntergeladenen Repository.
-Hierfür klicken Sie mit der rechten Maustaste auf das Repository und wählen den Eintrag "Import Projects" aus.
-Im daraufhin erscheinenden Fenster bestätigen Sie den Import des Maven-Projekts `isyfact-standards` mit einem Klick auf Finish.
-Wechseln Sie anschließend in die Perspective "Spring".
-Hier sollte jetzt im Package-Explorer das Maven-Projekt `isyfact-standards` zu sehen sein.
-
-Zum erstmaligen Bau und Installation in Ihrem lokalen Maven-Repository klicken Sie mit der rechten Maustaste auf das Repository und führen die Aktion menu:Run As[Maven Install] aus.
-
-== isyfact-bom
-
-Als Nächstes beschaffen Sie sich das GitHub-Repository `isyfact-bom`.
-Das BOM enthält neben den Bibliotheken der IsyFact-Standards weitere Abhängigkeiten der IsyFact.
-Wechseln Sie zur Perspektive Git und laden Sie das GitHub-Repository `isyfact-bom` herunter.
-
-:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_20: Github als Quelle für isyfact-bom
-[id="image-leitfaden_entwicklungsumgebung_bibliotheken_20",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_20}
-image::leitfaden_entwicklungsumgebung_bibliotheken_20.png[align="center",width=60%,pdfwidth=70%]
-
-Klicken Sie auf "Next".
-
-:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21: Selektion des master-branch
-[id="image-leitfaden_entwicklungsumgebung_bibliotheken_21",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21}
-image::leitfaden_entwicklungsumgebung_bibliotheken_21.png[align="center",width=60%,pdfwidth=70%]
-
-Klicken Sie erneut auf "Next".
-
-:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22: lokaler Speicherort für isyfact-bom
-[id="image-leitfaden_entwicklungsumgebung_bibliotheken_22",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22}
-image::leitfaden_entwicklungsumgebung_bibliotheken_22.png[align="center",width=60%,pdfwidth=70%]
-
-Bestätigen Sie mit einem Mausklick auf "Finish".
-
-Wenn das Repository heruntergeladen worden ist, importieren Sie es als Maven-Projekt.
-Danach wechseln Sie in die Perspective "Spring".
-
-:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_23: Import des Projektes isyfact-bom
-[id="image-leitfaden_entwicklungsumgebung_bibliotheken_23",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_23}
-image::leitfaden_entwicklungsumgebung_bibliotheken_23.png[align="center"]
-
-Zuletzt führen Sie im Projekt `isyfact-bom` die Aktion menu:Run As[Maven Install] durch.
-
-== isyfact-projektgenerator
-
-Zuletzt muss auch noch das GitHub-Repository des Projekt-Generators beschafft werden, mit Sie später die Hello-World-Anwendung erzeugen werden.
-Wechseln Sie wiederum zur Perspektive Git und klonen Sie das Projekt `isyfact-projektgenerator`.
+Selektieren Sie dort das GitHub-Repository `isyfact-projektgenerator` und klicken Sie auf "Next".
 
 :desc-image-leitfaden_entwicklungsumgebung_bibliotheken_29: Selektion isyfact-projektgenerator auf GitHub
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_29",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_29}
 image::leitfaden_entwicklungsumgebung_bibliotheken_29.png[align="center",width=60%,pdfwidth=70%]
 
-Importieren Sie das im Repository enthaltene Maven-Projekt.
+Im nächsten Fenster wird der Branch ausgewählt, der lokal heruntergeladen werden soll.
+Wählen Sie den `master`-Branch aus und klicken Sie erneut auf "Next".
 
-:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_30: Import des Projekt-Generators
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21: Selektion des master-branch
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_21",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_21}
+image::leitfaden_entwicklungsumgebung_bibliotheken_21.png[align="center",width=60%,pdfwidth=70%]
+
+Geben Sie nun den lokalen Pfad an, unter dem das Repository gespeichert werden soll.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22: lokaler Speicherort für isyfact-projektgenerator
+[id="image-leitfaden_entwicklungsumgebung_bibliotheken_22",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_22}
+image::leitfaden_entwicklungsumgebung_bibliotheken_22.png[align="center",width=60%,pdfwidth=70%]
+
+Bestätigen Sie mit einem Mausklick auf "Finish".
+
+Als nächstes importieren Sie das Maven-Projekt aus dem heruntergeladenen Repository.
+Hierfür klicken Sie mit der rechten Maustaste auf das Repository und wählen den Eintrag "Import Projects" aus.
+Im daraufhin erscheinenden Fenster bestätigen Sie den Import des Maven-Projekts `isyfact-projektgenerator` mit einem Klick auf Finish.
+Wechseln Sie anschließend in die Perspective "Spring".
+Hier sollte jetzt im Package-Explorer das Maven-Projekt `isyfact-projektgenerator` zu sehen sein.
+
+:desc-image-leitfaden_entwicklungsumgebung_bibliotheken_30: Import des Projektes isyfact-projektgenerator
 [id="image-leitfaden_entwicklungsumgebung_bibliotheken_30",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_bibliotheken_30}
 image::leitfaden_entwicklungsumgebung_bibliotheken_30.png[align="center"]
 
-Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie abermals die Aktion menu:Run As[Maven Install] aus.
+Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie die Aktion menu:Run As[Maven Install] aus.
 
 [[hello-world-anwendung-generieren]]
 = Hello-World-Anwendung generieren
