@@ -13,7 +13,7 @@ Im Folgenden wird beschrieben, was die Idee hinter der IsyFact ist und welche in
 [[die-idee-der-isyfact]]
 === Die Idee der IsyFact
 
-Beschäftigt man sich mit dem Entwurf und der Implementierung von Anwendungslandschaften, so stellt man fest, dass sich die einzelnen <<glossar-Fachanwendung>>en im Allgemeinen sehr ähnlich sind.
+Beschäftigt man sich mit dem Entwurf und der Implementierung von Anwendungslandschaften, so stellt man fest, dass sich die einzelnen <<glossar-Fachanwendung,Fachanwendungen>> im Allgemeinen sehr ähnlich sind.
 Viele Problemstellungen müssen nur einmal gelöst werden und können dann wiederverwendet werden.
 
 Die IsyFact wurde entwickelt, um unterschiedliche Fachanwendungen effizient entwerfen, realisieren und betreiben zu können.
@@ -39,7 +39,7 @@ Die Lösungen decken fünf Bereiche ab: Blaupausen, Bausteine, Betriebsplattform
 
 *Blaupausen:* <<glossar-Blaupause>n beschreiben die vogegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Fachanwendungen aus drei verschiedenen Sichten: der fachlichen Sicht, der Sicht der softwaretechnischen Umsetzung und der Sicht der technischen Infrastruktur.
 
-*Bausteine:* <<glossar-Baustein>>e sind konkrete, strukturierte Lösungen zur Umsetzung der in den Blaupausen beschriebenen Architektur und Konzepte.
+*Bausteine:* <<glossar-Baustein,Bausteine>> sind konkrete, strukturierte Lösungen zur Umsetzung der in den Blaupausen beschriebenen Architektur und Konzepte.
 Bausteine sind wieder verwendbare Softwarelösungen, z.B. ein Regelwerk für fachliche Konsistenzprüfungen oder Komponenten zur Protokollierung.
 Diese Bausteine liegen in unterschiedlichen Formen vor: Es gibt fachliche und technische Services im Sinne einer serviceorientierten Architektur (SOA) und wieder verwendbare Bibliotheken und Programmiervorlagen.
 Dazu gehören auch am Markt verfügbare Fertigprodukte, für die detaillierte Nutzungsvorgaben erstellt wurden.
@@ -54,7 +54,7 @@ Die Methodik der IsyFact bietet verschiedene Vorschläge zu allen Phasen des Sof
 Das Projektvorgehen selbst ist V-Modell®-XT-konform.
 
 *Werkzeuge:* Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Registern.
-Dazu bietet sie vorkonfigurierte <<glossar-Werkzeug>>e, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
+Dazu bietet sie vorkonfigurierte <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
 
 [[einordnung-der-referenzarchitektur-in-die-isyfact]]
 == Einordnung der Referenzarchitektur in die IsyFact
@@ -152,25 +152,25 @@ image::FA-AW.png[align="center"]
 
 Zur Strukturierung der <<glossar-Anwendungslandschaft>> werden drei fachliche Hierarchieebenen festgelegt:
 
-*<<glossar-Anwendungsdomaene>>n:* Auf der obersten Hierarchieebene werden Anwendungsdomänen gebildet: Anwendungsdomänen sind fachlich eng zusammengehörige Mengen von Anwendungssystemen
+*<<glossar-Anwendungsdomaene,Anwendungsdomaene>>:* Auf der obersten Hierarchieebene werden Anwendungsdomänen gebildet: Anwendungsdomänen sind fachlich eng zusammengehörige Mengen von Anwendungssystemen
 zur Unterstützung von Geschäftsprozessen, die als eine Einheit angesehen werden können.
 In <<image-FA-AW2>> wurden zwei Domänen gebildet, erkennbar an den unteren schwarzen Kästen mit der Beschriftung „Domäne“.
 
 Zwischen den Anwendungssystemen unterschiedlicher Anwendungsdomänen sollten nur wenige, klar definierte Nutzungsbeziehungen existieren.
 
-*<<glossar-Anwendungssystem>>e:* Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Benutzungsschnittstellen.
+*<<glossar-Anwendungssystem,Anwendungssysteme>>:* Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Benutzungsschnittstellen.
 Geschäftsprozesse werden durch Anwendungssysteme unterstützt.
 Anwendungssysteme sind einer Anwendungsdomäne zugeordnet.
 Anwendungssysteme setzen sich aus Anwendungskomponenten zusammen.
 Im Rahmen der allgemeinen Referenzarchitektur werden zunächst nur Fachanwendungen und Querschnittssysteme als Typen von Anwendungssystemen unterschieden Eine weitergehende Unterscheidung der Fachanwendungen muss im Rahmen des Tailorings der Referenzarchitektur erfolgen.
 
-* *<<glossar-Fachanwendung>>en:* Eine Fachanwendung implementiert für sich genommen oder im Zusammenspiel mit anderen Fachanwendungen einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne.
+* *<<glossar-Fachanwendung,Fachanwendungen>>:* Eine Fachanwendung implementiert für sich genommen oder im Zusammenspiel mit anderen Fachanwendungen einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne.
 Sie implementiert entweder die gesamte hierfür notwendige Funktionalität (monolithisch), von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
 Oder die Fachanwendung implementiert nur einen Teilbereich der Funktionalität und greift für den Rest über Schnittstellen auf benachbarte Fachanwendungen zu.
 
-* *<<glossar-Querschnittssystem>>e* sind Anwendungssysteme, die Basisdienste für mehrere Fachanwendungen bereitstellen, wie z. B. ein Behördenverzeichnis oder ein Outputmanagement.
+* *<<glossar-Querschnittssystem,Querschnittssysteme>>* sind Anwendungssysteme, die Basisdienste für mehrere Fachanwendungen bereitstellen, wie z. B. ein Behördenverzeichnis oder ein Outputmanagement.
 
-*<<glossar-Anwendungskomponente>>n:* Eine Anwendungskomponente beschreibt eine Menge funktional zusammenhängender Anwendungsfälle.
+*<<glossar-Anwendungskomponente,Anwendungskomponenten>>:* Eine Anwendungskomponente beschreibt eine Menge funktional zusammenhängender Anwendungsfälle.
 Anwendungskomponenten sind Bestandteile von Anwendungs­systemen.
 Im Rahmen weitergehender Architekturvorgaben beim Einsatz der IsyFact in einem konkreten Anwendungskontext wird man in der Regel auch vorgeben, welche Arten von Anwendungssystemen es in diesem Kontext geben soll und aus welchen Komponenten sie bestehen.
 
@@ -287,7 +287,7 @@ Sie implementiert dazu drei software-architektonische Schichten:
 * Der *Anwendungskern*, in dem die Geschäftslogik abgebildet ist.
 * Die *Persistenzschicht*, in der sowohl die Anwendungsdaten als auch der Zustand der Anwendungssitzung abgespeichert werden.
 
-Zur Implementierung der Geschäftslogik kann die Fachanwendung auch <<glossar-Service>>s anderer Fachanwendung aufrufen.
+Zur Implementierung der Geschäftslogik kann die Fachanwendung auch <<glossar-Service,Services>> anderer Fachanwendung aufrufen.
 
 *Das Portal:* Wie in Kapitel <<strukturierung-der-register-plattform>> beschrieben, nimmt das Portal die <<glossar-Anwender>>-Aufrufe entgegen und leitet sie an die Geschäftsanwendung weiter.
 

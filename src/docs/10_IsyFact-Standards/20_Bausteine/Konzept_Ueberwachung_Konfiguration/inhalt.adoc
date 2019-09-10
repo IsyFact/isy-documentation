@@ -322,7 +322,7 @@ Dazu sind neben der Einhaltung der in Kapitel <<festlegungen-und-ausgrenzungen>>
 
 * Da nicht auszuschließen ist, dass ein Überwachungswerkzeug sehr häufig Informationen aus den Endpoints abruft, darf das Bereitstellen der Informationen keine zeitaufwändigen Aktionen im <<glossar-Anwendungssystem>> veranlassen.
 * Bei der Bereitstellung weiterer Überwachungsinformationen ist darauf zu achten, dass die Ermittlung der Kennzahlen keinen relevanten negativen Einfluss auf die Anwendungs-Performance hat.
-Insbesondere dürfen keine fachlichen Funktionen des <<glossar-Anwendungskern>>s aufgerufen werden.
+Insbesondere dürfen keine fachlichen Funktionen des <<glossar-Anwendungskern,Anwendungskerns>> aufgerufen werden.
 
 [[konfiguration-und-absicherung-von-endpoints]]
 === Konfiguration und Absicherung von Endpoints

@@ -1,8 +1,8 @@
 == Einleitung
 
-Dieses Dokument gibt einen Überblick über die Dokumente und Vorgaben für die Entwicklung von <<glossar-IT-System>>en gemäß den <<glossar-Konzept>>en der <<glossar-IFS>>s. 
+Dieses Dokument gibt einen Überblick über die Dokumente und Vorgaben für die Entwicklung von <<glossar-IT-System,IT-Systemen>> gemäß der <<glossar-Konzept,Konzepte>> der <<glossar-IFS,IsyFact Standards>>.
 Dabei werden die für die Entwicklung relevanten Dokumente referenziert. 
-Es werden Grundlagen zum Aufbau von <<glossar-Fachanwendung>>en nach <<glossar-IsyFact>>-Referenzarchitektur kurz eingeführt. 
+Es werden Grundlagen zum Aufbau von <<glossar-Fachanwendung,Fachanwendungen>> nach <<glossar-IsyFact>>-Referenzarchitektur kurz eingeführt.
 Detaillierte Inhalte der referenzierten Dokumente werden allerdings nicht wiederholt.
 
 Das Dokument ist wie folgt unterteilt:

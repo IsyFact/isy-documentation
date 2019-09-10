@@ -4,7 +4,7 @@
 Die umfassenden Konzepte der IsyFact automatisieren und vereinheitlichen den Bau von Anwendungen.
 Um dies zu erreichen ist es wichtig, dass Namen und Benennungen über die gesamte <<glossar-Anwendungslandschaft>> hinweg einheitlich sind.
 Es existiert daher eine Vielzahl von Namenskonventionen in den verschiedenen Konzepten der IsyFact.
-Dieses Dokument ist Teil der <<glossar-IFS>>.
+Dieses Dokument ist Teil der <<glossar-IFS,IsyFact Standards>>.
 
 [[kurzüberblick]]
 === Kurzüberblick

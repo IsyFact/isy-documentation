@@ -18,5 +18,5 @@ Zur Umsetzung werden ausführliche Beispiele gegeben.
 
 In Kapitel <<anforderungen-an-die-fehlerbehandlung>> werden zunächst Anforderungen an die Fehlerbehandlung aufgestellt.
 Im Kapitel <<implementierung-der-fehlerbehandlung>> werden Vorgaben definiert, wie Exceptions zu erstellen sind und wie sie behandelt werden müssen.
-Konkrete Beispiele stammen aus der <<Vorlageanwendung>> die eine Anwendung gemäß den <<glossar-IFS>> (und somit gemäß den Vorgaben aus diesem Konzept) beispielhaft implementiert.
+Konkrete Beispiele stammen aus der <<Vorlageanwendung>> die eine Anwendung gemäß den <<glossar-IFS,IsyFact Standards>> (und somit gemäß den Vorgaben aus diesem Konzept) beispielhaft implementiert.
 Abschließend werden in Kapitel <<dos-und-donts>> typische DO's und DON'Ts erläutert, die bei der Fehlerbehandlung beachtet werden müssen.

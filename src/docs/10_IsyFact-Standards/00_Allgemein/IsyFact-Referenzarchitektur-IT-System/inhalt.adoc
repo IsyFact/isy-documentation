@@ -26,7 +26,7 @@ Dazu gehören zum Beispiel Datenvalidierungen oder Funktionen zum Verarbeiten vo
 Innerhalb dieser Anwendungslogik befinden sich aber nur Funktionalitäten, die allgemein verwendbar sind und die von mehreren Anwendern genutzt werden könnten.
 Daneben gibt es spezielle Dialogabläufe, zum Beispiel dialogspezifische Bearbeitungsverfahren wie die Anwenderführung über Wizards.
 Diese Prozesse, die nur durch einen einzigen Dialog genutzt werden, sind nicht Teil des Anwendungskerns, sondern Teil der Schicht Nutzung.
-Damit stellt der Anwendungskern innerhalb des Systems allgemein nutzbare <<glossar-Dienst>>e zur Verfügung.
+Damit stellt der Anwendungskern innerhalb des Systems allgemein nutzbare <<glossar-Dienst,Dienste>> zur Verfügung.
 
 *Nutzung:* Die Schicht der Nutzung ist eine Erweiterung der klassischen Drei-Schichten Architektur, in der die dritte Schicht als GUI oder Präsentation bezeichnet wird.
 In der Referenzarchitektur für ein IT-System wird diese Schicht noch zusätzlich erweitert um Batch und Service.
@@ -243,7 +243,7 @@ Weiterführende technische Details zum Batch sind im Dokument <<DetailkonzeptKom
 == Servicezugriffe
 
 Services des Anwendungskerns, die vom IT-System zur Verfügung gestellt werden sollen, werden durch die Komponenten von „Service“ innerhalb der Schicht „Nutzung“ angereichert und nach außen gegeben.
-Dabei können alle Dienste des <<glossar-Anwendungskern>>s genutzt werden.
+Dabei können alle Dienste des <<glossar-Anwendungskern,Anwendungskerns>> genutzt werden.
 Die Service-Komponenten werden entsprechend den Anwendungskern-Komponente geschnitten, d.h. für jede Komponente des Kerns, die einen Service anbieten soll, wird eine eigene Service-Komponente implementiert.
 Service-Komponenten werden nicht mehrere Anwendungskern-Komponenten.
 Dies würde dem Gebot, in den Services keine Logik zu implementieren, widersprechen.

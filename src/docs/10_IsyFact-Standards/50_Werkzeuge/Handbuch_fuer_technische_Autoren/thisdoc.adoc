@@ -6,7 +6,7 @@ Dieses Handbuch dient technischen Autoren von IsyFact-Dokumenten als Wegweiser.
 Festgelegte Ordnung::
 
 IsyFact bietet eine geordnete Sammlung vielfältiger Dokumente, um die Entwicklung von <<glossar-IsyFact>>-basierenden Anwendungen zu beschreiben.
-Für jeden Teilbereich, sei es für den Einstieg, über die <<glossar-Konzept>>e bis hin zu den <<glossar-Nutzungsvorgaben>> einzelner Module, wird jeweils ein eigenes Dokument bereitgestellt.
+Für jeden Teilbereich, sei es für den Einstieg, über die <<glossar-Konzept,Konzepte>> bis hin zu den <<glossar-Nutzungsvorgaben>> einzelner Module, wird jeweils ein eigenes Dokument bereitgestellt.
 Zur Vereinheitlichung werden alle Dokumente gemäß festgelegten Regeln und nach einem bestimmten Grundschema angefertigt.
 Beispielsweise zeichnet sich jedes Dokument durch einen ähnlichen Aufbau aus, um dem Nutzer eine intuitive Handhabe zu gewährleisten.
 Weil IsyFact häufig aktualisiert wird und immer mal wieder auch neue IsyFact-Module hinzugefügt werden, müssen regelmäßig Änderungen in die vorhandenen Dokumente eingepflegt und auch stetig neue Dokumente zur Gesamtdokumentation beigefügt werden.

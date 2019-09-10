@@ -9,7 +9,7 @@ In Abschnitt <<technologie>> gehen wir dann auf die technische Umsetzung von Ser
 [[interne-und-externe-servicekommunikation]]
 == Interne und externe Servicekommunikation
 
-Gemäß der Referenzarchitektur (siehe <<IsyFactReferenzarchitektur>>) kommunizieren <<glossar-Anwendungssystem>>e auf Basis von Services.
+Gemäß der Referenzarchitektur (siehe <<IsyFactReferenzarchitektur>>) kommunizieren <<glossar-Anwendungssystem,Anwendungssysteme>> auf Basis von Services.
 Das bedeutet, dass die Anwendungssysteme ihre Fachlichkeit anderen Anwendungssystemen in Form von Services anbieten.
 Hierbei ist zu unterscheiden, ob ausschließlich Anwendungssysteme innerhalb der Plattform miteinander kommunizieren oder ob die Kommunikation auch Anwendungssysteme einschließt, die außerhalb der Plattform liegen (siehe <<image-overkommIF>>).
 
@@ -223,7 +223,7 @@ Das heißt zur vollständigen Definition der HTTP-Invoker-Schnittstelle ist imme
 [[zugriff-auf-querschnittssysteme]]
 === Zugriff auf Querschnittssysteme
 
-Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf <<glossar-Querschnittssystem>>e erlaubt.
+Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf <<glossar-Querschnittssystem,Querschnittssysteme>> erlaubt.
 
 [[versionierung]]
 = Versionierung
@@ -318,7 +318,7 @@ In diesem Abschnitt definieren wir kurz die <<anforderungen>> bzgl. der Verfügb
 [[anforderungen]]
 == Anforderungen
 
-*Hohe Verfügbarkeit:* Die <<glossar-Fachanwendung>>en der <<glossar-Plattform>> müssen eine hohe Verfügbarkeit aufweisen.
+*Hohe Verfügbarkeit:* Die <<glossar-Fachanwendung,Fachanwendungen>> der <<glossar-Plattform>> müssen eine hohe Verfügbarkeit aufweisen.
 Die Berechnung der Verfügbarkeit einer Anwendung ist komplex.
 In die Berechnung fließen unter anderem betriebliche Aspekte wie Hardwareverfügbarkeit ein, während Wartungsfenster herausgerechnet werden.
 Weiter könnte man Verfügbarkeit auf der Ebene von angebotenen Services und nicht von IT-Systemen betrachten.

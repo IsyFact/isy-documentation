@@ -2,7 +2,7 @@
 = Namenskonventionen
 
 Dieser Abschnitt beschreibt die Namenskonventionen der IsyFact.
-In komplexen Anwendungslandschaften werden <<glossar-Anwendungssystem>>e in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen). 
+In komplexen Anwendungslandschaften werden <<glossar-Anwendungssystem,Anwendungssysteme>> in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen).
 Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Fachanwendungen existieren, wird meist allgemein von „Fachanwendungen“ gesprochen.
 
 In folgenden Vorgaben wird daher zwischen Fachanwendungen, Registern und Geschäftsanwendungen unterschieden.

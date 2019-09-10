@@ -12,13 +12,13 @@ Sowohl dieses Dokument als auch das Umsetzungsdokument bedienen sich Erfahrungen
 [[abgrenzung-zu-batches]]
 === Abgrenzung zu Batches
 
-Das <<DetailkonzeptKomponenteBatch>> definiert <<glossar-Batch>>es wie folgt:
+Das <<DetailkonzeptKomponenteBatch>> definiert <<glossar-Batch,Batches>> wie folgt:
 _„Der Begriff „Batch“ bedeutet im Kern lediglich „nicht interaktive Stapelverarbeitung“.
 Ein Batch teilt sich auf in einen „Batchrahmen“, die Batchlogik der einzelnen Batch-Anwendungen, sowie die von ihnen aufgerufenen Komponenten des Anwendungskerns. […]
 Typischerweise verarbeiten Batches dabei Dateilieferungen oder eine definierte Menge von Datensätzen aus dem Datenbestand.“_
 
 Die in diesem Konzept beschriebenen Aufgaben sind hingegen nicht die Grundlage einer eigenen (Batch-) Anwendung, sondern in die eigentliche Anwendung integriert.
-Die Aufgaben sind Teil einer Komponente des <<glossar-Anwendungskern>>s.
+Die Aufgaben sind Teil einer Komponente des <<glossar-Anwendungskern,Anwendungskerns>>.
 Sie besitzen in der Regel einen kleineren Umfang als Batches und werden nicht manuell von außen gesteuert.
 Stattdessen werden sie durch die Anwendung selbst konfiguriert, zeitlich geplant und selbstständig ausgeführt.
 

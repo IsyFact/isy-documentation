@@ -126,7 +126,7 @@ taskScheduler.shutdownMitTimeout(10);
 [[verwendung-bereitgestellter-tasks]]
 == Verwendung der bereitgestellten Tasks
 
-Die Bibliothek `isy-task` enthält nützliche Tasks für die <<glossar-IFS>>.
+Die Bibliothek `isy-task` enthält nützliche Tasks für die <<glossar-IFS,IsyFact Standards>>.
 
 === Automatische Aktualisierung der Konfiguration
 Dieser Task dient der periodischen Prüfung der Konfigurationsdateien auf Änderungen sowie der automatischen Aktualisierung der Konfiguration bei Änderungen.

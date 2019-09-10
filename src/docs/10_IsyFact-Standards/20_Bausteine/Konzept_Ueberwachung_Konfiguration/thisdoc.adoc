@@ -1,7 +1,7 @@
 [[Einleitung]]
 == Einleitung
 
-Dieses Dokument enthält das technische Feinkonzept zur Überwachung und Konfiguration von Anwendungen gemäß den <<glossar-IFS>>.
+Dieses Dokument enthält das technische Feinkonzept zur Überwachung und Konfiguration von Anwendungen gemäß den <<glossar-IFS,IsyFact Standards>>.
 
 [[aufbau-und-zweck-des-dokuments]]
 == Aufbau und Zweck des Dokuments

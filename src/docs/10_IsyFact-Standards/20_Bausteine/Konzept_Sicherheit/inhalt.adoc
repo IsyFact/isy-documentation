@@ -23,7 +23,7 @@ Da das Berechtigungskonzept individuell für jede Anwendungslandschaft erstellt 
 
 === Authentifizierung
 
-In der Regel erfolgt die Authentifizierung von <<glossar-Anwender>>n über eine zentrale Komponente der Systemlandschaft, in welche das IT-System eingebettet ist.
+In der Regel erfolgt die Authentifizierung von <<glossar-Anwender,Anwendern>> über eine zentrale Komponente der Systemlandschaft, in welche das IT-System eingebettet ist.
 Die Authentifizierung darf auch lokal, d.h. vom IT-System selbst, durchgeführt werden, falls es beispielsweise nicht in eine Systemlandschaft eingebettet ist.
 
 Für die zentrale Authentifizierung wird üblicherweise ein IAM-System verwendet.
@@ -239,7 +239,7 @@ Diese Rollen können dann einfach fachlichen Rollen untergeordnet werden, um den
 
 ==== Technische Querschnitts-Rolle
 
-Für <<glossar-Service>>s des Querschnitts, die nahezu alle Aufrufe benötigen und die keine sicherheitskritischen Operationen anbieten, kann eine zentrale Rolle (z.B. `Querschnitt_Nutzer`) angelegt werden.
+Für <<glossar-Service,Services>> des Querschnitts, die nahezu alle Aufrufe benötigen und die keine sicherheitskritischen Operationen anbieten, kann eine zentrale Rolle (z.B. `Querschnitt_Nutzer`) angelegt werden.
 Diese Rolle berechtigt zur Durchführung von unkritischen Operationen im Querschnitt, wie beispielsweise dem Auslesen von Schlüsselwerten.
 
 Wenn die Querschnitts-Rolle den Zugangsrollen untergeordnet ist, darf jeder Anwender mit Zugriff automatich auch auf den Querschnitt zugreifen.
@@ -279,7 +279,7 @@ Da die Rollen für fachliche Operationen angelegt werden, sollten sie unabhängi
 So kann beispielsweise die Rolle `Terminfindung_Auskunft` unabhängig davon gelten, ob die Auskunft über ein Service Gateway oder das Portal durchgeführt wird.
 Dies kann durch die Verwendung spezieller technischer Rollen (s. <<technische-zugangsrollen>>) erreicht werden.
 
-<<glossar-IT-System>>e werden intern in Form von Batches oder Timer-Tasks aktiv.
+<<glossar-IT-System,IT-Systeme>> werden intern in Form von Batches oder Timer-Tasks aktiv.
 Auch hier findet ein Zugang zur Anwendungslandschaft statt.
 Das Schema zur Benennung einer fachlichen Rolle für IT-Systeme kann folgendermaßen aussehen:
 

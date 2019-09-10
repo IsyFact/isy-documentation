@@ -1429,7 +1429,7 @@ Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über 
 </beans>
 ----
 
-<<glossar-Fachanwendung>>en können globale Standardwerte definieren.
+<<glossar-,Fachanwendungen>> können globale Standardwerte definieren.
 Definieren sie diese nicht, verwendet der Seitenrahmen Standardwerte aus `isy-web`.
 
 :desc-table-SeitenrahmenStandardwerte: Globale Standardwerte für den Seitenrahmen
@@ -1763,7 +1763,7 @@ Abweichungen zu diesen Vorgaben können im Spezialfall möglich sein.
 
 TIP: Die IsyFact enthält die Demo-Anwendung `isy-webgui`.
 
-Die Anwendung zeigt die Features der <<glossar-Bibliothek>>en `isy-web` sowie `isy-style` beispielhaft.
+Die Anwendung zeigt die Features der <<glossar-Bibliothek,Bibliotheken>> `isy-web` sowie `isy-style` beispielhaft.
 Insbesondere demonstriert sie Aussehen und Verhalten der nachfolgend beschriebenen JSF-Bedienelemente.
 
 === Button
