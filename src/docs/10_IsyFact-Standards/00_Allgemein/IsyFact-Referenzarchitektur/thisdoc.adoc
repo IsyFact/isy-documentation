@@ -8,7 +8,7 @@ Der Begriff Factory steht für die schnelle Erzeugung neuer <<glossar-Anwendung,
 Die IsyFact besteht aus den IsyFact-Standards und IsyFact-Erweiterungen:
 
 Die *IsyFact-Standards* bilden das architektonische, technologische und methodische Fundament der IsyFact.
-Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant sind.
+Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant und verpflichtend sind.
 Bspw.: Allgemeine Softwarereferenzarchitektur, Vorgaben zur Fehlerbehandlung, Logging etc.
 
 Die *IsyFact-Erweiterungen* sind optionale wiederverwendbare Lösungen für verschiedene Problemstellungen, die aufgrund spezifischer Anforderungen des BVA oder seiner
@@ -51,20 +51,19 @@ image::FA-AW.png[align="center"]
 
 *Anwendungsdomänen:* Eine <<glossar-Anwendungsdomaene>> gruppiert fachlich zusammengehörende Anwendungssysteme zur Unterstützung von Geschäftsprozessen, die als eine Einheit angesehen werden können.
 
-*Anwendungssysteme:* Ein <<glossar-Anwendungssystem>> ist eine zusammen­gehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
+*Anwendungssysteme:* Ein <<glossar-Anwendungssystem>> ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es besteht aus Anwendungskomponenten und Querschnittskomponenten.
 Anwendungssysteme unterstützen Geschäftsprozesse.
-Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine Fachanwendung.
-Ein Anwendungssystem ist Bestandteil der A-Architektur.
-Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzung eines Anwendungssystems ab.
+Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine <<glossar-Fachanwendung>>.
+Ein Anwendungssystem ist Bestandteil der <<glossar-A-Architektur>>.
+Aus Sicht der <<glossar-T-Architektur>> bildet ein <<glossar-IT-System>> die software-technische Umsetzung eines Anwendungssystems ab.
 
 Ein häufig anzutreffendes Beispiel hierfür ist die Trennung in ein Anwendungssystem zur Bestandsverwaltung (Register) und einem Anwendungssystem für die Benutzerinteraktion, die auf die Bestandsverwaltung zugreift.
 Im Zuge einer solchen Aufgabenteilung werden auch weitergehende Regeln definiert, wie Anwendungssysteme aufeinander zugreifen dürfen.
 Derartige Strukturierungsprinzipien und Regeln sind jedoch immer spezifisch für den jeweiligen Kontext der Anwendungslandschaft und können nicht allgemeingültig festgelegt werden.
-Im vorliegenden Dokument verwenden wir daher den neutralen Begriff *<<glossar-Fachanwendung>>* für alle Arten von Anwendungssystemen, die eine bestimmte fachliche Funktionalität innerhalb
-einer Anwendungsdomäne realisieren.
+Im vorliegenden Dokument verwenden wir daher den neutralen Begriff *<<glossar-Fachanwendung>>* für alle Arten von Anwendungssystemen, die eine bestimmte fachliche Funktionalität innerhalb einer Anwendungsdomäne realisieren.
 
-*Querschnittssysteme* sind Anwendungssysteme, die <<glossar-,Basisdienste>> für mehrere Fachanwendungen bereitstellen.
+*Querschnittssysteme* sind Anwendungssysteme, die <<glossar-Basisdienst,Basisdienste>> für mehrere Fachanwendungen bereitstellen.
 Diese Dienste sind oft technisch motiviert.
 
 *Portal:* Das <<glossar-Portal>> stellt den Benutzern eine einheitliche Dialogoberfläche für den Zugriff auf die Dienste der Anwendungslandschaft zur Verfügung.
