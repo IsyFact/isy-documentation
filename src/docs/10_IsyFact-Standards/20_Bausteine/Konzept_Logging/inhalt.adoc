@@ -8,40 +8,29 @@ Diese bilden die Grundlage für die Ausgestaltung des Loggings in den darauffolg
 
 * *Erkennen, Behandeln und Beheben von Fehlern:*
 . *Fehlererkennung*: Sämtliche technischen Ausnahmen müssen erkannt werden können und in den Logs hinterlegt werden.
-. *Fehlereskalation*: Für jeden Fehler muss klar ersichtlich sein, wie schwerwiegend er ist, durch welche IT-Komponente
-er ausgelöst wurde und durch wen (welche Nutzergruppe – bspw. Betrieb, Entwicklungsabteilung etc.) er zu behandeln ist.
-. *Fehleranalyse*: Es müssen Informationen zur Ermittlung der Fehlerursache – im jeweils benötigten
-Detaillierungsgrad – verfügbar sein.
+. *Fehlereskalation*: Für jeden Fehler muss klar ersichtlich sein, wie schwerwiegend er ist, durch welche IT-Komponente er ausgelöst wurde und durch wen (welche Nutzergruppe – bspw. Betrieb, Entwicklungsabteilung etc.) er zu behandeln ist.
+. *Fehleranalyse*: Es müssen Informationen zur Ermittlung der Fehlerursache – im jeweils benötigten Detaillierungsgrad – verfügbar sein.
 * *Analyse und Nachvollziehen von Systemereignissen und des Systemzustands:*
-. *Systemereignisse und –zustand (Beschreibung der Systemereignisse)*: Wichtige Systemereignisse und Zustände
-müssen nachvollzogen werden können.
+. *Systemereignisse und –zustand (Beschreibung der Systemereignisse)*: Wichtige Systemereignisse und Zustände müssen nachvollzogen werden können.
 . *Systemengpässe / Laufzeiten*: Systemengpässe müssen erkannt werden können.
 Dazu müssen Laufzeiten relevanter Operationen zur Verfügung gestellt werden.
 . *Erkennen von Anomalien*: Anomalien sowohl im Nutzungs- als auch im Systemverhalten müssen erkannt werden können.
-Dies beinhaltet auch die Anforderung der Erkennung von kritischen Aktivitäten, die durch Anomalien aufgedeckt werden
-können (bspw. Logins außerhalb der Geschäftszeiten).
-. *Ermitteln von technischen Nutzungsstatistiken*: Es müssen technische Nutzungsstatistiken (bspw.
-Anzahl der Aufrufe einer bestimmten Schnittstelle oder Komponente) ermittelt werden können.
-* *Weitere systemspezifische Auswertungen*: Für jedes System können weitere systemspezifische Anforderungen an die
-Auswertbarkeit der Logs definiert werden, das Logging muss hierfür entsprechende Erweiterungsmöglichkeiten vorsehen.
+Dies beinhaltet auch die Anforderung der Erkennung von kritischen Aktivitäten, die durch Anomalien aufgedeckt werden können (bspw. Logins außerhalb der Geschäftszeiten).
+. *Ermitteln von technischen Nutzungsstatistiken*: Es müssen technische Nutzungsstatistiken (bspw. Anzahl der Aufrufe einer bestimmten Schnittstelle oder Komponente) ermittelt werden können.
+* *Weitere systemspezifische Auswertungen*: Für jedes System können weitere systemspezifische Anforderungen an die Auswertbarkeit der Logs definiert werden, das Logging muss hierfür entsprechende Erweiterungsmöglichkeiten vorsehen.
 
 [underline]#Anforderungen an die Logausgabe und das Logging-Framework#
 
 * **Technische Vereinheitlichung des Loggings**: Das Logging muss in allen Systemen, die gemäß der IsyFact entwickelt werden,
 technisch einheitlich umgesetzt werden.
 Dies umfasst die folgenden Teilaspekte:
-** **Einheitliche Strukturierung der Ausgaben**: Ausgaben werden in einer fest vorgegebenen strukturierten Form erstellt,
-um die einheitliche Verarbeitung und Auswertung der Einträge zu gewährleisten.
-** **Einheitliche Logging-Konfiguration**: Die Logger in allen Anwendungen werden mit den gleichen technischen Mitteln
-konfiguriert.
-** **Anpassung der Logging-Konfiguration zur Laufzeit (ohne Neustart der Anwendung)**: Anpassung der Konfiguration im
-Testsystem zur Laufzeit der Anwendung und Anpassung der Log-Level in der Produktionsumgebung bei Bedarf.
-** **Keine Abhängigkeit zwischen Anwendungen**: Jede Anwendung besitzt eigene Logdateien und eigene Mechanismen zum
-Schreiben der Logs.
+** **Einheitliche Strukturierung der Ausgaben**: Ausgaben werden in einer fest vorgegebenen strukturierten Form erstellt, um die einheitliche Verarbeitung und Auswertung der Einträge zu gewährleisten.
+** **Einheitliche Logging-Konfiguration**: Die Logger in allen Anwendungen werden mit den gleichen technischen Mitteln konfiguriert.
+** **Anpassung der Logging-Konfiguration zur Laufzeit (ohne Neustart der Anwendung)**: Anpassung der Konfiguration im Testsystem zur Laufzeit der Anwendung und Anpassung der Log-Level in der Produktionsumgebung bei Bedarf.
+** **Keine Abhängigkeit zwischen Anwendungen**: Jede Anwendung besitzt eigene Logdateien und eigene Mechanismen zum Schreiben der Logs.
 Es gibt keine gemeinsam genutzten Logdateien und keine zentrale Anwendung zum _Erstellen_ der Logs.
 ** **Eindeutige Zuordnung von Logdateien**: Logdateien müssen eindeutig einer Anwendung zugeordnet werden können.
-** **Es wird nur ein Logging-Framework verwendet**: Alle Anwendungen müssen das gleiche Logging-Framework verwenden
-(`isy-logging` auf Basis von logback).
+** **Es wird nur ein Logging-Framework verwendet**: Alle Anwendungen müssen das gleiche Logging-Framework verwenden (`isy-logging` auf Basis von logback).
 ** *Minimale Auswirkungen auf Performanz:* Das Logging darf die Performanz der Anwendung nur minimal beeinträchtigen.
 
 [underline]#Anforderungen an die Log-Infrastruktur#
@@ -59,16 +48,13 @@ z.B. zur Alarmierung.
 [underline]#Anforderungen an die Umsetzung#
 
 * *Komplexität*
-** **Möglichst geringer Aufwand**: Der Aufwand zur Umsetzung des Loggings im Rahmen der Anwendungsentwicklung muss möglichst
-geringgehalten werden.
+** **Möglichst geringer Aufwand**: Der Aufwand zur Umsetzung des Loggings im Rahmen der Anwendungsentwicklung muss möglichst geringgehalten werden.
 
 [[vorgaben-zur-logerstellung]]
 = Vorgaben zur Logerstellung
 
-In diesem Abschnitt werden sämtliche Aspekte zur Erstellung von Logeinträgen – dem eigentlichen „Logging“ – in den Anwendungen
-betrachtet und einheitliche Vorgaben definiert.
-Dabei findet eine Standardisierung auf Ebene der Inhalte der Logs (<<log-inhalte>>), der Ausgabe der Logs (<<logausgabe>>)
-und des eingesetzten Logging-Frameworks (<<logging-framework>>) statt.
+In diesem Abschnitt werden sämtliche Aspekte zur Erstellung von Logeinträgen – dem eigentlichen „Logging“ – in den Anwendungen betrachtet und einheitliche Vorgaben definiert.
+Dabei findet eine Standardisierung auf Ebene der Inhalte der Logs (<<log-inhalte>>), der Ausgabe der Logs (<<logausgabe>>) und des eingesetzten Logging-Frameworks (<<logging-framework>>) statt.
 
 [[log-inhalte]]
 == Log-Inhalte
@@ -79,8 +65,7 @@ Ein Logeintrag ist dabei wie eine fachliche Entität des Loggings, mit klar defi
 [[entitaeten]]
 === Entitäten
 
-Um zu verdeutlichen, dass es sich bei Logeinträgen um Entitäten – und nicht einfach nur einen „Freitext“ – handelt,
-wird der Inhalt eines Logeintrags in <<image-ETYlogmark>> in Form von Entitäten dargestellt.
+Um zu verdeutlichen, dass es sich bei Logeinträgen um Entitäten – und nicht einfach nur einen „Freitext“ – handelt, wird der Inhalt eines Logeintrags in <<image-ETYlogmark>> in Form von Entitäten dargestellt.
 
 :desc-image-ETYlogmark: ETY_Logeintrag und ETY_Marker
 [id="image-ETYlogmark",reftext="{figure-caption} {counter:figures}"]
@@ -89,8 +74,7 @@ image::ETYlogmark.png[align="center"]
 
 Jeder Logeintrag muss gewisse Standardinformationen enthalten.
 Diese sind in der Entität ETY_Logeintrag zusammengefasst.
-Je nach Zweck des Eintrags müssen jedoch noch weitere auswertbare Informationen (bspw.
-die Verarbeitungszeit eines Aufrufs) hinterlegt werden.
+Je nach Zweck des Eintrags müssen jedoch noch weitere auswertbare Informationen (bspw. die Verarbeitungszeit eines Aufrufs) hinterlegt werden.
 Dies geschieht in Form von Markern (ETY_Marker), die eine generische Ergänzung des Logeintrags um Name/Wert-Paare ermöglichen.
 
 Die Inhalte der Entitäten werden im Folgenden beschrieben.
@@ -123,7 +107,7 @@ Die Inhalte der Entitäten werden im Folgenden beschrieben.
 |====
 
 [[ety_marker]]
-==== ETY_Marker +
+==== ETY_Marker
 
 [cols="3s,7"]
 |====
@@ -156,8 +140,7 @@ ISO8601-Format inklusive Zeitzone: +
 `yyyy-MM-dd HH:mm:ss,SSSTZD`
 
 Bspw.: `2007-09-05 16:40:36,464Z`
-|DTY_Korrelations-ID |Zeichenkette |Eindeutige Identifikation eines Aufrufs über Anwendungsgrenzen hinweg (siehe <<korrelations-id>>) |Liste von
-UUIDs mit optionalen Präfixen (siehe <<korrelations-id>>).
+|DTY_Korrelations-ID |Zeichenkette |Eindeutige Identifikation eines Aufrufs über Anwendungsgrenzen hinweg (siehe <<korrelations-id>>) |Liste von UUIDs mit optionalen Präfixen (siehe <<korrelations-id>>).
 |DTY_Log-Level |Enum |Kategorie eines Logeintrags in Bezug auf Wichtigkeit (siehe <<log-level-log-kategorie-und-ereignisschluessel>>). |`FATAL, ERROR, WARN, INFO, DEBUG, TRACE`
 |DTY_Log-Kategorie |Enum |Kategorie eines Logeintrags in Bezug auf Zweck (siehe <<log-level-log-kategorie-und-ereignisschluessel>>). |`FEHLERANZEIGE, PROFILING, JOURNAL, METRIK,SICHERHEIT, FEHLERANALYSE`
 |DTY_Ereignisschlüssel |Zeichenkette |Eindeutige Identifikation des Zwecks eines Logeintrags (siehe <<log-level-log-kategorie-und-ereignisschluessel>>). |Bspw.: `LISYLOO01001`
@@ -176,12 +159,11 @@ Log-Level, Log-Kategorie und Ereignisschlüssel werden in den Nutzungsvorgaben _
 
 Die Korrelations-ID ist immer mitzuloggen, damit die Logeinträge einzelnen Aufrufen zugeordnet und über die Komponenten der Anwendungs­landschaft verfolgt werden können.
 Die Korrelations-ID besteht aus einer Liste von IDs.
-Jede ID besteht ihrerseits wiederum aus einem UUID sowie einem optionalen Präfix. Die Korrelations-ID enthält die einzelnen IDs in der Reihenfolge, in der sie erzeugt wurden.
+Jede ID besteht ihrerseits wiederum aus einem UUID sowie einem optionalen Präfix.
+Die Korrelations-ID enthält die einzelnen IDs in der Reihenfolge, in der sie erzeugt wurden.
 Somit ist die letzte ID der Korrelations-ID stets die des aktuellen Systemaufrufs.
 
 NOTE: UUID: Universally Unique Identifier
-
-
 
 Eine exemplarische Korrelations-ID ist demnach (als JSON-Array formatiert):
 
@@ -203,8 +185,7 @@ Dazu werden in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>
 
 Die Nachrichten dürfen keine Daten enthalten, die datenschutzrechtlich relevant oder sicherheitsrelevant sind (d.h. Personendaten, Passwörter, etc.).
 
-[underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu
-technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
+[underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
 Die entsprechenden Logeinträge müssen durch das Setzen des Flags ATT_Enthält_fachliche_Daten markiert werden, damit sie durch die Loginfrastruktur gesondert behandelt werden können.
 
 [[logausgabe]]
@@ -217,10 +198,8 @@ Dies umfasst die Definition des Formats der einzelnen Logeinträge (<<logformat>
 === Logformat
 
 Die Logeinträge werden im JSON-Format ausgegeben.
-Dies hat den Vorteil, dass die Einträge dadurch sehr einfach maschinell verarbeitet werden können und der Umfang der erzeugten Datenmengen (bspw.
-im Vergleich zu XML) reduziert wird.
-Die „Menschenlesbarkeit“ der erstellten Einträge wird durch die Verwendung von JSON leicht eingeschränkt, dies ist aber akzeptiert, da eine Aufbereitung der Logeinträge
-durch die Log-Infrastruktur stattfindet (siehe Kapitel <<log-auswertung>>).
+Dies hat den Vorteil, dass die Einträge dadurch sehr einfach maschinell verarbeitet werden können und der Umfang der erzeugten Datenmengen (bspw. im Vergleich zu XML) reduziert wird.
+Die „Menschenlesbarkeit“ der erstellten Einträge wird durch die Verwendung von JSON leicht eingeschränkt, dies ist aber akzeptiert, da eine Aufbereitung der Logeinträge durch die Log-Infrastruktur stattfindet (siehe Kapitel <<log-auswertung>>).
 
 Jedes Attribut eines Logeintrags wird in einem entsprechenden JSON Name/Wert-Paar abgelegt.
 Attributnamen werden dabei komplett in Kleinbuchstaben und ohne Sonderzeichen geschrieben.
@@ -273,8 +252,7 @@ Als Logging-Framework wird in der IsyFact _logback_ eingesetzt.
 NOTE: Für mehr Informationen zu logback siehe http://logback.qos.ch/
 
 Durch die Querschnittsbibliothek `isy-logging` wird eine Fassade bereitgestellt, die eine einheitliche Nutzung von _logback_ sicherstellt.
-Als Grundsätzliche Vorgabe gilt, dass logback durch eine Anwendung niemals direkt, sondern ausschließlich über `isy-logging` aufgerufen wird
-(Ausnahme sind hierbei externe Bibliotheken – siehe <<logging-externer-bibliotheken>>).
+Als Grundsätzliche Vorgabe gilt, dass logback durch eine Anwendung niemals direkt, sondern ausschließlich über `isy-logging` aufgerufen wird (Ausnahme sind hierbei externe Bibliotheken – siehe <<logging-externer-bibliotheken>>).
 
 Die Nutzung und Konfiguration von `isy-logging` sind in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben.
 
@@ -283,13 +261,11 @@ Im Folgenden werden die grundlegenden Aspekte der Implementierung von `isy-loggi
 [[logging-fassade]]
 === Logging-Fassade
 
-`isy-logging` stellt eine Fassade zum Zugriff auf logback bzw.
-auf dessen Schnittstellen, die durch das allgemeine Framework SLF4J definiert werden, bereit.
+`isy-logging` stellt eine Fassade zum Zugriff auf logback bzw. auf dessen Schnittstellen, die durch das allgemeine Framework SLF4J definiert werden, bereit.
 Wichtig ist, dass durch `isy-logging` selbst SLF4J nicht implementiert wird.
 Dies wird aus zwei Gründen nicht gemacht:
 
-* Durch die Bereitstellung einer proprietären Schnittstelle können die spezifischen Anforderungen an das Logging besser umgesetzt werden
-(Verwendung spezifischer Attribute an den Schnittstellen).
+* Durch die Bereitstellung einer proprietären Schnittstelle können die spezifischen Anforderungen an das Logging besser umgesetzt werden (Verwendung spezifischer Attribute an den Schnittstellen).
 * Es soll nur eine einzige SLF4J-Implementierung eingesetzt werden.
 Die Verwendung von zwei verschiedenen SLF4J-Implementierungen in einer Anwendung ist zwar möglich, führt jedoch zu einer komplexeren und fehleranfälligeren Konfiguration.
 Zudem ist durch die gewählte Architektur der Austausch von logback mit einer anderen SLF4J Implementierung auch weiterhin sehr einfach möglich.
@@ -356,7 +332,8 @@ Diese erweitert die Klasse `JsonLayout` von _logback_ um die Auswertung der `Isy
 Wird ein entsprechender Marker übergeben, so schreibt die Klasse diesen und alle enthaltenen Marker als Name/Wert-Paare (JSON-Attribute) in das Log.
 Diese Klasse übernimmt außerdem die Funktion zur Kontrolle der Länge eines Logeintrags und kürzt den Logeintrag, falls dieser die maximale Länge überschreitet.
 Die Kürzung eines zu langen Logeintrags findet auf Attributebene in folgender Reihenfolge statt: Kürzung von Parameter (bereits in Nachricht enthalten), Exception, Nachricht.
-Gekürzte Logeinträge erhalten einen zusätzlichen Schlüssel `gekuerzt` mit dem Wert `true`. Es werden nur Logeinträge der Levels `INFO`, `WARN` und `ERROR` gekürzt.
+Gekürzte Logeinträge erhalten einen zusätzlichen Schlüssel `gekuerzt` mit dem Wert `true`.
+Es werden nur Logeinträge der Levels `INFO`, `WARN` und `ERROR` gekürzt.
 
 Nähere Informationen zur Festlegung der maximalen Länge von Logeinträgen finden sich in den Nutzungsvorgaben <<NutzungsvorgabenLogging>>.
 
@@ -387,31 +364,22 @@ image::hilfklas.png[align="center"]
 [[logging-externer-bibliotheken]]
 === Logging externer Bibliotheken
 
-_Logback_ wird als einzige Implementierung von SLF4J eingesetzt (`IsyLoggerFactory` implementiert das Interface
-`LoggerFactory` von SLF4J nicht). Externe Bibliotheken, die SLF4J oder logback nutzen und in die Anwendung
-eingebunden werden, nutzen dadurch direkt die `LoggerFactory` und damit auch den `Logger`, der durch _logback_ bereitgestellt wird.
-Dies ist ohne Einschränkungen möglich, da die Vereinheitlichung der Logeinträge durch das `IsyJsonLayout`
-auch in diesem Fall durchgeführt wird.
-Für Frameworks, die weder logback noch SLF4J nutzen, werden durch SLF4J entsprechende „Bridging Modules“
-bereitgestellt, durch die die Aufrufe des Logging-Frameworks auf SLF4J (bzw.
-logback) umgeleitet werden können.
+_Logback_ wird als einzige Implementierung von SLF4J eingesetzt (`IsyLoggerFactory` implementiert das Interface `LoggerFactory` von SLF4J nicht). Externe Bibliotheken, die SLF4J oder logback nutzen und in die Anwendung eingebunden werden, nutzen dadurch direkt die `LoggerFactory` und damit auch den `Logger`, der durch _logback_ bereitgestellt wird.
+Dies ist ohne Einschränkungen möglich, da die Vereinheitlichung der Logeinträge durch das `IsyJsonLayout` auch in diesem Fall durchgeführt wird.
+Für Frameworks, die weder logback noch SLF4J nutzen, werden durch SLF4J entsprechende „Bridging Modules“ bereitgestellt, durch die die Aufrufe des Logging-Frameworks auf SLF4J (bzw. logback) umgeleitet werden können.
 Diese sind zu verwenden, so dass die Erstellung der Logeinträge ausschließlich durch logback erfolgt.
 Die Nutzung der Bridges ist in den Nutzungsvorgaben _Logging_ beschrieben (siehe <<NutzungsvorgabenLogging>>).
 
 [[log-auswertung]]
 = Log-Auswertung
 
-In diesem Kapitel werden die Informationen beschrieben, die letztendlich im Auswertungstool zur Verfügung stehen,
-und damit die Grundlage zur Durchführung von Analysen darstellen.
-In den einzelnen Unterabschnitten werden die verschiedenen Logdateien aufgeführt, die an die Log-Infrastruktur
- anzubinden sind.
-Wichtig ist, dass die Logeinträge der Systeme der Log-Infrastruktur selbst, auch in die Auswertung einfließen
- müssen, um Probleme bei der Verarbeitung der Logs zu erkennen.
+In diesem Kapitel werden die Informationen beschrieben, die letztendlich im Auswertungstool zur Verfügung stehen, und damit die Grundlage zur Durchführung von Analysen darstellen.
+In den einzelnen Unterabschnitten werden die verschiedenen Logdateien aufgeführt, die an die Log-Infrastruktur  anzubinden sind.
+Wichtig ist, dass die Logeinträge der Systeme der Log-Infrastruktur selbst, auch in die Auswertung einfließen  müssen, um Probleme bei der Verarbeitung der Logs zu erkennen.
 
 Konkrete Szenarien zur Auswertung der Logeinträge sind in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben.
 
-Die Auswertung der Logeinträge mit Hilfe des Auswertungstools sind in den Nutzungsvorgaben des
-Logservers <<NutzungsvorgabenLogserver>> beschrieben.
+Die Auswertung der Logeinträge mit Hilfe des Auswertungstools sind in den Nutzungsvorgaben des Logservers <<NutzungsvorgabenLogserver>> beschrieben.
 
 [[allgemeine-hinweise]]
 == Allgemeine Hinweise
@@ -450,10 +418,8 @@ Die folgenden Attribute werden automatisch durch logstash gesetzt und sind in je
 [[isyfact-konforme-anwendungen]]
 == IsyFact-konforme Anwendungen
 
-Die Attribute, die durch Anwendungen geloggt werden, die konform zu `isy-logging` umgesetzt sind, werden durch die
-Entität ETY_Logeintrag in <<entitaeten>> beschrieben.
-Diese werden ergänzt um optionale Marker (Name/Wert-Paare). Beim Einsatz von `isy-logging` werden die folgenden
-Marker erstellt:
+Die Attribute, die durch Anwendungen geloggt werden, die konform zu `isy-logging` umgesetzt sind, werden durch die Entität ETY_Logeintrag in <<entitaeten>> beschrieben.
+Diese werden ergänzt um optionale Marker (Name/Wert-Paare). Beim Einsatz von `isy-logging` werden die folgenden Marker erstellt:
 
 :desc-table-MarkerIsyLogging: Zusätzliche Marker von isy-logging
 [id="table-MarkerIsyLogging",reftext="{table-caption} {counter:tables}"]
@@ -465,8 +431,7 @@ Marker erstellt:
 |methode a|
 Vollständige Signatur einer aufgerufenen Methode.
 
-Dieser Marker wird beim Loggen eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und
-`LoggingMethod-Interceptor` automatisch gesetzt.
+Dieser Marker wird beim Loggen eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und `LoggingMethod-Interceptor` automatisch gesetzt.
 
  a|`public de.bund.bva.
 isyfact.logging.
@@ -483,8 +448,7 @@ java.lang.String) throws java.lang.Throwable`
 |dauer a|
 Dauer eines Methodenaufrufs.
 
-Dieser Marker wird beim Loggen der Dauer eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und
-`LoggingMethod-Interceptor` automatisch gesetzt.
+Dieser Marker wird beim Loggen der Dauer eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und `LoggingMethod-Interceptor` automatisch gesetzt.
  |`124`
 |gekuerzt a|
 Informiert über die Kürzung eines Logeintrags.
@@ -507,8 +471,7 @@ stellen neben der Lognachricht die folgenden Informationen (analog zu <<entitaet
 [[tomcat-access-log]]
 == Tomcat access-log
 
-Die Logeinträge der Tomcat access-logs, die konform zur IsyFact konfiguriert sind, stellen neben der
-Lognachricht die folgenden Informationen bereit:
+Die Logeinträge der Tomcat access-logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht die folgenden Informationen bereit:
 
 :desc-table-LogeintragTomcat: Informationen für Tomcat access-log
 [id="table-LogeintragTomcat",reftext="{table-caption} {counter:tables}"]
@@ -535,8 +498,7 @@ Diese wird von mod_jk im Request mitgeliefert. |24 Zeichen. Bspw.: `U08ZosCoAAM-
 [[wrapper-log]]
 == Wrapper-Log
 
-Die Logeinträge des Wrapper-Logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht
-die folgenden Informationen bereit:
+Die Logeinträge des Wrapper-Logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht die folgenden Informationen bereit:
 
 :desc-table-LogeintragWrapper: Informationen für Wrapper-log
 [id="table-LogeintragWrapper",reftext="{table-caption} {counter:tables}"]
@@ -553,11 +515,9 @@ die folgenden Informationen bereit:
 [[apache-access-log-und-error-log]]
 == Apache access-log und error-log
 
-Die in den Logs der Apache HTTP-Server bereitgestellten Informationen werden im Konzept HTTP-Server
-Apache <<NutzungskonzeptHTTPServer>> beschrieben.
+Die in den Logs der Apache HTTP-Server bereitgestellten Informationen werden im Konzept HTTP-Server Apache <<NutzungskonzeptHTTPServer>> beschrieben.
 
-Da der HTTP-Server ein anderes Zeitstempel-Format verwendet, werden folgende Felder durch die Loginfrastruktur geändert bzw.
-ergänzt:
+Da der HTTP-Server ein anderes Zeitstempel-Format verwendet, werden folgende Felder durch die Loginfrastruktur geändert bzw. ergänzt:
 
 :desc-table-LogeintragApache: Informationen für Apache access-log und error-log
 [id="table-LogeintragApache",reftext="{table-caption} {counter:tables}"]
@@ -569,11 +529,8 @@ ergänzt:
 |zeitstempel |Datum und Uhrzeit im ISO-8601 Format |2012-02-02T00:02:50.000Z
 |====
 
-**Wichtig**: In den Apache-Logs werden die aufgerufenen URLs inkl.
-Requestparameter gelogged.
-Sollten die Requestparameter fachliche Daten enthalten (bspw.
-weil Suchanfragen über einen REST-Webservice realisiert wurden), so sind alle Apache-Logs des jeweiligen
-Webservers als „Fachdaten“ zu kennzeichnen (siehe <<NutzungsvorgabenLogging>>).
+**Wichtig**: In den Apache-Logs werden die aufgerufenen URLs inkl. Requestparameter gelogged.
+Sollten die Requestparameter fachliche Daten enthalten (bspw. weil Suchanfragen über einen REST-Webservice realisiert wurden), so sind alle Apache-Logs des jeweiligen Webservers als „Fachdaten“ zu kennzeichnen (siehe <<NutzungsvorgabenLogging>>).
 
 [[mailserver-log]]
 == Mailserver-log

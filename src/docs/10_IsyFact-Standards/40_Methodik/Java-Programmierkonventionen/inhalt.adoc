@@ -9,8 +9,7 @@ Um das zu erreichen, müssen Konventionen für die Programmierung festgelegt wer
 
 Die in diesem Dokument beschriebenen Richtlinien sind für die Erstellung von Programmen mit der IsyFact verbindlich.
 Sie bauen auf <<Vermeulen2000>> auf und präzisieren sie an einigen Stellen.
-Die in <<Vermeulen2000>> beschriebenen Konventionen beruhen auf den Sun Coding Conventions <<Sun1997>> und den Coding
-Standards der Firma Ambysoft  <<Ambler1999>> .
+Die in <<Vermeulen2000>> beschriebenen Konventionen beruhen auf den Sun Coding Conventions <<Sun1997>> und den Coding Standards der Firma Ambysoft <<Ambler1999>>.
 
 [[grundsaetzliches]]
 = Grundsätzliches
@@ -84,8 +83,7 @@ Existiert ein Glossar, sind die dort aufgeführten Bezeichner zu verwenden.
 Nur der erste Buchstabe einer Abkürzung groß!
 ****
 
-Zur besseren Unterscheidung der Namensbestandteile eines Bezeichners wird bei Abkürzungen nur der erste
-Buchstabe der Abkürzung groß geschrieben.
+Zur besseren Unterscheidung der Namensbestandteile eines Bezeichners wird bei Abkürzungen nur der erste Buchstabe der Abkürzung groß geschrieben.
 
 [cols="1,4m",frame="none"]
 |====
@@ -216,8 +214,7 @@ Substantive als Klassennamen!
 ****
 
 Für die Namen von Klassen sind Substantive zu verwenden.
-Besteht der Zweck der Klasse ausschließlich oder zum größten Teil aus der Implementierung eines Interfaces, dann
-wird die Klasse so genannt wie das Interface, ergänzt um das Suffix `Impl`.
+Besteht der Zweck der Klasse ausschließlich oder zum größten Teil aus der Implementierung eines Interfaces, dann wird die Klasse so genannt wie das Interface, ergänzt um das Suffix `Impl`.
 
 Beispiele: `*Meldung*, *KundeDaoImpl*`
 
@@ -257,14 +254,12 @@ Beispiel: `*doSomething*, *getStrasse*, *setName*`
 JavaBeans-Konventionen einhalten!
 ****
 
-Die JavaBeans-Konventionen müssen eingehalten werden: Lesen von Eigenschaften mittels `*getProperty()*` bzw. `*isProperty()*`
-für Booleans, Schreiben von Eigenschaften mittels `*setProperty()*`.
+Die JavaBeans-Konventionen müssen eingehalten werden: Lesen von Eigenschaften mittels `*getProperty()*` bzw. `*isProperty()*` für Booleans, Schreiben von Eigenschaften mittels `*setProperty()*`.
 
 [[variablennamen]]
 === Variablennamen
 
-Für die Vergabe von Variablennamen gilt: Je globaler die Sichtbarkeit einer Variable ist, desto aussagekräftiger (und ggfls.
-länger) sollte der Name sein.
+Für die Vergabe von Variablennamen gilt: Je globaler die Sichtbarkeit einer Variable ist, desto aussagekräftiger (und ggfls. länger) sollte der Name sein.
 Das schließt nicht aus, das ein für drei Zeilen gültiger Schleifenzähler „*`i`*“ heißt.
 
 ****
@@ -316,8 +311,7 @@ Konstanten immer groß!
 
 Die Bezeichner von Konstanten werden nur mit Großbuchstaben geschrieben.
 Jedes Teilwort wird durch einen Unterstrich getrennt.
-Bei jeder Konstante ist zu überlegen, ob sie nicht durch das Typesafe-Enum-Pattern oder eine Konfigurationsvariable aus
-einer Datei/Datenbank ersetzt werden kann.
+Bei jeder Konstante ist zu überlegen, ob sie nicht durch das Typesafe-Enum-Pattern oder eine Konfigurationsvariable aus einer Datei/Datenbank ersetzt werden kann.
 
 Beispiele: `*A_MAGIC_NUMBER*, *MAX_VALUE*, *MIN_VALUE*`
 
@@ -411,8 +405,7 @@ Folgende Grundsätze sind beim Schreiben von Dokumentation und Kommentaren zu be
 Code und Dokumentation müssen immer übereinstimmen!
 ****
 
-Wenn Code verändert wird, muss sichergestellt werden, dass die entsprechenden Kommentare und die Dokumentation
-weiter zum Code passen.
+Wenn Code verändert wird, muss sichergestellt werden, dass die entsprechenden Kommentare und die Dokumentation weiter zum Code passen.
 Nach jedem Refactoring muss ein Überprüfen und eventuelles Anpassen der Dokumentation erfolgen.
 
 ****
@@ -424,21 +417,17 @@ Für die technische Dokumentation hat sich eine klare und schnörkellose Sprache
 Bei der Dokumentation von Programmcode sind zwei Adressatenkreise zu unterscheiden:
 
 Personen, die den Code einsetzen, d. h. nutzen wollen.
-Sie sind an den öffentlichen Programmierschnittstellen der Packages und der Klassen bzw.
-Interfaces interessiert, also an der *Außensicht*.
+Sie sind an den öffentlichen Programmierschnittstellen der Packages und der Klassen bzw. Interfaces interessiert, also an der *Außensicht*.
 
 Personen, die den Code warten und weiterentwickeln müssen.
-Sie sind auch an den öffentlichen Programmierschnittstellen interessiert, aber vor Allem auch an den privaten
-Schnittstellen und der internen Implementierung, also der *Innensicht*.
+Sie sind auch an den öffentlichen Programmierschnittstellen interessiert, aber vor allem auch an den privaten Schnittstellen und der internen Implementierung, also der *Innensicht*.
 
 [NOTE]
 ====
 *Hinweis*
 
-Beim Schreiben der Dokumentation sollte man immer davon ausgehen, dass der Leser zwar Java programmieren kann,
-sich aber nicht mit dem Code und den Zusammenhängen auskennt.
-Wenn die Software lange nicht mehr "angefasst" werden musste, kann das sogar der Autor der Software selbst sein,
-der sich anhand der Dokumentation wieder "hineindenken" muss.
+Beim Schreiben der Dokumentation sollte man immer davon ausgehen, dass der Leser zwar Java programmieren kann, sich aber nicht mit dem Code und den Zusammenhängen auskennt.
+Wenn die Software lange nicht mehr "angefasst" werden musste, kann das sogar der Autor der Software selbst sein, der sich anhand der Dokumentation wieder "hineindenken" muss.
 ====
 
 In Java wird zwischen Dokumentationskommentaren (`$$*/**...*/*$$`) und Implementierungskommentaren (`$$*/*...*/*, *//*$$`) unterschieden.
@@ -447,7 +436,8 @@ In Java wird zwischen Dokumentationskommentaren (`$$*/**...*/*$$`) und Implement
 == Dokumentationskommentare (Javadoc)
 
 Prinzipiell müssen alle Klassen, Interfaces und Methoden einen Dokumentationskommentar (eine Außensicht) enthalten.
-Ausnahmen sind im Einzelfall anonyme innere Klassen und ihre Methoden sowie Implementierungsklassen von Interfaces (dort mit @see auf die Interface-Dokumentation verweisen). Es wird empfohlen, je Package eine Datei „package-info.java" zu erzeugen, die das Zusammenspiel von Klassen/Interfaces in dem Package erläutert.
+Ausnahmen sind im Einzelfall anonyme innere Klassen und ihre Methoden sowie Implementierungsklassen von Interfaces (dort mit @see auf die Interface-Dokumentation verweisen).
+Es wird empfohlen, je Package eine Datei „package-info.java" zu erzeugen, die das Zusammenspiel von Klassen/Interfaces in dem Package erläutert.
 
 Für die Erstellung von Dokumentationskommentaren gelten die folgenden Regeln:
 
@@ -519,8 +509,8 @@ Kommentare zu Attributen sehen zum Beispiel wie folgt aus:
 ----
 
 `@see`-Tags sind sparsam zu verwenden, denn diese Verlinkung muss manuell gepflegt werden.
-Mehrere `@see`-Tags werden gemäß ihrer „Entfernung" von der aktuellen Stelle aufgeführt (Dokumenten-Navigation,
-Namensqualifikation). Innerhalb einer Gruppe überladener Methoden werden die Methoden gemäß der Anzahl Parameter aufgelistet.
+Mehrere `@see`-Tags werden gemäß ihrer „Entfernung" von der aktuellen Stelle aufgeführt (Dokumenten-Navigation, Namensqualifikation).
+Innerhalb einer Gruppe überladener Methoden werden die Methoden gemäß der Anzahl Parameter aufgelistet.
 
 Beispiel:
 
@@ -559,7 +549,8 @@ Autoren (und damit Verantwortlichkeiten für Bestandteile des Quellcodes) sowie 
 
 Code sollte immer selbsterklärend geschrieben werden und möglichst wenige Inline-Kommentare enthalten.
 Implementierungskommentare begründen Designentscheidungen, die aus dem Code nicht allein ersichtlich sind, oder sie erklären aufwändige Algorithmen.
-Sie wiederholen nicht den Code in Prosa (Negativbeispiel: "Erhöhe Schleifenzähler um 1."). Implementierungskommentare werden für folgende Zwecke eingesetzt:
+Sie wiederholen nicht den Code in Prosa (Negativbeispiel: "Erhöhe Schleifenzähler um 1.").
+Implementierungskommentare werden für folgende Zwecke eingesetzt:
 
 * Erklärung spezieller oder komplizierter Ausdrücke
 * Erläuterung von Designentscheidungen auf Code-Ebene
@@ -569,24 +560,22 @@ Sie wiederholen nicht den Code in Prosa (Negativbeispiel: "Erhöhe Schleifenzäh
 * Benennung bekannter Probleme und Limitierungen
 * Verzierungen (aus "***" gemalte Rechtecke oder Trennlinien) sind zu unterlassen.
 
-Wenn eine Stelle im Code noch nicht fertig ist und später kontrolliert oder überarbeitet werden soll,
-so ist sie mit `*// TODO: Grund*` zu markieren.
-Eclipse zeigt diese speziellen Kommentare analog zu Fehlern in einer ToDo-Liste an.
+Wenn eine Stelle im Code noch nicht fertig ist und später kontrolliert oder überarbeitet werden soll, so ist sie mit `*// TODO: Grund*` zu markieren.
+Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese speziellen Kommentare analog zu Fehlern in einer ToDo-Liste an.
 
 [[aenderungshistorie]]
 == Änderungshistorie
 
-Es wird immer der Ist-Zustand beschrieben. Änderungen werden in der Änderungshistorie beschrieben.
+Es wird immer der Ist-Zustand beschrieben.
+Änderungen werden in der Änderungshistorie beschrieben.
 Kommentare werden nicht dazu verwendet, alte Versionen des Codes zu deaktivieren.
 Wenn man alte Versionen wiederherstellen möchte, so ist dazu auf das Konfigurationsmanagement zurückzugreifen.
 Für die Analyse von Codeänderungen sind die bekannten DIFF-Werkzeuge einzusetzen.
 
-NOTE: Werkzeug, mit dem sich Unterschiede zwischen zwei Textdateien http://de.wikipedia.org/wiki/Synopse[synoptisch]
-darstellen lassen (diff unter http://de.wikipedia.org/wiki/Unix[Unix]; .UltraEdit)
+NOTE: Werkzeug, mit dem sich Unterschiede zwischen zwei Textdateien http://de.wikipedia.org/wiki/Synopse[synoptisch] darstellen lassen (diff unter http://de.wikipedia.org/wiki/Unix[Unix]; .UltraEdit)
 
 Änderungen werden mittels eines Version Control System (z. B. Subversion) nachverfolgt.
-Dazu ist es zwingend erforderlich, die durchgeführten Änderungen bzw.
-die Ursache dafür beim Check-In ausreichend zu dokumentieren.
+Dazu ist es zwingend erforderlich, die durchgeführten Änderungen bzw. die Ursache dafür beim Check-In ausreichend zu dokumentieren.
 Die Dokumentationssprache hierfür ist deutsch.
 Darüber hinaus werden keine Versionsinformationen im Source Code gepflegt.
 

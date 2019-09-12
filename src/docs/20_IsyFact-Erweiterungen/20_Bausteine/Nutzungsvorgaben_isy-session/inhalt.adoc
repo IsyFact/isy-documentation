@@ -22,8 +22,7 @@ image::nutzungsvorgaben_isy-session_001.png[align="center",pdfwidth=80%,width=60
 [[einbindung-und-konfiguration]]
 = Einbindung und Konfiguration
 
-In diesem Abschnitt wird die Einbindung und Konfiguration von `isy-session` beschrieben, um eine
-Webanwendung an den zentralen Session-Speicher anzubinden.
+In diesem Abschnitt wird die Einbindung und Konfiguration von `isy-session` beschrieben, um eine Webanwendung an den zentralen Session-Speicher anzubinden.
 Die nachfolgenden Schritte sind in der anzubindenden Webanwendung durchzuführen.
 
 [[schritt-1-maven-dependency-ergaenzen]]
@@ -43,13 +42,12 @@ In der `pom.xml` der Anwendung muss lediglich folgende Abhängigkeit ergänzt we
 </dependency>
 ----
 
-Die Versionsangabe kann entfallen, wenn  das `isyfact-masterpom-lib` als Parent verwendet wird.
+Die Versionsangabe kann entfallen, wenn das `isyfact-masterpom-lib` als Parent verwendet wird.
 
 [[schritt-2-spring-konfiguration-ergänzen]]
 == Schritt 2: Spring-Konfiguration ergänzen
 
-Um den Sessionmanager in die Anwendung einzubinden muss folgende Zeile in die Spring-Konfiguration 
-der Anwendung ergänzt werden:
+Um den Sessionmanager in die Anwendung einzubinden muss folgende Zeile in die Spring-Konfiguration der Anwendung ergänzt werden:
 
 [source,xml]
 ----
@@ -59,12 +57,24 @@ der Anwendung ergänzt werden:
 Das Bean nutzt einen `WebApplicationInitializer`, um einen Servlet-Filter zu registrieren.
 Es ist daher keine Anpassung in der `web.xml` notwendig.
 
+// tag::important[]
 IMPORTANT: Das Bean darf nicht in der Spring-Konfiguration eines Batchs verwendet werden.
 
+// end::important[]
+
+// tag::important[]
 IMPORTANT: Die Konfiguration der Anwendung über Annotationen muss aktiviert sein: `<context:annotation-config/>`.
 
-IMPORTANT: Es muss Spring 4.2.8 oder höher verwendet werden.
+// end::important[]
+
+// tag::important[]
+[IMPORTANT]
+====
+Es muss Spring 4.2.8 oder höher verwendet werden.
 Andernfalls erhält man die Fehlermeldung: `java.lang.NoSuchMethodError: org.springframework.core.serializer.support.DeserializingConverter.<init>`
+====
+
+// end::important[]
 
 [[schritt-3-session.properties-anlegen]]
 == Schritt 3: session.properties anlegen
@@ -88,10 +98,8 @@ session.redis.nodes[2]=<IP-Knoten-3>:7004
 <IP-Knoten-1,2,3> muss mit der IP der einzelnen Redis-Knoten ersetzt werden.
 Standardmäßig wird Port 7000 verwendet.
 
-Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im Anhang 
-<<vollstaendige-liste-der-konfigurationsparameter>> erläutert werden.
-Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate 
-mit allen Parametern dargestellt.
+Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im Anhang <<vollstaendige-liste-der-konfigurationsparameter>> erläutert werden.
+Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate mit allen Parametern dargestellt.
 
 [[vermeidung-haeufiger-fehler]]
 = Vermeidung häufiger Fehler
@@ -101,24 +109,19 @@ Die folgenden Hinweise dienen dazu, häufige Fehlerszenarien bei der Nutzung der
 [[geaenderte-werte-explizit-zurückspeichern]]
 == Geänderte Werte explizit zurückspeichern
 
-Die Session gibt, im Unterschied zu POJOs oder Java Beans, Werte nicht als Referenz (_by-reference_),
-sondern als Kopie (_by-value_) zurück.
-Deswegen müssen Werte, wenn sie außerhalb der Session geändert wurden, explizit zurück in die 
-Session geschrieben werden.
+Die Session gibt, im Unterschied zu POJOs oder Java Beans, Werte nicht als Referenz (_by-reference_), sondern als Kopie (_by-value_) zurück.
+Deswegen müssen Werte, wenn sie außerhalb der Session geändert wurden, explizit zurück in die Session geschrieben werden.
 
 :desc-listing-sessionwerte: Werte in die Session zurück schreiben
 [id="listing-sessionwerte",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-sessionwerte}
 [source,java]
 ----
-HttpSession session = 
-  (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
-                                                    .getSession(true);
+HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 
 // Kopie des Werts zum Schlüssel ERLAUBTE_LICHTBIILD_IDS
 
-Collection<String> ids =
-  session.getAttribute(ERLAUBTE_LICHTBILD_IDS);
+Collection<String> ids = session.getAttribute(ERLAUBTE_LICHTBILD_IDS);
 
 ids.add(lichtbildId);
 
@@ -129,8 +132,7 @@ session.setAttribute(ERLAUBTE_LICHTBILD_IDS, ids);
 [[keine-sonderzeichen-in-technischen-ids-verwenden]]
 == Keine Sonderzeichen in technischen IDs verwenden
 
-Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werden, 
-dürfen keine Umlaute oder andere Sonderzeichen enthalten.
+Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werden, dürfen keine Umlaute oder andere Sonderzeichen enthalten.
 
 [[ereignisschluessel]]
 = Ereignisschlüssel
