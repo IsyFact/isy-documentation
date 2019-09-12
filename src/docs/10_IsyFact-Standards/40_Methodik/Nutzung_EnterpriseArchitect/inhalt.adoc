@@ -115,7 +115,7 @@ image::colorval.png[align="center"]
 [[schriftart-von-elementen-anpassen]]
 == Schriftart von Elementen anpassen
 
-Seit EA Version 7 kann man die Schriftart eines Elements für ein einzelnes Diagramm setzen, indem man den Pinsel neben dem markierten Element anklickt und das Schriftart-Feld nutzt (siehe <<image-guiselectfnt>>).
+Seit der EA Version 7 kann man die Schriftart eines Elements für ein einzelnes Diagramm setzen, indem man den Pinsel neben dem markierten Element anklickt und das Schriftart-Feld nutzt (siehe <<image-guiselectfnt>>).
 
 :desc-image-guiselectfnt: Schriftwahl-Feld
 [id="image-guiselectfnt",reftext="{figure-caption} {counter:figures}"]

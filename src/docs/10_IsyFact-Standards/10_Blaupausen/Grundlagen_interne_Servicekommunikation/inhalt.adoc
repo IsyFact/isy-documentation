@@ -2,19 +2,16 @@
 = Grundlagen
 
 In diesem Abschnitt beschreiben wir die Grundlagen der Kommunikation innerhalb der Plattform.
-Zunächst wird in Abschnitt <<interne-und-externe-servicekommunikation>> die Unterscheidung von internen und externen Services
-geschärft und zentrale Begriffe eingeführt.
+Zunächst wird in Abschnitt <<interne-und-externe-servicekommunikation>> die Unterscheidung von internen und externen Services geschärft und zentrale Begriffe eingeführt.
 Danach wird in Abschnitt <<synchrone-kommunikation>> vorgestellt, wie synchrones und asynchrones Verhalten von Services abgebildet wird.
 In Abschnitt <<technologie>> gehen wir dann auf die technische Umsetzung von Services ein.
 
 [[interne-und-externe-servicekommunikation]]
 == Interne und externe Servicekommunikation
 
-Gemäß der Referenzarchitektur (siehe <<IsyFactReferenzarchitektur>>) kommunizieren Anwendungssysteme auf Basis von Services.
+Gemäß der Referenzarchitektur (siehe <<IsyFactReferenzarchitektur>>) kommunizieren <<glossar-Anwendungssystem,Anwendungssysteme>> auf Basis von Services.
 Das bedeutet, dass die Anwendungssysteme ihre Fachlichkeit anderen Anwendungssystemen in Form von Services anbieten.
-Hierbei ist zu unterscheiden, ob ausschließlich Anwendungssysteme innerhalb der Plattform miteinander kommunizieren oder
-ob die Kommunikation auch Anwendungssysteme einschließt, die außerhalb der
-Plattform liegen. (siehe <<image-overkommIF>>)
+Hierbei ist zu unterscheiden, ob ausschließlich Anwendungssysteme innerhalb der Plattform miteinander kommunizieren oder ob die Kommunikation auch Anwendungssysteme einschließt, die außerhalb der Plattform liegen (siehe <<image-overkommIF>>).
 
 *Kommunikation zwischen internen Anwendungssystemen:* Innerhalb der Plattform basiert die Kommunikation auf HTTP-Invoker: Das aufgerufene Anwendungssystem exportiert seine Fachlichkeit in Form einer HTTP-Invoker-Schnittstelle und das aufrufende Anwendungssystem ruft diese HTTP-Invoker-Schnittstelle direkt auf.
 Zu beachten ist, dass kein System zur Vermittlung der ausgetauschten Nachrichten wie beispielsweise ein ESB (Enterprise Service Bus) verwendet wird.
@@ -29,14 +26,15 @@ Diese HTTP-Invoker-Schnittstelle wird dann durch ein eigenständiges IT-System a
 Dieses IT-System wird als Service-Provider bezeichnet.
 Für jede HTTP-Invoker-Schnittstelle, die als Web-Services exportiert werden soll, muss ein eigener Service-Provider definiert werden.
 
-_Internes Anwendungssystem ruft Externes Anwendungssystem auf_: Möchte ein internes Anwendungssystem ein externes Anwendungssystem aufrufen, so muss das externe Anwendungssystem einen Web-Service definieren. Ähnlich wie bei Punkt (1) ruft das interne Anwendungssystem diesen Web-Services nicht direkt auf.
+_Internes Anwendungssystem ruft Externes Anwendungssystem auf_: Möchte ein internes Anwendungssystem ein externes Anwendungssystem aufrufen, so muss das externe Anwendungssystem einen Web-Service definieren.
+Ähnlich wie bei Punkt (1) ruft das interne Anwendungssystem diesen Web-Services nicht direkt auf.
 Es ruft ein eigenständiges IT-System auf, welches den Web-Service des externen Anwendungssystems als HTTP-Invoker-Schnittstelle in die Anwendungslandschaft importiert.
 Dieses IT-System wird als Service-Consumer bezeichnet.
 Das interne Anwendungssystem ruft dann lediglich die HTTP-Invoker-Schnittstelle des Service-Consumers auf.
 Für das interne Anwendungssystem ist dieser HTTP-Invoker-Aufruf nicht von einem HTTP-Invoker-Aufruf zu einem anderen internen Anwendungssystems zu unterscheiden.
-Für jeden Web-Service, der in die Anwendungslandschaft importiert werden soll, muss ein eigener Service-Consumer definiert werden.
+Für jeden Web-Service, der in die <<glossar-Anwendungslandschaft>> importiert werden soll, muss ein eigener Service-Consumer definiert werden.
 
-Die Gesamtheit aller Service-Provider und Service-Consumer wird als Service-Gateway bezeichnet.
+Die Gesamtheit aller Service-Provider und Service-Consumer wird manchmal auch als <<glossar-Service-Gateway>> bezeichnet.
 Der Service-Gateway stellt somit die zentrale Schnittstelle der IsyFact zur Außenwelt dar.
 
 :desc-image-overkommIF: Überblick Kommunikation in der IsyFact
@@ -46,11 +44,10 @@ image::overkommIF.png[align="center"]
 
 Wird ein Service von einer externen Anwendung angeboten, wird er als „externer Service“ bezeichnet.
 Ein Service-Consumer macht diesen „externen Service“ als „inneren Service“ der Plattform verfügbar.
-Wird ein Service von einer internen Anwendung angeboten, so ist das ebenfalls ein „Innerer Service“.
-Wenn ein Service-Provider diesen „Inneren Service“ einer Anwendung außerhalb der Plattform zugänglich macht, ist dies
-ein „Äußerer Service“ der Plattform.
+Wird ein Service von einer internen Anwendung angeboten, so ist das ebenfalls ein „innerer Service“.
+Wenn ein Service-Provider diesen „inneren Service“ einer Anwendung außerhalb der Plattform zugänglich macht, ist dies ein „äußerer Service“ der Plattform.
 Dies ist in <<image-extintServ>> dargestellt.
-Die Unterscheidung zwischen „Innere“ und „Äußere“ ist analog für die Begriffe „Request“ und „Response“ zu verwenden.
+Die Unterscheidung zwischen „innere“ und „äußere“ ist analog für die Begriffe „Request“ und „Response“ zu verwenden.
 
 :desc-image-extintServ: Externe, äußere und innere Services
 [id="image-extintServ",reftext="{figure-caption} {counter:figures}"]
@@ -90,7 +87,9 @@ Somit ist sichergestellt, dass kein System auf fremde Queues zugreifen kann und 
 Da die Queue als Bestandteil der Fachanwendung angesehen wird und die Daten somit in der Datenhoheit der Fachanwendung liegen, sind Datenbank-Benutzer und -Rechte durch das Anwendungssystem und nicht durch das die Queue nutzende Fremdsystem zu vergeben.
 
 Der Queue-Name erhält eine einstellige Versionsnummer.
-Damit ist es möglich bei inkompatiblen Schnittstellenänderungen mehrere Versionen der Benachrichtigungsschnittstelle anzubieten. Ändert sich die Signatur der Benachrichtigungsschnittstelle, dann wird eine neue Queue in der bestehenden Queue-Tabelle angelegt und der Versionsanteil hochgezählt. Über die betriebliche Konfiguration kann gesteuert werden, in welche Queue-Version die Daten en-/dequeued werden.
+Damit ist es möglich bei inkompatiblen Schnittstellenänderungen mehrere Versionen der Benachrichtigungsschnittstelle anzubieten.
+Ändert sich die Signatur der Benachrichtigungsschnittstelle, dann wird eine neue Queue in der bestehenden Queue-Tabelle angelegt und der Versionsanteil hochgezählt.
+Über die betriebliche Konfiguration kann gesteuert werden, in welche Queue-Version die Daten en-/dequeued werden.
 Dieses Vorgehen hat den Vorteil, dass die Fachanwendung von den Fremdsystemen stark entkoppelt ist.
 Die Fachanwendung kann für einen gewissen Zeitraum immer sowohl die alte Queue-Version als auch die neue Queue-Version bedienen – es wird jedoch immer nur eine Queue befüllt.
 
@@ -100,7 +99,9 @@ Die Überwachung ist in Form von drei JMX-Parametern umgesetzt:
 
 * *queueSize:* Gibt die aktuelle Größe der Queue an. 
 * *maxRetries:* Gibt die höchste Anzahl an Retries für die Verarbeitung einer Benachrichtigung an.
-* *maxAlter:* Gibt den Enqueue-Zeitpunkt der ältesten Benachrichtigung an. Die Werte für die Parameter werden mit SQL-Select-Queries auf die entsprechenden Queue-Tabellen ermittelt. Aus Performancegründen wird dabei stets auf die extra von Oracle bereitgestellen Views für Queue-Tabellen zugegriffen und nie direkt auf die Queue-Tabellen selbst.
+* *maxAlter:* Gibt den Enqueue-Zeitpunkt der ältesten Benachrichtigung an.
+Die Werte für die Parameter werden mit SQL-Select-Queries auf die entsprechenden Queue-Tabellen ermittelt.
+Aus Performancegründen wird dabei stets auf die extra von Oracle bereitgestellen Views für Queue-Tabellen zugegriffen und nie direkt auf die Queue-Tabellen selbst.
 
 Die Benachrichtigungen werden ohne _expiration time_ enqueued. 
 D.h. eine automatische Löschung von alten, nicht abgeholten Benachrichtigungen wird nicht durchgeführt.
@@ -112,8 +113,8 @@ Die Fremdsysteme dürfen sich nicht auf die Reihenfolge der Nachrichten in der Q
 Anhand des Zeitstempels (_JMSTimestamp_) kann jedoch eine Reihenfolge ermittelt werden.
 Das Feld _JMSTimestamp_ wird beim Schreiben in die Queue automatisch von der Datenbank gesetzt.
 
-Bei fachlichen Fehlern muss eine entsprechende Benachrichtigung (z.B. Logging) vorgenommen werden; Bei technischen Fehlern
-muss eine erneute Verarbeitung ermöglicht werden z.B. indem die Nachricht in eine eigene „Fehlerqueue“ enqueued wird.
+Bei fachlichen Fehlern muss eine entsprechende Benachrichtigung (z.B. Logging) vorgenommen werden;
+Bei technischen Fehlern muss eine erneute Verarbeitung ermöglicht werden z.B. indem die Nachricht in eine eigene „Fehlerqueue“ enqueued wird.
 Die Oracle-AQ-Exception-Queue ist nicht zu verwenden.
 
 Nachrichten enthalten als JMS-Properties den Aufrufkontext mit den Rollen, jedoch ohne die Korrelations-ID.
@@ -140,31 +141,33 @@ handelt und wie eine Außenschnittstelle zu betrachten ist.
 Der Message-Body enthält die Benachrichtigung im XML-Format.
 Für jedes Fremdsystem wird eine gesonderte XSD-Datenbeschreibung bereitgestellt, so dass jedes System eigene Nachrichten in
 seinem Format erhalten kann.
-Damit haben bspw. Änderungen der Nachrichten von Fremdsystem1 keine Auswirkungen auf die Nachrichten von Fremdsystem2.
+Damit haben bspw. Änderungen der Nachrichten von Fremdsystem 1 keine Auswirkungen auf die Nachrichten von Fremdsystem 2.
 
 [[technologie]]
 == Technologie
 
 Interne Anwendungssysteme kommunizieren miteinander über das durch das Spring-Framework definierte HTTP-Invoker-Protokoll.
 Das heißt, interne Anwendungssysteme stellen ihre Services innerhalb der IsyFact über eine HTTP-Invoker-Schnittstelle bereit.
-Da HTTP-Invoker auf serialisierten Java-Objekten basiert, können innerhalb der IsyFact ausschließlich Java-basierte
-Anwendungssysteme miteinander kommunizieren.
+Da HTTP-Invoker auf serialisierten Java-Objekten basiert, können innerhalb der IsyFact ausschließlich Java-basierte Anwendungssysteme miteinander kommunizieren.
 
-NOTE: Fachanwendungen sind entsprechend der Referenzarchitektur alle auf Basis von Java zu erstellen. Somit ist sichergestellt, dass alle Anwendungssysteme über HTTP-Invoker miteinander kommunizieren können.
+[NOTE]
+====
+Fachanwendungen sind entsprechend der Referenzarchitektur alle auf Basis von Java zu erstellen.
+Somit ist sichergestellt, dass alle Anwendungssysteme über HTTP-Invoker miteinander kommunizieren können.
 Für Fremdsysteme sind andere Kommunikationsarten zulässig.
+====
 
 Um eine möglichst lose Kopplung der Anwendungssysteme zu erreichen, wurden folgende Festlegungen getroffen:
 
 * *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht.* Es wird stets eine explizite Schnittstellen-Bean (RemoteBean-Schnittstelle) als HTTP-Invoker-Schnittstelle implementiert.
 * *Es werden keine Datenbank-Entitäten verfügbar gemacht*. Jegliche über HTTP-Invoker-Aufrufe zu transportierende Objekte sind Transportobjekte.
-Diese Transportobjekte sind im Client-HTTP-Invoker-Wrapper bzw.
-in der Server-HTTP-Invoker-Bean zu befüllen (siehe <<image-KapsCallInvoke>>).
+Diese Transportobjekte sind im Client-HTTP-Invoker-Wrapper bzw. in der Server-HTTP-Invoker-Bean zu befüllen (siehe <<image-KapsCallInvoke>>).
 * *Es werden keine Exceptions des Anwendungskerns geworfen.* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Schnittstelle verwendet werden.
 
 [[definition-der-schnittstelle]]
 === Definition der Schnittstelle
 
-Die durch ein Anwendungssystem definierte HTTP-Invoker-Schnittstelle, d. h. die RemoteBean-Schnittstelle inklusive aller direkt und indirekt verwendeten Transportobjekte und Exceptions ist Teil des Anwendungssystems.
+Die durch ein <<glossar-Anwendungssystem>> definierte HTTP-Invoker-Schnittstelle, d. h. die RemoteBean-Schnittstelle inklusive aller direkt und indirekt verwendeten Transportobjekte und Exceptions ist Teil des Anwendungssystems.
 Das bedeutet, dass die Quelldateien der RemoteBean-Schnittstelle, der Transportobjekte und der Exceptions im Anwendungssystem definiert werden.
 Das Anwendungssystem wird daher auch als definierendes Anwendungssystem der HTTP-Invoker-Schnittstelle bezeichnet.
 Damit andere Anwendungssysteme die HTTP-Invoker-Schnittstelle aufrufen können, muss das definierende Anwendungssystem die Schnittstelle in Form einer Bibliothek (JAR-Datei) zur Verfügung stellen.
@@ -178,8 +181,7 @@ image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
 [[parameter-der-schnittstelle]]
 === Parameter der Schnittstelle
 
-Jede Methode der RemoteBean-Schnittstelle muss als ersten Parameter ein Objekt der Klasse `AufrufKontextTo` bzw.
-`ClientAufrufKontextTo` verwenden.
+Jede Methode der RemoteBean-Schnittstelle muss als ersten Parameter ein Objekt der Klasse `AufrufKontextTo` bzw. `ClientAufrufKontextTo` verwenden.
 Dieser Parameter dient dazu, Meta-Informationen zum' jeweiligen Aufruf zu übergeben.
 Daneben enthält die Schnittstelle natürlich noch weitere, fachliche Parameter, die frei definiert werden können.
 
@@ -199,7 +201,7 @@ throws BusinessToException, TechnicalToException;
 Im Folgenden werden die beiden Klassen `AufrufKontextTo` und `ClientAufrufKontextTo` näher beschrieben.
 
 *AufrufKontextTo:* Die Klasse `AufrufKontextTo` wird für HTTP-Invoker-Schnittstellen verwendet, die durch Fachanwendungen definiert werden und nicht durch Service-Consumer.
-Die Klasse kapselt die Informationen, mit denen die Fachanwendung aufgerufen wurde:
+Die Klasse kapselt die Informationen, mit denen die <<glossar-Fachanwendung>> aufgerufen wurde:
 
 ** *Behörde:* Das Behördenkennzeichen der aufrufenden Behörde
 ** *Kennung:* Die Kennung des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
@@ -221,30 +223,25 @@ Das heißt zur vollständigen Definition der HTTP-Invoker-Schnittstelle ist imme
 [[zugriff-auf-querschnittssysteme]]
 === Zugriff auf Querschnittssysteme
 
-Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf
-Querschnittssysteme erlaubt.
+Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf <<glossar-Querschnittssystem,Querschnittssysteme>> erlaubt.
 
 [[versionierung]]
 = Versionierung
 
 In diesem Abschnitt gehen wir auf die Versionierung von Services ein.
-In Abschnitt <<motivation>> geben wir die Motivation für die Versionierung an und in den Abschnitten <<architektur>>
-und <<vorgehen>> gehen wir auf die Realisierung der Versionierung in Java ein.
+In Abschnitt <<motivation>> geben wir die Motivation für die Versionierung an und in den Abschnitten <<architektur>> und <<vorgehen>> gehen wir auf die Realisierung der Versionierung in Java ein.
 In Abschnitt <<parallelbetrieb>> führen wir einige Vorgaben für den Parallelbetrieb von Service-Versionen auf und
 in Abschnitt <<grenzen>> gehen wir schließlich kurz auf die Grenzen der Versionierung ein.
 
 [[motivation]]
 == Motivation
 
-Die Notwendigkeit Services in mehreren Versionen anbieten zu können, ist bedingt durch die Vielzahl an Service-Nutzern,
-die bei Änderung an einem Service nicht alle zeitgleich auf die neue Version eines Service umschalten können.
+Die Notwendigkeit Services in mehreren Versionen anbieten zu können, ist bedingt durch die Vielzahl an Service-Nutzern, die bei Änderung an einem Service nicht alle zeitgleich auf die neue Version eines Service umschalten können.
 Daher ist es notwendig, dass in einem Übergangszeitraum mehrere Versionen eines Service parallel betrieben werden können.
 
-Die Versionierung wird auf der Ebene von Services, nicht Service-Operationen ausgeführt, da diese Ebene von ihrer
-Granularität zu den üblichen fachlichen Änderungen passt.
+Die Versionierung wird auf der Ebene von Services, nicht Service-Operationen ausgeführt, da diese Ebene von ihrer Granularität zu den üblichen fachlichen Änderungen passt.
 
-NOTE: Für die HTTP-Invoker-Schnittstelle heißt das, dass die komplette RemoteBean-Schnittstelle versioniert wird und
-nicht die einzelnen Methoden der RemoteBean-Schnittstelle.
+NOTE: Für die HTTP-Invoker-Schnittstelle heißt das, dass die komplette RemoteBean-Schnittstelle versioniert wird und nicht die einzelnen Methoden der RemoteBean-Schnittstelle.
 
 Es kann vorkommen, dass in _einem_ Systemrelease neue Versionen von _mehreren_ Services ausgeliefert werden.
 
@@ -252,7 +249,7 @@ Es kann vorkommen, dass in _einem_ Systemrelease neue Versionen von _mehreren_ S
 == Architektur
 
 In der Fachanwendung wird pro Service-Version eine eigne Service-Schnittstelle angeboten.
-Die Services verwenden alle denselben Anwendungskern.
+Die Services verwenden alle denselben <<glossar-Anwendungskern>>.
 Die für die Versionierung notwendigen Transformationen sollen in der Service-Schicht der Anwendung durchgeführt werden, z.B. das Einfügen eines Standardwerts für neu hinzugefügte Attribute.
 In komplexen Fällen kann es auch notwendig sein, den Anwendungskern zu erweitern und die Versionierung dort zu behandeln.
 Die Entscheidung dafür obliegt dem Chefarchitekten.
@@ -296,7 +293,7 @@ In einem komplexeren Fall kann es passieren, dass die Service-Schnittstelle eine
 Wird in so einem Fall ein neuer Service eingeführt, während der alte Service noch verfügbar bleiben muss, müssen die inkompatiblen Verarbeitungslogiken im Anwendungskern parallel erhalten bleiben.
 Auch hier enthält der Service Gateway keine Fachlogik.
 
-Bei der Implementierung ist zu beachten, dass die Versionsnummer aus dem Packagenamen auch in die Implementierung übernommen wird.
+Bei der Implementierung ist zu beachten, dass die Versionsnummer aus dem Package-Namen auch in die Implementierung übernommen wird.
 
 [[parallelbetrieb]]
 == Parallelbetrieb
@@ -316,14 +313,12 @@ Die Kosten hierfür stehen in den meisten Fällen nicht im Verhältnis zum Nutze
 [[verfuegbarkeit]]
 = Verfügbarkeit
 
-In diesem Abschnitt definieren wir kurz die <<anforderungen>> bzgl. der Verfügbarkeit von Services in der Plattform,
-geben dann einige Ursachen für die <<ursachen-für-nichtverfuegbarkeit>> von Services an und listen schließlich einige <<massnahmen>>
-auf, um die definierten Anforderungen bzgl. Verfügbarkeit zu erreichen.
+In diesem Abschnitt definieren wir kurz die <<anforderungen>> bzgl. der Verfügbarkeit von Services in der Plattform, geben dann einige Ursachen für die <<ursachen-für-nichtverfuegbarkeit>> von Services an und listen schließlich einige <<massnahmen>> auf, um die definierten Anforderungen bzgl. Verfügbarkeit zu erreichen.
 
 [[anforderungen]]
 == Anforderungen
 
-*Hohe Verfügbarkeit:* Die Fachanwendungen der Plattform müssen eine hohe Verfügbarkeit aufweisen.
+*Hohe Verfügbarkeit:* Die <<glossar-Fachanwendung,Fachanwendungen>> der <<glossar-Plattform>> müssen eine hohe Verfügbarkeit aufweisen.
 Die Berechnung der Verfügbarkeit einer Anwendung ist komplex.
 In die Berechnung fließen unter anderem betriebliche Aspekte wie Hardwareverfügbarkeit ein, während Wartungsfenster herausgerechnet werden.
 Weiter könnte man Verfügbarkeit auf der Ebene von angebotenen Services und nicht von IT-Systemen betrachten.
@@ -334,7 +329,8 @@ Für das Szenario gehen wir im Folgenden davon aus, dass die Fachanwendungen gem
 Hierbei ist zu beachten, dass Fachanwendungen in der Regel andere Anwendungen und Querschnittssysteme aufrufen, um Anfragen zu beantworten.
 Die Gesamtverfügbarkeit sinkt dadurch ab, da zur erfolgreichen Bearbeitung einer Anfrage alle Systeme zeitgleich verfügbar sein müssen.
 Im Szenario wird für alle Systeme ein Richtwert für die Verfügbarkeit von 99,7% angenommen.
-<<table-GMTMT>> zeigt eine Beispiel-Rechnung (die Gesamtverfügbarkeit ergibt sich aus dem Produkt der Einzelverfügbarkeiten). Durch eine Verfügbarkeit von 99,7% pro System kann im Beispiel also eine Gesamtverfügbarkeit von über 98% erreicht werden.
+<<table-GMTMT>> zeigt eine Beispiel-Rechnung (die Gesamtverfügbarkeit ergibt sich aus dem Produkt der Einzelverfügbarkeiten).
+Durch eine Verfügbarkeit von 99,7% pro System kann im Beispiel also eine Gesamtverfügbarkeit von über 98% erreicht werden.
 
 Eine Berechnung der Gesamtverfügbarkeit nach dem Schema von <<table-GMTMT>> muss für jede Fachanwendung einzeln durchgeführt werden.
 Dabei müssen die berechneten oder gemessenen Verfügbarkeiten aller Systeme zugrunde gelegt werden, die die Fachanwendung aufruft.
@@ -430,13 +426,11 @@ Anforderungen an die Verfügbarkeit zu gewährleisten:
 *Anwendungscluster mit Loadbalancer:* Die TI-Architektur der IsyFact setzt die hohen Verfügbarkeitsanforderungen durch Clustering
 der Applikations- und Datenbankserver um.
 Anwendungen werden redundant auf mehr als einem Server installiert.
-Kommt es zu einem Hard- oder Softwareausfall (siehe Abschnitt <<ursachen-für-nichtverfuegbarkeit>>) auf einem Server-Knoten, so werden alle Anfragen von einem
-vorgeschalteten Loadbalancer auf einen anderen Server-Knoten umgeleitet.
+Kommt es zu einem Hard- oder Softwareausfall (siehe Abschnitt <<ursachen-für-nichtverfuegbarkeit>>) auf einem Server-Knoten, so werden alle Anfragen von einem vorgeschalteten Loadbalancer auf einen anderen Server-Knoten umgeleitet.
 Durch die Redundanz wird die Verfügbarkeit von Services bei auftretenden Hard- oder Softwareausfällen erhöht.
 Trotzdem kann es auch hier noch zu Nichtverfügbarkeit kommen.
 
-*Knotenweises Deployment:* In Abschnitt <<ursachen-für-nichtverfuegbarkeit>> wurde als Ursache für Nichtverfügbarkeit eine
-geplante Wartungsarbeit beschrieben.
+*Knotenweises Deployment:* In Abschnitt <<ursachen-für-nichtverfuegbarkeit>> wurde als Ursache für Nichtverfügbarkeit eine geplante Wartungsarbeit beschrieben.
 Im Clusterbetrieb besteht die Möglichkeit, diese Knoten für Knoten auszuführen.
 Bevor das Deployment auf einem Knoten ausgeführt wird, wird dem Loadbalancer mitgeteilt dass der Knoten nicht mehr verfügbar ist.
 Während des Deployments des Knotens verarbeiten die restlichen Knoten alle ankommenden Anfragen.
@@ -467,8 +461,7 @@ Eine automatische Aufrufwiederholung kann im Falle einer echten Nichtverfügbark
 Die Situation wird daher durch die Aufrufwiederholung deutlich verschlechtert.
 
 Insbesondere bei einem Timeout eines TTL ist jedoch ein Retry mit großer Vorsicht zu genießen, da nicht klar ist, ob die Service-Anfrage nicht doch durch den Server bearbeitet wird.
-In einem solchen Fall führt eine Aufrufwiederholung zu einer erhöhten Last auf dem Server und kann im schlechtesten Fall zu einer echten Nichtverfügbarkeit des Services bzw.
-des kompletten Servers führen.
+In einem solchen Fall führt eine Aufrufwiederholung zu einer erhöhten Last auf dem Server und kann im schlechtesten Fall zu einer echten Nichtverfügbarkeit des Services bzw. des kompletten Servers führen.
 
 _Empfehlung:_ In Anbetracht der potentiellen Probleme der Aufrufwiederholung und der Tatsache, dass eine Aufrufwiederholung nur für idempotente Service-Operationen überhaupt zulässig ist, sollte von einer automatischen Aufrufwiederholung als Maßnahme zur Erhöhung der Verfügbarkeit in der Regel abgesehen werden.
 Ausgenommen davon sind Aufrufe, bei denen nur Daten gelesen werden, z.B. die Aufrufe
@@ -476,7 +469,8 @@ Ausgenommen davon sind Aufrufe, bei denen nur Daten gelesen werden, z.B. die Auf
 * für Suchen im Suchverfahren,
 * zur Abfrage von Verzeichnissen, wie Schlüsselverzeichnis, Benutzerverzeichnis oder Behördenverzeichnis
 
-Hierfür soll grundsätzlich eine Wiederholung durchgeführt werden. Diese ist wie folgt zu konfigurieren:
+Hierfür soll grundsätzlich eine Wiederholung durchgeführt werden.
+Diese ist wie folgt zu konfigurieren:
 
 * Pause zwischen den Retries: 500 ms
 * Maximale Anzahl von Retries: 3

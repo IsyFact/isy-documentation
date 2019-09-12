@@ -8,10 +8,11 @@ Dieses Kapitel enthält einige grundlegende Informationen zum Umgang Dauern und 
 
 Zur Darstellung einer Dauer sind die Java 8 Typen `Period` und `Duration` zu verwenden.
 
-Eine `Period` ist eine datumsbasierte Menge von Zeit, wie z.B. „2 Jahre, 3
-Monate und 4 Tage“. Eine Dauer wird also auf der Basis von Jahren, Monaten und Tagen modelliert.
+Eine `Period` ist eine datumsbasierte Menge von Zeit, wie z.B. „2 Jahre, 3 Monate und 4 Tage“.
+Eine Dauer wird also auf der Basis von Jahren, Monaten und Tagen modelliert.
 
-Eine `Duration` ist eine zeitbasierte Menge von Zeit, wie z.B. „34,5 Sekunden“. Eine Dauer wird hier auf der Basis von Sekunden und Nanosekunden modelliert.
+Eine `Duration` ist eine zeitbasierte Menge von Zeit, wie z.B. „34,5 Sekunden“.
+Eine Dauer wird hier auf der Basis von Sekunden und Nanosekunden modelliert.
 Der Zugriff ist auch über andere Zeiteinheiten, wie z.B. Minute, Stunde oder Tag, möglich.
 
 `Period` und `Duration` unterscheiden sich bei Berechnungen mit einer `ZonedDateTime` im Zusammenhang mit der Sommerzeit.
@@ -45,7 +46,8 @@ Sollten sich diese Datumsangaben im Laufe der Geschichte geändert haben, sind a
 [[abkürzungen-für-zeitzonen-offsets]]
 == Abkürzungen für Zeitzonen / Offsets
 
-Häufig werden Zeitzonen oder Offsets mit drei oder mehr Buchstaben abgekürzt, wie z.B. MEZ für „Mitteleuropäische Zeit“ oder PST für "Pacific Standard Time". Die Verwendung solcher Abkürzungen kann aber zu Problemen führen:
+Häufig werden Zeitzonen oder Offsets mit drei oder mehr Buchstaben abgekürzt, wie z.B. MEZ für „Mitteleuropäische Zeit“ oder PST für "Pacific Standard Time".
+Die Verwendung solcher Abkürzungen kann aber zu Problemen führen:
 
 * Häufig sind Abkürzungen nicht eindeutig.
 Es gibt fünf Interpretationen für “CST”:
@@ -70,6 +72,7 @@ In diesem Abschnitt werden Inhalt und Einsatz der Querschnittsbibliothek _isy-da
 
 [[inhalt-von-isy-datetime]]
 == Inhalt von *_isy-datetime_*
+
 [[formatierung]]
 === Formatierung
 
@@ -134,8 +137,7 @@ Zur Eingabe von Dauern werden folgende Methoden von `InFormat` bereitgestellt:
 |parseToPeriod() |7a 6M 5d
 |====
 
-Hierbei ist zu beachten, dass nicht alle Zeiteinheiten von `Period` bzw.
-`Duration` unterstützt werden.
+Hierbei ist zu beachten, dass nicht alle Zeiteinheiten von `Period` bzw. `Duration` unterstützt werden.
 Enthält die Zeichenkette Zeiteinheiten, die nicht unterstützt werden, wird eine Exception geworfen.
 
 [[formate-fuer-zeitraum]]
@@ -166,8 +168,7 @@ Für die im Konzept geforderten Berechnungen gibt es folgende Möglichkeiten zur
 
 * Chronologische Sortierung einer Menge von Datums- und Zeitwerten und chronologische Vergleiche zwischen Datums- und Zeitwerten („früher als“, „später als“, „gleichzeitig“).
 
-Die Klassen `LocalDate`, `LocalTime`, `LocalDateTime`, `OffsetTime`, `OffsetDateTime`, `ZonedDateTime` und `Duration` implementieren das Interface `Comparable`, daher ist ein Sortieren mit Bordmitteln möglich (bspw.
-Mit `Collections.sort()`).
+Die Klassen `LocalDate`, `LocalTime`, `LocalDateTime`, `OffsetTime`, `OffsetDateTime`, `ZonedDateTime` und `Duration` implementieren das Interface `Comparable`, daher ist ein Sortieren mit Bordmitteln möglich (bspw. mit `Collections.sort()`).
 
 Für chronologische Vergleiche werden die Methoden `isBefore()`, `isAfter()`, `isEqual()` bereitgestellt.
 Bei `LocalTime` ist die Methode `equals()` zu verwenden.

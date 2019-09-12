@@ -94,7 +94,10 @@ image::verzeichnis3.png[align="center"]
 
 Genauso wie in der obigen Abbildung für das IsyFact-Dokument "Handbuch_fuer_technische_Autoren", so muss auch für Ihr IsyFact-Dokument ein neues Verzeichnis innerhalb der korrekt zugeordneten Säule erstellt werden.
 
-Wenn Sie das neue Verzeichnis anlegen, stellt sich als Nächstes die Frage, wie das Verzeichnis benannt werden soll. Dazu vergeben Sie eine neue _Dokument-ID_. Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird. Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
+Wenn Sie das neue Verzeichnis anlegen, stellt sich als nächstes die Frage, wie das Verzeichnis benannt werden soll.
+Dazu vergeben Sie eine neue _Dokument-ID_.
+Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird.
+Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
 
 [[die-mustervorlage-vorbereiten]]
 == Die Mustervorlage vorbereiten
@@ -158,6 +161,7 @@ Dabei sollte auf der rechten Seite die Vorschau erscheinen.
 == master.adoc bearbeiten
 
 Die erste Datei, die Sie bearbeiten müssen ist die Datei `master.adoc`.
+// todo: kein bearb-Datum und Revisionsnummer mehr.
 Hier müssen der Titel, das Bearbeitungsdatum und die Revisionsnummer gesetzt werden.
 In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im Vorlage-Dokument vorfinden werden.
 
@@ -174,7 +178,8 @@ In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im
  :title: {doctitle}
 ----
 
-Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel. Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Veröffentlichung) in Ihrem Projekt nicht zentral gesteuert, fügen Sie die beiden Attribute bitte zur `master.adoc` hinzu.
+Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel.
+Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Veröffentlichung) in Ihrem Projekt nicht zentral gesteuert, fügen Sie die beiden Attribute bitte zur `master.adoc` hinzu.
 
 :desc-listing-revision: Revisionsnummer und Revisionsdatum
 [id="listing-revision",reftext="{listing-caption} {counter:listings }"]
@@ -242,7 +247,7 @@ Hinzu kommt, dass bei der Umwandlung in die Ausgabeformate HTML und PDF vorgefer
 Bei den automatisch erzeugten Verzeichnissen handelt es sich um folgende:
 
 Literaturverzeichnis:: Quellenangaben, Referenzen auf Bücher oder andere IsyFact-Dokumente
-// Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
+Glossar:: verwendete Abkürzungen, Fachbegriffe sowe nicht offensichtliche Begriffe
 Abbildungsverzeichnis:: enthaltene Abbildungen mit Nummer und Beschreibung
 Quelltextverzeichnis:: enthaltene Listings, beispielsweise Java, SQL etc.
 Tabellenverzeichnis:: enthaltene Tabellen mit Tabellennummer und Tabellenunterschrift
@@ -446,7 +451,7 @@ Die Regeln stellen vor allem sicher, dass grafische Oberflächen ein einheitlich
 Folgende Blöcke sind zusätzlich mit einem Tag zu kennzeichnen:
 
 * IMPORTANT (Tag-Name: `important`)
-* ANWENDUNGSANFORDERUNG (Tag-Name: `anwendungsanforerung`)
+* ANWENDUNGSANFORDERUNG (Tag-Name: `anwendungsanforderung`)
 * ARCHITEKTURREGEL (Tag-Name: `architekturregel`)
 * SICHERHEIT (Tag-Name: `sicherheit`)
 * STYLEGUIDE (Tag-Name: `styleguide`)
@@ -715,8 +720,6 @@ Das Ergebnis sieht so aus:
 
 `Hier ist das <<Handbuch_fuer_technische_Autoren,Handbuch für technische Autoren>>.`
 
-////
-(Wieder mit hereinnehmen, wenn es ein solches Glossar gibt.)
 [[glossar]]
 == Glossar
 
@@ -745,4 +748,3 @@ Eine Referenz auf einen Begriff des Glossars erfolgt über doppelte spitze Klamm
 Das Ergebnis sieht wie folgt aus:
 
 `Hier wurde ein <<glossar-halloweltbeispiel, Hallo Welt Beispiel>> verwendet.`
-////

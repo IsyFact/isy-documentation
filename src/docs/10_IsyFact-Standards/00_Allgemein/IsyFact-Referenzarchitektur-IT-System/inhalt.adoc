@@ -1,7 +1,7 @@
 [[technische-architektur]]
 = Technische Architektur
 
-Die technische Architektur beschreibt die Strukturierung der IsyFact-Plattform in IT-Systeme, den Aufbau einzelner IT-Systeme und die verwendeten übergreifenden technischen Konzepte.
+Die technische Architektur (<<glossar-T-Architektur>>) beschreibt die Strukturierung der IsyFact-Plattform in IT-Systeme, den Aufbau einzelner IT-Systeme und die verwendeten übergreifenden technischen Konzepte.
 
 [[die-referenzarchitektur-eines-it-systems]]
 == Die Referenzarchitektur eines IT-Systems
@@ -14,41 +14,40 @@ Daher wird im Folgenden die Referenz-Architektur beschrieben, nach der diese Anw
 .{desc-image-RAITSys}
 image::RAITSys.png[align="center"]
 
-Die Referenzarchitektur für ein IT-System basiert auf der bekannten Drei-Schichten-Architektur:
+Die Referenzarchitektur für ein <<glossar-IT-System>> basiert auf der bekannten Drei-Schichten-Architektur:
 
-*Persistenz*: In dieser Schicht ist alle Funktionalität enthalten, die zum Erzeugen, Suchen, Bearbeiten und Löschen von Datenobjekten benötigt wird.
+*<<glossar-Persistenz>>*: In dieser Schicht ist alle Funktionalität enthalten, die zum Erzeugen, Suchen, Bearbeiten und Löschen von Datenobjekten benötigt wird.
 Der Datenzugriff auf das DBMS ist in dieser Schicht vollständig gekapselt.
 In Richtung Datenbank kommuniziert diese Schicht mittels JDBC und SQL, in Richtung des Anwendungskerns stellt die Schicht Geschäftsobjekte zur Verfügung.
 Die Persistenz nutzt dazu das Persistenzframework Hibernate über die Java Persistence API (JPA).
 
-*Anwendungskern:* Der Anwendungskern umfasst die fachliche Logik zur Datenbearbeitung, die mit dem System realisiert werden soll.
+*<<glossar-Anwendungskern>>:* Der Anwendungskern umfasst die fachliche Logik zur Datenbearbeitung, die mit dem System realisiert werden soll.
 Dazu gehören zum Beispiel Datenvalidierungen oder Funktionen zum Verarbeiten von Geschäftsobjekten, die über die Datenhaltung geladen wurden.
-Innerhalb dieser Anwendungslogik befinden sich aber nur Funktionalitäten, die allgemein verwendbar sind und die von mehreren Nutzern genutzt werden könnten.
-Daneben gibt es spezielle Dialogabläufe, zum Beispiel dialogspezifische Bearbeitungsverfahren wie die Nutzerführung über Wizards.
+Innerhalb dieser Anwendungslogik befinden sich aber nur Funktionalitäten, die allgemein verwendbar sind und die von mehreren Anwendern genutzt werden könnten.
+Daneben gibt es spezielle Dialogabläufe, zum Beispiel dialogspezifische Bearbeitungsverfahren wie die Anwenderführung über Wizards.
 Diese Prozesse, die nur durch einen einzigen Dialog genutzt werden, sind nicht Teil des Anwendungskerns, sondern Teil der Schicht Nutzung.
-Damit stellt der Anwendungskern innerhalb des Systems allgemein nutzbare Dienste zur Verfügung.
+Damit stellt der Anwendungskern innerhalb des Systems allgemein nutzbare <<glossar-Dienst,Dienste>> zur Verfügung.
 
 *Nutzung:* Die Schicht der Nutzung ist eine Erweiterung der klassischen Drei-Schichten Architektur, in der die dritte Schicht als GUI oder Präsentation bezeichnet wird.
 In der Referenzarchitektur für ein IT-System wird diese Schicht noch zusätzlich erweitert um Batch und Service.
 
-* *GUI:* Aufgabe der GUI ist es, die Funktionalität der Anwendung für einen menschlichen Nutzer zur Verfügung zu stellen.
+* *GUI:* Aufgabe der GUI ist es, die Funktionalität der Anwendung für einen menschlichen Anwender zur Verfügung zu stellen.
 Dabei unterstützt die GUI den Bearbeitungsprozess einer fachlichen Aufgabe.
 Innerhalb des Bearbeitungsprozesses stellt sie Dialoge dar und transferiert die durch den Anwendungskern gelieferten Datenobjekte in eine präsentable Form.
 Dies kann sowohl durch eine Web-basierte HTML-GUI als auch durch eine sogenannte Rich-Client Anwendung geschehen.
 
-* *Batch:* Aufgabe des Batches ist es, automatisierte Prozesse ohne einen direkten menschlichen Nutzer durchzuführen.
+* *<<glossar-Batch>>:* Aufgabe des Batches ist es, automatisierte Prozesse ohne einen direkten menschlichen Anwender durchzuführen.
 Dabei nutzt der Batch ebenfalls die Funktionen des Anwendungskerns.
 Auch hier gibt es spezielle Batch-Schritte, die exklusiv vom Batch benötigt werden und deshalb nicht Bestandteil des Anwendungskerns sind.
 Eine Besonderheit beim Batch ist, dass die Steuerung des Batch-Prozesses in der Regel über ein Scheduling-Werkzeug erfolgt.
 
-* *Services:* Der dritte Nutzer von Anwendungslogik sind andere Anwendungen, die mittels Services auf den Anwendungskern zugreifen.
-Dieser Zugriff erfolgt nicht direkt auf den Anwendungskern, sondern über die Nutzungsschicht „Service“. Dadurch können auf einfache Art technische Attribute in die
-Außenschnittstelle aufgenommen werden und der Service des Anwendungskerns kann auf die Kommunikationstechnik abgebildet werden, die für die Kommunikation
-zwischen IT-Systemen verwendet wird.
+* *Services:* Der dritte Aufrufende von Anwendungslogik sind andere Anwendungen, die mittels Services auf den Anwendungskern zugreifen.
+Dieser Zugriff erfolgt nicht direkt auf den Anwendungskern, sondern über die Nutzungsschicht „Service“.
+Dadurch können auf einfache Art technische Attribute in die Außenschnittstelle aufgenommen werden und der Service des Anwendungskerns kann auf die Kommunikationstechnik abgebildet werden, die für die Kommunikation zwischen IT-Systemen verwendet wird.
 
 Details zur Konstruktion eines IT-Systems werden in <<IsyFactSystementwurf>> festgelegt und für das jeweilige IT-System dokumentiert.
 
-[[übergreifende-technische-konzeption]]
+[[uebergreifende-technische-konzeption]]
 == Übergreifende technische Konzeption
 
 Für den Aufbau eines IT-Systems gelten einige übergreifende technische Regeln, die im Folgenden vorgestellt werden.
@@ -86,7 +85,7 @@ Dabei werden Datentypen der Datenbank in ihre Objekt-Äquivalente umgesetzt, ein
 * *Transaktionssteuerung und Sperren:* Es müssen fachliche Transaktionen auf technische Transaktionen gegen die Datenbank abgebildet werden.
 Dabei wird eine optimistische Sperrstrategie umgesetzt.
 Ein übliches Verhalten ist zum Beispiel das folgende: Erstreckt sich eine fachliche Transaktion über mehrere Dialogschritte, wird die Zugriffsschicht erst beim Verlassen des letzten Dialogs eine technische Datenbanktransaktion auslösen.
-Um zu prüfen, ob die Daten in der Zwischenzeit nicht durch einen anderen Nutzer verändert worden sind, wird die Zugriffsschicht beim Schreiben Zeitstempel oder Versionszähler der Datensätze überprüfen.
+Um zu prüfen, ob die Daten in der Zwischenzeit nicht durch einen anderen Anwender verändert worden sind, wird die Zugriffsschicht beim Schreiben Zeitstempel oder Versionszähler der Datensätze überprüfen.
 +
 Um diesen großen Funktionsumfang abzudecken, wird ein Produkt zum objekt-relationalen Mapping gemäß JPA-Standard eingesetzt.
 Details hierzu sind in <<DetailkonzeptKomponenteDatenzugriff>> dokumentiert.
@@ -95,9 +94,9 @@ Details hierzu sind in <<DetailkonzeptKomponenteDatenzugriff>> dokumentiert.
 == Der Anwendungskern
 
 Zentraler Baustein eines IT-Systems ist der Anwendungskern.
-Im Anwendungskern werden die fachlichen Funktionen der Anwendung realisiert.
+Im Anwendungskern werden die fachlichen Funktionen (Anwendungslogik) der Anwendung realisiert.
 Dazu gehören zum Beispiel Datenvalidierungen oder Funktionen zum Verarbeiten von Geschäftsobjekten, die über die Datenhaltung geladen wurden.
-In Richtung Nutzungsschicht bietet der Anwendungskern nur Funktionalitäten an, die allgemein verwendbar sind und die von mehreren Nutzern verwendet werden könnten.
+In Richtung Nutzungsschicht bietet der Anwendungskern nur Funktionalitäten an, die allgemein verwendbar sind und die von mehreren Aufrufenden verwendet werden könnten.
 Weitere Details können auch dem Detailkonzept <<DetailkonzeptKomponenteAnwendungskern>> entnommen werden.
 
 In <<image-TeileAnwK>> sind drei Aspekte des Anwendungskerns dargestellt.
@@ -112,7 +111,7 @@ image::TeileAnwK.png[align="center",pdfwidth=80%,width=80%]
 
 *Fachkomponenten:* Die Fachkomponenten entsprechen dem fachlichen Komponentenschnitt aus der fachlichen Architektur.
 Diese Komponenten implementieren weitgehend reine Fachlichkeit und trennen so Anwendungslogik und Technologie.
-Die Umsetzung einer Komponente aus der fachlichen Architektur erfolgt durch eine Fachkomponente.
+Die Umsetzung einer Komponente aus der fachlichen Architektur (<<glossar-A-Architektur>>) erfolgt durch eine Fachkomponente.
 Dies ist der Schlüssel für gute Wartbarkeit und einfache Weiterentwickelbarkeit des Anwendungskerns.
 Diese Struktur findet sich auch in anderen Schichten wieder:
 
@@ -127,12 +126,10 @@ mittels eines Bean-Mappers befüllt werden können. +
 Wenn Objekte von mehreren Komponenten genutzt werden und keiner einzelnen Komponente zugeordnet werden können, sollten sie in einem eigenen querschnittlichen
 Package abgelegt werden.
 
-Vereinfachend können Anwendungskern-Komponenten persistente Daten an die Service-Schicht (Kapitel <<servicezugriffe>>) weitergeben.
+Vereinfachend können Anwendungskern-Komponenten persistente Daten an die <<glossar-Service>>-Schicht (Kapitel <<servicezugriffe>>) weitergeben.
 Dies ist insbesondere dann angebracht, wenn die Komponente ausschließlich durch eine Service-Komponente genutzt wird. +
-Da die Service-Schicht keine Logik enthält und daher ohnehin keine Änderung an solchen Entitäten vornehmen darf und eindeutig der Anwendungskern-Komponente
-zugeordnet ist, bedeutet dies keine Verletzung der Datenhoheit.
-Da die Anwendungskern-Komponente an Ihrer Schnittstelle nun potentiell persistente und nicht persistente Entitäten bereitstellt müssen Verwechselungen
-vermieden werden, z.B. in dem solche Methoden in getrennten Interfaces deklariert werden.
+Da die Service-Schicht keine Logik enthält und daher ohnehin keine Änderung an solchen Entitäten vornehmen darf und eindeutig der Anwendungskern-Komponente zugeordnet ist, bedeutet dies keine Verletzung der Datenhoheit.
+Da die Anwendungskern-Komponente an Ihrer Schnittstelle nun potentiell persistente und nicht persistente Entitäten bereitstellt müssen Verwechselungen vermieden werden, z.B. in dem solche Methoden in getrennten Interfaces deklariert werden.
 Im Zweifel sollte darauf verzichtet werden persistente Entitäten aus der Anwendungskern-Komponente herauszugeben.
 
 *Komponenten-Framework:* Für querschnittliche Funktionalität innerhalb des Anwendungskerns wird das Spring-Framework genutzt.
@@ -140,7 +137,7 @@ Hauptaufgabe des Frameworks ist es, die Komponenten zu konfigurieren und miteina
 Dadurch wird die Trennung zwischen Fachlichkeit und Technik verbessert.
 Beispiel für querschnittliche Funktionalität ist die deklarative Steuerung von Transaktionen.
 
-*Externe Services:* Wenn der Anwendungskern fachliche Services benötigt, die von anderen IT-Systemen innerhalb der Plattform angeboten werden, so werden diese Services als Komponente im Anwendungskern abgebildet.
+*Externe Services:* Wenn der Anwendungskern fachliche Services benötigt, die von anderen IT-Systemen innerhalb der <<glossar-Plattform>> angeboten werden, so werden diese Services als Komponente im Anwendungskern abgebildet.
 Dadurch ist die Funktionalität sauber gekapselt, was die Wartbarkeit erhöht.
 Wenn der externe Service ausgetauscht werden soll, ist keine Änderung der gesamten Anwendung notwendig – es ist lediglich eine interne Änderung der externen Service-Komponente notwendig.
 Für andere fachliche Komponenten des Anwendungskerns ist nicht zu unterscheiden, ob es sich beim Aufruf einer Komponentenschnittstelle um eine in dieser Komponente implementierte Funktion oder um einen Serviceaufruf handelt.
@@ -150,12 +147,10 @@ Diese Komponenten haben damit zwei Hauptaufgaben: Sie müssen die technische Asp
 [[gui]]
 == GUI
 
-Bei graphischen Benutzeroberflächen (engl.
-Graphical User Interface, GUI) gibt es eine Vielfalt unterschiedlichster Komplexitäten: von einfachen Stammdatensystemen über Dialogsysteme mit vielen einfachen
-Dialogen, die aber intensiv miteinander interagieren, bis zu Clients mit wenigen, aber sehr komplexen Dialogen.
+Bei graphischen Benutzeroberflächen (engl. Graphical User Interface, GUI) gibt es eine Vielfalt unterschiedlichster Komplexitäten: von einfachen Stammdatensystemen über Dialogsysteme mit vielen einfachen Dialogen, die aber intensiv miteinander interagieren, bis zu Clients mit wenigen, aber sehr komplexen Dialogen.
 Eine gute Architektur muss für alle relevanten Varianten einen tragfähigen Rahmen schaffen.
 
-Im Wesentlichen müssen innerhalb einer graphischen Benutzeroberfläche verschiedene Aufgaben erledigt werden:
+Im Wesentlichen müssen innerhalb einer <<glossar-GUI>> verschiedene Aufgaben erledigt werden:
 
 * Die Masken und Informationen müssen am Bildschirm angezeigt werden.
 * Der Dialog muss auf Benutzerinteraktionen reagieren.
@@ -209,7 +204,7 @@ von Details zur Umsetzung von Berechtigungen sind in <<Berechtigungskonzept>> en
 [[batch]]
 == Batch
 
-Ein Batch realisiert eine eigenständige Verarbeitung ohne direkten Benutzereingriff während des Ablaufes.
+Ein <<glossar-Batch>> realisiert eine eigenständige Verarbeitung ohne direkten Benutzereingriff während des Ablaufes.
 An einen Batch werden verschiedene Anforderungen gestellt: Ausführungszeitpunkt, Abhängigkeiten, Datenvolumen, ausgeführte Funktionalität, Eingaben, Ausgaben usw.
 
 Aus Architektur-Sicht werden diese Anforderungen durch zwei Komponenten abgedeckt: der Batchrahmen und der Batchlogik.
@@ -248,7 +243,7 @@ Weiterführende technische Details zum Batch sind im Dokument <<DetailkonzeptKom
 == Servicezugriffe
 
 Services des Anwendungskerns, die vom IT-System zur Verfügung gestellt werden sollen, werden durch die Komponenten von „Service“ innerhalb der Schicht „Nutzung“ angereichert und nach außen gegeben.
-Dabei können alle Dienste des Anwendungskerns genutzt werden.
+Dabei können alle Dienste des <<glossar-Anwendungskern,Anwendungskerns>> genutzt werden.
 Die Service-Komponenten werden entsprechend den Anwendungskern-Komponente geschnitten, d.h. für jede Komponente des Kerns, die einen Service anbieten soll, wird eine eigene Service-Komponente implementiert.
 Service-Komponenten werden nicht mehrere Anwendungskern-Komponenten.
 Dies würde dem Gebot, in den Services keine Logik zu implementieren, widersprechen.
@@ -280,7 +275,7 @@ Die eigentliche Funktionalität des Dienstes ist also im Anwendungskern implemen
 Die Schnittstelle zwischen den Schichten „Service“ und „Anwendungslogik“ ist daher eine interne Service-Schnittstelle.
 Eine Kernaufgabe der Service-Logik ist die Umsetzung der internen Datenstrukturen und Exceptions des IT-Systems auf Transportobjekte und Exceptions der Service-Schnittstelle sowie die Autorisierung der Nutzung von angebotenen Services.
 
-[[unterstützung-technischer-funktionalitäten]]
+[[unterstuetzung-technischer-funktionalitaeten]]
 == Unterstützung technischer Funktionalitäten
 
 Neben der GUI, Services, Batch, Anwendungskern und Datenhaltung benötigt ein IT-System mehrere querschnittliche Funktionalitäten.
