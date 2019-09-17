@@ -2,25 +2,6 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
-
-*Java Bibliothek / IT-System*
-
-[cols="3,1,2",options="header"]
-|====
-|Name |Art |Version
-|isy-batchrahmen |Bibliothek |siehe isyfact-bom v{version-ifs}
-|====
-
-**Dokumentinformationen**
-
-// die UUID des Doks
-|====
-|Dokumenten-ID:| {title}
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
-
 == Einführung
 
 [[vorgehen]]

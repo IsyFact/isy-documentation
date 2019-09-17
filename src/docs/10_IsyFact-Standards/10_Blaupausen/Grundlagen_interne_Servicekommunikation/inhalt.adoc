@@ -1,11 +1,5 @@
 [[grundlagen]]
 = Grundlagen
-**Dokumentinformationen**
-
-[cols="1,4"]
-|====
-|Dokumenten-ID:| Grundlagen_interne_Servicekommunikation
-|====
 
 Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
 

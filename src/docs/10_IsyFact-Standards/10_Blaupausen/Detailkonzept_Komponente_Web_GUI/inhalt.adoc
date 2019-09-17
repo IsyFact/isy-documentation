@@ -1,26 +1,6 @@
 = Detailkonzept Komponente Web-GUI: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-*Dokument-Informationen*
-
-|====
-|Dokumenten-ID:| Detailkonzept_Komponente_Web_GUI
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
-NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden zurzeit grundlegend überarbeitet. Der vorliegende Stand dieses Dokuments beschreibt noch nicht alle neuen Funktionen von isy-web 4.x.
-
-*Java Bibliothek / IT-System*
-
-[cols="5,2,3",options="header"]
-|====
-|Name |Art |Version
-|isy-web |Bibliothek |siehe isyfact-bom v{version-ifs}
-|isy-style |Bibliothek |siehe isyfact-bom v{version-ifs}
-|====
-
-
 // tag::inhalt[]
 [[anforderungen]]
 = Anforderungen

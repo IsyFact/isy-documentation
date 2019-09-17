@@ -1,11 +1,3 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| IsyFact-Referenzarchitektur
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
 [[uebersicht]]
 = Übersicht über die IsyFact
 

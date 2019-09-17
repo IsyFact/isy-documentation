@@ -1,9 +1,3 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| IsyFact-Whitepaper
-|====
-
 [[standardisierung-durch-software-factories]]
 = Standardisierung durch Software Factories
 

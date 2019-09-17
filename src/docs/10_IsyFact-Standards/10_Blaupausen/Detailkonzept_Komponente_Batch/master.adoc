@@ -8,7 +8,13 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 // Zwangsplatz des TOC
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+*Java Bibliothek / IT-System*
 
+[cols="3,1,2",options="header"]
+|====
+|Name |Art |Version
+|isy-batchrahmen |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
 
 // Executive Summary
 include::preface.adoc[]

@@ -1,11 +1,3 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| IsyFact-Referenzarchitektur-IT-System
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
 [[technische-architektur]]
 = Technische Architektur
 
