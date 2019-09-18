@@ -6,31 +6,45 @@ Um das Maven-Plugin zu nutzen, muss es in die `pom.xml` integriert werden. Dies 
 
 [[funktionweise]]
 == Funktionsweise
-Das Maven-Plugin prüft beim Build-Vorgang, ob die angegebene Version den Versionierungsvorgaben in <<IsyFact-Versionierung>> entspricht. Die Versionsangabe wird in der Lifecycle-Phase "validate" geprüft. Dies ist im Default-Lifecycle der erste Schritt.
+Das Maven-Plugin prüft beim Build-Vorgang, ob die angegebene Version den Versionierungsvorgaben in <<IsyFactVersionierung>> entspricht.
+Die Versionsangabe wird in der Lifecycle-Phase "validate" geprüft. Dies ist im Default-Lifecycle der erste Schritt.
 
-Die Versionierung ist abhängig von der Art der Komponente. Aus diesem Grund wird bei der Validierung zwischen Geschäftsanwendungen und Schnittstellen unterschieden. Dabei wird zunächst von jeder Komponente angenommen, es verfolgt die Versionierungsrichtlinien von Geschäftsanwendungen. Konnten diese nicht nachgewiesen werden, wird automatisch geprüft, ob die Kritierien einer Schnittstellen-Version auf die Versionsnummer zutreffen.
+Die Versionierung ist abhängig von der Art der Komponente.
+Aus diesem Grund wird bei der Validierung zwischen Geschäftsanwendungen und Schnittstellen unterschieden.
+Dabei wird zunächst von jeder Komponente angenommen, es verfolgt die Versionierungsrichtlinien von Geschäftsanwendungen.
+Konnten diese nicht nachgewiesen werden, wird automatisch geprüft, ob die Kritierien einer Schnittstellen-Version auf die Versionsnummer zutreffen.
 
 
 *Anwendungen*
 
-Die Versionskontrolle der Geschäftsanwendungen und Register findet über reguläre Ausdrücke statt. Dabei wird zwischen zwei Szenarien unterschieden:
+Die Versionskontrolle der Geschäftsanwendungen und Register findet über reguläre Ausdrücke statt.
+Dabei wird zwischen zwei Szenarien unterschieden:
 
-Release-Version: Eine stabile Version, welche zum Produktiv-Einsatz gedacht ist. Dort sind nur die Komponenten *`<major>.<minor>.<patch>`* erlaubt.
+Release-Version: Eine stabile Version, welche zum Produktiv-Einsatz gedacht ist.
+Dort sind nur die Komponenten *`<major>.<minor>.<patch>`* erlaubt.
 
-Test-Version: Eine Version, welche für eine Testumgebung gedacht ist. Die Stabilität dieser Version ist nicht sichergestellt. Dort sieht der Aufbau wie folgt aus: *`<major>.<minor>.<patch>[-<label>][+<buildmetadaten>]`*
+Test-Version: Eine Version, welche für eine Testumgebung gedacht ist.
+Die Stabilität dieser Version ist nicht sichergestellt.
+Dort sieht der Aufbau wie folgt aus: *`<major>.<minor>.<patch>[-<label>][+<buildmetadaten>]`*
 
-Die Art des Szenarios, das für die zu kompilierende Anwendung genutzt werden soll, kann in der Anwendung selbst definiert werden. Siehe Konfiguration in der Anwendung.
+Die Art des Szenarios, das für die zu kompilierende Anwendung genutzt werden soll, kann in der Anwendung selbst definiert werden.
+Siehe <<einbindung-konfiguration>>.
 
 
 *Schnittstellen*
 
-Schnittstellen enthalten die *`<major>.<minor>`*-Version bereits in ihrer Modul-Bezeichnung. Aus diesem Grund enthält die Schnittstelle nur noch die *`<patch>`*-Version als Versionsnummer. Bei Test-Versionen wird die Version noch um ein Label erweitert (*`<patch>[-<label>]`*).
+Schnittstellen enthalten die *`<major>.<minor>`*-Version bereits in ihrer Modul-Bezeichnung.
+Aus diesem Grund enthält die Schnittstelle nur noch die *`<patch>`*-Version als Versionsnummer.
+Bei Test-Versionen wird die Version noch um ein Label erweitert (*`<patch>[-<label>]`*).
 
 [[einbindung-konfiguration]]
 == Einbindung und Konfiguration in der Anwendung
 
 Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
 
+:desc-listing-maven-plugin: Einbindung des Maven-Plugins in ein Projekt.
+[id="listing-maven-plugin",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-maven-plugin}
 [source,xml]
 -----------------
 ...
@@ -59,7 +73,10 @@ Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
 
 Über die Verwendung der Konfigurationsparamater `enabled` und `release` kann das Maven-Plugin gesteuert werden:
 
-[options="header"]
+:desc-table-konfiguration: Konfigurationsparemeter des Maven-Plugins
+[id="table-konfiguration",reftext="{table-caption} {counter:tables}"]
+.{desc-table-konfiguration}
+[cols="^,^,^,^",options="header",]
 |=======================
 |Konfigurationsparameter|Beschreibung|Standard|Beispiel
 |*`enabled`*|Definiert, ob das Plugin verwendet (`true`) oder deaktiviert (`false`) werden soll.|`true`|`true`
@@ -67,6 +84,10 @@ Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
 |=======================
 
 Zusätzlich kann mittels der Maven-Konsole die Konfigurationsparameter mit einem vorgelagerten `-D` an das Plugin übergeben werden, um während des Build-Prozess Einfluss auf das Plugin-Verhalten zu erwirken.
+
+:desc-listing-maven-parameter: Parameter zum Setzen der Konfigurationsparameter über die Konsole.
+[id="listing-maven-parameter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-maven-parameter}
 [source]
 -----------------
 -DVersionValidatorEnabled=true/false
