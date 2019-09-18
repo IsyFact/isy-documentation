@@ -393,42 +393,6 @@
                             </outputFile>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>IsyFact-Versionierung-html</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Versionierung
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactVersionierung.html
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>IsyFact-Versionierung-pdf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Versionierung
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Versionierung.pdf
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                    
                     <execution>
                         <id>IsyFact-Whitepaper-html</id>
                         <phase>generate-resources</phase>
@@ -1164,7 +1128,40 @@
                             </outputFile>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>IsyFact-Versionierung-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Methodik/Implementierung/IsyFactVersionierung.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Versionierung-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/30_Implementierung/IsyFact-Versionierung.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>Nutzung-EnterpriseArchitect-html</id>
                         <phase>generate-resources</phase>
@@ -1304,7 +1301,40 @@
                             </outputFile>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>Maven_Plugin_zur_Versionierungskontrolle</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Werkzeuge/MavenPluginZurVersionierungskontrolle.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Maven_Plugin_zur_Versionierungskontrolle-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>Nutzungsvorgaben_Benutzerverwaltung-html</id>
                         <phase>generate-resources</phase>
