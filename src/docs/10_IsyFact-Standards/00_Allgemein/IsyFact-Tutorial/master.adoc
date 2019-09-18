@@ -36,6 +36,9 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Glossar  (gebaut)
+include::glossary.adoc[]
+
 // Literaturverzeichnis  (gebaut)
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis  (gebaut)
@@ -44,8 +47,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
-// Glossar  (gebaut)
-include::glossary.adoc[]
+
 
 // --------------------------- AB HIER------------------------------------------
 
