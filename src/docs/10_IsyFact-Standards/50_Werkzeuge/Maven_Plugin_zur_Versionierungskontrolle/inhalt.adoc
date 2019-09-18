@@ -1,11 +1,12 @@
 [[maven-plugin-versionierungskontrolle]]
 = IsyFact Maven-Plugin zur Versionierungskontrolle
 
-Zur Sicherstellung einer validen Versionierung der Anwendung wird das Maven-Plugin isy-versioning-maven-plugin eingesetzt. Dieses Plugin muss nicht separat eingebunden werden, sondern wird automatisch über den Import der Isyfact geladen.
+Zur Sicherstellung einer validen Versionierung der Anwendung wird das Maven-Plugin isy-versioning-maven-plugin eingesetzt.
+Um das Maven-Plugin zu nutzen, muss es in die `pom.xml` integriert werden. Dies ist unter <<einbindung-konfiguration>> erläutert.
 
 [[funktionweise]]
 == Funktionsweise
-Das Plugin prüft beim Build-Vorgang, ob die angegebene Version den Versionierungsvorgaben in <<IsyFact-Versionierung>> entspricht. Die Versionsangabe wird in der Lifecycle-Phase "validate" geprüft. Dies ist im Default-Lifecycle der erste Schritt.
+Das Maven-Plugin prüft beim Build-Vorgang, ob die angegebene Version den Versionierungsvorgaben in <<IsyFact-Versionierung>> entspricht. Die Versionsangabe wird in der Lifecycle-Phase "validate" geprüft. Dies ist im Default-Lifecycle der erste Schritt.
 
 Die Versionierung ist abhängig von der Art der Komponente. Aus diesem Grund wird bei der Validierung zwischen Geschäftsanwendungen und Schnittstellen unterschieden. Dabei wird zunächst von jeder Komponente angenommen, es verfolgt die Versionierungsrichtlinien von Geschäftsanwendungen. Konnten diese nicht nachgewiesen werden, wird automatisch geprüft, ob die Kritierien einer Schnittstellen-Version auf die Versionsnummer zutreffen.
 
@@ -25,25 +26,15 @@ Die Art des Szenarios, das für die zu kompilierende Anwendung genutzt werden so
 
 Schnittstellen enthalten die *`<major>.<minor>`*-Version bereits in ihrer Modul-Bezeichnung. Aus diesem Grund enthält die Schnittstelle nur noch die *`<patch>`*-Version als Versionsnummer. Bei Test-Versionen wird die Version noch um ein Label erweitert (*`<patch>[-<label>]`*).
 
-[[konfiguration]]
-== Konfiguration in der Anwendung
+[[einbindung-konfiguration]]
+== Einbindung und Konfiguration in der Anwendung
 
-In einem Projekt selbst kann über die Verwendung der Konfigurationsparamater `isy.versioning.validate` und `isy.versioning.validate.release` das Plugin projektbezogen gesteuert werden:
-
-[options="header"]
-|=======================
-|Konfigurationsparameter|Beschreibung|Standard|Beispiel
-|*`isy.versioning.validate`*|Definiert, ob das Plugin verwendet (`true`) oder deaktiviert (`false`) werden soll.|`true`|`true`
-|*`isy.versioning.validate.release`*|Definiert, ob das Szenario ein Release (`true`) oder ein Build (`false`) ist.|`true`|`true`
-|=======================
-
-Die Konfigurationsparameter werden in der `pom.xml` der Anwendung wie folgt hinterlegt:
+Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
 
 [source,xml]
 -----------------
-<pom>
-    ...
-     <plugin>
+...
+    <plugin>
         <groupId>de.bund.bva.isyfact</groupId>
         <artifactId>isy-versioning-maven-plugin</artifactId>
         <version>1.0.0-RC1</version>
@@ -63,10 +54,17 @@ Die Konfigurationsparameter werden in der `pom.xml` der Anwendung wie folgt hint
             </execution>
         </executions>
     </plugin>
-    ...
-</pom>
+...
 -----------------
 
+Über die Verwendung der Konfigurationsparamater `enabled` und `release` kann das Maven-Plugin gesteuert werden:
+
+[options="header"]
+|=======================
+|Konfigurationsparameter|Beschreibung|Standard|Beispiel
+|*`enabled`*|Definiert, ob das Plugin verwendet (`true`) oder deaktiviert (`false`) werden soll.|`true`|`true`
+|*`release`*|Definiert, ob das Szenario ein Release (`true`) oder ein Build (`false`) ist.|`true`|`true`
+|=======================
 
 Zusätzlich kann mittels der Maven-Konsole die Konfigurationsparameter mit einem vorgelagerten `-D` an das Plugin übergeben werden, um während des Build-Prozess Einfluss auf das Plugin-Verhalten zu erwirken.
 [source]
