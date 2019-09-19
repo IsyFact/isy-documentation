@@ -1429,7 +1429,7 @@ Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über 
 </beans>
 ----
 
-<<glossar-,Fachanwendungen>> können globale Standardwerte definieren.
+<<glossar-Fachanwendung,Fachanwendungen>> können globale Standardwerte definieren.
 Definieren sie diese nicht, verwendet der Seitenrahmen Standardwerte aus `isy-web`.
 
 :desc-table-SeitenrahmenStandardwerte: Globale Standardwerte für den Seitenrahmen
