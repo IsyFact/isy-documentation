@@ -24,10 +24,10 @@ endif::[]
 toc::[]
 
 // Einleitung
-include::thisdoc.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
 
 // Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
@@ -42,5 +42,8 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
 
+// Index
+// include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
+
 // Anhänge
-//include::anhaenge.adoc[leveloffset=1]
+// include::anhaenge.adoc[leveloffset=1]

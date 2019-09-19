@@ -1,10 +1,15 @@
+= Titel des Dokuments: Inhalt
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+
 [[implementierung-der-fehlerbehandlung]]
-= Implementierung der Fehlerbehandlung
+== Implementierung der Fehlerbehandlung
 
 Für die Beschreibung des Konzeptes der Fehlerbehandlung sei auf Dokument <<KonzeptFehlerbehandlung>> verwiesen.
 
 [[design-von-fehlerklassen]]
-== Design von Fehlerklassen
+=== Design von Fehlerklassen
 
 Exceptions werden in erwartete und unerwartete Exceptions unterteilt.
 Technisch werden diese beiden Arten in Java als checked (erwartete) bzw. unchecked (unerwartete) Exceptions abgebildet.
@@ -42,10 +47,10 @@ Sie ist eine Referenz auf den aufgetretenen Fehler.
 image::fehlerbehandlung005.png[align="center",width=20%,pdfwidth=20%]
 
 [[erstellen-von-exceptions]]
-== Erstellen von Exceptions
+=== Erstellen von Exceptions
 
 [[exceptions-des-anwendungskerns]]
-=== Exceptions des Anwendungskerns
+==== Exceptions des Anwendungskerns
 
 Aus den Vorgaben zum Design der Fehlerklassen in Abschnitt <<design-von-fehlerklassen>>, resultiert die folgende Exception-Hierarchie, die beispielhaft Exceptions der Beispiel-Anwendung definiert:
 
@@ -150,7 +155,7 @@ Checked Exceptions sind in Methoden-Signaturen zu deklarieren und im JavaDoc-Kom
 Unchecked Exceptions sind nicht in den Methoden-Signaturen zu deklarieren, aber mittels `@throws` im JavaDoc-Kommentar zu dokumentieren.
 
 [[werfen-einer-exception]]
-=== Werfen einer Exception
+==== Werfen einer Exception
 
 Der folgende Abschnitt beschreibt das Werfen einer technischen checked Exception.
 Das Vorgehen wird nur für technische checked Exceptions beschrieben, da das Vorgehen für alle Arten von Exceptions gleich ist.
@@ -274,7 +279,7 @@ Der Fehlertext wird in dieser Form aufbereitet, um sicherzustellen, dass sowohl 
 * der Anwender, sofern er den Fehlertext angezeigt bekommt, auch immer die Ausnahme-ID und die UUID sieht, um diese gegebenenfalls direkt weitergeben zu können.
 
 [[exceptions-fuer-anwendungsschnittstellen]]
-=== Exceptions für Anwendungsschnittstellen
+==== Exceptions für Anwendungsschnittstellen
 
 In den vorhergehenden Kapiteln wurde das Werfen von Fehlern in der Anwendung beschrieben.
 In diesem Kapitel geht es um Exceptions, die zur Schnittstelle einer Anwendung gehören und vom Aufrufer verarbeitet werden.
@@ -318,14 +323,14 @@ Anwendungsschnittstellen verwendet werden, folgende Vorgaben gemacht:
 ** Übermittlung von Fehler-Nachricht (kein Stack-Trace!)
 
 [[isyfact-bibliotheken-fuer-fehlerbehandlung]]
-=== IsyFact-Bibliotheken für Fehlerbehandlung
+==== IsyFact-Bibliotheken für Fehlerbehandlung
 
 Die in den vorigen Abschnitten beschriebenen abstrakten Oberklassen, die zur Umsetzung der Exception-Hierachie notwendig sind, werden über die IsyFact-Bibliotheken `isy-exception-core` und `isy-exception-sst` in neue Anwendungen integriert.
 
 Dabei enthält die Bibliothek `isy-exception-core` die notwendigen Klassen für den Anwendungskern, die Bibliothek `isy-exception-sst` die Klassen für die Schnittstellen (Transport-Exceptions).
 
 [[behandlung-von-exceptions]]
-== Behandlung von Exceptions
+=== Behandlung von Exceptions
 
 Die in <<exceptions-des-anwendungskerns>> aufgeführten Fehlerarten müssen (irgendwann) behandelt werden.
 Der Zeitpunkt hängt von den Möglichkeiten der Fehlerbehandlung ab, die zum Zeitpunkt des Auftretens des Fehlers existieren.
@@ -440,7 +445,7 @@ Die `catch`-Blöcke für anwendungsinterne Runtime-Exceptions (vom Typ `<anwendu
 Hierdurch wird verhindert, dass die Schnittstelle nicht spezifizierte Exceptions weiterreicht.
 
 [[mapping-von-exceptions]]
-=== Mapping von Exceptions
+==== Mapping von Exceptions
 
 Auf der Schnittstelle einer Anwendung müssen interne Anwendungs-Exceptions in Transport-Exceptions umgewandelt werden, bzw. es müssen neue Transport-Exceptions erstellt werden.
 Hierfür stellt die Bibliothek `isy-exception` eine eigene Klasse zur Verfügung: `ExceptionMapper` (siehe <<image-012>>).
@@ -557,7 +562,7 @@ Im Unterschied zu HTTP-Invoker-Schnittstellen werden die Transport-Exceptions ni
 Auch hier gilt das generelle Prinzip auf oberster Ebene der Anwendung eine Exception-Fassade zu verwenden, siehe <<image-011>>.
 
 [[fehlertexte-und-deren-einsatz]]
-== Fehlertexte und deren Einsatz
+=== Fehlertexte und deren Einsatz
 
 Fehlertexte müssen in `ResourceBundles` abgelegt werden.
 Die Ablage der Fehlertexte wird durch das <<KonzeptUeberwachungKonfiguration>> vorgegeben, das Laden der Dateien wird in Spring durch Holder-Klassen realisiert und ist im <<DetailkonzeptKomponenteAnwendungskern>> erläutert.
@@ -625,7 +630,7 @@ public static final String MSG_LISTE_LEER = "TRMIN90004";
 ----
 
 [[fehlertextprovider]]
-=== Fehlertextprovider
+==== Fehlertextprovider
 
 Das Auslesen von Fehlertexten wird durch einen `FehlertextProvider` implementiert.
 Dieser `FehlertextProvider` ist pro Anwendung zu implementieren und befindet sich im Paket:
@@ -644,7 +649,7 @@ Dies führt zu einer Vereinheitlichung der Fehlerbehandlung, da sich das Laden v
 Eine Beispiel-Implementierung hierfür befindet sich in der <<Vorlageanwendung>>.
 
 [[dos-und-donts]]
-= DO's und DON'Ts
+== DO's und DON'Ts
 
 NOTE: http://www.onjava.com/pub/a/onjava/2003/11/19/exceptions.html +
 http://today.java.net/pub/a/today/2006/04/06/exception-handling-antipatterns.html
@@ -652,7 +657,7 @@ http://today.java.net/pub/a/today/2006/04/06/exception-handling-antipatterns.htm
 Im Folgenden werden Vorgaben gemacht, wie Fehler behandelt werden müssen und wie Fehler nicht behandelt werden dürfen.
 
 [[dos]]
-== DO's
+=== DO's
 
 *Log it or throw it* +
 Exceptions sind in der Regel zu behandeln und zu loggen.
@@ -676,7 +681,7 @@ Beispiel: Übergibt man `null` an `FileInputStream` wird eine `NullPointerExcept
 Passender wäre es aber gleich in der Methode, die `FileInputStream` verwendet auf `null` zu prüfen und eine `Exception` zu werfen.
 
 [[donts]]
-== DON'Ts
+=== DON'Ts
 
 Neben den oben genannten Punkten, wie man Exceptions richtig verwendet, gibt es auch eine Liste von Anti-Patterns, die bei der Verwendung von Exceptions zu Problemen führen und daher vermieden werden sollten:
 
@@ -914,3 +919,6 @@ Der Grund hierfür ist die Anforderung des Aufrufers an die Schnittstelle, die F
 Technische checked Exceptions sind zu verwenden, um den Aufrufer zur Fehlerbehandlung zu zwingen.
 Der Aufrufer muss den Fehler behandeln und nicht in eine technische unchecked Exception wrappen.
 In Einzelfällen mag dies notwendig sein, muss dann aber mit dem Chefarchitekt abgestimmt werden.
+
+
+// end::inhalt[]
