@@ -28,11 +28,14 @@ toc::[]
 include::thisdoc.adoc[]
 
 // Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]
 
 // ---------------------------BIS HIER-----------------------------------------
 
 :sectnums!:
+
+// Glossar
+include::glossary.adoc[]
 
 // Literaturverzeichnis  (gebaut)
 include::bibliography.adoc[]
@@ -42,8 +45,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
-// Glossar  (gebaut)
-//include::glossary.adoc[]
+
 // Index
 include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 

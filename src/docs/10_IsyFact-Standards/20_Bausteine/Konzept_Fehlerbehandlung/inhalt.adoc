@@ -11,12 +11,11 @@ Aus den genannten Anforderungen ergeben sich entsprechende Detailvorgaben, die z
 **Nutzen stiftende Fehlermeldungen**: Eine Fehlermeldung muss klar verständlich sein, vor allem, wenn sie dem Benutzer angezeigt wird.
 Außerdem müssen die Fehlertexte so aufgebaut sein, dass sie sowohl den Betrieb als auch die Entwickler bei der Ursachenforschung und der schnellen Bearbeitung unterstützen.
 
-**Zuordnung von Fehlern**: Die IsyFact-Architektur beschreibt eine serviceorientierte Anwendungslandschaft.
+**Zuordnung von Fehlern**: Die IsyFact-Architektur beschreibt eine serviceorientierte <<glossar-Anwendungslandschaft>>.
 Das Ergebnis, das einem Nutzer angezeigt wird, entsteht durch das Zusammenspiel verschiedener Anwendungen, die jeweils Services anbieten.
 Ein gemeldeter Fehler muss in dieser Landschaft einer Anwendung zuzuordnen sein.
 
-**Eigene Fehlertexte für Drittanbieter-Komponenten**: Für unchecked Exceptions von Drittanbieter-Komponenten, wie z. B. Hibernate, müssen eigene Fehlertexte für die
-Komponente (nicht für die einzelnen möglichen Exceptions) hinterlegt sein.
+**Eigene Fehlertexte für Drittanbieter-Komponenten**: Für unchecked Exceptions von Drittanbieter-Komponenten, wie z. B. Hibernate, müssen eigene Fehlertexte für die Komponente (nicht für die einzelnen möglichen Exceptions) hinterlegt sein.
 
 **Exceptions sind Teil der Komponenten- / Anwendungsschnittstelle**: Es muss dokumentiert sein, welche Exceptions eine Komponente bzw. Anwendung an den Aufrufer weiterreicht.
 
@@ -64,7 +63,8 @@ In einer Komponente gelten die Schnittstellenbeschreibungen, die durch die Signa
 Hier auftretende Fehler sind zu behandeln, sofern möglich (siehe 1).
 Ist dies nicht möglich, so reicht der Aufgerufene die Exception in der Aufruf-Hierarchie nach oben weiter, d.h. zur aufrufenden Komponente (siehe 2) oder direkt zur Schnittstelle, sofern die Komponente von dort aufgerufen wurde.
 
-Komponenten bilden Anwendungen. Auch auf Anwendungsebene gilt analog, dass die hier auftretenden Exceptions innerhalb der Anwendung behandelt werden müssen (siehe 2).
+Komponenten bilden Anwendungen.
+Auch auf Anwendungsebene gilt analog, dass die hier auftretenden Exceptions innerhalb der Anwendung behandelt werden müssen (siehe 2).
 Ist es auf Anwendungsebene nicht möglich die Exception zu behandeln, so greift die oberste Schicht der Anwendung, die sog. Exception-Fassade.
 Diese ist Teil der Schnittstelle.
 Sie fängt alle Exceptions, die nicht durch die Anwendung selbst behandelt werden konnten.
@@ -160,6 +160,7 @@ image::fehlerbehandlung005.png[align="center",width=20%,pdfwidth=20%]
 
 [[erstellen-von-exceptions]]
 == Erstellen von Exceptions
+
 [[exceptions-des-anwendungskerns]]
 === Exceptions des Anwendungskerns
 
@@ -197,7 +198,8 @@ Die letztlich in einer Anwendung eingesetzten Exceptions werden dann von den gen
 Die gezeigten Basis-Exceptions der <<Vorlageanwendung>> sind im Paket `de.msg.terminfindung.common.exception` abgelegt.
 
 Eine Anwendung besitzt Exceptions auf zwei Ebenen.
-Auf der Anwendungsebene liegen alle Exceptions die querschnittlich, also von mehreren Komponenten, genutzt werden. Diese Exceptions gehören in das Paket:
+Auf der Anwendungsebene liegen alle Exceptions die querschnittlich, also von mehreren Komponenten, genutzt werden.
+Diese Exceptions gehören in das Paket:
 
 `<organisation>.<domäne>.<anwendung>.common.exception`
 
@@ -242,7 +244,6 @@ Die <<table-001>> erläutert die Bedeutung der Argumente der Konstruktoren.
 
 Beispiel für eine technische Runtime-Exception Hierarchie:
 
-//Abb 6
 :desc-image-008: Beispiel technische Runtime-Exception Hierarchie
 [id="image-008",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-008}
@@ -255,7 +256,7 @@ Um nun eine solche Klasse zu erstellen, muss zuvor nach obigem Schema (siehe <<i
 
 Das Beispiel enthält wiederum alle möglichen Konstruktoren.
 Dies dient jedoch auch hier nur der Veranschaulichung.
-Es ist für Exceptions im Anwendungskern nicht notwendig, alle Konstruktoren zur Verfügung zu stellen.
+Es ist für Exceptions im <<glossar-Anwendungskern>> nicht notwendig, alle Konstruktoren zur Verfügung zu stellen.
 Eine Beschreibung der Argumente der Konstruktoren befindet sich in <<table-001>>.
 
 Die unter <<image-007>> und <<image-008>> dargestellten Konstruktoren sind notwendig, um zu gewährleisten, dass alle Exceptions immer eine Ausnahme-ID besitzen, die den Fehlertext identifiziert, d.h. andere Konstruktoren sind nicht gestattet.
@@ -291,8 +292,7 @@ Ein Aufruf einer solchen Exception mit einem generischen Fehlertext sieht dann w
 new MeineTechnischeException(FehlerSchluessel.MSG_ALLGEMEINER_FEHLER, "XYZ");
 ----
 
-Die Konstante `FehlerSchluessel.MSG_ALLGEMEINER_FEHLER` referenziert einen
-generischen Fehlerstring, welcher einen Platzhalter besitzt:
+Die Konstante `FehlerSchluessel.MSG_ALLGEMEINER_FEHLER` referenziert einen generischen Fehlerstring, welcher einen Platzhalter besitzt:
 
 :desc-listing-KonstanteGenerischerFehlertext: Konstante für den generischen Fehlertext
 [id="listing-KonstanteGenerischerFehlertext",reftext="{listing-caption} {counter:listings }"]
@@ -483,8 +483,7 @@ Die letzte Variante ist die endgültige Fehlerbehandlung, die in einer Exception
 image::fehlerbehandlung011.png[align="center",width=80%,pdfwidth=80%]
 
 Die `ExceptionFassade` bildet die Klammer um einen Aufruf an die Anwendung und ist für die Top-Level Fehlerbehandlung zuständig.
-Sie leitet den Aufruf an die `ServiceFassade` (Details, siehe <<DetailkonzeptKomponenteAnwendungskern>>) weiter, welche die Transaktionsklammer um den Aufruf bildet und ruft die Anwendung bzw.
-die Komponente auf.
+Sie leitet den Aufruf an die `ServiceFassade` (Details, siehe <<DetailkonzeptKomponenteAnwendungskern>>) weiter, welche die Transaktionsklammer um den Aufruf bildet und ruft die Anwendung bzw. die Komponente auf.
 Dieser zweistufige Prozess ist notwendig, da es unerwartete Exceptions geben kann, wenn die Transaktion geschlossen wird, also ein Commit durchgeführt wird.
 Diese Exceptions treten außerhalb der eigentlichen Anwendung auf.
 Daher muss die Exception-Fassade als Schicht über der Transaktionsklammer liegen, um auch diese Fehler abzufangen, zu loggen, in Transport-Exceptions umzuwandeln und an den Aufrufer weiterzureichen.
@@ -560,8 +559,7 @@ Hierdurch wird verhindert, dass die Schnittstelle nicht spezifizierte Exceptions
 [[mapping-von-exceptions]]
 === Mapping von Exceptions
 
-Auf der Schnittstelle einer Anwendung müssen interne Anwendungs-Exceptions in Transport-Exceptions umgewandelt werden, bzw.
-es müssen neue Transport-Exceptions erstellt werden.
+Auf der Schnittstelle einer Anwendung müssen interne Anwendungs-Exceptions in Transport-Exceptions umgewandelt werden, bzw. es müssen neue Transport-Exceptions erstellt werden.
 Hierfür stellt die Bibliothek `isy-exception` eine eigene Klasse zur Verfügung: `ExceptionMapper` (siehe <<image-012>>).
 
 :desc-image-012: Exception Mapper
@@ -732,7 +730,7 @@ abzulegen und muss in jeder Anwendung `FehlerSchluessel` heißen.
 
 Kommen neue Fehlertexte hinzu, so müssen die Schlüssel in einer der oben genannten Klassen als Konstanten hinzugefügt werden.
 Ausnahme-IDs für allgemeine Fehler müssen in die Anwendungsklasse, komponentenspezifische in die Komponentenklasse.
-Wie in <<listing-FehlerSchluessel>> gezeigt, müssen die Konstanten einen sprechenden Namen tragen und immer mit `MSG_` beginnen.
+Wie in <<listing-FehlerSchluessel>> gezeigt, müssen die Konstanten einen sprechenden Namen tragen und z.B. immer mit `MSG_` beginnen.
 
 :desc-listing-FehlerSchluessel: Fehlerschlüssel
 [id="listing-FehlerSchluessel",reftext="{listing-caption} {counter:listings }"]
@@ -887,8 +885,11 @@ try {
 }
 ----
 
-NOTE: Wenn so etwas sinnvoll ist, dann ist die Signatur der aufgerufenen Methode zu überdenken. Ist es nicht möglich die Exceptions der Methode (`foo()`)
-unterschiedlich zu behandeln, so ist die Methode auf sinnvoll behandelbare Exceptions einzuschränken.
+[NOTE]
+====
+Wenn so etwas sinnvoll ist, dann ist die Signatur der aufgerufenen Methode zu überdenken.
+Ist es nicht möglich die Exceptions der Methode (`foo()`) unterschiedlich zu behandeln, so ist die Methode auf sinnvoll behandelbare Exceptions einzuschränken.
+====
 
 *Exception Flut* +
 Nur Exceptions werfen, die auch sinnvoll zu behandeln sind.
@@ -972,12 +973,15 @@ Exceptions in `finally`-Blöcken führen zu einem Verlust des Original-Fehlers:
 try { myMethod(); } finally { cleanUp(); }
 ----
 
-NOTE: Wirft `cleanUp()` eine Exception, ist die original Exception von `myMethod()` verloren.
+[NOTE]
+====
+ Wirft `cleanUp()` eine Exception, ist die original Exception von `myMethod()` verloren.
 Es ist somit nicht gestattet in `finally`-Blöcken Methoden aufzurufen, welche potentiell Exceptions werfen.
+====
 
 *Nicht unterstützte Methode gibt null zurück* +
-Null als Rückgabewert einer Methode, sofern sie nicht unterstützt wird, deckt sich mit dem oben aufgeführten Punkt "Catch and Ignore". Der Aufrufer hat in diesem
-Fall nicht mitbekommen, dass die Methode eigentlich gar nicht unterstützt wird.
+Null als Rückgabewert einer Methode, sofern sie nicht unterstützt wird, deckt sich mit dem oben aufgeführten Punkt "Catch and Ignore".
+Der Aufrufer hat in diesem Fall nicht mitbekommen, dass die Methode eigentlich gar nicht unterstützt wird.
 Im einfachsten Fall tritt eine `NullPointerException` auf, welche aber nicht den eigentlichen Fehlergrund widerspiegelt.
 
 :desc-listing-ThrowNotSupported: DON'T: Nicht unterstützte Methode gibt null zurück
@@ -1003,7 +1007,8 @@ public String myMethod() { // Nicht unterstützt.
 ----
 
 *Sich auf getCause() verlassen* +
-Dies führt zu Problemen bei gewrappten Exceptions (`getCause().getCause()` notwendig). Exceptions sollten zu einer eindeutigen Behandlung führen.
+Dies führt zu Problemen bei gewrappten Exceptions (`getCause().getCause()` notwendig).
+Exceptions sollten zu einer eindeutigen Behandlung führen.
 Das Code-Fragment in <<listing-GetCause>> unterscheidet die Fehlerbehandlung anhand des Grundes der gefangenen Exception.
 
 :desc-listing-GetCause: DON'T: Sich auf getCause() verlassen
@@ -1014,10 +1019,13 @@ Das Code-Fragment in <<listing-GetCause>> unterscheidet die Fehlerbehandlung anh
 catch (MyException e) {if (e.getCause() instanceof FooException) {
 ----
 
-NOTE: Dies funktioniert nur, sofern eine Exception nicht mehrmals gewrappt wurde.
+[NOTE]
+====
+Dies funktioniert nur, sofern eine Exception nicht mehrmals gewrappt wurde.
 Es dürfen nur die für die Schnittstelle spezifizierten Exceptions behandelt werden.
 Ist auf der Aufruferseite eine Auswertung mittels `getCause()` notwendig, so ist die Schnittstelle zu überarbeiten.
 Der Grund hierfür ist die Anforderung des Aufrufers an die Schnittstelle, die Fehler genauer unterscheiden und unterschiedlich behandeln zu können.
+====
 
 *Technische checked Exceptions zur Schnittstelle durchreichen* +
 Technische checked Exceptions sind zu verwenden, um den Aufrufer zur Fehlerbehandlung zu zwingen.

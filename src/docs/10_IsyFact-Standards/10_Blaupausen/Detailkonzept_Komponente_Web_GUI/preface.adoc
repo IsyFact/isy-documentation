@@ -1,13 +1,8 @@
 == Zusammenfassung für das Management
 
-//Zusammenfassung des Inhalts auf ein bis zwei Absätze. Ein Abstrakt oder Executive Summary des Dokuments.
+//todo: Das muss hier überarbeitet werden - komplett verschieben bzw. NV raus!
 
-
-// Das muss hier überarbeitet werden NV raus!
-
-
-In diesem Dokument werden Nutzungsvorgaben für die Erstellung einer grafischen Oberfläche in der
-Portalanwendung der Zielplattform aufgestellt.
+In diesem Dokument werden Nutzungsvorgaben für die Erstellung einer grafischen Oberfläche in der Portalanwendung der Zielplattform aufgestellt.
 Sie betreffen die Erstellung der Oberfläche unter Verwendung von Spring Web Flow und JSF, sowie deren initialen Setup.
 Es wird die grobe Struktur der Oberfläche - beschrieben.
 

@@ -34,18 +34,23 @@ TIP: Wenn Sie keine virtuelle Maschine für Ihre IsyFact-Entwicklungsumgebung ei
 
 == VirtualBox installieren und konfigurieren
 
-Für die Erstellung der virtuellen Maschine benötigen Sie ein Host-System, das die virtuelle Maschine als Gastsystem verwaltet. Das gängigste Produkt hierfür ist Oracle VirtualBox. VirtualBox lässt sich unter https://www.virtualbox.org herunterladen.
+Für die Erstellung der virtuellen Maschine benötigen Sie ein Host-System, das die virtuelle Maschine als Gastsystem verwaltet.
+Das gängigste Produkt hierfür ist Oracle VirtualBox.
+VirtualBox lässt sich unter https://www.virtualbox.org herunterladen.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_01: Virtualbox Hauptmenü
 [id="image-leitfaden_entwicklungsumgebung_vb_01",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_vb_01}
 image::leitfaden_entwicklungsumgebung_vb_01.png[align="center",width=60%,pdfwidth=70%]
 
-VirtualBox kann mehrere virtuelle Maschinen verwalten. Jede virtuelle Maschine wird auf Ihrer Festplatte unterhalb des Home-Verzeichnisses im Ordner "VirtualBox VMs" verwaltet.
-Jedes dieser Verzeichnisse enthält Konfigurationsdateien für die virtuelle Maschine. Im folgenden sprechen wir hierbei vom VM-Verzeichnis.
+VirtualBox kann mehrere virtuelle Maschinen verwalten.
+Jede virtuelle Maschine wird auf Ihrer Festplatte unterhalb des Home-Verzeichnisses im Ordner "VirtualBox VMs" verwaltet.
+Jedes dieser Verzeichnisse enthält Konfigurationsdateien für die virtuelle Maschine.
+Im folgenden sprechen wir hierbei vom VM-Verzeichnis.
 
 Um die virtuelle Maschine zu erzeugen, klicken Sie innerhalb von Oracle VirtualBox im Hauptmenü auf "Neu".
-Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld einen Namen Ihrer Wahl eingeben. Setzen Sie die Version auf Ubuntu (64-bit).
+Es erscheint ein neues Fenster, bei dem Sie im ersten Eingabefeld einen Namen Ihrer Wahl eingeben.
+Setzen Sie die Version auf Ubuntu (64-bit).
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_02: Eingabe des Names der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_02",reftext="{figure-caption} {counter:figures}"]
@@ -75,7 +80,8 @@ Diese ist unter https://www.osboxes.org/ubuntu/ verfügbar.
 Wählen Sie die VirtualBox-Version der virtuellen Festplatte und laden Sie sie herunter.
 
 Nach dem Herunterladen befindet sich eine Datei mit dem Namen `Ubuntu_<Version>-VB-64bit.7z` in Ihrem Download-Verzeichnis.
-Entpacken Sie diese Datei in Ihr VM-Verzeichnis. Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
+Entpacken Sie diese Datei in Ihr VM-Verzeichnis.
+Danach wechseln Sie wieder in das VirtualBox Programm, um die Festplatte einzubinden.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_04: Virtuelle Festplatte einbinden
 [id="image-leitfaden_entwicklungsumgebung_vb_04",reftext="{figure-caption} {counter:figures}"]
@@ -125,8 +131,8 @@ Hier stellen Sie ein, dass das Gastsystem über zwei Prozessoren verfügen soll.
 image::leitfaden_entwicklungsumgebung_vb_aendern_03.png[align="center",width=60%,pdfwidth=70%]
 
 Als Letztes klicken Sie auf der linken Seite auf "Gemeinsame Ordner".
-Auf der rechten Seite können Sie über einen Ordner-Button einen gemeinsamen
-Ordner hinzufügen. Wählen Sie einen für Sie passenden Ordner und setzen Sie ein Häkchen bei "Automatisch einbinden".
+Auf der rechten Seite können Sie über einen Ordner-Button einen gemeinsamen Ordner hinzufügen.
+Wählen Sie einen für Sie passenden Ordner und setzen Sie ein Häkchen bei "Automatisch einbinden".
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_aendern_04: Gemeinsamer Ordnerzugriff
 [id="image-leitfaden_entwicklungsumgebung_vb_aendern_04",reftext="{figure-caption} {counter:figures}"]
@@ -164,7 +170,8 @@ Anschließend legen Sie die Spracheinstellungen fest.
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_03}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_03.png[align="center",width=60%,pdfwidth=70%]
 
-Die restlichen Einstellungen können Sie überspringen. Nun ist die Konfiguration von Ubuntu beendet.
+Die restlichen Einstellungen können Sie überspringen.
+Nun ist die Konfiguration von Ubuntu beendet.
 
 :desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_04: Konfigurationsende beim Erststart der virtuellen Maschine
 [id="image-leitfaden_entwicklungsumgebung_vb_ubuntu_04",reftext="{figure-caption} {counter:figures}"]
@@ -184,10 +191,14 @@ Oracle VirtualBox bietet Gasterweiterungen an, welche die Performanz des Gastsys
 Ein weiteres Feature ist, dass sich der Bildschirm beliebig skalieren lässt.
 Ohne Gasterweiterungen sind lediglich die Auflösungen 640x480, 800x600, und 1024x768 möglich.
 Außerdem funktioniert Drag'n Drop nur mit installierten Gasterweiterungen.
-Darüber hinaus bieten die Gasterweiterungen den sogenannten Seamless Mode an. Der Seamless Mode ermöglicht, dass sich die Fenster der VirtualBox Instanz innerhalb des Host-Systems anzeigen lassen, und somit den Anschein erwecken, sie seien in dieses integriert.
+Darüber hinaus bieten die Gasterweiterungen den sogenannten Seamless Mode an.
+Der Seamless Mode ermöglicht, dass sich die Fenster der VirtualBox Instanz innerhalb des Host-Systems anzeigen lassen, und somit den Anschein erwecken, sie seien in dieses integriert.
 
-TIP: Um die Gasterweiterungen zu installieren, benötigen Sie ein optisches Laufwerk, das vor dem Start der Ubuntu Instanz noch leer ist.
+[TIP]
+====
+Um die Gasterweiterungen zu installieren, benötigen Sie ein optisches Laufwerk, das vor dem Start der Ubuntu Instanz noch leer ist.
 Wenn Sie die obigen Arbeitsschritte durchgeführt haben, sollte das optische Laufwerk aber bereits existieren.
+====
 
 Starten Sie die Ubuntu Instanz und klicken Sie im VirtualBox Menü auf den Eintrag "Geräte" -> "Gasterweiterungen einlegen...".
 
@@ -279,8 +290,8 @@ Beispielsweise beschaffen Sie sich die Hilfestellung zum Optionsparameter `confi
 
 ==	Maven
 
-IsyFact besteht aus zahlreichen Maven-Projekten. Ubuntu bietet von Haus aus ein eigenes
-Maven Paket an, das über folgendes Kommando intalliert wird:
+IsyFact besteht aus zahlreichen Maven-Projekten.
+Ubuntu bietet von Haus aus ein eigenes Maven Paket an, das über folgendes Kommando intalliert wird:
 
  sudo apt-get install maven
 
@@ -288,8 +299,7 @@ Maven Paket an, das über folgendes Kommando intalliert wird:
 
 Im nächsten Schritt installieren Sie die integrierte Entwicklungsumgebung Spring Tool Suite (STS).
 Auf der Webseite https://spring.io/tools/sts/all bietet der Hersteller diesbezüglich eine Reihe von Download-Links an.
-Laden Sie die Linux-Version in der 64-Bit Variante herunter. Danach wechseln Sie in das
-Verzeichnis `/opt` und installieren die STS-Installationsdatei über folgendes Kommando:
+Laden Sie die Linux-Version in der 64-Bit Variante herunter. Danach wechseln Sie in das Verzeichnis `/opt` und installieren die STS-Installationsdatei über folgendes Kommando:
 
  sudo tar -xzf <Pfad zur STS-Installationsdatei> -C /opt
 
@@ -380,14 +390,14 @@ image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04.png[align="cent
 Klicken Sie auf "Apply and Close".
 
 = IDE einrichten
+
 Die nachfolgenden Abschnitte zeigen Ihnen, wie Sie Ihre IDE nach den Maßgaben der IsyFact einrichten.
 
 [[formatierung-von-quellcode]]
 == Formatierung von Quellcode
 
 Die Code-Formatierungsregeln sind bei beiden IDEs (Eclipse und IntelliJ IDEA) über Konfigurationsmasken individuell einstellbar.
-Es besteht die Möglichkeit, die Formatierungsregeln als XML-Datei abzuspeichern bzw.
-vorhandene Formatierungsregeldateien zu importieren.
+Es besteht die Möglichkeit, die Formatierungsregeln als XML-Datei abzuspeichern bzw. vorhandene Formatierungsregeldateien zu importieren.
 
 Zu den Formatierungskonfigurationsmasken gelangt man über folgende Menüeinträge:
 
@@ -427,8 +437,11 @@ NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren au
 .{desc-image-Code-Formatter}
 image::Einrichtung_Entwicklungsumgebung_006.png[align="center"]
 
-NOTE: Der Name der Datei kann vom Namen des Scheme abweichen.
+[NOTE]
+====
+Der Name der Datei kann vom Namen des Scheme abweichen.
 Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
+====
 
 [[eclipse-code-formatter]]
 ==== Eclipse
@@ -450,8 +463,11 @@ NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren au
 image::Einrichtung_Entwicklungsumgebung_007.png[align="center"]
 
 
-NOTE: Der Name der Datei kann vom Namen des aktiven Profiles des Formatters abweichen.
+[NOTE]
+====
+Der Name der Datei kann vom Namen des aktiven Profiles des Formatters abweichen.
 Welcher Profilname angezeigt wird, entscheidet sich durch einen entsprechenden Eintrag innerhalb der importierten XML-Datei.
+====
 
 [[formatierungsdifferenzen]]
 === Formatierungsdifferenzen
@@ -549,7 +565,8 @@ image::Einrichtung_Entwicklungsumgebung_004.png[pdfwidth=40%,width=40%, align="c
 
 Die Generierung von Boilerplate Code selbst ist intuitiv und erfolgt in drei Schritten.
 
-*Schritt 1:* Die Klasse wird wie üblich angelegt. Wichtig ist, dass alle für die zu generierenden Methoden relevanten Klassenvariablen bereits in der Klasse enthalten sind.
+*Schritt 1:* Die Klasse wird wie üblich angelegt.
+Wichtig ist, dass alle für die zu generierenden Methoden relevanten Klassenvariablen bereits in der Klasse enthalten sind.
 
 *Schritt 2:* Im Editor der Klasse ruft die Tastenkombination kbd:[Alt + Shift + G] ein kleines Auswahlmenü auf, das Optionen für die Erzeugung des Boilerplate Codes für eine der Methoden `compareTo()`, `equals()` & `hashCode()` oder `toString()` bietet.
 
@@ -572,7 +589,8 @@ TIP: Werden Klassen zu einem späteren Zeitpunkt um weitere Klassenvariablen erg
 === IntelliJ IDEA
 
 In IntelliJ IDEA lässt sich die Vorgabe zur Codegenerierung direkt vorgeben.
-Diese ist im Generierungsdialog unter „Template“ einzustellen. Der Dialog wird mit kbd:[Alt + Einfg] und der Auwahl von __equals() and hashCode()__ aufgerufen.
+Diese ist im Generierungsdialog unter „Template“ einzustellen.
+Der Dialog wird mit kbd:[Alt + Einfg] und der Auwahl von __equals() and hashCode()__ aufgerufen.
 
 :desc-image-IntelliJ-Boilerplate: IntelliJ IDEA: Einstellung der Vorgabe zur Codegenerierung
 [id="image-IntelliJ-Boilerplate",reftext="{figure-caption} {counter:figures}"]
@@ -677,13 +695,17 @@ image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
 [[isyfact-projektgenerator-installieren]]
 = IsyFact-Projektgenerator installieren
 
-In diesem Abschnitt wird gezeigt, wie Sie den IsyFact Projektgenerator in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung
-einer neuen Anwendung vorbereiten. Mit dem Projektgenerator werden Sie später die Hello-World-Anwendung erzeugen.
+In diesem Abschnitt wird gezeigt, wie Sie den IsyFact Projektgenerator in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung einer neuen Anwendung vorbereiten.
+Mit dem Projektgenerator werden Sie später die Hello-World-Anwendung erzeugen.
 
-Für den IsyFact Projektgenerator müssen keine Bibliotheken manuell installiert werden. Benötigte Bibliotheken werden während des Build-Vorgangs automatisch heruntergeladen.
+Für den IsyFact Projektgenerator müssen keine Bibliotheken manuell installiert werden.
+Benötigte Bibliotheken werden während des Build-Vorgangs automatisch heruntergeladen.
 
-TIP: Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten. Die URL zu den
-GitHub-Repositories lautet: https://github.com/isyfact.
+[TIP]
+====
+Das IsyFact-Framework besteht aus einer Reihe von GitHub-Repositories, die wiederum jeweils eines oder mehrere Maven-Projekte enthalten.
+Die URL zu den GitHub-Repositories lautet: https://github.com/isyfact.
+====
 
 Um das GitHub-Repository für den IsyFact Projektgenerator zu klonen, könnten Sie Git auf der Kommandozeile einsetzen.
 In dieser Anleitung wird jedoch das Arbeiten mit Git innerhalb der STS gezeigt.

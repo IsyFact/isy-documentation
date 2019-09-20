@@ -1,13 +1,10 @@
 [[Einleitung]]
 == Einleitung
 
-// Dieses Kapitel beschreibt, was wo in welchem Kapitel in diesem Dokument zu lesen ist.
-
-Im Dokument <<IsyFactReferenzarchitekturITSystem>> ist der Aufbau von Fachanwendungen in fünf Komponenten beschrieben.
+Im Dokument <<IsyFactReferenzarchitekturITSystem>> ist der Aufbau von <<glossar-Fachanwendung,Fachanwendungen>> in fünf Komponenten beschrieben.
 Eine davon ist die Komponente GUI.
 Die T-Architektur und die Komponente sind in <<image-IFRefArcITSysGUI>> dargestellt.
 
-//F1
 :desc-image-IFRefArcITSysGUI: T-Architektur von Fachanwendungen
 [id="image-IFRefArcITSysGUI",reftext="{figure-caption} {counter:figures}"]	
 .{desc-image-IFRefArcITSysGUI}
@@ -17,7 +14,7 @@ Das vorliegende Dokument enthält die Detailkonzeption der Komponente GUI, die e
 
 Beschrieben werden allgemeine Vorgaben zur Erstellung der GUI einer Anwendung nach IsyFact-Architektur.
 Das Dokument gibt zusätzlich einen Überblick über die benötigten Basistechnologien Spring Web Flow, JSF und Facelets.
-Es werden die Randbedingungen und Besonderheiten für deren Einsatz innerhalb einer Anwendungslandschaft, die nach den IsyFact-Standards gebaut wird, erläutert.
+Es werden die Randbedingungen und Besonderheiten für deren Einsatz innerhalb einer <<glossar-Anwendungslandschaft>>, die nach den <<glossar-IFS,IsyFact Standards>> gebaut wird, erläutert.
 Darüber hinaus stellt es die wesentlichen Schritte für den effektiven Aufbau einer geeigneten Projektumgebung dar.
 
 Zielgruppe dieses Dokuments sind Entwickler und Architekten, die die IsyFact-konforme Umsetzung einer Web-GUI angehen.

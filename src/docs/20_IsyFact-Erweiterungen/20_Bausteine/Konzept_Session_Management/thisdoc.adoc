@@ -11,7 +11,7 @@ Webanwendungen verwalten die Zustände der eingeloggten Nutzer in Sessions.
 Die Sessions werden in einem zentralen Session-Speicher verwaltet.
 
 Das vorliegende Konzept beschreibt die Grundlagen der Session-Verwaltung in einem zentralen Session-Speicher.
-Es richtet sich an alle, die den Baustein Session Management der IsyFact weiterentwickeln oder Hintergrundinformationen zur Umsetzung des Bausteins benötigen.
+Es richtet sich an alle, die den <<glossar-Baustein>> Session Management der IsyFact weiterentwickeln oder Hintergrundinformationen zur Umsetzung des Bausteins benötigen.
 
 
 [[aufbau-und-zweck-des-dokuments]]
