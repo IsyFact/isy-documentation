@@ -1,5 +1,7 @@
-[[Einleitung]]
-== Einleitung
+= Titel des Dokuments: Einleitung
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
 
 Dieses Dokument enthält die Nutzungsvorgaben zur Überwachung und Konfiguration von Anwendungen gemäß den <<glossar-IFS>>.
 
@@ -14,3 +16,6 @@ Dadurch können Ausfallzeiten minimiert werden.
 Die Vereinheitlichung der Konfiguration erleichtert nicht nur die Entwicklung der Anwendungen, sondern stellt vor allem eine Erleichterung des Betriebs der Anwendungen da.
 
 Alle Vorgaben orientieren sich an den in den jeweiligen Kapiteln aufgeführten Anforderungen und gelten für alle Anwendungen nach IsyFact-Architektur.
+
+// end::inhalt[]
+

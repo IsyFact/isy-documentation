@@ -17,17 +17,17 @@ include::docinfo.adoc[]
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 
-:toc-title!: 
+:toc-title!:
 
 endif::[]
 
 toc::[]
 
-// Einleitung 
-include::thisdoc.adoc[]
+// Einleitung
+include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt 
-include::inhalt.adoc[leveloffset=1]
+// Inhalt
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
@@ -41,6 +41,9 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
+// Index
+// include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]
