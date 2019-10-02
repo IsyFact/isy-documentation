@@ -49,8 +49,7 @@ Die Artefakte der IsyFact-Standards und IsyFact-Erweiterungen werden in gleicher
 .{desc-image-Saeulen}
 image::Saeulen.png[align="center",width=60%,pdfwidth=60%]
 
-(((Säulen)))
-Die Einzelnen Säulen sind:
+Die einzelnen Säulen sind:
 
 * *Blaupausen*: Die Blaupausen beschreiben die Architektur und Konzepte der Anwendungslandschaft.
 * *Bausteine*: Die Bausteine der IsyFact sind wieder verwendbare Softwarelösungen.
@@ -61,7 +60,6 @@ Dazu bietet sie vorkonfigurierte Werkzeuge für Modellierung, Programmierung, In
 
 [[nutzungsszenarien-und-tailoring]]
 === Nutzungsszenarien und Tailoring
-(((Nutzungsszenarien)))
 Hinter der IsyFact steht der Gedanke, die Anwendungsentwicklung für eine bestimmte Domäne zu vereinfachen, indem man das Wissen über diese Domäne und die dort benötigten Anwendungen systematisiert und dokumentiert und in Form einer für die Domäne spezifischen Software Factory bereitstellt.
 Da spezifisches Domänenwissen jedoch per Definition nicht Teil der IsyFact sein kann, muss es aus dem jeweiligen Anwendungskontext heraus ergänzt werden.
 Dabei wird zunächst beschrieben, welche Teile der IsyFact für die jeweilige Domäne überhaupt relevant sind und zum Einsatz kommen sollen.
@@ -272,7 +270,6 @@ Schließlich umfasst die Dokumentation der *Werkzeuge* ein Dokument pro Werkzeug
 
 [id="cisyfact-standards",reftext="IsyFact-Standards"]
 == IsyFact-Standards
-(((IsyFact Standards)))
 Im Folgenden sind die unterschiedlichen Vorgaben und Komponenten der IsyFact-Standards beschrieben.
 Der vorliegende Abschnitt ist als Referenz und als schneller Einstieg in die einzelnen Bestandteile von IsyFact konzipiert.
 Die Unterabschnitte enthalten jeweils eine kurze Erläuterung zu der jeweiligen Komponente und verweisen dann auf die zugehörige
@@ -282,120 +279,122 @@ Der Aufbau dieses Kapitels orientiert sich am Entwicklungsprozess einer Fachanwe
 des V-Modells XT: Spezifikation, Systementwurf und Realisierung.
 Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 
-[[vorgaben-für-die-spezifikation]]
-=== Vorgaben für die Spezifikation
+[[vorgaben-architektur]]
+=== Vorgaben für die Architektur
+Die <<IsyFactReferenzarchitektur>> definiert die Architektur einzelner Anwendungssysteme bis hin zu Anwendungslandschaften.
+Dazu beschreibt sie drei Architektursichten:
 
-Für die Systemspezifikation ist festgelegt, welche Inhalte und welche Form diese haben soll.
-Die Vorgaben dazu befinden sich mitsamt Beispielen in der Dokumentvorlage für die Systemspezifikation <<IsyFactSystemspezifikation>>.
-Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
-Bei der Erstellung von Diagrammen mit dem Enterprise Architect hilft das Dokument <<NutzungEnterpriseArchitect>>.
+* Fachliche Architektur (A-Architektur),
+* Softwaretechnische Architektur (T-Architektur),
+* Architektur der technischen Infrastruktur (TI-Architektur).
 
-Für die Erfassung von Anforderungslisten ist ebenfalls eine Vorlage vorhanden <<IsyFactVorlageAnforderungsliste>>.
-Die Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller Anforderungen an ein System im gesamten Projektlebenszyklus zu erhalten.
-Weitere Erläuterungen finden sich in der Vorlage.
+Diese Architektursichten decken die wichtigsten Blickwinkel auf die Architektur ab: fachlich, technisch und betrieblich.
+Ein zentraler Vorteil der IsyFact besteht darin, dass die Architektursichten ineinander überführbar sind.
+So gibt es definierte Regeln, wie aus einer fachlichen Architektur eine softwaretechnische Architektur gebildet wird und wie sich aus diesen beiden Sichten die Architektur der technischen Infrastruktur entwickeln lässt.
+Diese _Abbildbarkeit_ sorgt dafür, dass bereits mit der Erstellung der fachlichen Architektur wichtige Weichen für die Umsetzung und den Betrieb der Anwendungssysteme gestellt werden.
 
-Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine
-Leseanleitung dazu geliefert.
+Die folgenden Abschnitte beschreiben knapp die Vorgaben an die Architektur aus den jeweiligen Sichten heraus.
+Sie verweisen für weitere Details auf die jeweils relevanten Dokumente.
 
 [[vorgaben-für-die-a-architektur]]
 ==== Vorgaben für die A-Architektur
-(((A-Architektur)))
-Das Dokument <<IsyFactReferenzarchitektur>> gibt die Grundkonzepte für den Aufbau einer Anwendung vor.
-Dazu ist eine Referenzarchitektur vorgegeben.
-Diese allgemeine Referenzarchitektur muss für die zu bauenden Systeme in einer fachlichen Architektur konkretisiert werden.
+Die allgemeine Referenzarchitektur muss für die zu bauenden Anwendungssysteme in einer fachlichen Architektur konkretisiert werden.
+Die fachliche Architektur strukturiert die Anforderungen sowie die zu unterstützenden Geschäftsprozesse.
+Sie betrachtet dabei zwei Architekturebenen: Anwendungslandschaften und Anwendungssysteme.
 
-Die Anwendungsarchitektur strukturiert die Software dabei in Anwendungen, die jeweils bestimmte fachliche Geschäftsprozesse unterstützen.
-Diese fachliche Architektur wird in der softwaretechnischen Architektur abgebildet.
-Der Fachliche Chefarchitekt definiert dabei, aus welchen Komponenten sich die Anwendungslandschaft zusammensetzt, wie diese miteinander oder mit Systemen außerhalb der Anwendungslandschaft über Schnittstellen agieren und welchen fachlichen Domänen diese Systeme zugehörig sind.
+Die Ebene der Anwendungslandschaft schneidet die Anforderungen in fachliche Domänen und ordnet ihnen die Geschäftsprozesse zu.
+Innerhalb der Domänen werden wiederum Fachanwendungen geschnitten, um klar definierte Teilaspekte der Fachlichkeit umzusetzen.
+Fachanwendungen weisen eine hohe fachliche Kohäsion auf und kommunizieren zur Erfüllung ihrer Aufgaben in der Regel mit weiteren Fachanwendungen.
 
-Die Facharchitektur beschreibt zudem die Geschäftsprozesse, Funktionalitäten und Regeln, nach denen die unterstützenden Systeme strukturiert sind.
-Daher hält sie eine aktuelle und vollständige Dokumentation dieser vor.
+Die fachliche Architektur der Anwendungslandschaft beschreibt die Geschäftsprozesse sowie Funktionalitäten und Regeln, welche die Grundlage für die fachlichen Schnitte bilden.
+Neben der Struktur geht sie auch auf die Kommunikation der Fachanwendungen untereinander sowie mit Anwendungssystemen anderer Anwendungslandschaften ein.
 
-[[vorgaben-für-den-systementwurf]]
-=== Vorgaben für den Systementwurf
+Die fachliche Architektur der Fachanwendungen wird in Spezifikationen dokumentiert.
 
-Der Systementwurf ist gemäß der Vorlage zum Systementwurf zu erstellen <<IsyFactSystementwurf>>.
-Diese legt die äußere Form und die Gliederung des Dokuments fest.
-Darin ist auch das Vorgehen zur Modellierung und die zu beschreibenden Inhalte vorgegeben.
+[[vorgaben-für-die-spezifikation]]
+===== Vorgaben für die Spezifikation
+Systemspezifikationen besitzen eine festgelegte Form und beschreiben stets gleichartige Inhalte.
+Die Vorgaben dazu befinden sich mitsamt Vorgehen und Beispielen in der Vorlage für die Systemspezifikation (<<IsyFactSystemspezifikation>>).
+Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
+Bei der Erstellung von Diagrammen mit dem Enterprise Architect hilft das Dokument <<NutzungEnterpriseArchitect>>.
 
-Zur Konstruktion des Systems, also den eigentlichen Inhalten des Systementwurfs, existieren eine Reihe von
-Dokumenten, die inhaltliche Vorgaben machen.
-Grundlage ist das Dokument zur Referenzarchitektur, das die wesentlichen Inhalte auf grober Ebene
-festlegt <<IsyFactReferenzarchitektur>>. Dieses Dokument wird durch weitere Dokumente konkretisiert.
-Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind in <<ProduktKatalog>> festgelegt.
-Anwendungen müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
+Für die Erfassung von Anforderungslisten gibt es ebenfalls eine Vorlage (<<IsyFactVorlageAnforderungsliste>>).
+Die Anforderungsliste ist ein Instrument, um die Übersicht und die Nachvollziehbarkeit des Umsetzungsstatus aller Anforderungen an ein System im gesamten Projektlebenszyklus zu erhalten.
+Weitere Erläuterungen finden sich in der Vorlage.
 
-Weitere Detaillierungen der Referenzarchitektur werden in den folgenden drei Abschnitten erläutert.
-Jeder dieser Abschnitte fokussiert dabei auf eine spezielle Sicht der zu erstellenden Architektur:
-Fachliche Architektur (A-Architektur), Technische Architektur (T-Architektur) und Technische
-Infrastruktur (TI-Architektur). Die genaue Unterscheidung zwischen diesen Sichten
-ist in <<IsyFactReferenzarchitektur>> beschrieben.
+Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine Leseanleitung dazu geliefert.
 
 [[vorgaben-für-die-t-architektur]]
 ==== Vorgaben für die T-Architektur
-(((T-Architektur)))
-Im Dokument <<IsyFactReferenzarchitekturITSystem>> wird die Technische Referenzarchitektur für IT-Systeme eingeführt und erläutert.
-Ein IT-System basiert demnach auf einer Drei-Schichten-Architektur und besteht aus den Komponenten, die in <<image-image008>>
-dargestellt sind.
+Die softwaretechnische Architektur wird auf Basis der Spezifikation aus der fachlichen Architektur entwickelt.
 
-:desc-image-image008: Technische Referenzarchitektur
+Im Dokument <<IsyFactReferenzarchitekturITSystem>> wird die softwaretechnische Architektur eingeführt und erläutert.
+Die technischen Entsprechungen für die fachlich motivierte Anwendungslandschaft und das Anwendungssystem sind die technisch motivierten Begriffe der Systemlandschaft und respektive des IT-Systems.
+
+Ein IT-System basiert auf einer Drei-Schichten-Architektur und besteht aus den Komponenten, die in <<image-image008>> dargestellt sind.
+
+:desc-image-image008: Softwaretechnische Referenzarchitektur eines IT-Systems
 [id="image-image008",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-image008}
 image::image008.png[align="center"]
 
-Zu den dargestellten Komponenten gibt es detaillierte Konzepte und fertige Bausteine in der IsyFact sowie Codebeispiele
-in der <<Vorlageanwendung>>, die eine beispielhafte Umsetzung zeigen.
+Die Abbildung der fachlichen Architektur wird vor allem durch die Fachkomponenten sichtbar.
+Jede Fachkomponente besitzt, soweit sinnvoll, eine Entsprechung in jeder Komponente des IT-Systems.
+Somit bedingt die Architektur einer Fachanwendung maßgeblich die Strukturierung des daraus entstehenden IT-Systems.
 
-Die Komponenten und die erläuternden Konzepte sind die folgenden:
+Zu den dargestellten softwaretechnischen Komponenten gibt es jeweils ein Detailkonzept, das die technische Umsetzung der Komponente beschreibt.
+Dazu bietet die IsyFact fertige Bausteine an, die bei der Umsetzung helfen.
+Eine beispielhafte Umsetzung eines IT-Systems zeigt die <<Vorlageanwendung>>.
 
-[[datenzugriff]]
-===== Datenzugriff
-(((Komponente,Datenzugriff)))
-Der Datenzugriff erfolgt über JPA bzw. Hibernate. Die genaue Verwendung von JPA/Hibernate und die Prinzipien,
-nach denen bei der Persistierung von Datenobjekten vorgegangen werden soll, sind im
-Dokument <<DetailkonzeptKomponenteDatenzugriff>> festgelegt.
+Datenzugriff::
+Der Datenzugriff erfolgt über JPA.
+Das <<DetailkonzeptKomponenteDatenzugriff>> legt die genaue Verwendung von JPA fest und beschreibt die Prinzipien sowie das Vorgehen zur Persistierung von Datenmodellen.
 
-[[anwendungskern]]
-===== Anwendungskern
-(((Komponente,Anwendungskern)))
-Der Anwendungskern ist in Komponenten aufgebaut.
-Diese Komponenten werden durch Spring konfiguriert.
-Der Schnitt der Komponenten ist durch die fachliche Referenzarchitektur vorgegeben.
-Die Ergänzung durch technische Komponenten und die Vorgaben für die Nutzung von Spring zu deren
-Konfiguration sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
+Anwendungskern::
+Der Anwendungskern setzt die Fachlichkeit mittels Fachkomponenten um.
+Der Schnitt der Fachkomponenten ist durch die fachliche Referenzarchitektur vorgegeben.
+Die Ergänzung durch technische Komponenten und weitere Vorgaben, z.B. zur Konfiguration der Komponenten, sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
 
-[[batch]]
-===== Batch
-(((Komponente,Batch)))
-Vorgaben für Batches befinden sich im Dokument <<DetailkonzeptKomponenteBatch>>. Hier ist auch der zu verwendende Batchrahmen beschrieben.
+Batch::
+Batches sind eine Möglichkeit zur Nutzung von IT-Systemen über zeitgesteuerte und automatisch ablaufende, fachliche Operationen.
+Das <<DetailkonzeptKomponenteBatch>> beschreibt die Vorgaben für Batches sowie den Aufbau der Batch-Komponente.
+Zur Umsetzung von Batches wird der Batchrahmen der IsyFact vorgeschrieben.
 
-[[service]]
-===== Service
-(((Komponente,Service)))
-Die Art und Weise, wie eine Anwendung einen Service zur Nutzung innerhalb einer Plattform bereitstellt, ist
-in <<DetailkonzeptKomponenteService>> dargestellt.
+Service::
+Services bieten fachliche Operationen nach außen an und stellen sie anderen IT-Systemen zur Nutzung bereit.
+Das <<DetailkonzeptKomponenteService>> beschreibt die Vorgaben für Services sowie den Aufbau der Service-Komponente.
+Weitere Vorgaben zur Kommunikation zwischen IT-Systemen innerhalb einer Systemlandschaft sind im Dokument <<GrundlagenInterneServicekommunikation>> beschrieben.
 
-Innerhalb einer Plattform kommunizieren die einzelnen IT-Systeme mittels der Technologie Spring HttpInvoker, die eine
-besonders effiziente Kommunikation über http umsetzt.
-Die Grundlagen dazu sind in <<GrundlagenInterneServicekommunikation>> beschrieben.
-
-[[gui]]
-===== GUI
-(((Komponente,GUI)))
-Die Entwicklung von GUIs erfolgt als Web-GUI auf Basis von JSF und Spring WebFlow.
+GUI::
+Grafische Oberflächen bieten fachliche Operationen nach außen an und stellen sie Anwendern zur Nutzung bereit.
+Ihre Umsetzung geschieht als Web-GUI und folgt dem MVC-Pattern.
 Die genauen Festlegungen zur Web-GUI-Entwicklung finden sich im Dokument <<DetailkonzeptKomponenteWebGUI>>.
 
-[[vorgaben-für-das-systemhandbuch]]
-=== Vorgaben für das Systemhandbuch
-Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen und beschreibt die Installation, Konfiguration und den Betrieb des IT-Systems.
-Die Vorlage legt die äußere Form sowie die Gliederung des Dokuments fest.
-Sie enthält außerdem das Vorgehen zur Erstellung und Beispiele für die zu beschreibenden Inhalte.
+Die Erstellung von IT-Systemen wird durch einen Systementwurf konkretisiert und dokumentiert.
+
+[[vorgaben-für-den-systementwurf]]
+===== Vorgaben für den Systementwurf
+Systementwürfe besitzen, genau wie Spezifikationen, eine festgelegte Form und beschreiben stets gleichartige Inhalte.
+Die Vorgaben dazu befinden sich mitsamt Vorgehen und Beispielen in der Vorlage für den Systementwurf (<<IsyFactSystementwurf>>).
+
+Zur Konstruktion des IT-Systems, also den eigentlichen Inhalten des Systementwurfs, existieren eine Reihe von Dokumenten, die inhaltliche Vorgaben machen.
+Neben der Referenzarchitektur sind dies vor allem die <<bausteine-der-isyfact-standards,Bausteine>>, die wesentliche Vorgaben zur technischen Umsetzung ihrer jeweiligen Funktionalität enthalten.
+
+Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind im <<ProduktKatalog>> festgelegt.
+IT-Systeme müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
 
 [[vorgaben-für-die-ti-architektur]]
 ==== Vorgaben für die TI-Architektur
-(((TI-Architektur)))
-Die TI-Architektur von Fachanwendungen ist in <<IsyFactReferenzarchitektur>> beschrieben.
-Die zu verwendende Infrastruktur ist z.T. durch den <<ProduktKatalog>> vorgegeben.
+Die Architektur der technischen Infrastruktur wird auf Grundlage der Spezifikation und des Entwurfs entwickelt.
+
+Die Grundlagen der TI-Architektur auf Ebene von Anwendungslandschaften und Anwendungssystemen ist in <<IsyFactReferenzarchitektur>> beschrieben.
+Die zu verwendende Infrastruktur ist zum Teil durch den <<ProduktKatalog>> vorgegeben.
+
+[[vorgaben-für-das-systemhandbuch]]
+===== Vorgaben für das Systemhandbuch
+Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen und beschreibt die Installation, Konfiguration und den Betrieb eines IT-Systems.
+Die Vorlage legt die äußere Form sowie die Gliederung des Dokuments fest.
+Sie enthält außerdem das Vorgehen zur Erstellung und Beispiele für die zu beschreibenden Inhalte.
 
 [[vorgaben-für-die-realisierung]]
 === Vorgaben für die Realisierung
@@ -412,37 +411,30 @@ Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> 
 
 [[bausteine-der-isyfact-standards]]
 === Bausteine der IsyFact-Standards
-(((Baustein)))
 Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind. Diese werden im Folgenden dargestellt:
 
 [[fehlerbehandlung]]
 ==== Fehlerbehandlung
-(((Baustein,Fehlerbehandlung)))
 Im Dokument <<KonzeptFehlerbehandlung>> ist beschrieben, in welchen Fällen und in welcher Form die Fehler- und Ausnahmebehandlung stattfinden soll.
 
 [[datum-zeit]]
 ==== Datum & Zeit
-(((Baustein,Datum & Zeit)))
 Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact. Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten. Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
 
 [[administrative-überwachung-und-konfiguration]]
 ==== Administrative Überwachung und Konfiguration
-(((Baustein,Überwachung und Kommunikation)))
 Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen. Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
 
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen
-(((Baustein,Behandlung Sonderzeichen)))
 Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen. Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird. In diesem Zusammenhang müssen oft auch Namen transkribiert werden. Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
 
 [[logging]]
 ==== Logging
-(((Baustein,Logging)))
 Fachanwendungen sollten Logs einheitlich erstellen und auswerten können. Das <<KonzeptLogging>> beschreibt die einheitliche Erstellung von Logs in Anwendungen sowie deren Auswertung auf fachlicher Ebene. Die <<NutzungsvorgabenLogging>> beschreiben die technische Umsetzung des Loggings und die technischen Möglichkeiten der Auswertung.
 
 [[berechtigungen]]
 ==== Berechtigungen
-(((Baustein,Berechtigungen)))
 Zum Zugriff auf Informationen zu Berechtigungen eines Nutzers ist der Baustein Sicherheit zu nutzen.
 Das <<KonzeptSicherheit>> beschreibt die konzeptionellen Festlegungen hinsichtlich der Authentifizierung und Autorisierung.
 Die <<NutzungsvorgabenSicherheit>> beschreiben den Einsatz des Bausteins bei der Anwendungsentwicklung.
@@ -451,42 +443,47 @@ Ein XML-Schema dazu findet sich im Anhang von <<NutzungsvorgabenSicherheit>>.
 
 [[task-scheduling]]
 ==== Task Scheduling
-(((Baustein,Task Scheduling)))
 Der Baustein verwendet die _Java Concurrency API_ (`java.util.concurrent`) für die Steuerung (d.h. Planung und Ausführung) periodisch wiederkehrender Aufgaben. Aufgaben sind (in Abgrenzung zu Batches) innerhalb einer Anwendungskomponente angesiedelt und werden von der Anwendung selbstständig ausgeführt. Das <<KonzeptTaskScheduling>> beschreibt die konzeptionellen Grundlagen der Steuerung von Aufgaben. Die <<NutzungsvorgabenTaskScheduling>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind, und alle bereits in der IsyFact definierten Aufgaben (wie z.B. das periodische Neuladen der Anwendungskonfiguration).
 
 [[ldap-zugriffe]]
 ==== LDAP-Zugriffe
-(((Baustein,Verzeichnisdienst)))
 Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight Directory Access Protocol (LDAP) ist, ist im <<NutzungsvorgabenSpringLDAP>> beschrieben.
 
 [[polling]]
 ==== Polling
-(((Baustein,Polling)))
 In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden. Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen. Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
 
 Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden. Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden. Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an. Der Baustein Polling definiert ein solches Verfahren. Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
 
 [[util]]
 ==== Util
-(((Baustein,Util)))
 Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen der IsyFact genutzt werden können. Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen. Diese werden in <<NutzungsvorgabenIsyUtil>> überblicksartig beschrieben.
 
 [[cisyfact-erweiterungen]]
 == IsyFact-Erweiterungen
 
-Aktuell werden nur wenige Erweiterungen unter einer Open-Source-Lizenz zur Verfügung gestellt (siehe auch Kapitel <<aktueller-stand-und-weiterentwicklung>>). Auf den https://www.bva.bund.de/DE/Das-BVA/Aufgaben/I/Informationstechnik/RegisterFactory/Produkt/produkt_rf_node.html#doc241990bodyText6[Webseiten der Register Factory] befindet sich eine Übersicht über vorhandene Bausteine, die in Zukunft potentiell als IsyFact-Erweiterung zur Verfügung gestellt werden. Teilweise können diese auf Anfrage herausgegeben werden.
+Aktuell werden nur wenige Erweiterungen unter einer Open-Source-Lizenz zur Verfügung gestellt (siehe auch Kapitel <<aktueller-stand-und-weiterentwicklung>>).
+Auf den https://www.bva.bund.de/DE/Das-BVA/Aufgaben/I/Informationstechnik/RegisterFactory/Produkt/produkt_rf_node.html#doc241990bodyText6[Webseiten der Register Factory] befindet sich eine Übersicht über vorhandene Bausteine, die in Zukunft potentiell als IsyFact-Erweiterung zur Verfügung gestellt werden.
+Teilweise können diese auf Anfrage herausgegeben werden.
 
 NOTE: Bei Interesse wenden Sie sich bitte per E-Mail (isyfact@bva.bund.de) an uns.
 
 [[bausteine-der-isyfact-erweiterungen]]
 === Bausteine der IsyFact-Erweiterungen
-(((Baustein)))
 Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die bei Bedarf eingesetzt werden können. Diese werden im Folgenden dargestellt:
 
 [[benutzerverwaltung]]
 ==== Benutzerverwaltung
-(((Baustein,Benutzerverwaltung)))
-Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht. Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen. Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
+Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht.
+Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen.
+Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
+
+[[styleguide]]
+==== Styleguide
+Der Baustein Styleguide beschreibt die Gestaltung grafischer Oberflächen nach einheitlichen Gesichtspunkten.
+Das zentrale Dokument, der <<Styleguide>>, enthält Vorgaben zu Aufbau und Gestaltung von Web-GUIs.
+Der Styleguide definiert ebenfalls Form und Funktion der in der IsyFact verfügbaren Anzeige- und Bedienelemente.
+Neben dem Dokument beinhaltet der Baustein eine Software-Bibliothek, welche die Vorgaben als CSS-Stile zur Nutzung bereitstellt.
 
 [[erste-schritte]]
 == Nächste Schritte

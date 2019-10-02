@@ -46,9 +46,6 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
 
-// Index
-include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
-
 // --------------------------- AB HIER------------------------------------------
 
 // Anhänge
