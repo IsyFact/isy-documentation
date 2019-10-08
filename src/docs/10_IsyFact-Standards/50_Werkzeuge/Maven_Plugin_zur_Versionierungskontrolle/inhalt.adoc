@@ -2,7 +2,7 @@
 = IsyFact Maven-Plugin zur Versionierungskontrolle
 
 Zur Sicherstellung einer validen Versionierung der Anwendung wird das Maven-Plugin isy-versioning-maven-plugin eingesetzt.
-Um das Maven-Plugin zu nutzen, muss es in die `pom.xml` integriert werden. Dies ist unter <<einbindung-konfiguration>> erläutert.
+Die Einbindung des Maven-Plugin ist unter <<einbindung-konfiguration>> erläutert.
 
 [[funktionweise]]
 == Funktionsweise
@@ -40,7 +40,14 @@ Bei Test-Versionen wird die Version noch um ein Label erweitert (*`<patch>[-<lab
 [[einbindung-konfiguration]]
 == Einbindung und Konfiguration in der Anwendung
 
-Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
+*Schritt 1: Einbindung des Maven-Plugin in ein Projekt*
+
+//Bei Nutzung der xxx wird das Maven-Plugin automatisch eingebunden und während des Buildvorgangs ausgeführt.
+//In diesem Fall kann direkt mit Schritt 2 fortgefahren werden.
+
+//Wird xxx nicht genutzt, so muss das Maven-Plugin zunächst in eine übergeordnete `pom.xml` wie folgt eingebunden werden:
+
+Das Maven-Plugin muss zunächst in eine übergeordnete `pom.xml` (parent-pom) wie folgt eingebunden werden:
 
 :desc-listing-maven-plugin: Einbindung des Maven-Plugins in ein Projekt.
 [id="listing-maven-plugin",reftext="{listing-caption} {counter:listings }"]
@@ -52,12 +59,6 @@ Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
         <groupId>de.bund.bva.isyfact</groupId>
         <artifactId>isy-versioning-maven-plugin</artifactId>
         <version>1.0.0-RC1</version>
-        <configuration>
-            <!-- Schalter zum Deaktivieren des Plugins.  -->
-            <enabled>true</enabled>
-            <!-- Erlaubt das Ausschließen von Test-Versionen. -->
-            <release>false</release>
-        </configuration>
         <executions>
             <execution>
                 <id>validateVersion</id>
@@ -71,19 +72,39 @@ Das Maven-Plugin wird in der `pom.xml` des Projekts wie folgt hinterlegt:
 ...
 -----------------
 
-Über die Verwendung der Konfigurationsparamater `enabled` und `release` kann das Maven-Plugin gesteuert werden:
+
+
+*Schritt 2: Konfiguration des Maven-Plugin in einem Projekt*
+
+Im Projekt selbst kann das Maven-Plugin konfiguriert werden. Dazu sind folgende Properties in die `pom.xml` des Projekts zu hinterlegen:
+
+:desc-listing-maven-plugin: Konfiguration des Maven-Plugins in einem Projekt.
+[id="listing-maven-plugin",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-maven-plugin}
+[source,xml]
+-----------------
+<properties>
+    <!-- Schalter zum Deaktivieren des Plugins.  -->
+    <VersionValidatorEnabled>true/false</VersionValidatorEnabled>
+    <!-- Erlaubt das Ausschließen von Test-Versionen. -->
+    <VersionValidatorRelease>true/false</VersionValidatorRelease>
+</properties>
+-----------------
+
+Über die Verwendung der Konfigurationsparamater `VersionValidatorEnabled` und `VersionValidatorRelease` kann das Maven-Plugin gesteuert werden.
+//Bei Nutzung der xxx sind bereits Standard-Werte (siehe Table 1 Spalte "Standard (xxx)) hinterlegt, die durch die Konfiguration im Projekt jedoch überschrieben werden können.
 
 :desc-table-konfiguration: Konfigurationsparemeter des Maven-Plugins
 [id="table-konfiguration",reftext="{table-caption} {counter:tables}"]
 .{desc-table-konfiguration}
-[cols="^,^,^,^",options="header",]
+[cols="^,^,^",options="header",]
 |=======================
-|Konfigurationsparameter|Beschreibung|Standard|Beispiel
-|*`enabled`*|Definiert, ob das Plugin verwendet (`true`) oder deaktiviert (`false`) werden soll.|`true`|`true`
-|*`release`*|Definiert, ob das Szenario ein Release (`true`) oder ein Build (`false`) ist.|`true`|`true`
+|Konfigurationsparameter|Beschreibung|Beispiel
+|*`VersionValidatorEnabled`*|Definiert, ob das Plugin verwendet (`true`) oder deaktiviert (`false`) werden soll.|`true`
+|*`VersionValidatorRelease`*|Definiert, ob das Szenario ein Release (`true`) oder ein Build (`false`) ist.|`true`
 |=======================
 
-Zusätzlich kann mittels der Maven-Konsole die Konfigurationsparameter mit einem vorgelagerten `-D` an das Plugin übergeben werden, um während des Build-Prozess Einfluss auf das Plugin-Verhalten zu erwirken.
+Zusätzlich kann mittels der Maven-Konsole die Konfigurationsparameter mit einem vorgelagerten `-D` an das Maven-Plugin übergeben werden, um während des Build-Prozess Einfluss auf das Plugin-Verhalten zu erwirken.
 
 :desc-listing-maven-parameter: Parameter zum Setzen der Konfigurationsparameter über die Konsole.
 [id="listing-maven-parameter",reftext="{listing-caption} {counter:listings }"]
