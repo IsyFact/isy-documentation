@@ -1,11 +1,3 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Konzept_Logging
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
 [[anforderungen-an-das-logging]]
 = Anforderungen an das Logging
 

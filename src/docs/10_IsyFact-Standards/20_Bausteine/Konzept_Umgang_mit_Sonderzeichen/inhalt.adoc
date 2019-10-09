@@ -1,20 +1,3 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Konzept_Umgang_mit_Sonderzeichen
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
-
-*Java Bibliothek / IT-System*
-
-[cols="5,2,3"]
-|====
-|Name |Art |Version
-|isy-sonderzeichen |Bibliothek |siehe isyfact-bom v{version-ifs}
-|====
-
 [[ueberblick]]
 = Überblick
 

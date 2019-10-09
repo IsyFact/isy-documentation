@@ -9,6 +9,13 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
+*Java Bibliothek / IT-System*
+
+[options="header",cols="3,1,2"]
+|====
+|Name |Art |Version
+|isy-logging |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
 
 // Executive Summary
 // include::preface.adoc[]

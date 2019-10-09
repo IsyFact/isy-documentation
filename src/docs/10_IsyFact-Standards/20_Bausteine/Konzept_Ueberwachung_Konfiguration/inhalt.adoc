@@ -1,20 +1,3 @@
-*Dokument-Informationen*
-
-|====
-|Dokumenten-ID:| Konzept_Ueberwachung_Konfiguration
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
-*Java Bibliothek / IT-System*
-
-[cols="5,2,3",options="header"]
-|====
-|Name |Art |Version
-|isy-ueberwachung |Bibliothek |siehe isyfact-bom v{version-ifs}
-|isy-konfiguration |Bibliothek |siehe isyfact-bom v{version-ifs}
-|====
-
 [[ueberwachung-von-anwendungen]]
 = Überwachung von Anwendungen
 
