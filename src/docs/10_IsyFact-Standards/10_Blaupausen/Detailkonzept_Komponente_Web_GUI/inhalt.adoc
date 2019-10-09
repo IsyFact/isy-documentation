@@ -34,8 +34,7 @@ Folgende Anforderungen müssen bei der Entwicklung von Web-Anwendungen berücksi
 
 * Entwickler müssen sich mit den TOP10 Risiken für Web-Anwendungen gemäß OWASP vertraut machen (siehe <<OWASP10>>)
 * Vertrauliche Informationen dürfen nicht als GET-Parameter übermittelt werden.
-Dies verhindert, dass solche Informationen ungewollt in Log-Dateien, Caches usw.
-gespeichert werden.
+Dies verhindert, dass solche Informationen ungewollt in Log-Dateien, Caches usw. gespeichert werden.
 
 [[verwendete-basistechnologien]]
 = Verwendete Basistechnologien
@@ -43,8 +42,7 @@ gespeichert werden.
 Die Übersicht der Basistechnologien soll dem Leser einen einfacheren Einstieg in die angewendeten Frameworks und Technologien ermöglichen, zusätzlich findet sich noch ein Verweis auf die konkret eingesetzten Implementierungen.
 Hierbei werden auch Architekturprinzipien angesprochen, welche in den Technologien Verwendung finden.
 
-Für detaillierte Informationen über die verwendeten Technologien sei auf entsprechende Literatur verwiesen:
-<<WikiJSF>>, <<SWF>> und <<Spring>>.
+Für detaillierte Informationen über die verwendeten Technologien sei auf entsprechende Literatur verwiesen: <<WikiJSF>>, <<SWF>> und <<Spring>>.
 
 
 
@@ -63,8 +61,7 @@ Für JSF kommt die SUN Referenzimplementierung zum Einsatz und wird im Bereich d
 
 *Facelets* sind eine alternative View Technologie für JSF.
 Hiermit sind kleine, wieder verwendbare GUI-Komponenten möglich, die durch ein entsprechendes XML-Tag in eine Seite inkludiert werden.
-Im Gegensatz zu Taglibs erfolgt ein Include der Komponente und kein Aufruf von Java-Code für die
-Generierung von gerendertem GUI-Code.
+Im Gegensatz zu Taglibs erfolgt ein Include der Komponente und kein Aufruf von Java-Code für die Generierung von gerendertem GUI-Code.
 Hierbei wird der Templating Mechanismus der Facelets verwendet.
 Facelets bieten vielfältige Möglichkeiten, Vorlagenfragmente zu einer Gesamtseite zusammenzusetzen, um z.B. auf jeder Seite eine einheitliche Kopfzeile zu realisieren.
 
@@ -84,8 +81,7 @@ image::MVC.png[align="center"]
 [[bearbeitungsmodell-einer-jsf-anfrage]]
 === Bearbeitungsmodell einer JSF Anfrage
 
-Die Spezifikation der Java Server Faces definiert einen sogenannten Lebenszyklus <<WikiJSF>> , den eine
-JSF-Anwendung mit jedem Aufruf erneut durchläuft.
+Die Spezifikation der Java Server Faces definiert einen sogenannten Lebenszyklus <<WikiJSF>> , den eine JSF-Anwendung mit jedem Aufruf erneut durchläuft.
 Dieser Lebenszyklus ist in sechs _Phasen_ (englisch _Phases_) aufgeteilt.
 
 :desc-image-PhasemodJSF: Phasenmodell JSF
@@ -102,8 +98,7 @@ Dazu werden eigene Validator-Objekte verwendet, die den Komponenten in der View-
 6.  _Render Response_ („Antwort wiedergeben“) erzeugt schließlich die Antwort auf die ursprüngliche Anfrage, beispielsweise eine HTML-Seite.
 Hierzu werden sogenannte _Renderer_ aufgerufen, die den View-Komponenten zugeordnet sind.
 
-Treten Fehler auf, oder soll als Antwort beispielsweise eine HTML-Seite aufgerufen werden, die keine
-JSF-Komponenten enthält, so können einzelne Phasen übersprungen werden.
+Treten Fehler auf, oder soll als Antwort beispielsweise eine HTML-Seite aufgerufen werden, die keine JSF-Komponenten enthält, so können einzelne Phasen übersprungen werden.
 
 [[datenmodell]]
 === Datenmodell
@@ -123,15 +118,13 @@ Das Mapping der Controls auf die Daten geschieht über die in JSF verwendete Exp
 Mit der EL werden direkt die Attribute des zugehörigen Beans genutzt.
 
 Ein weiterer Vorteil von Facelets ist die Verwendung von Templates.
-Durch diese ist es möglich, bereits einen zum Styleguide <<Styleguide>> konformen Rahmen zur Verfügung zu stellen, in welchen die
-Applikation lediglich durch definierte Einfügungen ihre Inhalte einbetten.
+Durch diese ist es möglich, bereits einen zum Styleguide <<Styleguide>> konformen Rahmen zur Verfügung zu stellen, in welchen die Applikation lediglich durch definierte Einfügungen ihre Inhalte einbetten.
 
 [[taglibs]]
 === Taglibs
 
 Durch den Einsatz von Facelets ist die direkte Einbettung von Tag Libraries nicht möglich.
-Vielmehr müssen diese noch separat mit einer Deskription versehen werden, aus welcher die einzelnen Tags
-ersichtlich sind und ihr Mapping auf die zugehörigen Klassen definiert ist.
+Vielmehr müssen diese noch separat mit einer Deskription versehen werden, aus welcher die einzelnen Tags ersichtlich sind und ihr Mapping auf die zugehörigen Klassen definiert ist.
 
 Für den Einsatz der myFaces Tomahawk Library wird eine entsprechende Konfiguration zur Verfügung gestellt.
 Der Einsatz dieser Library unterliegt für den Einsatz in der IsyFact der allgemeinen Einschränkung bei der Verwendung von JavaScript.
@@ -170,8 +163,7 @@ Dadurch kann man den Zustand jeder View innerhalb eines Flows zu einem beliebige
 Ein Flow kann wahlweise als XML-Datei oder mittels der Java-API realisiert werden.
 Ein Flow besteht in der Regel aus mehreren Zuständen (innerhalb von Web Flow als States bezeichnet), die nacheinander und in Abhängigkeit von der jeweiligen Benutzerinteraktion durchlaufen werden.
 
-Auch die Modularisierung von Flows in kleine Einheiten ist durch so genannte Subflows bzw.
-Inline-Flows ohne weiteres möglich.
+Auch die Modularisierung von Flows in kleine Einheiten ist durch so genannte Subflows bzw. Inline-Flows ohne weiteres möglich.
 Ein Subflow wird wie jede andere Flow-Definition erstellt.
 Der Unterschied zu einem normalen Flow liegt lediglich darin, dass der Subflow innerhalb eines Flows aufgerufen wird.
 Eine Flow-Definition kann beliebig viele Subflows enthalten, welche wiederum weitere Subflows aufrufen können.
@@ -185,10 +177,8 @@ Das Repository liefert diesen bei der Fortsetzung des Flows zurück.
 Der dafür notwendige „Flow-Execution-Key“, der Schlüssel, der zur Identifikation des aktuellen Flow-Status dient,
 wird hierbei von Spring Web Flow erzeugt.
 
-Dieses Speichern des Status von vorhergehenden Schritten im Flow unterstützt so in Kombination mit
-einem „Post Redirect Get“ Mechanismus (PRG-Pattern) die Nutzung des Back-Buttons im Browser.
-Da jeder Request im Flow einen eindeutigen Execution Key an den Server sendet, kann, wenn man im
-Flow zurückgeht, auch der alte Status zum Zeitpunkt dieses Request angezeigt werden, selbst wenn der Server von dem Click auf den Back-Button selbst nichts mitbekommt.
+Dieses Speichern des Status von vorhergehenden Schritten im Flow unterstützt so in Kombination mit einem „Post Redirect Get“ Mechanismus (PRG-Pattern) die Nutzung des Back-Buttons im Browser.
+Da jeder Request im Flow einen eindeutigen Execution Key an den Server sendet, kann, wenn man im Flow zurückgeht, auch der alte Status zum Zeitpunkt dieses Request angezeigt werden, selbst wenn der Server von dem Click auf den Back-Button selbst nichts mitbekommt.
 
 [[spring-dependency-injection]]
 == Spring Dependency Injection
@@ -202,34 +192,35 @@ Für das Web-GUI findet primär der Basisteil von Spring Verwendung, in welchem 
 [[transaktionsbehandlung]]
 == Transaktionsbehandlung
 
-Die GUI-Komponente und der Anwendungskern sind Teil derselben Web-Applikation und werden per Spring-Konfiguration miteinander verbunden.
+Die <<glossar-GUI>>-Komponente und der <<glossar-Anwendungskern>> sind Teil derselben Web-Applikation und werden per Spring-Konfiguration miteinander verbunden.
 
+//todo Benutzung der Wörter Dienst/Service generell überprüfen
 Oft gibt es den Fall, dass über die GUI eine Aktion in einer anderen Anwendung ausgelöst werden soll.
 Ein Beispiel dafür ist die GUI einer Fachanwendung zur Datenerfassung, wobei die Speicherung der Daten über einen Service einer anderen Fachanwendung implementiert ist.
-In diesem Fall enthält der Anwendungskern der Fachanwendung zur Datenerfassung nur wenig Funktionalität: in ihm werden die Daten für den Serviceaufruf der nachgelagerten Fachanwendung aufbereitet und der Serviceaufruf selbst durchgeführt.
+In diesem Fall enthält der Anwendungskern der <<glossar-Fachanwendung>> zur Datenerfassung nur wenig Funktionalität: in ihm werden die Daten für den Serviceaufruf der nachgelagerten Fachanwendung aufbereitet und der Serviceaufruf selbst durchgeführt.
 Wichtig in diesem Fall ist, dass es nach Zielarchitektur keine Transaktionen über Serviceaufrufe hinweg gibt.
 
 In diesem Abschnitt wird die Behandlung von Transaktionen innerhalb einer Anwendung beschrieben.
 Grundregel dabei ist, dass der Anwendungskern die Transaktionssteuerung übernimmt.
 Aus Sicht der Komponente GUI bedeutet dies, dass jeder Aufruf des Anwendungskerns unmittelbar eine Änderung der Daten zufolge hat.
-Dabei muss die Komponente GUI die Brücke schlagen zwischen der _fachlichen Transaktion_, die dem Nutzer dargestellt wird und der _technischen Transaktion,_ die in der Datenbank abgebildet wird.
+Dabei muss die Komponente GUI die Brücke schlagen zwischen der _fachlichen Transaktion_, die dem Anwender dargestellt wird und der _technischen Transaktion,_ die in der Datenbank abgebildet wird.
 
 Die fachliche Transaktion entspricht einem Dialogablauf.
-Ein Beispiel dafür: Der Nutzer kann in der Regel über mehrere Masken hinweg Daten eingeben.
+Ein Beispiel dafür: Der Bediener kann in der Regel über mehrere Masken hinweg Daten eingeben.
 Abschließend drückt er in einem Dialog den „OK“- bzw. den „Abbrechen“-Button.
-Für den Nutzer ist klar, dass alle die von ihm eingegebenen Daten im Sinne einer Transaktion behandelt werden müssen, d.h. sie werden entweder vom System komplett übernommen oder komplett verworfen.
+Für den Bediener ist klar, dass alle die von ihm eingegebenen Daten im Sinne einer Transaktion behandelt werden müssen, d.h. sie werden entweder vom System komplett übernommen oder komplett verworfen.
 
-Aus technischer Sicht ist die Behandlung dieses Ablaufs etwas komplizierter: Die Daten, die der Nutzer in den verschiedenen Dialogen eingibt, müssen zunächst zwischengespeichert werden, bevor dann bei Betätigung eines Buttons die technische Transaktion in der Datenbank erfolgt.
+Aus technischer Sicht ist die Behandlung dieses Ablaufs etwas komplizierter: Die Daten, die der Bediener in den verschiedenen Dialogen eingibt, müssen zunächst zwischengespeichert werden, bevor dann bei Betätigung eines Buttons die technische Transaktion in der Datenbank erfolgt.
 Das Zwischenspeichern der Werte benötigt allerdings ebenfalls technische Transaktionen.
 Da der Prozess der Web-Anwendung zustandslos ist, muss das Zwischenspeichern ebenfalls in der Datenbank erfolgen.
-Hier muss die GUI zusätzliche Transaktionen durchführen.
+Hier muss die <<glossar-GUI>> zusätzliche Transaktionen durchführen.
 
 Bei der Spring Web Flow Integration wurde ein Mechanismus verwendet, um die Zwischenwerte und Informationen zum Dialogablauf in der Datenbank abzulegen.
 Das Zwischenspeichern erfolgt grundsätzlich in einer separaten Transaktion.
 Somit beeinflussen sich die fachliche Transaktion und die technischen Transaktionen nicht.
 
 Mit den technischen Transaktionen ist es jetzt möglich, „Sitzungen“ abzubilden.
-Eine Sitzung ist letztendlich die Summe aller Zwischendaten, die der Nutzer eingegeben hat oder die das System selbst erzeugt hat (z.B. interne Zustände, Nutzerinformationen, ...).
+Eine Sitzung ist letztendlich die Summe aller Zwischendaten, die der Bediener eingegeben hat oder die das System selbst erzeugt hat (z.B. interne Zustände, Bedienerinformationen, ...).
 Innerhalb einer Sitzung werden mehrere fachliche Transaktionen durchgeführt.
 
 Das technische Mittel zur Repräsentation einer Sitzung ist zunächst einmal die Session des Servers.
@@ -250,22 +241,24 @@ Die Details dazu, wie in Spring Web Flow die zu speichernden Daten einer Session
 [[jquery]]
 == JQuery
 
-JQuery ist ein JavaScript-Framework, das auf einfache Weise JavaScript-Funktionen bereitstellt,
-die insbesondere auf die grafische Gestaltung einer Oberfläche benötigt werden.
+JQuery ist ein JavaScript-Framework, das auf einfache Weise JavaScript-Funktionen bereitstellt, die insbesondere auf die grafische Gestaltung einer Oberfläche benötigt werden.
 Die JavaScript-Datei, die diese Funktionen enthält wird im folgenden JQuery-Bibliothek genannt.
 
-Die Homepage jquery.com bietet die Möglichkeit Module individuell zusammenzustellen, so dass nur die
-benötigten Funktionen zur Verfügung stehen.
+Die Homepage jquery.com bietet die Möglichkeit Module individuell zusammenzustellen, so dass nur die benötigten Funktionen zur Verfügung stehen.
 Für die IsyFact wurde eine Auswahl der nutzbaren Module zusammengestellt.
 
 Erklärtes Ziel ist es, die Oberfläche durch den Einsatz von JavaScript eleganter nutzbar zu machen.
 Besonderer Fokus liegt dabei auf den Sicherheitsaspekten, die eine Aktivierung von JavaScript mit sich bringt.
 Die Oberfläche muss jedoch auch mit deaktiviertem JavaScript mit Komforteinschränkungen nutzbar sein.
 
-JQuery ist modular aufgebaut. Folgende Module dürfen eingesetzt werden:
+JQuery ist modular aufgebaut.
+Folgende Module dürfen eingesetzt werden:
 
-NOTE: Fertige jQuery-Pakete inkl. Stylesheet sollten in <<IsyFactJQuery>> abgelegt sein. Sie werden jedoch nicht als
-Teil der IsyFact ausgeliefert.
+[NOTE]
+====
+Fertige jQuery-Pakete inkl. Stylesheet sollten in <<IsyFactJQuery>> abgelegt sein.
+Sie werden jedoch nicht als Teil der IsyFact ausgeliefert.
+====
 
 * jquery-core (Kernfunktionalität zur DOM-Manipulation)
 * jquery-effects (Ein- und Ausblendfunktionalität)
@@ -278,34 +271,28 @@ Die Module jquery-data und jquery-ajax werden explizit nicht gesetzt, da AJAX-Fu
 == Bootstrap
 
 Bootstrap ist ein Open-Source CSS Framework, welches im Web sehr weit verbreitet ist.
-Es bietet z.B. Funktionalitäten für das Layouting, Scaffolding und kann dynamisch auf die vorgegebene
-Fenstergröße reagieren (Responsive CSS).
+Es bietet z.B. Funktionalitäten für das Layouting, Scaffolding und kann dynamisch auf die vorgegebene Fenstergröße reagieren (Responsive CSS).
 
-Über eine ergänzende JavaScript Bibliothek (welche selbst wiederum JQuery nutzt), stellt das Framework
-auch Komponenten wie Navigations-Menüs und Dropdowns zur Verfügung.
+Über eine ergänzende JavaScript Bibliothek (welche selbst wiederum JQuery nutzt), stellt das Framework auch Komponenten wie Navigations-Menüs und Dropdowns zur Verfügung.
 
 [[architektur]]
 = Architektur
 
-Im Folgenden soll eine grobe Übersicht über die Zusammenhänge der Web-GUI-Architektur und deren Einbettung
-in die Referenzarchitektur der IsyFact gegeben sowie die grundlegende Architektur der GUI-Komponenten erläutert werden.
+Im Folgenden soll eine grobe Übersicht über die Zusammenhänge der Web-GUI-Architektur und deren Einbettung in die Referenzarchitektur der IsyFact gegeben sowie die grundlegende Architektur der GUI-Komponenten erläutert werden.
 
 [[referenzarchitektur-einer-fachanwendung]]
 == Referenzarchitektur einer Fachanwendung
 
-Das Nutzungskonzept für das Web-GUI nimmt Bezug auf die in der Referenzarchitektur vorgegebenen Schichten
-und Komponenten einer IsyFact-konformen Fachanwendung.
+Die Detailkonzept für die Web-GUI nimmt Bezug auf die in der Referenzarchitektur vorgegebenen Schichten und Komponenten einer IsyFact-konformen <<glossar-Fachanwendung>>.
 
 :desc-image-RAFachAnw: Referenzarchitektur einer Fachanwendung
 [id="image-RAFachAnw",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-RAFachAnw}
 image::IFRefArcITSysGUI.png[align="center"]
 
-Die Schicht der Nutzung ist eine Erweiterung der klassischen 3-Schichten Architektur, in der die oberste
-Schicht in GUI, Batch und Service differenziert wird.
+Die Schicht der Nutzung ist eine Erweiterung der klassischen 3-Schichten Architektur, in der die oberste Schicht in GUI, Batch und Service differenziert wird.
 
-Das vorliegende Dokument beschreibt die Ausgestaltung der Komponente „GUI“. Aufgabe der GUI ist es, die
-Funktionalität der Anwendung für einen menschlichen Nutzer zur Verfügung zu stellen.
+Das vorliegende Dokument beschreibt die Ausgestaltung der Komponente „GUI“. Aufgabe der GUI ist es, die Funktionalität der Anwendung für einen menschlichen Bediener zur Verfügung zu stellen.
 Dazu stellt sie die benötigten Dialoge und Masken bereit.
 
 Die GUI ist untergliedert in ein GUI-Framework (verwendet wird JSF mit Spring Web Flow) und die Dialoglogik,
@@ -335,8 +322,7 @@ Darin sind diese grundlegenden Prinzipien enthalten:
 .{desc-image-IntvSpringSWF}
 image::IntvSpringSWF.png[align="center"]
 
-Durch den Programmierer einer GUI sind die gelb hervorgehobenen Teile bereitzustellen (die anderen Bestandteile
-werden durch das Framework bereitgestellt).
+Durch den Programmierer einer GUI sind die gelb hervorgehobenen Teile bereitzustellen (die anderen Bestandteile werden durch das Framework bereitgestellt).
 
 * Konfiguration des Dialogablaufs als Flow in Form von XML-Dateien
 * Model und Controller-Beans zur Datenhaltung und für GUI-Logik
@@ -345,15 +331,12 @@ werden durch das Framework bereitgestellt).
 [[gui-komponenten]]
 == GUI-Komponenten
 
-Zur Strukturierung von Masken und zugehöriger Funktionalität verwenden wir ein einheitliches Muster zum Aufbau
-von GUI-Komponenten.
-Neben der Anwendung des MVC-Pattern mittels der oben beschriebenen Web-Technologien (Spring Web Flow, JSF)
-definiert es zusätzlich Regeln, die eine Kapselung -, einen einheitlichen Aufbau und eine einheitliche Interaktion
-von GUI-Komponenten ermöglicht.
+Zur Strukturierung von Masken und zugehöriger Funktionalität verwenden wir ein einheitliches Muster zum Aufbau von GUI-Komponenten.
+Neben der Anwendung des MVC-Pattern mittels der oben beschriebenen Web-Technologien (Spring Web Flow, JSF) definiert es zusätzlich Regeln, die eine Kapselung, einen einheitlichen Aufbau und eine einheitliche Interaktion von GUI-Komponenten ermöglicht.
 
 Die Fachkomponenten einer Anwendung ergeben sich aus der Systemspezifikation.
-Diese werden auf der Ebene Persistenz, Anwendungskern und GUI implementiert (siehe <<image-RAFachAnw>>). Auf Ebene der
-GUI sprechen wir von GUI-Komponenten (siehe <<image-KompDiazuGUI>>).
+Diese werden auf der Ebene Persistenz, Anwendungskern und GUI implementiert (siehe <<image-RAFachAnw>>).
+Auf Ebene der GUI sprechen wir von GUI-Komponenten (siehe <<image-KompDiazuGUI>>).
 
 Die GUI-Komponenten umfassen für jeden Dialog eine Subkomponente.
 Jeder Dialog aus der Systemspezifikation ist also ebenfalls eine eigene Komponente.
@@ -363,19 +346,15 @@ Jeder Dialog aus der Systemspezifikation ist also ebenfalls eine eigene Komponen
 .{desc-image-KompDiazuGUI}
 image::KompDiazuGUI.png[align="center",pdfwidth=80%,width=80%]
 
-Die Dialog-Komponenten einer GUI-Komponente können einen gemeinsamen AWK-Wrapper und in ihren Modellen
-gemeinsame Datenobjekte verwenden.
-Trotzdem sind die Dialog-Komponenten zu kapseln, d.h. Controller- und Model Beans dürfen nicht gemeinsam
-verwendet werden (siehe <<image-IntGUIKompGUISub>>).
+Die Dialog-Komponenten einer GUI-Komponente können einen gemeinsamen AWK-Wrapper und in ihren Modellen gemeinsame Datenobjekte verwenden.
+Trotzdem sind die Dialog-Komponenten zu kapseln, d.h. Controller- und Model Beans dürfen nicht gemeinsam verwendet werden (siehe <<image-IntGUIKompGUISub>>).
 
 :desc-image-IntGUIKompGUISub: Innensicht einer GUI-Komponente mit ihren GUI-Sub-Komponenten
 [id="image-IntGUIKompGUISub",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IntGUIKompGUISub}
 image::IntGUIKompGUISub.png[align="center"]
 
-Zentral ist also die Forderung, dass die Elemente jeder GUI-Komponente (Flow, Controller, View und Model)
-in definierter Weise ausschließlich untereinander kommunizieren und Zugriffe auf Elemente anderer
-Komponenten unterbleiben.
+Zentral ist also die Forderung, dass die Elemente jeder GUI-Komponente (Flow, Controller, View und Model) in definierter Weise ausschließlich untereinander kommunizieren und Zugriffe auf Elemente anderer Komponenten unterbleiben.
 <<image-CommMVCinGUI>> zeigt die Abhängigkeits­beziehungen innerhalb einer GUI-(Sub-)Komponente.
 
 :desc-image-CommMVCinGUI: Kommunikation von View, Controller und Model innerhalb einer GUI-Komponente
@@ -402,23 +381,23 @@ Der Flow wird als XML-Datei im Ordner der Komponente hinterlegt.
 [[controller-bean]]
 === Controller-Bean
 
-Das Controller-Bean ist ein vom Komponenten-Flow aufzurufendes *zustandsloses* Spring Bean,
-welches Änderungen an den Daten des Models vornimmt oder diese aufbereitet bzw.
-Services des Anwendungskern-Wrappers aufruft.
+Das Controller-Bean ist ein vom Komponenten-Flow aufzurufendes *zustandsloses* Spring Bean, welches Änderungen an den Daten des Models vornimmt oder diese aufbereitet bzw. Services des Anwendungskern-Wrappers aufruft.
 Das Model Bean wird dem Controller mit jedem Aufruf übergeben.
 
-[IMPORTANT]
+// tag::important[]
+[ARCHITEKTURREGEL]
 ====
 *Architekturkonvention*
 
 Die Implementierung des Controllers ist zustandslos und stellt nur Methoden bereit.
 ====
 
+// end::important[]
+
 Das Controller-Bean wird im Spring IoC-Container mit Singleton Scope erzeugt und konfiguriert.
 
 Das Controller-Bean wird vom Flow per Expression-Language aufgerufen.
-In bestimmten Fällen (siehe Abschnitt <<view544>>) wird ein Controller-Bean auch in einer Action (oder ActionListener) des
-Komponenten-View aufgerufen.
+In bestimmten Fällen (siehe Abschnitt <<view544>>) wird ein Controller-Bean auch in einer Action (oder ActionListener) des Komponenten-View aufgerufen.
 
 [[model-bean]]
 === Model Bean
@@ -463,10 +442,10 @@ Da das Model Bean seine Datenzugriffsmethoden nach dem Bean-Standard (`get`/`set
  enthaltener Objekte zugegriffen werden.
 Ein View kann auch auf mehrere zum Flow gehörende Model Beans zugreifen.
 
-Im View können Actions definiert sein (z.B. Submit durch einen Command-Button). Dabei werden nur Action-Tokens
-(String, der die Aktion benennt) übergeben, die dann im Flow entgegengenommen werden und dann Methodenaufrufe auf dem Controller auslösen.
+Im View können Actions definiert sein (z.B. Submit durch einen Command-Button). Dabei werden nur Action-Tokens (String, der die Aktion benennt) übergeben, die dann im Flow entgegengenommen werden und dann Methodenaufrufe auf dem Controller auslösen.
 
-[IMPORTANT]
+// tag::important[]
+[ARCHITEKTURREGEL]
 ====
 *Architekturkonvention*
 
@@ -478,6 +457,8 @@ Aktionen, welche zur Steuerung der Darstellung innerhalb einer Maske verwendet w
 In diesen Fällen darf der Controller direkt aufgerufen werden. +
 *Beispiel:* Selektion eines Elements und darauf basierende Anpassung der Maske.
 ====
+
+// end::important[]
 
 Die Erstellung von Views wird im Verlauf dieses Dokuments noch genauer beschrieben.
 
@@ -504,8 +485,7 @@ Beim Einbinden sind niemals relative Pfade zu verwenden, um die Same-Origin-Poli
 Zusätzlich sorgt, das script-Tag dafür, dass im Fall von deaktiviertem JavaScript kein Fehler auftritt und die
  XHTML-Konformität erhalten bleibt.
 
-Folgende Abbildung zeigt ein Beispiel für eine Java-Script-Datei „vorgangSuchen.js“, welche ein GUI-Element mit
-der ID „Geburtsdatum“ fokussiert:
+Folgende Abbildung zeigt ein Beispiel für eine Java-Script-Datei „vorgangSuchen.js“, welche ein GUI-Element mit der ID „Geburtsdatum“ fokussiert:
 
 :desc-listing-BspJSDat: Beispiel für eine JavaScript-Datei
 [id="listing-BspJSDat",reftext="{listing-caption} {counter:listings }"]
@@ -602,8 +582,7 @@ Welche Controller im Detail für das Vorgabelayout verfügbar sind, wird in <<St
 [[packaging-und-namenskonventionen]]
 === Packaging und Namenskonventionen
 
-Ein nicht zu vernachlässigender Aspekt zur Komponentenbildung ist die Paketierung, durch die zu einer
-Komponente gehörende Elemente gruppiert abgelegt werden.
+Ein nicht zu vernachlässigender Aspekt zur Komponentenbildung ist die Paketierung, durch die zu einer Komponente gehörende Elemente gruppiert abgelegt werden.
 Alle Elemente werden in einem Paket mit einheitlichem Paketnamen abgelegt.
 
 Für die Namenskonvention zu Java-Klassen und Paketen wird hier auf das Dokument <<JavaProgrammierkonventionen>> verwiesen.
@@ -611,8 +590,8 @@ Zusätzlich gelten die folgenden Konventionen:
 
 * Jede GUI-Komponente hat einen Namen.
 Die Namen richten sich nach den fachlichen Komponenten bzw. Dialogen.
-* Das Paket, in dem die GUI-Komponente abgelegt wird, trägt den vollständig kleingeschriebenen Namen der
-GUI-(Sub-)Komponente (z.B. `erstellen`). Jede GUI-Komponente nutzt zwei Ablageorte:
+* Das Paket, in dem die GUI-Komponente abgelegt wird, trägt den vollständig kleingeschriebenen Namen der GUI-(Sub-)Komponente (z.B. `erstellen`).
+Jede GUI-Komponente nutzt zwei Ablageorte:
 ** `java/de/…/gui/terminfindung/erstellen/...` für Java-Klassen
 ** `WEB-INF/gui/terminfindung/erstellen/...` für Flows und Views
 * Model Bean-Klassen tragen den Namen der GUI-Komponente und enden auf Model (z.B. `ErstellenModel`).
@@ -620,14 +599,12 @@ GUI-(Sub-)Komponente (z.B. `erstellen`). Jede GUI-Komponente nutzt zwei Ablageor
 * Flows tragen den Namen der GUI-Komponente und enden auf Flow.xml (z.B. `erstellenFlow.xml`).
 * Der Main-View, der dem Flow-View-State zugeordnet ist endet auf `ViewState` (z.B. `erstellenViewState.xhtml`).
 Besteht der Flow aus mehreren View-States, so wird eine Schritt-Nummer angehängt (z.B. `erstellenViewState1.xhtml`).
-* Alle weiteren für den View verwendeten Facelets tragen den Namen der Komponente und eine Charakterisierung
-des Facelets (z.B. `erstellenFormular.xhtml`). Auch hier ist eine Schrittnummer anzuhängen, wenn der Flow mehrere View-States enthält (z.B. erstellenFormular1.xhtml).
+* Alle weiteren für den View verwendeten Facelets tragen den Namen der Komponente und eine Charakterisierung des Facelets (z.B. `erstellenFormular.xhtml`).
+Auch hier ist eine Schrittnummer anzuhängen, wenn der Flow mehrere View-States enthält (z.B. erstellenFormular1.xhtml).
 * Die bei einem View-State verwendete JavaScript-Datei trägt den Namen des View-States (z.B. `erstellenFormular1.js`).
-Gibt es View-übergreifende Funktionalität kann diese in eine wiederverwendbare
-JavaScript-Datei ausgelagert werden (z.B. `erstellenForumlar.js`).
+Gibt es View-übergreifende Funktionalität kann diese in eine wiederverwendbare JavaScript-Datei ausgelagert werden (z.B. `erstellenForumlar.js`).
 
-Im folgenden Abschnitt ist die Benennung der Elemente auch noch einmal in Form der Projektdateistruktur
-nachvollziehbar dargestellt.
+Im folgenden Abschnitt ist die Benennung der Elemente auch noch einmal in Form der Projektdateistruktur nachvollziehbar dargestellt.
 
 [[projekt-verzeichnis-einer-fachanwendung-mit-gui]]
 === Projekt-Verzeichnis einer Fachanwendung mit GUI
@@ -640,6 +617,7 @@ Nachfolgend ist in <<image-VerzBspErstellen>> der Verzeichnisbaum der Beispiel-I
 .{desc-image-VerzBspErstellen}
 image::bspstructmit.png[align="center"]
 
+//todo: Clean?
 ////
 Projekt Terminfindung
 Java Quellcode
@@ -667,13 +645,15 @@ Für die Erstellung von Weboberflächen existieren Vorgaben in Form eines <<Styl
 Der Styleguide legt Anforderungen an die Gestaltung und Nutzbarkeit von Oberflächen fest.
 Die zugehörige Bibliothek `isy-style` enthält die CSS-, JavaScript- und Bilddateien des Styleguides zur produktiven Nutzung aufbereitet.
 
-Die CSS-Dateien für eine zum Styleguide konforme Anwendung werden bei Nutzung der Bibliothek `isy-style` automatisch geladen und eingebunden. Zur anwendungsspezifischen Anpassung der Stylesheets dienen folgende, innerhalb der Anwendung liegende, Dateien:
+Die CSS-Dateien für eine zum Styleguide konforme Anwendung werden bei Nutzung der Bibliothek `isy-style` automatisch geladen und eingebunden.
+Zur anwendungsspezifischen Anpassung der Stylesheets dienen folgende, innerhalb der Anwendung liegende, Dateien:
 
 * `/css/custom-styles.css` - Spezielle CSS Klassen für die Anwendung,
 * `/css/custom-print.css` - Spezielle CSS Klassen für die Druckansicht der Anwendung.
 
 Die Bibliothek `isy-web` enthält notwendige Abhängigkeiten, Spring-Konfigurationen, JSF-Komponenten (Composite Components) sowie zugehörige JSF-Templates (.xhtml) und setzt die Vorgaben des Styleguides durch Verwendung der Bibliothek `isy-style` um.
-Sie wird über eine Maven-Abhängigkeit eingebunden. Bei Verwendung des IsyFact-BOMs wird die Version automatisch ermittelt:
+Sie wird über eine Maven-Abhängigkeit eingebunden.
+Bei Verwendung des IsyFact-BOMs wird die Version automatisch ermittelt:
 
 :desc-listing-jsfMavenIsy: Einbindung der Bibliothek isy-web in Maven
 [id="listing-jsfMavenIsy",reftext="{listing-caption} {counter:listings }"]
@@ -691,8 +671,7 @@ Eine explizite Abhängigkeit zur Bibliothek `isy-style` ist in der Regel nicht n
 [[erstellung-einer-gui-komponente]]
 == Erstellung einer GUI-Komponente
 
-Die folgenden Abschnitte erklären, wie eine GUI-Komponente nach dem MVC-Muster, mit der Erweiterung um Flows, mit der Bibliothek `isy-web` erstellt wird.
-
+Die folgenden Abschnitte erklären, wie eine GUI-Komponente nach dem MVC-Muster, mit der Erweiterung um Flows, mit der die Bibliothek `isy-web` erstellt wird.
 
 [[der-flow]]
 === Erstellung der Flows
@@ -770,36 +749,38 @@ Für jeden View-State kann ein `on-entry`-Handler definiert werden.
 Für jede Transition wird ein Zielzustand festgelegt. Diese können sein:
 
 * der eigene View-State (zur Aktualisierung des Views),
-* ein untergeordneter Subflow (führt zur Anzeige einer anderen GUI-Komponente, nach Ausführung des Subflows
-kehrt die Anwendung in den aktuellen Flow zurück),
-* ein Action-State oder ein Decision-State, in denen der Flow entweder Aktionen (z.B. Aufrufe des
-Anwendungskerns) oder Entscheidungen zum weiteren Flow-Ablauf trifft, oder
+* ein untergeordneter Subflow (führt zur Anzeige einer anderen GUI-Komponente, nach Ausführung des Subflows kehrt die Anwendung in den aktuellen Flow zurück),
+* ein Action-State oder ein Decision-State, in denen der Flow entweder Aktionen (z.B. Aufrufe des Anwendungskerns) oder Entscheidungen zum weiteren Flow-Ablauf trifft, oder
 * keine Angabe eines Zielzustands: Dadurch verbleibt der Flow im aktuellen View-State.
 
-IMPORTANT: Wenn der Zielzustand dem aktuellen View State entspricht, wird er aktualisiert.
+// tag::important[]
+[IMPORTANT]
+====
+Wenn der Zielzustand dem aktuellen View State entspricht, wird er aktualisiert.
 Der vorherige Zustand kann _NICHT_ mehr über den Browser-Back-Button erreicht werden.
-Für AJAX-Aufrufe, welche nur einen bestimmten Teil der Seite aktualisieren sollen, darf kein Zielzustand
-angegeben werden.
+Für AJAX-Aufrufe, welche nur einen bestimmten Teil der Seite aktualisieren sollen, darf kein Zielzustand angegeben werden.
+====
+
+// end::important[]
 
 Für jede Transition kann hinterlegt werden, ob die Browser-Historie (für Back Button Handling) zurückgesetzt werden soll.
-Kommt man also nach Anzeigen einer Trefferliste über das Löschen eines Eintrags wieder zur Trefferliste, so
-sollte die Möglichkeit der Bereinigung der Historie genutzt werden.
+Kommt man also nach Anzeigen einer Trefferliste über das Löschen eines Eintrags wieder zur Trefferliste, so sollte die Möglichkeit der Bereinigung der Historie genutzt werden.
 
 *Aufruf von Subflows*: Beim Aufruf von Subflows müssen meist Parameter übergeben werden.
 Dazu wird ein Input-Tag verwendet, welches ein Schlüssel/Wertpaar an den Subflow übergibt.
 Im Subflow wird der Parameter über ein Input-Tag entgegengenommen und steht dann als Flow-Variable zur Verfügung und sollte im `on-start`-Handler per Controller in das Model übernommen werden.
 
+// tag::important[]
 [IMPORTANT]
 ====
 Um die Kapselung der GUI-Komponenten zu bewahren, ist es wichtig, dass GUI-Komponenten ihre Parameter immer über ein Input-Tag erhalten und nicht frei auf fremde Models und Controller zugreifen.
 
-Bei der Übergabe eines Parameters (z.B. Liste) ist immer eine Kopie der Datenstruktur zu
-übergeben, damit Änderungen an der Datenstruktur durch einen Subflow sich nicht auf den aufrufenden
-Flow auswirken.
+Bei der Übergabe eines Parameters (z.B. Liste) ist immer eine Kopie der Datenstruktur zu übergeben, damit Änderungen an der Datenstruktur durch einen Subflow sich nicht auf den aufrufenden Flow auswirken.
 In diesem Sinne ist auch verboten, ein ganzes Model-Bean zu übergeben.
-Müssen mehrere Informationen übergeben werden, so können natürlich auch mehrere Input-Parameter
-verwendet werden.
+Müssen mehrere Informationen übergeben werden, so können natürlich auch mehrere Input-Parameter verwendet werden.
 ====
+
+// end::important[]
 
 Auch die Rückgabe von Out-Parametern ist über ein Output-Tag möglich.
 Es gelten die gleichen Richtlinien wie bei Input-Parametern.
@@ -808,8 +789,7 @@ Es gelten die gleichen Richtlinien wie bei Input-Parametern.
 Genutzt wird die Möglichkeit ausschließlich zum Aufruf des zustandslosen Controller-Beans – meist unter Bereitstellung des Model-Beans.
 Das Ergebnis kann in einer neuen Flow-Variablen hinterlegt werden. Üblicherweise aktualisieren die Aufrufe des Controllers aber direkt das zentrale Flow Model.
 
-CAUTION: Im `evaluate`-Tag wird die Java-Expression-Language verwendet, nicht die deutlich
-leistungsfähigere Spring Expression Language!
+CAUTION: Im `evaluate`-Tag wird die Java-Expression-Language verwendet, nicht die deutlich leistungsfähigere Spring Expression Language!
 
 Flow-Definitionen bietet weitaus mehr Möglichkeiten, die im Regelfall allerdings seltener benötigt und daher hier nicht erläutert werden.
 
@@ -825,9 +805,11 @@ Typische Methoden im Controller sind:
 * Methoden zum Aufruf des Anwendungskerns,
 * Methoden zur Aufbereitung von Daten des Models vor dem Rendern.
 
-Der Controller wird in der Spring Konfiguration als einfaches Spring-Bean definiert und ist somit im Flow
-automatisch sichtbar und nutzbar. Jeder Controller muss von `AbstractGuiController` erben. Da der Controller zustandslos ist, benötigt jeder Aufruf das zugehörige Model. Der Controller kann auch eine eigene Fehlerbehandlung enthalten. In seltenen Fällen schreibt er selbst Meldungen in
-den `FlowRequestContext`, die dann als Fehler- oder Hinweismeldung ausgegeben werden.
+Der Controller wird in der Spring Konfiguration als einfaches Spring-Bean definiert und ist somit im Flow automatisch sichtbar und nutzbar.
+Jeder Controller muss von `AbstractGuiController` erben.
+Da der Controller zustandslos ist, benötigt jeder Aufruf das zugehörige Model.
+Der Controller kann auch eine eigene Fehlerbehandlung enthalten.
+In seltenen Fällen schreibt er selbst Meldungen in den `FlowRequestContext`, die dann als Fehler- oder Hinweismeldung ausgegeben werden.
 
 Eine Rückgabe von Zielzuständen zur Steuerung des Flow in Methoden des Controllers ist zu vermeiden.
 Sinnvoll ist die Rückgabe eines Ergebnistokens (Erfolg oder Fehler), um dann im Flow den Zielzustand festzulegen und anzusteuern.
@@ -856,9 +838,7 @@ Ein Model soll vor dem Rendern möglichst alle anzuzeigenden Daten passgenau fü
 ==== Abgleichen eines Models
 
 Der Abgleich des Models mit dem View (nach Submit einer Maske) erfolgt automatisch durch JSF.
-Alle Seiteninhalte, die beim Rendern aus einem Model gelesen wurden, werden nach dem Submit wieder in das
-Model rückübertragen und stehen dann zur weiteren Verarbeitung für den Controller oder erneutes Rendering zur
-Verfügung.
+Alle Seiteninhalte, die beim Rendern aus einem Model gelesen wurden, werden nach dem Submit wieder in das Model rückübertragen und stehen dann zur weiteren Verarbeitung für den Controller oder erneutes Rendering zur Verfügung.
 
 [[speichern-der-daten-eines-models]]
 ==== Speichern der Daten eines Models
@@ -874,8 +854,7 @@ Umso mehr Daten im Model enthalten sind, desto aufwändiger ist die Session-Pers
 Daher ist die Menge an gehaltenen Daten auf das Notwendige zu beschränken.
 Diejenigen Teile des Models, die nur temporär während der Datenaufbereitung befüllt werden, sollten dringend als `transient` markiert werden, um sie nicht in der Session zu speichern.
 
-TIP: Die Session-Persistierung erfolgt neben den Dialogschritten zusätzlich auch beim Redirect im Rahmen
-der Anwendung des Post Redirect Get-Pattern (siehe <<back-button-handling>>).
+TIP: Die Session-Persistierung erfolgt neben den Dialogschritten zusätzlich auch beim Redirect im Rahmen der Anwendung des Post Redirect Get-Pattern (siehe <<back-button-handling>>).
 
 Die nach einem Submit im Model-Bean gespeicherten (und vom Anwender ggf. veränderten) fachlichen Daten werden nach Validierung in die fachlichen Tabellen der Datenbank übernommen.
 Dies erfolgt immer durch einen Controller, der die Daten aus dem Model an den Anwendungskern-Wrapper übergibt.
@@ -983,8 +962,7 @@ Innerhalb dieser Facelets wird im Normalfall nichts mehr inkludiert.
 
 Der Zugriff auf die Daten des Models erfolgt in den Facelets über die Common Expression Language (EL) <<CommonEL>>.
 Das Model ist im View sichtbar, da es im Flow als Flow-Variable deklariert wurde.
-Das Model ist zum Zeitpunkt des Renderns bereits mit Daten befüllt, da im `on-entry`-Handler des Flows der
-Controller die Befüllung des Models vorgenommen hat.
+Das Model ist zum Zeitpunkt des Renderns bereits mit Daten befüllt, da im `on-entry`-Handler des Flows der Controller die Befüllung des Models vorgenommen hat.
 
 :desc-listing-DatZuFacelet: Datenzugriff im Facelet
 [id="listing-DatZuFacelet",reftext="{listing-caption} {counter:listings }"]
@@ -997,9 +975,7 @@ Controller die Befüllung des Models vorgenommen hat.
    required="true"/>
 ----
 
-Es ist wichtig zu verstehen, dass durch das Rendern der Daten aus dem Model eine Bindung der Model-Property
-mit dem GUI-Element (im Beispiel ein Form-Input-Feld) hergestellt wird, welches nach Submit des Webformulars
-automatisch durch Spring Web Flow in das Model zurücksynchronisiert wird.
+Es ist wichtig zu verstehen, dass durch das Rendern der Daten aus dem Model eine Bindung der Model-Property mit dem GUI-Element (im Beispiel ein Form-Input-Feld) hergestellt wird, welches nach Submit des Webformulars automatisch durch Spring Web Flow in das Model zurücksynchronisiert wird.
 Damit das funktioniert ist eine eindeutige HTML-ID zu vergeben.
 Die HTML Elemente erhalten entsprechend ihres Inhaltes den Bezeichner des zugehörigen Attributes.
 Würde keine ID vergeben, so würde JSF selbständig eine dynamische ID vergeben.
@@ -1038,10 +1014,8 @@ Hier wird ein Token verwendet, welches auch im Flow bekannt ist und die Transiti
 [[datenkonvertierung-fuer-darstellung-und-eingabe]]
 ==== Datenkonvertierung für Darstellung und Eingabe
 
-Für die formatierte Darstellung von Daten können JSF-Konverter zur Konvertierung aus der Ansicht ins
-typisierte Datenmodell, wie auch zur Umwandlung aus dem Datenmodell in die Ansicht verwendet werden.
-Hier bieten sich JSF-Konverter an, die jedoch nur mit Einschränkungen verwendet werden können, da diese
- bei der Konvertierung „freier Eingaben“ nicht mit Fehleingaben umgehen können.
+Für die formatierte Darstellung von Daten können JSF-Konverter zur Konvertierung aus der Ansicht ins typisierte Datenmodell, wie auch zur Umwandlung aus dem Datenmodell in die Ansicht verwendet werden.
+Hier bieten sich JSF-Konverter an, die jedoch nur mit Einschränkungen verwendet werden können, da diese bei der Konvertierung „freier Eingaben“ nicht mit Fehleingaben umgehen können.
 
 :desc-listing-ConvDatewihConv: Umwandlung eines Datums mittels Konverter
 [id="listing-ConvDatewihConv",reftext="{listing-caption} {counter:listings }"]
@@ -1059,15 +1033,12 @@ Die ungültigen Eingaben gehen also zusammen mit allen anderen Änderungen im Mo
 Standard-JSF-Konverter sind also faktisch nicht nutzbar.
 
 Ein geeigneter Konverter muss auch ungültige Daten ins Modell schreiben können.
-Wenn dies aufgrund der Nutzung spezieller Datentypen (wie z.B. `Date`) nicht möglich ist, muss im View-Model
- der Datentyp `String` verwendet werden.
-Die Konvertierung findet in diesem Fall nicht durch einen Konverter statt, sondern erst nach oder während
-der Validierung.
+Wenn dies aufgrund der Nutzung spezieller Datentypen (wie z.B. `Date`) nicht möglich ist, muss im View-Model der Datentyp `String` verwendet werden.
+Die Konvertierung findet in diesem Fall nicht durch einen Konverter statt, sondern erst nach oder während der Validierung.
 
 Oft ist es notwendig, im Model Schlüssel eines Schlüsselverzeichnisses zu verwenden.
 Dieser sollte in der Regel in der Maske nicht als Schlüssel, sondern in einer verständlichen Form dargestellt werden.
-Hier bietet sich der Einsatz eines eigenen Konverters an, der mittels Schlüssel-Wert-Mapping die
-Umwandlung je nach Verarbeitungsrichtung leistet.
+Hier bietet sich der Einsatz eines eigenen Konverters an, der mittels Schlüssel-Wert-Mapping die Umwandlung je nach Verarbeitungsrichtung leistet.
 Analog gilt dies auch für Booleans und Aufzählungstypen.
 
 :desc-listing-ConvEnumwithConv: Umwandlung eines Aufzählungstyps mittels Konverter
@@ -1080,15 +1051,15 @@ Analog gilt dies auch für Booleans und Aufzählungstypen.
 </h:outputText>
 ----
 
-Im Hinblick auf aktiviertes JavaScript darf bei `outputText` niemals das Attribut `escape` auf `false`
-gesetzt werden.
+Im Hinblick auf aktiviertes JavaScript darf bei `outputText` niemals das Attribut `escape` auf `false` gesetzt werden.
 
 [[interaktive-elemente-mit-jquery]]
 === Interaktive Elemente mit JQuery
 
 JQuery ist ein mächtiges Framework zur DOM-Manipulation.
 Entsprechend vorsichtig und gezielt sollte der Einsatz gewählt werden.
-In der Regel bieten die <<jsf-bedienelemente>> der IsyFact Zugriff auf Visualisierungsformen mittels JavaScript (z.B. Kalenderwidget, Tags, Panels). Für bestimme Zusatzanforderungen (z.B. bedingtes Deaktivieren eines Felds, weitere GUI-Verschönerungen) kann es jedoch notwendig sein zusätzliches JavaScript einzubinden.
+In der Regel bieten die <<jsf-bedienelemente>> der IsyFact Zugriff auf Visualisierungsformen mittels JavaScript (z.B. Kalenderwidget, Tags, Panels).
+Für bestimme Zusatzanforderungen (z.B. bedingtes Deaktivieren eines Felds, weitere GUI-Verschönerungen) kann es jedoch notwendig sein zusätzliches JavaScript einzubinden.
 
 Die viewspezifische Funktionalität wird in einer eigenen JavaScript-Datei umgesetzt.
 
@@ -1096,25 +1067,27 @@ Die viewspezifische Funktionalität wird in einer eigenen JavaScript-Datei umges
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: eval() darf nicht verwendet werden.
-:: *Begründung*
-:: Die Verwendung von eval() stellt ein Sicherheitsrisiko dar. Es besteht die Gefahr, dass Werte aus Request-Parametern ohne ausreichende Prüfung als Code ausgeführt werden.
+*Regel:*:: eval() darf nicht verwendet werden.
+
+*Begründung*
+Die Verwendung von eval() stellt ein Sicherheitsrisiko dar.
+Es besteht die Gefahr, dass Werte aus Request-Parametern ohne ausreichende Prüfung als Code ausgeführt werden.
 ''''
 
-:: *Lösung*
-:: Anstatt Parameter an die eval(...)-Funktion zu übergeben, schreiben Sie eine eigene Parser-Funktion, in der sie sicherstellen können, dass kein Code-Injection Angriff erfolgreich ist.
+*Lösung*
+Anstatt Parameter an die eval(...)-Funktion zu übergeben, schreiben Sie eine eigene Parser-Funktion, in der sie sicherstellen können, dass kein Code-Injection Angriff erfolgreich ist.
 ''''
 
-:: *Negativ-Beispiel*
+*Negativ-Beispiel*
 
-:: Der Inhalt des Strings `requestValue` wird ohne ausreichende Prüfung ausgeführt.
+Der Inhalt des Strings `requestValue` wird ohne ausreichende Prüfung ausgeführt.
 
            var requestValue = getParameterValueForParameter
              (“searchString“);
            eval(requestValue)
 
-:: Dies ermöglicht es jeden beliebigen JavaScript Code per Injektion auf einem Client ausführen zu lassen.
-:: Ein Angreifer könnte dann Code auf dem Server wie folgt einschleusen:
+Dies ermöglicht es jeden beliebigen JavaScript Code per Injektion auf einem Client ausführen zu lassen.
+Ein Angreifer könnte dann Code auf dem Server wie folgt einschleusen:
 
            www.mySite.de?searchString=alert(‚hallo‘)
 
@@ -1122,150 +1095,146 @@ Die viewspezifische Funktionalität wird in einer eigenen JavaScript-Datei umges
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: setTimeout() darf nicht in der Variante
-           aufgerufen werden, die den Code in einer
-           Zeichenfolge enthält.
-:: *Begründung*
-:: Damit wird verhindert, dass ein "Greasemonkey-Skript" (clientseitig laufender Code) ausgeführt wird, mit dem sich der JS-Code manipulieren lässt.
-''''
+*Regel:*:: setTimeout() darf nicht in der Variante aufgerufen werden, die den Code in einer Zeichenfolge enthält.
+*Begründung*
+Damit wird verhindert, dass ein "Greasemonkey-Skript" (clientseitig laufender Code) ausgeführt wird, mit dem sich der JS-Code manipulieren lässt.
 
-:: *Lösung*
-:: Anstatt den Code in einer Zeichenfolge zu übergeben, muss ein function()-Parameter übergeben werden
+*Lösung*
+Anstatt den Code in einer Zeichenfolge zu übergeben, muss ein function()-Parameter übergeben werden
 
    setTimeout(function() { ... }, 100)
 
-:: Hierdurch wird kein clientseitig laufender Code ausgeführt.
-''''
+Hierdurch wird kein clientseitig laufender Code ausgeführt.
 
+*Negativ-Beispiel*
 
-:: *Negativ-Beispiel*
-
-:: Hier wird der Code unzulässigerweise als Zeichenfolge übergeben.
+Hier wird der Code unzulässigerweise als Zeichenfolge übergeben.
 
            setTimeout(“callSomeSpecialFunktion (searchString)“, 100);
 
-:: Ein Angreifer könnte nun eine URL wie folgt aufrufen:
+Ein Angreifer könnte nun eine URL wie folgt aufrufen:
 
            www.mySite.de?searchString=5);alert(‚hallo‘
 
-:: Der Inhalt der Variable searchString wird im searchString ersetzt, so dass folgender Code ausgeführt würde:
+Der Inhalt der Variable searchString wird im searchString ersetzt, so dass folgender Code ausgeführt würde:
 
    setTimeout(“callSomeSpecialFunktion(5);alert(“hallo“), 100);
 
-:: Der Angreifer hätte es also geschafft, die Ausführung der Funktion alert(“hallo“) auf dem Server zu veranlassen.
+Der Angreifer hätte es also geschafft, die Ausführung der Funktion alert(“hallo“) auf dem Server zu veranlassen.
 
 ====
 
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Sofern keine Wiederverwendung möglich ist, ist von der Definition benannter Funktionen abzusehen und anonyme Funktionen einzusetzen. Dies betrifft im speziellen das Event-Binding
+*Regel:*:: Sofern keine Wiederverwendung möglich ist, ist von der Definition benannter Funktionen abzusehen und anonyme Funktionen einzusetzen. Dies betrifft im speziellen das Event-Binding
 
-:: *Begründung*
-:: Definierte JavaScript-Funktionen sind in der Regel im globalen Variablen-Kontext gültig. Würde für jede Callback-Funktion eine eigene Funktion definiert, würde das den Speicher unnötig belasten. Weiterhin verschlechtert sich die Lesbarkeit.
-:: Gerade bei Callbacks ist es nützlich, wenn direkt ersichtlich ist, was passiert, wenn der Callback aufgerufen wird.
-''''
+*Begründung*
+Definierte JavaScript-Funktionen sind in der Regel im globalen Variablen-Kontext gültig.
+Würde für jede Callback-Funktion eine eigene Funktion definiert, würde das den Speicher unnötig belasten.
+Weiterhin verschlechtert sich die Lesbarkeit.
+Gerade bei Callbacks ist es nützlich, wenn direkt ersichtlich ist, was passiert, wenn der Callback aufgerufen wird.
 
-:: *Lösung*
-:: Ein weiterer Vorteil bei der Verwendung von anonymen Funktionen ist, dass auf Variablen der umgebenen Funktion zugegriffen werden kann, was die Implementierung vereinfacht:
+*Lösung*
+Ein weiterer Vorteil bei der Verwendung von anonymen Funktionen ist, dass auf Variablen der umgebenen Funktion zugegriffen werden kann, was die Implementierung vereinfacht:
 
    var einWert=5;
    setTimeout( function {alert(4 + einWert);}, 100);
-
 ====
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Benannte Funktionen sollten in einem Namespace deklariert werden, die eine Zuordnung zu einem View erkennen lässt:
+*Regel:*:: Benannte Funktionen sollten in einem Namespace deklariert werden, die eine Zuordnung zu einem View erkennen lässt:
 
-:: *Begründung*
-:: Wie bereits beschrieben, gelten Funktionen häufig im globalen Kontext. Funktionsnamen können wie Variablen durch redundante Deklaration leicht versehentlich überschrieben werden. Dann gilt immer die letzte Definition. Die Verwendung des View-Names als „Namespace“ vermeidet, Funktionen aus einem anderen View versehentlich zu „überschreiben“.
-''''
+*Begründung*
 
-:: *Lösung*
+Wie bereits beschrieben, gelten Funktionen häufig im globalen Kontext. Funktionsnamen können wie Variablen durch redundante Deklaration leicht versehentlich überschrieben werden.
+Dann gilt immer die letzte Definition.
+Die Verwendung des View-Names als „Namespace“ vermeidet, Funktionen aus einem anderen View versehentlich zu „überschreiben“.
+
+*Lösung*
 
    var ns_<view> = { foo : function() { … } }
-
 ====
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Jede JavaScript-Datei beginnt mit einer function()-Definition. Die Deklaration von wiederverwendbaren Funktion- bzw. Namespace-Definitionen muss außerhalb eines function-Blocks erfolgen.
+*Regel:*:: Jede JavaScript-Datei beginnt mit einer function()-Definition.
+Die Deklaration von wiederverwendbaren Funktion- bzw. Namespace-Definitionen muss außerhalb eines function-Blocks erfolgen.
+
+*Begründung*
+Mit diesem Konstrukt wird verhindert, dass (versehentlich) neue Funktions- und Variablen- Definitionen Elemente aus dem globalen Kontext überschreiben.
 
 
-:: *Begründung*
-:: Mit diesem Konstrukt wird verhindert, dass (versehentlich) neue Funktions- und Variablen- Definitionen Elemente aus dem globalen Kontext überschreiben.
-''''
-
-:: *Lösung*
-:: Jede JavaScript Datei beginnt mit
+*Lösung*
+Jede JavaScript Datei beginnt mit
 
    (function(){
 
-:: und endet mit
+und endet mit
 
    })()
+====
+
+====
+[horizontal]
+*Regel:*:: Inline-JavaScript ist zu vermeiden.
+
+*Begründung*
+Es gibt Fälle, in denen JavaScript „inline“ technisch bedingt direkt in der XHTML-View-Definition implementiert werden muss.
+Hier besteht die Gefahr, dass der JS-Script-Code schlecht strukturiert und auf zu viele Dateien verteilt wird.
+Zudem ist JavaScript-Code in XHTML-Dateien unerwartet und wird bei der Analyse der Anwendung schnell übersehen.
+Insgesamt wird hierdurch die Verständlichkeit und Wartbarkeit der Anwendung verschlechtert.
 
 ====
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Inline-JavaScript ist zu vermeiden.
+*Regel:*:: Der DOM-Zugriff mit der $-Funktion sollte stets über die Id oder Klasse eines DOM-Knotens erfolgen und nicht über die Knotenhierarchie des DOMs.
 
 
-:: *Begründung*
-:: Es gibt Fälle, in denen JavaScript „inline“ technisch bedingt direkt in der XHTML-View-Definition implementiert werden muss. Hier besteht die Gefahr, dass der JS-Script-Code schlecht strukturiert und auf zu viele Dateien verteilt wird.
-:: Zudem ist JavaScript-Code in XHTML-Dateien unerwartet und wird bei der Analyse der Anwendung schnell übersehen. Insgesamt wird hierdurch die Verständlichkeit und Wartbarkeit der Anwendung verschlechtert.
+*Begründung*
+Die Gefahr beim Negativ-Beispiel ist die Fehleranfälligkeit auf Änderungen in der DOM-Struktur.
+Wird z.B. ein weiterer Knoten eingefügt, greift die Funktion ggf. nicht und die Anwendung arbeitet fehlerhaft.
 
-====
-
-====
-[horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Der DOM-Zugriff mit der $-Funktion sollte stets über die Id oder Klasse eines DOM-Knotens erfolgen und nicht über die Knotenhierarchie des DOMs.
-
-
-:: *Begründung*
-:: Die Gefahr beim Negativ-Beispiel ist die Fehleranfälligkeit auf Änderungen in der DOM-Struktur. Wird z.B. ein weiterer Knoten eingefügt, greift die Funktion ggf. nicht und die Anwendung arbeitet fehlerhaft.
-''''
-
-:: *Lösung*
+*Lösung*
 
    $(„#eineBildID“); // GUT
 
-:: *Negativ-Beispiel*
+*Negativ-Beispiel*
 
    $(„div span a img“); // SCHLECHT
 ====
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Event-Binding erfolgt im JavaScript-Code und nicht in den `on<Event>`-Attributen des HTML-Elementes.
+*Regel:*:: Event-Binding erfolgt im JavaScript-Code und nicht in den `on<Event>`-Attributen des HTML-Elementes.
 
-
-:: *Begründung*
-:: Das Event-Binding in den `on<Event>`-Attributen erzeugt ein Inline-JavaScript. Inline-JavaScripte sind stets zu vermeiden.
+*Begründung*
+Das Event-Binding in den `on<Event>`-Attributen erzeugt ein Inline-JavaScript. Inline-JavaScripte sind stets zu vermeiden.
 
 ====
 
 ====
 [horizontal]
-*Regel: {nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}{nbsp}*:: Im JavaScript-Code dürfen Request oder URL-Parameter nur nach ausreichendem Encodieren und Escapen verwendet werden. Gleiches gilt für den Einsatz von Server-Parametern bzw. Model-Attributen.
+*Regel:*:: Im JavaScript-Code dürfen Request oder URL-Parameter nur nach ausreichendem Encodieren und Escapen verwendet werden.
+Gleiches gilt für den Einsatz von Server-Parametern bzw. Model-Attributen.
+
+*Begründung*
+Sicherheitsrisiko: Es gilt, die Ausführung von Code (z.B. durch Request-Strings übergeben) auf dem Server zu verhindern.
 
 
-:: *Begründung*
-:: Sicherheitsrisiko: Es gilt, die Ausführung von Code (z.B. durch Request-Strings übergeben) auf dem Server zu verhindern.
-''''
-
-:: *Negativ-Beispiel*
-:: Wird beispielsweise ein Suchstring wie folgt in die Seite eingebunden
+*Negativ-Beispiel*
+Wird beispielsweise ein Suchstring wie folgt in die Seite eingebunden
 
    <title>${searchStringFromRequest}</title>
 
-:: dann könnte ein Angreifer folgende URL aufrufen:
+dann könnte ein Angreifer folgende URL aufrufen:
 
   www.mySite.de?searchString=<script>alert(‚halloWelt‘)</script>
 
-:: Der übergebene JavaScript-Block würde dann auf dem Server ausgeführt. Das Escapen „zerstört“ die spitzen Klammern und Hochkommata, so dass kein Code ausgeführt wird.
+Der übergebene JavaScript-Block würde dann auf dem Server ausgeführt.
+Das Escapen „zerstört“ die spitzen Klammern und Hochkommata, so dass kein Code ausgeführt wird.
 
 ====
 
@@ -1284,8 +1253,7 @@ Da JavaScript deaktivierbar und manipulierbar ist, müssen grundsätzlich alle V
 
 Die Validierung und Prüfung der in der GUI erfassten Daten soll entweder vollständig durch die GUI oder aber vollständig im Anwendungskern durchgeführt werden.
 Die Validierung in der GUI ist dabei bevorzugt.
-In diesem Falle wird der Validierungsmechanismus von Spring Web Flow verwendet.
-(Abschnitt 5.10 - Validating a model in <<SWF>>).
+In diesem Falle wird der Validierungsmechanismus von Spring Web Flow verwendet (Abschnitt 5.10 - Validating a model in <<SWF>>).
 
 Die JSF-Validatoren oder JSF-Konverter sollten für die Validierung aus den im Abschnitt <<datenkonvertierung-fuer-darstellung-und-eingabe>> genannten Gründen nicht verwendet werden.
 
@@ -1325,8 +1293,7 @@ Die Darstellung von Fehlern und Validierungsnachrichten wird auch im Styleguide 
 
 Für die Arbeit mit JSF werden einige Komponenten/Widgets bereits vorab zur Verfügung gestellt.
 Die Widgets sind alle als JSF Composite Components realisiert.
-Dadurch ist eine einfachere Wartung möglich, da die Komponenten vollständig in XHTML definiert sind und
-ein Grundverständnis von JSF genügt, um Anpassungen vorzunehmen.
+Dadurch ist eine einfachere Wartung möglich, da die Komponenten vollständig in XHTML definiert sind und ein Grundverständnis von JSF genügt, um Anpassungen vorzunehmen.
 Spezielle Renderer oder Java-Klassen werden nicht benötigt.
 Details hierzu sind in <<jsf-bedienelemente>> zu finden.
 
@@ -1345,10 +1312,8 @@ Werden die Anfragen an die Webanwendung durch den Loadbalancer an verschiedene S
 [[parameter-mit-buttonlink-uebergeben]]
 ==== Parameter mit Button/Link übergeben
 
-JSF bietet mehrere Möglichkeiten, einen Parameter in Abhängigkeit eines geklickten Buttons oder Links an
-die Webanwendung zu übergeben.
-Dies ist beispielsweise dann notwendig, wenn auf einer Maske mehrere Elemente angezeigt werden, zu denen
-jeweils ein eigener Button zum Bearbeiten existiert.
+JSF bietet mehrere Möglichkeiten, einen Parameter in Abhängigkeit eines geklickten Buttons oder Links an die Webanwendung zu übergeben.
+Dies ist beispielsweise dann notwendig, wenn auf einer Maske mehrere Elemente angezeigt werden, zu denen jeweils ein eigener Button zum Bearbeiten existiert.
 In diesem Fall muss es möglich sein zu erkennen, welcher Button zu welchem Element geklickt worden ist.
 
 Die hierfür in JSF 2.x vorgesehenen Lösung mit `f:param` erfordert den Einsatz von JavaScript und kann daher Probleme in der Abwärtskompatibilität hervorbringen (z.B. wenn kein JavaScript aktiviert ist).
@@ -1378,8 +1343,7 @@ Beim Einsatz des Action Listeners muss darauf geachtet werden, dass die Komponen
 FacesContext.getCurrentInstance().getExternalContext() .getRequestParameterMap().get("sachverhaltId");
 ----
 
-Als Alternative zum Einsatz eines Action Listeners kann die ID des Buttons/Links parametrisiert und im
-Controller ausgewertet werden.
+Als Alternative zum Einsatz eines Action Listeners kann die ID des Buttons/Links parametrisiert und im Controller ausgewertet werden.
 Die Parametrisierung der ID wird ebenfalls in <<listing-UseActionListVIEW>> dargestellt.
 Die Auswertung ist in diesem Fall aufwendiger, da alle Attribute der `RequestParameterMap` durchlaufen werden müssen, bis ein Parameter gefunden wurde, dessen ID mit „bearbeite_SV_“ beginnt.
 Vorteil der Lösung ist jedoch, dass Probleme mit dem Einsatz von Action Listenern damit umgangen werden.
@@ -1388,6 +1352,7 @@ Vorteil der Lösung ist jedoch, dass Probleme mit dem Einsatz von Action Listene
 == JSF Seitenelemente
 
 TIP: Die IsyFact enthält die Demo-Anwendung `isy-webgui`.
+
 Die Anwendung zeigt die Features der Bibliotheken `isy-web` sowie `isy-style` beispielhaft.
 Insbesondere demonstriert sie Aussehen und Verhalten der nachfolgend beschriebenen JSF-Seitenelemente.
 
@@ -1410,7 +1375,7 @@ image::image57.png[align="center", width="629",height="526"]
 [[header-bereich]]
 ==== Header-Bereich
 
-Der Header-Bereich enthält allgemeine Informationen zur Anwendungslandschaft, den in ihr verfügbaren Fachanwendungen und zum angemeldeten Anwender.
+Der Header-Bereich enthält allgemeine Informationen zur <<glossar-Anwendungslandschaft>>, den in ihr verfügbaren Fachanwendungen und zum angemeldeten Anwender.
 
 :desc-image-header-aufbau: Aufbau des Header-Bereiches
 [id="image-header-aufbau",reftext="{figure-caption} {counter:figures}"]
@@ -1427,6 +1392,7 @@ image::header-aufbau.png[align="center", width=80%, pdfwidth=80%]
 
 ===== Nutzerbereich
 
+//todo: Nutzer vom Begriff nicht besser in Bediener ändern?
 Der Nutzerbereich wird nicht von der `isy-web` zur Verfügung gestellt.
 Es gelten die Anforderungen aus dem Styleguide, vor allem hinsichtlich des Verhaltens des Logout-Buttons.
 
@@ -1462,7 +1428,7 @@ Um hiervon Gebrauch zu machen, muss die entsprechende Konfigurationsdatei über 
 </beans>
 ----
 
-Fachanwendungen können globale Standardwerte definieren.
+<<glossar-Fachanwendung,Fachanwendungen>> können globale Standardwerte definieren.
 Definieren sie diese nicht, verwendet der Seitenrahmen Standardwerte aus `isy-web`.
 
 :desc-table-SeitenrahmenStandardwerte: Globale Standardwerte für den Seitenrahmen
@@ -1522,7 +1488,8 @@ gui.header.text.logo.rechts.gruppeZwei = Zweite Gruppe
 Applikationsseiten werden über den Controller `ApplikationseiteController` und das Model `ApplikationseiteModel` realisiert.
 
 Wenn eine Applikationsseite erstellt werden soll, dann muss der Flow der Applikationsseite vom Flow `applikationseiteParentFlow` erben.
-Es muss weiterhin ein Controller erstellt werden, der vom `AbstractGuiController` erbt und ein Model, das vom `AbstractMaskenModel` erbt. Die XHTML-Seiten der ViewStates müssen alle vom -Masken-Template `/WEB-INF/gui/common/layout/applikation.xhtml` erben (s.a. <<listing-jsfViewState>>).
+Es muss weiterhin ein Controller erstellt werden, der vom `AbstractGuiController` erbt und ein Model, das vom `AbstractMaskenModel` erbt.
+Die XHTML-Seiten der ViewStates müssen alle vom -Masken-Template `/WEB-INF/gui/common/layout/applikation.xhtml` erben (s.a. <<listing-jsfViewState>>).
 
 Der `ApplikationseiteController` stellt sicher, dass alle layoutspezifischen Funktionen (z.B. der Linksnavigation) einer Applikationsseite initialisiert und zur Verfügung gestellt werden.
 Abweichungen vom Standardvorgehen (z.B. Linksnavigation ausblenden) können durch Zugriff auf den Controller und Model in spezifischeren Controllern beim Initialisieren durchgeführt werden.
@@ -1563,11 +1530,12 @@ Folgende Angaben sind zulässig:
 Die Angaben müssen sich in den Anwendungsressourcen (analog zu anderen Nachrichten) befinden und über eine MessageSource-Bean (`messageSource`) der isy-web zur Verfügung gestellt werden.
 
 Wenn vorhanden, werden stets die Angaben mit ViewState verwendet, ansonsten die Angaben ohne ViewState.
-In der Flowdefinition können die zu verwendenden Texte überschrieben werden, indem die Attribute titleKey , breadcrumbKey und headlineKey gesetzt werden.
+In der Flowdefinition können die zu verwendenden Texte überschrieben werden, indem die Attribute titleKey, breadcrumbKey und headlineKey gesetzt werden.
 Wenn für den Title keine Angabe gefunden werden kann, dann wird der Wert von `MAS_Global_Title` verwendet.
 Weiterhin kann mit `MAS_Global_Title_Prefix` ein globaler Präfix für den Title gesetzt werden.
 
-Weiterhin kann über eine Angabe von `<ui:define name="titel"/>` in Seiten definiert werden, welche Inhalte rechts neben dem bereits definierten Title (Title-Tag) ausgegeben werden. Im Folgenden ein Beispiel:
+Weiterhin kann über eine Angabe von `<ui:define name="titel"/>` in Seiten definiert werden, welche Inhalte rechts neben dem bereits definierten Title (Title-Tag) ausgegeben werden.
+Im Folgenden ein Beispiel:
 
 :desc-listing-zusatzmaskentitel: Zusatz-Maskentitel im Header-Bereich
 [id="listing-zusatzmaskentitel",reftext="{listing-caption} {counter:listings }"]
@@ -1793,7 +1761,8 @@ Die Bedienelemente stellen im Grundsatz folgendes sicher:
 Abweichungen zu diesen Vorgaben können im Spezialfall möglich sein.
 
 TIP: Die IsyFact enthält die Demo-Anwendung `isy-webgui`.
-Die Anwendung zeigt die Features der Bibliotheken `isy-web` sowie `isy-style` beispielhaft.
+
+Die Anwendung zeigt die Features der <<glossar-Bibliothek,Bibliotheken>> `isy-web` sowie `isy-style` beispielhaft.
 Insbesondere demonstriert sie Aussehen und Verhalten der nachfolgend beschriebenen JSF-Bedienelemente.
 
 === Button
@@ -1822,10 +1791,10 @@ Außerdem gibt es folgende optionale Parameter:
 * `defaultAction`: AJAX: Gibt an, ob dieser Knopf die defaultAction des Formulars sein soll. (Standard: `false`, Typ: `Boolean`)
 * `globalConfig`: Eine spezifische globale Konfiguration, falls notwendig. (Standard: `#{globalConfigurationModel}`)
 
-Wenn JavaScript aktiviert ist, dann wird die AJAX-Action durchgeführt. Andernfalls wird immer ein Full-Page-Reload ausgeführt.
+Wenn JavaScript aktiviert ist, dann wird die AJAX-Action durchgeführt.
+Andernfalls wird immer ein Full-Page-Reload ausgeführt.
 
-Einen Button, bei dem die Oberfläche während der Ajax-Aktion blockiert ist, würde man Einbindung über
-<isy:button> mit dem `block="true"` einbinden.
+Einen Button, bei dem die Oberfläche während der Ajax-Aktion blockiert ist, würde man Einbindung über <isy:button> mit dem `block="true"` einbinden.
 
 :desc-listing-button: Codebeispiel für `<isy:button>`
 [id="listing-button",reftext="{listing-caption} {counter:listings }"]
@@ -1878,12 +1847,13 @@ Eine Button Row
 
 ==== Gruppierung von mehreren Buttons
 
-Mehrere Buttons können gruppiert werden, indem sie in das Tag `<isy:buttonGroup>` eingeschlossen werden. Der Hauptanwendungszweck dieses Tags ist die gemeinsame Ausrichtung der Buttons auf der Maske.
+Mehrere Buttons können gruppiert werden, indem sie in das Tag `<isy:buttonGroup>` eingeschlossen werden.
+Der Hauptanwendungszweck dieses Tags ist die gemeinsame Ausrichtung der Buttons auf der Maske.
 
 Folgende optionale Parameter sind für das Tag `<isy:buttonGroup>` zulässig:
 
-* `alignRight`: Gibt an, ob die Button Row eine Alignment nach Rechts besitzen soll oder nicht. (Standard: `false`, Typ: `Boolean`)
-* `alignLeft`: Gibt an, ob die Button Row eine Alignment nach Links besitzen soll oder nicht. (Standard: `false`, Typ: `Boolean`)
+* `alignRight`: Gibt an, ob die Button Row eine Alignment nach Rechts besitzen soll oder nicht (Standard: `false`, Typ: `Boolean`).
+* `alignLeft`: Gibt an, ob die Button Row eine Alignment nach Links besitzen soll oder nicht (Standard: `false`, Typ: `Boolean`).
 
 
 :desc-listing-buttonGroup: Codebeispiel für `<isy:buttonGroup>`
@@ -1901,7 +1871,8 @@ Folgende optionale Parameter sind für das Tag `<isy:buttonGroup>` zulässig:
 
 ==== Mehrere Aktionen
 
-In bestimmten Fällen kann es notwendig sein mehrere Formulare an den Server zu senden, um bestimmte Aktionen auszuführen (z.B. das Formular für den Inhaltsbereich soll auch beim Klick auf Drucken in der Seitentoolbar übermittelt werden). Dies kann durch verwenden des Tags `<isy:buttonInjectPost>` erreicht werden.
+In bestimmten Fällen kann es notwendig sein mehrere Formulare an den Server zu senden, um bestimmte Aktionen auszuführen (z.B. das Formular für den Inhaltsbereich soll auch beim Klick auf Drucken in der Seitentoolbar übermittelt werden).
+Dies kann durch verwenden des Tags `<isy:buttonInjectPost>` erreicht werden.
 Dadurch lässt sich eine andere Aktion vor der eigentlichen Aktion des Buttons innerhalb des Tags ausführen.
 
 Folgende Parameter sind notwendig:
@@ -1912,7 +1883,8 @@ Folgende Parameter sind notwendig:
 [[button-toolbar]]
 === Button Toolbar
 
-Eine Button-Toolbar wird über das Tag `<isy:buttonToolbar>` eingebunden. Die Buttons innerhalb der Toolbar können sowohl horizontal als auch vertikal angeordnet sein.
+Eine Button-Toolbar wird über das Tag `<isy:buttonToolbar>` eingebunden.
+Die Buttons innerhalb der Toolbar können sowohl horizontal als auch vertikal angeordnet sein.
 
 Die folgende Abbildung zeigt z.B. die Verwendung der Komponente `<isy:buttonToolbar` oberhalb einer DataTable-Komponente.
 
@@ -1938,7 +1910,8 @@ Außerdem gibt es folgende optionale Parameter:
 * `render`: AJAX: Welcher Template-Seitenbereich gerendert werden soll. (Standard: `@form`)
 * `globalConfig`: Eine spezifische globale Konfiguration, falls nötig. (Standard: `#{globalConfigurationModel}`)
 
-Wenn JavaScript aktiviert ist, dann wird die AJAX-Action durchgeführt. Andernfalls wird immer ein Full-Page-Reload durchgeführt.
+Wenn JavaScript aktiviert ist, dann wird die AJAX-Action durchgeführt.
+Andernfalls wird immer ein Full-Page-Reload durchgeführt.
 
 Folgende Action-Sources werden bereitgestellt:
 
@@ -2020,7 +1993,8 @@ Folgende Action-Sources werden bereitgestellt:
 
 * `buttonActionEvent`: Das Action Event für den Button.
 
-Wenn JavaScript aktiviert ist, dann wird die AJAX-Action durchgeführt. Andernfalls wird immer ein Full-Page-Reload durchgeführt.
+Wenn JavaScript aktiviert ist, dann wird die AJAX-Action durchgeführt.
+Andernfalls wird immer ein Full-Page-Reload durchgeführt.
 
 [[hyperlink-ueberschrift]]
 ==== Hyperlink
@@ -2373,13 +2347,15 @@ Folgende Parameter sind Pflichtparameter:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `tabGroupId`: Das Widget tabGroup.xhtml ist das Parent-Widget von tabHeader.xhtml. Das Attribut tabGroupId wird zwar in tabGroup.xhtml nicht implementiert, ist aber als composite:attribute Deklaration unbedingt erforderlich, da von tabHeader.xhtml über cc.parent.attrs.tabGroupId darauf zugegriffen wird!
+* `tabGroupId`: Das Widget tabGroup.xhtml ist das Parent-Widget von tabHeader.xhtml.
+Das Attribut tabGroupId wird zwar in tabGroup.xhtml nicht implementiert, ist aber als composite:attribute Deklaration unbedingt erforderlich, da von tabHeader.xhtml über cc.parent.attrs.tabGroupId darauf zugegriffen wird!
 * `defaultTab`: Name des Default-Tabs, der beim ersten Anzeigen des Elements aktiv ist.
 * `globalTab`: Der Name des globalen Tabs.
 * `globalTabContentRefs`: Die Liste an Namen der Tabs, welche beim Anzeigen des globalen Tabs auch angezeigt werden sollen.
 * `execute`: AJAX: Welcher Template-Seitenbereich ausgeführt werden soll.(Standard: `@form`)
 * `render`: AJAX: Welcher Template-Seitenbereich gerendert werden soll. (Standard: `@form`)
-* `scrollTabUpwards`: Bei Tabgruppen, die im unteren Maskenbereich dargestellt werden, wird oftmals der Inhalt der Tabs nicht vollständig angezeigt. Setzt man den Parameter `scrollTabUpwards` auf `true`, dann wird die gesamte Tabgruppe beim Anklicken eines Tabellenreiters nach oben verschoben, sodass für den Anwender der TabContent maximal sichtbar wird. (Standard: `false`, Typ: `java.lang.Boolean`)
+* `scrollTabUpwards`: Bei Tabgruppen, die im unteren Maskenbereich dargestellt werden, wird oftmals der Inhalt der Tabs nicht vollständig angezeigt.
+Setzt man den Parameter `scrollTabUpwards` auf `true`, dann wird die gesamte Tabgruppe beim Anklicken eines Tabellenreiters nach oben verschoben, sodass für den Anwender der TabContent maximal sichtbar wird. (Standard: `false`, Typ: `java.lang.Boolean`)
 * `globalConfig`: Eine spezifische globale Konfiguration, falls notwendig. (Standard: `#{globalConfigurationModel}`)
 
 Wenn JavaScript aktiviert ist, dann nutzen die Tabs beim Umschalten AJAX-Aufrufe.
@@ -2416,9 +2392,11 @@ Folgende Parameter sind Pflicht:
 Außerdem gibt es folgende optionale Parameter:
 
 * `tabController`: Ein spezifischer Tab-Controller, falls notwendig. (Standard: `#{tabController}`)
-* `preload`: Gibt an, ob das Tab im JS-Fall vorgeladen werden soll. Default ist false, so dass nicht vorgeladen wird. (Standard: `false`, Typ: `java.lang.Boolean`)
+* `preload`: Gibt an, ob das Tab im JS-Fall vorgeladen werden soll.
+Default ist false, so dass nicht vorgeladen wird. (Standard: `false`, Typ: `java.lang.Boolean`)
 * `globalConfig`: Eine spezifische, globale Konfiguration. (Standard: `globalConfigurationModel`)
 
+// tag::important[]
 [IMPORTANT]
 ====
 Zwischen den beiden Attributen `preload` der Tab-Inhalte und `skipAction` der Tab-Header besteht eine wichtige Abhängigkeit.
@@ -2433,6 +2411,8 @@ Standardmäßig stehen beide Werte auf `false`.
 Wenn das Vorladen gewünscht ist, müssen beide Werte explizit auf `true` gesetzt werden.
 ====
 
+// end::important[]
+
 [[liste-ueberschrift]]
 === Listen
 
@@ -2443,7 +2423,8 @@ Listen werden benutzt, um eine überschaubare Anzahl an Daten oder Objekten eine
 .{desc-image-listemitlistenkopf}
 image::image178.png[align="center",pdfwidth=60%]
 
-Für eine Liste mit Einfachauswahl gibt es die Tags `<isy:selectOneList>` bzw. `<isy:formSelectOneList>`. Für eine Liste mit Mehrfachauswahl stehen die Tags `<isy:selectManyList>` bzw. `<isy:formSelectManyList>` zur Verfügung.
+Für eine Liste mit Einfachauswahl gibt es die Tags `<isy:selectOneList>` bzw. `<isy:formSelectOneList>`.
+Für eine Liste mit Mehrfachauswahl stehen die Tags `<isy:selectManyList>` bzw. `<isy:formSelectManyList>` zur Verfügung.
 
 Folgende Parameter sind Pflicht:
 
@@ -2539,6 +2520,7 @@ Zusätzlich muss im View State das entsprechende Form Element ergänzt werden:
    </h:form>
 </ui:define>
 ----
+
 Über das `<ui:define>` lassen sich Form-Elemente im Basis-Layout integrieren.
 Das Tag `<isy:formListpickerAjaxContent>` lädt die entsprechend ListpickerItems in das Formular.
 Das Formular an sich ist nicht sichtbar.
@@ -2555,7 +2537,8 @@ Der Behörden Picker besitzt keine zusätzlichen Parameter gegenüber `<isy:form
 
 ==== List Picker mit Servlet
 
-Damit ein List Picker über ein Servlet gefiltert werden kann, muss JavaScript aktiviert sein. Ansonsten steht die Funktionalität nicht zur Verfügung.
+Damit ein List Picker über ein Servlet gefiltert werden kann, muss JavaScript aktiviert sein.
+Ansonsten steht die Funktionalität nicht zur Verfügung.
 Im Folgenden wird beschrieben, welche Schritte durchzuführen sind, damit ein Listpicker über ein Servlet gefiltert werden kann.
 
 :desc-listing-listpickerMitServlet: Listpicker mit Servlet-Filterung
@@ -2574,7 +2557,9 @@ Im Folgenden wird beschrieben, welche Schritte durchzuführen sind, damit ein Li
           #{msg.MEL_Identifikation_Gruppe_Listpicker_Name} "
   servletUrl="/app/listpicker" />
 ----
-Entscheidend ist der Paramater `servletUrl`. Erstens wird anhand des Vorhandenseins des Parameters erkannt, dass ein Servlet zum Filtern benutzt werden soll und nicht etwa Ajax.
+
+Entscheidend ist der Paramater `servletUrl`.
+Erstens wird anhand des Vorhandenseins des Parameters erkannt, dass ein Servlet zum Filtern benutzt werden soll und nicht etwa Ajax.
 Zweitens muss der Wert des Parameters sich in der Datei web.xml wiederfinden.
 
 :desc-listing-beispielEinbindungServlet: Beispielhafte Einbindung in web.xml
@@ -2599,18 +2584,24 @@ Zweitens muss der Wert des Parameters sich in der Datei web.xml wiederfinden.
 Der Parameter `servletUrl` hat hier beispielsweise den Wert "/app/listpicker" und das Servlet erfasst laut Eintrag in der web.xml alle Requests, deren URL auf das Pattern "/app/listpicker/*" passen.
 Auf diese Weise ist die Verknüpfung zwischen List Picker und Servlet hergestellt.
 
-Die konkrete Implementierung des `HttpRequestHandler` muss von der jeweiligen Anwendung selbst bereitgestellt werden. Hierzu sollte von der Klasse `AbstractListpickerProviderRequestHandler` geerbt werden.
+Die konkrete Implementierung des `HttpRequestHandler` muss von der jeweiligen Anwendung selbst bereitgestellt werden.
+Hierzu sollte von der Klasse `AbstractListpickerProviderRequestHandler` geerbt werden.
 In dem obigen Beispiel heißt die Bean der Implementierung `listpickerprovider`.
 
 ===== Hinweise zur Funktionsweise
 
-Folgende grundlegende Funktionalität wird durch die Komponente _automatisch_, also ohne weiteres Zutun, bereitgestellt: Per JavaScript werden Eingaben im Filter-Feld des Listpickers erkannt. Der aktuell eingegebene Wert
-wird der URL (siehe `servletUrl`) angefügt (Beispiel: Anwender filtert nach "123". Dann wird die URL um "?filter=123" ergänzt) und der Request wird anschließend abgesetzt und vom Servlet behandelt.
-Die eigentliche Filterungslogik obliegt dann der konkreten Implementierung. Den Wert des Filter-Feldes erhält sie jedoch von der abstraken Oberklasse. Nachdem die Einträge gefiltert wurden, werden sie automatisch mittels JavaScript gerendert.
+Folgende grundlegende Funktionalität wird durch die Komponente _automatisch_, also ohne weiteres Zutun, bereitgestellt: Per JavaScript werden Eingaben im Filter-Feld des Listpickers erkannt.
+Der aktuell eingegebene Wert wird der URL (siehe `servletUrl`) angefügt (Beispiel: Anwender filtert nach "123".
+Dann wird die URL um "?filter=123" ergänzt) und der Request wird anschließend abgesetzt und vom Servlet behandelt.
+Die eigentliche Filterungslogik obliegt dann der konkreten Implementierung.
+Den Wert des Filter-Feldes erhält sie jedoch von der abstraken Oberklasse.
+Nachdem die Einträge gefiltert wurden, werden sie automatisch mittels JavaScript gerendert.
 
 Es kann vorkommen, dass die Filterung nicht nur von dem Wert des Filter-Feldes abhängt.
-Es ist z.B. denkbar, dass die Filterung zusätzlich die Auswahl eines gänzlich anderen Feldes innerhalb des Formulars berücksichtigen soll. In dieser Situation würde es also nicht genügen, den Wert des Filter-Feldes in der URL zu codieren und zu übertragen.
-Zusätzlich benötigte Parameter können frei gewählt werden und müssen einfach der URL hinzugefügt werden. Ein Beispiel:
+Es ist z.B. denkbar, dass die Filterung zusätzlich die Auswahl eines gänzlich anderen Feldes innerhalb des Formulars berücksichtigen soll.
+In dieser Situation würde es also nicht genügen, den Wert des Filter-Feldes in der URL zu codieren und zu übertragen.
+Zusätzlich benötigte Parameter können frei gewählt werden und müssen einfach der URL hinzugefügt werden.
+Ein Beispiel:
 
 :desc-listing-listpickerMitServletWeitererParam: Servlet-URL mit weiteren Filter-Parametern
 [id="listing-listpickerMitServletWeitererParam",reftext="{listing-caption} {counter:listings }"]
@@ -2621,6 +2612,7 @@ Zusätzlich benötigte Parameter können frei gewählt werden und müssen einfac
 	....
   servletUrl="/app/listpicker?weitererFilterParameter1={#eingabeModel.weitererFilterParameter1}&weitererFilterParameter2={#eingabeModel.weitererFilterParameter2}" />
 ----
+
 In dem Beispiel werden zwei zusätzliche Parameter zur Filterung benötigt (`weitererFilterParameter1` und `weitererFilterParameter2`). Ihre Bezeichnung und woher sie bezogen werden, kann beliebig festgelegt werden.
 Wichtig ist lediglich, dass die konkrete Implementierung des Servlets die Bezeichnungen kennt und diese der Oberklasse über die entsprechende Methode bekannt macht.
 Unabhängig von etwaigen zusätzlichen Filter-Parametern wird der Wert des Filter-Feldes des Listpicker immer übertragen.
@@ -2641,7 +2633,8 @@ image::image180.png[align="center"]
 .{desc-image-interaktivezeilen}
 image::image181.png[align="center"]
 
-Die Umsetzung der Tabelle unterscheidet sich grundsätzlich zu Widgets wie der von JSF bereitgestellten `<h:dataTable>`. Die `<isy:dataTable>` ist näher am Layout einer eigentlichen Tabelle aufgebaut und dadurch flexibler nutzbar (z.B. dynamische Anzahl an Spalten). Dafür ist jedoch auch ein größerer Implementierungsaufwand erforderlich.
+Die Umsetzung der Tabelle unterscheidet sich grundsätzlich zu Widgets wie der von JSF bereitgestellten `<h:dataTable>`. Die `<isy:dataTable>` ist näher am Layout einer eigentlichen Tabelle aufgebaut und dadurch flexibler nutzbar (z.B. dynamische Anzahl an Spalten).
+Dafür ist jedoch auch ein größerer Implementierungsaufwand erforderlich.
 
 Es existieren folgende Tags zur Konfiguration der `<isy:dataTable>`:
 
@@ -2694,13 +2687,17 @@ Folgende Facets können innerhalb des Tags verwendet werden:
 
 Folgende Parameter sind Pflicht:
 
-* `dataTableModel`: Model für die Tabelle, das im Maskenmodel liegen muss. Muss vom Typ `DataTableModel` sein und eine Liste von Datensätzen (Items) zur Anzeige beinhalten.
-* `dataTableController`: Der zugehörige, spezifische Controller. Der Controller stellt z.B. Funktionalität zur Suche bereit. Muss vom Typ `DataTableController` sein.
+* `dataTableModel`: Model für die Tabelle, das im Maskenmodel liegen muss.
+Muss vom Typ `DataTableModel` sein und eine Liste von Datensätzen (Items) zur Anzeige beinhalten.
+* `dataTableController`: Der zugehörige, spezifische Controller.
+Der Controller stellt z.B. Funktionalität zur Suche bereit.
+Muss vom Typ `DataTableController` sein.
 
 Außerdem gibt es folgende optionale Parameter:
 
 * `jsSortFunction`: Eine Sortierfunktion, welche direkt auf dem Client ausgeführt werden kann.
-* `selectable`: Gibt an, ob die Datatable selektierbar ist oder nicht. Diese Information wird benötigt, um das JavaScript Plug-In zu konfigurieren. (Standard: `false`, Typ: `Boolean`)
+* `selectable`: Gibt an, ob die Datatable selektierbar ist oder nicht.
+Diese Information wird benötigt, um das JavaScript Plug-In zu konfigurieren. (Standard: `false`, Typ: `Boolean`)
 * `selectionMode`: Der Modus für die Selektierung. Entweder 'single' oder 'multiple'. (Standard: `multiple`)
 * `detailMode`: Der Modus für die Detailansicht. Entweder 'single' oder 'multiple'. (Standard: `multiple`)
 * `action`: Die Aktion, welche beim Doppelklick auf eine Zeile ausgeführt wird.
@@ -2742,7 +2739,9 @@ Folgende optionale Parameter gibt es für einen Header:
 [[dataTableRows]]
 ==== Zeilen einer Tabelle
 
-Die Zeilen der Tabelle werden mit dem Tag `<isy:dataTableRows>` definiert. Hier steht der eigentliche Inhalt der Datatable. Dieses Tag sollte nach den Headern in den Body der Data-Table geschrieben werden.
+Die Zeilen der Tabelle werden mit dem Tag `<isy:dataTableRows>` definiert. 
+Hier steht der eigentliche Inhalt der Datatable.
+Dieses Tag sollte nach den Headern in den Body der Data-Table geschrieben werden.
 
 Folgende optionale Parameter sind zulässig:
 
@@ -2784,7 +2783,8 @@ Das Tag `<isy:dataTableCell>` hat derzeit folgende Parameter:
 * `id`: Identifier.
 * `sortData`: Optionales Feld für die clientseitige Sortierung, falls nicht nach dem Inhalt sortieren werden soll, z.B. bei Datum
 * `filterData`: Damit Client- und Server-Mode konsistent sind, sollte hier die sortProperty des Headers angegeben werden
-* `align`: Gibt die horizontale Ausrichtung des Inhalts der Tabellenzelle an. Mögliche Werte sind left, right und center. (Standard: `left`)
+* `align`: Gibt die horizontale Ausrichtung des Inhalts der Tabellenzelle an.
+Mögliche Werte sind left, right und center. (Standard: `left`)
 
 Die Einbindung der Row-Definition erfolgt mittels dem JSF Tag `<ui:repeat>`.
 Als Statusvariable wird `dataTableItemRepeatStatus` verwendet.
@@ -2837,9 +2837,12 @@ Damit wird ein normales Eingabefeld für die Filterung zur verfügung gestellt.
 Es gibt auch die Möglichkeit die Filterung über ein Dropdown Menü zu ermöglichen.
 Dafür müssen die mögliche Einträge im Tag verschachtelt angegeben werden.
 
-TIP: Es ist besonders wichtig, dass die Anzahl der Spalten im Header, der Filter-Zeile und den Zeilen der Datensätze übereinstimmen.
+[TIP]
+====
+Es ist besonders wichtig, dass die Anzahl der Spalten im Header, der Filter-Zeile und den Zeilen der Datensätze übereinstimmen.
 Dieser Zusammenhang wird mittels JavaScript überprüft.
 Spalten, die nicht gefiltert werden sollen (bzw. können), werden mittels des Tags `<isy:dataTableFilter>` ohne Attribute beschrieben.
+====
 
 :desc-listing-bspTableFilter: Beispiel für die Filterung einer Tabelle
 [id="listing-bspTableFilter",reftext="{listing-caption} {counter:listings }"]
@@ -2889,7 +2892,8 @@ Dazu können die einzelnen Spalten-Header über das `<isy:dataTableHeader>` Tag 
 
 Wenn eine Tabellenspalte auf- bzw. absteigend sortierbar ist, dann wird dies durch zwei kleine Pfeil-Icon-Dreiecke dargestellt.
 Wählt der Anwender eine Spalte zum Sortieren aus, dann wird entsprechend der ausgewählten Sortierrichtung das jeweilige Icon dargestellt.
-In der folgenden Abbildung sind die Spalten `Vorname, Loginname und "#"` als sortierbar erkennbar. Die Spalte `Nachname` ist abwärts-sortiert, dargestellt durch das nach unten gerichtete Dreiecks-Icon.
+In der folgenden Abbildung sind die Spalten `Vorname, Loginname und "#"` als sortierbar erkennbar.
+Die Spalte `Nachname` ist abwärts-sortiert, dargestellt durch das nach unten gerichtete Dreiecks-Icon.
 
 :desc-image-tabellesortierungimkopf: Tabelle – Sortierungs-Indikator im Tabellenkopf
 [id="image-tabellesortierungimkopf",reftext="{figure-caption} {counter:figures}"]
@@ -2897,7 +2901,9 @@ In der folgenden Abbildung sind die Spalten `Vorname, Loginname und "#"` als sor
 image::demopanel-dataTableHeader.png[align="center"]
 
 Durch Angabe von `sortable="true"` und dem Attribut `sortProperty` werden automatisch Buttons und Symbole zur Sortierung hinzugefügt.
-Beim Initialisieren des Models muss der Operationsmodus (`SERVER` oder `CLIENT`) gesetzt werden: `model.setMode(DatatableOperationMode.SERVER)`. Im Modus `CLIENT` erfolgt die Sortierung automatisch per JavaScript. Im Modus `SERVER` wird die Methode `DataTableController.updateDisplayItems(...)` aufgerufen, welche die Tabelleneinträge filtert sowie sortiert und anschließend seitenweise anzeigt.
+Beim Initialisieren des Models muss der Operationsmodus (`SERVER` oder `CLIENT`) gesetzt werden: `model.setMode(DatatableOperationMode.SERVER)`.
+Im Modus `CLIENT` erfolgt die Sortierung automatisch per JavaScript.
+Im Modus `SERVER` wird die Methode `DataTableController.updateDisplayItems(...)` aufgerufen, welche die Tabelleneinträge filtert sowie sortiert und anschließend seitenweise anzeigt.
 
 :desc-listing-dataTableHeader2: Beispiel für dataTableHeader
 [id="listing-dataTableHeader2",reftext="{listing-caption} {counter:listings }"]
@@ -2965,7 +2971,8 @@ Um dem Benutzer den Umgang mit solchen Tabellen zu vereinfachen, werden zunächs
 image::image189.png[align="center"]
 
 
-Die Implementierung einer Paginierung erfolgt über das Facet `<f:tablePagination>`, das Tag `<t:dataTablePaginator>` und das dazugehörige `DataTablePaginationModel`. Die Paginierung wird beim Initialisieren des `DataTableModel` im Controller konfiguriert:
+Die Implementierung einer Paginierung erfolgt über das Facet `<f:tablePagination>`, das Tag `<t:dataTablePaginator>` und das dazugehörige `DataTablePaginationModel`.
+Die Paginierung wird beim Initialisieren des `DataTableModel` im Controller konfiguriert:
 
 :desc-listing-implPaginierung: Implementierung Paginierung
 [id="listing-implPaginierung",reftext="{listing-caption} {counter:listings }"]
@@ -3021,6 +3028,7 @@ Der Benutzer kann beliebige Optionen auswählen.
 
 [[selectBooleanCheckbox]]
 ==== Einzelne Checkbox
+
 Eine einzelne Checkbox wird über das Tag `<isy:selectBooleanCheckbox>` eingebunden.
 
 Die Komponente besitzt folgende notwendige Parameter:
@@ -3039,7 +3047,9 @@ Außerdem gibt es folgende optionale Parameter:
 
 [[selectManyCheckbox]]
 ==== Mehrere Checkbox Felder
-Mehrere Checkboxen werden über das Tag `<isy:selectManyCheckbox>` eingebunden. Realisiert über Select-Items.
+
+Mehrere Checkboxen werden über das Tag `<isy:selectManyCheckbox>` eingebunden.
+Realisiert über Select-Items.
 
 Die Komponente besitzt folgende notwendige Parameter:
 
@@ -3047,8 +3057,7 @@ Die Komponente besitzt folgende notwendige Parameter:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `showPrintView`: Gibt an, ob die Komponente innerhalb einer Druckansicht angezeigt werden soll. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
-showPrintView`: Spezifisches Flag zur Erkennung der Druckansicht. (Standard: `basisModel.showPrintView`)
+* `showPrintView`: Gibt an, ob die Komponente innerhalb einer Druckansicht angezeigt werden soll. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`).
 
 [[formCheckbox]]
 ==== Checkbox innerhalb von Formularen
@@ -3062,7 +3071,8 @@ Die Komponente besitzt folgende notwendige Parameter:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `label`: Der Text für das Label.
 * `labelRight`: Der Text für das Label rechts daneben.
 * `labelStyleClass`: Die CSS-Klasse für das Label. (Standard: `col-lg-6`)
@@ -3092,7 +3102,8 @@ Ein Radio Button wird über das Tag `<isy:selectOneRadio>` (bzw. `<isy:selectO
 Die Komponente besitzt folgende notwendige Parameter:
 
 * `value`: Der Wert der Auswahl für das Data-Binding
-* `selectItems`: Liste der auszuwählenden Werte, den Select-Items. Jedes Item entspricht einem Radio-Button.
+* `selectItems`: Liste der auszuwählenden Werte, den Select-Items.
+Jedes Item entspricht einem Radio-Button.
 
 Außerdem gibt es folgende optionale Parameter:
 
@@ -3105,7 +3116,8 @@ Außerdem gibt es folgende optionale Parameter:
 Die Komponente besitzt folgende notwendige Parameter:
 
 * `value`: Der Wert der Auswahl für das Data-Binding
-* `selectItems`: Liste der auszuwählenden Werte, den Select-Items. Jedes Item entspricht einem Radio-Button.
+* `selectItems`: Liste der auszuwählenden Werte, den Select-Items.
+Jedes Item entspricht einem Radio-Button.
 
 Außerdem gibt es folgende optionale Parameter:
 
@@ -3123,7 +3135,8 @@ Die Komponente besitzt folgende notwendige Parameter:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `inline`: Gibt an, ob die Radio-Buttons inline angezeigt werden sollen. (Standard: `false`, Typ: `Boolean`)
 * `disabled`: Gibt an, ob die Darstellung nur lesend erfolgen soll. (Standard: `false`, Typ: `Boolean`)
 * `label`: Der Text für das Label.
@@ -3198,14 +3211,16 @@ Für Einträge innerhalb der Leiste selbst (`applikationsgruppe`) existieren fol
 * `link`: Der Link, der aufgerufen wird, wenn der Anwender auf den Eintrag klickt.
 * `farbe`: Die Farbe der Applikationsgruppe als Hexwert.
 * `reihenfolge`: Ein numerischer Wert für die Reihenfolge der Anzeige der Applikationsgruppen innerhalb der horizontalen Navigation.
-* `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste. Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
+* `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste.
+Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
 
 Für Einträge innerhalb eines Flyout Menüs (`anwendung`) existieren folgende Parameter:
 
 * `wert`: Das Label zur Anzeige.
 * `link`: Der Link, der aufgerufen wird, wenn der Anwender auf den Eintrag klickt.
 * `reihenfolge`: Ein numerischer Wert für die Reihenfolge der Anzeige der Anwendung innerhalb des Flyout Menüs.
-* `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste. Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
+* `rollen`: Die benötigten Rollen zur Anzeige als komma-separierte Liste.
+Der Besitz mindestens einer Rolle ist ausreichend, um den Eintrag zu sehen.
 
 Grundsätzlich sind alle Werte optional.
 Damit ist jedoch lediglich gemeint, dass die Anwendung keinen Fehler erzeugt, falls ein Wert für eine Applikationsgruppe bzw. Anwendung überhaupt nicht konfiguriert ist.
@@ -3442,10 +3457,14 @@ Dieser Abschnitt beschreibt Patterns zur Gruppierung von Daten.
 
 ==== Panel
 
-Für die Gruppierung von Daten steht das Tag `<isy:panel>` bereit. Damit können entsprechende Bereiche zur Gruppierung erstellt werden. Ein Expander kann durch die Angabe von `collapse="true"` und der Angaben eines entsprechenden Models in der Komponente `<isy:panel>` erzeugt werden. Über das Model lässt sich auch der initiale Zustand steuern.
+Für die Gruppierung von Daten steht das Tag `<isy:panel>` bereit.
+Damit können entsprechende Bereiche zur Gruppierung erstellt werden.
+Ein Expander kann durch die Angabe von `collapse="true"` und der Angaben eines entsprechenden Models in der Komponente `<isy:panel>` erzeugt werden.
+Über das Model lässt sich auch der initiale Zustand steuern.
 
 [[isy-panel]]
 ==== Komponente panel
+
 Das Tag `<isy:panel>` bietet folgende Facets:
 
 * `panelHeader`: Header des Panels
@@ -3454,15 +3473,18 @@ Das Tag `<isy:panel>` bietet folgende Facets:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `panelModel`: Model des Panels, das von PanelModel abgeleitet wird, und Teil des Seitenmodels sein sollte. Nur notwendig, falls das Panel einklappbar sein soll. (Typ: `de.bund.bva.isyfact.common.web.jsf.components.panel.PanelModel`)
+* `panelModel`: Model des Panels, das von PanelModel abgeleitet wird, und Teil des Seitenmodels sein sollte.
+Nur notwendig, falls das Panel einklappbar sein soll. (Typ: `de.bund.bva.isyfact.common.web.jsf.components.panel.PanelModel`)
 * `collapse`: Gibt an, ob das Panel einklappbar sein soll. Falls ja, so muss auch ein panelModel angegeben werden. (Standard: `false`, Typ: `Boolean`)
 * `panelId`: ID des Panels.
 * `globalConfig`: Eine spezifische globale Konfiguration, falls notwendig. (Standard: `#{globalConfigurationModel}`)
 
 [[isy-panelGroup]]
 ==== Komponente panelGroup
+
 Zur Gruppierung von mehreren Panels sollte das Tag `<isy:panelGroup>` verwendet werden.
-In diesem können die anderen Panels geschachtelt werden. Das Tag besitzt folgende Parameter:
+In diesem können die anderen Panels geschachtelt werden.
+Das Tag besitzt folgende Parameter:
 
 * `headerPanel`: Gibt an, ob die Gruppe als Container für den Header des Inhaltsbereichs dient; falls ja werden entsprechende CSS-Klassen für das Layouting eingebunden. (Standard: `false`, Typ: `java.lang.Boolean`)
 
@@ -3574,8 +3596,11 @@ Pflichtfelder können über die Angabe des Attributs `required` am entsprechende
 
 Optionale Pflichtfelder bedeuten, dass von mehreren, alternativen Eingaben mindestens eine benötigt wird, um das Formular verarbeiten zu können.
 
-NOTE: Beispielsweise könnte in einem Formular die Eingabe entweder der Nummer des Personalausweises oder der Nummer des Führerscheins als Altersnachweis dienen.
+[NOTE]
+====
+Beispielsweise könnte in einem Formular die Eingabe entweder der Nummer des Personalausweises oder der Nummer des Führerscheins als Altersnachweis dienen.
 Wenn der Altersnachweis Pflicht ist, sind die beiden Felder optionale Pflichtfelder.
+====
 
 [[nachrichten-ueberschrift]]
 === Anzeige von Nachrichten
@@ -3616,13 +3641,19 @@ Wenn JavaScript nicht aktiviert ist, werden alle Validierungsnachrichten in eine
 Auf den Tooltip wird verzichtet.
 Für die Zuordnung von Validierungsnachrichten und Eingabefeld wird das Attribut `reference` verwendet, welches auch in der entsprechenden Formularkomponente angegeben werden muss.
 
-
+[[4eyesprinciple]]
 === 4-Augen-Prinzip
 
-Einige JSF-Komponenten unterstützen das 4-Augen-Prinzip. Hierbei müssen Eingaben erst von einer zweiten Person bestätigt werden, bevor sie in das Datenmodell übernommen werden. Die Namensgebung der 4-Augen-Komponenten folgt dem Schema, dass dem Namen der Basiskomponente der Zeichenstring `WithFourEyes` angehängt wird.
+Einige JSF-Komponenten unterstützen das 4-Augen-Prinzip.
+Hierbei müssen Eingaben erst von einer zweiten Person bestätigt werden, bevor sie in das Datenmodell übernommen werden.
+Die Namensgebung der 4-Augen-Komponenten folgt dem Schema, dass dem Namen der Basiskomponente der Zeichenstring `WithFourEyes` angehängt wird.
 
-TIP: Die IsyFact enthält die Demo-Anwendung `isy-webgui` und zeigt darin die Features der Bibliotheken `isy-web` sowie `isy-style` beispielhaft. Insbesondere demonstriert die Demoanwendung Aussehen und Verhalten der nachfolgend beschriebenen JSF-Seitenelemente.
+[TIP]
+====
+Die IsyFact enthält die Demo-Anwendung `isy-webgui` und zeigt darin die Features der Bibliotheken `isy-web` sowie `isy-style` beispielhaft.
+Insbesondere demonstriert die Demoanwendung Aussehen und Verhalten der nachfolgend beschriebenen JSF-Seitenelemente.
 Alle Screenshots der beschriebenen 4-Augen-Prinzip Komponenten wurden dieser Demoanwendung entnommen.
+====
 
 Zu den folgenden JSF-Komponenten existieren Varianten für das 4-Augen-Prinzip.
 
@@ -3757,6 +3788,7 @@ Außerdem gibt es folgende optionale Parameter:
 
 [[formaktionseingabefeld-4eyes]]
 ==== FormActionInputWithFourEyes
+
 Zusätzlich zu den eben genannten Parametern bei `<isy:actionInputWithFourEyes>` sind bei Verwendung von `<isy:formActionInputWithFourEyes>` auch folgende Parameter zulässig:
 
 * `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`)
@@ -3769,6 +3801,7 @@ Zusätzlich zu den eben genannten Parametern bei `<isy:actionInputWithFourEyes>`
 
 [[checkbox-4eyes]]
 ==== CheckboxWithFourEyes
+
 Die Komponente `<isy:formCheckboxWithFourEyes>` stellt ein Eingabefeld nach dem Vier-Augen-Prinzip für eine Checkbox innerhalb von Formularen zur Verfügung.
 
 :desc-image-demopanelformCheckboxWithFourEyes: JSF-Komponente isy_formCheckboxWithFourEyes
@@ -3787,7 +3820,8 @@ Folgende Komponentenattribute müssen angegeben werden:
 
 Folgende Komponentenattribute sind optional:
 
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `label`: Der Text für das Label.
 * `labelRight`: Fontawesome char-Zeichen für die Anzeige rechts neben dem Eingabefeld. (Standard: offenes Vorhängeschloss)
 * `labelStyleClass`: Die CSS-Klasse für das Label. (Standard: `col-lg-6`)
@@ -3902,7 +3936,8 @@ Folgende Komponentenattribute müssen angegeben werden:
 Folgende Komponentenattribute sind optional:
 
 * `tooltip`: Tooltip. (Standard: '')
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
 * `label`: Der Text für das Label.
 * `labelStyleClass`: Die CSS-Klasse für das Label. (Standard: `col-lg-6`)
@@ -3948,6 +3983,7 @@ Codebeispiel:
 
 [[formInput-4eyes]]
 ==== FormInputWithFourEyes
+
 Die Komponente `<isy:formInputWithFourEyes>` stellt ein Eingabefeld unter Verwendung des Vier-Augen-Prinzips innerhalb von Formularen zur Verfügung.
 
 :desc-image-demopanelformInput: WebGui-Demoanwendung: isy_formInputWithFourEyes Varianten
@@ -3968,7 +4004,8 @@ Die Komponente besitzt folgende notwendige Parameter:
 
 Außerdem gibt es folgende optionale Parameter:
 
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
 * `readonly`: Gibt an, ob die Darstellung nur lesend erfolgen soll. (Standard: `false`, Typ: `Boolean`)
 * `label`: Der Text für das Label.
@@ -3976,7 +4013,7 @@ Außerdem gibt es folgende optionale Parameter:
 * `inputStyleClass`: Die CSS-Klasse für den Eingabebereich. (Standard: `col-lg-6`)
 * `placeholder`: Der Platzhalter, welcher im Eingabefeld angezeigt wird.
 * `inputmask`: Die Eingabemaske.
-* `inputmaskInsertMode`: Die Eingabemaske: Gibt an, ob text soll überschrieben werden beim eintippen.(Standard: `true`, Typ: `Boolean`)
+* `inputmaskInsertMode`: Die Eingabemaske: Gibt an, ob text soll überschrieben werden beim eintippen. (Standard: `true`, Typ: `Boolean`)
 * `maxlength`: Die maximale Länge der Eingabe. (Standard: `255`, Typ: `Integer`)
 * `width`: Die maximale Breite des Eingabefeldes. (Standard: `100%`)
 * `showPrintView`: Zur aktuellen Druckansicht-Anzeige aus dem BasisModel. (Standard: `#{not empty basisModel and basisModel.showPrintView}`, Typ: `Boolean`)
@@ -3985,7 +4022,8 @@ Außerdem gibt es folgende optionale Parameter:
 * `validationModel`: Ein spezifisches Validation-Model, falls benötigt. (Standard: `#{validationModel}`)
 * `globalConfig`: Eine spezifische globale Konfiguration, falls benötigt. (Standard: `#{globalConfigurationModel}`)
 * `charpicker`: Die Referenz des Objekts. (Standard: `false`, Typ: `Boolean`)
-* `type`: Der Typ des Eingabefelds, so dass diese Komponente z.B. auch für Passwort-Felder verwendet werden kann. Mögliche Werte alle Werte für das Feld type des HTML Input Felds. (Standard: `text`)
+* `type`: Der Typ des Eingabefelds, so dass diese Komponente z.B. auch für Passwort-Felder verwendet werden kann.
+Mögliche Werte alle Werte für das Feld type des HTML Input Felds. (Standard: `text`)
 * `fourEyesLastValue`: Letzter Wert im 4-Augen-Eingabefeld.
 
 Codebeispiel:
@@ -4079,6 +4117,7 @@ Codebeispiel:
 
 [[formSelectOneDropDown-4eyes]]
 ==== FormSelectOneDropDownWithFourEyes
+
 Die Komponente `<isy:formSelectOneDropDownWithFourEyes>` stellt ein Eingabefeld für ein Dropdownfeld mit dem Vier-Augen-Prinzip innerhalb von Formularen zur Verfügung.
 
 :desc-image-demopanelformSelectOneDropdownWithFourEyes: WebGui-Demoanwendung: isy_formSelectOneDropdownWithFourEyes Varianten
@@ -4099,7 +4138,10 @@ Folgende Komponentenattribute sind optional:
 * `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
 * `readonly`: Gibt an, ob die Darstellung nur lesend erfolgen soll. (Standard: `false`, Typ: `Boolean`)
 
-NOTE: Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `readonly="true"` als Label gerendert und ohne Schloss-Icon dargestellt.
+[NOTE]
+====
+Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `readonly="true"` als Label gerendert und ohne Schloss-Icon dargestellt.
+====
 
 * `valueChangeListener`: Value Change Listener
 * `fourEyesLastValue`: 4 Augen Prinzip Mode (locked, unlock)
@@ -4133,7 +4175,8 @@ Folgende Komponentenattribute müssen angegeben werden:
 
 Folgende Komponentenattribute sind optional:
 
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `required`: Gibt an, ob die Eingabe ein Pflichteingabe ist. (Standard: `false`, Typ: `Boolean`)
 * `disabled`: Gibt an, ob die Bearbeitung aktiviert ist oder nicht(Standard: `false`, Typ: `Boolean`)
 * `readonly`: Gibt an, ob auf das Feld nur lesend zugegriffen wird. (Standard: `false`, Typ: `Boolean`)
@@ -4203,12 +4246,16 @@ Außerdem gibt es folgende optionale Parameter:
 * `dropdownStyleClass`: Die CSS-Klasse für das Dropdownmenü.
 * `readonly`: Gibt an, ob die Darstellung nur lesend erfolgen soll. (Standard: `false`, Typ: `Boolean`)
 
-NOTE: Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `readonly="true"` als Label gerendert und ohne Schloss-Icon dargestellt.
+[NOTE]
+====
+Besonderheit: Das formSelectOneDropDownWithFourEyes-Widget wird im Modus `readonly="true"` als Label gerendert und ohne Schloss-Icon dargestellt.
+====
 
 * `disabled`: Gibt an, ob die Auswahl deaktiviert ist oder nicht. (Standard: `false`, Typ: `Boolean`)
 * `converter`: Konverter-Bean für die angezeigten Elemente
 * `converterAttribute`: Parameter für den Konverter
-* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen. Diese wird im Attribut data-isy-custom-id eingetragen.
+* `customId`: Erlaubt, eine spezielle ID zu setzen, um die Komponente z.B. für JavaScript oder Tests zugreifbar zu machen.
+Diese wird im Attribut data-isy-custom-id eingetragen.
 * `fourEyesLastValue`: Letzter Wert im 4-Augen-Eingabefeld.
 * `valueChangeListener`: Value Change Listener
 
@@ -4245,6 +4292,7 @@ Codebeispiel:
 
 [[FocusOnload]]
 === FocusOnload
+
 Die Komponente `<isy:focusOnload>` dient dazu, das initial zu fokussierende Element einer Seite anzugeben oder die initiale Fokussierung zu deaktivieren.
 
 Die Komponente besitzt folgende notwendige Parameter:
@@ -4259,6 +4307,7 @@ Außerdem gibt es folgende optionale Parameter:
 
 [[isy-PrintMetaInformationen]]
 === PrintMetaInformationen
+
 Das Tag `<isy:printMetaInformation>` dient bei Druckausgabe zur Ausgabe von Metainformationen wie z.B. eines Warnhinweises
 
 Die Komponente besitzt folgende optionale Parameter:
@@ -4359,7 +4408,7 @@ Durch den Aufruf der Validierung mit `evaluate` wird die Validierung daher expli
 Bei der Übermittlung von Werten in JSF müssen die Vorgaben aus Kapitel <<datenkonvertierung-fuer-darstellung-und-eingabe>> beachtet werden:
 Die Eingabe von ungültigen Werten (z.B. ungültiges Datum, Buchstaben in einem Zahlenfeld) muss grundsätzlich möglich sein.
 Ggf. müssen entsprechende Datentypen und JSF-Converter erzeugt werden.
-Die Validierung in der GUI, aber spätestens im Anwendungskern, muss die fehlerhafte Eingabe feststellen.
+Die Validierung in der <<glossar-GUI>>, aber spätestens im <<glossar-Anwendungskern>>, muss die fehlerhafte Eingabe feststellen.
 Die Validierung über JSF ist derzeit nicht vorgesehen.
 
 
@@ -4446,6 +4495,7 @@ Alle IsyFact-Anwendungen verwenden eine einheitliche Fehlerseite.
 Die Fehlerseite gibt aus Sicherheitsgründen keine Informationen über die Art des Fehlers preis.
 Die eigentliche Fehlerursache kann nur aus den Server-Logs ermittelt werden.
 
+[[behandlung-von-optimisticlockexceptions]]
 === Behandlung von OptimisticLockExceptions
 
 Für Die Behandlung einer `OptimisticLockException` innerhalb der Anwendung ist ein spezieller Handler eingerichtet.
@@ -4467,19 +4517,14 @@ Die Absicherung von Masken erfolgt auf Dialogablauf-Ebene.
 Die Berechtigungsprüfung verwendet die Sicherheits-Komponente.
 
 Gekapselt werden die Bestandteile der Sicherheits-Komponente hinter Spring Security.
-Durch den Einsatz von Spring Security ist es einfacher eine Integration der Berechtigungen in die Spring
-Umgebung, insbesondere Spring Web Flow, zu erreichen.
+Durch den Einsatz von Spring Security ist es einfacher eine Integration der Berechtigungen in die Spring Umgebung, insbesondere Spring Web Flow, zu erreichen.
 
 [[autorisierung]]
 === Autorisierung
 
-Für die Absicherung von Dialogabläufen wird innerhalb der Spring Web Flow Konfiguration auf dem `<view-state>`
-ein `<secured>` Tag mit dem geforderten Recht gesetzt.
-Die verwendeten Rechte müssen durch die Rollenrechte-Konfiguration (siehe <<NutzungsvorgabenSicherheit>>)
-für den eingeloggten
-Benutzer entsprechend gesetzt werden.
-Durch die Verwendung des Tags wird vor dem Anzeigen des `<view-state>` eine Überprüfung der
-Berechtigung des anfragenden Benutzers durchgeführt.
+Für die Absicherung von Dialogabläufen wird innerhalb der Spring Web Flow Konfiguration auf dem `<view-state>` ein `<secured>` Tag mit dem geforderten Recht gesetzt.
+Die verwendeten Rechte müssen durch die Rollenrechte-Konfiguration (siehe <<NutzungsvorgabenSicherheit>>) für den eingeloggten Benutzer entsprechend gesetzt werden.
+Durch die Verwendung des Tags wird vor dem Anzeigen des `<view-state>` eine Überprüfung der Berechtigung des anfragenden Benutzers durchgeführt.
 Fehlt dem Benutzer diese, wird die Fehlerseite angezeigt.
 
 :desc-listing-Snipcreateflow: Ausschnitt aus Flow erstellenFlow.xml
@@ -4511,16 +4556,13 @@ Fehlt dem Benutzer diese, wird die Fehlerseite angezeigt.
 [[berechtigungsabhaengige-darstellung-in-masken]]
 === Berechtigungsabhängige Darstellung in Masken
 
-//S 46 / 642  1990
-
-Um eine berechtigungsabhängige Darstellung von Maskenelementen zu realisieren, muss die Anwendung einen Controller
-bereitstellen, mit dessen Hilfe über nicht parametrisierte Methoden Anfragen nach den benötigten Rechten gestellt werden können.
+Um eine berechtigungsabhängige Darstellung von Maskenelementen zu realisieren, muss die Anwendung einen Controller bereitstellen, mit dessen Hilfe über nicht parametrisierte Methoden Anfragen nach den benötigten Rechten gestellt werden können.
 Dieser Controller ist dafür zuständig, den Rechte-Schlüssel aufzulösen und die Anfrage an die Komponente Sicherheit zu delegieren.
 Beantwortet werden die Anfragen stets mit einem einfachen Booleschen Wert.
 
 Mit Hilfe dieses Controllers lassen sich einzelne Maskenelemente, aber auch Gruppen von Maskenelementen berechtigungsabhängig ausblenden.
-Die JSF-Komponenten bietet hierfür das `rendered`-Attribut (siehe <<listing-HideJSFComp>>). Beantwortet der BerechtigungsController den
-Methoden-Aufruf von `getBenutzerDarfAdministrieren()` mit `false`, so wird der Button nicht dargestellt.
+Die JSF-Komponenten bietet hierfür das `rendered`-Attribut (siehe <<listing-HideJSFComp>>).
+Beantwortet der BerechtigungsController den Methoden-Aufruf von `getBenutzerDarfAdministrieren()` mit `false`, so wird der Button nicht dargestellt.
 
 :desc-listing-HideJSFComp: JSF-Komponente berechtigungsabhängig ausblenden
 [id="listing-HideJSFComp",reftext="{listing-caption} {counter:listings }"]
@@ -4530,10 +4572,8 @@ Methoden-Aufruf von `getBenutzerDarfAdministrieren()` mit `false`, so wird der B
 <t:commandButton ... rendered="#{berechtigungsController.benutzerDarfAdministrieren}"/>
 ----
 
-Sollen mehrere oder nicht-JSF Komponenten berechtigungs­abhängig ausgeblendet werden, kann das Fragment-Tag der
-Facelets-Bibliothek verwendet werden.
-Dieses kann eine beliebige Anzahl an weiteren Maskenelementen umschließen und bietet ebenfalls das `rendered`-Attribut,
-welches sich dann auf alle enthaltenen Komponenten auswirkt (siehe <<listing-HideGUIComp>>).
+Sollen mehrere oder nicht-JSF Komponenten berechtigungs­abhängig ausgeblendet werden, kann das Fragment-Tag der Facelets-Bibliothek verwendet werden.
+Dieses kann eine beliebige Anzahl an weiteren Maskenelementen umschließen und bietet ebenfalls das `rendered`-Attribut, welches sich dann auf alle enthaltenen Komponenten auswirkt (siehe <<listing-HideGUIComp>>).
 
 :desc-listing-HideGUIComp: GUI-Komponenten berechtigungsabhängig ausblenden
 [id="listing-HideGUIComp",reftext="{listing-caption} {counter:listings }"]
@@ -4571,13 +4611,14 @@ Somit wird verhindert, dass ein Angreifer ein ungewünschtes Script-Tag übergib
 == Temporäre Binärdaten
 
 Für manche Anwendungsfälle in Webanwendungen wird ein Speicherort für temporäre Binärdaten benötigt.
-Dies ist z.B. notwendig, um dem Nutzer die Binärdaten wieder zur Verfügung zu stellen, bevor diese in einem Datenbestand
-gespeichert wurden (z.B. hochgeladenes Lichtbild anzeigen).
+Dies ist z.B. notwendig, um dem Nutzer die Binärdaten wieder zur Verfügung zu stellen, bevor diese in einem Datenbestand gespeichert wurden (z.B. hochgeladenes Lichtbild anzeigen).
 
-TIP: Für (temporäre) Binärdaten kann der RegisterFactory-Binärdatenservice genutzt werden.
-Dieser bietet die Möglichkeit Binärdaten entgegenzunehmen und einen Cleanup-Timertask, der veraltete Binärdaten
-automatisch wieder aufräumt.
+[TIP]
+====
+Für (temporäre) Binärdaten kann der RegisterFactory-Binärdatenservice genutzt werden.
+Dieser bietet die Möglichkeit Binärdaten entgegenzunehmen und einen Cleanup-Timertask, der veraltete Binärdaten automatisch wieder aufräumt.
 Somit ist keine Verwendung von Datenbankmitteln notwendig.
+====
 
 [[dynamische-downloads]]
 == Dynamische Downloads
@@ -4713,7 +4754,7 @@ Standardmäßig sollte `UTF-8` als Zeichensatz angegeben sein und, falls anderwe
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 ----
-
+[[applicationinitialisierungsfilter]]
 === ApplicationInitialisierungsFilter
 
 Der `ApplicationIntialisierungFilter` ist für die JavaScript Erkennung und die damit verbunden Konfiguration der globalen Einstellungen für die Session des Nutzers zuständig.
@@ -4750,8 +4791,7 @@ Dieses Kapitel fasst alle notwendigen Basiskonfigurationen für die Verwendung v
 [[verwendung-von-facelets-webflow.xml]]
 === Verwendung von Facelets (webflow.xml)
 
-Für die Verwendung von Facelets ist es notwendig, in der Spring Konfiguration ein Mapping zwischen der Datei-Erweiterung
-und den Facelets herzustellen.
+Für die Verwendung von Facelets ist es notwendig, in der Spring Konfiguration ein Mapping zwischen der Datei-Erweiterung und den Facelets herzustellen.
 
 :desc-listing-SnipConfigxml: Ausschnitt config.xml
 [id="listing-SnipConfigxml",reftext="{listing-caption} {counter:listings }"]
@@ -4771,8 +4811,7 @@ und den Facelets herzustellen.
 [[abschalten-der-ausgabe-von-kommentaren]]
 === Abschalten der Ausgabe von Kommentaren
 
-Die Ausgabe von HTML-Kommentaren, die in der Flow-Definition und im View zur Dokumentation der Software eingebettet
-wurden, wird abgeschaltet.
+Die Ausgabe von HTML-Kommentaren, die in der Flow-Definition und im View zur Dokumentation der Software eingebettet wurden, wird abgeschaltet.
 
 [[konfiguration-von-konvertern]]
 === Konfiguration von Konvertern
@@ -4794,16 +4833,14 @@ Um den gewünschten Konverter für die Verwendung bekannt zu machen, muss dieser
 === Aktivieren von „Partial State Saving“
 
 Das mit JSF 2.0 eingeführte Feature „Partial State Saving“ muss aktiviert bleiben.
-Hintergrund ist, dass JSF 2.0 ansonsten im Zusammenhang mit der Replikation der Session die IDs für JSF-Komponenten
-doppelt vergibt und es dadurch zu Fehlern in der Anwendung kommt.
+Hintergrund ist, dass JSF 2.0 ansonsten im Zusammenhang mit der Replikation der Session die IDs für JSF-Komponenten doppelt vergibt und es dadurch zu Fehlern in der Anwendung kommt.
 
 [[erkennung-von-javascript-unterstuetzung]]
 === Erkennung von JavaScript Unterstützung
 
 Je nach Browser und JavaScript Aktivierungsstatus muss die Anwendung Widgets verschieden darstellen.
 Hierzu existiert ein Filter, welcher in die web.xml eingebunden wird.
-Die Parameter müssen ggf.
-angepasst werden.
+Die Parameter müssen ggf. angepasst werden.
 
 :desc-listing-Snipwebxml2: Ausschnitt web.xml
 [id="listing-Snipwebxml2",reftext="{listing-caption} {counter:listings }"]
@@ -4882,14 +4919,14 @@ Folgende Konfigurationsdatei muss für die in die anwendungsspezifische GUI/Spri
     <import resource="classpath:resources/plis-web/spring/webflow.xml"/>
 </beans>
 ----
+
 // Anmerk. (msg systems): Stand 19.07.2018 Pfad plis-web z.Zt. noch richtig, bei einer Verzeichnisstruktur
 // anpassung wäre das obige Beispiel anzupassen
 
 [[erweiterung-fuer-servlets-im-web.xml]]
 === Erweiterung für Servlets im web.xml
 
-Damit die Funktionalitäten von Spring Web Flow aufgerufen werden, muss das SWF Dispatcher Servlet registriert werden,
-welches die weitere Behandlung an den SWF Kern abgibt.
+Damit die Funktionalitäten von Spring Web Flow aufgerufen werden, muss das SWF Dispatcher Servlet registriert werden, welches die weitere Behandlung an den SWF Kern abgibt.
 
 :desc-listing-Snipwebxml3: Ausschnitt web.xml bezüglich Servlets
 [id="listing-Snipwebxml3",reftext="{listing-caption} {counter:listings }"]
@@ -4917,8 +4954,7 @@ welches die weitere Behandlung an den SWF Kern abgibt.
 [[konfiguration-der-navigation]]
 == Konfiguration der Navigation
 
-Nachfolgend werden die notwendigen Konfigurationen beschrieben, um die konkreten Dialog Flows zu definieren, und
-wo die entsprechenden Anpassungen vorgenommen werden müssen.
+Nachfolgend werden die notwendigen Konfigurationen beschrieben, um die konkreten Dialog Flows zu definieren, und wo die entsprechenden Anpassungen vorgenommen werden müssen.
 
 [[jsf-flow-builder-service]]
 === JSF Flow Builder Service
@@ -4977,7 +5013,8 @@ Auf übergreifende Maskentexte aus der Konfigurationsdatei `resources/nachrichte
 == Konfiguration Logging
 
 Für das Logging kommt logback zum Einsatz.
-Das <<KonzeptLogging>> enthält die dafür notwendigen Konfigurationen und weitere Details. Zur Konfiguration des Logging ist folgende Abhängigkeit nötig:
+Das <<KonzeptLogging>> enthält die dafür notwendigen Konfigurationen und weitere Details.
+Zur Konfiguration des Logging ist folgende Abhängigkeit nötig:
 
 :desc-listing-SnipLoggingDep: Abhängigkeit isy-logging (Ausschnitt pom.xml)
 [id="listing-SnipLoggingDep",reftext="{listing-caption} {counter:listings }"]
@@ -5011,8 +5048,7 @@ Die <<NutzungsvorgabenLogging>> beinhalten Vorgaben zum Schreiben von Log-Eintr�
 [[setup-web.xml]]
 === Setup web.xml
 
-Für den Einsatz von Spring Security ist ein Servlet Filter notwendig, in welchem die initialen
-Abhandlungen der Berechtigungen erfolgen.
+Für den Einsatz von Spring Security ist ein Servlet Filter notwendig, in welchem die initialen Abhandlungen der Berechtigungen erfolgen.
 
 Hier wird die Ablage der Spring Security Konfiguration definiert.
 
@@ -5136,10 +5172,8 @@ Die Abfrage auf die realen Benutzer erfolgt im Authentication Provider, welcher 
 </user-service>
 ----
 
-Für die Anbindung des Berechtigungsmanagers an Spring Security findet die Möglichkeit zur Erstellung
-eines “Custom Authentication Providers” Anwendung.
-In diesem Authentication Provider wird bei Bedarf überprüft ob der Nutzer die notwendigen Berechtigungen besitzt, bzw.
-es wird für die weitere Verarbeitung in Spring Security der notwendige Kontext aufgebaut.
+Für die Anbindung des Berechtigungsmanagers an Spring Security findet die Möglichkeit zur Erstellung eines “Custom Authentication Providers” Anwendung.
+In diesem Authentication Provider wird bei Bedarf überprüft ob der Nutzer die notwendigen Berechtigungen besitzt, bzw. es wird für die weitere Verarbeitung in Spring Security der notwendige Kontext aufgebaut.
 
 :desc-image-ClassConnSecKomp: Klassendiagramm Anbindung Sicherheitskomponente
 [id="image-ClassConnSecKomp",reftext="{figure-caption} {counter:figures}"]
@@ -5147,8 +5181,7 @@ es wird für die weitere Verarbeitung in Spring Security der notwendige Kontext 
 image::ClassConnSecKomp.png[align="center"]
 
 Das Sequenzdiagramm stellt den Zugriff des Authentication Providers auf die Sicherheitskomponente dar.
-Hierbei werden die Rollen eines Benutzers über den Berechtigungsmanager gelesen und in einen Spring Security konformen
-Token geschrieben.
+Hierbei werden die Rollen eines Benutzers über den Berechtigungsmanager gelesen und in einen Spring Security konformen Token geschrieben.
 Dieser Token findet dann bei der Autorisierung einzelner Benutzerinteraktion durch Spring Security Verwendung.
 
 :desc-image-SecDiaAccessSec: Sequenzdiagramm Zugriff auf Sicherheitskomponente
@@ -5164,8 +5197,7 @@ Die Konfiguration der Sicherheitskomponente über eine properties-Datei ist im K
 [[konfiguration-webflowauthenticationprovider]]
 ==== Konfiguration WebFlowAuthenticationProvider
 
-Der `WebFlowAuthenticationProvider` erhält durch die Konfiguration die Instanz der Bean „`sicherheit`“ injected und wird
-als „`custom-authentication-provider`“ Spring Security bekannt gemacht.
+Der `WebFlowAuthenticationProvider` erhält durch die Konfiguration die Instanz der Bean „`sicherheit`“ injected und wird als „`custom-authentication-provider`“ Spring Security bekannt gemacht.
 
 :desc-listing-SnipApcntxSec: Ausschnitt aus applicationContext-security.xml
 [id="listing-SnipApcntxSec",reftext="{listing-caption} {counter:listings }"]
@@ -5221,9 +5253,7 @@ Hier muss ein Listener registriert werden, über welchen die Security Bedürfnis
 [[konfiguration-portalfarbe]]
 == Konfiguration Portalfarbe
 
-Für eine Anwendung kann eine Basisfarbe / Portalfarbe konfiguriert werden. Von dieser `portalColor` werden
-viele der weiteren Farbstyles für die Anwendung abgeleitet und in der generierten Datei `color.css` abgelegt,
-die in der Zielanwendung einzubinden ist.
+Für eine Anwendung kann eine Basisfarbe / Portalfarbe konfiguriert werden. Von dieser `portalColor` werden viele der weiteren Farbstyles für die Anwendung abgeleitet und in der generierten Datei `color.css` abgelegt, die in der Zielanwendung einzubinden ist.
 
 Zur Generierung der Datei `color.css` mit der eigenen Portalfarbe sind folgende Schritte erforderlich:
 
@@ -5247,8 +5277,8 @@ module.exports = function (grunt) {
         ...
 ----
 [start=2]
-*2.   Maven Install*: In der Bibliothek `isy-style` ist ein "Maven install" durchzuführen. Dadurch wird ein "grunt build" ausgelöst und die Farbstyles befinden sich nach der Generierung
-in `target/color.css`.
+*2.   Maven Install*: In der Bibliothek `isy-style` ist ein "Maven install" durchzuführen.
+Dadurch wird ein "grunt build" ausgelöst und die Farbstyles befinden sich nach der Generierung in `target/color.css`.
 
 [start=3]
 *3.   Einbindung in Zielanwendung*: Die Datei `color.css` aus dem Target-Verzeichnis von `isy-style` ist in die Zielanwendung unterhalb des WEB-INF Verzeichnisses zu kopieren.
@@ -5357,7 +5387,7 @@ Dies macht man in `faces-config.xml` (Java Server Faces Konfigurationsdatei) auf
 [[jsf-tags-benutzen]]
 === JSF Tags benutzen
 
-Es gibt noch eine letzte Bedingung die man erfüllen muss, damit der JSF _ResourceHandler_ die Ressourcen überhaupt behandelt.
+Es gibt noch eine letzte Bedingung, die man erfüllen muss, damit der JSF _ResourceHandler_ die Ressourcen überhaupt behandelt.
 Es müssen JSF Tags benutzt werden:
 
 * JavaScript: `<h:outputScript>` anstatt `<script>`
@@ -5432,23 +5462,18 @@ Die Nutzung von Cookies ist zwingend erforderlich, ansonsten können die Webanwe
 [[session-zugriff]]
 == Session Zugriff
 
-Für die Arbeit mit Spring Web Flow ist es notwendig, die in der Session notwendigen Daten der Conversation für
-jeden Schritt bereitzustellen und nach jedem Schritt abzulegen.
+Für die Arbeit mit Spring Web Flow ist es notwendig, die in der Session notwendigen Daten der Conversation für jeden Schritt bereitzustellen und nach jedem Schritt abzulegen.
 Hierfür werden die Daten in der Datenbank persistiert.
-Dies erfolgt über einen eigenen Session-Manager im Tomcat (siehe <<TomcatNutzungskonzept>>). Es handelt sich dabei
-um eine Erweiterung der IsyFact.
-Wenn diese Erweiterung nicht eingesetzt wird, muss entweder die Session-Persistierung auf andere Weise durchgeführt
-werden, oder es muss sichergestellt werden, dass die Requests eines Benutzers immer auf die gleiche
-Tomcat-Instanz gehen (Sticky Sessions). Die Session-Daten müssen dabei möglichst klein gehalten werden, um
-die Performance der Anwendung nicht zu verschlechtern.
+Dies erfolgt über einen eigenen Session-Manager im Tomcat (siehe <<TomcatNutzungskonzept>>). Es handelt sich dabei um eine Erweiterung der IsyFact.
+Wenn diese Erweiterung nicht eingesetzt wird, muss entweder die Session-Persistierung auf andere Weise durchgeführt werden, oder es muss sichergestellt werden, dass die Requests eines Benutzers immer auf die gleiche Tomcat-Instanz gehen (Sticky Sessions).
+Die Session-Daten müssen dabei möglichst klein gehalten werden, um die Performance der Anwendung nicht zu verschlechtern.
 Die Größe der Session wird maßgeblich durch die „im Webflow“ gespeicherten Model-Daten bestimmt.
 Daher muss darauf geachtet werden nur unbedingt notwendige Daten im Model zu halten.
 
 [[checkliste-zur-qs]]
 = Checkliste zur QS
 
-Die Checkliste für die QS stellt Prüfpunkte zur Verfügung, anhand derer wichtige Kriterien zur Umsetzung der
-Oberfläche überprüft werden können.
+Die Checkliste für die Qualitätssicherung stellt Prüfpunkte zur Verfügung, anhand derer wichtige Kriterien zur Umsetzung der Oberfläche überprüft werden können.
 
 [[id-vergabe-jsf]]
 == ID Vergabe JSF
@@ -5461,8 +5486,7 @@ Ein Test über ein GUI-Testwerkzeug wird somit erschwert.
 [[verwendung-der-http-session]]
 == Verwendung der HTTP-Session
 
-Aufgrund der Vorgabe eines zustandslosen Servers ist nicht sichergestellt, dass der Anwendung beim nächsten
-Zugriff auf einen Server die HTTP-Session zur Verfügung steht.
+Aufgrund der Vorgabe eines zustandslosen Servers ist nicht sichergestellt, dass der Anwendung beim nächsten Zugriff auf einen Server die HTTP-Session zur Verfügung steht.
 Daher ist es notwendig die Masken und Abläufe so zu entwerfen, das hierauf verzichtet werden kann.
 
 [[nutzung-model-beans]]
@@ -5484,15 +5508,13 @@ Der Styleguide befindet sich unter <<Styleguide>>.
 [[flow-konfiguration]]
 == Flow Konfiguration
 
-Für jede Maske sollte der Flow in einer eigenständigen Konfiguration hinterlegt sein, damit kann jede Maske separat
-ausgetauscht und gewartet werden.
+Für jede Maske sollte der Flow in einer eigenständigen Konfiguration hinterlegt sein, damit kann jede Maske separat ausgetauscht und gewartet werden.
 Jeder Flow sollte entsprechend dem Layout von dem vorgegebenen Parent-Flow erben.
 
 [[optimierung-jsf-design]]
 == Optimierung JSF Design
 
-Aufgrund der automatischen Ablage eines JSF Komponenten-Baumes in der Conversation und damit in der Datenbank,
-ist es notwendig sich über die Größe des Komponenten-Baumes Gedanken zu machen.
+Aufgrund der automatischen Ablage eines JSF Komponenten-Baumes in der Conversation und damit in der Datenbank, ist es notwendig sich über die Größe des Komponenten-Baumes Gedanken zu machen.
 
 Begrenzung der real verwendeten Komponenten auf die Ein und Ausgabe Elemente.
 Statische Texte bevorzugt nur im HTML verwenden.

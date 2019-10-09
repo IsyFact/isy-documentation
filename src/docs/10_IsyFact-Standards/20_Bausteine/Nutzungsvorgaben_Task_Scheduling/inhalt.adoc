@@ -29,8 +29,7 @@ Authentifizierung und Autorisierung finden nach den Vorgaben des Berechtigungsko
 Dazu wird die IsyFact-Bibliothek `isy-sicherheit` eingesetzt.
 Die Nutzung der Bibliothek wird im Dokument <<NutzungsvorgabenSicherheit>> beschrieben.
 
-Um die Verwendung von `isy-sicherheit` für die Authentifizierung und Autorisierung zu konfigurieren, wird die Property `isy.task.authentication.enabled`
-in `application.properties` auf `true` oder `false` gesetzt.
+Um die Verwendung von `isy-sicherheit` für die Authentifizierung und Autorisierung zu konfigurieren, wird die Property `isy.task.authentication.enabled` in `application.properties` auf `true` oder `false` gesetzt.
 
 [[erstellung-eines-tasks]]
 == Erstellung eines Tasks
@@ -38,7 +37,8 @@ in `application.properties` auf `true` oder `false` gesetzt.
 Technisch gesehen ist ein Task eine Java-Klasse, die vom Interface `de.bund.bva.isyfact.task.model.Task` abgeleitet ist.
 
 Ein Task kapselt die Tätigkeiten, die über `isy-task` zeitgesteuert ausgeführt werden sollen.
-Das Interface Task enthält hierfür die abstrakte Methode `execute()`. Im folgenden Listing sehen Sie die Methoden des Interfaces Task.
+Das Interface Task enthält hierfür die abstrakte Methode `execute()`.
+Im folgenden Listing sehen Sie die Methoden des Interfaces Task.
 
 [source, java]
 ----
@@ -60,8 +60,7 @@ Die Bibliothek bietet hierfür die abstrakte Klasse `AbstractTask` an.
 
 * *sie aktiviert bzw. deaktiviert*
 
-** Über die Methoden `aktivieren()` und `deaktivieren()` kann der Task manuell aktiviert bzw.
-deaktiviert werden.
+** Über die Methoden `aktivieren()` und `deaktivieren()` kann der Task manuell aktiviert bzw. deaktiviert werden.
 
 ** Ferner lässt sich der Status, ob der Task deaktiviert worden ist, über die Methode `isDeaktiviert()` abfragen.
 
@@ -127,7 +126,8 @@ taskScheduler.shutdownMitTimeout(10);
 
 [[verwendung-bereitgestellter-tasks]]
 == Verwendung der bereitgestellten Tasks
-Die Bibliothek `isy-task` enthält nützliche Tasks für die IsyFact-Standards.
+
+Die Bibliothek `isy-task` enthält nützliche Tasks für die <<glossar-IFS,IsyFact Standards>>.
 
 === Automatische Aktualisierung der Konfiguration
 Dieser Task dient der periodischen Prüfung der Konfigurationsdateien auf Änderungen sowie der automatischen Aktualisierung der Konfiguration bei Änderungen.
@@ -237,7 +237,7 @@ Das Passwort das benutzt wird, wenn kein Task-spezifisches Passwort konfiguriert
 isy.task.default.passwort
 ----
 
-Das Behördenkennzeichen das benutzt wird, wenn kein Task-spezifisches konfiguriert wird:
+Das Behördenkennzeichen, das benutzt wird, wenn kein Task-spezifisches konfiguriert wird:
 
 [source]
 ----
@@ -353,7 +353,7 @@ Der MBean-Exporter wird gemäß dem <<KonzeptUeberwachungKonfiguration>> konfigu
 = Hinweise für den Task im Parallelbetrieb
 
 Bei der Implementierung eines Tasks muss beachtet werden, dass ihn die Querschnittsbibliothek im Parallelbetrieb betreiben wird.
-Werden hierbei die Besonderheiten der Java Multithreading API nicht berücksichtigt, kann dies zu einem fehlerhaften Verhalten in der Fachanwendung führen.
+Werden hierbei die Besonderheiten der Java Multithreading API nicht berücksichtigt, kann dies zu einem fehlerhaften Verhalten in der <<glossar-Fachanwendung>> führen.
 
 [[threadsicherheit]]
 == Threadsicherheit
@@ -372,7 +372,8 @@ Ein weiteres Problem gemeinsamer Instanzen, betrifft die Objektvariablen.
 Auch der Zugriff auf eine veränderbare Objektvariable (d.h. eine Objektvariable, die nicht mit final versehen wurde) eines gemeinsamen Objekts kann nicht konsistent erfolgen, weil jeder Rechnerkern über einen eigenen Cache verfügt, der sich bei Änderung des Wertes naturgemäß vom Wert im Cache des anderen Rechnerkerns unterscheidet.
 Hilfreich ist hierbei das Schlüsselwort __volatile__, das dafür sorgt, dass vor jedem Zugriff eine Synchronisation zwischen dem Thread-spezifischen Cache und dem Hauptspeicher stattfindet.
 Die Objektvariable die mit volatile versehen wurde, ist also scheinbar atomar.
-Allerdings trifft das nicht für den schreibenden Zugriff zu, da jegliche Veränderung in mehreren Schritten erledigt wird. Um sicherzustellen, dass der Zugriff auf eine gemeinsame Objektvariable konsistent ist, wird beispielsweise der Wertebehälter einer Ganzzahl mit dem speziellen Wertetypen AtomicInteger definiert.
+Allerdings trifft das nicht für den schreibenden Zugriff zu, da jegliche Veränderung in mehreren Schritten erledigt wird. 
+Um sicherzustellen, dass der Zugriff auf eine gemeinsame Objektvariable konsistent ist, wird beispielsweise der Wertebehälter einer Ganzzahl mit dem speziellen Wertetypen AtomicInteger definiert.
 In der Regel wird es sich bei der Objektvariablen aber eher um einen Referenztypen handeln.
 In diesen Fällen sollten die Objektvariablen in einem ThreadLocal-Objekt deklariert werden.
 
@@ -386,9 +387,12 @@ Wenn die Methode `run()` durchlaufen worden ist oder der Auswurf einer `CheckedE
 Dieser Wechsel lässt sich auch durch die spezielle Methode `isAlive()` der Klasse `Thread` abfragen, die beim `Thread.State` `RUNNABLE` `true` liefert und ansonsten `false`.
 Grundsätzlich kann der `Thread-State` folgende Werte einnehmen:
 
-.Thread-State Werte
-[options="header"]
-|===
+
+:desc-table-StateVals: Thread-State Werte
+[id="table-StateVals",reftext="{table-caption} {counter:tables}"]
+.{desc-table-StateVals}
+[cols="1,4",options="header"]
+|====
 |Thread-State |Bedeutung
 |NEW|wird noch nicht ausgeführt
 |RUNNABLE|wird ausgeführt
@@ -396,7 +400,7 @@ Grundsätzlich kann der `Thread-State` folgende Werte einnehmen:
 |WAITING|wartet auf einen anderen Thread
 |TIMED_WAITING|wartet für eine bestimmte Dauer auf den anderen Thread
 |TERMINATED|Ausführung ist beendet
-|===
+|====
 
 [[ausfuehrung-eines-tasks-vorzeitig-beenden]]
 == Ausführung eines Tasks vorzeitig beenden

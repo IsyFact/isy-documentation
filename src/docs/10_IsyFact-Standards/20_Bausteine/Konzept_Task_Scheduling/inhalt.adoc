@@ -70,20 +70,15 @@ Das Stammpackage für alle Klassen der Umsetzung lautet: `de.bund.bva.isyfact.ta
 [[bedeutung-der-standardbibliothek]]
 == Bedeutung der Standardbibliothek
 
-Die Bibliothek muss zur Umsetzung der Anforderungen so stark wie möglich auf die in der Java-Standardbibliothek vorhandenen
-Möglichkeiten setzen.
-Insbesondere soll sie die Möglichkeiten des Packages `java.util.concurrent` nutzen, darunter vor allem die der Klasse
-`ScheduledExecutorService`.
-Die Bibliothek muss die Implementierung dieser Klasse, `ScheduledThreadPoolExecutor`, mit sinnvollen Standardwerten
-konfigurieren und wichtige Kenngrößen wie die Größe des Thread Pools konfigurierbar gestalten.
+Die Bibliothek muss zur Umsetzung der Anforderungen so stark wie möglich auf die in der Java-Standardbibliothek vorhandenen Möglichkeiten setzen.
+Insbesondere soll sie die Möglichkeiten des Packages `java.util.concurrent` nutzen, darunter vor allem die der Klasse `ScheduledExecutorService`.
+Die Bibliothek muss die Implementierung dieser Klasse, `ScheduledThreadPoolExecutor`, mit sinnvollen Standardwerten konfigurieren und wichtige Kenngrößen wie die Größe des Thread Pools konfigurierbar gestalten.
 
-Die Klassen des Packages `org.springframework.core.task` können ergänzend benutzt werden, falls sie gegenüber der
-Standardbibliothek einen signifikanten funktionalen Mehrwert aufweisen.
+Die Klassen des Packages `org.springframework.core.task` können ergänzend benutzt werden, falls sie gegenüber der Standardbibliothek einen signifikanten funktionalen Mehrwert aufweisen.
 
 Die folgenden Klassen dürfen von der Bibliothek nicht verwendet werden:
 
-* `java.util.Timertask` sowie `java.util.Timer` zur Planung und Ausführung von Aufgaben, da diese Klassen wesentlich weniger
-Funktionalität bieten als die des Packages `java.util.concurrent`,
+* `java.util.Timertask` sowie `java.util.Timer` zur Planung und Ausführung von Aufgaben, da diese Klassen wesentlich weniger Funktionalität bieten als die des Packages `java.util.concurrent`,
 
 [[authentifizierung-1]]
 == Authentifizierung
@@ -97,10 +92,8 @@ Dazu ist ein Benutzername und ein Passwort nötig, dass die Bibliothek als betri
 Die Bibliothek muss zur Sicherstellung der Nachvollziehbarkeit Korrelations-IDs verwenden.
 Das Konzept der Korrelations-ID ist im <<KonzeptLogging>> des Bausteins Logging beschrieben.
 
-Die Bibliothek muss für jede Ausführung einer Aufgabe eine Korrelations-ID erzeugen und sie im MDC von logback als auch,
-falls sich die Aufgabe authentifizieren muss, im Aufrufkontext setzen.
-Die Dokumente <<NutzungsvorgabenLogging>> sowie <<NutzungsvorgabenSicherheit>> der Bausteine Logging und Sicherheit beschreiben im Detail,
-wo und wie die Korrelations-ID gesetzt werden muss.
+Die Bibliothek muss für jede Ausführung einer Aufgabe eine Korrelations-ID erzeugen und sie im MDC von logback als auch, falls sich die Aufgabe authentifizieren muss, im Aufrufkontext setzen.
+Die Dokumente <<NutzungsvorgabenLogging>> sowie <<NutzungsvorgabenSicherheit>> der Bausteine Logging und Sicherheit beschreiben im Detail, wo und wie die Korrelations-ID gesetzt werden muss.
 
 [[ueberwachung]]
 == Überwachung
@@ -132,8 +125,7 @@ Die Aufgabe wird nur dann dem Scheduler hinzugefügt, wenn der konfigurierte Hos
 [[darstellung]]
 == Darstellung
 
-Die Bibliothek unterstützt die Darstellung bzw.
-programmatische Steuerung von Aufgaben mittels grafischen Oberflächen nicht direkt.
+Die Bibliothek unterstützt die Darstellung bzw. programmatische Steuerung von Aufgaben mittels grafischen Oberflächen nicht direkt.
 Sie muss ihre Funktionalität allerdings so bereitstellen, dass sie leicht von GUI-Technologien verwendet werden kann.
 
 [[konfiguration]]
@@ -154,10 +146,8 @@ Alle Standardwerte entsprechen folgendem Schema:
 
 *isyfact.task.standard.<property>*
 
-Die Definition der Standardwerte ergänzt die Regelungen zu Default-Werten in der betrieblichen Konfiguration (s.
-<<KonzeptUeberwachungKonfiguration>>).
-Während diese Default-Werte des Bausteins Konfiguration jeweils nur für eine konkrete Aufgabe gelten, sind die hier
-beschriebenen Standardwerte für alle in einer Anwendung definierten Aufgaben gültig.
+Die Definition der Standardwerte ergänzt die Regelungen zu Default-Werten in der betrieblichen Konfiguration (s. <<KonzeptUeberwachungKonfiguration>>).
+Während diese Default-Werte des Bausteins Konfiguration jeweils nur für eine konkrete Aufgabe gelten, sind die hier beschriebenen Standardwerte für alle in einer Anwendung definierten Aufgaben gültig.
 
 Zum Auslesen der Konfiguration einer Aufgabe wird die Klasse `TaskKonfiguration` definiert.
 Sie wird mit dem Interface Konfiguration des gleichnamigen Bausteins und dem Namen einer Aufgabe initialisiert.
@@ -168,6 +158,4 @@ Die Klasse `TaskKonfiguration` sollte von Anwendungen erweitert werden, um weite
 Die Klasse `TaskKonfiguration` benutzt eine weitere Klasse `TaskStandardKonfiguration`, um die Standardwerte für Aufgaben aufzulösen.
 `TaskStandardKonfiguration` ist ebenfalls von `TaskKonfiguration` abgeleitet.
 
-Die Bibliothek muss Anwendungen eine Konfigurationsklasse bzw.
-Spring Bean bereitstellen, die es ermöglicht, alle konfigurierten Aufgaben beim Start der Anwendung einzulesen und dem Scheduler
-hinzuzufügen.
+Die Bibliothek muss Anwendungen eine Konfigurationsklasse bzw. Spring Bean bereitstellen, die es ermöglicht, alle konfigurierten Aufgaben beim Start der Anwendung einzulesen und dem Scheduler hinzuzufügen.

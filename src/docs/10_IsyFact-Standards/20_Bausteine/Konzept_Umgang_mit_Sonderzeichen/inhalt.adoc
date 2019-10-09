@@ -4,41 +4,33 @@
 [[anforderungen-und-randbedingungen]]
 == Anforderungen und Randbedingungen
 
-An die Verarbeitung von Sonderzeichen nach IsyFact-Standards bestehen die folgenden Anforderungen:
+An die Verarbeitung von Sonderzeichen nach den IsyFact-Standards bestehen die folgenden Anforderungen:
 
 * Prinzipiell (technisch) muss jedes Sonderzeichen nutzbar sein.
 * Jedes System nach IsyFact-Standards muss die Sonderzeichen in gleicher Weise verarbeiten können.
-* Nach Erlass des BMI ist für das Personenstands,- Melde- und Ausländerwesen die Verarbeitung sämtlicher Zeichen gem.
-<<XOEVStringLatin>> vorgegeben.
+* Nach Erlass des BMI ist für das Personenstands,- Melde- und Ausländerwesen die Verarbeitung sämtlicher Zeichen gem. <<XOEVStringLatin>> vorgegeben.
 Weder mehr noch weniger Zeichen darf/muss das System verarbeiten können.
 
 [[festlegung-des-zeichensatzes-und-der-codierung]]
 == Festlegung des Zeichensatzes und der Codierung
 
-Im SAGA-Standard 4.0 <<SAGA40>> wird der Zeichensatz Unicode v4.x (ISO 10646:2003) in der UTF-8-Codierung als
-obligatorisch aufgeführt.
-Das BMI hat als Rahmenbedingung für seinen Verantwortungsbereich auf der Basis des SAGA-Standards festgelegt,
-für die Zeichencodierung in neuen Systemen ausschließlich UTF-8 zu nutzen.
-Dieser Zeichensatz stellt ausreichend viele der weltweit existierenden Buchstaben, Ziffern und Symbole zur
-Verfügung, um Daten in internationalen Schreibweisen abbilden zu können.
+Im SAGA-Standard 4.0 <<SAGA40>> wird der Zeichensatz Unicode v4.x (ISO 10646:2003) in der UTF-8-Codierung als obligatorisch aufgeführt.
+Das BMI hat als Rahmenbedingung für seinen Verantwortungsbereich auf der Basis des SAGA-Standards festgelegt, für die Zeichencodierung in neuen Systemen ausschließlich UTF-8 zu nutzen.
+Dieser Zeichensatz stellt ausreichend viele der weltweit existierenden Buchstaben, Ziffern und Symbole zur Verfügung, um Daten in internationalen Schreibweisen abbilden zu können.
 
-Gemäß den Anforderungen des String-latin Zeichensatzes des BMI <<XOEVStringLatin>> soll die IsyFact genau diesen
-Zeichensatz unterstützen.
-Daher wird festgelegt, dass für IsyFact-Standard-basierte Anwendungen der Zeichensatz Unicode v4.x in der
-UTF-8-Codierung zu verwenden ist.
+Gemäß den Anforderungen des String-latin Zeichensatzes des BMI <<XOEVStringLatin>> soll die IsyFact genau diesen Zeichensatz unterstützen.
+Daher wird festgelegt, dass für IsyFact-Standard-basierte Anwendungen der Zeichensatz Unicode v4.x in der UTF-8-Codierung zu verwenden ist.
 
 [[konfigurationseinstellungen-für-den-zeichensatz]]
 = Konfigurationseinstellungen für den Zeichensatz
 
 Im Folgenden wird die Konfiguration der technischen Systeme zur Verwendung des Zeichensatzes erläutert.
-Um zu erreichen, dass jedes IsyFact-konforme System Sonderzeichen in gleicher Weise verarbeitet,
-wird durchgängig Unicode v4.x in der UTF-8-Codierung verwendet.
+Um zu erreichen, dass jedes IsyFact-konforme System Sonderzeichen in gleicher Weise verarbeitet, wird durchgängig Unicode v4.x in der UTF-8-Codierung verwendet.
 
 [[betriebssystem]]
 == Betriebssystem
 
-Die Standard-Zeichencodierung aller in der Plattform verwendeten Betriebssysteme muss einheitlich auf die
-Verwendung von Unicode v4.x in der UTF-8-Codierung gesetzt werden.
+Die Standard-Zeichencodierung aller in der <<glossar-Plattform>> verwendeten Betriebssysteme muss einheitlich auf die Verwendung von Unicode v4.x in der UTF-8-Codierung gesetzt werden.
 
 Als Beispiel wird hier das Betriebssystem SUSE Linux Enterprise Server (SLES) 10 betrachtet.
 Hier ist die Standard-Zeichencodierung UTF-8. Diese kann über den Konfigurationsparameter
@@ -50,12 +42,10 @@ auch für jeden Benutzer individuell gesetzt werden.
 [[oracle-datenbank]]
 == Oracle Datenbank
 
-Die Zeichencodierung aller in der Plattform verwendeten Datenbanken muss ebenfalls einheitlich auf die Verwendung
-von Unicode v4.x in der UTF-8-Codierung gesetzt werden.
+Die Zeichencodierung aller in der Plattform verwendeten Datenbanken muss ebenfalls einheitlich auf die Verwendung von Unicode v4.x in der UTF-8-Codierung gesetzt werden.
 
 Als Beispiel wird hier die Datenbank Oracle 11g betrachtet.
-Oracle unterstützt ab Version 10g Release 2 Unicode v4.0. Oracle empfiehlt <<DGSG>>, neue Datenbanken als
-Unicode-Datenbanken anzulegen.
+Oracle unterstützt ab Version 10g Release 2 Unicode v4.0. Oracle empfiehlt <<DGSG>>, neue Datenbanken als Unicode-Datenbanken anzulegen.
 Hierzu muss beim CREATE DATABASE die folgende Eigenschaft gesetzt werden:
 
 `CHARACTER SET AL32UTF8`
@@ -124,8 +114,7 @@ gesetzt.
 
 Bis zur Java-Version 1.5 werden Property-Dateien grundsätzlich ISO 8859-1 codiert gelesen und geschrieben.
 Das ist unabhängig von den Einstellungen des Zeichensatzes in der JVM und im Betriebssystem.
-Das Tool native2ascii (Native-to-ASCII Converter,
-siehe http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/native2ascii.html) kann für die Umcodierung von Property-Dateien verwendet werden.
+Das Tool native2ascii (Native-to-ASCII Converter, siehe http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/native2ascii.html) kann für die Umcodierung von Property-Dateien verwendet werden.
 
 Bei XML-basierten Property-Dateien, können auch andere Zeichencodierungen verwendet werden.
 
@@ -203,30 +192,25 @@ Damit dürfen auch keine HTML-Sonderzeichen mehr verwendet werden, sondern nur n
 [[transformation-von-sonderzeichen]]
 = Transformation von Sonderzeichen
 
-In den Fällen, wo kein Unicode-Zeichensatz verwendet werden kann, müssen Sonderzeichen eventuell in andere
-Darstellungen oder Codierungen umgewandelt werden.
+In den Fällen, wo kein Unicode-Zeichensatz verwendet werden kann, müssen Sonderzeichen eventuell in andere Darstellungen oder Codierungen umgewandelt werden.
 Hierzu gibt es prinzipiell drei Möglichkeiten: die Transkription, die Umcodierung und das Filtern von Zeichen.
 In diesem Kapitel werden diese drei Möglichkeiten in je einem Unterkapitel beschrieben.
 
 [[transkription]]
 == Transkription
 
-Transkription (Umschreibung) ist eine aussprachebasierte Darstellung eines fremden Alphabetes mit dem eigenen Alphabet,
-also z.B. die Darstellung russischer Namen in kyrillischer Schreibweise mit dem deutschen Alphabet.
-Transkription wird eingesetzt, um ohne Kenntnisse einer fremdem Sprache und des zugehörigen Alphabets eine halbwegs
-richtige Aussprache von Wörtern zu ermöglichen.
+Transkription (Umschreibung) ist eine aussprachebasierte Darstellung eines fremden Alphabetes mit dem eigenen Alphabet, also z.B. die Darstellung russischer Namen in kyrillischer Schreibweise mit dem deutschen Alphabet.
+Transkription wird eingesetzt, um ohne Kenntnisse einer fremdem Sprache und des zugehörigen Alphabets eine halbwegs richtige Aussprache von Wörtern zu ermöglichen.
 Eine eindeutige Rückübertragung ist in der Regel nicht möglich.
 Im Folgenden werden die Festlegungen zur Transkription im Rahmen der IsyFact-Standards beschrieben.
 
 [[zeichensaetze-und-sprachen]]
 === Zeichensätze und Sprachen
 
-Wie in Kapitel <<festlegung-des-zeichensatzes-und-der-codierung>> festgelegt, wird für die IsyFact der Zeichensatz
-Unicode v4.x in der UTF-8-Codierung verwendet.
+Wie in Kapitel <<festlegung-des-zeichensatzes-und-der-codierung>> festgelegt, wird für die IsyFact der Zeichensatz Unicode v4.x in der UTF-8-Codierung verwendet.
 Die Transkription überführt die internationalen Sonderzeichen aus dem Unicode v4.x Zeichensatz in den ASCII-Zeichensatz.
 
-Im Rahmen der IsyFact werden zur Zeit von der Transkription nur kyrillische, griechische und lateinische Zeichen
- unterstützt, da hiermit die im europäischen Raum gebräuchlichen Zeichen abgedeckt sind.
+Im Rahmen der IsyFact werden zur Zeit von der Transkription nur kyrillische, griechische und lateinische Zeichen  unterstützt, da hiermit die im europäischen Raum gebräuchlichen Zeichen abgedeckt sind.
 
 [[anwendungsbereiche-in-einer-isyfact-systemlandschaft]]
 === Anwendungsbereiche in einer IsyFact-Systemlandschaft
@@ -234,7 +218,7 @@ Im Rahmen der IsyFact werden zur Zeit von der Transkription nur kyrillische, gri
 Transkription ist an den folgenden Stellen von Bedeutung:
 
 *Datenaustausch mit anderen Systemen*::
-Für nach IsyFact-Standards entwickelte Anwendungen ist der zu verwendende Zeichensatz festgelegt.
+Für nach <<glossar-IFS,IsyFact Standards>> entwickelte Anwendungen ist der zu verwendende Zeichensatz festgelegt.
 Andere Systeme, mit denen diese kommunizieren, können aber einen anderen Zeichensatz verwenden.
 Hier müssen die Daten zunächst in den Zeichensatz des Zielsystems umgewandelt werden.
 Die Umwandlung kann durch Transkription geschehen.
@@ -246,8 +230,7 @@ Daten einer Anwendung nach IsyFact-Standards werden zunächst umgeschrieben und 
 Für Namen können verschiedene ländertypische Schreibweisen genutzt werden.
 Trotzdem sollen Daten aber vergleichbar sein.
 Hier kann die Transkription zu einer einheitlichen (normierten) Schreibweise führen.
-Werden dann Suchen auf den umgeschriebenen Daten durchgeführt, erhöht sich die Wahrscheinlichkeit, dass der
-Gesuchte in der Trefferliste ist.
+Werden dann Suchen auf den umgeschriebenen Daten durchgeführt, erhöht sich die Wahrscheinlichkeit, dass der Gesuchte in der Trefferliste ist.
 Dadurch verbessert sich aber nicht unbedingt die Trefferqualität.
  +
 [underline]#Beispiel:# „Müller“ wird im Originalschreibweise gespeichert und für die Suche zu „Mueller“ umgeschrieben.
@@ -259,14 +242,11 @@ Transkription wird in der Regel nur für Namen verwendet, also für Vornamen, Na
 [[transkriptionsregeln]]
 === Transkriptionsregeln
 
-Die Transkription basiert auf dem ICAO-Standard (ICAO-MRTD). Der ICAO-Standard wurde ursprünglich für das
-automatische Lesen von Dokumenten in der Luftfahrt entwickelt.
+Die Transkription basiert auf dem ICAO-Standard (ICAO-MRTD). Der ICAO-Standard wurde ursprünglich für das automatische Lesen von Dokumenten in der Luftfahrt entwickelt.
 Er umfasst 142 Abbildungsvorschriften (Regeln) für lateinische und kyrillische Buchstaben.
 Für die Abbildung von griechischen Zeichen wird der Standard ISO-843 verwendet.
 
-Während der ISO-Standard (ISO-9) für die Transkription von kyrillischen Zeichen noch diakritische lateinische
-Zeichen verwendet, ist bei ICAO-MRTD das Ziel, diakritische Zeichen vollständig zu vermeiden, um eine Abbildung
-auf den ASCII-Zeichensatz zu ermöglichen.
+Während der ISO-Standard (ISO-9) für die Transkription von kyrillischen Zeichen noch diakritische lateinische Zeichen verwendet, ist bei ICAO-MRTD das Ziel, diakritische Zeichen vollständig zu vermeiden, um eine Abbildung auf den ASCII-Zeichensatz zu ermöglichen.
 Eine bereits umgeschriebene Zeichenfolge wird durch eine erneute Transkription nicht mehr verändert.
 
 Die Tabelle für die Abbildungsregeln ist im Dokument <<Transskriptionsregeln>> enthalten.
@@ -295,25 +275,20 @@ Die Attribute für den Datentyp „TransText“ haben die folgende Bedeutung:
 |`original` |nein |Originaltext im Unicode-Zeichenformat
 |`sprache` |ja |Sprachcode gemäß ISO 639 für die Sprache des Originaltextes
 |`transkription` |nein |umgeschriebener Text
-|`methode` |nein |Kennzeichen für den bei der Transkription verwendeten Satz von Transkriptionsregeln, also der
-Methode nach der die Transkription durchgeführt wurde.
+|`methode` |nein |Kennzeichen für den bei der Transkription verwendeten Satz von Transkriptionsregeln, also der Methode nach der die Transkription durchgeführt wurde.
 Verschiedene Versionen der gleichen Transkriptionsregeln können durch eigene Kennzeichen abgebildet werden.
 |====
 
 
-Die Transkription soll nicht als zentraler Dienst sondern als Komponente umgesetzt werden, die bei Bedarf in die
-Anwendungen eingebunden wird.
-Dabei sind die Transkriptionsregeln in einer oder mehreren Konfigurationsdateien hinterlegt, die von der Komponente
-eingelesen werden.
+Die Transkription soll nicht als zentraler Dienst sondern als Komponente umgesetzt werden, die bei Bedarf in die Anwendungen eingebunden wird.
+Dabei sind die Transkriptionsregeln in einer oder mehreren Konfigurationsdateien hinterlegt, die von der Komponente eingelesen werden.
 Darüber wird auch eine einfache Erweiterbarkeit der Transkriptionsregeln gewährleistet.
-Es ist möglich, mehrere Sätze von Transkriptionsregeln zu hinterlegen, um so auch andere Standards für die Transkription
-verwenden zu können.
+Es ist möglich, mehrere Sätze von Transkriptionsregeln zu hinterlegen, um so auch andere Standards für die Transkription verwenden zu können.
 
 :desc-image-002: Komponente Transkription
 [id="image-002",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-002}
 image::sonderzeichen_002.png[pdfwidth=50%,width=50%,align="center"]
-
 
 Die Komponente Transkription bietet nach außen nur die Methode
 
@@ -322,66 +297,53 @@ Die Komponente Transkription bietet nach außen nur die Methode
 TransText umschreiben(String text, String sprache, String methode)
 ----
 
-an. Hier ist der Parameter `text` der umzuschreibende Text, `sprache` der Sprachcode gemäß ISO 639 und `methode` das
-Kennzeichen des zu verwendenden Satzes von Transkriptionsregeln.
+an.
+Hier ist der Parameter `text` der umzuschreibende Text, `sprache` der Sprachcode gemäß ISO 639 und `methode` das Kennzeichen des zu verwendenden Satzes von Transkriptionsregeln.
 Ergebnis ist die umgeschriebene Darstellung des Textes gemäß dem Datentyp `TransText`.
 Im Fehlerfall werden entsprechende Exceptions geworfen.
 Die Angabe der Sprache ist optional.
-Ist die Sprache unbekannt, d.h. es wird kein Sprachcode übergeben, dann wird die Sprache bei der Transkription nicht
-berücksichtigt.
+Ist die Sprache unbekannt, d.h. es wird kein Sprachcode übergeben, dann wird die Sprache bei der Transkription nicht berücksichtigt.
 
 [[umcodierung]]
 == Umcodierung
 
-Textdaten, die von der Anwendung aus einer Datei eingelesen werden oder über eine Programm-Schnittstelle übergeben
-werden, können eventuell nicht in UTF-8 codiert sein.
+Textdaten, die von der Anwendung aus einer Datei eingelesen werden oder über eine Programm-Schnittstelle übergeben werden, können eventuell nicht in UTF-8 codiert sein.
 
 Textdateien werden in der Standard-Zeichencodierung der JVM eingelesen und gespeichert (siehe auch Kapitel <<java>>).
 Sollte eine andere Zeichencodierung verwendet werden, so muss dies explizit im Code umgesetzt werden.
 
-Das kann z.B. erfolgen, indem die Dateien mit einem `InputStreamReader` gelesen werden bzw.
-mit einem `OutputStreamWriter` geschrieben werden.
+Das kann z.B. erfolgen, indem die Dateien mit einem `InputStreamReader` gelesen werden bzw. mit einem `OutputStreamWriter` geschrieben werden.
 In beiden Klassen kann im Konstruktor der Zeichensatz angegeben werden.
-Beim Lesen werden die Daten dann automatisch decodiert bzw.
-beim Schreiben codiert.
+Beim Lesen werden die Daten dann automatisch decodiert bzw. beim Schreiben codiert.
 
-Dieses Verfahren kann für beliebige Byte-Arrays verwendet werden, so dass auch Daten, die über eine Programm-Schnittstelle
-übergeben werden, so umcodiert werden können.
+Dieses Verfahren kann für beliebige Byte-Arrays verwendet werden, so dass auch Daten, die über eine Programm-Schnittstelle übergeben werden, so umcodiert werden können.
 
 [[filtern-von-zeichen]]
 == Filtern von Zeichen
 
 Neben den druckbaren Zeichen enthält der Unicode-Zeichensatz auch nicht druckbare Steuerzeichen (Ugs. „Schmierzeichen“).
-Diese Zeichen können an der Oberfläche bei der Übernahme aus anderen Programmen über die Zwischenablage oder beim
-Import von Daten in eine IsyFact-konforme Anwendung gelangen.
+Diese Zeichen können an der Oberfläche bei der Übernahme aus anderen Programmen über die Zwischenablage oder beim Import von Daten in eine IsyFact-konforme Anwendung gelangen.
 Diese Zeichen sind prinzipiell bei der Validierung der Daten auszufiltern.
-Ob der Benutzer von diesem Vorgang informiert wird oder ob Log-Einträge geschrieben werden, hängt von der
-Fachlichkeit der jeweiligen Anwendung ab.
+Ob der Benutzer von diesem Vorgang informiert wird oder ob Log-Einträge geschrieben werden, hängt von der Fachlichkeit der jeweiligen Anwendung ab.
 Je nach Anwendung kann es auch sinnvoll sein, einige Steuerzeichen, wie z.B. einen Zeilenumbruch, zuzulassen.
-Diese von der Anwendung abhängigen Festlegungen müssen in der Spezifikation bzw.
-im Systementwurf der jeweiligen Anwendung beschrieben werden.
+Diese von der Anwendung abhängigen Festlegungen müssen in der Spezifikation bzw. im Systementwurf der jeweiligen Anwendung beschrieben werden.
 
 [[spezifikation-von-fachlichen-datentypen]]
 == Spezifikation von fachlichen Datentypen
 
-Bereits in der Spezifikation ist darauf zu achten, dass für einen fachlichen Datentyp die zulässigen Zeichen
-genau angegeben werden.
+Bereits in der Spezifikation ist darauf zu achten, dass für einen fachlichen Datentyp die zulässigen Zeichen genau angegeben werden.
 Nur so können die entsprechenden Validierungen konzipiert und umgesetzt werden.
-Hier ist der Datentyp String bzw.
-Alpha in der Regel zu grob.
-Hier müssen abgestufte Typen für Textinhalte definiert werden, z.B. Alpha-Latein-Basis (alle großen und kleinen
-lateinischen Buchstaben ohne diakritische Zeichen), Alpha-Latein-Diakrit (alle großen und kleinen lateinischen Buchstaben inklusiv diakritische Zeichen), Alpha-Europa (alle großen und kleinen lateinischen, griechischen und kyrillischen Zeichen, inklusiv diakritischer Zeichen).
+Hier ist der Datentyp String bzw. Alpha in der Regel zu grob.
+Hier müssen abgestufte Typen für Textinhalte definiert werden, z.B. Alpha-Latein-Basis (alle großen und kleinen lateinischen Buchstaben ohne diakritische Zeichen), Alpha-Latein-Diakrit (alle großen und kleinen lateinischen Buchstaben inklusiv diakritische Zeichen), Alpha-Europa (alle großen und kleinen lateinischen, griechischen und kyrillischen Zeichen, inklusiv diakritischer Zeichen).
 
 [[bibliothek-isy-sonderzeichen]]
 = Bibliothek „isy-sonderzeichen“
 
 Dieses Kapitel beschreibt die Verwendung des Bausteins `isy-sonderzeichen`.
 
-Der Baustein `isy-sonderzeichen` ist eine Querschnittskomponente, die anderen Anwendungen Services zur
-Transformation von Zeichenketten zur Verfügung stellt.
+Der Baustein `isy-sonderzeichen` ist eine Querschnittskomponente, die anderen Anwendungen Services zur Transformation von Zeichenketten zur Verfügung stellt.
 
-Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche
-Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
+Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
 
 [[funktionsweise]]
 == Funktionsweise
@@ -399,8 +361,8 @@ Darüber hinaus werden folgende Transformatoren mitgeliefert:
 
 *Identischer Transformator*
 
-Dieser Transformator bildet alle gültigen String.Latin-Zeichen auf sich selber ab (Spalte C, Tabelle  <<SLMapping>>). Der
-Nutzen dieses Transformators liegt darin, dass alle nicht String.Latin-Zeichen aus der übergebenen Zeichenkette entfernt werden.
+Dieser Transformator bildet alle gültigen String.Latin-Zeichen auf sich selber ab (Spalte C, Tabelle  <<SLMapping>>).
+Der Nutzen dieses Transformators liegt darin, dass alle nicht String.Latin-Zeichen aus der übergebenen Zeichenkette entfernt werden.
 Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
 
 [[einbindung-der-bibliothek-in-eine-anwendung]]
@@ -442,11 +404,9 @@ Die Transformator-Factory und ein konkreter Transformator werden über Spring in
 ----
 
 In obigem Beispiel wird dabei der Transformator _IdentischerTransformator_ geladen.
-Jeder der Transformatoren setzt bereits eine fest implementierte Transformationstabelle nach einem bestimmten
-Vorgehen um (siehe <<funktionsweise>>).
+Jeder der Transformatoren setzt bereits eine fest implementierte Transformationstabelle nach einem bestimmten Vorgehen um (siehe <<funktionsweise>>).
 
-Bei der Konfiguration der _TransformatorFactory_ kann die zusätzliche (optionale)
-Eigenschaft _transformationsTabelle_ dazu genutzt werden, eine weitere Transformationstabelle anzugeben.
+Bei der Konfiguration der _TransformatorFactory_ kann die zusätzliche (optionale) Eigenschaft _transformationsTabelle_ dazu genutzt werden, eine weitere Transformationstabelle anzugeben.
 Die Regeln in dieser Tabelle überschreiben dabei existierende alte Regeln.
 Es findet also eine Ergänzung der existierenden Regeln statt.
 
@@ -481,8 +441,7 @@ a|
 
 Transformiert eine Zeichenkette analog der zuvor beschriebenen `transformiere`-Funktion.
 Stellt zusätzlich sicher, dass die Zeichenkette nach der Operation die angegebene Länge hat.
-Es wird dabei nicht unterschieden, ob die ursprüngliche Zeichenkettenlänge bereits das Maximum überschritten hat
-oder erst durch eine Transformation die Zeichenkette verlängert wurde.
+Es wird dabei nicht unterschieden, ob die ursprüngliche Zeichenkettenlänge bereits das Maximum überschritten hat oder erst durch eine Transformation die Zeichenkette verlängert wurde.
 
  a|
 `String zeichenkette`
@@ -507,8 +466,7 @@ Die zu transformierende Zeichenkette
 a|
 `getRegulaererAusdruck`
 
-Gibt den regulären Ausdruck zurück, der alle gültige Zeichenketten beschreibt, deren Zeichen in der jeweiligen
-Zeichenkategorie aufgeführt sind.
+Gibt den regulären Ausdruck zurück, der alle gültige Zeichenketten beschreibt, deren Zeichen in der jeweiligen Zeichenkategorie aufgeführt sind.
 
  a|
 `String[] kategorieListe`
@@ -533,14 +491,10 @@ Eine Zeichenkategorie aus `LETTER, NUMBER, PUNCTUATION, SEPARATOR, SYMBOL, OTHER
 [underline]*Hinweis zur Funktion* [underline]`transformiere`
 
 Die Transformationsfunktion arbeitet die Zeichenkette char für char ab.
-Sollte ein Unicode-Character, welcher aus mehreren char Objekten besteht definiert sein (non-BMP
-character, z.B. I mit angehängtem Circumflex (\\u006C\\u0302), so liefert die Transformationsfunktion
-das korrekte Ergebnis, kann aber nicht zwischen String.Latin- und Nicht-String.Latin-Zeichen unterscheiden.
-So könnten Zeichen außerhalb des Definitionsbereichs (z.B. alle \\u\####\\u0302) der Transformation
-transformiert werden.
+Sollte ein Unicode-Character, welcher aus mehreren char Objekten besteht definiert sein (non-BMP character, z.B. I mit angehängtem Circumflex (\\u006C\\u0302), so liefert die Transformationsfunktion das korrekte Ergebnis, kann aber nicht zwischen String.Latin- und Nicht-String.Latin-Zeichen unterscheiden.
+So könnten Zeichen außerhalb des Definitionsbereichs (z.B. alle \\u\####\\u0302) der Transformation transformiert werden.
 
-Zur Überprüfung ob eine Zeichenkette innerhalb des für den Transformator gültigen Bereichs liegt,
-sollte daher die Funktion `getRegulaererAusdruck(String[])` benutzt werden um einen regulären Ausdruck für alle gültigen Zeichen zu erstellen.
+Zur Überprüfung ob eine Zeichenkette innerhalb des für den Transformator gültigen Bereichs liegt, sollte daher die Funktion `getRegulaererAusdruck(String[])` benutzt werden um einen regulären Ausdruck für alle gültigen Zeichen zu erstellen.
 
 [[zulaessige-zeichen-innerhalb-der-isyfact]]
 = Zulässige Zeichen innerhalb der IsyFact
@@ -550,8 +504,7 @@ Die Standardzeichen müssen von jeder Anwendung immer unterstützt werden.
 Die zusätzlichen Zeichen müssen nur unterstützt werden, wenn dies entsprechend vereinbart wurde.
 Die Festlegungen für die zulässigen Zeichen orientieren sich an den Festlegungen, die für das Meldewesen getroffen wurden.
 
-Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (Siehe Kapitel
-<<festlegung-des-zeichensatzes-und-der-codierung>>)
+Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (Siehe Kapitel <festlegung-des-zeichensatzes-und-der-codierung>>)
 
 [[standardzeichen]]
 == Standardzeichen
@@ -565,8 +518,7 @@ Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (Siehe
 == Zusätzliche Zeichen
 
 In <<table-zusaetzliche-zeichen>> sind die Zeichen dargestellt, die zusätzlich unterstützt werden.
-Damit die Zeichen in der Spalte „Glyph“ korrekt dargestellt werden, muss ein Font installiert sein, der alle Zeichen
-unterstützt. (z.B. Code2000, erhältlich unter http://www.code2000.net).
+Damit die Zeichen in der Spalte „Glyph“ korrekt dargestellt werden, muss ein Font installiert sein, der alle Zeichen unterstützt. (z.B. Code2000, erhältlich unter http://www.code2000.net).
 
 :desc-table-zusaetzliche-zeichen: Zusätzliche Zeichen
 [id="table-zusaetzliche-zeichen",reftext="{table-caption} {counter:tables}"]

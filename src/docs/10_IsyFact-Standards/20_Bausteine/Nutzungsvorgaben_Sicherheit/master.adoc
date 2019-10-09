@@ -32,6 +32,8 @@ include::inhalt.adoc[tags=inhalt]
 // Anhänge
 include::anhaenge.adoc[tags=inhalt]
 
+// Glossar
+include::glossary.adoc[]
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
@@ -40,5 +42,3 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
-// Glossar
-include::glossary.adoc[]
