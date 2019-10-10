@@ -211,6 +211,13 @@ Die folgenden Konfigurationsschlüssel werden von `isy-task` eingelesen und verw
 
 [[allgemeine-konfiguration]]
 == Allgemeine Konfiguration
+Ob der TaskScheduler automatisch beim Anwendungsstart gestartet werden soll.
+(Standardwert `false`; setze auf `true` für Autostart)
+
+[source,properties]
+----
+isy.task.autostart
+----
 
 Die Anzahl der Threads, die im Thread-Pool initial angelegt werden:
 
@@ -258,7 +265,7 @@ Der Host, wenn kein Task-spezifischer Host konfiguriert wird:
 
 [source]
 ----
-isyfact.task.standard.host
+isy.task.default.host
 ----
 
 [[aufgabenspezifische-konfiguration]]
