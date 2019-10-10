@@ -1,4 +1,5 @@
 # 2.1.0
+- `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
 - `IFS-363`: Maven Central in Tutorial integrieren
 
 # 2.0.0

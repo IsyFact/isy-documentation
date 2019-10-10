@@ -108,15 +108,26 @@ public HalloWeltTask halloWeltTask() {
 }
 ----
 
-In der Fachanwendung wird der `TaskScheduler` über Spring injiziert.
-Anschließend kann der `TaskScheduler` über die Methode `starteKonfigurierteTasks()` gestartet werden.
+Damit die konfigurierten Tasks automatisch beim Start der Anwendung ausgeführt werden, bzw. der `TaskScheduler` gestartet wird, kann in `application.properties` der Autostart aktiviert werden:
+[source,properties]
+----
+isy.task.autostart=true
+----
+
+Dadurch wird der `TaskScheduler` beim Anwendungsstart gestartet.
+Dieser führt alle konfigurierten Tasks, deren konfigurierter Ausführungszeitpunkt überschritten ist, direkt aus.
+In der Zukunft liegende oder wiederholende Tasks werden auch dem Scheduler bekannt gemacht, sodass dieser sie zum entsprechenden Zeitpunkt ausführt.
+Zudem wird mit der Einstellung der `TaskScheduler` beim Beenden der Anwendung automatisch heruntergefahren.
+
+Wird kein Autostart konfiguriert, kann alternativ der `TaskScheduler` über die Methode `starteKonfigurierteTasks()` manuell gestartet werden.
 
 [source, java]
 ----
 taskScheduler.starteKonfigurierteTasks();
 ----
 
-Wenn die Fachanwendung herunterfährt, wird die Methode `shutdownMitTimeout()` aufgerufen, um die Tasks ordentlich zu beenden.
+In diesem Fall muss der `TaskManager` auch manuell gestoppt werden, wenn die Fachanwendung herunterfährt.
+Hierfür wird die Methode `shutdownMitTimeout()` aufgerufen, um die Tasks ordentlich zu beenden.
 
 [source, java]
 ----
