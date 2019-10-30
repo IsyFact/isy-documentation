@@ -19,10 +19,12 @@ Eine AsciiDoc-Datei ist nicht binär, sondern besteht aus Klartext, ganz ohne pr
 Einer der Vorteile der AsciiDoc-Syntax ist die leichte Erlernbarkeit, denn AsciiDoc benötigt denkbar wenige Markups.
 AsciiDoc lässt sich zudem problemlos in moderne Versionsverwaltungssysteme integrieren, so dass alle Vorteile solcher Systeme wie z.B. paralleles Arbeiten in Branches, Pull/Merge Requests oder Continuous Integration nun auch auf Dokumente anwendbar sind.
 
-Atom::
+VS Code (Visual Studio Code)::
 
-Für die Dokumentation der IsyFact wird Atom als Editor empfohlen.
-Atom ist ein Open-Source-Texteditor, der von Github entwickelt wird. Neben den ausgereiften Plugins für die Bearbeitung von AsciiDoc-Dokumenten unterstützt Atom Git-basierte Projekte von Haus aus mit vielfältigen Funktionen.
+Zum Erstellen und Bearbeiten von AsciiDoc-Dateien wird ein Texteditor benötigt.
+Für die Dokumentation der IsyFact wird VS Code als Editor empfohlen.
+VS Code ist ein Texteditor, der von Microsoft entwickelt wird und plattformübergreifend für die Betriebssysteme Windows, macOS und Linux verfügbar ist.
+Neben den ausgereiften Plugins für die Bearbeitung von AsciiDoc-Dokumenten unterstützt VS Code Git-basierte Projekte von Haus aus mit vielfältigen Funktionen.
 
 Ausgabeformate HTML und PDF::
 
@@ -40,4 +42,5 @@ Das Handbuch ist in folgende Bereiche untergliedert:
 
 - Die Arbeitsumgebung einrichten
 - Ein neues Dokument anlegen
-- Ein existierendes Dokument bearbeiten
+- Ein Dokument bearbeiten
+- Ein Dokument als HTML- und PDF-Datei erzeugen

@@ -25,15 +25,77 @@ Denn mit dieser Option ändert Git die heruntergeladenen Zeilenumbrüche zur Win
 Beim Hochladen wird hingegen zur Unix-Variante zurückgewandelt.
 Sollten Sie lokal mit Windows arbeiten, selektieren Sie also die erste Option.
 
-[[atom-installieren]]
-== Atom installieren
+[[vsc-installieren]]
+== VS Code installieren
 
-Die Installationsdatei von Atom kann von https://atom.io heruntergeladen werden.
+Die Installationsdatei von VS Code kann von https://code.visualstudio.com/ heruntergeladen werden.
+Alternativ kann auch ein anderer Texteditor verwendet werden, der AsciiDoc unterstützt, wie z.B. Atom (https://atom.io/) oder IntelliJ (https://www.jetbrains.com/idea/).
 
-:desc-image-atom0: Webseite des Texteditors Atom
-[id="image-atom0",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom0}
-image::atom0.png[align="center",pdfwidth=80%,width=80%]
+Im Folgenden wird die Installation, Konfiguration und Nutzung von VS Code beschrieben.
+
+:desc-image-vs_code: Webseite des Texteditors VS Code
+[id="image-vs_code",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code}
+image::vs_code.png[align="center",pdfwidth=80%,width=80%]
+
+Nach der Installation wird noch ein Plugin benötigt, um AsciiDoc-Dateien in Echtzeit im Texteditor zu rendern und eine Vorschau zu erzeugen.
+Dazu VS Code starten und links am Rand des Editor auf den Menüpunkt für `Extensions` klicken (siehe  <<image-vs_code_plugin_suche>>).
+Alternativ kann auch die Tastenkombination kbd:[Strg+Shift+X] gedrückt werden.
+Anschließend in das Suchfeld "AsciiDoc" eingeben, um passende AsciiDoc-Plugins anzeigen zu lassen.
+
+:desc-image-vs_code_plugin_suche: Auswahl des AsciiDoc-Plugins
+[id="image-vs_code_plugin_suche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_plugin_suche}
+image::vs_code_plugin1.png[align="center",pdfwidth=80%,width=80%]
+
+Die Suche wird automatisch gestartet und listet zahlreiche AsciiDoc-Plugins auf.
+Wir nutzen das Plugin `AsciiDoc` von João Pinto, da dies den größten Funktionsumfang bietet.
+Für die Installation das Plugin in der Ergebnisliste auswählen und in der sich öffnenden Plugin-Beschreibung auf den Button `install` klicken (siehe <<image-vs_code_plugin_installation>>).
+Das Plugin wird nun installiert.
+
+:desc-image-vs_code_plugin_installation: Installation des AsciiDoc-Plugins
+[id="image-vs_code_plugin_installation",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_plugin_installation}
+image::vs_code_plugin2.png[align="center",pdfwidth=80%,width=80%]
+
+Nach der Installation wieder in den Explorer-Modus (siehe <<image-vs_code_plugin_explorer>>) wechseln.
+
+:desc-image-vs_code_plugin_explorer: Wechsel in den Explorer-Modus
+[id="image-vs_code_plugin_explorer",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_plugin_explorer}
+image::vs_code_plugin3.png[align="center",pdfwidth=80%,width=80%]
+
+In <<vsc-einsetzen>> wird die Nutzung von VS Code erläutert.
+
+[[maven-installieren]]
+== Maven installieren
+
+Zum Erzeugen der PDF- und HTML-Dokumente wird Apache Maven benötigt.
+Apache Maven kann unter https://maven.apache.org/download.cgi heruntergeladen werden.
+Das heruntergeladene Archiv muss in ein beliebiges Verzeichnis entpackt werden.
+Anschließend gilt es noch die Pfad-Variable zu setzen:
+
+*Windows*
+
+Dazu in das Suchfeld im Startmenü `Systemumgebungsvariablen` eingeben und den Treffer `Systemumgebungsvariablen auswählen`.
+Anschließend im sich öffnenden Fenster unten rechts auf `Umgebungsvariablen` klicken.
+Es öffnet sich ein neues Fenster.
+Unter `Benutzervariablen für [nutzer]` den Eintrag `PATH` auswählen und auf den Button `Bearbeiten` klicken.
+Im sich öffnenden Fenster einen neuen Eintrag anlegen und den Pfad zum entpackten Maven Verzeichnis inkl `bin` angeben.
+Beispiel: `C:\maven\bin`
+
+Den Computer neustarten.
+Anschließend in einer Konsole den Befehl `mvn -v` eingeben. Nun sollte die installierte Maven-Version angegeben werden.
+
+
+*Linux*
+
+In der Konsole den Pfad mit folgendem Befehl setzen:
+ [source,java]
+----
+export PATH=/opt/apache-maven-3.6.2/bin:$PATH+
+----
+`/opt/apache-maven-3.6.2/bin` gibt den lokalen Pfad zum entpackten Maven-Verzeichnis an.
 
 [[ein-neues-dokument-anlegen]]
 = Ein neues Dokument anlegen
@@ -132,33 +194,53 @@ Das Dokument `preface.adoc` wird derzeitig noch nicht verwendet.
 thisdoc.adoc::
 `thisdoc.adoc` enthält das einleitende Kapitel des IsyFact-Dokuments, das den Inhalt zusammenfasst sowie den Aufbau und Zweck des Dokuments erläutert.
 
-[[atom-einsetzen]]
-=== Atom einsetzen
+[[vsc-einsetzen]]
+== VS Code einsetzen
 
-Für die Bearbeitung der Dokument-Vorlagen öffnen Sie Atom über das Startmenü.
-Innerhalb von Atom drücken Sie auf kbd:[Strg + Shift + O] oder öffnen im Hauptmenü menu:File[Open Folder].
-Hierdurch öffnen Sie den Ordner Ihres IsyFact-Dokuments als Atom-Projekt.
+Für die Bearbeitung der Dokument-Vorlagen öffnen Sie VS Code über das Startmenü.
+Innerhalb von VS Code öffnen Sie im Hauptmenü unter menu:File[Open Folder] das neu erstellte oder ein bestehendes Verzeichnis.
+Hierdurch öffnen Sie den Ordner Ihres IsyFact-Dokuments als VS Code Projekt.
 
-:desc-image-atom1: Den Ordner des IsyFact-Dokuments öffnen
-[id="image-atom1",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom1}
-image::atom1.png[align="center"]
+:desc-image-vs_code_projekt_oeffnen: Den Ordner des IsyFact-Dokuments öffnen
+[id="image-vs_code_projekt_oeffnen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_projekt_oeffnen}
+image::vs_code_projekt_oeffnen.png[align="center"]
 
-Selektieren die das Verzeichnis Ihres IsyFact-Dokuments und klicken Sie auf _Ordner auswählen_.
-Dann sollte auf der linken Seite die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments erscheinen.
+Auf der linken Seite erscheint die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments.
 
-:desc-image-atom2: Die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments
-[id="image-atom2",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom2}
-image::atom2.png[align="center"]
+:desc-image-vs_code_projektstruktur: Die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments
+[id="image-vs_code_projektstruktur",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_projektstruktur}
+image::vs_code_projektstruktur.png[align="center"]
 
 Sie können sich nun bereits die Dokument-Vorlage in der Vorschau ansehen.
 Hierfür öffnen Sie zunächst die zentrale Datei `master.adoc`.
-Dann drücken Sie entweder kbd:[Strg + Shift + A] oder Sie öffnen im Hauptmenü den Eintrag menu:Packages[AsciiDoc Preview > Toggle Preview].
+Dann drücken Sie entweder kbd:[Strg + K] und anschließend kbd:[V] oder Sie klicken im oberen rechten Ecke des Editors auf das Symbol mit der blauen Lupe.
+
+
+:desc-image-vs_code_vorschau1: Die geöffnete AsciiDoc-Datei mit Button zur Vorschau
+[id="image-vs_code_vorschau1",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_vorschau1}
+image::vs_code_vorschau1.png[align="center"]
+
 Dabei sollte auf der rechten Seite die Vorschau erscheinen.
 
+:desc-image-vs_code_vorschau2: Gerenderte Vorschau der Asciidoc-Datei
+[id="image-vs_code_vorschau2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_vorschau2}
+image::vs_code_vorschau2.png[align="center"]
+
+Die Vorschau dient lediglich zu einer groben Orientierung, da weder die Isyfact-Stylesheets für die Dokumente genutzt werden, noch die Skripte zur Erzeugung von Glossar, Inhaltsverzeichnis und Verlinkungen ausgeführt werden.
+Ein vollständige gerenderte Ansicht wird erst durch den Maven-Build Vorgang erzeugt.
+Dies ist später in diesem Dokument unter <<asccidoc-zu-pdf-html>> erläutert.
+
+Im Folgenden wird mit dem Bearbeiten der Dokumentbestandteile fortgefahren.
+
+[[vorlagedateien-bearbeiten]]
+== Dateien der Vorlage bearbeiten
+
 [[master.adoc-bearbeiten]]
-== master.adoc bearbeiten
+=== master.adoc bearbeiten
 
 Die erste Datei, die Sie bearbeiten müssen ist die Datei `master.adoc`.
 // todo: kein bearb-Datum und Revisionsnummer mehr.
@@ -192,37 +274,43 @@ Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Ve
 
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
 
+Bezieht sich das zu erstellende Dokument auf einen Baustein (Bibliothek) der IsyFact, so ist dieser Baustein inklusive der Version ebenfalls in der master.adoc anzugeben.
+In <<listing-master-bib>> wird beispielsweise auf den Baustein `isy-web` verwiesen.
+
+:desc-listing-master-bib: master.adoc - Angabe des zugehörigen Bausteins
+[id="listing-master-bib",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-master-bib}
+[source,asciidoc,indent=0]
+----
+// Einbindung Bibliotheken, wenn nicht genutzt, entfernen
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3",options="header"]
+|====
+|Name |Art |Version
+|isy-web |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
+----
+
 In der Vorschau sollten die Änderungen unmittelbar erscheinen. Ihre Änderungen speichern Sie über kbd:[Strg + S].
 
-[[docinfo.adoc-bearbeiten]]
-== docinfo.adoc bearbeiten
+[[thisdoc.adoc-bearbeiten]]
+=== thisdoc.adoc bearbeiten
 
-Als Nächstes muss die Datei `docinfo.adoc` bearbeitet werden.
-Diese Datei wurde als Vorlage für Dokumenteninformationen zur Verfügung gestellt.
-Derzeitig wird in der `docinfo.adoc` aber lediglich die Dokument-ID gesetzt.
-Öffnen Sie die Datei durch einen Mausklick links in der Projektansicht.
-Die Dokument-Vorlage `docinfo.adoc` hat folgenden Inhalt:
+Die Datei `thisdoc.adoc` ist optional auszufüllen und sollte eine Einleitung in das Dokument bieten und den Aufbau und Zweck des Dokuments erläutern.
+Diese Datei ist in der `master.adoc` integriert und wird beim Rendern in das Gesamtdokument eingefügt.
 
-:desc-listing-docinfo: docinfo.adoc
-[id="listing-docinfo",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-docinfo}
-[source,asciidoc]
-----
-**Dokumentinformationen**
-|====
-|Dokumenten-ID:|  Bitte_hier_die_Dokument-ID_einfügen
-|====
-----
+[[inhalt.adoc-bearbeiten]]
+=== inhalt.adoc bearbeiten
 
-Ersetzen Sie den Text `Bitte_hier_die_Dokument-ID_einfügen` mit der Dokument-ID Ihres neuen Dokuments.
+In `inhalt.adoc` wird der eigentliche Inhalt des Dokuments verfasst.
+Diese Datei wird in der `master.adoc` beim Rendern nach der Datei `thisdoc.adoc` geladen.
 
-:desc-image-atom5: docinfo.adoc
-[id="image-atom5",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom5}
-image::atom5.png[align="center"]
+Im Folgenden wird die Inhaltserstellung erläutert.
 
-[[ein-existierendes-dokument-bearbeiten]]
-= Ein existierendes Dokument bearbeiten
+
+[[ein-dokument-bearbeiten]]
+= Ein Dokument bearbeiten
 
 Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder bereits bestehende Dokumente handelt.
 In beiden Fällen bearbeiten Sie in den meisten Fällen die Dateien `thisdoc.adoc`, `inhalt.adoc` und `anhaenge.adoc`.
@@ -748,3 +836,100 @@ Eine Referenz auf einen Begriff des Glossars erfolgt über doppelte spitze Klamm
 Das Ergebnis sieht wie folgt aus:
 
 `Hier wurde ein <<glossar-halloweltbeispiel, Hallo Welt Beispiel>> verwendet.`
+
+[[asccidoc-zu-pdf-html]]
+= PDF- und HTML-Dokumente erzeugen
+
+Ist das zu bearbeitende Dokument fertig gestellt, so kann es nun vollständig gerendert und in eine PDF- und HTML-Datei exportiert werden.
+Da die gesamte Dokumentation auf einem Maven-Projekt basiert, muss zum vollständigen Rendern ein Build des Projekts erstellt werden.
+
+[[dokument-pom-aufnehmen]]
+== Integration in den Build-Prozess
+
+Jedes Dokument, das während des Build-Prozesses gerendert werden soll, muss dafür in die `pom.xml` aufgenommen werden.
+Die `pom.xml` liegt im Root-Verzeichnis der isy-documentation und wird in VS Code im Explorer auf der linken Seite aufgelistet.
+
+:desc-image-pom_oeffnen: Ablageort der pom.xml
+[id="image-pom_oeffnen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-pom_oeffnen}
+image::pom_oeffnen.png[align="center"]
+
+Zum Bearbeiten wird die `pom.xml` mit einem Doppelklick geöffnet.
+Anschließend bis zum Element `<executions>` scrollen. Innerhalb von `<executions></executions>` werden die zu rendernden Dokumente definiert.
+Für jedes zu rendernde Dokumente müssen zwei `<execution>`-Elemente vorhanden werden.
+Das erste `<execution>`-Element definiert die Erzeugung der HTML-Datei.
+Das zweite `<execution>`-Element definiert die Erzeugung der PDF-Datei.
+
+In <<image-pom_editieren>> ist dies anhand des Einstiegsdokuments gezeigt.
+
+:desc-image-pom_editieren: Definition des zu rendernden Dokuments in der pom.xml
+[id="image-pom_editieren",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-pom_editieren}
+image::pom_editieren.png[align="center"]
+
+Der einfachste Weg ein weiteres Dokument in die `pom.xml`  aufzunehmen besteht darin, die Definition eines bestehenden Dokuments zu kopieren und anzupassen.
+Dies bedeutet im Genauen, dass beispielweise folgender Code-Abschnitt dupliziert wird:
+
+:desc-listing-pom: Zu kopierender Code-Auschnitt
+[id="listing-pom",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-pom}
+[source,xml,indent=0]
+----
+<execution>
+    <id>IsyFact-Einstieg-html</id>
+    <phase>generate-resources</phase>
+    <goals>
+        <goal>process-asciidoc</goal>
+    </goals>
+    <configuration>
+        <backend>html</backend>
+        <sourceDirectory>
+            src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg
+        </sourceDirectory>
+        <sourceDocumentName>master.adoc</sourceDocumentName>
+        <outputFile>
+            ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactEinstieg.html
+        </outputFile>
+    </configuration>
+</execution>
+<execution>
+    <id>IsyFact-Einstieg-pdf</id>
+    <phase>generate-resources</phase>
+    <goals>
+        <goal>process-asciidoc</goal>
+    </goals>
+    <configuration>
+        <backend>pdf</backend>
+        <sourceDirectory>
+            src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg
+        </sourceDirectory>
+        <sourceDocumentName>master.adoc</sourceDocumentName>
+        <outputFile>
+            ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg.pdf
+        </outputFile>
+    </configuration>
+</execution>
+----
+
+Nach dem Kopieren müssen folgende Parameter angepasst werden:
+
+:desc-table-beispiel: Anzupassende Parameter
+[{id-equals}"table-pom_parameter",reftext="Table 1"]
+.{desc-table-pom_parameter}
+[options="header"]
+|====
+|Parameter|Beschreibung|Beispiel
+|<id></id>| Eine eindeutige Kennung des Dokuments. Sollte Aufschluss über das Dokument und das Ausgabeformat geben.| `mein-dokument-pdf` oder `mein-dokument-html`
+|<sourceDirectory></sourceDirectory>| Definiert den Pfad zum Verzeichnis in dem die master.adoc Datei liegt,| `src/docs/10_IsyFact-Standards/00_Allgemein/Mein-Dokument`
+|<outputFile></outputFile>| Definiert Pfad und Dateinamen der Ausgabedatei. | `${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/Mein-Dokument.pdf`
+|====
+
+Anschließend kann der Build-Vorgang ausgeführt und die PDF- und HTML Dokumente erzeugt werden.
+
+[[dokument-rendern]]
+== Gerendertes Dokument erstellen
+
+Um den Build-Vorgang zu starten, wird in der Konsole in das Verzeichnis gewechselt, in dem auch die bearbeitete `pom.xml` liegt.
+Anschließend wird mit dem Befehl `mvn install` der Build-Vorgang gestartet.
+Aufgrund der Vielzahl der zu rendernden Dokumente und auszuführenden Skripte, kann der Build-Vorgang einige Zeit in Anspruch nehmen.
+Für Test-Zwecke können in der `pom.xml` nicht relevante Dokumente übersprungen werden, in dem die zugehörigen Ausführungsdefinitionen (`<execution></execution>`) auskommentiert werden.
