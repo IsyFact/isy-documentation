@@ -42,11 +42,6 @@ Bei Test-Versionen wird die Version noch um ein Label erweitert (*`<patch>[-<lab
 
 *Schritt 1: Einbindung des Maven-Plugin in ein Projekt*
 
-//Bei Nutzung der xxx wird das Maven-Plugin automatisch eingebunden und während des Buildvorgangs ausgeführt.
-//In diesem Fall kann direkt mit Schritt 2 fortgefahren werden.
-
-//Wird xxx nicht genutzt, so muss das Maven-Plugin zunächst in eine übergeordnete `pom.xml` wie folgt eingebunden werden:
-
 Das Maven-Plugin muss zunächst in eine übergeordnete `pom.xml` (parent-pom) wie folgt eingebunden werden:
 
 :desc-listing-maven-plugin: Einbindung des Maven-Plugins in ein Projekt.
@@ -92,7 +87,6 @@ Im Projekt selbst kann das Maven-Plugin konfiguriert werden. Dazu sind folgende 
 -----------------
 
 Über die Verwendung der Konfigurationsparamater `VersionValidatorEnabled` und `VersionValidatorRelease` kann das Maven-Plugin gesteuert werden.
-//Bei Nutzung der xxx sind bereits Standard-Werte (siehe Table 1 Spalte "Standard (xxx)) hinterlegt, die durch die Konfiguration im Projekt jedoch überschrieben werden können.
 
 :desc-table-konfiguration: Konfigurationsparemeter des Maven-Plugins
 [id="table-konfiguration",reftext="{table-caption} {counter:tables}"]

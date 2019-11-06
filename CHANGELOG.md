@@ -1,5 +1,6 @@
 # 2.1.0
 - `IFS-363`: Maven Central in Tutorial integrieren
+- `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
