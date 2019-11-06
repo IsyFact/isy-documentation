@@ -1,6 +1,7 @@
 # 2.1.0
 - `IFS-363`: Maven Central in Tutorial integrieren
 - `IFS-279`: Anleitung VS Code hinzugefügt und Ausführungsdefinitionen in der pom.xml erläutert
+- `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
