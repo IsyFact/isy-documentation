@@ -912,16 +912,17 @@ Ist das zu bearbeitende Dokument fertig gestellt, so kann es nun vollständig ge
 Damit die Dokumentation innerhalb des Build-Prozess gerendert wird, muss die Dokumentation in die `pom.xml` aufgenommen werden.
 
 Die geschieht in zwei Schritten.
-Sollte es sich um ein Dokument der zentralen Dokumentation handeln oder um ein Dokument, das eine bestehende Bausteindokumentation erweitert, so kann der erste Schritt <<>>  übersprungen werden.
+Sollte es sich um ein Dokument der zentralen Dokumentation handeln oder um ein Dokument, das eine bestehende Bausteindokumentation erweitert, so kann der erste Schritt <<asciidoc-in-pom-einbinden>>  übersprungen werden.
 
 [[asciidoc-in-pom-einbinden]]
 == Asciidoc in Pom integrieren
 
 Damit überhaupt während des Build-Prozesses Asciidoc-Dateien gerendert werden, muss das Asciidoc-Maven-Plugin in die `pom.xml` aufgenommen werden.
-Zudem sind noch weitere Anpassungen nötig.
-Im Folgenden sind mehrere Code-Snippets dargestellt, die in die `pom.xml` integriert werden müssen.
+Zudem sind noch weitere Anpassungen nötig, die in den nächsten Abschnitten beschrieben sind.
+Zunächst sind mehrere Code-Snippets dargestellt, die in die `pom.xml` integriert werden müssen.
 
 *Neue Properties*
+
 Folgende Properties sind dem Element `<properties></properties>` hinzuzufügen
 
 :desc-pom-properties: Hinzuzufügende Properties
@@ -936,6 +937,7 @@ Folgende Properties sind dem Element `<properties></properties>` hinzuzufügen
 ----
 
 *Integration Dokumentvorlagen*
+
 Damit die Dokumentvorlagen integriert werden, muss folgendes Plugin dem Element `<build><plugins>...</plugins></build>` hinzugefügt werden.
 
 :desc-pom-dokumentvorlagen: Integration Dokumentvorlagen
@@ -970,6 +972,7 @@ Damit die Dokumentvorlagen integriert werden, muss folgendes Plugin dem Element 
 ----
 
 *Integration der Skripte unter anderem zur Erstellung von Glossar und Literaturverzeichnis*
+
 Folgendes Plugin muss dem Element `<build><plugins>...</plugins></build>` hinzugefügt werden:
 
 :desc-pom-skripte: Integration der Skripte
@@ -1061,17 +1064,13 @@ Dazu ist folgendes Code-Snippet in das Element `<build><plugins>...</plugins></b
  <plugin>
     <groupId>org.asciidoctor</groupId>
     <artifactId>asciidoctor-maven-plugin</artifactId>
-    <version>1.5.6</version>
+    <version>2.0.0-RC.1</version>
+
     <dependencies>
-        <dependency>
-            <groupId>org.jruby</groupId>
-            <artifactId>jruby-complete</artifactId>
-            <version>9.1.14.0</version>
-        </dependency>
         <dependency>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctorj-pdf</artifactId>
-            <version>1.5.0-alpha.16</version>
+            <version>1.5.0-beta.4</version>
         </dependency>
     </dependencies>
 
