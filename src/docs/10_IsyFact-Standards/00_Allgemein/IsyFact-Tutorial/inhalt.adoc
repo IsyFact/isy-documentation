@@ -390,7 +390,7 @@ In Service-Implementierung müssen die folgenden Aktivitäten durchgeführt werd
 
 Das Mappen der Daten wird mit Dozer durchgeführt.
 
-NOTE: Dozer: Generischer Java-Bean zu Java-Bean Mapper (http://dozer.sourceforge.net)
+NOTE: Dozer: Generischer Java-Bean zu Java-Bean Mapper (https://github.com/DozerMapper/dozer)
 
 Dies geschieht automatisiert, ohne dass man Mapping-Informationen hinterlegen muss.
 Grund hierfür ist die strukturelle Gleichheit der Objekte des Anwendungskerns und der Service-Schicht.
@@ -432,8 +432,22 @@ Im Projekt der eigentlichen Anwendung müssen die Exception-Fassade, das Service
 
 Im Rahmen der Implementierung muss ggf.
 das Dozer-Mapping für die Transformation der Transport- auf die Entitätsobjekte angelegt werden.
-Dozer wird als Spring-Bean in der Datei `src/main/resources/resources/spring/querschnitt.xml` konfiguriert.
-Dabei werden die zuvor angelegten Mapping-Dateien in Dozer konfiguriert.
+Dafür wird die Factory-Bean, die von isy-util mitgeliefert wird, genutzt (`de.bund.bva.pliscommon.util.mapper.DozerBeanMapperFactoryBean`) und in der Datei `src/main/resources/resources/spring/querschnitt.xml` als Spring-Bean konfiguriert.
+Die zuvor angelegte Mapping-Dateien werden als Parameter übergeben.
+
+:desc-listing-dozer-bean: Einbindung von Dozer mittels FactoryBean
+[id="listing-dozer-bean",reftext="{listing-caption} {counter:listings}"]
+.{desc-listing-dozer-bean}
+[source,xml]
+----
+    <bean id="dozer" class="de.bund.bva.pliscommon.util.mapper.DozerBeanMapperFactoryBean">
+        <property name="mappingFiles">
+            <list>
+                <value>dozer-mapping.xml</value>
+            </list>
+        </property>
+    </bean>
+----
 
 In derselben Konfigurationsdatei werden die Exception-Fassade und die Service-Implementierung als Spring-Beans konfiguriert.
 Die Exception-Fassade erhält eine Referenz auf die Service-Implementierung per Dependency-Injection.
@@ -518,6 +532,10 @@ In die Build-Konfiguration des Hauptprojekts des Anwendungssystems müssen folge
         <artifactId>isy-serviceapi-core</artifactId>
     </dependency>
     <dependency>
+        <groupId>de.bund.bva.isyfact</groupId>
+        <artifactId>isy-util</artifactId>
+    </dependency>
+    <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-web</artifactId>
     </dependency>
@@ -534,8 +552,8 @@ In die Build-Konfiguration des Hauptprojekts des Anwendungssystems müssen folge
         <artifactId>spring-aspects</artifactId>
     </dependency>
     <dependency>
-        <groupId>net.sf.dozer</groupId>
-        <artifactId>dozer</artifactId>
+        <groupId>com.github.dozermapper</groupId>
+        <artifactId>dozer-core</artifactId>
     </dependency>
     ...
 </dependencies>

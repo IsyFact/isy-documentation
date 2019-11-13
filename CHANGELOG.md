@@ -1,3 +1,6 @@
+#1.8.0
+- `IFS-468`: Update auf dozer 6.x
+
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
