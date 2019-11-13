@@ -111,7 +111,10 @@ In <<vsc-einsetzen>> wird die Nutzung von VS Code erläutert.
 Zum Erzeugen der PDF- und HTML-Dokumente wird Apache Maven benötigt.
 Apache Maven kann unter https://maven.apache.org/download.cgi heruntergeladen werden.
 Das heruntergeladene Archiv muss in ein beliebiges Verzeichnis entpackt werden.
+
 Anschließend gilt es noch die Pfad-Variable zu setzen:
+
+
 
 *Windows*
 
@@ -122,14 +125,13 @@ Unter `Benutzervariablen für [nutzer]` den Eintrag `PATH` auswählen und auf de
 Im sich öffnenden Fenster einen neuen Eintrag anlegen und den Pfad zum entpackten Maven Verzeichnis inkl `bin` angeben.
 Beispiel: `C:\maven\bin`
 
-Den Computer neustarten.
-Anschließend in einer Konsole den Befehl `mvn -v` eingeben. Nun sollte die installierte Maven-Version angegeben werden.
+Anschließend die Konsole neu starten und den Befehl `mvn -v` eingeben. Nun sollte die installierte Maven-Version angegeben werden.
 
 
 *Linux*
 
 In der Konsole den Pfad mit folgendem Befehl setzen:
- [source,java]
+[source,java]
 ----
 export PATH=/opt/apache-maven-3.6.2/bin:$PATH+
 ----
@@ -192,7 +194,7 @@ Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Au
 == Bausteindokumentation: Ein neues Verzeichnis anlegen
 
 Soll für einen Baustein eine neue Dokumentation angelegt werden oder die bestehende Dokumentation um ein Dokument erweitert werden, so gilt es zunächst die Verzeichnisse richtig anzulegen.
-In einem Baustein wird die Dokumentation in einem eigenen Verzeichnis im unter dem Pfad `src/docs/asciidoc` abgelegt.
+In einem Baustein wird die Dokumentation in einem eigenen Verzeichnis unter dem Pfad `src/docs/asciidoc` abgelegt.
 
 <<image-verzeichnis_bausteindokumentation>> zeigt die Verzeichnisstruktur für die Dokumentation des Bausteins `isy-persistence`.
 
@@ -213,7 +215,7 @@ z.B. C:\tmp\> *git clone* https://github.com/IsyFact/isy-persistence
 Sollte für den Baustein noch keine Dokumentation vorhanden sein und so im Projektverzeichnis das Verzeichnis `src/docs/asciidoc` fehlen, so muuss dies zunächst manuell angelegt werden.
 Dazu müssen Sie im Verzeichnis `src` das Verzeichnis `docs` und darin das Verzeichnis `asciidoc` erstellen.
 
-Im Verzeichnis `asciidoc` wird anschließend ein weitere Verzeichnis für das Dokumentationsdokument erstellt.
+Im Verzeichnis `asciidoc` wird anschließend ein weiteres Verzeichnis für das Dokumentationsdokument erstellt.
 
 Wenn Sie dieses Verzeichnis anlegen, stellt sich als nächstes die Frage, wie das Verzeichnis benannt werden soll.
 Dazu vergeben Sie eine neue _Dokument-ID_.
@@ -226,7 +228,7 @@ Das Verzeichnis ist nun angelegt und die Asciidoc-Dateien aus der Mustervorlage 
 == Die Mustervorlage vorbereiten
 
 Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wurde die Dokumentenvorlage (isy-dokumentenvorlagen) erstellt.
-Die Dokumentenvorlage enthält Musterinhalte, die sie als Grundlage für Ihre neues Dokument verwenden können.
+Die Dokumentenvorlage enthält Musterinhalte, die Sie als Grundlage für Ihre neues Dokument verwenden können.
 
 Es gibt zwei verschiedene Wege, um auf die Dokumentvorlage zuzugreifen:
 
@@ -1217,8 +1219,8 @@ Dies bedeutet im Genauen, dass beispielweise folgender Code-Abschnitt dupliziert
 
 Nach dem Kopieren müssen folgende Parameter angepasst werden:
 
-:desc-table-beispiel: Anzupassende Parameter
-[{id-equals}"table-pom_parameter",reftext="Table 1"]
+:desc-table-pom_parameter: Anzupassende Parameter
+[id=table-pom_parameter",reftext="{table-caption} {counter:tables}"]
 .{desc-table-pom_parameter}
 [options="header"]
 |====
