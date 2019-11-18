@@ -38,7 +38,7 @@ Batchlogik wird in Punkt 1 dargestellt, die fachlichen Operationen der Komponent
 Die querschnittliche Logik wird lediglich als Bibliothek eingebunden und ist in der Abbildung nicht dargestellt.
 
 Die Komponente „Batchsteuerung“ der Zielarchitektur bezieht sich auf die Steuerung eines Batch-Netzes (siehe <<image-BatNetz>>) und
-wird über UC4 (siehe auch <<KonzeptUeberwachungKonfiguration>>) umgesetzt.
+wird über UC4 (siehe auch <<KonzeptKonfiguration>>) umgesetzt.
 Sie wird in diesem Dokument nicht betrachtet.
 
 Die Komponente „Batchlogik“ der Zielarchitektur ist eine logische Komponente, welche die technische Logik der

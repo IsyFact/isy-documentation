@@ -425,10 +425,15 @@ Im Dokument <<KonzeptFehlerbehandlung>> ist beschrieben, in welchen Fällen und 
 (((Baustein,Datum & Zeit)))
 Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact. Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten. Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
 
-[[administrative-überwachung-und-konfiguration]]
-==== Administrative Überwachung und Konfiguration
-(((Baustein,Überwachung und Kommunikation)))
-Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen. Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
+[[administrative-ueberwachung]]
+==== Administrative Überwachung
+(((Baustein,Überwachung)))
+Das Dokument <<KonzeptUeberwachung>> beschreibt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
+
+[[administrative-konfiguration]]
+==== Administrative Konfiguration
+(((Baustein,Konfiguration)))
+Das Dokument <<KonzeptKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen.
 
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen

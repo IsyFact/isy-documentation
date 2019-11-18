@@ -654,7 +654,7 @@ Folgende Aspekte sind bei der Logback-Konfiguration zu beachten:
 
 Alle Anwendungen dürfen ihre Logging-Konfiguration ausschließlich über die Konfigurationsdateien `logback.xml` und `application.properties` vornehmen.
 Die Auslieferung der Logging-Konfiguration geschieht mit den applikationsspezifischen Konfigurationsdateien für die jeweilige Umgebung.
-Die Ablage der Konfigurationsdatei in Sourcen und Kompilaten ist durch das Konzept <<KonzeptUeberwachungKonfiguration>> definiert.
+Die Ablage der Konfigurationsdatei in Sourcen und Kompilaten ist durch das Konzept <<KonzeptKonfiguration>> definiert.
 Die Konfigurationsdateien dürfen nicht in einem Archiv (JAR-Bibliothek) abgelegt werden, sondern müssen als einzelne Dateien installiert werden.
 
 [underline]#Konfiguration des Log-Levels#
@@ -1061,9 +1061,8 @@ Die folgenden Auswertungen werden dazu durchgeführt:
 * Ermittlung der Anzahl der Aufrufe eines Services innerhalb der letzten Minute.
 * Ermittlung der Anzahl der Aufrufe eines Services, die einen Fehler erzeugt haben, innerhalb der letzten Minute.
 * Ermittlung der Durchschnittsdauer der letzten Aufrufe eines Services.
-* Ermittlung des Zeitpunkts, wann die letzte Prüfung des Systems durchgeführt wurde und wann die letzte Prüfung
-erfolgreich war.
-Detaillierte Informationen zur Systemprüfung und der zu erstellenden Logeinträge ist in <<KonzeptUeberwachungKonfiguration>> beschrieben.
+* Ermittlung des Zeitpunkts, wann die letzte Prüfung des Systems durchgeführt wurde und wann die letzte Prüfung erfolgreich war.
+Detaillierte Informationen zur Systemprüfung und der zu erstellenden Logeinträge ist in <<KonzeptUeberwachung>> beschrieben.
 |====
 
 [[performance-ueberwachen]]

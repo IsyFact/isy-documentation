@@ -11,7 +11,7 @@ Für die Überwachung wird der Actuator von Spring Boot eingesetzt.
 Actuator bringt eine Reihe von eingebauten Endpoints mit und bietet auch die Möglichkeit, eigene Endpoints hinzuzufügen.
 So wird für Informationen über den Systemzustand der eingebauten Endpoint `health` angeboten und über den Endpoint `metrics` können Metriken gelesen werden.
 Die bereitgestellten Metriken werden von Micrometer erfasst.
-Eine nähere Beschreibung des Konzeptes findet sich in <<KonzeptUeberwachungKonfiguration>>.
+Eine nähere Beschreibung des Konzeptes findet sich in <<KonzeptUeberwachung>>.
 
 Der Fokus liegt dabei auf der Schaffung von einheitlichen Administrationsschnittstellen, welche dem Betrieb eine einfache Überwachung der Anwendungen erlauben.
 Alle Vorgaben sind beim Entwurf und der Realisierung von neuen Anwendungen nach IsyFact-Architektur zu berücksichtigen.
@@ -299,7 +299,7 @@ gesetzt.
 ===== Performance
 
 Die im Konzept beschriebenen Überwachungsfunktionen dürfen keinen relevanten negativen Einfluss auf die Performance der Anwendung haben.
-Dazu sind neben der Einhaltung der in dem Dokument <<KonzeptUeberwachungKonfiguration>> beschriebenen Vorgaben noch einige grundlegende  Regeln zu beachten:
+Dazu sind neben der Einhaltung der in dem Dokument <<KonzeptUeberwachung>> beschriebenen Vorgaben noch einige grundlegende  Regeln zu beachten:
 
 * Da nicht auszuschließen ist, dass ein Überwachungswerkzeug sehr häufig Informationen aus den Endpoints abruft, darf das Bereitstellen der Informationen keine zeitaufwändigen Aktionen im <<glossar-Anwendungssystem>> veranlassen.
 * Bei der Bereitstellung weiterer Überwachungsinformationen ist darauf zu achten, dass die Ermittlung der Kennzahlen keinen relevanten negativen Einfluss auf die Anwendungs-Performance hat.
@@ -451,7 +451,7 @@ Dieses kann der Betrieb bei Bedarf über ein Shell-Skript automatisieren. Die Ve
 == Vorgaben für Konfigurationen
 
 In diesem Kapitel wird die Nutzung von Konfigurationen für Anwendungen der IsyFact-Architektur beschrieben.
-Für das zugrundeliegende Konzept siehe <<KonzeptUeberwachungKonfiguration>>.
+Für das zugrundeliegende Konzept siehe <<KonzeptKonfiguration>>.
 Dazu gehören Vorgaben für die Ablage von Konfigurationsdateien und Implementierungshinweise zum Lesen der  Konfigurationen.
 Außerdem werden Besonderheiten für die Konfiguration der eingesetzten Bibliotheken und Frameworks beschrieben.
 

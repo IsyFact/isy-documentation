@@ -887,7 +887,7 @@ In diesem Kapitel wird die Verarbeitung von Konfigurationen in Anwendungen besch
 === Designvorgaben
 
 * Für die Konfiguration werden betriebliche, statische und Benutzerkonfigurationen unterschieden.
-Eine Definition und Kriterien zur Typisierung können in <<KonzeptUeberwachungKonfiguration>> nachgelesen werden.
+Eine Definition und Kriterien zur Typisierung können in <<KonzeptKonfiguration>> nachgelesen werden.
 * Die betriebliche Konfiguration wird in `/src/main/resources/config/application.properties` abgelegt.
 * Statische Konfigurationen werden als Datei in `/src/main/resources/resources` abgelegt.
 * Benutzerkonfigurationen werden in der Datenbank abgelegt.
@@ -905,7 +905,7 @@ der Anwendung mit den Werten aus `application.properties` befüllt werden.
 Der Zugriff auf diese Klassen ist typsicher und die Werte können zusätzlich mit Bean Validierung überprüft werden.
 Zur Verwendung in den Komponenten der Anwendung oder zur Konfiguration von Spring Beans werden diese Klassen per
 Dependendy Injection verfügbar gemacht.
-Details zur Implementierung siehe <<KonzeptUeberwachungKonfiguration>>.
+Details zur Implementierung siehe <<KonzeptKonfiguration>>.
 
 [[fehlerbehandlung]]
 == Fehlerbehandlung
@@ -1244,10 +1244,9 @@ In diesem Abschnitt wird beschrieben, wie die Überwachung einer Anwendung reali
 * Zur Überwachung werden `HealthIndicator` von Spring Boot Actuator verwendet.
 * Metriken werden anbieterneutral mit Micrometer angeboten.
 +
-NOTE: Eine Liste der angebotenen Metriken ist in <<KonzeptUeberwachungKonfiguration>> enthalten.
-* Die von Anwendungen bereitzustellenden Informationen sind in <<KonzeptUeberwachungKonfiguration>> aufgeführt.
-* Jede Anwendung muss eine Service-Operation anbieten, die es nutzenden Nachbarsystemen erlaubt,
-die Erreichbarkeit dieses Systems zu prüfen (`Ping`-Methode).
+NOTE: Eine Liste der angebotenen Metriken ist in <<KonzeptUeberwachung>> enthalten.
+* Die von Anwendungen bereitzustellenden Informationen sind in <<KonzeptUeberwachung>> aufgeführt.
+* Jede Anwendung muss eine Service-Operation anbieten, die es nutzenden Nachbarsystemen erlaubt, die Erreichbarkeit dieses Systems zu prüfen (`Ping`-Methode).
 
 [[klassendesign-5]]
 === Klassendesign
@@ -1299,7 +1298,7 @@ Die Bibliothek enthält Beans, welche das von Anwendungen bereitzustellende Mana
 
 Zum Anbieten der Service-Statistik sind alle benötigten Implementierungen in `isy-ueberwachung` enthalten.
 Es muss lediglich die Spring-Konfiguration durchgeführt werden.
-Diese besteht aus zwei Teilen, welche in <<KonzeptUeberwachungKonfiguration>> im Detail beschrieben sind:
+Diese besteht aus zwei Teilen, welche in <<KonzeptUeberwachung>> im Detail beschrieben sind:
 
 * Konfigurieren der Service-Statistik-Beans als Spring Beans.
 * Anbinden der Service-Statistik-Beans an den Anwendungskern durch einen AOP-Advice.

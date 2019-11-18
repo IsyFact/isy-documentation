@@ -346,7 +346,7 @@ public class TaskConfiguration {
 }
 ----
 
-Der MBean-Exporter wird gemäß dem <<KonzeptUeberwachungKonfiguration>> konfiguriert.
+Der MBean-Exporter wird gemäß dem <<KonzeptUeberwachung>> konfiguriert.
 
 [[hinweise-fuer-den-task-im-parallelbetrieb]]
 = Hinweise für den Task im Parallelbetrieb
