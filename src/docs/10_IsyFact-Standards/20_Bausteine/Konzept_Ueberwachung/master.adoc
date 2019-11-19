@@ -2,7 +2,7 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Konzept Überwachung und Konfiguration
+:doctitle: Konzept Überwachung
 :title: {doctitle}
 
 // Zwangsplatz des TOC

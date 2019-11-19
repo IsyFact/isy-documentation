@@ -2,7 +2,7 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Nutzungsvorgaben Überwachung und Konfiguration
+:doctitle: Nutzungsvorgaben Konfiguration
 :title: {doctitle}
 
 // Zwangsplatz des TOC
