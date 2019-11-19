@@ -361,8 +361,7 @@ Dokument <<DetailkonzeptKomponenteDatenzugriff>> festgelegt.
 Der Anwendungskern ist in Komponenten aufgebaut.
 Diese Komponenten werden durch Spring konfiguriert.
 Der Schnitt der Komponenten ist durch die fachliche Referenzarchitektur vorgegeben.
-Die Ergänzung durch technische Komponenten und die Vorgaben für die Nutzung von Spring zu deren
-Konfiguration sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
+Die Ergänzung durch technische Komponenten und die Vorgaben für die Nutzung von Spring zu deren Konfiguration sind in <<DetailkonzeptKomponenteAnwendungskern>> festgelegt.
 
 [[batch]]
 ===== Batch
