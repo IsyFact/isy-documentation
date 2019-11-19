@@ -28,7 +28,7 @@ NOTE: Für eine Liste der unterstützten Monitoring-Systeme siehe http://microme
 [[festlegungen-und-ausgrenzungen]]
 == Festlegungen und Ausgrenzungen
 
-Die Nutzungsvorgaben finden sich im dem Dokument <<NutzungsvorgabenUeberwachungKonfiguration>>.
+Die Nutzungsvorgaben finden sich im dem Dokument <<NutzungsvorgabenUeberwachung>>.
 
 Das Konzept für die Prüfung der Verfügbarkeit ist:
 
@@ -60,7 +60,7 @@ Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung v
   Wenn im Folgenden von Konfigurationen gesprochen wird, sind sowohl Konfigurationen im eigentlichen Sinne, als auch Ressourcen gemeint.
 * Anwendungen müssen im Normalfall für Konfigurationsänderungen neu gestartet werden.
   Ausnahmen hiervon bedürfen besonderer technischer und organisatorischer Maßnahmen.
-  Details dazu werden in dem Dokument <<NutzungsvorgabenUeberwachungKonfiguration>> beschrieben.
+  Details dazu werden in dem Dokument <<NutzungsvorgabenKonfiguration>> beschrieben.
 * Das Konfigurationskonzept berücksichtigt sowohl die Konfiguration für die Entwicklungsumgebung als auch geeignete Vorgehensweisen für die Konfiguration der Produktionsumgebung.
 * Alle Anwendungssysteme und Batches, die schreibend auf eine andere Fachanwendung zugreifen, müssen auf die Nichtverfügbarkeit dieser Komponente vorbereitet sein.
   Entweder können jene Systeme vorübergehend heruntergefahren sein, oder bestimmte Funktionen, z.B. der Schreibzugriff, können über Konfigurationsparameter deaktiviert sein.
@@ -96,7 +96,7 @@ Die letzte Spalte der Tabelle gibt die bevorzugte Art für die Speicherung der e
 
 So müssen betriebliche Konfigurationen leicht durch den Betrieb zugänglich und änderbar sein.
 
-Für Details siehe das Dokument <<NutzungsvorgabenUeberwachungKonfiguration>>.
+Für Details siehe das Dokument <<NutzungsvorgabenKonfiguration>>.
 
 :desc-table-typKonfZiel2: Typisierung von Konfigurationen nach Zielgruppen
 [id="table-typKonfZiel2",reftext="{table-caption} {counter:tables}"]
