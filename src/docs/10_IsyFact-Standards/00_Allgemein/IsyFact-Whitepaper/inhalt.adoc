@@ -327,17 +327,18 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 |*Integrationsplattform* |Grundlagen der Servicekommunikation innerhalb der Plattform |PDF
 3+|*20 Bausteine*
 |*Fehlerbehandlung* |Konzept Fehlerbehandlung |PDF
-|*LDAP-Zugriffe* |Nutzungskonzept Spring LDAP |PDF
+|*LDAP-Zugriffe* |Nutzungsvorgaben Spring LDAP |PDF
 |*Logging* |Konzept Logging |PDF
 |*Polling* |Nutzerdokumentation Polling |PDF
 .3+|*Sicherheits-komponente* |Konzept Sicherheit |PDF
-|Nutzerdokumentation Sicherheit |PDF
+|Nutzungsvorgaben Sicherheit |PDF
 |Rollen und Rechte Schema |XSD
-.3+|*Sonderzeichen* |Konzept Umgang mit Sonderzeigen |PDF
+.4+|*Sonderzeichen* |Konzept Umgang mit Sonderzeigen |PDF
+|Nutzungsvorgaben Umgang mit Sonderzeigen |PDF
 |Mapping-Tabelle |XLS
 |Transkriptionsregeln |XLS
 |*Überwachung und + Konfiguration* |Konzept Überwachung und Konfiguration |PDF
-|*Util* |Nutzungskonzept IsyFact Util |PDF
+|*Util* |Nutzungsvorgaben IsyFact Util |PDF
 3+|*40 Methodik*
 .3+|*Systemspezifikation* |Vorlage Systemspezifikation |DOT
 |Vorlage Anforderungsliste |XSL

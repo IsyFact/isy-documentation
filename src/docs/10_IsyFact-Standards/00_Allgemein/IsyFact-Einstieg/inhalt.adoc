@@ -411,7 +411,8 @@ Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> 
 
 [[bausteine-der-isyfact-standards]]
 === Bausteine der IsyFact-Standards
-Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind. Diese werden im Folgenden dargestellt:
+Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind.
+Diese werden im Folgenden dargestellt:
 
 [[fehlerbehandlung]]
 ==== Fehlerbehandlung
@@ -419,19 +420,26 @@ Im Dokument <<KonzeptFehlerbehandlung>> ist beschrieben, in welchen Fällen und 
 
 [[datum-zeit]]
 ==== Datum & Zeit
-Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact. Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten. Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
+Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact.
+Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten.
+Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
 
 [[administrative-überwachung-und-konfiguration]]
 ==== Administrative Überwachung und Konfiguration
-Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen. Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
+Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen.
+Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
 
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen
-Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen. Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird. In diesem Zusammenhang müssen oft auch Namen transkribiert werden. Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
+Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen.
+Im Dokument <<NutzungsvorgabenUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird.
+In diesem Zusammenhang müssen oft auch Namen transkribiert werden. Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
 
 [[logging]]
 ==== Logging
-Fachanwendungen sollten Logs einheitlich erstellen und auswerten können. Das <<KonzeptLogging>> beschreibt die einheitliche Erstellung von Logs in Anwendungen sowie deren Auswertung auf fachlicher Ebene. Die <<NutzungsvorgabenLogging>> beschreiben die technische Umsetzung des Loggings und die technischen Möglichkeiten der Auswertung.
+Fachanwendungen sollten Logs einheitlich erstellen und auswerten können.
+Das <<KonzeptLogging>> beschreibt die einheitliche Erstellung von Logs in Anwendungen sowie deren Auswertung auf fachlicher Ebene.
+Die <<NutzungsvorgabenLogging>> beschreiben die technische Umsetzung des Loggings und die technischen Möglichkeiten der Auswertung.
 
 [[berechtigungen]]
 ==== Berechtigungen
