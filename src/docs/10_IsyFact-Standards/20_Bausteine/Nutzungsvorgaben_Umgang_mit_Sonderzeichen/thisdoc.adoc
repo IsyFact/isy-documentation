@@ -13,7 +13,8 @@ Für jedes dieser Systeme muss sichergestellt werden, dass die benötigten Sonde
 [[aufbau-und-zweck-des-dokuments]]
 == Aufbau und Zweck des Dokuments
 
-In diesem Dokument werden zunächst die Anforderungen aufgeführt, die an die Verarbeitung von Sonderzeichen innerhalb von auf IsyFact-Standards basierenden Anwendungen gestellt werden.
+In diesem Dokument wird zunächst wird der Zeichensatz festgelegt, der innerhalb der Anwendungen verwendet werden soll.
+Abschließend wird für die technischen Systeme angegeben, wo die entsprechenden Konfigurationseinträge zur Verwendung des Zeichensatzes vorgenommen werden müssen.
 
 Internationalisierung bedeutet, ein Programm so zu entwerfen und umzusetzen, dass die Anpassung an andere Sprachen möglich ist, ohne den Quellcode zu ändern.
 Jedoch ist Internationalisierung nicht Bestandteil dieses Dokuments.
