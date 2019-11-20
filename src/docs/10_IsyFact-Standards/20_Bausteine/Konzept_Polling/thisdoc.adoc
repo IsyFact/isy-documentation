@@ -11,12 +11,12 @@ Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Inst
 Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
 Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an.
 
-In <<image-001>> wird diese Situation dargestellt.
+In <<image-K001>> wird diese Situation dargestellt.
 
-:desc-image-001: Polling unter Verwendung eines Loadbalancers
-[id="image-001",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-001}
-image::polling_001.png[align="center", width=55%, pdfwidth=55%]
+:desc-image-K001: Polling unter Verwendung eines Loadbalancers
+[id="image-K001",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-K001}
+image::polling_K001.png[align="center", width=55%, pdfwidth=55%]
 
 Der <<glossar-Baustein>> Polling definiert ein solches Verfahren und beschreibt die <<glossar-Bibliothek>> `isy-polling`, die dieses Verfahren implementiert.
 
