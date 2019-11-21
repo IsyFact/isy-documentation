@@ -1,8 +1,6 @@
 [[grundlagen]]
 = Grundlagen
 
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
 In diesem Abschnitt beschreiben wir die Grundlagen der Kommunikation innerhalb der Plattform.
 Zunächst wird in Abschnitt <<interne-und-externe-servicekommunikation>> die Unterscheidung von internen und externen Services geschärft und zentrale Begriffe eingeführt.
 Danach wird in Abschnitt <<synchrone-kommunikation>> vorgestellt, wie synchrones und asynchrones Verhalten von Services abgebildet wird.

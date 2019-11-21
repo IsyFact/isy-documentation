@@ -1,4 +1,3 @@
-
 [[verwendung-der-querschnittsbibliothek-isy-task]]
 = Verwendung der Querschnittsbibliothek `isy-task`
 

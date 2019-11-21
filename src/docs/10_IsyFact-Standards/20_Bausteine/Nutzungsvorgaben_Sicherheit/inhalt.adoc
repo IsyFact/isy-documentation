@@ -1,4 +1,4 @@
-l= Nutzungsvorgaben Sicherheit: Inhalt
+= Nutzungsvorgaben Sicherheit: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 

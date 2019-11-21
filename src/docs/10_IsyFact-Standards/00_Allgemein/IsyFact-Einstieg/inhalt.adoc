@@ -252,7 +252,9 @@ Die Standards für die Benutzeroberflächen werden üblicherweise durch einen St
 Die Dokumente der IsyFact verweisen an verschiedenen Stellen auf den Styleguide und dort zu definierende Regeln.
 Es wird jedoch vorausgesetzt, dass jeder Anwender der IsyFact einen eigenen Styleguide erstellt, der spezifisch auf seinen Anwendungskontext abgestimmt ist.
 
+
 === Struktur der Dokumentation
+
 Die Dokumentation der IsyFact folgt einer festgelegten Struktur.
 Dokumente wie dieser Einstieg liegen im *allgemeinen* Teil der Dokumentation.
 Der Teil enthält außerdem das <<IsyFact-Tutorial>>, grundlegende Dokumente wie den <<ProduktKatalog>> und die <<Aenderungshistorie>> sowie die Beschreibungen der Referenzarchitektur.
@@ -271,6 +273,7 @@ Schließlich umfasst die Dokumentation der *Werkzeuge* ein Dokument pro Werkzeug
 
 [id="cisyfact-standards",reftext="IsyFact-Standards"]
 == IsyFact-Standards
+
 Im Folgenden sind die unterschiedlichen Vorgaben und Komponenten der IsyFact-Standards beschrieben.
 Der vorliegende Abschnitt ist als Referenz und als schneller Einstieg in die einzelnen Bestandteile von IsyFact konzipiert.
 Die Unterabschnitte enthalten jeweils eine kurze Erläuterung zu der jeweiligen Komponente und verweisen dann auf die zugehörige
@@ -282,6 +285,7 @@ Darüber hinaus werden die Bausteine der IsyFact-Standards kurz beschrieben.
 
 [[vorgaben-architektur]]
 === Vorgaben für die Architektur
+
 Die <<IsyFactReferenzarchitektur>> definiert die Architektur einzelner Anwendungssysteme bis hin zu Anwendungslandschaften.
 Dazu beschreibt sie drei Architektursichten:
 
@@ -297,7 +301,7 @@ Diese _Abbildbarkeit_ sorgt dafür, dass bereits mit der Erstellung der fachlich
 Die folgenden Abschnitte beschreiben knapp die Vorgaben an die Architektur aus den jeweiligen Sichten heraus.
 Sie verweisen für weitere Details auf die jeweils relevanten Dokumente.
 
-[[vorgaben-für-die-a-architektur]]
+[[vorgaben-fuer-die-a-architektur]]
 ==== Vorgaben für die A-Architektur
 Die allgemeine Referenzarchitektur muss für die zu bauenden Anwendungssysteme in einer fachlichen Architektur konkretisiert werden.
 Die fachliche Architektur strukturiert die Anforderungen sowie die zu unterstützenden Geschäftsprozesse.
@@ -312,8 +316,9 @@ Neben der Struktur geht sie auch auf die Kommunikation der Fachanwendungen unter
 
 Die fachliche Architektur der Fachanwendungen wird in Spezifikationen dokumentiert.
 
-[[vorgaben-für-die-spezifikation]]
+[[vorgaben-fuer-die-spezifikation]]
 ===== Vorgaben für die Spezifikation
+
 Systemspezifikationen besitzen eine festgelegte Form und beschreiben stets gleichartige Inhalte.
 Die Vorgaben dazu befinden sich mitsamt Vorgehen und Beispielen in der Vorlage für die Systemspezifikation (<<IsyFactSystemspezifikation>>).
 Bereits bei der Systemspezifikation ist auf die Einhaltung der <<IsyFactNamenskonventionen>> zu achten.
@@ -325,7 +330,7 @@ Weitere Erläuterungen finden sich in der Vorlage.
 
 Im Dokument <<AnleitungDatenflussdiagramme>> wird die Erstellung von Datenflussdiagrammen beschrieben und eine Leseanleitung dazu geliefert.
 
-[[vorgaben-für-die-t-architektur]]
+[[vorgaben-fuer-die-t-architektur]]
 ==== Vorgaben für die T-Architektur
 Die softwaretechnische Architektur wird auf Basis der Spezifikation aus der fachlichen Architektur entwickelt.
 
@@ -373,7 +378,7 @@ Die genauen Festlegungen zur Web-GUI-Entwicklung finden sich im Dokument <<Detai
 
 Die Erstellung von IT-Systemen wird durch einen Systementwurf konkretisiert und dokumentiert.
 
-[[vorgaben-für-den-systementwurf]]
+[[vorgaben-fuer-den-systementwurf]]
 ===== Vorgaben für den Systementwurf
 Systementwürfe besitzen, genau wie Spezifikationen, eine festgelegte Form und beschreiben stets gleichartige Inhalte.
 Die Vorgaben dazu befinden sich mitsamt Vorgehen und Beispielen in der Vorlage für den Systementwurf (<<IsyFactSystementwurf>>).
@@ -384,20 +389,20 @@ Neben der Referenzarchitektur sind dies vor allem die <<bausteine-der-isyfact-st
 Die wichtigsten Entscheidungen zu den zu nutzenden Produkten sind im <<ProduktKatalog>> festgelegt.
 IT-Systeme müssen auf Basis dieser Produkte und Bibliotheken gebaut werden.
 
-[[vorgaben-für-die-ti-architektur]]
+[[vorgaben-fuer-die-ti-architektur]]
 ==== Vorgaben für die TI-Architektur
 Die Architektur der technischen Infrastruktur wird auf Grundlage der Spezifikation und des Entwurfs entwickelt.
 
 Die Grundlagen der TI-Architektur auf Ebene von Anwendungslandschaften und Anwendungssystemen ist in <<IsyFactReferenzarchitektur>> beschrieben.
 Die zu verwendende Infrastruktur ist zum Teil durch den <<ProduktKatalog>> vorgegeben.
 
-[[vorgaben-für-das-systemhandbuch]]
+[[vorgaben-fuer-das-systemhandbuch]]
 ===== Vorgaben für das Systemhandbuch
 Das Systemhandbuch ist gemäß der <<IsyFactVorlageSystemhandbuch>> zu erstellen und beschreibt die Installation, Konfiguration und den Betrieb eines IT-Systems.
 Die Vorlage legt die äußere Form sowie die Gliederung des Dokuments fest.
 Sie enthält außerdem das Vorgehen zur Erstellung und Beispiele für die zu beschreibenden Inhalte.
 
-[[vorgaben-für-die-realisierung]]
+[[vorgaben-fuer-die-realisierung]]
 === Vorgaben für die Realisierung
 
 Die Realisierung hat gemäß den <<JavaProgrammierkonventionen>> zu erfolgen.
@@ -412,7 +417,8 @@ Neben der Vorlageanwendung gibt es mit dem IsyFact-Tutorial <<IsyFactTutorial>> 
 
 [[bausteine-der-isyfact-standards]]
 === Bausteine der IsyFact-Standards
-Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind. Diese werden im Folgenden dargestellt:
+Die IsyFact-Standards stellen eine Reihe von Bausteine zur Umsetzung querschnittlicher Funktionalitäten bereit, die für alle IT-Systeme relevant und zu nutzen sind.
+Diese werden im Folgenden dargestellt:
 
 [[fehlerbehandlung]]
 ==== Fehlerbehandlung
@@ -420,19 +426,27 @@ Im Dokument <<KonzeptFehlerbehandlung>> ist beschrieben, in welchen Fällen und 
 
 [[datum-zeit]]
 ==== Datum & Zeit
-Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact. Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten. Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
+Der Baustein Datum & Zeit beschreibt die Verwendung der _Java 8 Date & Time API_ (`java.time`) in der IsyFact.
+Das <<KonzeptDatumZeit>> beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten.
+Die <<NutzungsvorgabenDatumZeit>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind.
 
 [[administrative-überwachung-und-konfiguration]]
 ==== Administrative Überwachung und Konfiguration
-Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen. Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
+Das Dokument <<KonzeptUeberwachungKonfiguration>> beschreibt, welche Arten von Konfiguration für eine Anwendung vorgesehen sind und wie diese umgesetzt werden sollen.
+Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administration einer Anwendung seitens des Systembetriebs erfolgt und welche Schnittstellen dazu durch die Anwendung zur Verfügung gestellt werden müssen.
 
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen
-Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen. Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird. In diesem Zusammenhang müssen oft auch Namen transkribiert werden. Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
+Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen.
+Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird.
+In diesem Zusammenhang müssen oft auch Namen transkribiert werden.
+Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
 
 [[logging]]
 ==== Logging
-Fachanwendungen sollten Logs einheitlich erstellen und auswerten können. Das <<KonzeptLogging>> beschreibt die einheitliche Erstellung von Logs in Anwendungen sowie deren Auswertung auf fachlicher Ebene. Die <<NutzungsvorgabenLogging>> beschreiben die technische Umsetzung des Loggings und die technischen Möglichkeiten der Auswertung.
+Fachanwendungen sollten Logs einheitlich erstellen und auswerten können.
+Das <<KonzeptLogging>> beschreibt die einheitliche Erstellung von Logs in Anwendungen sowie deren Auswertung auf fachlicher Ebene.
+Die <<NutzungsvorgabenLogging>> beschreiben die technische Umsetzung des Loggings und die technischen Möglichkeiten der Auswertung.
 
 [[berechtigungen]]
 ==== Berechtigungen
@@ -444,7 +458,10 @@ Ein XML-Schema dazu findet sich im Anhang von <<NutzungsvorgabenSicherheit>>.
 
 [[task-scheduling]]
 ==== Task Scheduling
-Der Baustein verwendet die _Java Concurrency API_ (`java.util.concurrent`) für die Steuerung (d.h. Planung und Ausführung) periodisch wiederkehrender Aufgaben. Aufgaben sind (in Abgrenzung zu Batches) innerhalb einer Anwendungskomponente angesiedelt und werden von der Anwendung selbstständig ausgeführt. Das <<KonzeptTaskScheduling>> beschreibt die konzeptionellen Grundlagen der Steuerung von Aufgaben. Die <<NutzungsvorgabenTaskScheduling>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind, und alle bereits in der IsyFact definierten Aufgaben (wie z.B. das periodische Neuladen der Anwendungskonfiguration).
+Der Baustein verwendet die _Java Concurrency API_ (`java.util.concurrent`) für die Steuerung (d.h. Planung und Ausführung) periodisch wiederkehrender Aufgaben.
+Aufgaben sind (in Abgrenzung zu Batches) innerhalb einer Anwendungskomponente angesiedelt und werden von der Anwendung selbstständig ausgeführt.
+Das <<KonzeptTaskScheduling>> beschreibt die konzeptionellen Grundlagen der Steuerung von Aufgaben.
+Die <<NutzungsvorgabenTaskScheduling>> beschreiben alle Aspekte, die bei der Entwicklung einer Anwendung zu berücksichtigen sind, und alle bereits in der IsyFact definierten Aufgaben (wie z.B. das periodische Neuladen der Anwendungskonfiguration).
 
 [[ldap-zugriffe]]
 ==== LDAP-Zugriffe
@@ -452,13 +469,21 @@ Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight 
 
 [[polling]]
 ==== Polling
-In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden. Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen. Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
+In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
+Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen.
+Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
 
-Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden. Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden. Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an. Der Baustein Polling definiert ein solches Verfahren. Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
+Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
+Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
+Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an.
+Der Baustein Polling definiert ein solches Verfahren.
+Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
 
 [[util]]
 ==== Util
-Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen der IsyFact genutzt werden können. Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen. Diese werden in <<NutzungsvorgabenIsyUtil>> überblicksartig beschrieben.
+Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen der IsyFact genutzt werden können.
+Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen.
+Diese werden in <<NutzungsvorgabenIsyUtil>> überblicksartig beschrieben.
 
 [[cisyfact-erweiterungen]]
 == IsyFact-Erweiterungen
@@ -471,7 +496,8 @@ NOTE: Bei Interesse wenden Sie sich bitte per E-Mail (isyfact@bva.bund.de) an un
 
 [[bausteine-der-isyfact-erweiterungen]]
 === Bausteine der IsyFact-Erweiterungen
-Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die bei Bedarf eingesetzt werden können. Diese werden im Folgenden dargestellt:
+Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die bei Bedarf eingesetzt werden können.
+Diese werden im Folgenden dargestellt:
 
 [[benutzerverwaltung]]
 ==== Benutzerverwaltung
