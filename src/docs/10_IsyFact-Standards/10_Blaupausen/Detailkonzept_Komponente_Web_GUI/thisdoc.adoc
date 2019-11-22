@@ -5,7 +5,7 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[Einleitung]]
 == Einleitung
 
-Die <<IsyFactReferenzarchitekturITSystem>> beschreibt den Aufbau von Fachanwendungen in fünf Komponenten.
+Die <<IsyFactReferenzarchitekturITSystem>> beschreibt den Aufbau von <<glossar-Fachanwendung,Fachanwendungen>> in fünf Komponenten.
 Eine davon ist die Komponente Web-GUI.
 Das vorliegende Dokument enthält die Detailkonzeption dieser Komponente.
 Es enthält eine Detaillierung der Referenzarchitektur und zeigt, wie die Fachlichkeit in GUI- und Dialog-Komponenten geschnitten wird.
