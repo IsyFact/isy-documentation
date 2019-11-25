@@ -1,3 +1,6 @@
+# 1.8.0
+- `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
+
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
