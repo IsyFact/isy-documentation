@@ -1,6 +1,7 @@
 # 2.1.0
 - `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
 - `IFS-363`: Maven Central in Tutorial integrieren
+- `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
