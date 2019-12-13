@@ -1,0 +1,9 @@
+
+**Dokumentinformationen**
+
+|====
+|Dokumenten-ID:| Maven_Plugin_zur_Versionierungskontrolle
+|====
+
+Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
+
