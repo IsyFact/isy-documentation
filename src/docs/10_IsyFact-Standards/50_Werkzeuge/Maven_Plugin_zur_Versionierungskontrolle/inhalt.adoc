@@ -78,9 +78,9 @@ Das Maven-Plugin muss zunächst in eine übergeordnete `pom.xml` (parent-pom) wi
 
 Im Projekt selbst kann das Maven-Plugin konfiguriert werden. Dazu sind folgende Properties in die `pom.xml` des Projekts zu hinterlegen:
 
-:desc-listing-maven-plugin: Konfiguration des Maven-Plugins in einem Projekt.
-[id="listing-maven-plugin",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-maven-plugin}
+:desc-listing-maven-plugin-conf: Konfiguration des Maven-Plugins in einem Projekt.
+[id="listing-maven-plugin-conf",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-maven-plugin-conf}
 [source,xml]
 -----------------
 <properties>
