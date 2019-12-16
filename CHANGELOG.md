@@ -1,4 +1,5 @@
 # 1.8.0
+- `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 
 # 1.7.0
