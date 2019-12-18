@@ -1,7 +1,6 @@
 = Detailkonzept Datenzugriff: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-
 // tag::inhalt[]
 [[anforderungen]]
 == Anforderungen
