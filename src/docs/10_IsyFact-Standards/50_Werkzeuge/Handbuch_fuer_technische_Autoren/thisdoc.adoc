@@ -40,6 +40,7 @@ Gleichzeitig geht es auf die Besonderheiten ein, die bei der Verwendung der Ausz
 
 Das Handbuch ist in folgende Bereiche untergliedert:
 
+- Architekturbeschreibung der Dokumentation
 - Die Arbeitsumgebung einrichten
 - Ein neues Dokument anlegen
 - Ein Dokument bearbeiten

@@ -4,7 +4,7 @@
 - `IFS-363`: Maven Central in Tutorial integrieren
 - `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
-
+- `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
