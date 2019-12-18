@@ -48,7 +48,7 @@
                 <version>1.6.0</version>
                 <executions>
 
-                    <!-- Erzeugt das Glossar -->
+                    <!-- Erzeugt das Glossar (muss vor Literaturverzeichnis, da im Glossar Literaturverweise sein könnten -->
                     <execution>
                         <id>generate-glossary</id>
                         <phase>generate-sources</phase>
@@ -81,7 +81,6 @@
                             </arguments>
                         </configuration>
                     </execution>
-
 
                     <!-- Erzeugt ... -->
 

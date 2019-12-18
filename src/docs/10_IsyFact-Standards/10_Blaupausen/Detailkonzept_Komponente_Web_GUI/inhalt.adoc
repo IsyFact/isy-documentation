@@ -1,7 +1,6 @@
 = Detailkonzept Komponente Web-GUI: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-
 // tag::inhalt[]
 [[referenzarchitektur-einer-fachanwendung]]
 == Referenzarchitektur der Komponente Web-GUI

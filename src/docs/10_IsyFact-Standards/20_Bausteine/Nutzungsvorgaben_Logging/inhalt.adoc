@@ -1,6 +1,7 @@
 [[grundlagen]]
 = Grundlagen
 
+
 In diesem Kapitel sind die Grundlagen des Loggings beschrieben.
 
 [[grundprinzipien-des-loggings]]

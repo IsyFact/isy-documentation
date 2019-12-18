@@ -1,6 +1,7 @@
 # 2.1.0
 - `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
 - `IFS-363`: Maven Central in Tutorial integrieren
+- `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 
 # 2.0.0

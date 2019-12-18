@@ -112,10 +112,6 @@ Bei den Musterdateien handelt sich um folgende AsciiDoc-Dokumente:
 anhaenge.adoc::
 In der Datei `anhaenge.adoc` werden Anhänge des IsyFact-Dokuments aufgelistet.
 
-docinfo.adoc::
-`docinfo.adoc` beinhalt Informationen für das IsyFact-Dokument.
-Die Datei `docInfo.adoc` enthält derzeitig lediglich die Dokument-ID.
-
 inhalt.adoc::
 `inhalt.adoc` enthält alle Inhaltskapitel des IsyFact-Dokuments.
 
@@ -193,33 +189,6 @@ Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Ve
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
 
 In der Vorschau sollten die Änderungen unmittelbar erscheinen. Ihre Änderungen speichern Sie über kbd:[Strg + S].
-
-[[docinfo.adoc-bearbeiten]]
-== docinfo.adoc bearbeiten
-
-Als Nächstes muss die Datei `docinfo.adoc` bearbeitet werden.
-Diese Datei wurde als Vorlage für Dokumenteninformationen zur Verfügung gestellt.
-Derzeitig wird in der `docinfo.adoc` aber lediglich die Dokument-ID gesetzt.
-Öffnen Sie die Datei durch einen Mausklick links in der Projektansicht.
-Die Dokument-Vorlage `docinfo.adoc` hat folgenden Inhalt:
-
-:desc-listing-docinfo: docinfo.adoc
-[id="listing-docinfo",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-docinfo}
-[source,asciidoc]
-----
-**Dokumentinformationen**
-|====
-|Dokumenten-ID:|  Bitte_hier_die_Dokument-ID_einfügen
-|====
-----
-
-Ersetzen Sie den Text `Bitte_hier_die_Dokument-ID_einfügen` mit der Dokument-ID Ihres neuen Dokuments.
-
-:desc-image-atom5: docinfo.adoc
-[id="image-atom5",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom5}
-image::atom5.png[align="center"]
 
 [[ein-existierendes-dokument-bearbeiten]]
 = Ein existierendes Dokument bearbeiten
