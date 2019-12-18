@@ -179,7 +179,6 @@
                 </configuration>
 
                 <executions>
-
                     <execution>
                         <id>IsyFact-Einstieg-html</id>
                         <phase>generate-resources</phase>
