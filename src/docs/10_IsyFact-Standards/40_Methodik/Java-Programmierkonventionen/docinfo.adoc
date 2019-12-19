@@ -1,8 +1,0 @@
-
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Java-Programmierkonventionen
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
