@@ -8,8 +8,6 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
-// Änderungsübersicht
-include::docinfo.adoc[]
 // Executive Summary
 //include::preface.adoc[]
 
@@ -45,9 +43,6 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
-
-// Index
-include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 
 // --------------------------- AB HIER------------------------------------------
 
