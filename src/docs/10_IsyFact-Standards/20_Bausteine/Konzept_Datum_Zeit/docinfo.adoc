@@ -1,8 +1,0 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Konzept_Datum_Zeit
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-

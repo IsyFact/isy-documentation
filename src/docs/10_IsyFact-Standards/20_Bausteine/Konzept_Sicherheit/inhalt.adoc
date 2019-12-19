@@ -1,7 +1,6 @@
 = Konzept Sicherheit: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-
 // tag::inhalt[]
 [[prinzipien-der-sicherheitsarchitektur]]
 == Prinzipien der Sicherheitsarchitektur

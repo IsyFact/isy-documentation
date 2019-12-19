@@ -1,3 +1,41 @@
+[[aufbau-der-dokumentation]]
+= Architektur der Dokumentation
+
+Die Architektur der IsyFact-Dokumentation besteht aus drei Kernkomponenten:
+
+1. Zentrale Dokumentation (isy-documentation)
+
+2. Bausteindokumentation
+
+2. Dokumentvorlagen (isy-dokumentvorlagen)
+
+Im Folgenden werden die Komponenten erläutert.
+
+
+[[zentrale-dokumentation]]
+== Zentrale Dokumentation
+
+Die zentrale Dokumentation (isy-documentation) bietet Informationen, Nutzungsvorgaben und Anleitungen zu zentralen Themen der IsyFact.
+Dazu zählt das Einstiegsdokument, das Whitepaper oder auch das Tutorial.
+
+[[baustein-dokumentation]]
+== Bausteindokumentation
+
+Jeder Baustein der IsyFact enthält eine eigene Dokumentation.
+Hierzu gehören die Nutzungsvorgaben zur Verwendung des Bausteins und das zugrundeliegende Konzept.
+Die Nutzungsvorgaben richten sich in erster Linie an Entwickler, die die IsyFact nutzen.
+Das Konzept richtet sich an Architekten und Entwickler, die die IsyFact weiterentwickeln.
+Wird ein neuer Baustein angelegt, so muss auch eine entsprechende Dokumentation erstellt werden.
+Die Dokumentation des Bausteins ist als Verzeichnis mit Asciidoc-Dateien im Baustein immer unter `src/docs/asciidoc` abgelegt.
+
+[[dokumentvorlagen]]
+== Dokumentvorlagen
+
+Die Dokumentvorlagen (isy-dokumentvorlagen) werden getrennt von der Dokumentation verwaltet und bieten Zugriff auf die einzelnen Vorlagedateien eines Dokuments.
+Diese Vorlagedateien können kopiert und benutzt werden, um ein neues Dokument zu Erstellen und der IsyFact Dokumentation hinzuzufügen.
+Zudem beinhalten die Dokumentvorlagen auch globale Einstellungen und Skripte, die während der Dokumentenerzeugung ausgeführt werden und dynamisch Inhalte, wie das Glossar oder das Abbildungsverzeichnis, erstellen.
+Damit diese Skripte während der Dokumenterzeugung ausgeführt werden, sind die Vorlagen (isy-dokumentvorlagen) in die zentrale Dokumentation und die einzelnen Bausteine eingebunden.
+
 [[die-arbeitsumgebung-einrichten]]
 = Die Arbeitsumgebung einrichten
 
@@ -25,53 +63,105 @@ Denn mit dieser Option ändert Git die heruntergeladenen Zeilenumbrüche zur Win
 Beim Hochladen wird hingegen zur Unix-Variante zurückgewandelt.
 Sollten Sie lokal mit Windows arbeiten, selektieren Sie also die erste Option.
 
-[[atom-installieren]]
-== Atom installieren
+[[vsc-installieren]]
+== VS Code installieren
 
-Die Installationsdatei von Atom kann von https://atom.io heruntergeladen werden.
+Die Installationsdatei von VS Code kann von https://code.visualstudio.com/ heruntergeladen werden.
+Alternativ kann auch ein anderer Texteditor verwendet werden, der AsciiDoc unterstützt, wie z.B. Atom (https://atom.io/) oder IntelliJ (https://www.jetbrains.com/idea/).
 
-:desc-image-atom0: Webseite des Texteditors Atom
-[id="image-atom0",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom0}
-image::atom0.png[align="center",pdfwidth=80%,width=80%]
+Im Folgenden wird die Installation, Konfiguration und Nutzung von VS Code beschrieben.
+
+:desc-image-vs_code: Webseite des Texteditors VS Code
+[id="image-vs_code",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code}
+image::vs_code.png[align="center",pdfwidth=80%,width=80%]
+
+Nach der Installation wird noch ein Plugin benötigt, um AsciiDoc-Dateien in Echtzeit im Texteditor zu rendern und eine Vorschau zu erzeugen.
+Dazu VS Code starten und links am Rand des Editor auf den Menüpunkt für `Extensions` klicken (siehe  <<image-vs_code_plugin_suche>>).
+Alternativ kann auch die Tastenkombination kbd:[Strg+Shift+X] gedrückt werden.
+Anschließend in das Suchfeld "AsciiDoc" eingeben, um passende AsciiDoc-Plugins anzeigen zu lassen.
+
+:desc-image-vs_code_plugin_suche: Auswahl des AsciiDoc-Plugins
+[id="image-vs_code_plugin_suche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_plugin_suche}
+image::vs_code_plugin1.png[align="center",pdfwidth=80%,width=80%]
+
+Die Suche wird automatisch gestartet und listet zahlreiche AsciiDoc-Plugins auf.
+Wir nutzen das Plugin `AsciiDoc` von João Pinto, da dies den größten Funktionsumfang bietet.
+Für die Installation das Plugin in der Ergebnisliste auswählen und in der sich öffnenden Plugin-Beschreibung auf den Button `install` klicken (siehe <<image-vs_code_plugin_installation>>).
+Das Plugin wird nun installiert.
+
+:desc-image-vs_code_plugin_installation: Installation des AsciiDoc-Plugins
+[id="image-vs_code_plugin_installation",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_plugin_installation}
+image::vs_code_plugin2.png[align="center",pdfwidth=80%,width=80%]
+
+Nach der Installation wieder in den Explorer-Modus (siehe <<image-vs_code_plugin_explorer>>) wechseln.
+
+:desc-image-vs_code_plugin_explorer: Wechsel in den Explorer-Modus
+[id="image-vs_code_plugin_explorer",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_plugin_explorer}
+image::vs_code_plugin3.png[align="center",pdfwidth=80%,width=80%]
+
+In <<vsc-einsetzen>> wird die Nutzung von VS Code erläutert.
+
+[[maven-installieren]]
+== Maven installieren
+
+Zum Erzeugen der PDF- und HTML-Dokumente wird Apache Maven benötigt.
+Apache Maven kann unter https://maven.apache.org/download.cgi heruntergeladen werden.
+Das heruntergeladene Archiv muss in ein beliebiges Verzeichnis entpackt werden.
+
+Anschließend gilt es noch die Pfad-Variable zu setzen:
+
+
+
+*Windows*
+
+Dazu in das Suchfeld im Startmenü `Systemumgebungsvariablen` eingeben und den Treffer `Systemumgebungsvariablen auswählen`.
+Anschließend im sich öffnenden Fenster unten rechts auf `Umgebungsvariablen` klicken.
+Es öffnet sich ein neues Fenster.
+Unter `Benutzervariablen für [nutzer]` den Eintrag `PATH` auswählen und auf den Button `Bearbeiten` klicken.
+Im sich öffnenden Fenster einen neuen Eintrag anlegen und den Pfad zum entpackten Maven Verzeichnis inkl `bin` angeben.
+Beispiel: `C:\maven\bin`
+
+Anschließend die Konsole neu starten und den Befehl `mvn -v` eingeben. Nun sollte die installierte Maven-Version angegeben werden.
+
+
+*Linux*
+
+In der Konsole den Pfad mit folgendem Befehl setzen:
+[source,java]
+----
+export PATH=/opt/apache-maven-3.6.2/bin:$PATH+
+----
+`/opt/apache-maven-3.6.2/bin` gibt den lokalen Pfad zum entpackten Maven-Verzeichnis an.
 
 [[ein-neues-dokument-anlegen]]
 = Ein neues Dokument anlegen
 
 Nach der Einrichtung der Arbeitsumgebung kann es mit der Bearbeitung der IsyFact-Dokumentation losgehen.
 Allerdings ist schon beim Anlegen der ersten Dateien einiges zu beachten, denn ein IsyFact-Dokument muss der festgelegten Struktur entsprechen.
-In diesem Kapitel wird gezeigt, wie hierfür zunächst das Gesamtprojekt aus dem Git-Repository heruntergeladen wird, um anschließend die darin enthaltene Dokument-Vorlage für das eigene IsyFact-Dokument vorzubereiten.
+In diesem Kapitel wird jeweils für die zentrale Dokumentation, als auch für die Bausteindokumentation gezeigt, wie zunächst das Projekt Git-Repository heruntergeladen wird, um anschließend die darin enthaltene Dokument-Vorlage für das eigene IsyFact-Dokument vorzubereiten.
 
-[[ein-neues-verzeichnis-anlegen]]
-== Ein neues Verzeichnis anlegen
+[[neues-verzeichnis-zentrale-dokumentation-anlegen]]
+== Zentrale Dokumentation: Ein neues Verzeichnis anlegen
 
 Das neue IsyFact-Dokument muss in einem bestimmten Ordner der vorhandenen Verzeichnisstruktur abgelegt werden.
-Dies setzt voraus, dass das Gesamtprojekt zunächst vom Git-Repository heruntergeladen wird.
+Dies setzt voraus, dass die zentrale Dokumentation als Gesamtprojekt zunächst vom Git-Repository heruntergeladen wird.
 Hierfür wechseln Sie auf der Kommandozeile auf eine geeignete Stelle Ihrer lokalen Festplatte und geben dort folgendes Kommando ein.
 
 ====
 C:\tmp\> *git clone* https://github.com/IsyFact/isy-documentation
 ====
 
-[[den-richtigen-standort-bestimmen]]
-=== Den richtigen Standort bestimmen
-
 Beim Herunterladen des GitLab-Projekts wird an der betroffenen Stelle das Verzeichnis isy-documentation angelegt, das einen einzigen Ordner enthält, nämlich den Ordner `/src`.
-Unterhalb von `/src` befinden sich die Verzeichnisse `/docs`, `/scripts` und `/theme`.
+Unterhalb von `/src` befindet sich das Verzeichnis `/docs`, das die Verzeichnisse der IsyFact-Dokumentation beinhaltet.
 
 :desc-image-verzeichnis1: Die Verzeichnisse der IsyFact-Dokumentation
 [id="image-verzeichnis1",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-verzeichnis1}
 image::verzeichnis1.png[align="center"]
-
-Während `/scripts` und `/theme` die Skripte zur automatisierten Verarbeitung enthalten, befinden sich unterhalb von `/docs` die Verzeichnisse der IsyFact-Dokumentation, aber auch die allgemeinen Verzeichnisse `/common` und `/Dokument-Vorlage`.
-Das Verzeichnis `/common` beinhaltet globale Einstellungen für die gesamte IsyFact-Dokumentation.
-Das Verzeichnis `/Dokument-Vorlage` enthält hingegen die Musterdateien für Ihr neues Dokument.
-
-:desc-image-verzeichnis2: Die Verzeichnisse der IsyFact-Dokumentation
-[id="image-verzeichnis2",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-verzeichnis2}
-image::verzeichnis2.png[align="center"]
 
 Bei den Verzeichnissen der IsyFact-Dokumentation wird darin unterschieden, ob es sich bei dem Dokument thematisch um ein Modul der _IsyFact-Standards_  (das Fundament von IsyFact) oder ein Modul der _IsyFact-Erweiterungen_ (die optionalen wiederverwendbaren Lösungen) handelt.
 Entsprechend beinhaltet das Verzeichnis `/docs` die zwei Verzeichnisse `10_IsyFact_Standards` und `20_IsyFact_Erweiterungen`.
@@ -99,22 +189,70 @@ Dazu vergeben Sie eine neue _Dokument-ID_.
 Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird.
 Die _Dokument-ID_ dieses Handbuchs ist zum Beispiel "Handbuch_fuer_technische_Autoren".
 
+
+[[neues-verzeichnis-bausteindokumentation-anlegen]]
+== Bausteindokumentation: Ein neues Verzeichnis anlegen
+
+Soll für einen Baustein eine neue Dokumentation angelegt werden oder die bestehende Dokumentation um ein Dokument erweitert werden, so gilt es zunächst die Verzeichnisse richtig anzulegen.
+In einem Baustein wird die Dokumentation in einem eigenen Verzeichnis unter dem Pfad `src/docs/asciidoc` abgelegt.
+
+<<image-verzeichnis_bausteindokumentation>> zeigt die Verzeichnisstruktur für die Dokumentation des Bausteins `isy-persistence`.
+
+:desc-image-verzeichnis_bausteindokumentation: Die Verzeichnisse der Bausteindokumentation von Isy-Persistence
+[id="image-verzeichnis_bausteindokumentation",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-verzeichnis_bausteindokumentation}
+image::verzeichnis_bausteindokumentation.png[align="center"]
+
+Dies setzt voraus, dass der Baustein zunächst vom Git-Repository heruntergeladen wird.
+Hierfür wechseln Sie auf der Kommandozeile auf eine geeignete Stelle Ihrer lokalen Festplatte und geben dort folgendes Kommando ein.
+
+====
+C:\tmp\> *git clone* https://github.com/IsyFact/[baustein]
+
+z.B. C:\tmp\> *git clone* https://github.com/IsyFact/isy-persistence
+====
+
+Sollte für den Baustein noch keine Dokumentation vorhanden sein und so im Projektverzeichnis das Verzeichnis `src/docs/asciidoc` fehlen, so muuss dies zunächst manuell angelegt werden.
+Dazu müssen Sie im Verzeichnis `src` das Verzeichnis `docs` und darin das Verzeichnis `asciidoc` erstellen.
+
+Im Verzeichnis `asciidoc` wird anschließend ein weiteres Verzeichnis für das Dokumentationsdokument erstellt.
+
+Wenn Sie dieses Verzeichnis anlegen, stellt sich als nächstes die Frage, wie das Verzeichnis benannt werden soll.
+Dazu vergeben Sie eine neue _Dokument-ID_.
+Die _Dokument-ID_ ist ein eindeutiger Bezeichner, der durchgängig als Verzeichnis- und Dateiname für ein IsyFact-Dokument verwendet wird.
+Die _Dokument-ID_ des Konzepts des Bausteins ´isy-persistence´ ist zum Beispiel "Detailkonzept_Komponente_Datenzugriff".
+
+Das Verzeichnis ist nun angelegt und die Asciidoc-Dateien aus der Mustervorlage können nun abgelegt werden.
+
 [[die-mustervorlage-vorbereiten]]
 == Die Mustervorlage vorbereiten
 
-Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wurde das Verzeichnis mit dem Namen `/src/docs/Dokument-Vorlage` bereitgestellt.
-In diesem Verzeichnis befinden sich die Musterinhalte, die sie als Grundlage für Ihre neues Dokument  verwenden können.
-Zusätzlich enthält die Dokument-Vorlage das Unterverzeichnis `/images` für die Abbildungen Ihres IsyFact-Dokuments.
-Sobald Sie also das Zielverzeichnis für Ihr IsyFact-Dokument angelegt haben, kopieren Sie darin die Musterdateien und das Unterverzeichnis `/images` aus dem Ordner `/src/docs/Dokument-Vorlage`.
+Um Sie (als technischen Autor) bei der Erstellung des neuen IsyFact-Dokuments zu unterstützen, wurde die Dokumentenvorlage (isy-dokumentenvorlagen) erstellt.
+Die Dokumentenvorlage enthält Musterinhalte, die Sie als Grundlage für Ihre neues Dokument verwenden können.
+
+Es gibt zwei verschiedene Wege, um auf die Dokumentvorlage zuzugreifen:
+
+*1. Klonen des Projektes isy-dokumentvorlagen*
+Hierfür wechseln Sie auf der Kommandozeile auf eine geeignete Stelle Ihrer lokalen Festplatte und geben dort folgendes Kommando ein.
+====
+C:\tmp\> *git clone* https://github.com/IsyFact/isy-dokumentvorlagen
+====
+Nun werden die Dokumentvorlagen heruntergeladen.
+Die Musterdateien befinden sich anschließend im Verzeichnis unter `isy-dokumentvorlagen/docs/Dokument-Vorlage`.
+
+*2. Nutzung der Dokumentvorlagen aus dem Build der Dokumentation/des Bausteins*
+Während des Build-Vorgangs werden die Dokumentvorlagen automatisch geladen und im `target` Verzeichnis der Dokumentation abgelegt.
+Um den Build-Vorgang zu starten, wird mit der Konsole in das Verzeichnis `isy-documentation` oder den jeweiligen Baustein navigiert und der Befehl `mvn install` ausgeführt.
+Der Build-Vorgang nimmt einige Zeit in Anspruch, da gleichzeitig auch die Dokumentation neu gerendert wird.
+Die Musterdateien befinden sich anschließend im Verzeichnis unter `/target/isy-dokumentvorlagen/docs/Dokument-Vorlage`.
+
+Nun kopieren Sie die Musterdateien in das neu angelegte Zielverzeichnis und erstellen ein neues Unterverzeichnis mit der Bezeichnung `images`.
+In dem neu erzeugten Verzeichnis `images` werden Bilder und Grafiken abgelegt, die im neu zu erstellenden Dokument verwendet werden sollen.
 
 Bei den Musterdateien handelt sich um folgende AsciiDoc-Dokumente:
 
 anhaenge.adoc::
 In der Datei `anhaenge.adoc` werden Anhänge des IsyFact-Dokuments aufgelistet.
-
-docinfo.adoc::
-`docinfo.adoc` beinhalt Informationen für das IsyFact-Dokument.
-Die Datei `docInfo.adoc` enthält derzeitig lediglich die Dokument-ID.
 
 inhalt.adoc::
 `inhalt.adoc` enthält alle Inhaltskapitel des IsyFact-Dokuments.
@@ -123,42 +261,56 @@ master.adoc::
 `master.adoc` ist die zentrale Datei, die alle anderen Dateien der Dokument-Vorlage über spezielle Verweise (`include`) einbindet.
 Wenn Sie sich eine vollständige Vorschau Ihres Dokuments anschauen möchten, können Sie die Datei `master.adoc` in Ihrem Editor öffnen und die Vorschaufunktion verwenden.
 
-////
-(Wieder integrieren, wenn wir die Datei wirklich benutzen)
-preface.adoc::
-Das Dokument `preface.adoc` wird derzeitig noch nicht verwendet.
-////
-
 thisdoc.adoc::
 `thisdoc.adoc` enthält das einleitende Kapitel des IsyFact-Dokuments, das den Inhalt zusammenfasst sowie den Aufbau und Zweck des Dokuments erläutert.
 
-[[atom-einsetzen]]
-=== Atom einsetzen
+[[vsc-einsetzen]]
+== VS Code einsetzen
 
-Für die Bearbeitung der Dokument-Vorlagen öffnen Sie Atom über das Startmenü.
-Innerhalb von Atom drücken Sie auf kbd:[Strg + Shift + O] oder öffnen im Hauptmenü menu:File[Open Folder].
-Hierdurch öffnen Sie den Ordner Ihres IsyFact-Dokuments als Atom-Projekt.
+Für die Bearbeitung der Dokument-Vorlagen öffnen Sie VS Code über das Startmenü.
+Innerhalb von VS Code öffnen Sie im Hauptmenü unter menu:File[Open Folder] das neu erstellte oder ein bestehendes Verzeichnis.
+Hierdurch öffnen Sie den Ordner Ihres IsyFact-Dokuments als VS Code Projekt.
 
-:desc-image-atom1: Den Ordner des IsyFact-Dokuments öffnen
-[id="image-atom1",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom1}
-image::atom1.png[align="center"]
+:desc-image-vs_code_projekt_oeffnen: Den Ordner des IsyFact-Dokuments öffnen
+[id="image-vs_code_projekt_oeffnen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_projekt_oeffnen}
+image::vs_code_projekt_oeffnen.png[align="center"]
 
-Selektieren die das Verzeichnis Ihres IsyFact-Dokuments und klicken Sie auf _Ordner auswählen_.
-Dann sollte auf der linken Seite die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments erscheinen.
+Auf der linken Seite erscheint die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments (<<image-vs_code_projektstruktur>>).
 
-:desc-image-atom2: Die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments
-[id="image-atom2",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom2}
-image::atom2.png[align="center"]
+:desc-image-vs_code_projektstruktur: Die Projektansicht mit dem Verzeichnis Ihres IsyFact-Dokuments
+[id="image-vs_code_projektstruktur",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_projektstruktur}
+image::vs_code_projektstruktur.png[align="center"]
 
 Sie können sich nun bereits die Dokument-Vorlage in der Vorschau ansehen.
 Hierfür öffnen Sie zunächst die zentrale Datei `master.adoc`.
-Dann drücken Sie entweder kbd:[Strg + Shift + A] oder Sie öffnen im Hauptmenü den Eintrag menu:Packages[AsciiDoc Preview > Toggle Preview].
-Dabei sollte auf der rechten Seite die Vorschau erscheinen.
+Dann drücken Sie entweder kbd:[Strg + K] und anschließend kbd:[V] oder Sie klicken im oberen rechten Ecke des Editors auf das Symbol mit der blauen Lupe (<<image-vs_code_vorschau1>>).
+
+
+:desc-image-vs_code_vorschau1: Die geöffnete AsciiDoc-Datei mit Button zur Vorschau
+[id="image-vs_code_vorschau1",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_vorschau1}
+image::vs_code_vorschau1.png[align="center"]
+
+Dabei sollte auf der rechten Seite die Vorschau erscheinen (<<image-vs_code_vorschau2>>).
+
+:desc-image-vs_code_vorschau2: Gerenderte Vorschau der Asciidoc-Datei
+[id="image-vs_code_vorschau2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-vs_code_vorschau2}
+image::vs_code_vorschau2.png[align="center"]
+
+Die Vorschau dient lediglich zu einer groben Orientierung, da weder die Isyfact-Stylesheets für die Dokumente genutzt werden, noch die Skripte zur Erzeugung von Glossar, Inhaltsverzeichnis und Verlinkungen ausgeführt werden.
+Ein vollständige gerenderte Ansicht wird erst durch den Maven-Build Vorgang erzeugt.
+Dies ist später in diesem Dokument unter <<asccidoc-zu-pdf-html>> erläutert.
+
+Im Folgenden wird mit dem Bearbeiten der Dokumentbestandteile fortgefahren.
+
+[[vorlagedateien-bearbeiten]]
+== Dateien der Vorlage bearbeiten
 
 [[master.adoc-bearbeiten]]
-== master.adoc bearbeiten
+=== master.adoc bearbeiten
 
 Die erste Datei, die Sie bearbeiten müssen ist die Datei `master.adoc`.
 // todo: kein bearb-Datum und Revisionsnummer mehr.
@@ -192,37 +344,43 @@ Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Ve
 
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
 
+Bezieht sich das zu erstellende Dokument auf einen Baustein (Bibliothek) der IsyFact, so ist dieser Baustein inklusive der Version ebenfalls in der master.adoc anzugeben.
+In <<listing-master-bib>> wird beispielsweise auf den Baustein `isy-web` verwiesen.
+
+:desc-listing-master-bib: master.adoc - Angabe des zugehörigen Bausteins
+[id="listing-master-bib",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-master-bib}
+[source,asciidoc,indent=0]
+----
+// Einbindung Bibliotheken, wenn nicht genutzt, entfernen
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3",options="header"]
+|====
+|Name |Art |Version
+|isy-web |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
+----
+
 In der Vorschau sollten die Änderungen unmittelbar erscheinen. Ihre Änderungen speichern Sie über kbd:[Strg + S].
 
-[[docinfo.adoc-bearbeiten]]
-== docinfo.adoc bearbeiten
+[[thisdoc.adoc-bearbeiten]]
+=== thisdoc.adoc bearbeiten
 
-Als Nächstes muss die Datei `docinfo.adoc` bearbeitet werden.
-Diese Datei wurde als Vorlage für Dokumenteninformationen zur Verfügung gestellt.
-Derzeitig wird in der `docinfo.adoc` aber lediglich die Dokument-ID gesetzt.
-Öffnen Sie die Datei durch einen Mausklick links in der Projektansicht.
-Die Dokument-Vorlage `docinfo.adoc` hat folgenden Inhalt:
+Die Datei `thisdoc.adoc` ist optional auszufüllen und sollte eine Einleitung in das Dokument bieten und den Aufbau und Zweck des Dokuments erläutern.
+Diese Datei ist in der `master.adoc` integriert und wird beim Rendern in das Gesamtdokument eingefügt.
 
-:desc-listing-docinfo: docinfo.adoc
-[id="listing-docinfo",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-docinfo}
-[source,asciidoc]
-----
-**Dokumentinformationen**
-|====
-|Dokumenten-ID:|  Bitte_hier_die_Dokument-ID_einfügen
-|====
-----
+[[inhalt.adoc-bearbeiten]]
+=== inhalt.adoc bearbeiten
 
-Ersetzen Sie den Text `Bitte_hier_die_Dokument-ID_einfügen` mit der Dokument-ID Ihres neuen Dokuments.
+In `inhalt.adoc` wird der eigentliche Inhalt des Dokuments verfasst.
+Diese Datei wird in der `master.adoc` beim Rendern nach der Datei `thisdoc.adoc` geladen.
 
-:desc-image-atom5: docinfo.adoc
-[id="image-atom5",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-atom5}
-image::atom5.png[align="center"]
+Im Folgenden wird die Inhaltserstellung erläutert.
 
-[[ein-existierendes-dokument-bearbeiten]]
-= Ein existierendes Dokument bearbeiten
+
+[[ein-dokument-bearbeiten]]
+= Ein Dokument bearbeiten
 
 Wenn das neue Verzeichnis mit den oben genannten Dateien erstellt worden ist, besteht für die weitere Bearbeitung kein Unterschied darin, ob es sich um frisch angelegte oder bereits bestehende Dokumente handelt.
 In beiden Fällen bearbeiten Sie in den meisten Fällen die Dateien `thisdoc.adoc`, `inhalt.adoc` und `anhaenge.adoc`.
@@ -748,3 +906,338 @@ Eine Referenz auf einen Begriff des Glossars erfolgt über doppelte spitze Klamm
 Das Ergebnis sieht wie folgt aus:
 
 `Hier wurde ein <<glossar-halloweltbeispiel, Hallo Welt Beispiel>> verwendet.`
+
+[[asccidoc-zu-pdf-html]]
+= PDF- und HTML-Dokumente erzeugen
+
+Ist das zu bearbeitende Dokument fertig gestellt, so kann es nun vollständig gerendert und in eine PDF- und HTML-Datei exportiert werden.
+Damit die Dokumentation innerhalb des Build-Prozess gerendert wird, muss die Dokumentation in die `pom.xml` aufgenommen werden.
+
+Die geschieht in zwei Schritten.
+Sollte es sich um ein Dokument der zentralen Dokumentation handeln oder um ein Dokument, das eine bestehende Bausteindokumentation erweitert, so kann der erste Schritt <<asciidoc-in-pom-einbinden>>  übersprungen werden.
+
+[[asciidoc-in-pom-einbinden]]
+== Asciidoc in Pom integrieren
+
+Damit überhaupt während des Build-Prozesses Asciidoc-Dateien gerendert werden, muss das Asciidoc-Maven-Plugin in die `pom.xml` aufgenommen werden.
+Zudem sind noch weitere Anpassungen nötig, die in den nächsten Abschnitten beschrieben sind.
+Zunächst sind mehrere Code-Snippets dargestellt, die in die `pom.xml` integriert werden müssen.
+
+*Neue Properties*
+
+Folgende Properties sind dem Element `<properties></properties>` hinzuzufügen
+
+:desc-pom-properties: Hinzuzufügende Properties
+[{id-equals}"listing-pom-properties",reftext="{listing-caption} {counter:listings }"]
+.{desc-pom-properties}
+[source,xml,subs="attributes+"]
+----
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<html-output-base-directory>${project.build.directory}/html</html-output-base-directory>
+<pdf-output-base-directory>${project.build.directory}/pdf</pdf-output-base-directory>
+<maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
+----
+
+*Integration Dokumentvorlagen*
+
+Damit die Dokumentvorlagen integriert werden, muss folgendes Plugin dem Element `<build><plugins>...</plugins></build>` hinzugefügt werden.
+
+:desc-pom-dokumentvorlagen: Integration Dokumentvorlagen
+[{id-equals}"listing-pom-dokumentvorlagen",reftext="{listing-caption} {counter:listings }"]
+.{desc-pom-dokumentvorlagen}
+[source,xml,subs="attributes+"]
+----
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>copy-assets</id>
+            <phase>generate-sources</phase>
+            <goals>
+            <goal>unpack</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.build.directory}/isy-dokumentvorlagen</outputDirectory>
+                <artifactItems>
+                    <artifactItem>
+                        <groupId>de.bund.bva.isyfact</groupId>
+                        <artifactId>isy-dokumentvorlagen</artifactId>
+                        <version>${project.version}</version>
+                        <overWrite>true</overWrite>
+                    </artifactItem>
+                </artifactItems>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+----
+
+*Integration der Skripte unter anderem zur Erstellung von Glossar und Literaturverzeichnis*
+
+Folgendes Plugin muss dem Element `<build><plugins>...</plugins></build>` hinzugefügt werden:
+
+:desc-pom-skripte: Integration der Skripte
+[{id-equals}"listing-pom-skripte",reftext="{listing-caption} {counter:listings }"]
+.{desc-pom-skripte}
+[source,xml,subs="attributes+"]
+----
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>1.6.0</version>
+    <executions>
+        <!-- Erzeugt das Glossar -->
+        <execution>
+            <id>generate-glossary</id>
+            <phase>generate-sources</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+                <executable>bash</executable>
+                <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
+                <arguments>
+                    <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/glossary.sh</argument>
+                    <argument>${basedir}/src/docs</argument>
+                </arguments>
+            </configuration>
+        </execution>
+        <!-- Erzeugt das Literaturverzeichnis -->
+        <execution>
+            <id>generate-bibliography</id>
+            <phase>generate-sources</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+                <executable>bash</executable>
+                <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
+                <arguments>
+                    <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/bibliography.sh</argument>
+                    <argument>${basedir}/src/docs</argument>
+                </arguments>
+            </configuration>
+        </execution>
+        <!-- Erzeugt ... -->
+        <execution>
+            <id>generate-lists</id>
+            <phase>generate-sources</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+                <executable>bash</executable>
+                <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
+                <arguments>
+                    <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/listof.sh</argument>
+                    <argument>${basedir}/src/docs</argument>
+                </arguments>
+            </configuration>
+        </execution>
+        <execution>
+            <id>post-process-html</id>
+            <phase>process-resources</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+                <executable>bash</executable>
+                <workingDirectory>${html-output-base-directory}</workingDirectory>
+                <arguments>
+                    <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/postprocesshtml.sh</argument>
+                </arguments>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+----
+
+*Asciidoc-Maven-Plugin intergrieren*
+Abschließend wird in die `pom.xml` das Asciidoc-Maven-Plugin integriert, das das Rendern der Dokumente übernimmt.
+Dazu ist folgendes Code-Snippet in das Element `<build><plugins>...</plugins></build>` einzufügen.
+
+
+:desc-pom-asciidoc: Integration des Asciidoc-Maven-Plugins
+[{id-equals}"listing-pom-asciidoc",reftext="{listing-caption} {counter:listings }"]
+.{desc-pom-asciidoc}
+[source,xml,subs="attributes+"]
+----
+ <plugin>
+    <groupId>org.asciidoctor</groupId>
+    <artifactId>asciidoctor-maven-plugin</artifactId>
+    <version>2.0.0-RC.1</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj-pdf</artifactId>
+            <version>1.5.0-beta.4</version>
+        </dependency>
+    </dependencies>
+
+    <configuration>
+        <outputDirectory>${project.build.directory}</outputDirectory>
+
+        <requires>
+            <require>${project.build.directory}/isy-dokumentvorlagen/docs/common/lib/isyfact-admonitions.rb</require>
+        </requires>
+
+        <attributes>
+            <revnumber>IF-${project.version}</revnumber>
+            <revdate>${maven.build.timestamp}</revdate>
+            <icons>font</icons>
+            <sectanchors>true</sectanchors>
+            <!-- set the idprefix to blank -->
+            <idprefix/>
+            <data-uri/>
+            <idseparator>-</idseparator>
+            <docinfo1>true</docinfo1>
+            <stylesdir>${project.build.directory}/isy-dokumentvorlagen/theme</stylesdir>
+            <stylesheet>isyfact.css</stylesheet>
+            <pdf-stylesdir>${project.build.directory}/isy-dokumentvorlagen/theme</pdf-stylesdir>
+            <pdf-style>isyfact</pdf-style>
+            <pdf-fontsdir>${project.build.directory}/isy-dokumentvorlagen/theme/fonts</pdf-fontsdir>
+            <version-ifs>2.0.x</version-ifs>
+            <isy-dokumentvorlagen>${project.build.directory}/isy-dokumentvorlagen</isy-dokumentvorlagen>
+        </attributes>
+    </configuration>
+
+    <executions>
+        <execution>
+            <id>Detailkonzept_Komponente_Datenzugriff-html</id>
+            <phase>generate-resources</phase>
+            <goals>
+                <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+                <backend>html</backend>
+                <sourceDirectory>
+                    src/docs/asciidoc/Detailkonzept_Komponente_Datenzugriff
+                </sourceDirectory>
+                <sourceDocumentName>master.adoc</sourceDocumentName>
+                <outputFile>
+                    ${html-output-base-directory}/DetailkonzeptKomponenteDatenzugriff.html
+                </outputFile>
+            </configuration>
+        </execution>
+        <execution>
+            <id>Detailkonzept_Komponente_Datenzugriff-pdf</id>
+            <phase>generate-resources</phase>
+            <goals>
+                <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+                <backend>pdf</backend>
+                <sourceDirectory>
+                    src/docs/asciidoc/Detailkonzept_Komponente_Datenzugriff
+                </sourceDirectory>
+                <sourceDocumentName>master.adoc</sourceDocumentName>
+                <outputFile>
+                    ${pdf-output-base-directory}/Detailkonzept_Komponente_Datenzugriff.pdf
+                </outputFile>
+            </configuration>
+        </execution>
+    </executions>
+
+</plugin>
+----
+
+Es ist zu beachten, dass die Konfigurationen im Element `<executions></executions>` zu editieren sind.
+Dies ist im nächsten Kapitel beschrieben.
+Es ist kein Kopieren von Code, wie es in <<listing-pom>> beschrieben ist, nötig.
+
+[[dokument-pom-aufnehmen]]
+== Integration in den Build-Prozess
+
+Jedes Dokument, das während des Build-Prozesses gerendert werden soll, muss dafür in die `pom.xml` aufgenommen werden.
+Die `pom.xml` liegt im Root-Verzeichnis der isy-documentation und wird in VS Code im Explorer auf der linken Seite aufgelistet.
+
+:desc-image-pom_oeffnen: Ablageort der pom.xml
+[id="image-pom_oeffnen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-pom_oeffnen}
+image::pom_oeffnen.png[align="center"]
+
+Zum Bearbeiten wird die `pom.xml` mit einem Doppelklick geöffnet.
+Anschließend bis zum Element `<executions>` scrollen. Innerhalb von `<executions></executions>` werden die zu rendernden Dokumente definiert.
+Für jedes zu rendernde Dokumente müssen zwei `<execution>`-Elemente vorhanden werden.
+Das erste `<execution>`-Element definiert die Erzeugung der HTML-Datei.
+Das zweite `<execution>`-Element definiert die Erzeugung der PDF-Datei.
+
+In <<image-pom_editieren>> ist dies anhand des Einstiegsdokuments gezeigt.
+
+:desc-image-pom_editieren: Definition des zu rendernden Dokuments in der pom.xml
+[id="image-pom_editieren",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-pom_editieren}
+image::pom_editieren.png[align="center"]
+
+Wenn Sie mit dem Kapitel <<asciidoc-in-pom-einbinden>> begonnen haben, ist das nachfolgende Kopieren von Code nicht nötig.
+Sie können direkt mit der Konfigurationsänderung (<<table-pom_parameter>>) fortfahren.
+Der einfachste Weg ein weiteres Dokument in die `pom.xml`  aufzunehmen besteht darin, die Definition eines bestehenden Dokuments zu kopieren und anzupassen.
+Dies bedeutet im Genauen, dass beispielweise folgender Code-Abschnitt dupliziert wird:
+
+:desc-listing-pom: Zu kopierender Code-Auschnitt
+[id="listing-pom",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-pom}
+[source,xml,indent=0]
+----
+<execution>
+    <id>IsyFact-Einstieg-html</id>
+    <phase>generate-resources</phase>
+    <goals>
+        <goal>process-asciidoc</goal>
+    </goals>
+    <configuration>
+        <backend>html</backend>
+        <sourceDirectory>
+            src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg
+        </sourceDirectory>
+        <sourceDocumentName>master.adoc</sourceDocumentName>
+        <outputFile>
+            ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactEinstieg.html
+        </outputFile>
+    </configuration>
+</execution>
+<execution>
+    <id>IsyFact-Einstieg-pdf</id>
+    <phase>generate-resources</phase>
+    <goals>
+        <goal>process-asciidoc</goal>
+    </goals>
+    <configuration>
+        <backend>pdf</backend>
+        <sourceDirectory>
+            src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg
+        </sourceDirectory>
+        <sourceDocumentName>master.adoc</sourceDocumentName>
+        <outputFile>
+            ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg.pdf
+        </outputFile>
+    </configuration>
+</execution>
+----
+
+Nach dem Kopieren müssen folgende Parameter angepasst werden:
+
+:desc-table-pom_parameter: Anzupassende Parameter
+[id=table-pom_parameter",reftext="{table-caption} {counter:tables}"]
+.{desc-table-pom_parameter}
+[options="header"]
+|====
+|Parameter|Beschreibung|Beispiel
+|<id></id>| Eine eindeutige Kennung des Dokuments. Sollte Aufschluss über das Dokument und das Ausgabeformat geben.| `mein-dokument-pdf` oder `mein-dokument-html`
+|<sourceDirectory></sourceDirectory>| Definiert den Pfad zum Verzeichnis in dem die master.adoc Datei liegt,| `src/docs/10_IsyFact-Standards/00_Allgemein/Mein-Dokument`
+|<outputFile></outputFile>| Definiert Pfad und Dateinamen der Ausgabedatei. | `${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/Mein-Dokument.pdf`
+|====
+
+Anschließend kann der Build-Vorgang ausgeführt und die PDF- und HTML Dokumente erzeugt werden.
+
+[[dokument-rendern]]
+== Gerendertes Dokument erstellen
+
+Um den Build-Vorgang zu starten, wird in der Konsole in das Verzeichnis gewechselt, in dem auch die bearbeitete `pom.xml` liegt.
+Anschließend wird mit dem Befehl `mvn install` der Build-Vorgang gestartet.
+Aufgrund der Vielzahl der zu rendernden Dokumente und auszuführenden Skripte, kann der Build-Vorgang einige Zeit in Anspruch nehmen.
+Für Test-Zwecke können in der `pom.xml` nicht relevante Dokumente übersprungen werden, in dem die zugehörigen Ausführungsdefinitionen (`<execution></execution>`) auskommentiert werden.
+
+

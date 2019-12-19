@@ -1,8 +1,9 @@
-l= Nutzungsvorgaben Sicherheit: Inhalt
+= Nutzungsvorgaben Sicherheit: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 
 // tag::inhalt[]
+
 [[grundkonzepte-und-konfiguration]]
 == Grundkonzepte und Konfiguration
 
