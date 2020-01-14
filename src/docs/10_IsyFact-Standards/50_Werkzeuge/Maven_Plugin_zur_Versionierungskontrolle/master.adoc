@@ -2,8 +2,11 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Detailkonzept Komponente Web-GUI
+:doctitle: Maven-Plugin zur Versionierungskontrolle
 :title: {doctitle}
+
+// Verhindert Interpretation der AsciiDoc-Beispiele durch Skripte
+:id-equals: id=
 
 // Zwangsplatz des TOC
 
@@ -24,13 +27,15 @@ endif::[]
 toc::[]
 
 // Einleitung
-include::thisdoc.adoc[tags=inhalt]
+include::thisdoc.adoc[leveloffset=1]
 
 // Inhalt
-include::inhalt.adoc[tags=inhalt]
+include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Glossar
+include::glossary.adoc[]
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
@@ -39,10 +44,6 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
-// Glossar
-include::glossary.adoc[]
-// Index
-//include::../common/index.adoc[]
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]
