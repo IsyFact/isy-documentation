@@ -12,6 +12,14 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 // Executive Summary
 // include::preface.adoc[]
 
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3",options="header"]
+|====
+|Name |Art |Version
+|isy-ueberwachung |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
+
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 
