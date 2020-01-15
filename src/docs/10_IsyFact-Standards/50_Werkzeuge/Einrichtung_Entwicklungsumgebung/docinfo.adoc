@@ -1,8 +1,0 @@
-
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Einrichtung_Entwicklungsumgebung
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.

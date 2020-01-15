@@ -1,5 +1,6 @@
 [[aufbau-und-zweck-des-dokuments]]
 = Aufbau und Zweck des Dokuments
+
 Mit diesem Leitfaden bauen Sie eine funktionierende Entwicklungsumgebung auf und generieren mit dem Projektgenerator der IsyFact eine Hello-World-Anwendung.
 
 == Aufbau

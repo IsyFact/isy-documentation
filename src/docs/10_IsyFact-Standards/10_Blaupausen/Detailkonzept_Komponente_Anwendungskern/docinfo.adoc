@@ -1,9 +1,0 @@
-**Dokumentinformationen**
-
-[cols="1,4"]
-|====
-|Dokumenten-ID:| Detailkonzept_Komponente_Anwendungskern
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
