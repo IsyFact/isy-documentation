@@ -48,6 +48,24 @@
                 <version>1.6.0</version>
                 <executions>
 
+                    <!-- Erzeugt das Glossar -->
+                    <execution>
+                        <id>generate-glossary</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>bash</executable>
+                            <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
+                            <arguments>
+                                <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/glossary.sh</argument>
+                                <argument>${basedir}/src/docs</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+
                     <!-- Erzeugt das Literaturverzeichnis -->
                     <execution>
                         <id>generate-bibliography</id>
@@ -65,22 +83,6 @@
                         </configuration>
                     </execution>
 
-                    <!-- Erzeugt das Glossar -->
-                    <execution>
-                        <id>generate-glossary</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>bash</executable>
-                            <workingDirectory>${project.build.directory}/isy-dokumentvorlagen/docs</workingDirectory>
-                            <arguments>
-                                <argument>${project.build.directory}/isy-dokumentvorlagen/scripts/glossary.sh</argument>
-                                <argument>${basedir}/src/docs</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
 
                     <!-- Erzeugt ... -->
                     <execution>
