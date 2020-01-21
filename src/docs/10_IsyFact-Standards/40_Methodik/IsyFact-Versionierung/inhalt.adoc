@@ -70,6 +70,12 @@ Auf Grundlage einer Versionsnummer von MAJOR.MINOR.PATCH werden bei Anwendungssy
 
 Beispiele: 1.0.2, 2.5.1, 1.2.1, 0.10.0-alpha1
 
+[IMPORTANT]
+====
+Die Vorgaben zu Semantic Versioning (vgl. <<allgemeine-nomenklatur-und-vorgaben, Kapitel 1>> Punk 2) gelten auch für alle Ressourcen, wie beispielsweise Datenbank-Skripte.
+Das heißt, Fixes an Skripten sowie die Nachlieferungen fehlender Skripte müssen in einem gesonderten Release (z.B. Bugfix-Release) veröffentlicht werden.
+====
+
 [[versionierung-im-scm]]
 == Versionierung im SCM
 
