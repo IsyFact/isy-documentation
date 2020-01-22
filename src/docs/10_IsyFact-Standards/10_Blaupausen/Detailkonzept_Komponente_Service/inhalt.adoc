@@ -246,12 +246,14 @@ Bei Transport-Objekten ist zu beachten, dass die UID stets 0 ist:
 private static final long serialVersionUID = 0L;
 ----
 
-NOTE: Für die Versionierung von Schnittstellen gelten gesonderte Vorgaben, die in <<IsyFactVersionskonzept>> definiert sind.
+NOTE: Für die Versionierung von Schnittstellen gelten gesonderte Vorgaben, die in <<IsyFactVersionierung>> definiert sind.
 
 Zur Veröffentlichung von API-kompatiblen Änderungen wird im Maven `pom.xml` eine einstellige Versionsnummer gesetzt (vgl. <<beispiel-api-kompatible-aenderung>>).
 Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
 
-[[beispiel-api-kompatible-aenderung]]
+:desc-listing-versioning-pom: Realsierung der Versionierungsvorgaben für Schnittstellen bei HTTP-Invoker.
+[id="listing-versioning-pom", reftext="reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-versioning-pom}
 [source,xml]
 ----
 <dependencies>
