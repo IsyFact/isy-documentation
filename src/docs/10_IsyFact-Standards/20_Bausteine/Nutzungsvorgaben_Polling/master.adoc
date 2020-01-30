@@ -17,9 +17,6 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |isy-polling |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
 
-// Executive Summary
-// include::preface.adoc[]
-
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 

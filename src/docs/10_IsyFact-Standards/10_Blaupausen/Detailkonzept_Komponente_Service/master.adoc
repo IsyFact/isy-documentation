@@ -17,8 +17,7 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |isy-serviceapi-core |Bibliothek |siehe isyfact-bom v{version-ifs}
 |isy-serviceapi-sst |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
-// Executive Summary
-// include::preface.adoc[]
+
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
