@@ -259,9 +259,9 @@ Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle
 <dependencies>
     ...
     <dependency>
-        <groupId><Organisation>.<Domäne>.<Anwendungsname></groupId>
-        <artifactId><Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1</artifactId>
-        <version>0</version>
+        <groupId>${Organisation.Domäne.Anwendungsname}</groupId>
+        <artifactId>${Anwendungsname}-httpinvoker-sst-${Servicename}-v${Major-Version}</artifactId>
+        <version>${Minor-Version}</version>
     </dependency>
     ...
 </dependencies>
