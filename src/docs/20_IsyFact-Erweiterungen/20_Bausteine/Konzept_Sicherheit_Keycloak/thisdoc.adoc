@@ -1,0 +1,22 @@
+= Konzept Keycloak: Einleitung
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+
+[[einleitung]]
+== Einleitung
+
+Der Baustein _Sicherheit Keycloak_ beschreibt den Einsatz des IAMfootnote:[Identity and Access Management] Systems Keycloakfootnote:[https://www.keycloak.org/] für eine IsyFact-kompatiblen Systemlandschaft.
+Diese IsyFact Erweiterung baut auf dem Konzept <<Konzept_Sicherheit>> aus dem IsyFact Standard auf und erweitert bzw. ergänzt dieses um Spezifikationen, die für den Einsatz von Keycloak relevant sind.
+
+In diesem Konzept werden folgende Inhalte behandelt:
+
+* *Randbedingungen* und *Kontextabgrenzung* - Welche Anforderungen/Probleme löst die IsyFact Erweiterung und wie ist sie in die Anwendungen bzw. die Systemlandschaft einzuordnen.
+* *Baustein Dokumentationen*
+** isy-sicherheit-keycloak
+** isy-iam
+* *Querschnittliche Themen*
+** JWT-Token
+
+
+// end::inhalt[]
