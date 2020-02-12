@@ -133,7 +133,8 @@ Die Art der angezeigten Statistiken ist von der verwendeten Cache-Implementierun
 [[pruefung-der-verfuegbarkeit]]
 ==== Prüfung der Verfügbarkeit
 
-Anwendungen nach der IsyFact-Architektur werden durch mittels Bereistellung eines `HealthIndicators` und einer Ping-Methode durch die Anwendung durch den Betrieb überwacht.
+Anwendungen nach IsyFact-Architektur sollen Mechanismen bereitstellen, die es erlauben, die Verfügbarkeit der Anwendung durch eine betriebliche Überwachung zu prüfen.
+Grundlage dafür ist die Bereitstellung eines HealthIndicators und einer Ping-Methode durch die Anwendung.
 
 [[implementierung-von-ping-und-pruefmethoden]]
 ===== Implementierung von HealthIndicators und Ping-Methoden

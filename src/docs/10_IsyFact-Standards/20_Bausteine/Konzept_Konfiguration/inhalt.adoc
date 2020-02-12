@@ -7,11 +7,6 @@ Alle Vorgaben sind beim Entwurf und der Realisierung von neuen Anwendungen nach 
 Gegebenenfalls können in Systementwürfen Verfeinerungen der hier getroffenen Vorgaben gemacht werden.
 Weiterhin können die hier gemachten Vorgaben als Basis für die Beschreibung der Konfiguration im Betriebshandbuch der Anwendungssysteme verwendet werden.
 
-[[vorgaben-fuer-konfigurationen]]
-= Vorgaben für Konfigurationen
-
-In diesem Kapitel wird das Konzept der Konfigurationen für Anwendungen nach der IsyFact-Architektur beschrieben.
-
 Für das Verständnis ist es wichtig die Konfigurationsparameter von den konkreten Parameterwerten für diese Konfigurationsparameter zu unterscheiden.
 Erstere sind fest von der Anwendungsimplementierung vorgegeben.
 Die Anwendung legt z.B. fest, dass es einen Parameter `datenbank.kennwort` zur Festlegung des Datenbankkennworts gibt.
@@ -21,7 +16,6 @@ Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung v
 [[festlegungen-und-ausgrenzungen-1]]
 == Festlegungen und Ausgrenzungen
 
-* Die Konfiguration eines konkreten Produkts zum System-Monitoring ist nicht Teil des Konzeptes.
 * Das Konfigurationskonzept betrifft alle von den IsyFact-Anwendungen verwendeten Konfigurationen.
   Dazu gehören sowohl vom Betrieb zu pflegende Konfigurationsdateien, als auch statische Konfigurationen, die z.B. das Layout von Dialog-Masken beschreiben (Ressource-Dateien).
   Wenn im Folgenden von Konfigurationen gesprochen wird, sind sowohl Konfigurationen im eigentlichen Sinne, als auch Ressourcen gemeint.

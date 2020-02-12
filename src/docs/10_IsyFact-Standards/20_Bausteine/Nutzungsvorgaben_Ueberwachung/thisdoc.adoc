@@ -1,7 +1,8 @@
-= Titel des Dokuments: Einleitung
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
+[[Einleitung]]
+== Einleitung
 
 Dieses Dokument enthält die Nutzungsvorgaben zur Überwachung von Anwendungen gemäß den <<glossar-IFS>>.
 

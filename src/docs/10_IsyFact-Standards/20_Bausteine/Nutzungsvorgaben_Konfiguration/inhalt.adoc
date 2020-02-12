@@ -11,79 +11,6 @@ Für das zugrundeliegende Konzept siehe <<KonzeptKonfiguration>>.
 Dazu gehören Vorgaben für die Ablage von Konfigurationsdateien und Implementierungshinweise zum Lesen der  Konfigurationen.
 Außerdem werden Besonderheiten für die Konfiguration der eingesetzten Bibliotheken und Frameworks beschrieben.
 
-Für das Verständnis ist es wichtig die Konfigurationsparameter von den konkreten Parameterwerten für diese Konfigurationsparameter zu unterscheiden.
-Erstere sind fest von der Anwendungsimplementierung vorgegeben.
-Die Anwendung legt z.B. fest, dass es einen Parameter `datenbank.kennwort` zur Festlegung des Datenbankkennworts gibt.
-Parameterwerte meinen die Einstellungen für diese Parameter und werden z.B. vom Betrieb konfiguriert.
-Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung verstanden.
-
-[[festlegungen-und-ausgrenzungen-1]]
-=== Festlegungen und Ausgrenzungen
-
-* Das Konfigurationskonzept betrifft alle von den IsyFact-Anwendungen verwendeten Konfigurationen.
-  Dazu gehören sowohl vom Betrieb zu pflegende Konfigurationsdateien, als auch statische Konfigurationen, die z.B. das Layout von Dialog-Masken beschreiben (Ressource-Dateien).
-  Wenn im Folgenden von Konfigurationen gesprochen wird, sind sowohl Konfigurationen im eigentlichen Sinne, als auch Ressourcen gemeint.
-* Nicht zu den hier erfassten Konfigurationen gehört die Konfiguration der Basis-Software, z.B. des Tomcat.
-* Anwendungen müssen im Normalfall für Konfigurationsänderungen neu gestartet werden.
-  Ausnahmen hiervon bedürfen besonderer technischer und organisatorischer Maßnahmen.
-  Details dazu werden in Kapitel <<konfigurationsaenderungen-zur-laufzeit>> beschrieben.
-* Anwendungen werden im Cluster betrieben und verfügen nicht über ein gemeinsames Datei-System.
-  Datei-basierte Konfigurationen müssen daher für alle Knoten eines Clusters einzeln gepflegt werden.
-* Umgebungsspezifische Parameter, z.B. Datenbank-URL und Passwort, sind alleine durch den Betrieb zu pflegen.
-* Jede Fachanwendung enthält einen Konfigurationsparameter zur Deaktivierung der Schreibzugriffe (Meldungen), der z. B. bei Durchführung längerer Datenmigrationen verwendet wird (siehe Abschnitt <<umsetzen-des-auskunftsmodus>>).
-  Das Auslesen dieses Parameters wird so realisiert, dass er zur Laufzeit umkonfiguriert werden kann (siehe Abschnitt <<konfigurationsaenderungen-zur-laufzeit>>).
-* Alle Anwendungssysteme und Batches, die schreibend auf eine andere Fachanwendung zugreifen, müssen auf die Nichtverfügbarkeit dieser Komponente vorbereitet sein.
-  Entweder können jene Systeme vorübergehend heruntergefahren sein, oder bestimmte Funktionen, z.B. der Schreibzugriff, können über Konfigurationsparameter deaktiviert sein.
-  Systeme, bei denen Funktionen deaktiviert sind, zeigen Benutzern frühzeitig einen Hinweis an, welche Funktionen nicht zur Verfügung stehen.
-  Ob eine Anwendung einen Konfigurationsparameter erhält oder heruntergefahren werden kann, muss für jede Anwendung, abhängig von deren Verfügbarkeitsanforderung, individuell entschieden werden.
-
-Als weitere Rahmenbedingung gilt, dass während der Entwicklung die für die Produktion relevanten Werte der Konfigurationsparameter nicht bekannt sind.
-
-[[typisierung-und-handhabung-von-konfigurationen]]
-=== Typisierung und Handhabung von Konfigurationen
-
-Konfigurationen lassen sich wie in <<table-typKonfZiel>> dargestellt typisieren:
-
-Die Spalte „Pflegeverantwortung“ gibt an, wer die entsprechenden Konfigurationen pflegt.
-So wird beispielsweise die Spring-Konfiguration ausschließlich von den Anwendungsentwicklern bearbeitet.
-Die pflegende Gruppe muss aber nicht zwangsläufig die Inhalte des entsprechenden Konfigurationstyps bestimmen.
-So werden Validierungsregeln maßgeblich durch eine Fachabteilung inhaltlich vorgegeben werden.
-Trotzdem ist die Konfiguration statisch, d.h. sie ist schon zur Entwicklungszeit bekannt und auch nach der Installation nicht mehr veränderbar.
-
-Der Spalte „Umgebungsabhängigkeit erlaubt“ lässt sich entnehmen, ob der entsprechende Konfigurationstyp für eine bestimmte Umgebung (d.h. Testumgebungen, Produktionsumgebung) spezifische Teile enthalten darf.
-So dürfen von Entwicklern zu pflegende Konfigurationen niemals umgebungsabhängig sein.
-Wäre dies der Fall müsste, beispielsweise ein Entwickler das Kennwort der Produktionsdatenbank kennen.
-
-Die Spalte „Erlaubte Zugriffsart der Anwendung“ gibt an, ob der entsprechende Konfigurationstyp von der Anwendung nur gelesen oder auch geschrieben werden darf.
-Die wenigsten Konfigurationen sollten durch die Anwendung selbst geschrieben werden.
-Lediglich Benutzerkonfigurationen werden typischerweise zur Laufzeit der Anwendung dynamisch geändert.
-Diese müssen in der Datenbank gespeichert werden.
-
-Die letzte Spalte der Tabelle gibt die bevorzugte Art für die Speicherung der entsprechenden Konfiguration an.
-Der Ablageort ist für die Paketierung der Anwendung (Build) und die <<glossar-Auslieferung>> wichtig.
-
-NOTE: Für Details siehe das Kapitel <<datei-basierte-konfigurationen>>.
-
-Die betrieblichen Konfigurationen müssen leicht durch den Betrieb zugänglich und änderbar sein.
-Daher werden diese in einem separaten Ordner `config` in Form von einfachen Property-Dateien abgelegt.
-Statische Konfigurationen sind bereits zum Build-Zeitpunkt bekannt und können als Ressourcen mit der Anwendung verpackt werden.
-Hier kommen häufig auch komplexere, XML basierte Konfigurationsdateien zum Einsatz.
-Da Benutzer-Konfigurationen durch die Anwendung geschrieben werden, dürfen diese nicht im Datei-System abgelegt werden.
-Ansonsten wäre eine gesonderte Synchronisierung dieser Dateien notwendig, wenn die Anwendung im Cluster betrieben wird.
-
-:desc-table-typKonfZiel: Typisierung von Konfigurationen nach Zielgruppen
-[id="table-typKonfZiel",reftext="{table-caption} {counter:tables}"]
-.{desc-table-typKonfZiel}
-[cols="5,3,3,3",options="header"]
-|====
-h|Konfigurationstyp   |Statische Konfiguration       |Betriebliche Konfiguration          |Benutzer-Konfiguration
-h|Pflegeverantwortung |Entwickler                    |Betrieb                             |Fachabteilung oder Administratoren
-h|Beispiel 	          |Spring-Konfiguration          |Datenbank-Benutzer und -Kennwort    |Dialog-Einstellungen
-h|Umgebungsabhängigkeit erlaubt        |nein         |ja                                  |nein
-h|Erlaubte Zugriffsarten der Anwendung |nur lesend   |nur lesend                          |lesend und schreibend
-h|Speicherung         |Als Datei im Resources-Ordner |Als Property-Datei im Config-Ordner |In der Datenbank
-|====
-
 NOTE: Der Speicherort der Ordner `Resources` und `Config` wird in Kapitel <<datei-basierte-konfigurationen>> beschrieben.
 
 [[vorgaben-fuer-die-ablage-und-verwendung-von-konfigurationen]]
@@ -259,7 +186,10 @@ Für weitere Details siehe <<DetailkonzeptKomponenteDatenzugriff>>.
 [[verwendung-von-isy-konfiguration]]
 === Verwendung von isy-konfiguration
 
-[WARNING] Die Bibliothek `isy-konfiguration` wird nicht mehr weiterentwickelt und ist nur im Ausnahmefall zu verwenden.
+====
+[WARNING]
+Die Bibliothek `isy-konfiguration` wird nicht mehr weiterentwickelt und ist nur im Ausnahmefall zu verwenden.
+====
 
 Zur Bereitstellung von Konfigurationsparametern in der Anwendung kann die Bibliothek `isy-konfiguration` verwendet werden.
 
@@ -383,7 +313,7 @@ Die Datei kann aus technischen Gründen nicht im Resources-Ordner abgelegt werde
 Sie wird daher direkt im Ordner `WEB-INF/` abgelegt.
 
 [[tomcat-kontext-konfiguration-context.xml]]
-=== Tomcat-Kontext-Konfiguration (context.xml)
+==== Tomcat-Kontext-Konfiguration (context.xml)
 
 Tomcat verwaltet für jede Webanwendung eine eigene Konfiguration.
 In dieser Datei werden in einem <context>-Tag spezielle Einstellungen für diese Webanwendung konfiguriert.
