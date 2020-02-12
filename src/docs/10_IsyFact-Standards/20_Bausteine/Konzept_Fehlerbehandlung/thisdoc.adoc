@@ -1,6 +1,5 @@
-// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Dieses Dokument enthält das technische Feinkonzept zur Fehlerbehandlung für alle Anwendungen gemäß Referenzarchitektur der IsyFact.
 
@@ -15,5 +14,3 @@ Ziel der im Kapitel <<anforderungen-an-die-fehlerbehandlung>> beschriebenen Fehl
 * das Erreichen eines effizienten und einheitlichen Umgangs mit Fehlern
 * die Gewährleistung der Wartbarkeit von Anwendungen durch aussagekräftige Fehler
 * die einfachere Wartung durch einen standardisierten Einsatz von Fehlerbehandlung und Fehlern
-
-// end::inhalt[]

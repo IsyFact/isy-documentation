@@ -1,6 +1,6 @@
 // tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Dieses Dokument enthält die Nutzungsvorgaben zur Fehlerbehandlung für alle Anwendungen gemäß Referenzarchitektur der IsyFact.
 
