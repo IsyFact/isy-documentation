@@ -1,7 +1,7 @@
 [[einleitung]]
 = Einleitung
 
-Dieses Dokument beschreibt die Verwendung des Bausteins Polling.
+Dieses Dokument beschreibt die konzeptionellen Grundlagen des Bausteins Polling.
 
 In <<glossar-Fachanwendung,Fachanwendungen>> und <<glossar-Service-Gateway,Service-Gateways>> müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
 Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden.
@@ -17,7 +17,3 @@ In <<image-K001>> wird diese Situation dargestellt.
 [id="image-K001",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-K001}
 image::polling_K001.png[align="center", width=55%, pdfwidth=55%]
-
-Der <<glossar-Baustein>> Polling definiert ein solches Verfahren und beschreibt die <<glossar-Bibliothek>> `isy-polling`, die dieses Verfahren implementiert.
-
-Dieses Dokument richtet sich an Entwickler und Chefdesigner, die Polling-Funktionalität in eine Anwendung integrieren wollen.
