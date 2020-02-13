@@ -2,16 +2,23 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: IsyFact–Versionierung
+:doctitle: Konzept Überwachung
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
-
 // Executive Summary
 // include::preface.adoc[]
+
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3",options="header"]
+|====
+|Name |Art |Version
+|isy-ueberwachung |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -32,7 +39,6 @@ include::inhalt.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]
-
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
@@ -42,6 +48,5 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
 
-
 // Anhänge
-//include::anhaenge.adoc[leveloffset=1]
+// include::anhaenge.adoc[leveloffset=1]

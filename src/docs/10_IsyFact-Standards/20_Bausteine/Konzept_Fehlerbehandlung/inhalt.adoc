@@ -677,7 +677,7 @@ Auch hier gilt das generelle Prinzip auf oberster Ebene der Anwendung eine Excep
 == Fehlertexte und deren Einsatz
 
 Fehlertexte müssen in `ResourceBundles` abgelegt werden.
-Die Ablage der Fehlertexte wird durch das <<KonzeptUeberwachungKonfiguration>> vorgegeben, das Laden der Dateien wird in Spring durch Holder-Klassen realisiert und ist im <<DetailkonzeptKomponenteAnwendungskern>> erläutert.
+Die Ablage der Fehlertexte wird durch das <<KonzeptKonfiguration>> vorgegeben, das Laden der Dateien wird in Spring durch Holder-Klassen realisiert und ist im <<DetailkonzeptKomponenteAnwendungskern>> erläutert.
 
 Als Schlüssel werden die Ausnahme-IDs verwendet.
 Diese setzen sich aus fünf Buchstaben und fünf numerischen Zeichen zusammen:

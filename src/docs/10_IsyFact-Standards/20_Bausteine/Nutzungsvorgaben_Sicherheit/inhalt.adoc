@@ -580,7 +580,7 @@ Dazu gibt es folgende Methode:
 
 `boolean pingAccessManager()`:: Prüft die Erreichbarkeit des `AccessManager` mittels einer trivialen Anfrage.
 
-Diese Methode kann in den Watchdog des IT-Systems (siehe <<KonzeptUeberwachungKonfiguration>>) eingebunden werden.
+Diese Methode kann in den Watchdog des IT-Systems (siehe <<KonzeptUeberwachung>>) eingebunden werden.
 
 
 [[entwickeln-und-testen]]

@@ -39,7 +39,7 @@ Das Logging-Konzept definiert jedoch, welche Informationen durch die einzelnen S
 * Monitoring, Logging, Protokollierung: Unter „Logging“ wird in diesem Dokument „Logging zu technischen Zwecken verstanden“.
 Anforderungen bezüglich der Protokollierung (das Mitschreiben von Informationen zu durchgeführten Geschäftsvorfällen auf Grund fachlicher Anforderungen werden im Konzept _Protokollierung_ <<ProtokollierungKonzept>>) behandelt.
 +
-Das Monitoring zur betrieblichen Überwachung der Anwendungslandschaft und frühzeitigen Eskalation von Problemen ist im Konzept _Überwachung und Konfiguration_ <<KonzeptUeberwachungKonfiguration>> beschrieben.
+Das Monitoring zur betrieblichen Überwachung der Anwendungslandschaft und frühzeitigen Eskalation von Problemen ist im Konzept _Überwachung_ <<KonzeptUeberwachung>> beschrieben.
 +
 In folgender Tabelle werden die drei verschiedenen Disziplinen detailliert voneinander abgegrenzt:
 
