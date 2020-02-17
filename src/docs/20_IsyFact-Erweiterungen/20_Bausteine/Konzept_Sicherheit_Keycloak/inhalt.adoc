@@ -1,0 +1,13 @@
+= Konzept Keycloak: Inhalt
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+
+== Randbedingungen
+
+Der Einsatz der IsyFact Erweiterung _Keycloak Sicherheit_ ist mit folgenden Randbedingungen verknüpft.
+
+    - Innerhalb der Behörde, des Instituts der der Organisation wird Keycloak als zentrales IAM System verwendet.
+    - Die Fachanwendungen verwenden den Standard-Baustein _IsyFact Sicherheit_.
+
+// end::inhalt[]

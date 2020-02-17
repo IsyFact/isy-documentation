@@ -6,17 +6,21 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[einleitung]]
 == Einleitung
 
-Der Baustein _Sicherheit Keycloak_ beschreibt den Einsatz des IAMfootnote:[Identity and Access Management] Systems Keycloakfootnote:[https://www.keycloak.org/] für eine IsyFact-kompatiblen Systemlandschaft.
-Diese IsyFact Erweiterung baut auf dem Konzept <<Konzept_Sicherheit>> aus dem IsyFact Standard auf und erweitert bzw. ergänzt dieses um Spezifikationen, die für den Einsatz von Keycloak relevant sind.
+Das _Konzept Sicherheit Keycloak_ und seine Bausteine richtet sich an Behörden, Institute oder Unternehmen, die ein zentrales Keycloak System bereits betreiben oder zukünftig betreiben wollen, um damit eine und/oder mehrere Fachanwendungen oder Anwendungslandschaften abzusichern (vgl. <<image-rahmenbedingungen>>).
 
-In diesem Konzept werden folgende Inhalte behandelt:
+:desc-image-rahmenbedingungen: Rahmenbedingungen für den Einsatz von Keycloak
+[id="image-rahmenbedingungen",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-rahmenbedingungen}
+image::images/rahmenbedingungen.png[align="center"]
 
-* *Randbedingungen* und *Kontextabgrenzung* - Welche Anforderungen/Probleme löst die IsyFact Erweiterung und wie ist sie in die Anwendungen bzw. die Systemlandschaft einzuordnen.
-* *Baustein Dokumentationen*
-** isy-sicherheit-keycloak
-** isy-iam
-* *Querschnittliche Themen*
-** JWT-Token
+link:https://www.keycloak.org/[Keycloak] ist ein OpenSource Identity and Accessmanagment System (IAM).
+Es bietet eine Reihe von Standard Protokollen wie _OAuth 2.0_ oder _OpenID Connect_ sowie Features wie _Single-Sign On_ oder eine Benutzerverwaltung.
+
+Ziele der IsyFact Erweiterung _Sicherheit Keycloak_ sind
+
+    - Die Bereitstellung von Bausteinen in Form von Adaptern und Filtern, welche die Anbindung von Keycloak an Fachanwendungen oder Anwendungslandschaften reduzieren
+    - Standardisierung von Claims innerhalb eines JSON Web Tokens (JWT), die für die Autorisierung von IsyFact-konformen Anwendungen benötigt werden.
+    - Hilfestellung bei der Migration auf Keycloak.
 
 
 // end::inhalt[]
