@@ -102,7 +102,7 @@ Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie
 
 * Die Konfiguration der Datenzugriffschicht, beschrieben im <<DetailkonzeptKomponenteDatenzugriff>>.
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
-* Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachungKonfiguration>>.
+* Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachung>>.
 * Die Verwendung der HTTP-Invoker-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
 * Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
@@ -280,7 +280,7 @@ public class CoreConfig {
 [[konfigurationsparameter-ueber-property-objekte-konfigurieren]]
 ==== Konfigurationsparameter über Property-Objekte konfigurieren
 
-Die Konfiguration der Anwendung wird (wie im Detailkonzept Überwachung und Konfiguration <<KonzeptUeberwachungKonfiguration>> beschrieben) über die Datei `application.properties` durchgeführt.
+Die Konfiguration der Anwendung wird (wie im Konzept Konfiguration <<KonzeptKonfiguration>> beschrieben) über die Datei `application.properties` durchgeführt.
 Diese Datei enthält sämtliche Konfigurationsparameter der Anwendung.
 Das Setzen einzelner Konfigurationsparameter über `set`-Methoden ist nur in Ausnahmefällen erlaubt.
 // TODO Ein Beispiel dafür ist die Konfigurations-Bean `konfiguration` in der Datei `konfiguration.xml` der Vorlageanwendung.
@@ -344,7 +344,7 @@ Dependency Injection konfiguriert werden, müssen diese nach ihrer Konfiguration
 
 In einigen Fällen existieren jedoch weitere Abhängigkeiten von Spring:
 
-* Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptUeberwachungKonfiguration>>).
+* Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptKonfiguration>>).
 
 * Bei HttpInvoker Server-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
 (siehe <<DetailkonzeptKomponenteService>>.
