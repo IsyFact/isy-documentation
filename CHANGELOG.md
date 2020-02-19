@@ -1,5 +1,9 @@
 # 1.8.0
+- `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
+- `IFS-409`: Namenskonventionen: Batchparameter eingefügt
+- `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
+- `IFS-468`: Update auf dozer 6.x
 
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert

@@ -1,18 +1,1 @@
 == Zusammenfassung für das Management
-
-//Zusammenfassung des Inhalts auf ein bis zwei Absätze. Ein Abstrakt oder Executive Summary des Dokuments.
-
-
-// Das muss hier überarbeitet werden NV raus!
-
-
-In diesem Dokument werden Nutzungsvorgaben für die Erstellung einer grafischen Oberfläche in der
-Portalanwendung der Zielplattform aufgestellt.
-Sie betreffen die Erstellung der Oberfläche unter Verwendung von Spring Web Flow und JSF, sowie deren initialen Setup.
-Es wird die grobe Struktur der Oberfläche - beschrieben.
-
-Betroffene Themenbereiche dieser Nutzungsvorgabe sind:
-
-* Definition von Dialogabläufen mit Spring Web Flow
-* Einsatz von JSF und Facelets
-* Anbindung von Backend Services

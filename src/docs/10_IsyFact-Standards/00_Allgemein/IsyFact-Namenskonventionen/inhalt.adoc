@@ -537,6 +537,25 @@ import-bhknz-liste.properties
 import-bhknz-liste.sh
 |====
 
+*Konfigurationsparameter*
+
+Die Konfiguration eines Batches kann über die Kommandozeile, als auch über die Konfigurationsdatei geschehen.
+
+:desc-table-batckonfig: Batches: Konfigurationsparameter
+[id="table-batckonfig",reftext="{table-caption} {counter:tables}"]
+.{desc-table-batckonfig}
+[cols="1,4",options="header"]
+|====
+2+|Konfigurationsparameter: Kommandozeile
+|*Schema* m|-<Parametername> <Parameterwert>
+|*Beispiele* m|-laufzeit 10
+2+|Konfigurationsparameter: Konfigurationsdatei
+|*Schema* m|<Parametername>=<Parameterwert> +
+<Parametername>.<Parametername>=<Parameterwert>
+|*Beispiele* m| BatchName=LoeschBatch +
+Loeschfunktion.DatumVon=30.11.2019
+|====
+
 [[schnittstellen]]
 === Schnittstellen
 
