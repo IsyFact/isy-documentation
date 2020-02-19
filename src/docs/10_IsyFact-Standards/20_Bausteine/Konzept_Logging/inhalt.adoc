@@ -183,10 +183,13 @@ Dazu werden in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>
 [[datenschutz]]
 ==== Datenschutz
 
-Die Nachrichten dürfen keine Daten enthalten, die datenschutzrechtlich relevant oder sicherheitsrelevant sind (d.h. Personendaten, Passwörter, etc.).
+Beim Loggen der Nachrichten sind grundsätzlich die Vorgaben der Datenschutzgrundverordnung (https://www.datenschutz-grundverordnung.eu/[DSGVO]) einzuhalten.
+Eine besondere Rolle spielen dabei personenbezogene Daten und insbesondere Daten gemäß Artikel 9 DSGVO.
+Ebenso dürfen grundsätzlich keine sicherheitsrelevanten Daten (z.B. Passwörter) geloggt werden.
 
 [underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
 Die entsprechenden Logeinträge müssen durch das Setzen des Flags ATT_Enthält_fachliche_Daten markiert werden, damit sie durch die Loginfrastruktur gesondert behandelt werden können.
+Die Daten dürfen nur so lange aufbewahrt werden, wie es für die Analyse der Daten zwingend erforderlich ist.
 
 [[logausgabe]]
 == Logausgabe
