@@ -6,21 +6,14 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[einleitung]]
 == Einleitung
 
-Das _Konzept Sicherheit Keycloak_ und seine Bausteine richtet sich an Behörden, Institute oder Unternehmen, die ein zentrales Keycloak System bereits betreiben oder zukünftig betreiben wollen, um damit eine und/oder mehrere Fachanwendungen oder Anwendungslandschaften abzusichern (vgl. <<image-rahmenbedingungen>>).
+Das _Konzept Sicherheit Keycloak_ und seine Bausteine richtet sich an Behörden oder Institute, die ein zentrales Keycloak System bereits betreiben oder zukünftig betreiben wollen, um damit eine und/oder mehrere Fachanwendungen oder Anwendungslandschaften abzusichern (vgl. <<image-rahmenbedingungen>>).
 
-:desc-image-rahmenbedingungen: Rahmenbedingungen für den Einsatz von Keycloak
+:desc-image-rahmenbedingungen: Einsatz von Keycloak in einer Behörde oder einem Institut
 [id="image-rahmenbedingungen",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-rahmenbedingungen}
 image::images/rahmenbedingungen.png[align="center"]
 
 link:https://www.keycloak.org/[Keycloak] ist ein OpenSource Identity and Accessmanagment System (IAM).
 Es bietet eine Reihe von Standard Protokollen wie _OAuth 2.0_ oder _OpenID Connect_ sowie Features wie _Single-Sign On_ oder eine Benutzerverwaltung.
-
-Ziele der IsyFact Erweiterung _Sicherheit Keycloak_ sind
-
-    - Die Bereitstellung von Bausteinen in Form von Adaptern und Filtern, welche die Anbindung von Keycloak an Fachanwendungen oder Anwendungslandschaften reduzieren
-    - Standardisierung von Claims innerhalb eines JSON Web Tokens (JWT), die für die Autorisierung von IsyFact-konformen Anwendungen benötigt werden.
-    - Hilfestellung bei der Migration auf Keycloak.
-
 
 // end::inhalt[]
