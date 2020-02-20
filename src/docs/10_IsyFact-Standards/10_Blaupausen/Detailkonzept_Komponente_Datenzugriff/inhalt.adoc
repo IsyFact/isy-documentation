@@ -1138,6 +1138,22 @@ Die Methode `leseBestandHistorie(String)` wurde eingefügt.
 
 Die Methode `speichereBestand(Bestand)` wurde entfernt.
 
+[[erstellung-von-datenbankschemas]]
+== Erstellung von Datenbankschemas
+
+In diesem Kapitel werden Vorgaben für die Erstellung von Datenbankschemas erläutert.
+
+[[namenskonventionen-von-datenbankschemas]]
+=== Namenskonventionen
+Für die Benennung von Datenbankschemas sind folgende Einschränkungen zu beachten:
+
+- Vollständige, beschreibende, aussprechbare Namen (oder bekannte Abkürzungen).
+- Der Name eines Datenbankschemas muss mit einem Buchstaben beginnen.
+- Es dürfen nur Buchstaben, Zahlen und Unterstriche (_) im Namen enthalten sein.
+- Umlaute, Sonderzeichen, Bindestriche und Leerzeichen sind nicht erlaubt.
+
+
+
 [[versionierung-von-datenbankschemas]]
 == Versionierung von Datenbankschemas
 
