@@ -482,6 +482,32 @@ Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die b
 (((Baustein,Benutzerverwaltung)))
 Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht. Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen. Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
 
+[[styleguide]]
+=== Styleguide
+(((Baustein,Styleguide)))
+Der Baustein Styleguide beschreibt die Gestaltung grafischer Oberflächen nach einheitlichen Gesichtspunkten.
+Das zentrale Dokument, der <<Styleguide>>, enthält Vorgaben zu Aufbau und Gestaltung von Web-GUIs.
+Der Styleguide definiert ebenfalls Form und Funktion der in der IsyFact verfügbaren Anzeige- und Bedienelemente.
+Neben dem Dokument beinhaltet der Baustein eine Software-Bibliothek, welche die Vorgaben als CSS-Stile zur Nutzung bereitstellt.
+
+[[sessionmanagement]]
+=== Session Management
+(((Baustein,Session Management)))
+Für das Session Management wird in IsyFact basierten Anwendungen Spring Session eingesetzt.
+Der Baustein Session Management erleichtert die Konfiguration von Spring Session gemäß den Vorgaben und Anforderungen der IsyFact.
+Die <<NutzungsvorgabenSessionManagement>> zeigen, wie mit Hilfe dieser Erweiterung Sessions in IsyFact Anwendungen verwaltet werden.
+
+[[webjsf]]
+=== Web JSF
+(((Baustein,JSF)))
+Der Baustein Web JSF enthält alle notwendigen Abhängigkeiten, Spring-Konfigurationen, JSF-Komponenten (Composite Components) sowie zugehörige XHTML-Templates zur Erstellung einer GUI mit JSF.
+
+[[sicherheitkeycloak]]
+=== Sicherheit Keycloak
+(((Baustein,Keycloak)))
+Der Baustein Sicherheit Keycloak erweitert das Modul isy-sicherheit um Funktionalität zur Verwendung des Keycloak Authorization Servers.
+Konkret beinhaltet die Erweiterung die Implementierung des Access Managers für Keycloak sowie einen Filter zur Authentifizierung von REST-Aufrufen.
+
 [[erste-schritte]]
 = Nächste Schritte
 
