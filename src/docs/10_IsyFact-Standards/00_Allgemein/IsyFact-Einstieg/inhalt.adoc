@@ -512,6 +512,25 @@ Das zentrale Dokument, der <<Styleguide>>, enthält Vorgaben zu Aufbau und Gesta
 Der Styleguide definiert ebenfalls Form und Funktion der in der IsyFact verfügbaren Anzeige- und Bedienelemente.
 Neben dem Dokument beinhaltet der Baustein eine Software-Bibliothek, welche die Vorgaben als CSS-Stile zur Nutzung bereitstellt.
 
+[[sessionmanagement]]
+==== Session Management
+Für das Session Management wird in IsyFact basierten Anwendungen Spring Session eingesetzt.
+Der Baustein Session Management erleichtert die Konfiguration von Spring Session gemäß den Vorgaben und Anforderungen der IsyFact.
+Die <<NutzungsvorgabenSessionManagement>> zeigen, wie mit Hilfe dieser Erweiterung Sessions in IsyFact Anwendungen verwaltet werden.
+
+[[webjsf]]
+==== Web JSF
+Der Baustein Web JSF enthält alle notwendigen Abhängigkeiten, Spring-Konfigurationen, JSF-Komponenten (Composite Components) sowie zugehörige XHTML-Templates zur Erstellung einer GUI mit JSF.
+
+[[webangular]]
+==== Web Angular
+Der Baustein Web Angular stellt querschnittlich nutzbare Komponenten und Services zur Verwendung mit dem Angular Web Framework zur Verfügung.
+
+[[sicherheitkeycloak]]
+==== Sicherheit Keycloak
+Der Baustein Sicherheit Keycloak erweitert das Modul isy-sicherheit um Funktionalität zur Verwendung des Keycloak Authorization Servers.
+Konkret beinhaltet die Erweiterung die Implementierung des Access Managers für Keycloak sowie einen Filter zur Authentifizierung von REST-Aufrufen.
+
 [[erste-schritte]]
 == Nächste Schritte
 
