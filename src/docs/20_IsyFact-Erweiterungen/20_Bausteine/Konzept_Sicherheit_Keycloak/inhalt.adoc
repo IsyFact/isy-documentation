@@ -8,7 +8,7 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 Ziele der IsyFact Erweiterung _Sicherheit Keycloak_ und dieses Konzeptes sind:
 
 - Die Bereitstellung von Bausteinen in Form von Adaptern und Filtern, welche die Anbindung von Keycloak an Fachanwendungen oder Anwendungslandschaften reduzieren
-- Festlegung eines minimalen Sets an Attributen, die über das JWT ausgetauscht werden sollen.
+- Festlegung eines Sets an Attributen, die über das JWT ausgetauscht werden sollen.
 - Bereitstellung von Konfigurationen für den Keycloak Server
 
 
@@ -295,7 +295,7 @@ Daten, die durch die Erweiterung des `Aufrufkontext` zwischen HttpInvoker-Schnit
 [[access-access-tokens]]
 ==== Zugriff auf Access Tokens
 
-Ein direkter Zugriff auf da Access-Token in einer Anwendung ist nicht notwendig, stattdessen werden die notwendigen Claims des Tokens mit Hilfe eines Filters in ein `Authorization` Objekt gewandelt.
+Ein direkter Zugriff auf das Access-Token in einer Anwendung ist nicht notwendig, stattdessen werden die notwendigen Claims des Tokens mit Hilfe eines Filters in ein `Authorization` Objekt gewandelt.
 Das `Authorization` Objekt liegt im `SecurityContext` von Spring und dieser wird von einem `SecurityContextHolder` verwaltet.
 Der `SecurityContextHolder` kann per DI oder besser noch mit Hilfe von AOP für die Absicherung von Schnittstellen verwendet werden.
 
