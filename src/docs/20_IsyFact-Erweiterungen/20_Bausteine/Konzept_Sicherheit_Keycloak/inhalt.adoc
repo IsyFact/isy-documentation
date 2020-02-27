@@ -73,7 +73,7 @@ Kümmert sich auch um die weitergabe des Access-Tokens über den HTTP-Header.
 === Authentifizierung
 
 Dieser Abschnitt beschreibt die Architektur der Fach- und Querschnittsanwendungen mit Bezug auf die Authentifizierung.
-Dabei wird differenziert zwischen  der Authentifizierung am Service Gateway und der Authentifizierung am Portal.
+Dabei wird differenziert zwischen der Authentifizierung am Service Gateway und der Authentifizierung am Portal.
 
 ==== Authentifizierung am Service-Gateway
 
@@ -98,7 +98,6 @@ image::images/konzept_keycloak_auth_sgw.png[align="center"]
 
 |Externe Anwendung
 |Beliebiges externes System oder Anwendung, die Daten aus einer Anwendungslandschaft beziehen möchte.
-Das externe System sendet seine Credentials mit dem Request.
 
 |API Gateway (Reverse Proxy)
 |Kapselt den Zugriff auf die API, insbesondere den Zugriff auf die API des Keycloak Servers.
@@ -110,7 +109,7 @@ Das externe System sendet seine Credentials mit dem Request.
 |Authorization Server und OpenID Provider.
 
 |Anwendung
-|Beliebige interne .
+|Beliebige interne Fachanwendung.
 
 |===
 
@@ -134,7 +133,7 @@ Das externe System sendet seine Credentials mit dem Request.
 
 
 |Authorization Code
-|Die Anwendungslandschaft stellt eine Schnittstelle bereit, weiß jedoch nicht wer sie später verwenden möchte.
+|Die Anwendungslandschaft stellt eine Schnittstelle bereit ohne zu wisse welche Clients später diese Schnittstelle verwenden möchten.
 Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen Behörde
 
 //|Resource Owner Password Credentials
@@ -202,7 +201,7 @@ Für die Autorisierung von Benutzern bietet die Standard Bibliothek _isy-sicherh
 |Spring Security
 |Der Baustein _isy-sicherheit_ liefert Spring Security.
 Somit können die Standard-Konzepte von Spring direkt verwendet werden.
-|
+|link:https://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html[Spring Dokumentation]
 
 |Isy Sicherheit
 |Bietet eine Konfiguration für ein Rollen & Rechte Mapping an, sowie verschiedene Features zur Absicherung von IsyFact Bausteinen, die HttpInvoker-Schnittstellen verwenden.
@@ -214,7 +213,7 @@ IMPORTANT: Für die Autorisierung von REST-Schnittstellen sollten ausschließlic
 
 === Access Token
 
-Beim Authentifizierungsprotokoll OpenID Connect gibt es _Idendity Tokens_ und _Access Tokens_.
+Beim Authentifizierungsprotokoll OpenID Connect gibt es _Idendity-Tokens_ und _Access-Tokens_.
 Für beide Arten wird bei Keycloak der _JSON Web Token (JWT)_ Standard verwendet.
 In diesem Kapitel werden zum einen die Daten beschrieben, die in einem JWT enthalten sein müssen und wie mit dem Token innerhalb von Anwendungen umgegangen werden soll.
 
