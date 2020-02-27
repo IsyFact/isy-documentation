@@ -9,8 +9,6 @@ Ziele der IsyFact Erweiterung _Sicherheit Keycloak_ und dieses Konzeptes sind:
 
 - Die Bereitstellung von Bausteinen in Form von Adaptern und Filtern, welche die Anbindung von Keycloak an Fachanwendungen oder Anwendungslandschaften reduzieren
 - Festlegung eines Sets an Attributen, die über das JWT ausgetauscht werden sollen.
-- Bereitstellung von Konfigurationen für den Keycloak Server
-
 
 == Grundlagen
 
@@ -60,8 +58,8 @@ Neben dem Konzept _Sicherheit Keycloak_ enthält die IsyFact Erweiterung noch fo
 |Baustein|Beschreibung|Nutzungsvorgaben
 
 |_isy-sicherheit-keycloak_
-|Enthält die Implementierung des `AccessManagers` aus _isy-sicherheit_.
-Der Baustein übernimmt die Authentifizierung von REST-Services sowie von HttpInvoker-Services über den Aufrufkontext.
+|Transformiert das Access-Token, sodass es für die Autorisierung sowohl von _Spring Security_ als auch von _Isy Security_ (über den Aufrufkontext) verwendet werden kann.
+Kümmert sich auch um die weitergabe des Access-Tokens über den HTTP-Header.
 |<<NutzungsvorgabenSicherheitKeycloak>>
 
 |_isy-iam_
@@ -116,16 +114,16 @@ Das externe System sendet seine Credentials mit dem Request.
 
 |===
 
-Für Behörden oder Institute, die zunächst auf Keycloak umstellen wollen und anschließend die Authentifizierung für die Externen Clients umstellen möchten, gibt es eine Zwischenlösung, bei welcher vorerst das Service-Gateway die Authentifizierung der Clients weiterhin übernimmt (vgl. <<image-auth-sgw-legacy>>).
-
-:desc-image-auth-sgw-legacy: Authentifizierung am Service-Gateway während der Migration
-[id="image-auth-sgw-legacy",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-auth-sgw-legacy}
-image::images/konzept_keycloak_auth_sgw_legacy.png[align="center"]
-
-Das Service Gateway verwendet den _Passwort Grant Type_ und besorgt sich mit Hilfe der Credentials des Clients ein gültiges Access-Token vom Keycloak-Server.
-Mit Hilfe des Access-Tokens kann das SGW entweder direkt auf die Ressourcen der Anwendungen zugreifen oder es erzeugt daraus ein `AufrufKontext` Objekt, welches von _HttpInvoker_ Schnittstellen erwartet wird.
-Der Baustein _isy-keycloak-sicherheit_ liefert eine Implementierung des `AccessManager` aus _isy-sicherheit_, welcher sich um die Authentifizierung und die Erzeugung des `Aufrufkontext` kümmert.
+//ür Behörden oder Institute, die zunächst auf Keycloak umstellen wollen und anschließend die Authentifizierung für die Externen Clients umstellen möchten, gibt es eine Zwischenlösung, bei welcher vorerst das Service-Gateway die Authentifizierung der Clients weiterhin übernimmt (vgl. <<image-auth-sgw-legacy>>).
+//
+//:desc-image-auth-sgw-legacy: Authentifizierung am Service-Gateway während der Migration
+//[id="image-auth-sgw-legacy",reftext="{figure-caption} {counter:figures}"]
+//.{desc-image-auth-sgw-legacy}
+//image::images/konzept_keycloak_auth_sgw_legacy.png[align="center"]
+//
+//Das Service Gateway verwendet den _Passwort Grant Type_ und besorgt sich mit Hilfe der Credentials des Clients ein gültiges Access-Token vom Keycloak-Server.
+//Mit Hilfe des Access-Tokens kann das SGW entweder direkt auf die Ressourcen der Anwendungen zugreifen oder es erzeugt daraus ein `AufrufKontext` Objekt, welches von _HttpInvoker_ Schnittstellen erwartet wird.
+//Der Baustein _isy-keycloak-sicherheit_ liefert eine Implementierung des `AccessManager` aus _isy-sicherheit_, welcher sich um die Authentifizierung und die Erzeugung des `Aufrufkontext` kümmert.
 
 :desc-table-granttypes-auth-sgw: Grant Types am SGW
 [id="table--granttypes-auth-sgw",reftext="{table-caption} {counter:tables}"]
@@ -134,12 +132,13 @@ Der Baustein _isy-keycloak-sicherheit_ liefert eine Implementierung des `AccessM
 |===
 |Grant Type|Beispiel Szenario
 
+
 |Authorization Code
 |Die Anwendungslandschaft stellt eine Schnittstelle bereit, weiß jedoch nicht wer sie später verwenden möchte.
 Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen Behörde
 
-|Resource Owner Password Credentials
-|Die Anwendungslandschaft hat den Client selber entwickelt oder vertraut der Gegenseite (möglicherweise eine anderen Behörde) die Verwendung von Anmeldeinformationen an.
+//|Resource Owner Password Credentials
+//|Die Anwendungslandschaft hat den Client selber entwickelt oder vertraut der Gegenseite (möglicherweise eine anderen Behörde) die Verwendung von Anmeldeinformationen an.
 
 |===
 
@@ -206,10 +205,12 @@ Somit können die Standard-Konzepte von Spring direkt verwendet werden.
 |
 
 |Isy Sicherheit
-|Bietet eine Konfiguration für ein Rollen & Rechte Mapping an, sowie verschiedene Features zur Absicherung von IsyFact Bausteinen.
+|Bietet eine Konfiguration für ein Rollen & Rechte Mapping an, sowie verschiedene Features zur Absicherung von IsyFact Bausteinen, die HttpInvoker-Schnittstellen verwenden.
 |<<NutzungsvorgabenIsySicherheit>>
 
 |===
+
+IMPORTANT: Für die Autorisierung von REST-Schnittstellen sollten ausschließlich die Standard Mechanismen von Spring Security verwendet werden, da _isy-sicherheit_ perspektivisch den `Aufrufkontext` durch _Spring Security_ ablösen wird.
 
 === Access Token
 
@@ -310,11 +311,62 @@ Für Multi-Threaded Umgebungen stellt Spring Boot die Wrapper-Klassen `Delegatin
 Werden nebenläufige Prozesse über eine dieser Wrapper-Klassen gestartet, haben Entwickler innerhalb der Prozesse Zugriff auf den `SecurityContext` (Details sind link:https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/concurrency.html[hier] zu finden).
 
 
-==== Versionierung
+//==== Versionierung
+//
+//Der Payload des JWT ist davon abhängig, welche Mapper in den Clients bzw. Client-Scopes verwendet werden.
+//Eine Versionierung ist somit sehr komplex und wird von Keycloak auch nicht unterstützt.
 
-Der Payload des JWT ist davon abhängig, welche Mapper in den Clients bzw. Client-Scopes verwendet werden.
-Eine Versionierung ist somit sehr komplex und wird von Keycloak auch nicht unterstützt.
 
+=== Keycloak Erweiterungen
 
+Der Baustein `isy-iam` bietet verschiedene Service Provider Interfaces (SPI) für Keycloak an.
+In diesem Abschnitt wird erläutert, welche querschnittlichen Anforderungen damit leichter umgesetzt werden können.
+
+:desc-table-uebersicht-spi: Übersicht der SPI und ihrer querschnittlichen Anforderungen
+[id="table-uebersicht-sp",reftext="{table-caption} {counter:tables}"]
+.{desc-table-uebersicht-sp}
+[cols="1,1"]
+|===
+|SPI|Erfüllt Anforderung(en)
+
+|bnvz-user-storage
+|Migration der IsyFact Erweiterung _Benutzerverzeichnis_
+
+|registerfactory-event-listener
+|Logging, Protokollierung
+
+|registerfactory-brute-force-detector
+|Verfügbarkeit
+
+|keycloak-single-session
+|Security, Lizenzmodell
+
+|isyfact-theme
+|Attraktivität
+
+|===
+
+Folgende Anforderungen bzw. Szenarien können mit den unterschiedlichen SPIs umgesetzt werden.
+
+*bnvz-user-storage*::
+- Integration eines vorhandenen Benutzerverzeichnis in Keycloak
+
+WARNING: Das Benutzerverzeichnis ist in allen Realms verfügbar, falls vollständig disjunkte Realms benötigt werden, ist diese Erweiterung nicht geeignet.
+
+*registerfactory-event-listener*::
+- Protokollierung sicherheitsrelevanter Events (OPS 1.1.5)
+
+*registerfactory-brute-force-detector*::
+- Abwehr von Brute-Force Attacken
+
+*keycloak-single-session*::
+- Bessere Session-Kontrolle (z.B: bei Schutzbedarf hoch oder sehr hoch)
+- User mit einer Lizenz sollen sich nur einmal einloggen dürfen
+
+IMPORTANT: Bei manchen Anwendungen erwarten Benutzer, dass sie sich mehrfach Anmelden können.
+Beispielsweise, wenn die Anwendung über mehrere Endgeräte gleichzeitig bedient werden kann.
+
+*isyfact-theme*::
+- Anpassung der Login Seite an das Corporate Design
 
 // end::inhalt[]
