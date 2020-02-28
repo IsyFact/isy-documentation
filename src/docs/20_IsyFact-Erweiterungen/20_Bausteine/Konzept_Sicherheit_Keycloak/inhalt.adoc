@@ -87,7 +87,7 @@ Der Baustein _isy-sicherheit-keycloak_ kümmert sich um die Umwandlung von Acces
 :desc-image-auth-sgw: Authentifizierung am Service-Gateway
 [id="image-auth-sgw",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-auth-sgw}
-image::images/konzept_keycloak_auth_sgw.png[align="center"]
+image::konzept_keycloak_auth_sgw.png[align="center"]
 
 :desc-table-komponenten-ath-sgw: Beteiligte Teilsysteme bei der Authentifizierung über ein SGW.
 [id="table-komponenten-ath-sgw",reftext="{table-caption} {counter:tables}"]
@@ -118,7 +118,7 @@ image::images/konzept_keycloak_auth_sgw.png[align="center"]
 //:desc-image-auth-sgw-legacy: Authentifizierung am Service-Gateway während der Migration
 //[id="image-auth-sgw-legacy",reftext="{figure-caption} {counter:figures}"]
 //.{desc-image-auth-sgw-legacy}
-//image::images/konzept_keycloak_auth_sgw_legacy.png[align="center"]
+//image::konzept_keycloak_auth_sgw_legacy.png[align="center"]
 //
 //Das Service Gateway verwendet den _Passwort Grant Type_ und besorgt sich mit Hilfe der Credentials des Clients ein gültiges Access-Token vom Keycloak-Server.
 //Mit Hilfe des Access-Tokens kann das SGW entweder direkt auf die Ressourcen der Anwendungen zugreifen oder es erzeugt daraus ein `AufrufKontext` Objekt, welches von _HttpInvoker_ Schnittstellen erwartet wird.
@@ -150,7 +150,7 @@ Im Portal übernimmt _isy-sicherheit-keycloak_ die Aufgabe, das Access-Token ggf
 :desc-image-auth-portal: Authentifizierung am Portal bzw. API-Gateway
 [id="image-auth-portal",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-auth-portal}
-image::images/konzept_keycloak_auth_portal.png[align="center"]
+image::konzept_keycloak_auth_portal.png[align="center"]
 
 :desc-table-granttypes-auth-portal: Grant Types am Portal
 [id="table--granttypes-auth-portal",reftext="{table-caption} {counter:tables}"]
@@ -173,7 +173,7 @@ Tasks werden innerhalb von Anwendungen bzw. Anwendungslandschaften gestartet und
 :desc-image-auth-task: Authentifizierung von Tasks
 [id="image-auth-task",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-auth-task}
-image::images/konzept_keycloak_auth_task.png[align="center"]
+image::konzept_keycloak_auth_task.png[align="center"]
 
 :desc-table-granttypes-auth-portal: Grant Types für Tasks und Batches
 [id="table--granttypes-auth-portal",reftext="{table-caption} {counter:tables}"]

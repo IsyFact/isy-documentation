@@ -11,7 +11,7 @@ Das _Konzept Sicherheit Keycloak_ und seine Bausteine richtet sich an Behörden 
 :desc-image-rahmenbedingungen: Einsatz von Keycloak in einer Behörde oder einem Institut
 [id="image-rahmenbedingungen",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-rahmenbedingungen}
-image::images/rahmenbedingungen.png[align="center"]
+image::konzept_keycloak_rahmenbedingungen.png[align="center"]
 
 link:https://www.keycloak.org/[Keycloak] ist ein OpenSource Identity and Accessmanagment System (IAM).
 Es bietet eine Reihe von Standard Protokollen wie _OAuth 2.0_ oder _OpenID Connect_ sowie Features wie _Single-Sign On_ oder eine Benutzerverwaltung.
