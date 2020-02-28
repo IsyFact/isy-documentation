@@ -365,4 +365,50 @@ Beispielsweise, wenn die Anwendung über mehrere Endgeräte gleichzeitig bedient
 *isyfact-theme*::
 - Anpassung der Login Seite an das Corporate Design
 
+== Offene Punkte
+
+Für die Datenübertragung zwischen Anwendungen innerhalb einer Anwendungslandschaft gibt es primär REST- und/oder HttpInvoker Schnittstellen.
+Da die Autorisierung in jeder Anwendung implementiert ist, müssen die Benutzerdaten (Access-Token oder Aufrufkontext) zwischen den Anwendungen weitergeleitet werden.
+Dabei sind folgende Szenarien denkbar
+
+:desc-table-szenarien-schnittstellen: Szenarien von Schnittstellenkommunikation
+[id="table-szenarien-schnittstellen",reftext="{table-caption} {counter:tables}"]
+.{desc-table-szenarien-schnittstellen}
+[cols="1,2,2"]
+|===
+|ID|Schnittstellen|Beispiel
+
+|S1
+|HttpInvoker -> HttpInvoker
+|Kommunikation wischen zwei Anwendungen in IF-1.8
+
+|S2
+|REST -> REST
+|Kommunikation zwischen zwei Anwendungen in IF-2.1
+
+|S3
+|REST -> HttpInvoker
+|Kommunikation zwischen einer Anwendung in IF-2.1 mit einer Anwendung in IF-1.8
+
+|S4
+|HttpInvoker -> REST
+|Kommunikation zwischen einer Anwendung in IF-1.8 mit einer Anwendung in IF-2.1
+
+|===
+
+Die Szenarien 1 bis 3 werden vom Baustein _isy-sicherheit-keycloak_ abgedeckt.
+Der Baustein leitet zum einen die Tokens zwischen REST-Services über den HTTP-Header weiter (REST -> REST) und zum anderen erzeugt er einen Aufrufkontext für die Kommunikation mit HttpInvoker Services (REST -> HttpInvoker).
+
+Für das 4. Szenario besteht noch keine standardisierte Lösung.
+mögliche Lösungsansätze wären.
+
+*Authorisation Header in HttpInvoker Requests*:: Das Access-Token wird wie bei REST über einen HTTP-Header ausgetauscht.
+Mit einer Erweiterung des Interceptors aus _isy-sicherheit-keycloak_ kann das Access-Token vom Header der HTTP-Response in den HTTP-Header des neuen Requests kopiert werden.
+Diese Lösung erfordert eine Erweiterung von _isy-sicherheit-keycloak_ und lohnt sich besonders, wenn mehrere Anwendungen von Szenario 4 betroffen sind.
+
+*Übertragung des Access-Tokens im Aufrufkontext*::
+Da der `Aufrufkontext` erweiterbar ist, kann dieser um ein zusätzliches Feld für das Access-Token erweitert werden.
+Im HttpInvoker-Service kann das Token vom `AufrufKontext` in den HTTP-Header des `RestClients` kopiert werden.
+Diese Lösung erfordert eine Anpassung in den betroffenen Anwendungen und lohnt sich, wenn nur sehr wenige Anwendungen von Szenario 4 betroffen sind.
+
 // end::inhalt[]
