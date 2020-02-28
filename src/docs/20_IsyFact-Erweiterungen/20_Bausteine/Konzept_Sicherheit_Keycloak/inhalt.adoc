@@ -1,16 +1,12 @@
-= Konzept Keycloak: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
 // tag::inhalt[]
+= Ziel des Dokuments
 
-== Ziel des Dokuments
+Ziele des Konzepts _Sicherheit Keycloak_ sind:
 
-Ziele der IsyFact Erweiterung _Sicherheit Keycloak_ und dieses Konzeptes sind:
-
-- Die Bereitstellung von Bausteinen in Form von Adaptern und Filtern, welche die Anbindung von Keycloak an Fachanwendungen oder Anwendungslandschaften reduzieren
+- Bereitstellung der quschnittlichen Konzepte, die für die Verwendung der mitgelieferten Bausteine notwendig ist.
 - Festlegung eines Sets an Attributen, die über das JWT ausgetauscht werden sollen.
 
-== Grundlagen
+= Grundlagen
 
 Für das Verständnis dieses Dokuments werden Kenntnisse über folgende Themen bzw. Technologien vorausgesetzt.
 
@@ -46,9 +42,9 @@ Für das Verständnis dieses Dokuments werden Kenntnisse über folgende Themen b
 |===
 
 
-== Bausteine
+= Bausteine
 
-Neben dem Konzept _Sicherheit Keycloak_ enthält die IsyFact Erweiterung noch folgende Bausteine (vgl. <<table-bausteine>>).
+Neben dem Konzept _Sicherheit Keycloak_ enthält die IsyFact Erweiterung noch folgende Bausteine.
 
 :desc-table-bausteine: Bausteine von Keycloak Sicherheit
 [id="table-bausteine",reftext="{table-caption} {counter:tables}"]
@@ -68,21 +64,21 @@ Kümmert sich auch um die weitergabe des Access-Tokens über den HTTP-Header.
 
 |===
 
-== Querschnittliche Konzepte
+= Querschnittliche Konzepte
 
-=== Authentifizierung
+== Authentifizierung
 
 Dieser Abschnitt beschreibt die Architektur der Fach- und Querschnittsanwendungen mit Bezug auf die Authentifizierung.
 Dabei wird differenziert zwischen der Authentifizierung am Service Gateway und der Authentifizierung am Portal.
 
-==== Authentifizierung am Service-Gateway
+=== Authentifizierung am Service-Gateway
 
 Damit ein Client einer externen Anwendung auf die Ressourcen einer Anwendungslandschaft zugreifen kann, benötigt er ein gültiges Access-Token.
 Dieses Token muss sich der Client zuerst beschaffen indem er sich beim Keycloak-Server authentifiziert.
 Damit der Client nicht direkt auf den Keycloak-Server zugreifen kann erfolgt die Kommunikation über ein API Gateway welches als Reverse Proxy zwischen den Systemen und Anwendungen und den externen Clients fungiert (vgl. <<image-auth-sgw>>).
 Das Service-Gateway behält seine Funktion als Adapter zwischen den verschiedenen Protokollen, kümmert sich aber nicht mehr um die Authentifizierung der Clients.
 Für Anwendungen mit HttpInvoker-Schnittstellen wird ein `Aufrufkontext` statt eines Access-Tokens erwartet.
-Der Baustein _isy-sicherheit-keycloak_ kümmert sich um die Umwandlung von Access-Tokens in `Aufrufkontext` Objekte.
+Der Baustein _isy-sicherheit-keycloak_  ist darüber hinaus für die Umwandlung von Access-Tokens in `Aufrufkontext` Objekte verantwortlich.
 
 :desc-image-auth-sgw: Authentifizierung am Service-Gateway
 [id="image-auth-sgw",reftext="{figure-caption} {counter:figures}"]
@@ -141,11 +137,11 @@ Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen 
 
 |===
 
-==== Authentifizierung am Portal
+=== Authentifizierung am Portal
 
 Ähnlich wie bei der Authentifizierung über das SGW, wird hier die Kommunikation zuerst über ein API-Gateway (Reverse Proxy) geführt.
-Die Externe Anwendung (i.d.R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Fachanwendungen zugreifen
-Im Portal übernimmt _isy-sicherheit-keycloak_ die Aufgabe, das Access-Token ggf. in einen `Aufrufkontext` zu wandeln.
+Die externe Anwendung (i.d.R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Fachanwendungen zugreifen
+Im Portal übernimmt _isy-sicherheit-keycloak_ die Aufgabe das Access-Token ggf. in einen `Aufrufkontext` zu wandeln.
 
 :desc-image-auth-portal: Authentifizierung am Portal bzw. API-Gateway
 [id="image-auth-portal",reftext="{figure-caption} {counter:figures}"]
@@ -165,19 +161,19 @@ Hierbei muss sichergestellt werden, dass die Anfragen auch wirklich von dem Clie
 
 |===
 
-==== Authentifizierung von Tasks und Batches
+=== Authentifizierung von Tasks und Batches
 
 Tasks oder Batches, die auf Schnittstellen anderer Anwendungen zugreifen, müssen sich ebenfalls authentifizieren um ein Access-Token zu erhalten.
-Tasks werden innerhalb von Anwendungen bzw. Anwendungslandschaften gestartet und dürfen direkt auf den Keycloak Server zugreifen (vgl. <<image-auth-task>>).
+Tasks und Batches werden innerhalb von Anwendungen bzw. Anwendungslandschaften gestartet und dürfen direkt auf den Keycloak Server zugreifen (vgl. <<image-auth-task>>).
 
 :desc-image-auth-task: Authentifizierung von Tasks
 [id="image-auth-task",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-auth-task}
 image::konzept_keycloak_auth_task.png[align="center"]
 
-:desc-table-granttypes-auth-portal: Grant Types für Tasks und Batches
-[id="table--granttypes-auth-portal",reftext="{table-caption} {counter:tables}"]
-.{desc-table-granttypes-auth-portal}
+:desc-table-granttypes-auth-task: Grant Types für Tasks und Batches
+[id="table--granttypes-auth-task",reftext="{table-caption} {counter:tables}"]
+.{desc-table-granttypes-auth-task}
 [cols="1,3"]
 |===
 |Grant Type|Beispiel Szenario
@@ -187,7 +183,7 @@ image::konzept_keycloak_auth_task.png[align="center"]
 
 |===
 
-=== Autorisierung
+== Autorisierung
 
 Für die Autorisierung von Benutzern bietet die Standard Bibliothek _isy-sicherheit_ zurzeit zwei Möglichkeiten.
 
@@ -199,7 +195,7 @@ Für die Autorisierung von Benutzern bietet die Standard Bibliothek _isy-sicherh
 |Option|Beschreibung|Details
 
 |Spring Security
-|Der Baustein _isy-sicherheit_ liefert Spring Security.
+|Der Baustein _isy-sicherheit_ stellt die Bibliothek Spring Security bereit.
 Somit können die Standard-Konzepte von Spring direkt verwendet werden.
 |link:https://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html[Spring Dokumentation]
 
@@ -209,15 +205,15 @@ Somit können die Standard-Konzepte von Spring direkt verwendet werden.
 
 |===
 
-IMPORTANT: Für die Autorisierung von REST-Schnittstellen sollten ausschließlich die Standard Mechanismen von Spring Security verwendet werden, da _isy-sicherheit_ perspektivisch den `Aufrufkontext` durch _Spring Security_ ablösen wird.
+IMPORTANT: Für die Autorisierung von REST-Schnittstellen soll ausschließlich die Standard Mechanismen von Spring Security verwendet werden, da _isy-sicherheit_ perspektivisch den `Aufrufkontext` durch _Spring Security_ ablösen wird.
 
-=== Access Token
+== Access Token
 
 Beim Authentifizierungsprotokoll OpenID Connect gibt es _Idendity-Tokens_ und _Access-Tokens_.
 Für beide Arten wird bei Keycloak der _JSON Web Token (JWT)_ Standard verwendet.
 In diesem Kapitel werden zum einen die Daten beschrieben, die in einem JWT enthalten sein müssen und wie mit dem Token innerhalb von Anwendungen umgegangen werden soll.
 
-==== Daten in JWT (Claims)
+=== Daten in JWT (Claims)
 
 Ein JWT besteht aus drei Bereichen: Header, Payload und einer Signatur, mit der die Authentizität des Tokens verifiziert werden kann.
 Die Attribute innerhalb eines Tokens werden auch Claim genannt, <<table-claim-aufrufkontext>> beschreibt das Minimum an Claims, die ein JWT enthalten muss, damit es in einen Aufrufkontext gewandelt werden kann.
@@ -259,9 +255,9 @@ Einige Felder des `Aufrufkontext` können nicht mehr aus dem JWT befüllt werden
 
 * `durchfuehrenderBenutzerPasswort` - Das Passwort wird aus Sicherheitsgründen nicht mehr in die Anwendungen übertragen.
 
-* `korrelationsId` - Die Korrelations-ID ist nicht Teil des Authentifizierungs- bzw. de Autorisierungsprozesses und wird stattdessen über den HTTP-Header oder den MDC übertragen.
+* `korrelationsId` - Die Korrelations-ID ist nicht Teil des Authentifizierungs und wird stattdessen über den HTTP-Header oder den MDC übertragen.
 
-* `rollenErmittelt` - Wird ein Aufrufkontext aus einem JWT Token erzeugt, kann immer davon ausgegangen erden, dass die Rollen ermittelt sind, da diese direkt im JWT stehen.
+* `rollenErmittelt` - Wird ein Aufrufkontext aus einem JWT Token erzeugt, kann immer davon ausgegangen werden, dass die Rollen ermittelt sind, da diese direkt im JWT stehen.
 
 Daten, die durch die Erweiterung des `Aufrufkontext` zwischen HttpInvoker-Schnittstellen ausgetauscht werden, sollen nicht über JWT transportiert werden.
 <<table-vorgabe-datenuebertragung>> zeigt, welche Übertragungswege für welche Art von Daten standardmäßig vorgesehen sind.
@@ -293,16 +289,17 @@ Daten, die durch die Erweiterung des `Aufrufkontext` zwischen HttpInvoker-Schnit
 |===
 
 [[access-access-tokens]]
-==== Zugriff auf Access Tokens
+=== Zugriff auf Access Tokens
 
 Ein direkter Zugriff auf das Access-Token in einer Anwendung ist nicht notwendig, stattdessen werden die notwendigen Claims des Tokens mit Hilfe eines Filters in ein `Authorization` Objekt gewandelt.
 Das `Authorization` Objekt liegt im `SecurityContext` von Spring und dieser wird von einem `SecurityContextHolder` verwaltet.
-Der `SecurityContextHolder` kann per DI oder besser noch mit Hilfe von AOP für die Absicherung von Schnittstellen verwendet werden.
+Der `SecurityContextHolder` kann per Dependency Injection oder besser noch mit Hilfe von AOP für die Absicherung von Schnittstellen verwendet werden.
 
-Der Zugriff auf Benutzerdaten zu einem angemeldeten Benutzer erfolgt über den _user-info-endpoint_ von Keycloak.
+Falls ID-Tokens verwendet werden, stehen die Benutzerdaten schon direkt im Payload des Tokens.
+Alternativ kann der Zugriff auf Daten zu einem angemeldeten Benutzer über den _user-info-endpoint_ von Keycloak erfolgen.
 Dieser Zugriff wird typischerweise in einem `UserDetailService` gekapselt.
 
-==== Unterstützung von nebenläufigen Zugriffen
+=== Unterstützung von nebenläufigen Zugriffen
 
 Im Abschnitt <<access-access-tokens>> wurde beschrieben, dass der Zugriff auf die Informationen im Access-Token über den `SecurityContext` von Spring Boot gekapselt werden soll.
 Der `SecurityContext` steht standardmäßig nur in dem Thread zur Verfügung, der dem aktiven Request zugeteilt wurde.
@@ -316,14 +313,14 @@ Werden nebenläufige Prozesse über eine dieser Wrapper-Klassen gestartet, haben
 //Eine Versionierung ist somit sehr komplex und wird von Keycloak auch nicht unterstützt.
 
 
-=== Keycloak Erweiterungen
+== Keycloak Erweiterungen
 
 Der Baustein `isy-iam` bietet verschiedene Service Provider Interfaces (SPI) für Keycloak an.
 In diesem Abschnitt wird erläutert, welche querschnittlichen Anforderungen damit leichter umgesetzt werden können.
 
 :desc-table-uebersicht-spi: Übersicht der SPI und ihrer querschnittlichen Anforderungen
-[id="table-uebersicht-sp",reftext="{table-caption} {counter:tables}"]
-.{desc-table-uebersicht-sp}
+[id="table-uebersicht-spi",reftext="{table-caption} {counter:tables}"]
+.{desc-table-uebersicht-spi}
 [cols="1,1"]
 |===
 |SPI|Erfüllt Anforderung(en)
@@ -362,7 +359,7 @@ WARNING: Das Benutzerverzeichnis ist in allen Realms verfügbar, falls vollstän
 - Bessere Session-Kontrolle (z.B: bei Schutzbedarf hoch oder sehr hoch)
 - User mit einer Lizenz sollen sich nur einmal einloggen dürfen
 
-IMPORTANT: Bei manchen Anwendungen erwarten Benutzer, dass sie sich mehrfach Anmelden können.
+IMPORTANT: Bei manchen Anwendungen erwarten Benutzer, dass sie sich mehrfach anmelden können.
 Beispielsweise, wenn die Anwendung über mehrere Endgeräte gleichzeitig bedient werden kann.
 
 *isyfact-theme*::
