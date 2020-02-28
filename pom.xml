@@ -390,7 +390,7 @@
                     </execution>
 
 
-                    
+
                     <execution>
                         <id>IsyFact-Whitepaper-html</id>
                         <phase>generate-resources</phase>
@@ -1521,6 +1521,43 @@
                         </configuration>
                     </execution>
 
+                    <execution>
+                        <id>Konzept_Sicherheit_Keycloak-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/20_IsyFact-Erweiterungen/20_Bausteine/Konzept_Sicherheit_Keycloak
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Erweiterungen/Bausteine/KonzeptSicherheitKeycloak.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Konzept_Sicherheit_Keycloak-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/20_IsyFact-Erweiterungen/20_Bausteine/Konzept_Sicherheit_Keycloak
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Session-Management/Konzept_Sicherheit_Keycloak.pdf
+                            </outputFile>
+                            <attributes>
+                                <pdf-style>isyfact-closed</pdf-style>
+                            </attributes>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
