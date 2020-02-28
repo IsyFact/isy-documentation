@@ -1551,7 +1551,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Session-Management/Konzept_Sicherheit_Keycloak.pdf
+                                ${pdf-output-base-directory}/20_IsyFact-Erweiterungen/20_Bausteine/Keycloak/Konzept_Sicherheit_Keycloak.pdf
                             </outputFile>
                             <attributes>
                                 <pdf-style>isyfact-closed</pdf-style>
