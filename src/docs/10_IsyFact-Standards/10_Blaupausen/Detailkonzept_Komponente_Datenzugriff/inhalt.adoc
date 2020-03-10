@@ -1433,4 +1433,12 @@ SELECT version
 Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schema-Version vorhanden.
 Liefert es keinen Wert zurück, dann ist die erwartete Schema-Version nicht vorhanden.
 
+[[verwendung-von-varchar]]
+== Verwendung von VARCHAR
+
+Bei der Verwendung von VARCHAR ist auf die korrekte Schreibweise zu achten.
+Korrekt ist die Variante VARCHAR2 (x char), keinesfalls darf VARCHAR2(x) oder VARCHAR(x) verwendet werden.
+Hintergrund: VARCHAR2 (10 char) bedeutet, dass bis zu 10 Zeichen gespeichert werden können, unabhängig davon, wie viele Bytes ein Zeichen benötigt.
+Beispielsweise kann bei Verwendung von Unicode ein Zeichen bis zu 4 Bytes beanspruchen.
+
 // end::inhalt[]
