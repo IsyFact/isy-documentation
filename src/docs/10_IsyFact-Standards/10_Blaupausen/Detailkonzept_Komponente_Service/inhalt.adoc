@@ -55,6 +55,7 @@ In <<listing-BSPExceptionFassade>> ist ein Beispiel für eine Exception-Fassade 
 Die Service-Operationen sind in diesem Fall die Methoden des Interfaces `BeispielRemoteBean`.
 Konkret handelt es sich lediglich um eine Service-Operation nämlich `holeBeispielAnfrage`.
 Die Service-Operation ist mit der Annotation `@StelltLoggingKontextBereit` versehen, die eine mit dem `AufrufKontext` übergebene Korrelations-ID im Logging-Kontext registriert und diesen beim Verlassen der Methode wieder aufräumt.
+Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autokonfiguration von `isy-serviceapi-core` durchgeführt.
 
 NOTE: Falls im AufrufKontext keine Korrelations-ID vorhanden ist, so erzeugt die Annotation eine neue Korrelations-ID.
 
@@ -87,6 +88,7 @@ public class BeispielExceptionFassade implements BeispielRemoteBean
     ...
 }
 ----
+
 
 === Aufbau der Service-Fassade
 
