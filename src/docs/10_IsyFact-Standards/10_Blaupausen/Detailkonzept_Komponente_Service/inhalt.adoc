@@ -99,6 +99,29 @@ implements BeispielRemoteBean
 }
 ----
 
+[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
+==== Entgegennahme der Korrelations-ID an einer Service-SST
+
+Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+
+Dazu ist die folgende Spring-Konfiguration nötig.
+
+:desc-listing-konfiguration-korrelations-id: Spring-Konfiguration zur Entgegennahme der Korrelations-ID
+[id="listing-konfiguration-korrelations-id",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfiguration-korrelations-id}
+[source, xml]
+----
+<beans>
+  <bean id="stelltLoggingKontextBereitInterceptor"
+      class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"/>
+  <aop:config>
+    <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
+    <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut"
+        advice-ref="stelltLoggingKontextBereitInterceptor"/>
+  </aop:config>
+</beans>
+----
+
 === Aufbau der Service-Fassade
 
 Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:

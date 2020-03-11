@@ -1,3 +1,6 @@
+# 1.8.1
+- `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
+
 # 1.8.0
 - `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
