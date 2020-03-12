@@ -1,0 +1,24 @@
+// tag::release-2.1.0[]
+- `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert
+// end::release-2.1.0[]
+
+// tag::release-2.0.0[]
+
+// end::release-2.0.0[]
+
+
+// tag::release-1.8.0[]
+
+// end::release-1.8.0[]
+
+
+// tag::release-1.7.0[]
+- `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
+- `IFS-241` & `IFS-331`: Neue Admonition Blocks definiert, eigene Icons für alle Blocks festgelegt
+// end::release-1.7.0[]
+
+
+// tag::release-1.6.0[]
+
+// end::release-1.6.0[]
+

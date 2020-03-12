@@ -1,0 +1,23 @@
+// tag::release-2.1.0[]
+
+// end::release-2.1.0[]
+
+
+// tag::release-2.0.0[]
+- `IFS-354`: REST als Option für interne Schnittstellen beschrieben
+// end::release-2.0.0[]
+
+
+// tag::release-1.8.0[]
+
+// end::release-1.8.0[]
+
+
+// tag::release-1.7.0[]
+
+// end::release-1.7.0[]
+
+
+// tag::release-1.6.0[]
+- `IFS-179`: Konzept "Grundlagen der internen Servicekommunikation" um Queue-Überwachung erweitert
+// end::release-1.6.0[]
