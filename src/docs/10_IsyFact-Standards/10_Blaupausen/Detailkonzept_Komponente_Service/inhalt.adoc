@@ -248,8 +248,8 @@ private static final long serialVersionUID = 0L;
 
 NOTE: Für die Versionierung von Schnittstellen gelten gesonderte Vorgaben, die in <<IsyFactVersionierung>> definiert sind.
 
-Zur Veröffentlichung von API-kompatiblen Änderungen wird im Maven `pom.xml` eine einstellige Versionsnummer gesetzt (vgl. <<beispiel-api-kompatible-aenderung>>).
-Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
+Zur Veröffentlichung von API-kompatiblen Änderungen wird im Maven `pom.xml` eine einstellige Versionsnummer (Minor) gesetzt.
+Kompatible Änderungen sind beispielsweise Bugfixes, neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
 
 :desc-listing-versioning-pom: Realsierung der Versionierungsvorgaben für Schnittstellen bei HTTP-Invoker.
 [id="listing-versioning-pom", reftext="reftext="{listing-caption} {counter:listings }"]
@@ -267,7 +267,7 @@ Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle
 </dependencies>
 ----
 
-Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst, diese wird sowohl in der Artifakt-ID als auch in den Paketnamen der Schnittstelle verwendet.
+Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst (Major und Minor), diese wird sowohl in der Artifakt-ID als auch in den Paketnamen der Schnittstelle verwendet.
 Inkompatible Änderungen der Schnittstelle sind z.B. das Entfernen von Attributen oder Operationen oder das Hinzufügen von Pflichtfeldern.
 
 Die Schnittstelle wird in der Regel in einer älteren Java-Version kompiliert als die Anwendung kompiliert ist, um die Schnittstelle auch in älteren Anwendungen einsetzen zu können.
