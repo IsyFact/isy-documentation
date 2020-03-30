@@ -246,45 +246,29 @@ Bei Transport-Objekten ist zu beachten, dass die UID stets 0 ist:
 private static final long serialVersionUID = 0L;
 ----
 
-Um die Klassen und Interfaces zu versionieren, wird die Versionsnummer als Teil des Paket-Pfads geführt.
-Dazu nachfolgend ein Beispiel:
+NOTE: Für die Versionierung von Schnittstellen gelten gesonderte Vorgaben, die in <<IsyFactVersionierung>> definiert sind.
 
-[source]
-----
-<Organisation>.<Domäne>.<Anwendungsname>.service.<Servicename>.httpinvoker.v29_1
-----
+Zur Veröffentlichung von API-kompatiblen Änderungen wird im Maven `pom.xml` eine einstellige Versionsnummer (Minor) gesetzt.
+Kompatible Änderungen sind beispielsweise Bugfixes, neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
 
-Die Versionsnummer ist außerdem im Namen der JAR-Datei enthalten, die alle Klassen und Interfaces der
-HTTP-Invoker-Schnittstelle enthält:
-
-[source]
-----
-<Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1-0.jar
-----
-
-Um die Implementierung einer Schnittstelle in zwei unterschiedlichen Versionen zu ermöglichen, wird die zweistellige Versionsnummer Teil der Maven-Artifact-ID.
-Um analog zu Komponenten eine dreistellige Versionsnummer zu erhalten, wird in der Maven-Datei eine einstellige Versionsnummer gesetzt.
-Dies würde im Beispiel wie folgt aussehen:
-
+:desc-listing-versioning-pom: Realsierung der Versionierungsvorgaben für Schnittstellen bei HTTP-Invoker.
+[id="listing-versioning-pom", reftext="reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-versioning-pom}
 [source,xml]
 ----
 <dependencies>
     ...
     <dependency>
-        <groupId><Organisation>.<Domäne>.<Anwendungsname></groupId>
-        <artifactId><Anwendungsname>-httpinvoker-sst-<Servicename>-v29.1</artifactId>
-        <version>0</version>
+        <groupId>${Organisation.Domäne.Anwendungsname}</groupId>
+        <artifactId>${Anwendungsname}-httpinvoker-sst-${Servicename}-v${Major-Version}</artifactId>
+        <version>${Minor-Version}</version>
     </dependency>
     ...
 </dependencies>
 ----
 
-Diese einstellige Version kann bei kompatiblen Änderungen erhöht werden, ohne dass eine neue ArtifactID vergeben werden muss.
-Kompatible Änderungen sind beispielsweise neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
-
-Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst und damit ein neues Projekt erzeugt.
+Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst (Major und Minor), diese wird sowohl in der Artifakt-ID als auch in den Paketnamen der Schnittstelle verwendet.
 Inkompatible Änderungen der Schnittstelle sind z.B. das Entfernen von Attributen oder Operationen oder das Hinzufügen von Pflichtfeldern.
-Bei umfangreichen Anpassungen kann eine Erhöhung der ersten Stelle gerechtfertigt sein.
 
 Die Schnittstelle wird in der Regel in einer älteren Java-Version kompiliert als die Anwendung kompiliert ist, um die Schnittstelle auch in älteren Anwendungen einsetzen zu können.
 Wenn die Schnittstelle jedoch ausschließlich von einem Service Gateway bzw. einer Fachanwendung genutzt wird, welche die aktuelle Java-Version einsetzen, kann auch die Schnittstelle in der aktuellen Java-Version kompiliert werden.
