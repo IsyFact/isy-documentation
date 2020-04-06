@@ -1,5 +1,8 @@
 # 1.8.0
+- `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
+- `IFS-259`: DSGVO Anforderungen in Logging-Konzept integriert
 - `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
+- `IFS-375`: Verweis auf Versionierungskonzept ergänzt und redundante Texte entfernt
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
