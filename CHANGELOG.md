@@ -5,7 +5,7 @@
 - `IFS-375`: Verweis auf Versionierungskonzept ergänzt und redundante Texte entfernt
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
-- `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
+- `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom formatiert und getestet.
 - `IFS-468`: Update auf dozer 6.x
 
 # 1.7.0
