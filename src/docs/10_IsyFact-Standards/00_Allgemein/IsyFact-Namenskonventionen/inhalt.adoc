@@ -325,6 +325,41 @@ Das sind vor allem Klassen- und Dateinamen.
 
 Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig beziehungsweise werden davon abgeleitet.
 
+[[artefakte-module]]
+=== Artefakte und Module
+
+Bei einem Maven-Artifact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
+Group-IDs werden mit einem Punkt konkatiniert.
+Mit der Artefakt-ID wird die Funktionalität des Artefaktes kurz und pregnant definiert.
+Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatinierung erfolgt über ein Miuns.
+
+:desc-table-grIDMod: Group-ID von Modulen/Artefakten
+[id="table-grIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-grIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Group-ID von Modulen/Artefakten
+|*Schema Group-ID* m|<sprach-kürzel>.<organisation>.<firma>.<domäne>
+|*Beispiel* m|de.bund.bva.isyfact
+|====
+
+[[Präfixe]]
+==== Präfixe
+Prinzipiell soll jedes Modul, bzw. Artefakt, z.B. wie in einer Maven-Umgebung einen Präfix definiert haben.
+Artifakte einer Group-ID (Domäne) sollten immer einen einheitlichen Präfix besitzen. So haben alle IsyFact-Artefakte das Präfix `isy-` in ihrer Artefakt-ID.
+
+:desc-table-artIDMod: Artefakt-ID von Modulen/Artefakten
+[id="table-artIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-artIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Artefakt-ID von Modulen/Artefakten
+|*Schema Artifakt-ID* m|<präfix>-<funktion/komponente> +
+<präfix>-<funktion/komponente>-<teilkomponente>
+|*Beispiel* m|isy-documentation +
+isy-documentation-core
+|====
+
 [[technische-systemnamen]]
 === Technische Systemnamen
 
