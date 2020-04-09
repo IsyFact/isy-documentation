@@ -1,17 +1,21 @@
+= IsyFact-Referenzarchitektur: Inhalt
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
 [[uebersicht]]
-= Übersicht über die IsyFact
+== Übersicht über die IsyFact
 
 Dieses Kapitel führt in die grundlegenden Ideen der IsyFact ein.
 Dazu wird zunächst die IsyFact selbst vorgestellt, danach die Referenzarchitektur in die IsyFact eingeordnet und Ideen und Ziele der Referenzarchitektur beschrieben.
 
 [[die-isyfact]]
-== Die IsyFact
+=== Die IsyFact
 
 Dieses Dokument und die enthaltene Referenzarchitektur sind Bestandteile der IsyFact.
 Im Folgenden wird beschrieben, was die Idee hinter der IsyFact ist und welche inhaltlichen Bereiche die IsyFact insgesamt abdeckt.
 
 [[die-idee-der-isyfact]]
-=== Die Idee der IsyFact
+==== Die Idee der IsyFact
 
 Beschäftigt man sich mit dem Entwurf und der Implementierung von Anwendungslandschaften, so stellt man fest, dass sich die einzelnen <<glossar-Fachanwendung,Fachanwendungen>> im Allgemeinen sehr ähnlich sind.
 Viele Problemstellungen müssen nur einmal gelöst werden und können dann wiederverwendet werden.
@@ -25,7 +29,7 @@ Durch Homogenisierung der Anwendungslandschaft werden Administration und Wartung
 Weitere Vorteile sind höhere Sicherheit und Softwarequalität durch Einsatz erprobter Komponenten und Dienste sowie mehr Nachhaltigkeit durch eine zukunftssichere, weitgehend herstellerneutrale Software-Architektur und Plattform.
 
 [[durch-die-isyfact-abgedeckte-bereiche]]
-=== Durch die IsyFact abgedeckte Bereiche
+==== Durch die IsyFact abgedeckte Bereiche
 
 :desc-image-IFBereiche: Durch die IsyFact abgedeckte Bereiche
 [id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
@@ -37,7 +41,7 @@ Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Beson
 
 Die Lösungen decken fünf Bereiche ab: Blaupausen, Bausteine, Betriebsplattform, Methodik und Werkzeuge.
 
-*Blaupausen:* <<glossar-Blaupause>n beschreiben die vogegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Fachanwendungen aus drei verschiedenen Sichten: der fachlichen Sicht, der Sicht der softwaretechnischen Umsetzung und der Sicht der technischen Infrastruktur.
+*Blaupausen:* <<glossar-Blaupause>n beschreiben die vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Fachanwendungen aus drei verschiedenen Sichten: der fachlichen Sicht, der Sicht der softwaretechnischen Umsetzung und der Sicht der technischen Infrastruktur.
 
 *Bausteine:* <<glossar-Baustein,Bausteine>> sind konkrete, strukturierte Lösungen zur Umsetzung der in den Blaupausen beschriebenen Architektur und Konzepte.
 Bausteine sind wieder verwendbare Softwarelösungen, z.B. ein Regelwerk für fachliche Konsistenzprüfungen oder Komponenten zur Protokollierung.
@@ -51,19 +55,19 @@ Diese Plattform ist über alle Fachanwendungen einheitlich und ermöglicht so ei
 
 *Methodik:* Im Rahmen einer Software-Factory bildet die <<glossar-Methodik>> die Grundlage für die Umsetzung von Fachanwendungen. 
 Die Methodik der IsyFact bietet verschiedene Vorschläge zu allen Phasen des Software-Entwicklungsprozesses, wie z. B. Vorlagen für die Spezifikation oder die Programmierung.
-Das Projektvorgehen selbst ist V-Modell®-XT-konform.
+Das Projektvorgehen selbst ist konform zum V-Modell®-XT.
 
 *Werkzeuge:* Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Registern.
 Dazu bietet sie vorkonfigurierte <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
 
 [[einordnung-der-referenzarchitektur-in-die-isyfact]]
-== Einordnung der Referenzarchitektur in die IsyFact
+=== Einordnung der Referenzarchitektur in die IsyFact
 
 Die in diesem Dokument beschriebene Referenzarchitektur ist ein zentraler Teil der IsyFact und erläutert auf einer hohen Ebene, wie eine Anwendungslandschaft zu beschreiben und umzusetzen ist.
 Die weiteren _Blaupausen_ der IsyFact detaillieren Teile dieser Referenzarchitektur und werden im vorliegenden Dokument referenziert.
 
 [[die-idee-der-referenzarchitektur]]
-== Die Idee der Referenzarchitektur
+=== Die Idee der Referenzarchitektur
 
 Die Referenzarchitektur definiert einen Strukturierungsrahmen für die Anwendungslandschaft und legt Prinzipien für die softwaretechnische Realisierung fest.
 
@@ -75,7 +79,7 @@ Für jede Sicht wird eine Referenzarchitektur definiert:
 
 *Fachliche Referenzarchitektur:* Hierunter fällt eine fachliche Beschreibung der <<glossar-Anwendungslandschaft>>.
 Die gesamte Anwendungslandschaft wird in fachliche Komponenten zerlegt, die miteinander über fachliche Schnittstellen interagieren.
-Jegliche technische Aspekte sind dabei nicht von Belang.
+Jegliche technischen Aspekte sind dabei nicht von Belang.
 Die fachliche Referenzarchitektur wird in Kapitel <<die-fachliche-referenzarchitektur>> definiert.
 
 *Software-Referenzarchitektur:* Hierunter fällt eine software-technische Beschreibung der <<glossar-Systemlandschaft>>.
@@ -88,7 +92,7 @@ Es wird beschrieben, welche technischen Systeme existieren und welche technische
 Die Referenzarchitektur der technischen Infrastruktur wird in Kapitel <<die-referenzarchitektur-der-technischen-infrastruktur>> definiert.
 
 [[die-ziele-der-referenzarchitektur]]
-== Die Ziele der Referenzarchitektur
+=== Die Ziele der Referenzarchitektur
 
 Mit der Einführung und Verwendung der Referenzarchitektur werden unter anderem die folgenden Ziele verfolgt:
 
@@ -103,14 +107,14 @@ Durch die infrastrukturelle und betriebliche Gleichartigkeit der Anwendungssyste
 Die Risiken für Ausfälle, Fehler oder Sicherheitslücken wird hierdurch reduziert und die Zukunftssicherheit der Anwendungssysteme erhöht.
 
 *Erfahrung:* In die Definition der Referenzarchitektur sind wertvolle Erfahrungen zur Umsetzung großer und verteilter Softwaresysteme im Allgemeinen und Registern im Speziellen eingeflossen.
-Diverse Fachanwendungen wurden mit der Referenzarchitektur umgesetzt, und die Referenzarchitektur kontinuierlich verbessert.
+Diverse Fachanwendungen wurden mit der Referenzarchitektur umgesetzt und die Referenzarchitektur kontinuierlich verbessert.
 Durch die Verwendung der Referenzarchitektur wird diese Erfahrung nutzbar gemacht.
 Die mit dieser Referenzarchitektur erstellten Fachanwendungen sind hierdurch äußerst effizient umsetzbar, wartbar, betreibbar und zukunftssicher.
 
 *Standards:* Durch die Referenzarchitektur werden Standards wie SAGA, V-Modell XT, XML / XÖV oder Webservices genutzt.
 
 [[tailoring-der-referenzarchitektur]]
-== Tailoring der Referenzarchitektur
+=== Tailoring der Referenzarchitektur
 
 Die IsyFact-Referenzarchitektur hat das Ziel, eine möglichst große Bandbreite von Systemen abzudecken.
 Daher trifft sie zunächst kaum Annahmen über die Struktur der Systemlandschaft oder die Art der darin enthaltenen Systeme.
@@ -129,13 +133,13 @@ Dies ist in <<image-AnptRAafK>> dargestellt.
 image::AnptRAafK.png[align="center"]
 
 [[die-fachliche-referenzarchitektur]]
-= Die fachliche Referenzarchitektur
+== Die fachliche Referenzarchitektur
 
 Zu den Aufgaben einer öffentlichen oder privatwirtschaftlichen Organisation gehört die Durchführung verschiedener fachlicher Verfahren.
 Wenn solche Verfahren vollständig oder teilweise automatisiert werden sollen, so erfolgt dies in der Regel mit Anwendungssystemen, die zunächst aus fachlicher Sicht beschrieben, dann mit softwaretechnischen Mitteln umgesetzt und schließlich auf einer technischen Infrastruktur betrieben werden.
 
 Bei einer großen Zahl von vollständig oder teilweise automatisierten Verfahren entsteht eine entsprechende Anzahl von Anwendungssystemen.
-Hier kann schnell der Überblick verloren gehen, so dass Prinzipien zur Strukturierung benötigt werden, die Ordnung schaffen.
+Hier kann schnell der Überblick verloren gehen, sodass Prinzipien zur Strukturierung benötigt werden, die Ordnung schaffen.
 
 Die Menge aller Anwendungssysteme einer Organisation und deren Nutzungsbeziehungen untereinander bilden eine Anwendungslandschaft.
 Die fachliche Architektur einer Anwendungslandschaft gibt hier die Strukturierung aus fachlicher Sicht vor und legt fest, wie Anwendungssysteme in die Anwendungslandschaft integriert werden.
@@ -148,7 +152,7 @@ Diese fachliche Architektur einer Anwendungslandschaft ist in <<image-FA-AW2>> d
 image::FA-AW.png[align="center"]
 
 [[die-strukturierung-der-anwendungslandschaft]]
-== Die Strukturierung der Anwendungslandschaft
+=== Die Strukturierung der Anwendungslandschaft
 
 Zur Strukturierung der <<glossar-Anwendungslandschaft>> werden drei fachliche Hierarchieebenen festgelegt:
 
@@ -177,7 +181,7 @@ Im Rahmen weitergehender Architekturvorgaben beim Einsatz der IsyFact in einem k
 In <<image-FA-AW2>> werden Anwendungskomponenten nicht dargestellt: Sie wären die Bestandteile der blauen und gelben Kästen.
 
 [[fachliche-referenzarchitekturen-für-anwendungssysteme]]
-== Fachliche Referenzarchitekturen für Anwendungssysteme
+=== Fachliche Referenzarchitekturen für Anwendungssysteme
 
 Die fachliche Referenzarchitektur muss beim Einsatz der IsyFact innerhalb des jeweiligen Anwendungskontexts definiert werden.
 Die IsyFact dient hier als allgemeiner technischer und konzeptioneller Rahmen und macht keine Vorgaben über die Arten von Anwendungssystemen, die in einem bestimmten Kontext vorkommen.
@@ -193,7 +197,7 @@ Als Teil der fachlichen Architektur ist unter anderem folgendes zu definieren:
 * Die Interaktion und die Abhängigkeiten zwischen den Fachanwendungen, insbesondere die zulässigen Kommunikations-Beziehungen.
 
 [[die-software-referenzarchitektur]]
-= Die Software-Referenzarchitektur
+== Die Software-Referenzarchitektur
 
 Eine Software-Architektur beschreibt, wie die in einer fachlichen Architektur definierten Elemente (Anwendungssysteme, Anwendungskomponenten, fachliche Entitäten, Anwendungsfälle etc.) software-technisch in Form von IT-Systemen, Komponenten, Klassen, physischen Datenmodellen etc. umgesetzt werden.
 
@@ -213,7 +217,7 @@ Im Folgenden wird, aufbauend auf diesem Konzept, beschrieben:
 * welche Vorgaben für die Verwendung von Produkten existieren (Kapitel <<verwendung-von-produkten>>).
 
 [[strukturierung-der-register-plattform]]
-== Strukturierung der Register-Plattform
+=== Strukturierung der Register-Plattform
 
 Wichtige Grundlagen für die Software-Referenzarchitektur sind die Schnittstellen und Aufruf-Beziehungen der IT-Systeme vom Typ _Fachanwendung_,
 _Querschnittssystem_ sowie _Portal_ und _Service-Gateway_.
@@ -248,7 +252,7 @@ Für die Kommunikation mit externen Systemen muss eine Fachanwendung ein Service
 Fachanwendungen, die eine Benutzeroberfläche bereitstellen, dürfen aus Sicherheitsgründen nicht direkt vom Benutzer aufgerufen werden, sondern werden in das _Portal_ (siehe unten) der IsyFact-Systemlandschaft eingebunden.
 Die Kommunikation mit dem Browser des Nutzers muss immer über das Portal erfolgen.
 
-*Das <<glossar-Portal>>:* Die Referenzarchitektur sieht keinen Portal-Server im klassischem Sinne vor: Es gibt weder einen systemübergreifenden Rahmen noch eine systemübergreifende Navigation.
+*Das <<glossar-Portal>>:* Die Referenzarchitektur sieht keinen Portal-Server im klassischen Sinne vor: Es gibt weder einen systemübergreifenden Rahmen noch eine systemübergreifende Navigation.
 
 Ein Portal im Sinne der Referenzarchitektur besteht aus:
 
@@ -268,17 +272,16 @@ Querschnittssysteme werden nicht direkt von Benutzern oder externen Systemen au�
 Ausnahmen hiervon sind Querschnittsysteme wie das Outputmanagement das z.B. zur Versendung von externen E-Mails einen Mailserver nutzt oder zur Versendung von Faxen einen Fax-Server.
 
 [[nutzungsarten-eines-anwendungssystems]]
-== Nutzungsarten eines Anwendungssystems
+=== Nutzungsarten eines Anwendungssystems
 
 Nachdem im Dokument <<IsyFactReferenzarchitekturITSystem>> die technische Architektur vorgestellt wurde, soll in diesem Abschnitt konkret vorgestellt werden, wie auf Basis dieser Architektur Anwendungen entworfen werden.
 
-Die Nutzungsschicht eines IT-Systems bietet anderen IT-Systemen über Services, dem Betrieb über Batches und menschlichen Nutzern über eine GUI Schnittstellen zur
-Nutzung der implementierten Fachlichkeit an.
+Die Nutzungsschicht eines IT-Systems bietet anderen IT-Systemen über Services, dem Betrieb über Batches und menschlichen Nutzern über eine GUI Schnittstellen zur Nutzung der implementierten Fachlichkeit an.
 Im Folgenden wird ein Beispiel-Szenario zur Nutzung eines IT-Systems vorgestellt.
 
 Es soll eine Fachanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
 
-Für eine architekturkonforme Umsetzung dieser Anforderungen müssen verschiedene IT-Systeme umgesetzt werden:
+Für eine zur Architektur konforme Umsetzung dieser Anforderungen müssen verschiedene IT-Systeme umgesetzt werden:
 
 *Die Fachanwendung:* Die Fachanwendung soll in diesem Beispiel die Präsentationslogik, die Geschäftslogik und die Datenhaltung in einem Anwendungssystem realisieren.
 Sie implementiert dazu drei software-architektonische Schichten:
@@ -310,7 +313,7 @@ Für derartige Aufrufe gibt es keine Vorgaben: Sie können aus beliebigen Schich
 image::CallFAmGuX.png[align="center"]
 
 [[verwendung-von-produkten]]
-== Verwendung von Produkten
+=== Verwendung von Produkten
 
 Bei der Umsetzung einer Architektur für eine Anwendung oder eine Anwendungslandschaft können an vielen Stellen fertige Produkte Dritter eingesetzt werden.
 Das beschleunigt die Entwicklung und reduziert die Kosten.
@@ -332,7 +335,7 @@ IsyFact verwendet insbesondere Spring, Hibernate und JSF.
 Eine detaillierte Liste der verwendbaren Produkte sind im Dokument <<ProduktKatalog>> zu finden.
 
 [[die-referenzarchitektur-der-technischen-infrastruktur]]
-= Die Referenzarchitektur der technischen Infrastruktur
+== Die Referenzarchitektur der technischen Infrastruktur
 
 Die Referenzarchitektur der technischen Infrastruktur, auch <<glossar-TI-Architektur>> genannt, beschreibt den Aufbau der Betriebsumgebung für die IT-Systeme einer IsyFact-Systemlandschaft.
 Dazu gehören die physischen Geräte (Rechnersysteme, Netzwerkverbindungen und -komponenten, Drucker etc.), die installierte Systemsoftware (Betriebssystem, Applikationsserver, Middleware, Datenbanksystem) und das Zusammenspiel von Hardware und Systemsoftware.
@@ -341,7 +344,7 @@ Auf der Ebene der technischen Infrastruktur können mehrere Instanzen einer Komp
 Auch können mehrere Komponenten auf einem gemeinsamen Rechnersystem laufen.
 
 [[umgebungen]]
-== Umgebungen
+=== Umgebungen
 
 Um neben dem operativen Betrieb einer IsyFact-Systemlandschaft parallel neue Versionen von Anwendungen entwickeln, testen und schulen zu können, sind mehrere Systemumgebungen notwendig, die in <<image-AlleSysUmgeb>> vereinfacht dargestellt sind.
 
@@ -368,7 +371,7 @@ Die technischen Aspekte der gesamten Systemumgebungen werden nachfolgend erläut
 Für eine bessere Übersichtlichkeit in den Abbildungen der einzelnen Systemumgebungen, werden die Verbindungen mit dem Admin-Netz nicht dargestellt.
 
 [[produktionsumgebung-pru]]
-=== Produktionsumgebung (PRU)
+==== Produktionsumgebung (PRU)
 
 Mit dem Begriff „Produktionsumgebung“ wird die technische Infrastruktur bezeichnet, auf der der Wirkbetrieb einer IsyFact-Systemlandschaft abläuft.
 Alle nichtfunktionalen Anforderungen müssen von dieser Systemumgebung vollständig erfüllt werden.
@@ -378,7 +381,7 @@ Die größeren Knoten gruppieren einzelne Server zu einer logischen Einheit, die
 Die Knoten eines Clusters sind dabei auf das Rechenzentrum und das Ausweich-Rechenzentrum verteilt, um bestmögliche Ausfallsicherheit zu erreichen.
 Die Verbindungen zeigen die Kommunikation der Server untereinander.
 Der Datenfluss erfolgt in der Regel in beiden Richtungen.
-Geht eine Verbindung von beziehungsweise zu einem Cluster, so entspricht das Verbindungen von beziehungsweise zu allen Servern im Cluster.
+Geht eine Verbindung von beziehungsweise zu einem Cluster, so entspricht dies Verbindungen von beziehungsweise zu allen Servern im Cluster.
 
 :desc-image-TIArchPRU: TI-Architektur der Produktionsumgebung
 [id="image-TIArchPRU",reftext="{figure-caption} {counter:figures}"]
@@ -411,18 +414,18 @@ Der operative Datenbestand wird permanent in eine Standby-Datenbank auf dem zwei
 Um Auswertungen auf Stichtagsbeständen durchführen zu können, wird ein dedizierter Datenbankserver vorgesehen.
 
 [[staging-umgebung-stu]]
-=== Staging-Umgebung (STU)
+==== Staging-Umgebung (STU)
 
 Mit dem Begriff „Staging-Umgebung“ werden die Komponenten der technischen Infrastruktur bezeichnet, die zum internen Test verwendet werden und auf denen Probleme des Wirkbetriebs nachgestellt werden können.
 Eine solche Umgebung ist notwendig, um Problemanalysen durchzuführen und Lösungen für bekannte Probleme vor dem Einsatz im Wirkbetrieb auf ihre Funktionsfähigkeit hin zu prüfen.
 Die Staging-Umgebung dient auch zu Last- und Performancetests, zur Überprüfung der Installationsroutinen und zur Überprüfung der Ausfallsicherheit.
-Daher muss sie so ausgelegt sein, dass verlässliche Aussagen im Bezug auf die Produktionsumgebung möglich sind.
+Daher muss sie so ausgelegt sein, dass verlässliche Aussagen in Bezug auf die Produktionsumgebung möglich sind.
 
 Idealerweise ist die Staging-Umgebung eine exakte Kopie der Produktionsumgebung.
 Häufig ist dies jedoch aufgrund der sehr großen Anzahl Server und den damit verbundenen Investitionskosten für die benötigte Hardware und Software aus Wirtschaftlichkeitsaspekten nicht sinnvoll.
 
 Daher ist die Staging-Umgebung eine in Bezug auf die Anzahl der Cluster-Knoten kleinere Kopie der Produktionsumgebung.
-Das heißt, an Stellen, in denen in der Produktionsumgebung ein Cluster mit n>2 Knoten verwendet wird, wird in der Staging-Umgebung ein Cluster mit 2 Knoten eingesetzt.
+Das heißt, an Stellen, in denen in der Produktionsumgebung ein Cluster mit mehr als zwei Knoten verwendet wird, wird in der Staging-Umgebung ein Cluster mit 2 Knoten eingesetzt.
 In der Staging-Umgebung wird auch auf die Datenspiegelung verzichtet.
 Die Staging-Umgebung einer IsyFact-Systemumgebung ist in <<image-TIArchSTU>> dargestellt.
 
@@ -436,14 +439,14 @@ image::TIArchSTU.png[align="center"]
 
 
 [[externe-schulungsumgebung-xsu]]
-=== Externe Schulungsumgebung (XSU)
+==== Externe Schulungsumgebung (XSU)
 
-Wie der Name schon sagt wird die externe Schulungsumgebung für die Durchführung von Schulungen verwendet, wobei auch externe Nutzer auf diese Umgebung zugreifen können.
+Wie der Name schon sagt, wird die externe Schulungsumgebung für die Durchführung von Schulungen verwendet, wobei auch externe Nutzer auf diese Umgebung zugreifen können.
 Sie ist eine Kopie der externen Testumgebung.
 Aus diesem Grund wird hier auf Abschnitt <<externe-testumgebung-xtu>> verwiesen.
 
 [[externe-testumgebung-xtu]]
-=== Externe Testumgebung (XTU)
+==== Externe Testumgebung (XTU)
 
 Die externe Testumgebung wird für Tests externer Nutzer verwendet.
 Damit ist diese Umgebung neben der Produktionsumgebung und der externen Schulungsumgebung die einzige von außen zugängliche Systemumgebung.
@@ -459,14 +462,14 @@ Da auch an die Verfügbarkeit der Umgebung geringere Anforderungen gestellt werd
 Die Anwendungssysteme laufen dann auf einzelnen Rechnerknoten ab.
 
 [[abnahmetestumgebung-atu]]
-=== Abnahmetestumgebung (ATU)
+==== Abnahmetestumgebung (ATU)
 
 Die Abnahmetestumgebung wird zur Durchführung von funktionalen, das heißt fachlichen Abnahmetests genutzt.
 Sie ist eine Kopie der Entwicklungstestumgebung.
 Aus diesem Grund wird hier auf Abschnitt <<entwicklungstestumgebung-etu>> verwiesen.
 
 [[entwicklungstestumgebung-etu]]
-=== Entwicklungstestumgebung (ETU)
+==== Entwicklungstestumgebung (ETU)
 
 Die Entwicklungstestumgebung (ETU) wird zur Durchführung von technischen Tests genutzt.
 An diese Umgebung sind keine Anforderungen an hohe Ausfallsicherheit und Leistungsfähigkeit gestellt.
@@ -482,7 +485,7 @@ Es gibt keine weitere Unterteilung in Sicherheitszonen.
 image::TIArchSWTU.png[align="center",pdfwidth=80%,width=80%]
 
 [[minimalanforderungen-an-die-ablaufumgebung]]
-== Minimalanforderungen an die Ablaufumgebung
+=== Minimalanforderungen an die Ablaufumgebung
 
 Als Ablaufumgebung benötigen die gemäß der Referenzarchitektur (siehe Kapitel <<die-software-referenzarchitektur>>) erstellten IT-Systeme einen Tomcat Servlet-Container.
 Die Vorgaben zur Konfiguration des Tomcat sind im Dokument <<TomcatNutzungskonzept>> beschrieben.
@@ -490,13 +493,13 @@ Die Vorgaben zur Konfiguration des Tomcat sind im Dokument <<TomcatNutzungskonze
 Service-Gateway-Systeme und das Portal benötigen zusätzlich noch einen Apache-Webserver.
 
 [[betriebliche-aspekte]]
-= Betriebliche Aspekte
+== Betriebliche Aspekte
 
 In diesem Abschnitt wird auf wichtige Aspekte des Betriebs einer Systemlandschaft eingegangen.
 Dazu gehören Verfügbarkeit, Ausfallsicherheit, Performance, Lastverteilung, Auslieferung, Installation, Versionswechsel, Monitoring und Datensicherung.
 
 [[verfügbarkeit-und-ausfallsicherheit]]
-== Verfügbarkeit und Ausfallsicherheit
+=== Verfügbarkeit und Ausfallsicherheit
 
 Die Verfügbarkeit wird über einen Prozentwert gemessen, der unter Berücksichtigung von definierten Betriebs- und Wartungsfenstern angibt, wie ausfallsicher ein System sein soll und tatsächlich ist.
 <<image-verfuegbar>> gibt einen Überblick, was bei der Messung der Verfügbarkeit zu berücksichtigen ist.
@@ -519,7 +522,7 @@ Die Server-Knoten der technischen Infrastruktur sind über verschiedene Standort
 Dadurch ist die Verfügbarkeit auch in Katastrophen-Szenarien (zum Beispiel dem Brand an einem der beiden Standorte) sichergestellt.
 
 [[performance]]
-== Performance
+=== Performance
 
 Ein weiterer wichtiger Aspekt der technischen Infrastruktur ist die Performance der IT-Systeme in einer IsyFact-Systemlandschaft.
 Auf der Ebene der technischen Infrastruktur wird die Performance vor allem durch die folgenden Aspekte limitiert:
@@ -543,7 +546,7 @@ Die Referenzarchitektur unterstützt durch den zustandslosen Anwendungsserver de
 Sie bietet für die Zukunft maximale Flexibilität.
 
 [[lastverteilung]]
-== Lastverteilung
+=== Lastverteilung
 
 Für die horizontalen Skalierung und die Ausfallsicherheit wird eine Lastverteilung notwendig.
 Lastverteilung (engl. Loadbalancing) kann entweder durch dedizierte Hardware-Komponenten (Hardware-Lastverteilung) oder durch eine Software-Lösung (Software-Lastverteilung) implementiert werden.
@@ -556,7 +559,7 @@ Analog arbeitet die Software-Lastverteilung.
 Hier übernimmt eine Software-Komponente wie z.B. ein Http-Server mit entsprechendem Plugin die Verteilung der Anfragen.
 
 [[auslieferung-installation-und-versionswechsel]]
-== Auslieferung, Installation und Versionswechsel
+=== Auslieferung, Installation und Versionswechsel
 
 Durch die Auslieferung und Installation einer neuen Version eines IT-Systems wird die Konfiguration der Systemlandschaft verändert.
 In diesem Abschnitt wird auf diese Aspekte eingegangen.
@@ -594,16 +597,16 @@ Auf Anfrage des Betriebs unterstützt die Entwicklung direkt bei der Fehleranaly
 Der Betrieb ist auch für die Dokumentation der Konfigurationsänderungen durch die Installation der neuen Anwendungssoftware-Pakete zuständig.
 
 [[betriebsüberwachung]]
-== Betriebsüberwachung
+=== Betriebsüberwachung
 
-Um den Gesamt-Status eines Systems zu überwachen, sind die Überwachung der IT-Systeme sowie das Monitoring der Komponenten der Technischen Infrastruktur notwendig.
+Um den Gesamt-Status eines Systems zu überwachen, sind die Überwachung der IT-Systeme sowie das Monitoring der Komponenten der technischen Infrastruktur notwendig.
 Auf die Überwachung der IT-Systeme wird im Dokument <<KonzeptUeberwachung>> im Detail eingegangen.
 Hier wird unter anderem festgelegt, welche Informationen ein nach der Referenzarchitektur erstelltes IT-System für die Überwachung mindestens bereitstellen muss.
 Die Schnittstellentechnologie, über die die Informationen der einzelnen Anwendungen zur Überwachung angeboten werden, ist dabei der Standard JMX, der in alle gängigen Überwachungstools integrierbar ist.
 
 Als zentrales Überwachungstool kann z.B. das OpenSource-Werkzeug Nagios verwendet werden.
 
-Zum Monitoring der Technischen Infrastruktur können für das zentrale Überwachungstool verfügbare Client-Programme verwendet werden.
+Zum Monitoring der technischen Infrastruktur können für das zentrale Überwachungstool verfügbare Client-Programme verwendet werden.
 Diese Programme ermitteln den Status und die Leistungsparameter (zum Beispiel CPU-Auslastung, Hauptspeicher-Auslastung, Netzwerk-Auslastung) eines Server-Knotens und senden diese Informationen an das zentrale Überwachungstool.
 Zusätzlich ist auch ein Betriebsmonitoring der Netzwerkkomponenten (Router, Switches und andere) notwendig.
 
@@ -615,23 +618,23 @@ Aus Sicherheitsgründen kommunizieren die Client-Programme des zentralen Überwa
 Damit benötigt nicht jeder Server der Betriebsumgebung eine direkte Verbindung zum plattformübergreifenden zentralen Überwachungstool.
 
 [[daten-und-datensicherungen]]
-== Daten und Datensicherungen
+=== Daten und Datensicherungen
 
 Die Datensicherung (Backup) für eine IsyFact-Systemlandschaft erfolgt durch den Betrieb.
 Bei der Datensicherung muss zwischen der Sicherung der Software inklusive der Konfigurationsdateien, der Sicherung der Logdateien und der Sicherung der Datenbank unterschieden werden.
 
 [[software-und-konfigurationsdateien]]
-=== Software und Konfigurationsdateien
+==== Software und Konfigurationsdateien
 
-Mit Ausnahme des Betriebssystems wird die Software selbst inklusive zugehöriger Konfigurationen über ein Konfigurations-Management verwaltet.
+Mit Ausnahme des Betriebssystems wird die Software selbst inklusive zugehöriger Konfigurationen über ein Konfigurationsmanagement verwaltet.
 Dieses hat nichts mit den Systemen zum Betrieb der Anwendungen zu tun und wird unabhängig betrieben und gesichert.
-Jeder Stand ist über das Konfigurations-Management vollständig reproduzierbar.
+Jeder Stand ist über das Konfigurationsmanagement vollständig reproduzierbar.
 Im Falle von Datenverlust können die Software-Pakete in den entsprechenden Versionen neu gebaut und neu installiert werden.
 Dies wird aber in der Regel nur dann notwendig, wenn auch die Systemsicherungen vom Verlust betroffen sind.
 Der Betrieb muss jedoch in der Lage sein, bei Ausfall eines Server-Knotens eine Neuinstallation in kurzer Zeit durchführen zu können (zum Beispiel durch Einspielen zuvor gesicherter Images).
 
 [[log-dateien]]
-=== Log-Dateien
+==== Log-Dateien
 
 Die verschiedenen Server der Betriebsumgebung schreiben Log-Dateien in das Dateisystem auf dem jeweiligen Server.
 Die Log-Dateien enthalten wichtige Informationen, um bei Problemen das Verhalten der Anwendung nachzuvollziehen oder Nachweise zu erbringen.
@@ -644,10 +647,10 @@ Durch die Vorgaben zum Logging wird sichergestellt, dass Log-Dateien zusammengef
 Die Grundidee dabei ist, dass alle Log-Dateien in einem einheitlichen Format vorliegen und zusätzlich jeder Anfrage an das Gesamtsystem eine spezielle ID (correlation id) zugeordnet wird, mit der sich zusammen gehörende Einträge unterschiedlicher Log-Files einander zuordnen lassen.
 
 [[datenbank]]
-=== Datenbank
+==== Datenbank
 
 Die Geschäftsdaten aller Anwendungen einer IsyFact-Systemumgebung werden in relationalen Datenbanken gehalten.
-Der Verlust dieser Daten wäre mit erheblichen Schaden verbunden.
+Der Verlust dieser Daten wäre mit erheblichem Schaden verbunden.
 Eine angemessene Datensicherung ist daher unerlässlich.
 
 Da nur die Produktionsumgebung Echtdaten verarbeitet, beschränken wir uns nachfolgend auf die Datensicherung in der Produktionsumgebung.
@@ -670,7 +673,7 @@ Die Datensicherung auf Bänder erfolgt online ausschließlich auf den Standby-Da
 Die Datensicherung der Produktionsdaten wird vom Betrieb durchgeführt und verantwortet.
 
 [[vereinfachte-varianten-der-referenzarchitektur]]
-= Vereinfachte Varianten der Referenzarchitektur
+== Vereinfachte Varianten der Referenzarchitektur
 
 In diesem Kapitel wird vorgestellt, wie sich die Referenzarchitektur der IsyFact in Anwendungsszenarien mit reduzierten Anforderungen nutzen lässt.
 Dazu wird zunächst motiviert, welche Szenarien das sind und warum eine Nutzung der IsyFact-Referenzarchitektur dort möglich ist.
@@ -679,14 +682,14 @@ Danach wird kurz vorgestellt, wie eine vereinfachte Architekturform zu einer kom
 Abschließend werden die Vereinfachungen am Beispiel von Kleinverfahren dargestellt.
 
 [[einfuehrung]]
-== Einführung
+=== Einführung
 
 In der bisher vorgestellten Form ist die Referenzarchitektur für die Umsetzung großer Systemlandschaften ausgelegt, also für den Einsatz in großen Anwendungen mit hohem Funktionsumfang und hohen Anforderungen an Verfügbarkeit, Performance und Lastverhalten.
 Deshalb folgt sie einem serviceorientierten Plattformansatz.
 Bei geringeren Anforderungen an die Ausbaufähigkeit und geringeren nichtfunktionalen Anforderungen können hier Vereinfachungen vorgenommen werden, die im Folgenden dargestellt werden: der Verzicht auf eine SOA-Plattform und eine vereinfachte technische Infrastruktur.
 
 [[vereinfachung-durch-verzicht-auf-eine-soa-plattform]]
-== Vereinfachung durch Verzicht auf eine SOA-Plattform
+=== Vereinfachung durch Verzicht auf eine SOA-Plattform
 
 Die vorgestellte Plattform-Architektur der IsyFact bietet verschiedene Vorteile:
 
@@ -696,7 +699,7 @@ Sie werden oft durch Produkte umgesetzt und werden in der Regel als separate Pro
 Hier vereinfacht die Referenzarchitektur die Nutzung dieser Services.
 * Nutzung zentraler Datenbestände, z. B. durch ein zentrales Schlüsselverzeichnis.
 * Bessere Handhabbarkeit der einzelnen Anwendungen: Die in den Anwendungen umgesetzte Fachlichkeit ist in der Regel sehr umfangreich.
-Daher bietet die Auflösung in Services ein wichtiges Mittel, um die Komplexität der einzelnen Systeme zu reduzieren und sie somit langfristig wartbar und weiterentwickelbar zu halten.
+Daher bietet die Auflösung in Services ein wichtiges Mittel, um die Komplexität der einzelnen Systeme zu reduzieren und sie somit langfristig wartbar und veränderbar zu halten.
 * Flexibilität und Erweiterungsfähigkeit: Services einer Fachanwendung können durch die serviceorientierte Architektur leicht in andere Fachanwendungen eingebunden werden.
 
 In einigen Fällen bestehen diese Anforderungen nicht, daher wäre dann der Aufbau und Betrieb einer SOA-Plattform nicht angemessen.
@@ -726,14 +729,14 @@ In einem solchen Fall kann eine kompakte Anwendung erstellt werden, die das Quer
 Die Software-Referenzarchitektur der Anwendung (vgl. Kapitel <<die-software-referenzarchitektur>>) bleibt trotzdem unverändert.
 
 [[vereinfachungen-in-der-technischen-infrastruktur]]
-== Vereinfachungen in der technischen Infrastruktur
+=== Vereinfachungen in der technischen Infrastruktur
 
 Die technische Infrastruktur kann an zwei Stellen vereinfacht werden.
 Zum einen ist es möglich, auf den Clusterbetrieb zu verzichten, zum anderen kann die Aufteilung in SAGA-konforme Zonen weggelassen werden.
 Dies wird im Folgenden ausgeführt.
 
 [[installation-ohne-clusterung]]
-=== Installation ohne Clusterung
+==== Installation ohne Clusterung
 
 Bei geringeren nicht-funktionalen Anforderungen kann auch nur eine Anwendungsinstanz zum Einsatz kommen und kein Cluster für die Datenbank verwendet werden.
 Dies ist in <<image-noCluster>> dargestellt.
@@ -744,9 +747,9 @@ Dies ist in <<image-noCluster>> dargestellt.
 image::noCluster.png[align="center"]
 
 [[verzicht-auf-das-saga-zonenmodell]]
-=== Verzicht auf das SAGA-Zonenmodell
+==== Verzicht auf das SAGA-Zonenmodell
 
-Weiterhin sieht die Referenzarchitektur der Technischen Infrastruktur ein Zonenmodell gemäß SAGA vor.
+Weiterhin sieht die Referenzarchitektur der technischen Infrastruktur ein Zonenmodell gemäß SAGA vor.
 Dieses Zonenmodell unterstützt eine klare Sicherheitsarchitektur und ist in Kapitel <<die-referenzarchitektur-der-technischen-infrastruktur>> beschrieben.
 Durch die Aufteilung in Informations- & Dienstezone, Logik- & Verarbeitungszone sowie Datenzone sind die Grundlagen geschaffen, um z.B. E-Government-Anwendungen sicher betreiben zu können.
 
@@ -764,24 +767,24 @@ Dies ist möglich, wenn die Anwendung über eine native GUI verfügt.
 Diese Installation ist möglich, wenn die Anwendung über eine Web-GUI verfügt.
 
 [[erweiterungsmöglichkeiten-einer-vereinfachten-architektur]]
-== Erweiterungsmöglichkeiten einer vereinfachten Architektur
+=== Erweiterungsmöglichkeiten einer vereinfachten Architektur
 
 Wenn eine Anwendung nach einer vereinfachten Architektur entwickelt wurde, ist die Erweiterung zu einer SAGA-konformen, serviceorientierten Anwendung möglich, wenn vorher gewisse Randbedingungen beachtet wurden.
 
 [[installation-innerhalb-einer-saga-konformen-plattform]]
-=== Installation innerhalb einer SAGA-konformen Plattform
+==== Installation innerhalb einer SAGA-konformen Plattform
 
 Um eine Anwendung in einer SAGA-konformen Plattform zu betreiben, muss unterschieden werden, ob es sich um eine native Java-GUI handelt oder um eine Web-GUI.
 Web-GUIs werden ja schon auf einem zentralen Server betrieben und können ohne weiteres in einer SAGA-konformen 3-Zonen-Umgebung betrieben werden.
 
-Im Falle einer Nativen GUI ist der Umbau aufwändiger.
+Im Falle einer Nativen GUI ist der Umbau aufwendiger.
 Die Anwendung muss die Anwendung in zwei Teile zerlegt werden.
 Ein Teil enthält die eigentliche GUI, der andere Teil den Rest der Anwendung, d. h. Anwendungskern und Datenzugriff.
 Die beiden Teile müssen dann über interne Service-Aufrufe miteinander kommunizieren.
 Das bedeutet, dass alle Methoden-Aufrufe zwischen den Schichten Anwendungskern und GUI per HTTP-Invoker erfolgen.
 
 [[installation-innerhalb-eines-clusters]]
-=== Installation innerhalb eines Clusters
+==== Installation innerhalb eines Clusters
 
 Um eine Anwendung innerhalb eines Clusters von Anwendungsservern zu betreiben, ist es notwendig, den Bearbeitungszustand nicht im Hauptspeicher des Serverprozesses zu halten, sondern ihn bei jedem Request in der Datenbank zu persistieren.
 Dies ist in den GUI-Referenzarchitekturen der IsyFact vorgegeben, allerdings werden Verletzungen dieses Prinzips nicht auffallen, wenn man eine vereinfachte Anwendung auf nur einem Serverknoten betreibt.
@@ -790,14 +793,14 @@ Alternativ kann natürlich auch auf die Persistierung des Anwendungszustands ver
 
 
 [[installation-innerhalb-einer-soa]]
-=== Installation innerhalb einer SOA
+==== Installation innerhalb einer SOA
 
 Der Nutzung einer Anwendung innerhalb einer SOA ist problemlos möglich.
 Falls Services der Plattform genutzt werden sollen, können Aufrufe dieser Services ohne weitere Vorkehrungen implementiert werden.
 Genauso ist es möglich, innerhalb der Plattform Services anzubieten.
 
 [[anwendungsbeispiel-kleinverfahren]]
-== Anwendungsbeispiel: Kleinverfahren
+=== Anwendungsbeispiel: Kleinverfahren
 
 Unter einem Kleinverfahren versteht man im öffentlichen Sektor Anwendungen, die nur geringe Anforderungen an nichtfunktionale Eigenschaften haben.
 Typisch für solche Anwendungen sind:
@@ -815,5 +818,6 @@ Dies umfasst:
 * Verzicht auf Clustering (Abschnitt <<installation-ohne-clusterung>>)
 * Verzicht auf das SAGA-Zonenmodell (Abschnitt <<verzicht-auf-das-saga-zonenmodell>>)
 
-Diese Vereinfachungen sind für ein Kleinverfahren nicht zwingend, sondern sie dienen dazu, das Verfahren in einem angemessen Kosten-Nutzen-Verhältnis zu erstellen.
+Diese Vereinfachungen sind für ein Kleinverfahren nicht zwingend, sondern sie dienen dazu, das Verfahren in einem angemessenen Kosten-Nutzen-Verhältnis zu erstellen.
 Falls die Kosten-Nutzen-Betrachtung es erlaubt, kann auf die Vereinfachungen natürlich auch verzichtet werden.
+// end::inhalt[]
