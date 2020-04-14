@@ -183,10 +183,18 @@ Dazu werden in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>
 [[datenschutz]]
 ==== Datenschutz
 
-Die Nachrichten dürfen keine Daten enthalten, die datenschutzrechtlich relevant oder sicherheitsrelevant sind (d.h. Personendaten, Passwörter, etc.).
+Beim Loggen der Nachrichten sind grundsätzlich die Vorgaben der Datenschutzgrundverordnung (https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE[DSGVO]) einzuhalten.
+Eine besondere Rolle spielen dabei personenbezogene Daten und insbesondere Daten gemäß Artikel 9 DSGVO.
+Ebenso dürfen grundsätzlich keine sicherheitsrelevanten Daten (z.B. Passwörter) geloggt werden.
 
 [underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
 Die entsprechenden Logeinträge müssen durch das Setzen des Flags ATT_Enthält_fachliche_Daten markiert werden, damit sie durch die Loginfrastruktur gesondert behandelt werden können.
+Die Daten dürfen nur so lange aufbewahrt werden, wie es für die Analyse der Daten zwingend erforderlich ist.
+
+Datenverarbeitung im Auftrag – auch Auftragsdatenverarbeitung (ADV) genannt – bezeichnete in Deutschland die Erhebung, Verarbeitung oder Nutzung personenbezogener Daten durch einen Dienstleister im Auftrag des Verantwortlichen.
+Seit Inkrafttreten der DSGVO regelt Artikel 28 der DSGVO die Verarbeitung im Auftrag.
+Artikel 28 verweist wiederum auf Artikel 32 der DSGVO, in dem eine Pseudonymisierung und Verschlüsselung personenbezogener Daten gefordert wird.
+Für die Weitergabe von Log Dateien an Auftragsverarbeiter (Entwickler) bedeutet das konkret, dass personenbezogene Daten nur pseudonymisiert weitergegeben werden dürfen.
 
 [[logausgabe]]
 == Logausgabe

@@ -471,6 +471,7 @@ Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight 
 In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
 Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen.
 Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
+Das Konzept findet sich in <<KonzeptPolling>>.
 
 Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
 Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
@@ -513,6 +514,25 @@ Der Baustein Styleguide beschreibt die Gestaltung grafischer Oberflächen nach e
 Das zentrale Dokument, der <<Styleguide>>, enthält Vorgaben zu Aufbau und Gestaltung von Web-GUIs.
 Der Styleguide definiert ebenfalls Form und Funktion der in der IsyFact verfügbaren Anzeige- und Bedienelemente.
 Neben dem Dokument beinhaltet der Baustein eine Software-Bibliothek, welche die Vorgaben als CSS-Stile zur Nutzung bereitstellt.
+
+[[sessionmanagement]]
+==== Session Management
+Für das Session Management wird in IsyFact basierten Anwendungen Spring Session eingesetzt.
+Der Baustein Session Management erleichtert die Konfiguration von Spring Session gemäß den Vorgaben und Anforderungen der IsyFact.
+Die <<NutzungsvorgabenSessionManagement>> zeigen, wie mit Hilfe dieser Erweiterung Sessions in IsyFact Anwendungen verwaltet werden.
+
+[[webjsf]]
+==== Web JSF
+Der Baustein Web JSF enthält alle notwendigen Abhängigkeiten, Spring-Konfigurationen, JSF-Komponenten (Composite Components) sowie zugehörige XHTML-Templates zur Erstellung einer GUI mit JSF.
+
+[[webangular]]
+==== Web Angular
+Der Baustein Web Angular stellt querschnittlich nutzbare Komponenten und Services zur Verwendung mit dem Angular Web Framework zur Verfügung.
+
+[[sicherheitkeycloak]]
+==== Sicherheit Keycloak
+Der Baustein Sicherheit Keycloak erweitert das Modul isy-sicherheit um Funktionalität zur Verwendung des Keycloak Authorization Servers.
+Konkret beinhaltet die Erweiterung die Implementierung des Access Managers für Keycloak sowie einen Filter zur Authentifizierung von REST-Aufrufen.
 
 [[erste-schritte]]
 == Nächste Schritte

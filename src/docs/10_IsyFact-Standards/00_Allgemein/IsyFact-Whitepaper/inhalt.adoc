@@ -170,8 +170,9 @@ Dies ermöglicht eine einheitliche und vereinfachte Auswertung von Log-Dateien, 
 |Sicherheits­komponente |Der Baustein Sicherheitskomponente ist eine Bibliothek.
 Sie enthält einen Berechtigungsmanager zur Verwaltung von Rollen und Rechten eines Benutzers in den Anwendungen der IsyFact.
 |Sonderzeichen |Der Baustein Sonderzeichen implementiert Transkriptionsregeln zur Übertragung von nichtlateinischen Zeichen.
-|Überwachung und Konfiguration |Der Baustein Überwachung und Konfiguration enthält ein technisches Konzept mit Designvorgaben und Bibliotheken für die Überwachung und die Handhabung von Konfigurationen für Anwendungen der IsyFact.
+|Überwachung|Der Baustein Überwachung enthält ein technisches Konzept mit Designvorgaben und Bibliotheken für die Überwachung von Anwendungen der IsyFact.
 Die einheitliche Überwachungsschnittstelle erlaubt die frühzeitige Erkennung von Problemen im IT-Betrieb.
+|Konfiguration |Der Baustein Konfiguration enthält ein technisches Konzept mit Designvorgaben und Bibliotheken für die Handhabung von Konfigurationen von Anwendungen der IsyFact.
 Eine Vereinheitlichung der Konfiguration erleichtert die Entwicklung und den Betrieb der Anwendungen.
 |Polling |Der Baustein Polling implementiert Verfahren zum koordinierten, regelmäßigen Abholen von Daten (Polling) durch mehrere redundant ausgelegte Instanzen einer Anwendung.
 Der Baustein unterstützt unterschiedliche Arten von Schnittstellen und sorgt dafür, dass Daten jeweils nur von einer Instanz der Anwendung verarbeitet werden.
@@ -315,6 +316,8 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 2+|IsyFact – Einstieg |PDF
 2+|IsyFact – Tutorial |PDF
 2+|IsyFact – Überblick |PDF
+2+|IsyFact – Versionierung |PDF
+2+|IsyFact – Glossar |PDF
 2+|IsyFact – Tailoring |DOT
 3+|*10 Blaupausen*
 2+|IsyFact – Referenzarchitektur |PDF
@@ -326,26 +329,35 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 |Detailkonzept Komponente Datenzugriff |PDF
 |*Integrationsplattform* |Grundlagen der Servicekommunikation innerhalb der Plattform |PDF
 3+|*20 Bausteine*
+.2+|*Datum und Zeit* |Konzept Datum und Zeit |PDF
+|Nutzungsvorgaben Datum und Zeit |PDF
 |*Fehlerbehandlung* |Konzept Fehlerbehandlung |PDF
 |*LDAP-Zugriffe* |Nutzungsvorgaben Spring LDAP |PDF
-|*Logging* |Konzept Logging |PDF
+.2+|*Logging* |Konzept Logging |PDF
+|Nutzungsvorgaben Logging |PDF
 |*Polling* |Nutzerdokumentation Polling |PDF
-.3+|*Sicherheits-komponente* |Konzept Sicherheit |PDF
+.3+|*Sicherheit* |Konzept Sicherheit |PDF
 |Nutzungsvorgaben Sicherheit |PDF
 |Rollen und Rechte Schema |XSD
-.4+|*Sonderzeichen* |Konzept Umgang mit Sonderzeigen |PDF
-|Nutzungsvorgaben Umgang mit Sonderzeigen |PDF
+.4+|*Sonderzeichen* |Konzept Umgang mit Sonderzeichen |PDF
+|Nutzungsvorgaben Umgang mit Sonderzeichen |PDF
 |Mapping-Tabelle |XLS
 |Transkriptionsregeln |XLS
-|*Überwachung und + Konfiguration* |Konzept Überwachung und Konfiguration |PDF
+.2+|*Task Scheduling* |Konzept Task Scheduling |PDF
+|Nutzungsvorgaben Task Scheduling |PDF
+.2+|*Überwachung* |Konzept Überwachung |PDF
+|Nutzungsvorgaben Überwachung |PDF
+.2+|*Konfiguration* |Konzept Konfiguration |PDF
+|Nutzungsvorgaben Konfiguration |PDF
 |*Util* |Nutzungsvorgaben IsyFact Util |PDF
 3+|*40 Methodik*
 .3+|*Systemspezifikation* |Vorlage Systemspezifikation |DOT
-|Vorlage Anforderungsliste |XSL
+|Vorlage Anforderungsliste |XLS
 |Anleitung zu Datenflussdiagrammen |PDF
 |*Systementwurf* |Vorlage Systementwurf |DOT
-.2+|*Implementierung* |IsyFact Vorlage Systemhandbuch |DOT
+.3+|*Implementierung* |IsyFact Vorlage Systemhandbuch |DOT
 |Java-Programmierkonventionen |PDF
+|Nutzung Enterprise Architect |PDF
 |*Produktauswahl* |Vorlage Produktauswahl |DOT
 |====
 

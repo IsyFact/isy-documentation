@@ -84,7 +84,7 @@ Die folgenden Klassen dürfen von der Bibliothek nicht verwendet werden:
 == Authentifizierung
 
 Die Bibliothek muss Aufgaben bei Bedarf über den Baustein Sicherheit (s. <<NutzungsvorgabenSicherheit>>) authentifizieren.
-Dazu ist ein Benutzername und ein Passwort nötig, dass die Bibliothek als betriebliche Konfiguration, wie im Baustein Konfiguration (s. <<KonzeptUeberwachungKonfiguration>>) vorgegeben, einlesen muss.
+Dazu ist ein Benutzername und ein Passwort nötig, dass die Bibliothek als betriebliche Konfiguration, wie im Baustein Konfiguration (s. <<KonzeptKonfiguration>>) vorgegeben, einlesen muss.
 
 [[nachvollziehbarkeit-1]]
 == Nachvollziehbarkeit
@@ -146,7 +146,7 @@ Alle Standardwerte entsprechen folgendem Schema:
 
 *isyfact.task.standard.<property>*
 
-Die Definition der Standardwerte ergänzt die Regelungen zu Default-Werten in der betrieblichen Konfiguration (s. <<KonzeptUeberwachungKonfiguration>>).
+Die Definition der Standardwerte ergänzt die Regelungen zu Default-Werten in der betrieblichen Konfiguration (s. <<KonzeptKonfiguration>>).
 Während diese Default-Werte des Bausteins Konfiguration jeweils nur für eine konkrete Aufgabe gelten, sind die hier beschriebenen Standardwerte für alle in einer Anwendung definierten Aufgaben gültig.
 
 Zum Auslesen der Konfiguration einer Aufgabe wird die Klasse `TaskKonfiguration` definiert.

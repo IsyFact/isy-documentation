@@ -2,38 +2,36 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Konzept Überwachung und Konfiguration
+:doctitle: Konzept Polling
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
+// Executive Summary
+// include::preface.adoc[]
 *Java Bibliothek / IT-System*
 
 [cols="5,2,3",options="header"]
 |====
 |Name |Art |Version
-|isy-ueberwachung |Bibliothek |siehe isyfact-bom v{version-ifs}
-|isy-konfiguration |Bibliothek |siehe isyfact-bom v{version-ifs}
+|isy-polling |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
-
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 
-:toc-title!: 
+:toc-title!:
 
 endif::[]
 
 toc::[]
 
-// Einleitung 
-include::thisdoc.adoc[]
+// Einleitung
+include::thisdoc.adoc[leveloffset=1]
 
-// Inhalt 
+// Inhalt
 include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
