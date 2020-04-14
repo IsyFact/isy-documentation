@@ -1284,7 +1284,15 @@ Bei Komponenten wird diese Datei im root-Verzeichnis der Komponente abgelegt:
 .{desc-image-ablage_komponentenchangelog_komponente}
 image::ablage_komponentenchangelog_komponente.png[align="center",width=60%,pdfwidth=60%]
 
-Die Datei wird zunächst ohne Inhalt angelegt.
+In die Datei wird die Überschrift "Changelog" eingefügt:
+
+:desc-listing-komponentenchangelog_ueberschrift: Komponentenchangelog Inhalt
+[id="listing-komponentenchangelog_ueberschrift",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-komponentenchangelog_ueberschrift}
+[source,adoc]
+----
+= Changelog
+----
 
 [[projektchangelog-anlegen]]
 === Projektchangelog
@@ -1296,15 +1304,7 @@ Die zentrale Projektchangelog-Datei `changelog.adoc` wird im root-Verzeichnis de
 .{desc-image-ablage_projektchangelog}
 image::ablage_projektchangelog.png[align="center",width=60%,pdfwidth=60%]
 
-Initial wird die Datei mit der Überschrift "Changelog" befüllt:
-
-:desc-listing-projektchangelog_ueberschrift: Projektchangelog Inhalt
-[id="listing-projektchangelog_ueberschrift",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-projektchangelog_ueberschrift}
-[source,adoc]
-----
-= Changelog
-----
+Initial wird die Datei ebenfalls mit der Überschrift "Changelog" befüllt:
 
 [[struktur-changelog]]
 == Struktur der Changelog-Dateien
@@ -1336,7 +1336,31 @@ Dazu wird für jedes Release ein eigener Release-Tag definiert:
 // end::release-2.0.0[]
 ----
 
-Jeder Release-Tag enthält die Versionsnummer des Releases.
+Jeder Release-Tag enthält die Versionsnummer des Releases und eine entsprechende Überschrift.
+
+Somit ergibt sich folgender Gesamtaufbau des Komponentenchangelog:
+
+:desc-listing-komponentenchangelog_gesamt: Gesamtstruktur Komponentenchangelog
+[id="listing-komponentenchangelog_gesamt",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-komponentenchangelog_gesamt}
+[source,adoc]
+----
+= Changelog
+
+== Änderungen IsyFact 2.1.0
+// tag::release-2.1.0[]
+
+// --> Hier werden die Changelogeinträge für Release 2.1.0 verfasst
+
+// end::release-2.1.0[]
+
+== Änderungen IsyFact 2.0.0
+// tag::release-2.0.0[]
+
+// --> Hier werden die Changelogeinträge für Release 2.0.0 verfasst
+
+// end::release-2.0.0[]
+----
 
 Die Struktur des Kompontenchangelogs ist damit erfolgreich erstellt.
 
@@ -1385,11 +1409,13 @@ Dazu wird für jedes Release nur der mit dem Release getaggte Abschnitt der Komp
 
 Mehrere Releases werden wie folgt angelegt:
 
-:desc-listing-projektchangelog_einbindung_releases: Einbindung mehrerer Releases
+:desc-listing-projektchangelog_einbindung_releases: Gesamtstruktur Projektchangelog
 [id="listing-projektchangelog_einbindung_releases",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-projektchangelog_einbindung_releases}
 [source,adoc]
 ----
+= Changelog
+
 == Änderungen IsyFact 2.1.0
 
 // Beginn Übergreifende Änderungen
