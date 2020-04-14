@@ -63,6 +63,14 @@ Denn mit dieser Option ändert Git die heruntergeladenen Zeilenumbrüche zur Win
 Beim Hochladen wird hingegen zur Unix-Variante zurückgewandelt.
 Sollten Sie lokal mit Windows arbeiten, selektieren Sie also die erste Option.
 
+[[git-lfs-installieren]]
+== Git LFS installieren
+
+Zur Ablage großer Dateien, wie z.B. Bildern, wird in einigen Repositories Git Large File Storage (LFS) verwendet.
+Dabei werden die großen Dateien durch sehr kleine sogenannte "pointer files" ersetzt, die auf die echten Dateien verweisen.
+Damit das funktioniert muss auch client-seitig Git LFS installiert sein.
+Die Installation geht sehr einfach in wenigen Schritten und ist für Linux, Windows und Mac hier beschrieben: https://help.github.com/de/github/managing-large-files/installing-git-large-file-storage
+
 [[vsc-installieren]]
 == VS Code installieren
 
