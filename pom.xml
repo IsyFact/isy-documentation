@@ -47,7 +47,7 @@
                 <version>1.6.0</version>
                 <executions>
 
-                    <!-- Erzeugt das Glossar (muss vor Literaturverzeichnis, da im Glossar Literaturverweise sein könnten
+                    <!-- Erzeugt das Glossar (muss vor Literaturverzeichnis, da im Glossar Literaturverweise sein könnten -->
                     <execution>
                         <id>generate-glossary</id>
                         <phase>generate-sources</phase>
@@ -62,9 +62,9 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>-->
+                    </execution>
 
-                    <!-- Erzeugt das Literaturverzeichnis
+                    <!-- Erzeugt das Literaturverzeichnis -->
                     <execution>
                         <id>generate-bibliography</id>
                         <phase>generate-sources</phase>
@@ -79,9 +79,9 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>-->
+                    </execution>
 
-                    <!-- Erzeugt ...
+                    <!-- Erzeugt ... -->
 
                     <execution>
                         <id>generate-lists</id>
@@ -97,7 +97,7 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>-->
+                    </execution>
                     <execution>
                         <id>post-process-html</id>
                         <phase>process-resources</phase>
@@ -246,52 +246,6 @@
                             </outputFile>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>Changelog-pdf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>.</sourceDirectory>
-                            <sourceDocumentName>changelog.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/Changelog.pdf
-                            </outputFile>
-                            <attributes>
-                                <pdf-style>isyfact-closed</pdf-style>
-                            </attributes>
-                            <resources>
-                                <resource>
-                                    <directory>.</directory>
-                                    <exclude>**/**</exclude>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Changelog-html</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <sourceDirectory>.</sourceDirectory>
-                            <sourceDocumentName>changelog.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${html-output-base-directory}/Changelog.html
-                            </outputFile>
-                            <resources>
-                                <resource>
-                                    <directory>.</directory>
-                                    <exclude>**/**</exclude>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <!--
                     <execution>
                         <id>IsyFact-Namenskonventionen-html</id>
                         <phase>generate-resources</phase>
@@ -1451,7 +1405,7 @@
                             </outputFile>
                         </configuration>
                     </execution>
-                    <execution>
+                   <execution>
                         <id>Maven_Plugin_zur_Versionierungskontrolle</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -1671,7 +1625,7 @@
                                 <pdf-style>isyfact-closed</pdf-style>
                             </attributes>
                         </configuration>
-                    </execution>-->
+                    </execution>
 
 
                 </executions>

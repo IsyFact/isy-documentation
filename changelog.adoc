@@ -7,7 +7,6 @@
 - `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
 - `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
-
 // Ende übergreifende Änderungen
 
 include::src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/changelog.adoc[tag=release-2.1.0]
@@ -157,6 +156,7 @@ include::src/docs/20_IsyFact-Erweiterungen/30_Plattform/Nutzungsvorgaben_Redis/c
 - `IFS-360`: Ablageorte einzelner Dokumente korrigiert
 - `IFE-45`: Vorlagen um Colophon und PDF-Theme für Closed-Source-Dokumente erweitert
 - `IFS-299` & `IFS-374`: Kopfbereiche der HTML- und PDF-Dokumente neu gestaltet, neue Schriftart für PDF-Dokumente: Caladea
+- `IFS-175`: Transaktionssteuerung auf Ebene des Anwendungskerns statt in der Nutzungsschicht
 // Ende übergreifende Änderungen
 
 include::src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/changelog.adoc[tag=release-1.7.0]
