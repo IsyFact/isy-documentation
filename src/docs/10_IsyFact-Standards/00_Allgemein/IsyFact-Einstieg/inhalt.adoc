@@ -5,7 +5,6 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[vorstellung-der-isyfact]]
 == Vorstellung der IsyFact
 
-
 In diesem Kapitel werden die IsyFact und die zugrundeliegenden Prinzipien erläutert.
 
 [[einfuehrung-in-software-factories]]
@@ -252,7 +251,6 @@ Die Standards für die Benutzeroberflächen werden üblicherweise durch einen St
 Die Dokumente der IsyFact verweisen an verschiedenen Stellen auf den Styleguide und dort zu definierende Regeln.
 Es wird jedoch vorausgesetzt, dass jeder Anwender der IsyFact einen eigenen Styleguide erstellt, der spezifisch auf seinen Anwendungskontext abgestimmt ist.
 
-
 === Struktur der Dokumentation
 
 Die Dokumentation der IsyFact folgt einer festgelegten Struktur.
@@ -472,6 +470,7 @@ Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight 
 In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
 Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen.
 Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
+Das Konzept findet sich in <<KonzeptPolling>>.
 
 Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
 Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
