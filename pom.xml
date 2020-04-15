@@ -740,6 +740,41 @@
                     </execution>
 
                     <execution>
+                        <id>Nutzungsvorgaben_Fehlerbehandlung-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Fehlerbehandlung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/NutzungsvorgabenFehlerbehandlung.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Nutzungsvorgaben_Fehlerbehandlung-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Fehlerbehandlung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Fehlerbehandlung/Nutzungsvorgaben_Fehlerbehandlung.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>Nutzungsvorgaben_Spring_LDAP</id>
                         <phase>generate-resources</phase>
                         <goals>

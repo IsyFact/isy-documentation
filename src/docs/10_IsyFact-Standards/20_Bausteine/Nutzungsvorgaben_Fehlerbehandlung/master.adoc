@@ -2,15 +2,13 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Konzept Fehlerbehandlung
+:doctitle: Nutzungsvorgaben Fehlerbehandlung
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
-// Executive Summary
-// include::preface.adoc[]
 *Java Bibliothek / IT-System*
 
 [cols="5,2,3",options="header"]
@@ -19,6 +17,9 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |isy-exception-core |Bibliothek |siehe isyfact-bom v{version-ifs}
 |isy-exception-sst |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
+
+// Executive Summary
+// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
