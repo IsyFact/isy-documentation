@@ -1,3 +1,4 @@
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -14,3 +15,5 @@ Ziel der im Kapitel <<anforderungen-an-die-fehlerbehandlung>> beschriebenen Fehl
 * das Erreichen eines effizienten und einheitlichen Umgangs mit Fehlern
 * die Gewährleistung der Wartbarkeit von Anwendungen durch aussagekräftige Fehler
 * die einfachere Wartung durch einen standardisierten Einsatz von Fehlerbehandlung und Fehlern
+
+// end::inhalt[]
