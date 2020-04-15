@@ -323,15 +323,15 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 Dieser Abschnitt fasst die Namenskonventionen zusammen, die bei der Entwicklung eines Anwendungssystems nach IsyFact relevant sind.
 Das sind vor allem Klassen- und Dateinamen.
 
-Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig beziehungsweise werden davon abgeleitet.
+Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig, beziehungsweise werden davon abgeleitet.
 
 [[artefakte-module]]
 === Artefakte und Module
 
-Bei einem Maven-Artifact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
+Bei einem Maven-Artefact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
 Group-IDs werden mit einem Punkt konkatiniert.
 Mit der Artefakt-ID wird die Funktionalität des Artefaktes kurz und pregnant definiert.
-Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatinierung erfolgt über ein Miuns.
+Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatinierung erfolgt über ein Minus.
 
 :desc-table-grIDMod: Group-ID von Modulen/Artefakten
 [id="table-grIDMod",reftext="{table-caption} {counter:tables}"]
@@ -339,7 +339,7 @@ Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID a
 [cols="1,4",options="header"]
 |====
 2+|Group-ID von Modulen/Artefakten
-|*Schema Group-ID* m|<sprach-kürzel>.<organisation>.<firma>.<domäne>
+|*Schema Group-ID* m|<sprach-kuerzel>.<organisation>.<firma>.<domaene>
 |*Beispiel* m|de.bund.bva.isyfact
 |====
 
@@ -354,8 +354,8 @@ Artifakte einer Group-ID (Domäne) sollten immer einen einheitlichen Präfix bes
 [cols="1,4",options="header"]
 |====
 2+|Artefakt-ID von Modulen/Artefakten
-|*Schema Artifakt-ID* m|<präfix>-<funktion/komponente> +
-<präfix>-<funktion/komponente>-<teilkomponente>
+|*Schema Artifakt-ID* m|<praefix>-<funktion/komponente> +
+<praefix>-<funktion/komponente>-<teilkomponente>
 |*Beispiel* m|isy-documentation +
 isy-documentation-core
 |====
@@ -626,7 +626,7 @@ Die Service-URL einer HTTP-Invoker-Schnittstelle muss folgendem Schema entsprech
 2+|Schnittstellen: URL
 |*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
 |*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
-                     $$http://qs-xyz.test.de/plis-benutzerverzeichnis/AuskunftBean_v4_1$$
+                     $$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
 |*Variable*        | *Mögliche Ausprägungen*
 m|<Hostname>       | Der Hostname des Servers
 m|<Anwendungsname> | Der Name der Anwendung.
