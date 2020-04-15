@@ -436,7 +436,7 @@ Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administrati
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen
 Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen.
-Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird.
+Im Dokument <<NutzungsvorgabenUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird.
 In diesem Zusammenhang müssen oft auch Namen transkribiert werden.
 Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
 
@@ -467,6 +467,7 @@ Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight 
 
 [[polling]]
 ==== Polling
+
 In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
 Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen.
 Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
@@ -480,6 +481,7 @@ Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
 
 [[util]]
 ==== Util
+
 Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen der IsyFact genutzt werden können.
 Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen.
 Diese werden in <<NutzungsvorgabenIsyUtil>> überblicksartig beschrieben.
@@ -495,11 +497,13 @@ NOTE: Bei Interesse wenden Sie sich bitte per E-Mail (isyfact@bva.bund.de) an un
 
 [[bausteine-der-isyfact-erweiterungen]]
 === Bausteine der IsyFact-Erweiterungen
+
 Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die bei Bedarf eingesetzt werden können.
 Diese werden im Folgenden dargestellt:
 
 [[benutzerverwaltung]]
 ==== Benutzerverwaltung
+
 Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht.
 Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen.
 Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
