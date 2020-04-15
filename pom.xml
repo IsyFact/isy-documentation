@@ -212,7 +212,7 @@
                         </configuration>
                     </execution>
 
-                    <execution>
+                     <execution>
                         <id>IsyFact-Glossar-html</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -1626,7 +1626,40 @@
                             </attributes>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>IsyFact-Changelog-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                .
+                            </sourceDirectory>
+                            <sourceDocumentName>changelog.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/changelog.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Changelog-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                .
+                            </sourceDirectory>
+                            <sourceDocumentName>changelog.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/changelog.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
 
                 </executions>
             </plugin>
