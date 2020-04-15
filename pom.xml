@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.bund.bva.isyfact</groupId>
@@ -142,7 +141,6 @@
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>2.0.0-RC.1</version>
-
                 <dependencies>
                     <dependency>
                         <groupId>org.asciidoctor</groupId>
@@ -389,40 +387,7 @@
                         </configuration>
                     </execution>
 
-                    <execution>
-                        <id>IsyFact-Versionierung-html</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Versionierung
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactVersionierung.html
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>IsyFact-Versionierung-pdf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Versionierung
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Versionierung.pdf
-                            </outputFile>
-                        </configuration>
-                    </execution>
+
                     
                     <execution>
                         <id>IsyFact-Whitepaper-html</id>
@@ -915,6 +880,41 @@
                     </execution>
 
                     <execution>
+                        <id>Konzept_Polling-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Polling
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptPolling.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Konzept_Polling-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Polling
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Polling/Konzept_Polling.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>Nutzungsvorgaben_Polling-html</id>
                         <phase>generate-resources</phase>
                         <goals>
@@ -1126,7 +1126,7 @@
                     </execution>
 
                     <execution>
-                        <id>Konzept_Ueberwachung_Konfiguration-html</id>
+                        <id>Konzept_Ueberwachung-html</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
@@ -1134,16 +1134,35 @@
                         <configuration>
                             <backend>html</backend>
                             <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung_Konfiguration
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptUeberwachungKonfiguration.html
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptUeberwachung.html
                             </outputFile>
                         </configuration>
                     </execution>
+
                     <execution>
-                        <id>Konzept_Ueberwachung_Konfiguration-pdf</id>
+                        <id>Konzept_Konfiguration-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Konfiguration
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptKonfiguration.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Konzept_Ueberwachung-pdf</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
@@ -1151,11 +1170,101 @@
                         <configuration>
                             <backend>pdf</backend>
                             <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung_Konfiguration
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung
                             </sourceDirectory>
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Ueberwachung_Konfiguration/Konzept_Ueberwachung_Konfiguration.pdf
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Ueberwachung/Konzept_Ueberwachung.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Konzept_Konfiguration-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Konfiguration
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Konfiguration/Konzept_Konfiguration.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Nutzungsvorgaben_Ueberwachung-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Ueberwachung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/NutzungsvorgabenUeberwachung.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Nutzungsvorgaben_Konfiguration-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Konfiguration
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/NutzungsvorgabenKonfiguration.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Nutzungsvorgaben_Ueberwachung-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Ueberwachung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Ueberwachung/Nutzungsvorgaben_Ueberwachung.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Nutzungsvorgaben_Konfiguration-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Konfiguration
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Konfiguration/Nutzungsvorgaben_Konfiguration.pdf
                             </outputFile>
                         </configuration>
                     </execution>
@@ -1194,7 +1303,40 @@
                             </outputFile>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>IsyFact-Versionierung-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Methodik/Implementierung/IsyFactVersionierung.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Versionierung-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/30_Implementierung/IsyFact-Versionierung.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>Nutzung-EnterpriseArchitect-html</id>
                         <phase>generate-resources</phase>
@@ -1331,6 +1473,40 @@
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
                                 ${pdf-output-base-directory}/10_IsyFact-Standards/50_Werkzeuge/Handbuch_fuer_technische_Autoren.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Maven_Plugin_zur_Versionierungskontrolle</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Werkzeuge/MavenPluginZurVersionierungskontrolle.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Maven_Plugin_zur_Versionierungskontrolle-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle.pdf
                             </outputFile>
                         </configuration>
                     </execution>
@@ -1522,6 +1698,22 @@
                         </configuration>
                     </execution>
 
+                </executions>
+            </plugin>
+            <!-- Sicherstellen, dass alle POMs Maven-Team-Standard konform sortiert sind. -->
+            <!-- Um eine POM korrekt zu sortieren, mvn tidy:pom ausführen. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tidy-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>check-pom-style</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
