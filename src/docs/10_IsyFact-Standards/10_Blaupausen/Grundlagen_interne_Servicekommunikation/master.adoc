@@ -23,10 +23,10 @@ endif::[]
 toc::[]
 
 // Einleitung 
-include::thisdoc.adoc[]
+include::thisdoc.adoc[tags=inhalt]
 
 // Inhalt 
-include::inhalt.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 

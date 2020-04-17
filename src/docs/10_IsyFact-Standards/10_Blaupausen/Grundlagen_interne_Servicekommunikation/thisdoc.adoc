@@ -1,3 +1,7 @@
+= Grundlagen interne Servicekommunikation: Einleitung
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
 [[Einleitung]]
 == Einleitung
 
@@ -18,3 +22,4 @@ In diesem Abschnitt wird kurz auf die Motivation der Versionierung und die Reali
 * Abschnitt <<verfuegbarkeit>>: In diesem Abschnitt beschreiben wir kurz die Anforderungen bzgl. der Verfügbarkeit von Services.
 
 Das Thema Testen wird im vorliegenden Dokument nicht beschrieben.
+// end::inhalt[]

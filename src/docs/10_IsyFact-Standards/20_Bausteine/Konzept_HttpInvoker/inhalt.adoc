@@ -1,0 +1,104 @@
+= Konzept HttpInvoker: Inhalt
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+[[interne-und-externe-servicekommunikation]]
+== Interne und externe Kommunikation mit HttpInvoker
+
+*Kommunikation zwischen internen IT-Systemen:* Innerhalb der Systemlandschaft basiert die Kommunikation auf HTTP-Invoker: Das aufgerufene Anwendungssystem exportiert seine Fachlichkeit in Form einer HTTP-Invoker-Schnittstelle und das aufrufende Anwendungssystem ruft diese HTTP-Invoker-Schnittstelle direkt auf.
+
+[NOTE]
+====
+Dieses Dokument ist aus mehreren Quellen entstanden und fasst die vorhandene Dokumentation zum Thema HttpInvoker zusammen.
+Der Baustein HttpInvoker steht unter Bestandsschutz und wird nicht mehr aktiv weiterentwickelt.
+Er wird in einem der nächsten Major Releases aus der IsyFact entfernt.
+// TODO Links zum REST-Konzept einfügen.
+====
+
+[[technologie]]
+== Technologie
+
+Interne Anwendungssysteme kommunizieren miteinander über das durch das Spring-Framework definierte HTTP-Invoker-Protokoll.
+Das heißt, interne Anwendungssysteme stellen ihre Services innerhalb der IsyFact über eine HTTP-Invoker-Schnittstelle bereit.
+Da HTTP-Invoker auf serialisierten Java-Objekten basiert, können innerhalb der IsyFact ausschließlich Java-basierte Anwendungssysteme miteinander kommunizieren.
+
+[NOTE]
+====
+Fachanwendungen sind entsprechend der Referenzarchitektur alle auf Basis von Java zu erstellen.
+Somit ist sichergestellt, dass alle Anwendungssysteme über HTTP-Invoker miteinander kommunizieren können.
+Für Fremdsysteme sind andere Kommunikationsarten zulässig.
+====
+
+Um eine möglichst lose Kopplung der Anwendungssysteme zu erreichen, wurden folgende Festlegungen getroffen:
+
+* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht.* Es wird stets eine explizite Schnittstellen-Bean (RemoteBean-Schnittstelle) als HTTP-Invoker-Schnittstelle implementiert.
+* *Es werden keine Datenbank-Entitäten verfügbar gemacht*. Jegliche über HTTP-Invoker-Aufrufe zu transportierende Objekte sind Transportobjekte.
+Diese Transportobjekte sind im Client-HTTP-Invoker-Wrapper bzw. in der Server-HTTP-Invoker-Bean zu befüllen (siehe <<image-KapsCallInvoke>>).
+* *Es werden keine Exceptions des Anwendungskerns geworfen.* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Schnittstelle verwendet werden.
+
+[[definition-der-schnittstelle]]
+=== Definition der Schnittstelle
+
+Die durch ein <<glossar-Anwendungssystem>> definierte HTTP-Invoker-Schnittstelle, d. h. die RemoteBean-Schnittstelle inklusive aller direkt und indirekt verwendeten Transportobjekte und Exceptions ist Teil des Anwendungssystems.
+Das bedeutet, dass die Quelldateien der RemoteBean-Schnittstelle, der Transportobjekte und der Exceptions im Anwendungssystem definiert werden.
+Das Anwendungssystem wird daher auch als definierendes Anwendungssystem der HTTP-Invoker-Schnittstelle bezeichnet.
+Damit andere Anwendungssysteme die HTTP-Invoker-Schnittstelle aufrufen können, muss das definierende Anwendungssystem die Schnittstelle in Form einer Bibliothek (JAR-Datei) zur Verfügung stellen.
+Diese JAR-Datei muss dann von den aufrufenden Anwendungssystemen eingebunden werden.
+
+:desc-image-KapsCallInvoke: Kapselung der Aufrufe von HTTP-Invoker Beans
+[id="image-KapsCallInvoke",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-KapsCallInvoke}
+image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
+
+[[parameter-der-schnittstelle]]
+=== Parameter der Schnittstelle
+
+Jede Methode der RemoteBean-Schnittstelle muss als ersten Parameter ein Objekt der Klasse `AufrufKontextTo` bzw. `ClientAufrufKontextTo` verwenden.
+Dieser Parameter dient dazu, Meta-Informationen zum' jeweiligen Aufruf zu übergeben.
+Daneben enthält die Schnittstelle natürlich noch weitere, fachliche Parameter, die frei definiert werden können.
+
+Die Verwendung von Parametern in einer Schnittstelle ist im folgenden Beispiel dargestellt.
+
+[source,java]
+----
+public NachrichtenlisteTo holeNachrichten(
+
+  AufrufKontextTo kontext,
+
+  NachrichtenanfrageTo anfrage)
+
+throws BusinessToException, TechnicalToException;
+----
+
+Im Folgenden werden die beiden Klassen `AufrufKontextTo` und `ClientAufrufKontextTo` näher beschrieben.
+
+*AufrufKontextTo:* Die Klasse `AufrufKontextTo` wird für HTTP-Invoker-Schnittstellen verwendet, die durch Fachanwendungen definiert werden und nicht durch Service-Consumer.
+Die Klasse kapselt die Informationen, mit denen die <<glossar-Fachanwendung>> aufgerufen wurde:
+
+** *Behörde:* Das Behördenkennzeichen der aufrufenden Behörde
+** *Kennung:* Die Kennung des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
+** *Kennwort:* Das Passwort des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
+** *Rollen:* Die Rollen des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
+** *Correlation-ID:* Die ID, um den Service-Aufruf eindeutig zu identifizieren
+
+*ClientAufrufKontextTo:* Die Klasse `ClientAufrufKontextTo` wird für HTTP-Invoker-Schnittstellen verwendet, die durch Service-Consumer definiert werden.
+Im Gegensatz zu `AufrufKontextTo` kapselt diese Klasse die Informationen, um sich bei einem externen Service zu authentifizieren und zu autorisieren:
+
+** *Kennung:* Die Kennung mit der der externe Service aufgerufen wird
+** *Kennwort:* Das Passwort mit der der externe Service aufgerufen wird
+** *Zertifikat:* Das Zertifikat, um sich beim externen Service zu authentifizieren
+** *Zertifikat-Kennwort:* Das Passwort des Zertifikats für die Authentifizierung
+
+Sowohl `AufrufKontextTo` als auch `ClientAufrufKontextTo` sind in der Bibliothek `isy-serviceapi-sst` definiert.
+Das heißt zur vollständigen Definition der HTTP-Invoker-Schnittstelle ist immer auch diese Bibliothek einzubinden.
+
+[[zugriff-auf-querschnittssysteme]]
+=== Zugriff auf Querschnittssysteme
+
+Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf <<glossar-Querschnittssystem,Querschnittssysteme>> erlaubt.
+
+
+
+
+
+// end::inhalt[]
