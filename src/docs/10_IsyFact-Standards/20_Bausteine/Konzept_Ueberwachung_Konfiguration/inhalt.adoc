@@ -559,36 +559,7 @@ Der Aufruf der Prüfmethode prüft den Status des Systems und aktualisiert das E
 Der Watchdog wird mit Spring realisiert.
 Die dafür notwendige Konfiguration wird in <<listing-WatchdogSpring>> gezeigt.
 
-:desc-listing-WatchdogSpring: Spring-Konfiguration für den Watchdog
-[id="listing-WatchdogSpring",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-WatchdogSpring}
-[source,xml]
-----
-<bean id="administration"
-      class="de.msg.terminfindung.gui.administration.TerminfindungWatchdog">
-  <property name="watchdogMBean" ref="watchdogMonitor"/>
-  <property name="konfiguration" ref="konfiguration"/>
-  <property name="entityManager" ref="entityManagerFactoryBean"/>
-  <property name="executor">
-    <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean">
-      <property name="queueCapacity" value="${admin.watchdog.threadpool.size}"/>
-    </bean>
-
-<task:scheduled-tasks scheduler="scheduler">
-  <task:scheduled ref="administration" method="pruefeSystem"
-                  fixed-delay="${admin.watchdog.interval}" initial-delay="5000"/>
-</task:scheduled-tasks>
-
-<task:scheduler id="scheduler" pool-size="${tasks.threadpool.size}"/>
-----
-
-Die <<Vorlageanwendung>> setzt diese Konfiguration in den
-Dateien `src/main/resources/spring/querschnitt/ueberwachung.xml`
-sowie `src/main/resources/spring/querschnitt/tasks.xml` um.
-
-Die vorgestellte Konfiguration erzeugt mittels des Schedulings von Spring einen Task, welcher in
-regelmäßigen Abständen die Prüfmethode `pruefeSystem()` der Admin-Bean (`admininistration)` aufruft.
-Die Komponente Administration wird durch Ableiten der Klasse `WatchdogImpl` aus `isy-ueberwachung` implementiert.
+Der Watchdog selbst, wird durch Ableiten der Klasse `WatchdogImpl` aus `isy-ueberwachung` implementiert.
 
 :desc-listing-WatchdogImplementierung: Implementierung des Watchdogs
 [id="listing-WatchdogImplementierung",reftext="{listing-caption} {counter:listings }"]
@@ -613,11 +584,73 @@ public class TerminfindungWatchdog extends WatchdogImpl implements InitializingB
   ...
 ----
 
-Für den Betrieb wird ein Konfigurationsparameter
+Dem Watchdog wird als Bean-ID `administration` gesetzt, welches später auch für den WatchdogTask relevant wird.
 
-`admin.watchdog.interval`
+:desc-listing-WatchdogSpring: Spring-Konfiguration für den Watchdog
+[id="listing-WatchdogSpring",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-WatchdogSpring}
+[source,xml]
+----
+<bean id="administration"
+      class="de.msg.terminfindung.gui.administration.TerminfindungWatchdog">
+  <property name="watchdogMBean" ref="watchdogMonitor"/>
+  <property name="konfiguration" ref="konfiguration"/>
+  <property name="entityManager" ref="entityManagerFactoryBean"/>
+  <property name="executor">
+      <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean">
+          <property name="queueCapacity" value="${admin.watchdog.threadpool.size}"/>
+      </bean>
+  </property>
+  <property name="watchDogTimeOut" value="${admin.watchdog.timeout}"/>
+</bean>
+----
 
-in die betriebliche Konfigurationsdatei aufgenommen, über den sich das Prüfintervall konfigurieren lässt.
+Die Parameter `admin.watchdog.threadpool.size` und `admin.watchdog.timeout` können wie in den Properties
+der <<Vorlageanwendung>> angegeben werden.
+
+:desc-listing-Watchdog-properties: Properties-Konfiguration für den Watchdog
+[id="listing-Watchdog-properties",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Watchdog-properties}
+[source,properties]
+----
+...
+###
+# Isy-\u00DCberwachung
+###
+# Timeout f\u00FCr die Systempr\u00FCfungen der Adminkomponente (in Sekunden)
+admin.watchdog.timeout = 15
+# Anzahl Threads f\u00FCr parallel Ausf\u00FChrung von Watchdogs (default 1)
+admin.watchdog.threadpool.size = 1
+...
+----
+
+Da der Watchdog in regelmäßigen Abständen die Prüfmethode `pruefeSystem()` durchführen soll, muss der Watchdog
+in einem Task ausgeführt werden.
+Dies geschieht in der <<Vorlageanwendung>> in einem `WatchdogTask` der von `AbstractTask` ableitet.
+Dieser Task ist ebenfalls als Bean deklariert und beinhaltet den TerminfindungWatchdog, wie folgt:
+
+:desc-listing-WatchdogTaskSpring: Spring-Konfiguration für den WatchdogTask
+[id="listing-WatchdogTaskSpring",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-WatchdogTaskSpring}
+[source,xml]
+----
+<bean id="watchdogTask" class="de.msg.terminfindung.task.WatchdogTask">
+        <constructor-arg ref="administration"/>
+        <constructor-arg ref="watchdogTask-monitor"/>
+</bean>
+
+<bean id="watchdogTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
+----
+
+Die <<Vorlageanwendung>> setzt diese Konfiguration in den
+Dateien `src/main/resources/spring/querschnitt/ueberwachung.xml`
+, `src/main/resources/spring/querschnitt/tasks.xml` sowie `src/main/resources/config/terminfindung.properties` um.
+
+Für den Betrieb des WatchdogTasks werden folgende Konfigurationsparameter definiert:
+[source,properties]
+isyfact.task.watchdogTask.ausfuehrung=FIXED_DELAY
+isyfact.task.watchdogTask.initial-delay=5s
+isyfact.task.watchdogTask.fixed-delay=60s
 
 [[implementierung-der-jmx-schnittstelle-mit-spring]]
 == Implementierung der JMX-Schnittstelle mit Spring
@@ -1267,23 +1300,22 @@ Die vom Interface deklarierte Methode
 
 sorgt beim Aufruf dafür, dass alle Konfigurationsdateien auf Änderungen geprüft und bei Bedarf neu
 geladen werden. Änderungen werden durch den Änderungszeitstempel der Dateien festgestellt.
-
 Die zuvor genannte Methode muss regelmäßig aufgerufen werden.
-Dazu wird, wie in Kapitel <<implementierung-des-watchdogs>> beschrieben, ein weiterer Task definiert und dem
-Tag `<task:scheduled-tasks>` der Spring-Konfiguration hinzugefügt.
+
+Die `isy-task` Bibliothek bringt hierzu bereits einen `KonfigurationUpdateTask` mit.
+Dieser kann wie in <<listing-TaskKonfigurationsaenderungen>> eingebunden werden.
 
 :desc-listing-TaskKonfigurationsaenderungen: Task für Konfigurationsänderungen
 [id="listing-TaskKonfigurationsaenderungen",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-TaskKonfigurationsaenderungen}
 [source,xml]
 ----
-<task:scheduled-tasks scheduler="scheduler">
-  ...
-  <task:scheduled ref="konfiguration" method="checkAndUpdate"
-                  fixed-delay="${konfiguration.reload.interval}"
-                  initial-delay="5000"/>
-  ...
-</task:scheduled-tasks>
+<bean id="konfigurationUpdateTask" class="de.bund.bva.isyfact.task.task.KonfigurationUpdateTask">
+    <constructor-arg ref="konfiguration"/>
+    <constructor-arg ref="konfigurationUpdateTask-monitor"/>
+</bean>
+
+<bean id="konfigurationUpdateTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
 ----
 
 Die <<Vorlageanwendung>> setzt diese Konfiguration in der Datei `src/main/resources/spring/querschnitt/tasks.xml` um.
