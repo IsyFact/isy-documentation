@@ -489,10 +489,10 @@ Diese Exceptions treten außerhalb der eigentlichen Anwendung auf.
 Daher muss die Exception-Fassade als Schicht über der Transaktionsklammer liegen, um auch diese Fehler abzufangen, zu loggen, in Transport-Exceptions umzuwandeln und an den Aufrufer weiterzureichen.
 
 Das Vorgehen für die Fehlerbehandlung nach <<image-011>> gilt für alle Arten von Außenschnittstellen.
-Die HTTP-Invoker-Schnittstelle ist die am häufigsten angebotene Schnittstelle in der Anwendungslandschaft.
+Die HttpInvoker-Schnittstelle ist die am häufigsten angebotene Schnittstelle in der Anwendungslandschaft.
 Aus diesem Grund wurde diese Schnittstelle für das Code-Beispiel gewählt, zur Veranschaulichung der Top-Level Fehlerbehandlung.
 
-<<listing-FehlerbehandlungExceptionFassade>> zeigt die Fehlerbehandlung in der Exception-Fassade der Meldung im Vorlage-Register für die HTTP-Invoker-Schnittstelle.
+<<listing-FehlerbehandlungExceptionFassade>> zeigt die Fehlerbehandlung in der Exception-Fassade der Meldung im Vorlage-Register für die HttpInvoker-Schnittstelle.
 
 :desc-listing-FehlerbehandlungExceptionFassade: Fehlerbehandlung in der Exception-Fassade
 [id="listing-FehlerbehandlungExceptionFassade",reftext="{listing-caption} {counter:listings }"]
@@ -669,8 +669,8 @@ Dies würde dazu führen, dass die Original-Nachricht überschrieben würde, was
 Das obige Code-Beispiel bzw. die gesamte Klasse `AusnahmeIdUtil` aus dem Vorlage-Register kann als Template für andere Anwendungen genutzt werden.
 Hierfür sind lediglich kleine Anpassungen notwendig: die Prüfung auf anwendungsinterne Exceptions ist anzupassen und die verwendeten Fehlerschlüssel sind auf die Anwendung anzupassen.
 
-Neben der oben gezeigten Fehlerbehandlung für HTTP-Invoker-Schnittstellen gibt es auch eine Fehlerbehandlung für Axis-basierte Schnittstellen, also SOAP und REST.
-Im Unterschied zu HTTP-Invoker-Schnittstellen werden die Transport-Exceptions nicht in Ausnahmen von Typ `Exception`, sondern im Fall von SOAP in `AxisFaults` umgewandelt.
+Neben der oben gezeigten Fehlerbehandlung für HttpInvoker-Schnittstellen gibt es auch eine Fehlerbehandlung für Axis-basierte Schnittstellen, also SOAP und REST.
+Im Unterschied zu HttpInvoker-Schnittstellen werden die Transport-Exceptions nicht in Ausnahmen von Typ `Exception`, sondern im Fall von SOAP in `AxisFaults` umgewandelt.
 Auch hier gilt das generelle Prinzip auf oberster Ebene der Anwendung eine Exception-Fassade zu verwenden, siehe <<image-011>>.
 
 [[fehlertexte-und-deren-einsatz]]

@@ -292,8 +292,8 @@ HttpInvoker-Schnittstellen sind interne Service-Schnittstellen, die innerhalb de
 [NOTE]
 ====
 Ab IsyFact 2.0 ist die Verwendung von REST-Schnittstellen erlaubt.
-Spring HTTP-Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
-Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
+HttpInvoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
+Die Verwendung von REST-Schnittstellen wird einem gesonderten Konzept erläutert.
 ====
 
 Extern verfügbare Services sind durch WebService-Schnittstellen anzubieten, über einen ServiceGateway.
@@ -302,7 +302,7 @@ Extern verfügbare Services sind durch WebService-Schnittstellen anzubieten, üb
 === Designvorgaben
 
 * Interne Services werden per Spring-HttpInvoker angeboten.
-* Es werden keine Komponenten des Anwendungskern extern verfügbar gemacht: Es wird stets eine eigene Service-Schicht implementiert.
+* Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht: Es wird stets eine eigene Service-Schicht implementiert.
 Dazu gehört auch die Definition einer Service-Schnittstelle als Java-Interface (RemoteBean).
 * Jede Service-Methode erhält einen zusätzlichen Parameter `AufrufKontext`. Im Aufrufkontext werden Informationen zum Aufrufer
 (Name, Behördenkennzeichen, Rollen…) übermittelt.
@@ -320,7 +320,7 @@ Gegebenenfalls muss die Schnittstelle auf eine ältere Version kompiliert werden
 === Package-Struktur
 
 * Schnittstellen werden versioniert.
-Die Versionsnummer wird dreistellig im Package-Namen der Serviceschnittstelle angegeben.
+Die Versionsnummer wird dreistellig im Package-Namen der Service-Schnittstelle angegeben.
 Beispiel: Die Version 1.0.0 der Schnittstelle der Komponente Meldung der Anwendung Vorlage-Register, wird in den folgenden
 Packages implementiert: +
 `de.bund.bva.cd.registercd.service.httpinvoker.v1_0_0.*`

@@ -551,7 +551,7 @@ Daher stellt der Invoker für Methodenaufrufe von Nachbarsystemen einen eigenen 
 
 * `LoggingMethodInvoker(Method methode, IsyLogger logger, boolean loggeAufruf, boolean loggeErgebnis, boolean loggeDauer, boolean loggeDaten, boolean loggeDatenBeiException , long loggeMaximaleParameterGroesse, String nachbarsystemName, String nachbarsystemUrl)`: Analog zu oben, nur das der Name und die URL des aufgerufenen Nachbarsystems übergeben wird.
 
-Dieser Konstruktor ist beim Aufruf einer Serviceschnittstelle eines Nachbarsystems zu verwenden (vgl. auch Szenario „Performance überwachen“ in <<performance-ueberwachen>>).
+Dieser Konstruktor ist beim Aufruf einer Service-Schnittstelle eines Nachbarsystems zu verwenden (vgl. auch Szenario „Performance überwachen“ in <<performance-ueberwachen>>).
 Zu beachten ist, dass die Klasse `IsyHttpInvokerClientInterceptor`, welche durch den Baustein Service bereitgestellt wird (siehe <<DetailkonzeptKomponenteService>>), bereits einen entsprechenden Aufruf des Invokers durchführt.
 Bei Verwendung dieses Konstruktors werden die Logeinträge mit folgenden Ereignisschlüsseln erstellt:
 
@@ -1266,7 +1266,7 @@ Dieser muss gemäß <<loggingmethodinterceptor>> für alle Komponentenschnittste
 |Beschreibung |Es wird ein entfernter Service eines Nachbarsystems aufgerufen.
 |Logging |Der Aufruf der Methode wird mit Hilfe des `LogInterceptor` geloggt.
 Dazu muss in der aufrufenden Klasse gemäß <<loggingmethodinterceptor-und-loggingmethodinvoker>> eine Instanz der Klasse erstellt und das Remote-Interface des Nachbarsystem mit Hilfe der Methode `rufeNachbarsystemAuf` aufgerufen werden.
-Dies wird bereits durch die Erweiterung der HTTP-Invoker-Implementierung (IsyHttpInvokerProxyFactoryBean) des Bausteins Service umgesetzt (siehe <<DetailkonzeptKomponenteService>>), so dass hierfür keine Anpassung notwendig ist.
+Dies wird bereits durch die Erweiterung der HttpInvoker-Implementierung (IsyHttpInvokerProxyFactoryBean) des Bausteins Service umgesetzt (siehe <<DetailkonzeptKomponenteService>>), sodass hierfür keine Anpassung notwendig ist.
 Bei Nachbarsystemen, die selbst kein IsyFact-konformes Logging umsetzen (Drittsoftware wie bspw. ein Suchverfahren), kann es notwendig sein, zusätzliche Informationen in der aufrufenden Anwendung zu loggen.
 Entsprechende Vorgaben werden in den Nutzungskonzepten der jeweiligen Bausteine definiert.
 |Auswertungsszenario a|

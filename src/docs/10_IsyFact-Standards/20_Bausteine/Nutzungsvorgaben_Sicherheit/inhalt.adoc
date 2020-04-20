@@ -318,9 +318,9 @@ Eine disjunktive Verknüpfung von Rechten ist nicht möglich.
 
 Alle Annotationen nutzen Spring AOP.
 Daher sind sie nur an Methoden mit öffentlicher Sichtbarkeit (`public`) von Spring-Beans funktionsfähig.
-Für HTTP-Invoker-Schnittstellen werden die Service-Methoden der Service-Implementierung (hinter der Exception-Fassade) mit den Annotationen ausgestattet.
+Für HttpInvoker-Schnittstellen werden die Service-Methoden der Service-Implementierung (hinter der Exception-Fassade) mit den Annotationen ausgestattet.
 
-Folgendes Beispiel zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch ausgelesen und anschließend die Autorisierung gegen die Baustein Sicherheit durchgeführt wird.
+Folgendes Beispiel zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch ausgelesen und anschließend die Autorisierung gegen den Baustein Sicherheit durchgeführt wird.
 
 :desc-listing-absichern-einer-service-methode: Absichern einer Service-Methode
 [id="listing-absichern-einer-service-methode",reftext="{listing-caption} {counter:listings }"]
@@ -543,7 +543,7 @@ Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übe
 [[entgegennahme-der-korrelations-id-an-einer-service-sst]]
 === Entgegennahme der Korrelations-ID an einer Service-SST
 
-Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HttpInvoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
 Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autokonfiguration von `isy-serviceapi-core` durchgeführt.
 
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]

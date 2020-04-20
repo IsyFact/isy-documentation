@@ -103,7 +103,7 @@ Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie
 * Die Konfiguration der Datenzugriffschicht, beschrieben im <<DetailkonzeptKomponenteDatenzugriff>>.
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
 * Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachung>>.
-* Die Verwendung der HTTP-Invoker-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
+* Die Verwendung der Schnittstellentechnologie HttpInvoker, beschrieben im Konzept <<KonzeptHttpInvoker>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
 * Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
 Dokument <<DetailkonzeptKomponenteWebGUI>>.

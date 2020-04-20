@@ -233,7 +233,7 @@ an interne Anwendungssysteme weiterzuleiten und dabei unterschiedliche Schnittst
 
 Für die Weiterleitung von Aufrufen enthält ein Service-Gateway die folgenden Funktionalitäten:
 
-* Es bildet die Aufrufe zwischen der für externe Systeme verwendeten Webservice-Technologie und der für interne Schnittstellen verwendeten Http-Invoker-Technologie aufeinander ab.
+* Es bildet die Aufrufe zwischen der für externe Systeme verwendeten Webservice-Technologie und der für interne Schnittstellen verwendeten Technologie aufeinander ab.
 Es kapselt die Webservice-Technologie vor den internen Systemen.
 * Bei Aufrufen durch externe Systeme führt es die Authentifizierung und eine erste Autorisierung des Aufrufs durch.
 
@@ -241,7 +241,7 @@ Ein Service-Gateway-System besitzt weder eine eigene Datenhaltung noch eigene Fa
 
 *Die <<glossar-Fachanwendung>>*: Eine Fachanwendung implementiert allgemein die Geschäftsprozesse einer Domäne.
 Fachanwendungen können monolithisch strukturiert sein und alle Schichten der Software-Architektur umfassen, von der Benutzeroberfläche über Prozesse und <<glossar-Geschaeftslogik>> bis hin zur Datenspeicherung.
-Sie können aber auch jeweils nur Teile davon implementieren, so dass z.B. eine Fachanwendung eine GUI bereitstellt, eine weitere die Fachlogik implementiert und eine dritte schließlich die Persistierung der Daten realisiert.
+Sie können aber auch jeweils nur Teile davon implementieren, sodass z.B. eine Fachanwendung eine GUI bereitstellt, eine weitere die Fachlogik implementiert und eine dritte schließlich die Persistierung der Daten realisiert.
 In diesem Fall würde die Gesamtfunktionalität durch das Zusammenwirken der drei Fachanwendungen erbracht.
 
 Die Fachanwendungen einer IsyFact-Systemlandschaft können sich intern gegenseitig über ihre Service-Schnittstellen aufrufen.
@@ -831,26 +831,12 @@ Sinnvoll ist dies allerdings nur, wenn die Anwendung mit einer vereinfachten Sof
 Mögliche, alternative Architekturen für die technische Infrastruktur sind:
 
 * *Stand-Alone-Anwendung auf einem Nutzerrechner:* Hierbei wird die Anwendung wie jedes andere Programm auch lokal auf einem Rechner installiert.
-Dies ist möglich, wenn die Anwendung über eine native GUI verfügt.
 * *Zentral auf einem nur intern zugreifbaren Server:* Hier wird die Anwendung auf einem zentralen Server bereitgestellt, der z. B. nur für die Nutzer einer bestimmten Abteilung zugreifbar ist.
-Diese Installation ist möglich, wenn die Anwendung über eine Web-GUI verfügt.
 
 [[erweiterungsmöglichkeiten-einer-vereinfachten-architektur]]
 === Erweiterungsmöglichkeiten einer vereinfachten Architektur
 
 Wenn eine Anwendung nach einer vereinfachten Architektur entwickelt wurde, ist die Erweiterung zu einer SAGA-konformen, serviceorientierten Anwendung möglich, wenn vorher gewisse Randbedingungen beachtet wurden.
-
-[[installation-innerhalb-einer-saga-konformen-plattform]]
-==== Installation innerhalb einer SAGA-konformen Plattform
-
-Um eine Anwendung in einer SAGA-konformen Plattform zu betreiben, muss unterschieden werden, ob es sich um eine native Java-GUI handelt oder um eine Web-GUI.
-Web-GUIs werden ja schon auf einem zentralen Server betrieben und können ohne weiteres in einer SAGA-konformen 3-Zonen-Umgebung betrieben werden.
-
-Im Falle einer Nativen GUI ist der Umbau aufwendiger.
-Die Anwendung muss die Anwendung in zwei Teile zerlegt werden.
-Ein Teil enthält die eigentliche GUI, der andere Teil den Rest der Anwendung, d. h. Anwendungskern und Datenzugriff.
-Die beiden Teile müssen dann über interne Service-Aufrufe miteinander kommunizieren.
-Das bedeutet, dass alle Methoden-Aufrufe zwischen den Schichten Anwendungskern und GUI per HTTP-Invoker erfolgen.
 
 [[installation-innerhalb-eines-clusters]]
 ==== Installation innerhalb eines Clusters

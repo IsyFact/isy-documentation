@@ -5,10 +5,10 @@ Dieses Dokument beschreibt die Verwendung des Bausteins Polling.
 
 In <<glossar-Fachanwendung,Fachanwendungen>> und <<glossar-,Service-Gateways>> müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
 Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden.
-Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen, weitere sind denkbar.
+Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
 
 Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
-Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
+Diese Instanzen müssen synchronisiert werden, sodass Nachrichten nicht mehrfach verarbeitet werden.
 Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an.
 
 In <<image-001>> wird diese Situation dargestellt.
