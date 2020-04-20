@@ -282,6 +282,8 @@ Hierbei ist zu unterscheiden, ob ausschließlich IT-Systeme innerhalb Systemland
 .{desc-image-overkommIF}
 image::overkommIF.png[align="center"]
 
+Unabhängig von der Art der Kommunikation verwenden Services stets Schnittstellentechnologien, die HTTP als Übertragungsprotokoll einsetzen.
+
 ==== Kommunikation zwischen internen IT-Systemen
 
 Innerhalb der Systemlandschaft kommunizieren IT-Systeme direkt, d.h. ohne ein System zur Vermittlung der ausgetauschten Nachrichten (wie bspw. ein Enterprise Service Bus).
