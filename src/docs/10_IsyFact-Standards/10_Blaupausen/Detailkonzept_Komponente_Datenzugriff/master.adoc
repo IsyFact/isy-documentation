@@ -29,6 +29,12 @@ endif::[]
 
 toc::[]
 
+:sectnums!:
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
+:sectnums:
+
 // Einleitung
 include::thisdoc.adoc[tags=inhalt]
 
