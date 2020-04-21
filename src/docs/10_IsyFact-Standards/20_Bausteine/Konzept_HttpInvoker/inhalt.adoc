@@ -1,334 +1,93 @@
-= Konzept HttpInvoker: Inhalt
+= Konzept HTTP Invoker: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
-[[interne-und-externe-servicekommunikation]]
-== Interne und externe Kommunikation mit HttpInvoker
+[[kommunikation-mit-http-invoker]]
+== Kommunikation mit HTTP Invoker
 
-*Kommunikation zwischen internen IT-Systemen:* Innerhalb der Systemlandschaft basiert die Kommunikation auf HTTP-Invoker: Das aufgerufene Anwendungssystem exportiert seine Fachlichkeit in Form einer HTTP-Invoker-Schnittstelle und das aufrufende Anwendungssystem ruft diese HTTP-Invoker-Schnittstelle direkt auf.
+IT-Systeme können HTTP Invoker zur Kommunikation mit anderen IT-Systemen innerhalb der Systemlandschaft einsetzen.
+Das aufgerufene IT-System exportiert seine Service-Schnittstellen in Form von HTTP Invoker Schnittstellen und das aufrufende IT-System ruft diese direkt auf.
+Da HTTP Invoker auf serialisierten Java-Objekten basiert, können ausschließlich Java-basierte IT-Systeme miteinander kommunizieren.
+Die Kommunikation mit HTTP Invoker verläuft außerdem synchron.
+Asynchrone Kommunikation ist von HTTP Invoker nicht vorgesehen und wird im Weiteren auch nicht beschrieben.
 
-[NOTE]
-====
-Dieses Dokument ist aus mehreren Quellen entstanden und fasst die vorhandene Dokumentation zum Thema HttpInvoker zusammen.
-Der Baustein HttpInvoker steht unter Bestandsschutz und wird nicht mehr aktiv weiterentwickelt.
-Er wird in einem der nächsten Major Releases aus der IsyFact entfernt.
-// TODO Links zum REST-Konzept einfügen.
-====
+Um eine möglichst lose Kopplung der IT-Systeme zu erreichen, werden folgende Festlegungen getroffen:
+
+* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht:*
+Es wird stets eine explizite Schnittstellen-Bean (Remote-Bean) als HTTP Invoker Schnittstelle implementiert.
+* *Es werden keine Datenbank-Entitäten verfügbar gemacht:*
+Jegliche über HTTP Invoker zu transportierende Objekte sind Transportobjekte.
+* *Es werden keine Exceptions des Anwendungskerns geworfen:* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Service-Schnittstelle verwendet werden.
+
+IT-Systeme definieren für ihre HTTP Invoker Schnittstellen u.a. das Remote-Bean, alle direkt und indirekt verwendeten Transportobjekte sowie alle über die Schnittstelle transportierten Exceptions.
+Es stellt diesen Teil der HTTP Invoker Schnittstelle als Bibliothek anderen IT-Systemen zur Verfügung, sodass diese die Schnittstelle aufrufen können.
+Es ergibt sich so folgendes Szenario für einen Aufruf einer HTTP Invoker Schnittstelle (siehe <<image-KapsCallInvoke>>).
+
+:desc-image-KapsCallInvoke: Aufbau der Kommunikation über HTTP Invoker
+[id="image-KapsCallInvoke",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-KapsCallInvoke}
+image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
+
+
+[[aufbau-der-service-logik]]
+== Aufbau der Service-Logik
+
+Die Service-Logik besteht, wie im <<DetailkonzeptKomponenteService>> beschrieben, aus einem Remote-Bean, einer Exception-Fassade und einer Service-Fassade pro Service. Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
+
+:desc-image-AufbauServLogik: Aufbau der Service-Logik mit HTTP Invoker
+[id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-AufbauServLogik}
+image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
+
+Im Wesentlichen besteht die Service-Logik also aus drei Klassen, die im Folgenden näher beleuchtet werden.
+
+=== Aufbau des Remote-Beans
+
+Als Remote-Bean wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert.
+Es definiert mittels der passenden Spring-Konfiguration im IT-System eine HTTP Invoker Schnittstelle.
+
+Jeder Methode des Remote-Beans wird als erster Parameter das Transportobjekt des Aufrufkontextes übergeben.
+Der Aufrufkontext sorgt dafür, dass jeder Methode des Remote-Beans die Login-Daten (Benutzer, Behörde, ...), die Rollen und die Korrelations-ID zur Verfügung stehen.
+
+=== Aufbau der Exception-Fassade
+
+Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Logik geworfenen Exceptions in Exceptions der Service-Schnittstelle.
+Hierzu implementiert die Exception-Fassade das Remote-Bean-Interface der Service-Schnittstelle und agiert als Wrapper um die Service-Fassade.
+Es ist wichtig, an der Exception-Fassade den Logging-Kontext zu setzen, damit die Log-Einträge zu den Exceptions mit der korrekten Korrelations-ID versehen sind.
+Dazu stellt der Baustein entsprechende Annotationen bereit.
+
+=== Aufbau der Service-Fassade
+
+Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik.
+Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt, in der Regel mithilfe eines Bean Mappers.
+Sie führt außerdem die Autorisierung des Aufrufs aus.
+Hierzu verwendet sie den Baustein Sicherheit (siehe <<KonzeptSicherheit>>).
+
+[[auslieferung-einer-service-schnittstelle]]
+== Auslieferung einer Service-Schnittstelle
+
+IT-Systeme teilen sich folgende Java-Klassen der HTTP Invoker Schnittstelle:
+
+* Java-Interface der Schnittstelle (Remote-Bean),
+* Java-Klassen der Transportobjekte,
+* Java-Klassen der Transport-Exceptions.
+
+Diese Klassen werden üblicherweise in einer kleinen Bibliothek pro Service bereitgestellt.
+
+Durch diese enge Kopplung zwischen mehreren IT-Systemen spielt die Java-Version, mit der die Schnittstellen-Bibliotheken kompiliert wurden, eine zentrale Rolle.
+Sie darf nicht neuer sein als die Java-Version aller beteiligter IT-Systeme.
+Es wird daher empfohlen, Schnittstellen mit der ältesten Java-Version zu kompilieren und auszuliefern, die für IT-Systeme verwendet werden darf.
+
+[[versionierung]]
+== Versionierung
+
+Eine HTTP Invoker Schnittstelle vereint mehrere Service-Methoden in einem Remote-Bean.
+Für die Versionierung bedeutet das, dass stets die komplette Remote-Bean-Schnittstelle versioniert wird und nicht die einzelnen Methoden der Remote-Bean-Schnittstelle.
 
 
 [[namenskonventionen]]
 == Namenskonventionen
 
-Die Service-URLs der HTTP-Invoker-Schnittstellen müssen einheitlich aufgebaut sein.
+Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich aufgebaut sein.
 Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben definiert.
-
-[[aufbau-der-service-logik]]
-== Aufbau der Service-Logik
-
-Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
-
-:desc-image-AufbauServLogik: Aufbau Service-Logik
-[id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-AufbauServLogik}
-image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
-
-Eine Service-Schnittstelle wird durch eine Fachanwendung entsprechend der Referenzarchitektur in Form einer
-HTTP-Invoker-Schnittstelle angeboten.
-Zum Aufruf dieser HTTP-Invoker-Schnittstelle definiert die Fachanwendung eine JAR-Datei, die die `RemoteBean` definiert und alle direkt oder indirekt verwendeten Transportobjekte der `RemoteBean`. Die JAR-Datei hat typischerweise
-den Namen `<Anwendungsname>-httpinvoker-sst-<servicename>-vx.y-z.jar`.
-
-NOTE: Als `RemoteBean` wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert. Mit diesem Interface wird durch die passende Spring-Konfiguration in der Fachanwendung die  HTTP-Invoker-Schnittstelle definiert.
-
-Jeder Methode der RemoteBean wird eine Instanz der Klasse `AufrufKontextTo` übergeben.
-Diese Klasse ist in der Bibliothek `isy-serviceapi-sst` definiert.
-Durch die Klasse werden jeder Methode der internen Service-Schnittstelle die Login-Daten (Benutzer,
-Behörde, Passwort), die Rollen und die Correlation-ID übergeben.
-
-Im Wesentlichen besteht die Service-Logik aus zwei Klassen, die im Folgenden näher beleuchtet werden.
-
-=== Aufbau der Exception-Fassade
-
-Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Logik geworfenen Exceptions in Exceptions der Service-Schnittstelle.
-Hierzu implementiert die Exception-Fassade das Remote-Bean-Interface der Service-Schnittstelle und definiert in jeder Methode einen try-catch-Block, der alle Fehler des Anwendungskerns abfängt und in Fehler der Service-Schnittstelle umwandelt.
-
-In <<listing-BSPExceptionFassade>> ist ein Beispiel für eine Exception-Fassade einer Fachanwendung angegeben.
-Die Service-Operationen sind in diesem Fall die Methoden des Interfaces `BeispielRemoteBean`.
-Konkret handelt es sich lediglich um die Service-Operation `holeBeispielAnfrage`.
-Die Service-Operation ist mit der Annotation `@StelltLoggingKontextBereit` versehen, die eine mit dem `AufrufKontext` übergebene Korrelations-ID im Logging-Kontext registriert und diesen beim Verlassen der Methode wieder aufräumt.
-
-NOTE: Falls im AufrufKontext keine Korrelations-ID vorhanden ist, so erzeugt die Annotation eine neue Korrelations-ID.
-
-Es ist wichtig den Logging-Kontext zu setzen, bevor die Exception-Fassade aktiv wird.
-Die Implementierung der Service-Operation reicht den Methodenaufruf an die implementierende Klasse (`BeispielService`) weiter, fängt auftretende Fehler jedoch über einen `try`-`catch`-Block ab.
-Der `try`-`catch`-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`DataAccessException`) und allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log-Dateien zu schreiben.
-
-:desc-listing-BSPExceptionFassade: Beispiel für eine Exception-Fassade
-[id="listing-BSPExceptionFassade",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-BSPExceptionFassade}
-[source,java]
-----
-public class BeispielExceptionFassade implements BeispielRemoteBean
-{
-    private static final IsyLoggerStandard logger = ...;
-    private BeispielService beispielService;
-    ...
-    @StelltLoggingKontextBereit
-    public BeispielHolenAntwortTo holeBeispielAnfrage(AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage) throws BeispielTechnicalToException {
-        try {
-            return beispielService.holeBeispielAnfrage(kontext,anfrage);
-        } catch (DataAccessException e) {
-            logger.error("Fehler bei Transaktion", e);
-            throw new BeispielTechnicalToException(...);
-        } catch (Throwable t) {
-            logger.error("...", t);
-             throw new BeispielTechnicalToException(...);
-        }
-    }
-    ...
-}
-----
-
-=== Aufbau der Service-Fassade
-
-Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
-
-* Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt.
-Hierzu wird in der Regel ein Bean Mapper verwendet.
-Falls die Transformation kompliziert ist, kann sie auch vollständig programmiert werden.
-Hierbei sind Kosten und Nutzen genau abzuwägen.
-* Sie führt gegebenenfalls die Autorisierung des Aufrufs aus.
-Hierzu verwendet sie den Berechtigungsmanager (siehe <<NutzungsvorgabenSicherheit>>).
-
-In <<listing-BSPServiceFassade>> ist ein Beispiel für eine Service-Fassade angegeben.
-Die Implementierung der Service-Fassade erfolgt hier analog zur Implementierung der Exception-Fassade.
-Die nach außen angebotene Service-Operation (`holeBeispielAnfrage`) wird jedoch nicht 1:1 an die implementierende Klasse weitergeleitet, da sich die Parameter und der Rückgabewert des Aufrufs unterscheiden.
-Nach außen hin werden Transportobjekte angeboten.
-Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
-Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z.B. weil sie zusätzliche Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
-
-In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Servicemethode.
-Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die
-Annotation `@StelltAufrufKontextBereit` an der Servicemethode.
-Anschließend kann über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode geprüft werden.
-Hier werden alle benötigten Rechte des Aufrufers überprüft.
-Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche Autorisierung erfordern.
-Die Annotationen sind Bestandteil der T-Komponente Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
-
-Das Mapping im Beispiel wird durch einen Bean Mapper umgesetzt.
-Vor dem Aufruf werden die Parameter gemappt (Klasse `BeispielHolenAnfrageTo` auf Klasse `BeispielHolenAnfrage`),
-nach dem Aufruf der Rückgabewert (Klasse `BeispielHolenAntwort` auf Klasse `BeispielHolenAntwortTo`).
-
-Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurationsklasse verschaltet.
-
-:desc-listing-BSPServiceFassade: Beispiel für eine Service-Fassade
-[id="listing-BSPServiceFassade",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-BSPServiceFassade}
-[source,java]
-----
-public class BeispielServiceFassade {
-    private static final IsyLoggerStandard logger = ...;
-
-    private MapperFacade beanMapper;
-    private Beispiel beispiel;
-
-    @StelltAufrufKontextBereit
-    @Gesichert(Rechte.RECHT_ZUGRIFFBEISPIEL)
-    public BeispielHolenAntwortTo holeBeispielAnfrage(AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage) {
-
-        try {
-            BeispielHolenAnfrage anfrageAwk = beanMapper.map(anfrage, BeispielHolenAnfrage.class);
-            BeispielHolenAntwort antwortAwk = beispiel.holeBeispielAnfrage(anfrageAwk);
-
-            return beanMapper.map(antwortAwk, BeispielHolenAntwortTo.class);
-        } catch (MappingException e) {
-            logger.error("...", e);
-            throw new TechnicalException(...);
-        }
-	...
-}
-----
-
-
-
-[[realisierung]]
-== Realisierung einer Service-Schnittstelle
-
-Service-Gateway (d.h. Service-Consumer oder Service-Provider) und IT-Systeme teilen sich die Java-Klassen der
-RemoteBean-Schnittstelle:
-
-* Java-Interface der RemoteBean
-* Transport-Objekte
-* Exceptions
-
-Bei Transport-Objekten ist zu beachten, dass die UID stets 0 ist:
-
-[source,java]
-----
-public class BeispielTransportObjekt {
-    private static final long serialVersionUID = 0L;
-}
-----
-
-Die Schnittstelle wird in der Regel in einer älteren Java-Version kompiliert, als die Anwendung kompiliert ist, um die Schnittstelle auch in älteren Anwendungen einsetzen zu können.
-Wenn die Schnittstelle jedoch ausschließlich von einem Service Gateway bzw. einer Fachanwendung genutzt wird, welche die aktuelle Java-Version einsetzen, kann auch die Schnittstelle in der aktuellen Java-Version kompiliert werden.
-
-[[nutzung]]
-== Nutzung einer Service-Schnittstelle
-
-Zur Nutzung einer entfernten Schnittstelle bindet ein Anwendungssystem das erstellte Schnittstellen-JAR ein und
-initialisiert die RemoteBeans damit.
-
-Das geschieht über die vom Spring Framework bereitgestellte Factory-Klasse `HttpInvokerProxyFactoryBean`, wie in <<listing-invokerconfig>> dargestellt.
-Auf dieser Bean können dann die entfernten Methoden aufgerufen werden.
-
-:desc-listing-invokerconfig: Konfiguration für die Nutzung einer entfernten Schnittstelle
-[id="listing-invokerconfig",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-invokerconfig}
-[source,java]
-----
-@Configuration
-public class ServiceConfiguration {
-
-    @Bean
-    public HttpInvokerProxyFactoryBean virenscanRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
-        HttpInvokerProxyFactoryBean invoker = new HttpInvokerProxyFactoryBean();
-        invoker.setServiceUrl(config.getServiceUrl());
-        invoker.setServiceInterface(VirenscanRemoteBean.class);
-        invoker.setHttpInvokerRequestExecutor(executor);
-        return invoker;
-    }
-
-    @Bean
-    public TimeoutWiederholungHttpInvokerRequestExecutor executor(ServiceConfigProperties config) {
-        TimeoutWiederholungHttpInvokerRequestExecutor executor = new TimeoutWiederholungHttpInvokerRequestExecutor();
-        executor.setAnzahlWiederholungen(config.getWiederholungen());
-        executor.setTimeout(config.getTimeout());
-        return executor;
-    }
-
-----
-
-Die FactoryBean erwartet eine Service-URL und ein Interface zur Initialisierung.
-Der Host-Teil der URL muss in jedem Fall in der betrieblichen Konfiguration der Anwendung zu finden sein.
-Das Interface ist im Schnittstellen-JAR verfügbar.
-
-Die Nutzung des hier im Beispiel verwendeten `TimeoutWiederholungHttpInvokerRequestExecutor` ist optional.
-Dieser Executor bricht nach dem angegebenen Timeout die Anfrage ab und wiederholt sie bis zur maximalen angegebenen
-Wiederholungsanzahl.
-
-Wenn die Anwendung isy-logging (<<NutzungsvorgabenLogging>>) nutzt, muss statt der Spring-eigenen Factory die erweiterte `IsyHttpInvokerProxyFactoryBean` genutzt werden.
-Sie versieht die RemoteBeans automatisch mit einem `LogMethodInterceptor`, der die Aufrufzeiten der ausgehenden Aufrufe misst und loggt.
-Die Konfiguration erfolgt wie in <<listing-isyinvokerconfig>> gezeigt:
-
-:desc-listing-isyinvokerconfig: Konfiguration mit IsyHttpInvokerProxyFactoryBean
-[id="listing-isyinvokerconfig",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-isyinvokerconfig}
-[source,java]
-----
-@Bean
-public IsyHttpInvokerProxyFactoryBean virenscanRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
-    IsyHttpInvokerProxyFactoryBean invoker = new IsyHttpInvokerProxyFactoryBean();
-    invoker.setServiceUrl(config.getServiceUrl());
-    invoker.setServiceInterface(VirenscanRemoteBean.class);
-    invoker.setHttpInvokerRequestExecutor(executor);
-    invoker.setRemoteSystemName(config.getRemoteSystemName());
-    return invoker;
-}
-----
-
-Die erweiterte ProxyFactoryBean erwartet nur einen zusätzlichen Parameter `remoteSystemName`.
-Dieser wird genutzt, um einen sprechenden Systemnamen bei den Log-Ausgaben auszugeben.
-
-
-
-[[technologie]]
-== Technologie
-
-Interne Anwendungssysteme kommunizieren miteinander über das durch das Spring-Framework definierte HTTP-Invoker-Protokoll.
-Das heißt, interne Anwendungssysteme stellen ihre Services innerhalb der IsyFact über eine HTTP-Invoker-Schnittstelle bereit.
-Da HTTP-Invoker auf serialisierten Java-Objekten basiert, können innerhalb der IsyFact ausschließlich Java-basierte Anwendungssysteme miteinander kommunizieren.
-
-[NOTE]
-====
-Fachanwendungen sind entsprechend der Referenzarchitektur alle auf Basis von Java zu erstellen.
-Somit ist sichergestellt, dass alle Anwendungssysteme über HTTP-Invoker miteinander kommunizieren können.
-Für Fremdsysteme sind andere Kommunikationsarten zulässig.
-====
-
-Um eine möglichst lose Kopplung der Anwendungssysteme zu erreichen, wurden folgende Festlegungen getroffen:
-
-* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht.* Es wird stets eine explizite Schnittstellen-Bean (RemoteBean-Schnittstelle) als HTTP-Invoker-Schnittstelle implementiert.
-* *Es werden keine Datenbank-Entitäten verfügbar gemacht*. Jegliche über HTTP-Invoker-Aufrufe zu transportierende Objekte sind Transportobjekte.
-Diese Transportobjekte sind im Client-HTTP-Invoker-Wrapper bzw. in der Server-HTTP-Invoker-Bean zu befüllen (siehe <<image-KapsCallInvoke>>).
-* *Es werden keine Exceptions des Anwendungskerns geworfen.* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Schnittstelle verwendet werden.
-
-[[definition-der-schnittstelle]]
-=== Definition der Schnittstelle
-
-Die durch ein <<glossar-Anwendungssystem>> definierte HTTP-Invoker-Schnittstelle, d. h. die RemoteBean-Schnittstelle inklusive aller direkt und indirekt verwendeten Transportobjekte und Exceptions ist Teil des Anwendungssystems.
-Das bedeutet, dass die Quelldateien der RemoteBean-Schnittstelle, der Transportobjekte und der Exceptions im Anwendungssystem definiert werden.
-Das Anwendungssystem wird daher auch als definierendes Anwendungssystem der HTTP-Invoker-Schnittstelle bezeichnet.
-Damit andere Anwendungssysteme die HTTP-Invoker-Schnittstelle aufrufen können, muss das definierende Anwendungssystem die Schnittstelle in Form einer Bibliothek (JAR-Datei) zur Verfügung stellen.
-Diese JAR-Datei muss dann von den aufrufenden Anwendungssystemen eingebunden werden.
-
-:desc-image-KapsCallInvoke: Kapselung der Aufrufe von HTTP-Invoker Beans
-[id="image-KapsCallInvoke",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-KapsCallInvoke}
-image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
-
-[[parameter-der-schnittstelle]]
-=== Parameter der Schnittstelle
-
-Jede Methode der RemoteBean-Schnittstelle muss als ersten Parameter ein Objekt der Klasse `AufrufKontextTo` bzw. `ClientAufrufKontextTo` verwenden.
-Dieser Parameter dient dazu, Meta-Informationen zum' jeweiligen Aufruf zu übergeben.
-Daneben enthält die Schnittstelle natürlich noch weitere, fachliche Parameter, die frei definiert werden können.
-
-Die Verwendung von Parametern in einer Schnittstelle ist im folgenden Beispiel dargestellt.
-
-[source,java]
-----
-public NachrichtenlisteTo holeNachrichten(
-
-  AufrufKontextTo kontext,
-
-  NachrichtenanfrageTo anfrage)
-
-throws BusinessToException, TechnicalToException;
-----
-
-Im Folgenden werden die beiden Klassen `AufrufKontextTo` und `ClientAufrufKontextTo` näher beschrieben.
-
-*AufrufKontextTo:* Die Klasse `AufrufKontextTo` wird für HTTP-Invoker-Schnittstellen verwendet, die durch Fachanwendungen definiert werden und nicht durch Service-Consumer.
-Die Klasse kapselt die Informationen, mit denen die <<glossar-Fachanwendung>> aufgerufen wurde:
-
-** *Behörde:* Das Behördenkennzeichen der aufrufenden Behörde
-** *Kennung:* Die Kennung des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
-** *Kennwort:* Das Passwort des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
-** *Rollen:* Die Rollen des aufrufenden Benutzers oder des aufrufenden Fremdprogramms
-** *Correlation-ID:* Die ID, um den Service-Aufruf eindeutig zu identifizieren
-
-*ClientAufrufKontextTo:* Die Klasse `ClientAufrufKontextTo` wird für HTTP-Invoker-Schnittstellen verwendet, die durch Service-Consumer definiert werden.
-Im Gegensatz zu `AufrufKontextTo` kapselt diese Klasse die Informationen, um sich bei einem externen Service zu authentifizieren und zu autorisieren:
-
-** *Kennung:* Die Kennung mit der der externe Service aufgerufen wird
-** *Kennwort:* Das Passwort mit der der externe Service aufgerufen wird
-** *Zertifikat:* Das Zertifikat, um sich beim externen Service zu authentifizieren
-** *Zertifikat-Kennwort:* Das Passwort des Zertifikats für die Authentifizierung
-
-Sowohl `AufrufKontextTo` als auch `ClientAufrufKontextTo` sind in der Bibliothek `isy-serviceapi-sst` definiert.
-Das heißt zur vollständigen Definition der HTTP-Invoker-Schnittstelle ist immer auch diese Bibliothek einzubinden.
-
-[[zugriff-auf-querschnittssysteme]]
-=== Zugriff auf Querschnittssysteme
-
-Gemäß der <<IsyFactReferenzarchitektur>> ist der Zugriff von Service-Gateways auf <<glossar-Querschnittssystem,Querschnittssysteme>> erlaubt.
-
-== Versionierung
-
-NOTE: Für HttpInvoker-Schnittstellen heißt das, dass die komplette RemoteBean-Schnittstelle versioniert wird und nicht die einzelnen Methoden der RemoteBean-Schnittstelle.
-
-
-
-
-
 // end::inhalt[]

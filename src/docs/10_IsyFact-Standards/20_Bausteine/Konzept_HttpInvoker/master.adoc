@@ -1,0 +1,38 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+//
+:doctitle: Konzept HTTP Invoker
+:title: {doctitle}
+
+// Zwangsplatz des TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+// Inhaltsverzeichnis
+ifdef::backend-html5[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// Einleitung
+include::thisdoc.adoc[tags=inhalt]
+
+// Inhalt
+include::inhalt.adoc[tags=inhalt]
+
+:sectnums!:
+
+// Glossar
+include::glossary.adoc[]
+// Literaturverzeichnis
+include::bibliography.adoc[]
+// ? Tabellenverzeichnis
+include::listoftables.adoc[]
+// ? Abbildungsverzeichnis
+include::listoffigures.adoc[]
+// ? Listings-Verzeichnis
+include::listoflistings.adoc[]

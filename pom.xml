@@ -775,6 +775,76 @@
                     </execution>
 
                     <execution>
+                        <id>Konzept_HttpInvoker-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_HttpInvoker
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptHttpInvoker.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Konzept_HttpInvoker-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_HttpInvoker
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/HTTP_Invoker/Konzept_HTTP_Invoker.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>Nutzungsvorgaben_HttpInvoker-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_HttpInvoker
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/NutzungsvorgabenHttpInvoker.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Nutzungsvorgaben_HttpInvoker-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_HttpInvoker
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/HTTP_Invoker/Nutzungsvorgaben_HTTP_Invoker.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>Konzept_Logging-html</id>
                         <phase>generate-resources</phase>
                         <goals>
