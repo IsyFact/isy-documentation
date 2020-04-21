@@ -626,17 +626,17 @@ admin.watchdog.threadpool.size = 1
 
 Da der Watchdog in regelmäßigen Abständen die Prüfmethode `pruefeSystem()` durchführen soll, muss der Watchdog
 in einem Task ausgeführt werden.
-Dies geschieht in der <<Vorlageanwendung>> in einem `WatchdogTask` der von `AbstractTask` ableitet.
-Dieser Task ist ebenfalls als Bean deklariert und beinhaltet den TerminfindungWatchdog, wie folgt:
+Dies geschieht in der <<Vorlageanwendung>> in einem `WatchdogTask` der von `isy-ueberwachung` bereits angeboten wird.
+Dieser Task wird ebenfalls als Bean deklariert und beinhaltet den TerminfindungWatchdog (Bean-ID=administration), wie folgt:
 
 :desc-listing-WatchdogTaskSpring: Spring-Konfiguration für den WatchdogTask
 [id="listing-WatchdogTaskSpring",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-WatchdogTaskSpring}
 [source,xml]
 ----
-<bean id="watchdogTask" class="de.msg.terminfindung.task.WatchdogTask">
-        <constructor-arg ref="administration"/>
-        <constructor-arg ref="watchdogTask-monitor"/>
+<bean id="watchdogTask" class="de.bund.bva.pliscommon.ueberwachung.task.AdministrationWatchdogTask">
+    <constructor-arg ref="watchdogTask-monitor"/>
+    <property name="administrationWatchdog" ref="administration"/>
 </bean>
 
 <bean id="watchdogTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
@@ -651,6 +651,9 @@ Für den Betrieb des WatchdogTasks werden folgende Konfigurationsparameter defin
 isyfact.task.watchdogTask.ausfuehrung=FIXED_DELAY
 isyfact.task.watchdogTask.initial-delay=5s
 isyfact.task.watchdogTask.fixed-delay=60s
+
+Die Properties müssen die Bezeichnung `watchdogTask` beinhaltet, da dies die Bean-ID von dem WatchdogTask aus
+obiger Konfiguration ist.
 
 [[implementierung-der-jmx-schnittstelle-mit-spring]]
 == Implementierung der JMX-Schnittstelle mit Spring
