@@ -652,7 +652,7 @@ isyfact.task.watchdogTask.ausfuehrung=FIXED_DELAY
 isyfact.task.watchdogTask.initial-delay=5s
 isyfact.task.watchdogTask.fixed-delay=60s
 
-Die Properties müssen die Bezeichnung `watchdogTask` beinhaltet, da dies die Bean-ID von dem WatchdogTask aus
+Die Properties müssen die Bezeichnung `watchdogTask` beinhalten, da dies die Bean-ID von dem WatchdogTask aus
 obiger Konfiguration ist.
 
 [[implementierung-der-jmx-schnittstelle-mit-spring]]
