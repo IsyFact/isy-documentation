@@ -581,7 +581,7 @@ KommunikationXyzRemoteBean
 [[url]]
 ==== URL
 
-Die Service-URL einer HttpInvoker-Schnittstelle muss folgendem Schema entsprechen:
+Die Service-URL einer HTTP Invoker Schnittstelle muss folgendem Schema entsprechen:
 
 :desc-table-ssurl1: Schnittstellen: URL
 [id="table-ssurl1",reftext="{table-caption} {counter:tables}"]

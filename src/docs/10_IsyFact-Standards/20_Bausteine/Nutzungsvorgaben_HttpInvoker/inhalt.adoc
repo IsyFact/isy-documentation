@@ -26,9 +26,20 @@ Zur Verwendung des Bausteins HTTP Invoker genügt es, die folgenden zwei Bibliot
 </dependencyManagement>
 ----
 
+[[realisierung-der-service-schnittstelle]]
+== Realisierung der Service-Schnittstelle
+
+Die folgenden Abschnitte führen durch die Realisierung einer Service-Schnittstelle mit HTTP Invoker.
+Sie behandeln die folgenden Bestandteile: das Remote-Bean, die Exception-Fassade, die Service-Fassade und schließlich die Transportobjekte.
+Die letzten Abschnitte beschreiben dann die Integration anderer Bausteine zur Realisierung querschnittlicher Aspekte: Fehlerbehandlung, Logging und die Absicherung von Service-Methoden.
+
+[NOTE]
+====
+Wichtige ergänzende Hinweise sowie eine sehr umfangreiche Anleitung zur Erstellung von Service-Schnittstellen mit HTTP Invoker bietet das <<IsyFactTutorial>>.
+====
 
 [[realisierung-remote-bean]]
-== Realisierung des Remote-Beans
+=== Realisierung des Remote-Beans
 
 Das Remote-Bean wird als Java-Schnittstelle realisiert.
 Jede Methode entspricht dabei einem möglichen Service-Aufruf.
@@ -71,9 +82,8 @@ Im Gegensatz zu `AufrufKontextTo` kapselt diese Klasse die Informationen, um sic
 
 Sowohl `AufrufKontextTo` als auch `ClientAufrufKontextTo` sind in der Bibliothek `isy-serviceapi-sst` definiert.
 
-
 [[realisierung-exception-fassade]]
-== Realisierung der Exception-Fassade
+=== Realisierung der Exception-Fassade
 
 Die Exception-Fassade implementiert das Remote-Bean-Interface und definiert in jeder Methode einen `try`-`catch`-Block, der alle Fehler des Anwendungskerns abfängt und in Fehler der Service-Schnittstelle umwandelt.
 
@@ -96,7 +106,7 @@ Der `try`-`catch`-Block unterscheidet zwischen Exceptions der Datenbankzugriffss
 public class BeispielExceptionFassade implements BeispielRemoteBean
 {
     private static final IsyLoggerStandard logger = ...;
-    private BeispielService beispielService;
+    private BeispielServiceFassade beispielService;
     ...
     @StelltLoggingKontextBereit
     public BeispielHolenAntwortTo holeBeispielAnfrage
@@ -116,9 +126,8 @@ public class BeispielExceptionFassade implements BeispielRemoteBean
 }
 ----
 
-
 [[realisierung-service-fassade]]
-== Realisierung der Service-Fassade
+=== Realisierung der Service-Fassade
 
 Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik, d.h. Transformation der Transportobjekte in Objekte des Anwendungskerns und umgekehrt, sowie die Autorisierung des Aufrufs.
 
@@ -171,9 +180,8 @@ public class BeispielServiceFassade {
 }
 ----
 
-
 [[realisierung-to]]
-== Realisierung von Transportobjekten
+=== Realisierung von Transportobjekten
 
 Transportobjekte dürfen keine externen Abhängigkeiten haben, da sie Teil der ausgelieferten Schnittstelle sind.
 Bei Transportobjekten ist zu beachten, dass die UID stets 0 ist (s. <<listing-to-uid>>).
@@ -188,6 +196,225 @@ public class BeispielTransportobjekt {
 }
 ----
 
+[[fehlerbehandlung]]
+=== Fehlerbehandlung
+
+HTTP Invoker Schnittstellen besitzen, wie bereits beschrieben, eigene Exceptions, die nur zur Kommunikation mit anderen IT-Systemen dienen.
+Für diese Transport-Exceptions gilt über die Vorgaben des <<KonzeptFehlerbehandlung>> hinaus noch:
+
+* Sie erben immer von `BusinessToException` oder `TechnicalToException` und implementieren somit immer `Serializable`.
+* Sie stellen die Felder Ausnahme-ID, UUID und Fehlernachricht zur Verfügung.
+* Sie erben nicht von internen Exceptions des IT-Systems.
+
+Daraus ergibt sich für Transport-Exceptions folgende Hierarchie:
+
+:desc-image-010: Vererbungshierarchie für Transport-Exceptions
+[id="image-010",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-010}
+image::fehlerbehandlung010.png[align="center"]
+
+Weiterhin gelten pro Service-Methode folgende Vorgaben:
+
+*Definition von technischen Exceptions:* Service-Methoden deklarieren keine oder eine technische Exception.
+Die technische Exception muss für alle Service-Methoden einer Service-Schnittstelle gleich sein.
+
+*Definition von fachlichen Exceptions:* Service-Methoden können beliebig viele fachliche Exceptions deklarieren.
+Diese können spezifisch für jede Service-Methode sein.
+
+*Übermittlung von Daten:* Die Felder Ausnahme-ID, UUID und Fehlernachricht müssen stets übertragen werden.
+Weiterhin darf kein Stack-Trace übertragen werden.
+
+Die Fehlerbehandlung geschieht in der Exception-Fassade, die einen Service-Aufruf nach außen hin kapselt (siehe <<image-011>>).
+
+:desc-image-011: Aufrufkette von der Service-Schnittstelle zum Anwendungskern
+[id="image-011",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-011}
+image::fehlerbehandlung011.png[align="center",width=80%,pdfwidth=80%]
+
+Die Exception-Fassade bildet die Klammer um einen Aufruf an die Anwendung und ist für die Top-Level Fehlerbehandlung zuständig.
+Sie leitet den Aufruf an die Service-Fassade weiter, die wiederum den Anwendungskern aufruft.
+Dieser zweistufige Prozess ist notwendig, falls es unerwartete Exceptions in der Service-Fassade selbst gibt (z.B. falls diese die Transaktionsklammer um mehrere Aufrufe des Anwendungskerns bildet).
+Solche unerwartete Exceptions treten außerhalb der eigentlichen Anwendung auf und könnten die Fehlerbehandlung an der Schnittstelle selbst stören.
+Daher liegt die Exception-Fassade noch vor der Service-Fassade, um auch diese Fehler abzufangen, zu loggen, in Transport-Exceptions umzuwandeln und an den Aufrufer weiterzureichen.
+
+<<listing-FehlerbehandlungExceptionFassade>> zeigt die Fehlerbehandlung in der Exception-Fassade für das Beispiel-Remote-Bean.
+
+:desc-listing-FehlerbehandlungExceptionFassade: Fehlerbehandlung in der Exception-Fassade
+[id="listing-FehlerbehandlungExceptionFassade",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-FehlerbehandlungExceptionFassade}
+[source,java]
+----
+public class BeispielExceptionFassade implements BeispielRemoteBean {
+    private static final IsyLoggerStandard LOG = ...;
+
+    private final BeispielServiceFassade service;
+
+    ...
+
+    @StelltLoggingKontextBereit
+    public BeispielHolenAntwortTo holeBeispielAnfrage(
+        AufrufKontextTo kontext, BeispielHolenAnfrageTo anfrage) {
+        throws BeispielBusinessToException, BeispielTechnicalToException {
+
+    try {
+        return service.holeBeispielAnfrage(kontext, anfrage);
+    } catch (InternalBusinessException ex) {
+        LOG.debug("...", ex);
+        // Exceptions in Schnittstellen-Exceptions transformieren.
+        throw (BeispielBusinessToException)ExceptionMapper.mapException(
+                ex, BeispielBusinessToException.class);
+    } catch (InternalTechnicalRuntimeException ex) {
+        LOG.error("...", ex);
+        throw (BeispielTechnicalToException)ExceptionMapper.mapException(
+            ex, BeispielTechnicalToException.class);
+    } catch (Throwable t) {
+        LOG.error("...", t);
+        // Unbekannte Exceptions in Schnittstellen-Exceptions transformieren.
+        BeispielTechnicalToException ex = ExceptionMapper.createToException(
+                AusnahmeIdUtil.getAusnahmeId(t),
+                new FehlertextProviderImpl(),
+                BeispielTechnicalToException.class);
+        LOG.error("Übergebener Fehler: " + ex.getMessage());
+        throw ex;
+    }
+}
+----
+
+Das Code-Beispiel in <<listing-FehlerbehandlungExceptionFassade>> fängt alle Exceptions und wandelt diese in entsprechende Transport-Exceptions um.
+Als erwartete Exceptions gibt es hier die Exception `InternalBusinessException`.
+Diese wird, sofern sie auftritt, in eine `BeispielBusinessToException` umgewandelt und weitergereicht.
+
+[WARNING]
+====
+Zu beachten ist, dass in das Error-Log nur betrieblich relevante Fehler geschrieben werden sollen.
+Fachliche Fehler sind in der Regel irrelevant für den Betrieb.
+Daher wird die `InternalBusinessException` ins Debug-Log geschrieben.
+====
+
+Weitere erwartete Fehler gibt es nicht, somit wird nun eine Fehlerbehandlung für unerwartete Fehler der Anwendung durchgeführt (alle Exceptions vom Typ `InternalTechnicalRuntimeException`).
+Als letzte mögliche Fehlerbehandlung werden alle unerwarteten Exceptions vom Typ `Throwable` gefangen.
+
+Der erste Block in diesem Beispiel behandelt eine fachliche Exception.
+Die restlichen Blöcke behandeln unerwartete, technische Exceptions.
+Fachliche Exceptions müssen immer in fachliche Transport-Exceptions umgewandelt werden, alle anderen Exceptions sind in technische Transport-Exceptions umzuwandeln.
+
+Alle Blöcke einer solchen Fassade auf der Anwendungsgrenze verwenden die Klasse `ExceptionMapper` (siehe <<mapping-von-exceptions>>) zur Umwandlung der fachlichen und technischen Exceptions in Transport-Exceptions und zur Erstellung von Transport-Exceptions.
+Letzteres wird im letzten `catch`-Block des obigen Code-Beispiels genutzt, da in diesem Fall keine gemäß <<KonzeptFehlerbehandlung>> aufgebaute Exception und somit weder Ausnahme-ID, UUID noch Fehlernachricht vorhanden sind.
+In diesem Fall ist die benötigte Ausnahme-ID zu berechnen, mithilfe der Schnittstelle `AusnahmeIdErmittler` (siehe <<mapping-von-exceptions>>).
+
+Die `catch`-Blöcke für interne Runtime-Exceptions (hier vom Typ `InternalTechnicalRuntimeException`) und alle übrigen unerwarteten Exceptions (`Throwable`) müssen immer implementiert werden.
+Hierdurch wird verhindert, dass die Schnittstelle nicht spezifizierte Exceptions weiterreicht.
+
+[[mapping-von-exceptions]]
+==== Mapping von Exceptions
+
+Zur Umwandlung von internen Exceptions in Transport-Exceptions stellt die Bibliothek `isy-serviceapi-core` eine eigene Klasse zur Verfügung: `ExceptionMapper` (siehe <<image-012>>).
+
+:desc-image-012: Methoden der Klasse ExceptionMapper
+[id="image-012",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-012}
+image::fehlerbehandlung012.png[align="center",width=50%,pdfwidth=60%]
+
+Die Klasse `ExceptionMapper` bietet zwei statische Methoden an, um aus fachlichen oder technischen Exceptions entsprechende Transport-Exceptions zu erstellen.
+Hierfür muss lediglich die umzuwandelnde Exception und die Klasse der gewünschten Transport-Exception mitgegeben werden.
+<<listing-MappingExceptionNachToException>> zeigt ein Beispiel für die Umwandlung einer technischen Exception in eine technische Transport-Exception.
+
+:desc-listing-MappingExceptionNachToException: Mappen einer BaseException in eine technische Transport-Exception
+[id="listing-MappingExceptionNachToException",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MappingExceptionNachToException}
+[source,java]
+----
+ExceptionMapper.mapException(ex, BeispielTechnicalToException.class)
+----
+
+Es können jedoch weitere Exceptions auftreten, die nicht gemäß <<KonzeptFehlerbehandlung>> aufgebaut sind.
+Diese besitzen keine Ausnahme-ID oder eine UUID, z.B. Runtime-Exceptions aus Frameworks von Drittherstellern.
+Auch diese Exceptions müssen in Transport-Exceptions umgewandelt werden.
+<<listing-createToException>> zeigt ein Beispiel für eine solche Umwandlung.
+
+:desc-listing-createToException: Erstellen von Transport-Exceptions
+[id="listing-createToException",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-createToException}
+[source,java]
+----
+Throwable t = ...;
+AusnahmeIdErmittler a = ...;
+BeispielTechnicalToException ex = ExceptionMapper.createToException(
+                                    a.ermittleAusnahmeId(t),
+                                    new FehlertextProviderImpl(),
+                                    BeispielTechnicalToException.class);
+----
+
+Dazu muss die Schnittstelle `AusnahmeIdErmittler` implementiert werden.
+Sie bietet eine Methode, `String getAusnahmeId(Throwable)`, zur Analyse einer übergebenen Exception und zur Rückgabe der zur Exception passenden Ausnahme-ID.
+Diese Klasse ist anwendungsspezifisch und für jede Anwendung zu implementieren.
+
+<<listing-MappingExceptions>> zeigt eine mögliche Implementierung für das Mapping von Exceptions auf Ausnahme-IDs.
+
+:desc-listing-MappingExceptions: Beispielhaftes Mapping von Exceptions auf Ausnahme-IDs
+[id="listing-MappingExceptions",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-MappingExceptions}
+[source,java]
+----
+@Bean
+public class BeispielAusnahmeIdErmittler implements AusnahmeIdErmittler {
+
+    public String ermittleAusnahmeId(Throwable e) {
+        if (throwable instanceof DataAccessException) {
+            // generische Datenbank-Fehlermeldung
+            return FehlerSchluessel.MSG_GENERISCHER_DB_FEHLER;
+        } else if (throwable instanceof JmxException) {
+            // generische JMX-Fehlermeldung
+            return FehlerSchluessel.MSG_GENERISCHER_JMX_FEHLER;
+        } else if (throwable instanceof InternalBusinessException) {
+            // Bei Exceptions mit Ausnahme-ID: diese auslesen
+            return ((InternalBusinessException) throwable).getAusnahmeID();
+        }
+        // Kein Mapping Möglich: generische Fehlermeldung
+        return FehlerSchluessel.MSG_GENERISCHER_FEHLER;
+    }
+
+}
+----
+
+Die Ermittlung der Ausnahme-ID sollte auch auf die internen Exceptions der Anwendung prüfen, auch wenn es nie zu einer positiven Prüfung dieser Bedingungen kommen sollte.
+Sollte hier also ein Treffer für interne Exceptions auftreten, so wurden die `catch`-Blöcke nicht sauber implementiert (z.B. wurde einfach nur `catch Throwable` verwendet).
+Dies würde dazu führen, dass die Original-Nachricht überschrieben würde, was besonders bei fachlichen Exceptions zu einem Informationsverlust für den Aufrufer führt.
+
+[[service-absicherung]]
+=== Absicherung von Service-Methoden
+
+In HTTP Invoker Schnittstellen werden in der Regel einzelne Methoden der Service-Fassade (hinter der Exception-Fassade) abgesichert.
+Zur Autorisierung von Aufrufen sind Informationen aus dem Aufrufkontext nötig.
+Dieser wird als erster Schnittstellenparameter in Form eines Transportobjekts mit jedem Aufruf übergeben.
+Dieses Transportobjekt, eine Instanz der Klasse `AufrufKontextTo`, muss die Informationen zum anfragenden Anwender und dessen Rollen enthalten.
+
+Zur Autorisierung muss die Service-Methode oder die Service-Fassade mit `@StelltAufrufKontextBereit` annotiert sein.
+Die Annotation signalisiert einem Interceptor, das Transportobjekt auszulesen und die bereitgestellten Informationen in den Aufrufkontext des IT-Systems zu übertragen.
+
+Mit dieser Voraussetzung können Service-Methoden durch die Annotation `@Gesichert` abgesichert werden.
+Als Standard-Parameter werden alle Rechte aufgelistet, die eine Anfrage für einen Aufruf beinhalten muss.
+Die Rechte sind immer konjunktiv verknüpft.
+Eine disjunktive Verknüpfung von Rechten ist nicht möglich.
+
+Folgendes Beispiel (<<listing-absichern-einer-service-methode>>) zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch ausgelesen und anschließend die Autorisierung gegen den Baustein Sicherheit durchgeführt wird.
+
+:desc-listing-absichern-einer-service-methode: Absichern einer Service-Methode
+[id="listing-absichern-einer-service-methode",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-absichern-einer-service-methode}
+[source,java]
+----
+@StelltAufrufKontextBereit
+@Gesichert("RechtA", "RechtB")
+public void abgesicherteMethode(AufrufKontextTo kontext, ...) {
+    ...
+}
+----
+
+Erfüllt ein Aufrufer die Forderungen der Annotation `@Gesichert` nicht, so wird ein Fehler des Typs `AutorisierungFehlgeschlagenException` erzeugt.
+Der Fehler wird in der Regel nicht lokal behandelt, sondern einfach zurückgegeben.
+Letztlich deuten fehlende Rechte meist auf einen unberechtigten Zugriff oder einen Fehler in der Konfiguration einer aufrufenden Anwendung hin, sodass hier die normale Fehlerbehandlung greift.
+
 [[paketierung]]
 == Paketierung einer Service-Schnittstelle
 
@@ -199,6 +426,32 @@ IT-Systeme teilen sich folgende Java-Klassen der HTTP Invoker Schnittstelle:
 
 Diese Klassen müssen als JAR mit einer einzigen Abhängigkeit auf die Bibliothek `isy-serviceapi-sst` paketiert werden.
 Sie werden anhand der Vorgaben in <<DetailkonzeptKomponenteService>> und <<IsyFactVersionierung>> versioniert und anhand der Vorgaben in <<IsyFactNamenskonventionen>> benannt.
+
+[[bereitstellung]]
+== Bereitstellung einer Service-Schnittstelle
+
+In der Konfigurationsklasse der Service-Schicht wird die HTTP Invoker Konfiguration der Service-Schnittstelle eingebunden.
+Dazu werden das Remote-Bean-Interface und die zugehörige Implementierung in Form der Exception-Fassade als Service
+konfiguriert <<listing-httpinvokerserviceexporter>>.
+Der Bean-Name ist für die URL, unter welcher der Service erreichbar sein wird, wichtig.
+
+:desc-listing-httpinvokerserviceexporter: Konfiguration von Remote Bean und Exception Fassade als Service
+[id="listing-httpinvokerserviceexporter",reftext="{listing-caption} {counter:listings}"]
+.{desc-listing-httpinvokerserviceexporter}
+[source,java]
+----
+@Configuration
+public class ServiceConfiguration {
+
+    @Bean("/BeispielBean_v1_0")
+    public HttpInvokerServiceExporter beispielService(BeispielExceptionFassade beispiel) {
+        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
+        exporter.setService(beispiel);
+        exporter.setServiceInterface(BeispielRemoteBean.class);
+        return exporter;
+    }
+}
+----
 
 [[nutzung]]
 == Nutzung einer Service-Schnittstelle
@@ -215,7 +468,6 @@ Auf dieser Bean können dann die entfernten Methoden aufgerufen werden.
 ----
 @Configuration
 public class ServiceConfiguration {
-
     @Bean
     public HttpInvokerProxyFactoryBean beispielRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
         HttpInvokerProxyFactoryBean invoker = new HttpInvokerProxyFactoryBean();
@@ -232,7 +484,7 @@ public class ServiceConfiguration {
         executor.setTimeout(config.getTimeout());
         return executor;
     }
-
+}
 ----
 
 Die FactoryBean erwartet eine Service-URL und ein Remote-Bean-Interface zur Initialisierung.
@@ -252,18 +504,20 @@ Die Konfiguration erfolgt wie in <<listing-isyinvokerconfig>> gezeigt.
 .{desc-listing-isyinvokerconfig}
 [source,java]
 ----
-@Bean
-public IsyHttpInvokerProxyFactoryBean beispielRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
-    IsyHttpInvokerProxyFactoryBean invoker = new IsyHttpInvokerProxyFactoryBean();
-    invoker.setServiceUrl(config.getServiceUrl());
-    invoker.setServiceInterface(BeispielRemoteBean.class);
-    invoker.setHttpInvokerRequestExecutor(executor);
-    invoker.setRemoteSystemName(config.getRemoteSystemName());
-    return invoker;
+@Configuration
+public class ServiceConfiguration {
+    @Bean
+    public IsyHttpInvokerProxyFactoryBean beispielRemoteBean(HttpInvokerRequestExecutor executor, ServiceConfigProperties config) {
+        IsyHttpInvokerProxyFactoryBean invoker = new IsyHttpInvokerProxyFactoryBean();
+        invoker.setServiceUrl(config.getServiceUrl());
+        invoker.setServiceInterface(BeispielRemoteBean.class);
+        invoker.setHttpInvokerRequestExecutor(executor);
+        invoker.setRemoteSystemName(config.getRemoteSystemName());
+        return invoker;
+    }
 }
 ----
 
 Die erweiterte FactoryBean erwartet nur einen zusätzlichen Parameter `remoteSystemName`.
 Dieser wird genutzt, um in allen Log-Ausgaben einen sprechenden Systemnamen zu setzen.
-
 // end::inhalt[]

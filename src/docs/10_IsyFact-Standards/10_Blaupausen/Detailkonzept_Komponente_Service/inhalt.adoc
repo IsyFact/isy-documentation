@@ -71,7 +71,7 @@ Dies geschieht durch die Annotation `@StelltLoggingKontextBereit` an der Methode
 
 [NOTE]
 ====
-Die weiteren Inhalte zum Aufbau, zur Realisierung und zur Nutzung von Service-Schnittstellen wurden wegen ihrer Abhängigkeit zur konkreten Schnittstellentechnologie HttpInvoker in den Baustein HttpInvoker verschoben.
+Die weiteren Inhalte zum Aufbau, zur Realisierung und zur Nutzung von Service-Schnittstellen wurden wegen ihrer Abhängigkeit zur konkreten Schnittstellentechnologie HTTP Invoker in den Baustein HTTP Invoker verschoben.
 Die Inhalte finden sich in den Dokumenten <<KonzeptHttpInvoker>> sowie <<NutzungsvorgabenHttpInvoker>>.
 ====
 
@@ -182,7 +182,7 @@ NOTE: Für die Versionierung von Schnittstellen gelten gesonderte Vorgaben, die 
 Zur Veröffentlichung von API-kompatiblen Änderungen wird im Maven `pom.xml` eine einstellige Versionsnummer (Minor) gesetzt.
 Kompatible Änderungen sind beispielsweise Bugfixes, neue Operationen in der Schnittstelle oder neue, optionale Attribute im Datenmodell.
 
-:desc-listing-versioning-pom: Realisierung der Versionierungsvorgaben für Schnittstellen bei HttpInvoker.
+:desc-listing-versioning-pom: Realisierung der Versionierungsvorgaben für Schnittstellen bei HTTP Invoker
 [id="listing-versioning-pom", reftext="reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-versioning-pom}
 [source,xml]

@@ -260,9 +260,9 @@ image::TeileServ.png[align="center"]
 
 [NOTE]
 ====
-Hierfür wird aktuell das Framework Spring HttpInvoker verwendet.
+Hierfür wird aktuell das Framework Spring HTTP Invoker verwendet.
 Ab IsyFact 2.0 ist die Verwendung von REST-Schnittstellen erlaubt.
-HttpInvoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
+HTTP Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
 Die Verwendung von REST-Schnittstellen wird einem gesonderten Konzept erläutert.
 ====
 

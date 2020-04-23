@@ -103,7 +103,7 @@ Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie
 * Die Konfiguration der Datenzugriffsschicht, beschrieben im <<DetailkonzeptKomponenteDatenzugriff>>.
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
 * Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachung>>.
-* Die Verwendung der Schnittstellentechnologie HttpInvoker, beschrieben im Konzept <<KonzeptHttpInvoker>>.
+* Die Verwendung der Schnittstellentechnologie HTTP Invoker, beschrieben im Konzept <<KonzeptHttpInvoker>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
 * Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
 Dokument <<DetailkonzeptKomponenteWebGUI>>.
@@ -346,8 +346,8 @@ In einigen Fällen existieren jedoch weitere Abhängigkeiten von Spring:
 
 * Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptKonfiguration>>).
 
-* Bei HttpInvoker Server-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
-(siehe <<DetailkonzeptKomponenteService>>.
+* Bei HTTP Invoker Schnittstellen-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
+(siehe <<NutzungsvorgabenHttpInvoker>>).
 
 * Beans werden per Namen aus dem Anwendungskontext ausgelesen.
 
@@ -468,14 +468,11 @@ Ihr Einsatz kann über „PointCuts“ konfiguriert werden.
 Pointcuts definieren (etwa über reguläre Ausdrücke) Klassen und Methoden, welche um den Aspekt erweitert werden.
 
 Zu intensive Nutzung kann leicht zu einem schwer durchschaubaren Programmfluss führen.
+Deshalb soll AOP nur für folgende Bereichen genutzt werden: die Steuerung von Transaktionen, die Überwachung und die Berechtigungsprüfung.
 
-* In folgenden Bereichen soll AOP genutzt werden
-** für die Steuerung von Transaktionen,
-** für die Überwachung,
-** für die Berechtigungsprüfung.
-* Nicht benutzt werden soll AOP
-** für die Fehlerbehandlung.
-* Die Verwendung von AOP für andere Bereiche ist nur in begründeten Ausnahmefällen erlaubt.
+Explizit nicht benutzt werden soll AOP für die Fehlerbehandlung.
+
+Die Verwendung von AOP für andere Bereiche ist nur in begründeten Ausnahmefällen erlaubt.
 
 [[aop-fuer-transaktionssteuerung-verwenden]]
 ==== AOP für Transaktionssteuerung verwenden
@@ -496,15 +493,12 @@ Die Berechtigungsprüfung wird über Spring AOP mit den vom Baustein „Sicherhe
 [[aop-nicht-fuer-das-logging-von-exceptions-verwenden]]
 ==== AOP nicht für das Logging von Exceptions verwenden
 
-Sämtliche im System geworfenen und nicht behandelten Ausnahmen müssen inklusive ihrer Stacktraces geloggt werden.
+Sämtliche in einem IT-System geworfenen und nicht behandelten Ausnahmen müssen inklusive ihrer Stacktraces geloggt werden.
 Geloggt wird dies in den Methoden der Schnittstellen-Beans.
 Hierfür soll Spring-AOP nicht verwendet werden.
 
-Es wäre z.B. bei HttpInvoker-Schnittstellen nicht sinnvoll, über AOP die Exceptions der Schnittstellen-Bean-Methoden zu
-loggen.
-Es würden nicht alle relevanten Informationen geloggt werden:
-
-Eine HttpInvoker-Bean fängt alle Ausnahmen und wirft statt der erhaltenen Exceptions eigene Schnittstellen-Exceptions,
-welche den Stacktrace der erhaltenen Exception nicht enthalten.
-
+Schnittstellen-Beans transformieren die Geschäftsobjekte des Anwendungskerns in Transportobjekte der Schnittstelle.
+Die Stack-Traces der Exceptions werden dabei nicht übertragen, da diese internen Informationen dem Aufrufer keinen Mehrwert bieten.
+Für das Logging des IT-Systems selbst sind sie jedoch wertvoll.
+Statt AOP ist das im <<DetailkonzeptKomponenteService>> beschriebene Konstrukt der Exception-Fassade zu verwenden.
 // end::inhalt[]
