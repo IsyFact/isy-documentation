@@ -600,41 +600,6 @@
                     </execution>
 
                     <execution>
-                        <id>Grundlagen_interne_Servicekommunikation-html</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/10_Blaupausen/Grundlagen_interne_Servicekommunikation
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Blaupausen/GrundlagenInterneServicekommunikation.html
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Grundlagen_interne_Servicekommunikation-pdf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/10_Blaupausen/Grundlagen_interne_Servicekommunikation
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/10_Blaupausen/Integrationsplattform/Grundlagen_interne_Servicekommunikation.pdf
-                            </outputFile>
-                        </configuration>
-                    </execution>
-
-                    <execution>
                         <id>Konzept_Datum_Zeit-html</id>
                         <phase>generate-resources</phase>
                         <goals>
