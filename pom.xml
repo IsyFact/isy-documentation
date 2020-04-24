@@ -211,7 +211,6 @@
                             </outputFile>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>IsyFact-Glossar-html</id>
                         <phase>generate-resources</phase>
@@ -1662,7 +1661,75 @@
                             </attributes>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>IsyFact-Architekturregeln-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Architekturregeln
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-Architekturregeln.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Architekturregeln-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Architekturregeln
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Architekturregeln.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
 
+                    <execution>
+                        <id>IsyFact-IT-Sicherheit-Regeln-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-IT-Sicherheit-Regeln
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFact-IT-Sicherheitsregeln.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-IT-Sicherheit-Regeln-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-IT-Sicherheit-Regeln
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-IT-Sicherheitsregeln.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <!-- Sicherstellen, dass alle POMs Maven-Team-Standard konform sortiert sind. -->

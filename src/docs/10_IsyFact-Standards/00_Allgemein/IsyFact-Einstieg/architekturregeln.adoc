@@ -1,0 +1,5 @@
+= Architekturregeln
+
+// tag::architekturregeln[]
+include::inhalt.adoc[tags=architekturegel]
+// end::architekturregeln[]

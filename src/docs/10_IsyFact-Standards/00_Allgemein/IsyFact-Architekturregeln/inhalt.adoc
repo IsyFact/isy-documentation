@@ -1,0 +1,12 @@
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+[[architekturregeln-der-Isyfact]]
+== Architekturregeln der IsyFact
+
+[[architekturregeln-isyfact-einstieg]]
+=== Architekturregeln IsyFact-Einstieg
+
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/architekturregeln.adoc[tags=architekturregeln]
+
+// end::inhalt[]

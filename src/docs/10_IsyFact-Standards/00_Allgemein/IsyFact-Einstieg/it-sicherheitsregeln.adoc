@@ -1,0 +1,5 @@
+= IT-Sicherheitsregeln
+
+// tag::it-sicherheitsregel[]
+include::inhalt.adoc[tags=sicherheit]
+// end::it-sicherheitsregel[]

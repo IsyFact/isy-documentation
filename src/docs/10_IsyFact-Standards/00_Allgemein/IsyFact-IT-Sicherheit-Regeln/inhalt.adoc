@@ -1,0 +1,12 @@
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+[[it-sicherheitsregeln-der-Isyfact]]
+== IT-Sicherheitsregeln der IsyFact
+
+[[it-sicherheitsregeln-isyfact-einstieg]]
+=== IT-Sicherheitsregeln IsyFact-Einstieg
+
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/it-sicherheitsregeln.adoc[tags=it-sicherheitsregel]
+
+// end::inhalt[]
