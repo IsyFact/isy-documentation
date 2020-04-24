@@ -24,12 +24,6 @@ toc::[]
 
 // --------------------------- AB HIER------------------------------------------
 
-:sectnums!:
-// Changelog
-include::changelog.adoc[leveloffset=1]
-
-:sectnums:
-
 // Einleitung
 include::thisdoc.adoc[]
 
@@ -51,6 +45,9 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 
 // --------------------------- AB HIER------------------------------------------

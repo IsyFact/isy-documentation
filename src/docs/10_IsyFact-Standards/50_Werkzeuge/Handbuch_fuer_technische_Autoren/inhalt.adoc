@@ -1247,16 +1247,16 @@ Für Test-Zwecke können in der `pom.xml` nicht relevante Dokumente übersprunge
 Jede Komponente eines Projekts und jedes Dokument erhalten eine eigene Changelog-Datei im AsciiDoc-Format (`.adoc`).
 Diese Datei wird im Folgenden Komponentenchangelog genannt.
 Dadurch können Änderungen nah am Änderungsort dokumentiert werden und Entwickler und Architekten können einzelne Einträge des Changelogs direkt einer Komponente oder einem Dokument zuordnen.
-Damit jedoch auch alle Änderungen eines Projekts (Menge aller Komponenten/Dokumente) zentral in einem Dokument zusammengefasst werden, wird eine weitere Changelog-Datei im root-Verzeichnis des Projekts angelegt.
+Damit jedoch auch alle Änderungen eines Projekts (Menge aller Komponenten/Dokumente) zentral in einem Dokument zusammengefasst können, wird eine weitere Changelog-Datei im root-Verzeichnis des Projekts angelegt.
 Diese Changelog-Datei, im Folgenden Projektchangelog genannt, bindet die einzelnen Changelog-Datei automatisch und nach Release gruppiert ein.
 Auf diese Weise besitzt jedes Projekt ein zentrales Changelog und (je nach Projekt) mehrere dezentrale Komponentenchangelogs ohne die Einträge redundant verwalten zu müssen.
 
-:desc-image-architektur_changelogs: Zusammenführung der einzelnen Komponentenchangelogs zu einem Projektchangelog
+:desc-image-architektur_changelogs: Zusammenführung der einzelnen Komponentenchangelogs
 [id="image-architektur_changelogs",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-architektur_changelogs}
 image::architektur_changelog.png[align="center",width=80%,pdfwidth=80%]
 
-Zum Erstellen und Bearbeiten wird empfohlen einen Texteditor zu verwenden, der das AsciiDoc Format unterstützt (siehe Kapitel <<vsc-installieren>>).
+Zum Erstellen und Bearbeiten wird empfohlen, einen Texteditor zu verwenden, der das AsciiDoc Format unterstützt (siehe Kapitel <<vsc-installieren>>).
 
 Im Folgenden wird beschrieben, wie die einzelnen Changelog-Dateien erstellt und welche Anforderungen an die Struktur und den Inhalt der Changelogs gestellt werden.
 
@@ -1338,7 +1338,7 @@ Dazu wird für jedes Release ein eigener Release-Tag definiert:
 
 Jeder Release-Tag enthält die Versionsnummer des Releases und eine entsprechende Überschrift.
 
-Somit ergibt sich folgender Gesamtaufbau des Komponentenchangelog:
+Somit ergibt sich folgender Gesamtaufbau des Komponentenchangelogs:
 
 :desc-listing-komponentenchangelog_gesamt: Gesamtstruktur Komponentenchangelog
 [id="listing-komponentenchangelog_gesamt",reftext="{listing-caption} {counter:listings }"]
@@ -1347,14 +1347,16 @@ Somit ergibt sich folgender Gesamtaufbau des Komponentenchangelog:
 ----
 = Changelog
 
-== Änderungen IsyFact 2.1.0
+*Änderungen IsyFact 2.1.0*
+
 // tag::release-2.1.0[]
 
 // --> Hier werden die Changelogeinträge für Release 2.1.0 verfasst
 
 // end::release-2.1.0[]
 
-== Änderungen IsyFact 2.0.0
+*Änderungen IsyFact 2.0.0*
+
 // tag::release-2.0.0[]
 
 // --> Hier werden die Changelogeinträge für Release 2.0.0 verfasst

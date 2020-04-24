@@ -1,4 +1,4 @@
-= Changelog
+= Changelog IsyFact Dokumentation
 
 == Änderungen IsyFact 2.1.0
 
