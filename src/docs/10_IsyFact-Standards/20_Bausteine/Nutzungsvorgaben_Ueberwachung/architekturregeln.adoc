@@ -1,0 +1,24 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: Überwachung Architekturregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+
+// tag::architekturregeln[]
+
+[[architekturregeln-ueberwachung]]
+== Architekturregeln Überwachung
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

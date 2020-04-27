@@ -4,9 +4,12 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[architekturregeln-der-Isyfact]]
 == Architekturregeln der IsyFact
 
-[[architekturregeln-isyfact-einstieg]]
-=== Architekturregeln IsyFact-Einstieg
-
+:leveloffset: +1
 include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/architekturregeln.adoc[tags=architekturregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur/architekturregeln.adoc[tags=architekturregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur-IT-System/architekturregeln.adoc[tags=architekturregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Tutorial/architekturregeln.adoc[tags=architekturregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper/architekturregeln.adoc[tags=architekturregeln]
+
 
 // end::inhalt[]

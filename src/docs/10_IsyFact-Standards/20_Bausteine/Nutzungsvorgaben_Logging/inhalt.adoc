@@ -1515,3 +1515,20 @@ Der Aufruf dauerte <Dauer in Millisekunden> ms.
 |EISYLO02003 |INFO |JOURNAL |Die Systemversion ist <Versionsnummer>.
 |EISYLO02004 |INFO |JOURNAL |Der Laufzeitparameter <Parametername> besitzt den Wert <Wert>.
 |====
+
+// tag::architekturregel[]
+[ARCHITEKTURREGEL]
+====
+Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
+Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
+====
+// end::architekturregel[]
+
+// tag::sicherheit[]
+[SICHERHEIT]
+====
+Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
+====
+// end::sicherheit[]

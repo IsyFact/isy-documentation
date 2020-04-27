@@ -1,0 +1,23 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: IsyFact - Technische Architektur eines IT-Systems - IT-Sicherheitsregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// tag::it-sicherheitsregeln[]
+
+[[it-sicherheitsregeln-isyfact-referenzarchitektur-it-system]]
+== IT-Sicherheitsregeln IsyFact-Referenzarchitektur eines IT-Systems
+
+include::inhalt.adoc[tags=sicherheit]
+// end::it-sicherheitsregeln[]

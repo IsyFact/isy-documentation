@@ -1,0 +1,23 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: Spring LDAP IT-Sicherheitsregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// tag::it-sicherheitsregeln[]
+
+[[it-sicherheitsregeln-ldap]]
+== IT-Sicherheitsregeln Spring LDAP
+
+include::inhalt.adoc[tags=sicherheit]
+// end::it-sicherheitsregeln[]

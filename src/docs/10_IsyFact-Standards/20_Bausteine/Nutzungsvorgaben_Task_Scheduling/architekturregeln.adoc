@@ -1,0 +1,24 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: Task Scheduling Architekturregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+
+// tag::architekturregeln[]
+
+[[architekturregeln-task]]
+== Architekturregeln Task Scheduling
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

@@ -1,0 +1,24 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: Polling Architekturregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+
+// tag::architekturregeln[]
+
+[[architekturregeln-polling]]
+== Architekturregeln Polling
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

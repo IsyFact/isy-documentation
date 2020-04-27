@@ -1,5 +1,23 @@
-= IT-Sicherheitsregeln
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: IsyFact-Einstieg IT-Sicherheitsregeln
+:title: {doctitle}
 
-// tag::it-sicherheitsregel[]
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// tag::it-sicherheitsregeln[]
+
+[[it-sicherheitsregeln-isyfact-einstieg]]
+== IT-Sicherheitsregeln IsyFact-Einstieg
+
 include::inhalt.adoc[tags=sicherheit]
-// end::it-sicherheitsregel[]
+// end::it-sicherheitsregeln[]

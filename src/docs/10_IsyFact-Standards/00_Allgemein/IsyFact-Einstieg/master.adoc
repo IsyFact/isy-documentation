@@ -32,9 +32,15 @@ include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
+
+// Architekturregeln
+include::architekturregeln.adoc[tags=architekturregeln]
+
+// IT-Sicherheitsregelen
+include::it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
+
 // Glossar
 include::glossary.adoc[]
-
 // Literaturverzeichnis  (gebaut)
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis  (gebaut)

@@ -350,4 +350,21 @@ Je nach Aufbau der Dialoge kann hierbei ein Hinweis auf den Masken dargestellt w
 Bevor eine Anwendung in den Auskunftsmodus versetzt werden kann, sind alle nutzenden Anwendungen ebenfalls in den Auskunftsmodus zu versetzen.
 Zum Wiederherstellen des vollen Funktionsumfangs wird in umgekehrter Reihenfolge vorgegangen, d.h. schreibende Zugriffe werden zunächst in den genutzten Anwendungen wieder erlaubt und danach die nutzenden Anwendungen umgestellt.
 
+// tag::architekturregel[]
+[ARCHITEKTURREGEL]
+====
+Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
+Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
+====
+// end::architekturregel[]
+
+// tag::sicherheit[]
+[SICHERHEIT]
+====
+Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
+====
+// end::sicherheit[]
+
 // end::inhalt[]

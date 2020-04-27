@@ -1,0 +1,24 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: IsyFact - Technische Architektur eines IT-Systems - Architekturregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+
+// tag::architekturregeln[]
+
+[[architekturregeln-isyfact-referenzarchitektur-it-system]]
+== Architekturregeln IsyFact-Referenzarchitektur eines IT-Systems
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

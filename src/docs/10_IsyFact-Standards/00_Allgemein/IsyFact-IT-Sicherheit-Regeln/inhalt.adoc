@@ -4,9 +4,11 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[it-sicherheitsregeln-der-Isyfact]]
 == IT-Sicherheitsregeln der IsyFact
 
-[[it-sicherheitsregeln-isyfact-einstieg]]
-=== IT-Sicherheitsregeln IsyFact-Einstieg
-
-include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/it-sicherheitsregeln.adoc[tags=it-sicherheitsregel]
+:leveloffset: +1
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur-IT-System/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Tutorial/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
+include::../../../10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 
 // end::inhalt[]

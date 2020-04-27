@@ -1,5 +1,24 @@
-= Architekturregeln
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+//
+:doctitle: IsyFact-Einstieg Architekturregeln
+:title: {doctitle}
+
+// Zwangsplatz TOC
+
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
 
 // tag::architekturregeln[]
-include::inhalt.adoc[tags=architekturegel]
+
+[[architekturregeln-isyfact-einstieg]]
+== Architekturregeln IsyFact-Einstieg
+
+include::inhalt.adoc[tags=architekturregel]
 // end::architekturregeln[]

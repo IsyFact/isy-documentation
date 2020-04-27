@@ -482,3 +482,20 @@ Die Parameter sollen betrieblich konfigurierbar gemacht werden.
 Andere Services wie z. B. eine Auskunft können während dieser Zeit regulär ausgeführt werden.
 Während der Meldungs-Service deaktiviert ist, wird dem Aufrufer eine entsprechende Fehlermeldung zurückgesendet.
 Da die Anforderung besteht, auch andere Services vorübergehend deaktivieren zu können, werden generell alle Services deaktivierbar gemacht.
+
+// tag::architekturregel[]
+[ARCHITEKTURREGEL]
+====
+Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
+Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
+====
+// end::architekturregel[]
+
+// tag::sicherheit[]
+[SICHERHEIT]
+====
+Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
+Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
+====
+// end::sicherheit[]
