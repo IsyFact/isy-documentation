@@ -82,8 +82,9 @@ Siehe _Konzept Überwachung und Konfiguration -> Verwendung von isy-konfiguratio
 
 == Applikationsklasse
 * Für eine auf IsyFact 2.x basierende Anwendung wird eine _Applikationsklasse_ im Root-Package der Anwendung erstellt.
++
 Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel:  Vorgaben zur Spring-Konfiguration_.
-
++
 [source,java]
 ----
 @SpringBootApplication
@@ -97,112 +98,89 @@ public class IsyFact2Application extends SpringBootServletInitializer {
 
 
 [[kapitel-web-xml]]
-== web.xml
+== Deployment Descriptor web.xml
 
-Die Änderungen an der Datei `web.xml` zusammengefasst:
+Bei einer Migraton von einer IsyFact 1.x Version auf IsyFact 2.x sind Änderungen an der `web.xml` Datei (Deployment Descriptor) vorzunehmen:
 
-.web.xml
+=== Spring Kontext
 
+Die Konfiguration des Spring-Kontextes erfolgt über Java-Config / Component Scan. Die Deklaration in der `web.xml` entfällt.
 
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+:desc-image-webxml-spring-context: Spring Kontext Deklaration entfällt
+[id="image-webxml-spring-context",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-spring-context}
+image::webxml-spring-context.png[align="center"]
 
-<web-app>
-    <display-name>IsyFact2Application</display-name>
+=== Logging
 
+Die Deklaration zum Logging in der `web.xml` entfällt.
 
-    <!-- Spring: Registration of ApplicationContext -->  <1>
-    <!--context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath:resources/spring/application.xml,
-            classpath:resources/spring/timertasks.xml,
-            classpath:resources/spring/ueberwachung.xml,
-            classpath:resources/spring/service/service.xml,
-            classpath:resources/spring/service/remoting-servlet.xml
-        </param-value>
-    </context-param-->
+Siehe <<Logging>>.
 
-    <context-param>
-        <param-name>webAppRootKey</param-name>
-        <param-value>IsyFact2Application</param-value>
-    </context-param>
+:desc-image-webxml-logging: Logging Deklaration entfällt
+[id="image-webxml-logging",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-logging}
+image::webxml-logging.png[align="center"]
 
-    <2>
-    <!--context-param>
-    	<param-name>logbackConfigLocation</param-name>
-    	<param-value>classpath:/config/logback.xml</param-value>
-    </context-param-->
+=== Spring Context Loader
 
-    <!--listener>
-    	<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
-    </listener-->
+Der Spring-Kontext wird über `ServletInitializer` hochgefahren. Die Listener-Deklaration in der `web.xml` entfällt.
 
-    <3>
-    <!--listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener-->
+Siehe <<Anwendung>>.
 
-    <4>
-    <!-- Servlet fuer HTTPInvoker-Aufrufe.
-        Das Servlet nimmt die Aufrufe entgegen und verteilt sie auf die RemoteBeans.
-        Die entsprechene Konfiguration befindet sich in remoting-servlet.xml -->
-    <!--servlet>
-        <servlet-name>remoting</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/classes/resources/spring/service/remoting-servlet.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet-->
+:desc-image-webxml-contextloader: ContextLoaderListener entfällt
+[id="image-webxml-contextloader",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-contextloader}
+image::webxml-contextloader.png[align="center"]
 
-    <5>
-    <!--servlet>
-        <servlet-name>loadbalancer</servlet-name>
-        <servlet-class>
-            de.bund.bva.pliscommon.ueberwachung.service.loadbalancer.LoadbalancerServlet
-        </servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet-->
+=== Dispatcher Servlet
 
-    <!--servlet-mapping>
-        <servlet-name>loadbalancer</servlet-name>
-        <url-pattern>/Loadbalancer</url-pattern>
-    </servlet-mapping-->
-
-    <6>
-    <!--servlet-mapping>
-        <servlet-name>remoting</servlet-name>
-        <url-pattern>/MeldungBean_v1_0</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>remoting</servlet-name>
-        <url-pattern>/AuskunftBean_v1_0</url-pattern>
-    </servlet-mapping>
-
-</web-app>
-
-----
-
-<1> Entfällt. Die Konfiguration des Spring-Kontextes erfolgt über Java-Config / Component Scan.
-<2> Entfällt. Siehe <<Logging>>.
-<3> Entfällt. Der Spring-Kontext wird über `ServletInitializer` hochgefahren. Siehe <<Anwendung>>.
-<4> Entfällt. Das Dispatcher-Servlet wird automatisch von Spring Boot konfiguriert.
+Das Dispatcher-Servlet wird automatisch von Spring Boot konfiguriert.
 Die Trennung von Web- und Anwendungskontext entfällt.
-<5> Entfällt. Siehe <<Überwachung>>.
-<6> Entfällt. Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
-Der Pfad für das Mapping wird vom Namen der Bean abgeleitet. Siehe <<Service>>.
-[source,java]
-----
-@Bean(name = "/AuskunftBean_v1_0")
-public HttpInvokerServiceExporter meldung() {
-----
 
-[[kapitel-test]]
-== Test
+:desc-image-webxml-dispatcher: DispatcherServlet entfällt
+[id="image-webxml-dispatcher",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-logging}
+image::webxml-dispatcher-servlet.png[align="center"]
+
+=== Loadbalancer
+
+Das LoadBalancer-Servlet entfällt.
++
+Siehe <<Überwachung>>.
+
+:desc-image-webxml-loadbalancer: LoadBalancer entfällt
+[id="image-webxml-loadbalancer",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-logging}
+image::webxml-loadbalancer.png[align="center"]
+
+=== HttpInvokerServiceExporter
+
+Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
+
+:desc-image-webxml-remoting: HttpInvokerServiceExporter Servlets entfallen
+[id="image-webxml-remoting",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-remoting}
+image::webxml-remoting.png[align="center"]
+
+Der Pfad für das Mapping wird vom Namen der Bean abgeleitet.
++
+Siehe <<Service>>.
+
+:desc-image-webxml-httpinvoker-bean: Bean Deklaration von HttpInvokerServiceExporter
+[id="image-webxml-httpinvoker-bean",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-httpinvoker-bean}
+image::webxml-httpinvoker-bean.png[align="center"]
+
+
+:desc-image-webxml-httpInvokerService: httpInvokerService entfällt
+[id="image-webxml-httpInvokerService",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-webxml-httpInvokerService}
+image::webxml-httpinvoker.png[align="center"]
+
+
+[[kapitel-unittests]]
+== Unit-Tests
 [source,java]
 ----
 @RunWith(SpringRunner.class)
@@ -214,7 +192,6 @@ public class EintragControllerTest {
 
 [[kapitel-bausteine]]
 = Bausteine
-
 
 [[kapitel-persistenz]]
 == Persistenz
@@ -322,6 +299,7 @@ Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel:  Konfigurationsschlüssel
 * Die Konfiguration der HttpInvoker muss nach Java-Config überführt werden.
 * Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
 Der Pfad für das Mapping wird vom Namen der Bean abgeleitet.
+
 [source,java]
 ----
 @Bean(name = "/AuskunftBean_v1_0")
@@ -337,15 +315,15 @@ Sollten sich durch die Versionsanhebung Änderungen, z.B. bei der Konfiguration 
 :desc-image-dokumentenversion: Einheitliche Dokumenten-Versionsnummer innerhalb eines Releases
 [id="image-dokumentenversion",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-dokumentenversion}
-image::Dokumentenversion.png[align="center"]
+image::dokumentenversion.png[align="center"]
 
 Auf folgende Dokumentenänderungen (seit IsyFact IF-1.8) soll besonders hingewiesen werden:
 
 [[dok-frondend-technologien]]
 == Frontend Technologien
-Die Dokumentation `Detailkonzept Komponente-WebGUI` enthielt bisher Erläuterungen zur Bibliothek `isy-webgui`, welche eine rein JSF-basierende Frontend-Demo-Anwendung erzeugt, in der JSF-Widgets beispielhaft implementiert und damit dargestellt werden.
+Das Dokument `Detailkonzept Komponente-WebGUI` enthielt bisher Erläuterungen zur Bibliothek `isy-webgui`, welche eine rein JSF-basierende Frontend-Demo-Anwendung erzeugt, in der JSF-Widgets beispielhaft implementiert und damit dargestellt werden.
 
-Mit der Einführung von Angular als zweites, großes von der IsyFact unterstütztes Frontend-Framework, wurde das bisherige Dokument `Detailkonzept Komponente-WebGUI' aufgesplittet in
+Mit der Einführung von Angular als zweites, großes von der IsyFact unterstütztes Frontend-Framework, wurde das bisherige Dokument `Detailkonzept Komponente-WebGUI` aufgesplittet in
 
 - Detailkonzept Komponente WebGUI (nur noch technologieübergreifende Themen)
 - Konzept JSF
@@ -358,7 +336,7 @@ und den neuen Dokumenten
 
 
 [[dok-sicherheit-grundschutz]]
-== Sicherheit
+== IT-Grundschutz
 Sicherheit ist ein zentrales Thema einer jeden Fachanwendung.
 Bei der Umsetzung von Fachanwendungen in IT-Systeme werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
 
@@ -372,7 +350,6 @@ Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowi
 [[kapitel-isyfact-Referenzarchitektur]]
 == IsyFact Referenzarchitektur
 
-=== Service Framework
 *Service-Framework:* Das Service-Framework dient als Kapsel für die Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
 Hierfür wird das Framework Spring HTTP-Invoker verwendet.
 
@@ -385,4 +362,6 @@ Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
 
 In der Regel wird ein extern angebotener Service noch durch zusätzliche Daten oder Logik ergänzt.
 Diese werden in der Komponente Service-Logik implementiert.
+
+Siehe <<IsyFactReferenzarchitekturITSystem>> Kapitel: Servicezugriffe
 

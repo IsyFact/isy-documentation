@@ -1343,6 +1343,8 @@
                                             </configuration>
                                         </execution>
  -->
+
+<!--
                     <execution>
                         <id>Konzept_Ueberwachung_Konfiguration-html</id>
                         <phase>generate-resources</phase>
@@ -1377,6 +1379,8 @@
                             </outputFile>
                         </configuration>
                     </execution>
+-->
+
 <!--
                     <execution>
                                             <id>Nutzungsvorgaben_Isy_Util</id>
