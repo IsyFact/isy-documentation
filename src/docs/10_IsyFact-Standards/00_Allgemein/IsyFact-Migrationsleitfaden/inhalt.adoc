@@ -1,9 +1,88 @@
-[[kapitel-anwendung]]
+[[kapitel-isy-util]]
+= Nutzungsvorgaben isy-util
+
+== alt (zeile 433)
+	Das Package `de.bund.bva.pliscommon.util.common` enthält allgemeine Klassen, die keiner speziellen Funktionalität zugeordnet sind.
+
+	In `de.bund.bva.pliscommon.util.exception` sind Klassen enthalten, die für die Fehlerbehandlung einzusetzen sind:
+
+* `MessageSourceFehlertextProvider`: Durch diese Klasse wird der `FehlertextProvider` implementiert, der sich im Package `de.bund.bva.pliscommon.exception` der Bibliothek isy-exception-core befindet.
+
+In `de.bund.bva.pliscommon.util.exception` sind Klassen enthalten, die für die Fehlerbehandlung einzusetzen sind:
+
+* `MessageSourceFehlertextProvider`: Durch diese Klasse wird der `FehlertextProvider` implementiert, der sich im Package `de.bund.bva.pliscommon.exception` der Bibliothek isy-exception-core befindet.
+
+	Das Package `de.bund.bva.pliscommon.util.spring` enthält Werkzeuge für den Umgang mit Spring:
+
+== neu (zeile 433)
+	Das Package `de.bund.bva.isyfact.util.common` enthält allgemeine Klassen, die keiner speziellen Funktionalität zugeordnet sind.
+
+In `de.bund.bva.isyfact.util.exception` sind Klassen enthalten, die für die Fehlerbehandlung einzusetzen sind:
+
+* `MessageSourceFehlertextProvider`: Durch diese Klasse wird der `FehlertextProvider` implementiert, der sich im Package `de.bund.bva.isyfact.exception` der Bibliothek isy-exception-core befindet.
+
+Das Package `de.bund.bva.isyfact.util.spring` enthält Werkzeuge für den Umgang mit Spring:
+
+
+[[kapitel-umgang mit sonderzeichen]]
+= Konzept umgang mit Sonderzeichen
+
+== alt (zeile 433)
+[source,xml]
+----
+<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.TransformatorFactory">
+  <property name="transformator" ref="sonderzeichenTransformator" >
+  <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
+</bean>
+
+<bean id="sonderzeichenTransformator" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.impl.IdentischerTransformator">
+</bean>
+----
+
+
+
+== neu
+[source,xml]
+----
+<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.isyfact.sonderzeichen.core.transformation.TransformatorFactory">
+  <property name="transformator" ref="sonderzeichenTransformator" >
+  <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
+</bean>
+
+<bean id="sonderzeichenTransformator" class="de.bund.bva.isyfact.sonderzeichen.core.transformation.impl.IdentischerTransformator">
+</bean>
+----
+
+
+
+
+[[kapitel-fachanwendung]]
 = Fachanwendung
+
+[[kapitel-spring-konfiguration]]
+== Spring Konfiguration
+
+* Die Konfiguration von Spring wird von XML auf Java-Config umstellt.
++
+Siehe  <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Vorgaben zur Spring-Konfiguration.
+* Für die betriebliche Konfiguration wird `application.properties` anlegt.
++
+Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfigurationsparameter über Property-Objekte konfigurieren_.
+
+[[kapitel-konfiguration]]
+== Konfigurationsparameter
+
+* Die Bereitstellung von Konfigurationsparametern innerhalb der Fachanwendung erfolgt über `@ConfigurationProperties`-Klassen.
+Soll die Bibliothek `isy-konfiguration` weiterhin verwendet werden, muss die Bean aus der Spring-Konfiguration entfernt werden.
+Die Liste mit den Property-Dateien wird nach `application.properties` übertragen.
++
+Siehe _Konzept Überwachung und Konfiguration -> Verwendung von isy-konfiguration.
+
+<<KonzeptUeberwachungKonfiguration>>
 
 == Applikationsklasse
 * Für eine auf IsyFact 2.x basierende Anwendung wird eine _Applikationsklasse_ im Root-Package der Anwendung erstellt.
-Siehe _Detailkonzept Komponente Anwendungskern -> Vorgaben zur Spring-Konfiguration_.
+Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel:  Vorgaben zur Spring-Konfiguration_.
 
 [source,java]
 ----
@@ -136,21 +215,6 @@ public class EintragControllerTest {
 [[kapitel-bausteine]]
 = Bausteine
 
-[[kapitel-spring-konfiguration]]
-== Spring Konfiguration
-
-* Die Konfiguration von Spring wird von XML auf Java-Config umstellt.
-Siehe _Detailkonzept Komponente Anwendungskern -> Vorgaben zur Spring-Konfiguration_.
-* Für die betriebliche Konfiguration wird `application.properties` anlegt.
-Siehe _Detailkonzept Komponente Anwendungskern -> Konfigurationsparameter über Property-Objekte konfigurieren_.
-
-[[kapitel-konfiguration]]
-== Konfigurationsparameter
-
-* Die Bereitstellung von Konfigurationsparametern erfolgt über `@ConfigurationProperties`-Klassen.
-Soll die Bibliothek `isy-konfiguration` weiterhin verwendet werden, muss die Bean aus der Spring-Konfiguration entfernt werden.
-Die Liste mit den Property-Dateien wird nach `application.properties` übertragen.
-* Siehe _Konzept Überwachung und Konfiguration -> Verwendung von isy-konfiguration_.
 
 [[kapitel-persistenz]]
 == Persistenz
@@ -174,7 +238,7 @@ Die System- und Komponentengrenzen werden nicht über manuell konfigurierte Poin
 * Die Konfiguration der Interceptoren für das Logging an System- und Komponentengrenzen (wenn abweichend von der Default-Konfiguration) über Properties in `application.properties` nach dem Schema:
 * Siehe _Nutzungsvorgaben Logging -> Spring-Konfiguration_.
 * Die Konfiguration des `LogApplicationListener` erfolgt über Properties in `application.properties`:
-* Siehe _Nutzungsvorgaben Logging -> LogApplicationListener_.
+* Siehe <<NutzungsvorgabenLogging>> Kapitel: LogApplicationListener.
 
 .application.properties
 [source]
@@ -184,7 +248,7 @@ isy.logging.anwendung.version=2.0.0
 isy.logging.anwendung.typ=GA
 ----
 * Aktivieren des Performance Loggings über `isy.logging.performancelogging.enabled=true` in `application.properties`.
-* Siehe _Nutzungsvorgaben Logging -> Performance-Logging_.
+* Siehe <<NutzungsvorgabenLogging>> Kapitel: Performance-Logging.
 
 [[kapitel-ueberwachung]]
 == Überwachung
@@ -206,7 +270,7 @@ Eine eventuell vorhandene manuelle Prüfung kann entfernt werden.
 * Die Konfiguration (Polling-Cluster und JMX-Verbindungen) müssen nach `application.properties` überführt werden.
 * Siehe _Nutzungsvorgaben Polling -> Konfiguration über Properties_.
 * Die Beans für den Polling-Verwalter und die Interceptoren für `@PollingAktion` müssen entfernt werden.
-* Siehe _Nutzungsvorgaben Polling -> Spring-Konfiguration_.
+* Siehe <<NutzungsvorgabenPolling>> Kapitel: Spring-Konfiguration
 
 [[kapitel-batchrahmen]]
 == Batchrahmen
@@ -216,7 +280,7 @@ Eine gesonderte Konfiguration des Anwendungskontextes für den Batchrahmen ist n
 Um Beans aus der Spring-Konfiguration der Anwendung für die Ausführung eines Batches auszuschließen, kann die Annotation (`@ExcludeFromBatchContext`) verwendet werden.
 * Siehe _Detailkonzept Komponente Batch -> Die Konfiguration der Spring-Kontexte_.
 * In der Property-Dateien zur Konfigration der Batches werden statt XML-Konfigurationsdateien die vollqualifizierten Namen der Java-Konfigurationsklassen eintragen.
-* Siehe _Detailkonzept Komponente Batch -> Konfigurationsdatei und Kommandozeilen-Parameter_.
+* Siehe <<DetailkonzeptKomponenteBatch>> Kapitel: Konfigurationsdatei und Kommandozeilen-Parameter
 
 
 
@@ -226,18 +290,31 @@ Um Beans aus der Spring-Konfiguration der Anwendung für die Ausführung eines B
 * Bei der Überführung in Java-Config können bestimmte Beans entfernt werden.
 Automatisch konfiguriert werden die `@Gesichert`-Annotation, die `AufrufKontextFactory` und die Thread-Scopes `thread` und `request` für Spring.
 * In der Anwendung müssen die Beans für `AufrufKontextVerwalter`, `Sicherheit` und `AccessManager` konfiguriert werden.
-* Siehe _Nutzungsvorgaben Sicherheit -> Grundkonzepte und Konfiguration -> Spring-Konfiguration_.
++
+Siehe <<NutzungsvorgabenSicherheit>> Kapitel: Grundkonzepte und Konfiguration -> Spring-Konfiguration.
 * Der Konfiguration des Caches für Authentifizierungen erfolgt in `application.properties`.
-* Siehe _Nutzungsvorgaben Sicherheit -> Caching von Authentifizierungen_.
++
+Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel: Caching von Authentifizierungen
 
-[[kapitel-task]]
-== Task
+[[kapitel-task-scheduler]]
+== Task Scheduler
+
+=== Spring Konfiguration
 
 * Das Einbinden der XML-Spring-Konfiguration entfällt.
++
+Die Properties zur Konfiguration der Tasks müssen nach `application.properties` übertragen werden.
 Die Verwendung von `isy-sicherheit` wird mit einer Property in `application.properties` gesteuert.
-* Siehe _Nutzungsvorgaben Task Scheduling -> Spring Konfiguration_.
-* Die Properties zur Konfiguration der Tasks müssen nach `application.properties` übertragen werden.
-* Siehe _Nutzungsvorgaben Task Scheduling -> Konfigurationsschlüssel_.
+
++
+Um die Verwendung von `isy-sicherheit` für die Authentifizierung und Autorisierung zu konfigurieren, wird die Property `isy.task.authentication.enabled`
+in `application.properties` auf `true` oder `false` gesetzt.
++
+Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel: Spring Konfiguration
++
+Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel:  Konfigurationsschlüssel
+
+
 
 [[kapitel-service]]
 == Service
@@ -250,4 +327,62 @@ Der Pfad für das Mapping wird vom Namen der Bean abgeleitet.
 @Bean(name = "/AuskunftBean_v1_0")
 public HttpInvokerServiceExporter meldung() {
 ----
+
+
+[[kapitel-dokumentation-vzwei]]
+= Dokumentation
+Die Dokumentation des Major Release Zweigs IsyFact 2.x (Konzepte, Bausteine, ...) basiert auf dem Stand der IsyFact 1.8.0.
+Sollten sich durch die Versionsanhebung Änderungen, z.B. bei der Konfiguration eines IsyFact Bausteins ergeben haben, so wurden diese im jeweiligen Dokument aktualisiert. Es wird daher empfohlen, bei der Migration jeweils die Dokumentation der Version 2.x zu berücksichtigen.
+
+:desc-image-dokumentenversion: Einheitliche Dokumenten-Versionsnummer innerhalb eines Releases
+[id="image-dokumentenversion",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-dokumentenversion}
+image::Dokumentenversion.png[align="center"]
+
+Auf folgende Dokumentenänderungen (seit IsyFact IF-1.8) soll besonders hingewiesen werden:
+
+[[dok-frondend-technologien]]
+== Frontend Technologien
+Die Dokumentation `Detailkonzept Komponente-WebGUI` enthielt bisher Erläuterungen zur Bibliothek `isy-webgui`, welche eine rein JSF-basierende Frontend-Demo-Anwendung erzeugt, in der JSF-Widgets beispielhaft implementiert und damit dargestellt werden.
+
+Mit der Einführung von Angular als zweites, großes von der IsyFact unterstütztes Frontend-Framework, wurde das bisherige Dokument `Detailkonzept Komponente-WebGUI' aufgesplittet in
+
+- Detailkonzept Komponente WebGUI (nur noch technologieübergreifende Themen)
+- Konzept JSF
+- Nutzungsvorgaben JSF
+
+und den neuen Dokumenten
+
+- Konzept Angular
+- Nutzungsvorgaben Angular
+
+
+[[dok-sicherheit-grundschutz]]
+== Sicherheit
+Sicherheit ist ein zentrales Thema einer jeden Fachanwendung.
+Bei der Umsetzung von Fachanwendungen in IT-Systeme werden ein Gutteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
+
+Gerade bei einer Migration von einer IsyFact Version kleiner als v1.8 ist zu prüfen, ob alle aktuellen sicherheitsrelevanten Vorgaben erfüllt werden.
+Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowie De-Facto-Standards aus der Industrie:
+
+* <<ITGrundschutz>>
+* <<OWASP10>>
+
+
+[[kapitel-isyfact-Referenzarchitektur]]
+== IsyFact Referenzarchitektur
+
+=== Service Framework
+*Service-Framework:* Das Service-Framework dient als Kapsel für die Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
+Hierfür wird das Framework Spring HTTP-Invoker verwendet.
+
+[NOTE]
+====
+Ab IsyFact 2.0 ist die *Verwendung von REST-Schnittstellen* erlaubt.
+Spring HTTP-Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
+Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
+====
+
+In der Regel wird ein extern angebotener Service noch durch zusätzliche Daten oder Logik ergänzt.
+Diese werden in der Komponente Service-Logik implementiert.
 
