@@ -6,19 +6,19 @@
 - `IFS-279`: Anleitung VS Code hinzugefügt und Ausführungsdefinitionen in der pom.xml erläutert
 // end::release-2.1.0[]
 
-*Änderungen IsyFact 2.0.0*
+// *Änderungen IsyFact 2.0.0*
 
 // tag::release-2.0.0[]
 
 // end::release-2.0.0[]
 
-*Änderungen IsyFact 1.8.0*
+// *Änderungen IsyFact 1.8.0*
 
 // tag::release-1.8.0[]
 
 // end::release-1.8.0[]
 
-*Änderungen IsyFact 1.7.0*
+// *Änderungen IsyFact 1.7.0*
 
 // tag::release-1.7.0[]
 

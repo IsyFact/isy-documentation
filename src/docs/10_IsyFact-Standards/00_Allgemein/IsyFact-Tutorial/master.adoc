@@ -34,6 +34,9 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar  (gebaut)
 include::glossary.adoc[]
 
@@ -46,8 +49,7 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
 
-// Changelog
-include::changelog.adoc[leveloffset=1]
+
 
 
 // --------------------------- AB HIER------------------------------------------
