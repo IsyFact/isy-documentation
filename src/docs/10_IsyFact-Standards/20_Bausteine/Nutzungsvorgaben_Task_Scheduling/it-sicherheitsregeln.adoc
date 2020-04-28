@@ -8,6 +8,9 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
+// Inhaltsverzeichnis
+ifdef::backend-html5[]
+
 :toc-title!:
 
 endif::[]
