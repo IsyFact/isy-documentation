@@ -1,3 +1,4 @@
+[[changelog]]
 = Changelog
 
 *Änderungen IsyFact 2.1.0*

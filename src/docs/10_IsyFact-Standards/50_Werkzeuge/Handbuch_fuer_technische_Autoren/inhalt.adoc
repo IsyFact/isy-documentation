@@ -1291,6 +1291,7 @@ In die Datei wird die Überschrift "Changelog" eingefügt:
 .{desc-listing-komponentenchangelog_ueberschrift}
 [source,adoc]
 ----
+[[changelog]]
 = Changelog
 ----
 
@@ -1345,6 +1346,7 @@ Somit ergibt sich folgender Gesamtaufbau des Komponentenchangelogs:
 .{desc-listing-komponentenchangelog_gesamt}
 [source,adoc]
 ----
+[[changelog]]
 = Changelog
 
 *Änderungen IsyFact 2.1.0*
@@ -1416,6 +1418,7 @@ Mehrere Releases werden wie folgt angelegt:
 .{desc-listing-projektchangelog_einbindung_releases}
 [source,adoc]
 ----
+[[changelog]]
 = Changelog
 
 == Änderungen IsyFact 2.1.0
