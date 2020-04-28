@@ -1,60 +1,3 @@
-[[kapitel-isy-util]]
-= Nutzungsvorgaben isy-util
-
-== alt (zeile 433)
-	Das Package `de.bund.bva.pliscommon.util.common` enthält allgemeine Klassen, die keiner speziellen Funktionalität zugeordnet sind.
-
-	In `de.bund.bva.pliscommon.util.exception` sind Klassen enthalten, die für die Fehlerbehandlung einzusetzen sind:
-
-* `MessageSourceFehlertextProvider`: Durch diese Klasse wird der `FehlertextProvider` implementiert, der sich im Package `de.bund.bva.pliscommon.exception` der Bibliothek isy-exception-core befindet.
-
-In `de.bund.bva.pliscommon.util.exception` sind Klassen enthalten, die für die Fehlerbehandlung einzusetzen sind:
-
-* `MessageSourceFehlertextProvider`: Durch diese Klasse wird der `FehlertextProvider` implementiert, der sich im Package `de.bund.bva.pliscommon.exception` der Bibliothek isy-exception-core befindet.
-
-	Das Package `de.bund.bva.pliscommon.util.spring` enthält Werkzeuge für den Umgang mit Spring:
-
-== neu (zeile 433)
-	Das Package `de.bund.bva.isyfact.util.common` enthält allgemeine Klassen, die keiner speziellen Funktionalität zugeordnet sind.
-
-In `de.bund.bva.isyfact.util.exception` sind Klassen enthalten, die für die Fehlerbehandlung einzusetzen sind:
-
-* `MessageSourceFehlertextProvider`: Durch diese Klasse wird der `FehlertextProvider` implementiert, der sich im Package `de.bund.bva.isyfact.exception` der Bibliothek isy-exception-core befindet.
-
-Das Package `de.bund.bva.isyfact.util.spring` enthält Werkzeuge für den Umgang mit Spring:
-
-
-[[kapitel-umgang mit sonderzeichen]]
-= Konzept umgang mit Sonderzeichen
-
-== alt (zeile 433)
-[source,xml]
-----
-<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.TransformatorFactory">
-  <property name="transformator" ref="sonderzeichenTransformator" >
-  <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
-</bean>
-
-<bean id="sonderzeichenTransformator" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.impl.IdentischerTransformator">
-</bean>
-----
-
-
-
-== neu
-[source,xml]
-----
-<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.isyfact.sonderzeichen.core.transformation.TransformatorFactory">
-  <property name="transformator" ref="sonderzeichenTransformator" >
-  <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
-</bean>
-
-<bean id="sonderzeichenTransformator" class="de.bund.bva.isyfact.sonderzeichen.core.transformation.impl.IdentischerTransformator">
-</bean>
-----
-
-
-
 
 [[kapitel-fachanwendung]]
 = Fachanwendung
@@ -62,12 +5,12 @@ Das Package `de.bund.bva.isyfact.util.spring` enthält Werkzeuge für den Umgang
 [[kapitel-spring-konfiguration]]
 == Spring Konfiguration
 
-* Die Konfiguration von Spring wird von XML auf Java-Config umstellt.
+* Die Konfiguration von Spring wird von XML auf Java-Config umgestellt.
 +
 Siehe  <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Vorgaben zur Spring-Konfiguration.
 * Für die betriebliche Konfiguration wird `application.properties` anlegt.
 +
-Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfigurationsparameter über Property-Objekte konfigurieren_.
+Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfigurationsparameter über Property-Objekte konfigurieren.
 
 [[kapitel-konfiguration]]
 == Konfigurationsparameter
@@ -75,15 +18,12 @@ Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfigurationsparameter
 * Die Bereitstellung von Konfigurationsparametern innerhalb der Fachanwendung erfolgt über `@ConfigurationProperties`-Klassen.
 Soll die Bibliothek `isy-konfiguration` weiterhin verwendet werden, muss die Bean aus der Spring-Konfiguration entfernt werden.
 Die Liste mit den Property-Dateien wird nach `application.properties` übertragen.
-+
-Siehe _Konzept Überwachung und Konfiguration -> Verwendung von isy-konfiguration.
 
-<<KonzeptUeberwachungKonfiguration>>
-
+[[Applikationsklasse, Fachanwendung/Applikationsklasse]]
 == Applikationsklasse
 * Für eine auf IsyFact 2.x basierende Anwendung wird eine _Applikationsklasse_ im Root-Package der Anwendung erstellt.
 +
-Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel:  Vorgaben zur Spring-Konfiguration_.
+Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel:  Vorgaben zur Spring-Konfiguration.
 +
 [source,java]
 ----
@@ -100,79 +40,83 @@ public class IsyFact2Application extends SpringBootServletInitializer {
 [[kapitel-web-xml]]
 == Deployment Descriptor web.xml
 
-Bei einer Migraton von einer IsyFact 1.x Version auf IsyFact 2.x sind Änderungen an der `web.xml` Datei (Deployment Descriptor) vorzunehmen:
+Bei einer Migraton von einer IsyFact 1.x Version auf IsyFact 2.x sind Änderungen an der `web.xml` Datei (Deployment Descriptor) vorzunehmen.
 
 === Spring Kontext
 
-Die Konfiguration des Spring-Kontextes erfolgt über Java-Config / Component Scan. Die Deklaration in der `web.xml` entfällt.
-
+* Die Konfiguration des Spring-Kontextes erfolgt über Java-Config / Component Scan. Die Deklaration in der `web.xml` entfällt.
++
 :desc-image-webxml-spring-context: Spring Kontext Deklaration entfällt
 [id="image-webxml-spring-context",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-spring-context}
 image::webxml-spring-context.png[align="center"]
 
+[[web-xml-logging, Logging]]
 === Logging
 
-Die Deklaration zum Logging in der `web.xml` entfällt.
-
-Siehe <<Logging>>.
+* Die Deklaration zum Logging in der `web.xml` entfällt.
++
+Siehe Kapitel <<kapitel-logging>>.
 
 :desc-image-webxml-logging: Logging Deklaration entfällt
 [id="image-webxml-logging",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-logging}
 image::webxml-logging.png[align="center"]
 
+[[spring-context-loader, Spring Context Loader]]
 === Spring Context Loader
 
-Der Spring-Kontext wird über `ServletInitializer` hochgefahren. Die Listener-Deklaration in der `web.xml` entfällt.
-
-Siehe <<Anwendung>>.
-
+* Der Spring-Kontext wird über `ServletInitializer` hochgefahren. Die Listener-Deklaration in der `web.xml` entfällt.
++
+Siehe Kapitel <<Applikationsklasse>>.
++
 :desc-image-webxml-contextloader: ContextLoaderListener entfällt
 [id="image-webxml-contextloader",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-contextloader}
 image::webxml-contextloader.png[align="center"]
 
+[[dispatcher-servlet, Dispatcher Servlet]]
 === Dispatcher Servlet
 
-Das Dispatcher-Servlet wird automatisch von Spring Boot konfiguriert.
+* Das Dispatcher-Servlet wird automatisch von Spring Boot konfiguriert.
 Die Trennung von Web- und Anwendungskontext entfällt.
-
++
 :desc-image-webxml-dispatcher: DispatcherServlet entfällt
 [id="image-webxml-dispatcher",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-logging}
 image::webxml-dispatcher-servlet.png[align="center"]
 
+[[loadbalancer, Loadbalancer]]
 === Loadbalancer
 
-Das LoadBalancer-Servlet entfällt.
+* Das LoadBalancer-Servlet entfällt.
 +
-Siehe <<Überwachung>>.
-
+Siehe Kapitel <<kapitel-ueberwachung>>.
++
 :desc-image-webxml-loadbalancer: LoadBalancer entfällt
 [id="image-webxml-loadbalancer",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-logging}
 image::webxml-loadbalancer.png[align="center"]
 
+[[http-invoker-service-exporter, HttpInvokerServiceExporter ]]
 === HttpInvokerServiceExporter
 
-Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
-
+* Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
++
 :desc-image-webxml-remoting: HttpInvokerServiceExporter Servlets entfallen
 [id="image-webxml-remoting",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-remoting}
 image::webxml-remoting.png[align="center"]
-
++
 Der Pfad für das Mapping wird vom Namen der Bean abgeleitet.
 +
-Siehe <<Service>>.
-
+Siehe Kapitel <<kapitel-service>>.
++
 :desc-image-webxml-httpinvoker-bean: Bean Deklaration von HttpInvokerServiceExporter
 [id="image-webxml-httpinvoker-bean",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-httpinvoker-bean}
 image::webxml-httpinvoker-bean.png[align="center"]
-
-
++
 :desc-image-webxml-httpInvokerService: httpInvokerService entfällt
 [id="image-webxml-httpInvokerService",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-webxml-httpInvokerService}
@@ -181,6 +125,9 @@ image::webxml-httpinvoker.png[align="center"]
 
 [[kapitel-unittests]]
 == Unit-Tests
+
+* Verwendung der Annotation `SpringBootTest` bei den Unit-Tests
++
 [source,java]
 ----
 @RunWith(SpringRunner.class)
@@ -198,25 +145,30 @@ public class EintragControllerTest {
 
 * Die Spring-Konfiguration für die Persistenz muss geändernt werden (_EntityManager_, _DataSource_).
 Ebenso wird die betriebliche Konfiguration aus `jpa.properties` nach `application.properties` übertragen.
-Siehe  _Detailkonzept Komponente Anwendungskern -> Konfiguration von JPA über Spring Beans durchführen_.
-Verweis auf Doku
-* Sollen die alten DAOs aus `isy-persistence` weitergenutzt werden, dann diese als Beans in Java-Config übernommen werden.
++
+Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfiguration von JPA über Spring Beans durchführen.
 
-[[kapitel-logging]]
+* Sollen die alten DAOs aus `isy-persistence` weitergenutzt werden, dann sind diese als Beans in Java-Config zu übernehmen.
+
+[[kapitel-logging, Bausteine/Logging]]
 == Logging
 
 * Die Konfiguration des Loggings erfolgt über `logback.xml` und zusätzliche Properties in `application.properties`.
++
 Die Datei `logback.xml` liegt unter `src/main/resources`.
 Die Änderung der Log-Level erfolgt über `application.properties`, diese werden nicht in `logback.xml` angegeben.
-* Siehe _Nutzungsvorgaben Logging -> Logback-Konfiguration_.
-* Der `LogbackConfigListener` entfällt komplett, d.h., die Abhängigkeit in `pom.xml` und die Konfiguration in `web.xml` sind nicht notwendig.
-* Interceptoren für System- und Komponentengrenzen und der `LogApplicationListener` werden per Autokonfiguration erstellt und müssen der Spring-Konfiguration entfernt werden.
++
+Siehe <<NutzungsvorgabenLogging>>  Kapitel: Logback-Konfiguration.
+* Der `LogbackConfigListener` entfällt komplett, d.h. die Abhängigkeit in `pom.xml` und die Konfiguration in `web.xml` sind nicht notwendig.
+* Interceptoren für System- und Komponentengrenzen und der `LogApplicationListener` werden per Autokonfiguration erstellt und müssen aus der Spring-Konfiguration entfernt werden.
 Die System- und Komponentengrenzen werden nicht über manuell konfigurierte Pointcuts, sondern über die Annotation `@Systemgrenze`  und `@Komponentengrenze` festgelegt.
-* Die Konfiguration der Interceptoren für das Logging an System- und Komponentengrenzen (wenn abweichend von der Default-Konfiguration) über Properties in `application.properties` nach dem Schema:
-* Siehe _Nutzungsvorgaben Logging -> Spring-Konfiguration_.
+* Die Konfiguration der Interceptoren für das Logging an System- und Komponentengrenzen (wenn abweichend von der Default-Konfiguration) über Properties in `application.properties` erfolgt nach dem Schema:
++
+Siehe <<NutzungsvorgabenLogging>> Kapitel: Spring-Konfiguration.
 * Die Konfiguration des `LogApplicationListener` erfolgt über Properties in `application.properties`:
-* Siehe <<NutzungsvorgabenLogging>> Kapitel: LogApplicationListener.
-
++
+Siehe <<NutzungsvorgabenLogging>> Kapitel: LogApplicationListener.
++
 .application.properties
 [source]
 ----
@@ -224,30 +176,40 @@ isy.logging.anwendung.name=Anwendung
 isy.logging.anwendung.version=2.0.0
 isy.logging.anwendung.typ=GA
 ----
-* Aktivieren des Performance Loggings über `isy.logging.performancelogging.enabled=true` in `application.properties`.
-* Siehe <<NutzungsvorgabenLogging>> Kapitel: Performance-Logging.
 
-[[kapitel-ueberwachung]]
+* Über einen Eintrag in 'applicaton.properties' ist das Performance Logging zu aktivieren.
++
+`isy.logging.performancelogging.enabled=true`
+
++
+Siehe <<NutzungsvorgabenLogging>> Kapitel: Performance-Logging.
+
+[[kapitel-ueberwachung, Bausteine/Überwachung]]
 == Überwachung
 
 * `isy-ueberwachung` setzt _Spring Boot Actuator_ und _micrometer_ ein.
 * Die Überwachungsinformationen für Services werden über _micrometer_ bereitgestellt.
 Die eigentliche Überwachung erfolgt über einen AOP-Advice. Dieser wird per Java-Config konfiguriert:
-* Siehe _Konzept Überwachung und Konfiguration -> Informationen von Services_.
++
+Siehe <<KonzeptUeberwachungKonfiguration>> Kapitel: Informationen von Services.
 * Die Implementierung von Ping- und Prüfmethoden wird über `HealthIndicator` realisiert.
-* Siehe _Konzept Überwachung und Konfiguration -> Vorgaben für die Prüfung der Verfügbarkeit_.
++
+Siehe <<KonzeptUeberwachungKonfiguration>> Kapitel: Vorgaben für die Prüfung der Verfügbarkeit.
 * Die Verbindung zur Datenbank wird von einem `HealthIndicator` aus `isy-persistence` überwacht.
 Eine eventuell vorhandene manuelle Prüfung kann entfernt werden.
 * Das Loadbalancer-Servlet wird automatisch konfiguriert und der Eintrag in `web.xml` kann entfernt werden.
-* Siehe _Konzept Überwachung und Konfiguration -> Integration des Loadbalancer-Servlets_.
++
+Siehe <<KonzeptUeberwachungKonfiguration>> Kapitel: Integration des Loadbalancer-Servlets.
 
 [[kapitel-polling]]
 == Polling
 
 * Die Konfiguration (Polling-Cluster und JMX-Verbindungen) müssen nach `application.properties` überführt werden.
-* Siehe _Nutzungsvorgaben Polling -> Konfiguration über Properties_.
++
+Siehe <<NutzungsvorgabenPolling>> Kapitel: Konfiguration über Properties.
 * Die Beans für den Polling-Verwalter und die Interceptoren für `@PollingAktion` müssen entfernt werden.
-* Siehe <<NutzungsvorgabenPolling>> Kapitel: Spring-Konfiguration
++
+Siehe <<NutzungsvorgabenPolling>> Kapitel: Spring-Konfiguration
 
 [[kapitel-batchrahmen]]
 == Batchrahmen
@@ -255,10 +217,25 @@ Eine eventuell vorhandene manuelle Prüfung kann entfernt werden.
 * Die Spring-Konfiguration muss in Java-Config überführt werden.
 Eine gesonderte Konfiguration des Anwendungskontextes für den Batchrahmen ist nicht zwingend notwendig.
 Um Beans aus der Spring-Konfiguration der Anwendung für die Ausführung eines Batches auszuschließen, kann die Annotation (`@ExcludeFromBatchContext`) verwendet werden.
-* Siehe _Detailkonzept Komponente Batch -> Die Konfiguration der Spring-Kontexte_.
++
+Siehe <<DetailkonzeptKomponenteBatch>> Kapitel: Die Konfiguration der Spring-Kontexte.
 * In der Property-Dateien zur Konfigration der Batches werden statt XML-Konfigurationsdateien die vollqualifizierten Namen der Java-Konfigurationsklassen eintragen.
-* Siehe <<DetailkonzeptKomponenteBatch>> Kapitel: Konfigurationsdatei und Kommandozeilen-Parameter
++
+Siehe <<DetailkonzeptKomponenteBatch>> Kapitel: Konfigurationsdatei und Kommandozeilen-Parameter
 
+[[kapitel-util, Util]]
+== Standards
+* In allen Bausteinen (isy-util, isy-sonderzeichen, isy-exeption, ...) der IsyFact Bibliothek `ìsyfact-standards` haben sich die bisherigen Packagepfade von
++
+ de.bund.bva.pliscommon.xxx
++
+auf
++
+ de.bund.bva.isyfact.xxx
++
+geändert
+
+* Die Bibliothek `isy-standards` benutzt nicht mehr `isyfact-masterpom-lib` sondern nunmehr `isyfact-standards` als `<parent>` in der `pom.xml`.
 
 
 [[kapitel-sicherheit]]
@@ -273,10 +250,12 @@ Siehe <<NutzungsvorgabenSicherheit>> Kapitel: Grundkonzepte und Konfiguration ->
 +
 Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel: Caching von Authentifizierungen
 
+
+
 [[kapitel-task-scheduler]]
 == Task Scheduler
 
-=== Spring Konfiguration
+=== Task Spring Konfiguration
 
 * Das Einbinden der XML-Spring-Konfiguration entfällt.
 +
@@ -293,13 +272,13 @@ Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel:  Konfigurationsschlüssel
 
 
 
-[[kapitel-service]]
+[[kapitel-service, Bausteine/Service]]
 == Service
 
 * Die Konfiguration der HttpInvoker muss nach Java-Config überführt werden.
 * Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
 Der Pfad für das Mapping wird vom Namen der Bean abgeleitet.
-
++
 [source,java]
 ----
 @Bean(name = "/AuskunftBean_v1_0")
@@ -349,6 +328,7 @@ Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowi
 
 [[kapitel-isyfact-Referenzarchitektur]]
 == IsyFact Referenzarchitektur
+Auf eine Änderung im Dokument `IsyFact Referenzarchitektur` soll besonders hingewiesen werden:
 
 *Service-Framework:* Das Service-Framework dient als Kapsel für die Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
 Hierfür wird das Framework Spring HTTP-Invoker verwendet.
