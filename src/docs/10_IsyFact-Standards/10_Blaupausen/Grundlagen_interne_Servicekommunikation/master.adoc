@@ -1,14 +1,10 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Grundlagen der internen Servicekommunikation
-:title: {doctitle}
+:doctitle: Interne Servicekommunikation
+:document-type: Grundlagen
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
 
 // Executive Summary
 // include::preface.adoc[]
