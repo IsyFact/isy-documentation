@@ -1639,7 +1639,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>changelog.adoc</sourceDocumentName>
                             <outputFile>
-                                ${html-output-base-directory}/changelog.html
+                                ${html-output-base-directory}/Changelog.html
                             </outputFile>
                         </configuration>
                     </execution>
@@ -1656,7 +1656,7 @@
                             </sourceDirectory>
                             <sourceDocumentName>changelog.adoc</sourceDocumentName>
                             <outputFile>
-                                ${pdf-output-base-directory}/changelog.pdf
+                                ${pdf-output-base-directory}/Changelog.pdf
                             </outputFile>
                         </configuration>
                     </execution>

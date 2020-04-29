@@ -21,12 +21,6 @@ endif::[]
 toc::[]
 
 // --------------------------- AB HIER------------------------------------------
-:sectnums!:
-
-// Changelog
-include::changelog.adoc[leveloffset=1, tag=changelog-front]
-
-:sectnums:
 
 // Einleitung
 include::thisdoc.adoc[]
