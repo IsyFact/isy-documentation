@@ -1,22 +1,3 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-//
-:doctitle: Komponente Web-GUI IT-Sicherheitsregeln
-:title: {doctitle}
-
-// Zwangsplatz TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
-
-toc::[]
-
 // tag::it-sicherheitsregeln[]
 
 [[it-sicherheitsregeln-webgui]]

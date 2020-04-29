@@ -405,3 +405,11 @@ benutzen und in der Konfiguration eine `Clock` als Abhängigkeit definieren.
 Des Weiteren müssen sich auch Anwendungen an diese Vorgabe halten, um die Testunterstützung nutzen zu können.
 Insbesondere sind Aufrufe von `System.currentTimeMillis()` sowie der Varianten von `now()` auf Typen der Datums- und
 Zeittypen ohne Verwendung einer `Clock` bei Nutzung dieses Bausteins verboten!
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

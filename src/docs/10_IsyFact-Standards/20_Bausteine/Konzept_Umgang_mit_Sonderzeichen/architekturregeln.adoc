@@ -1,7 +1,7 @@
 // tag::architekturregeln[]
 
-[[architekturregeln-redis]]
-== Architekturregeln Redis
+[[architekturregeln-sonderzeichen]]
+== Architekturregeln Umgang mit Sonderzeichen
 
 include::inhalt.adoc[tags=architekturregel]
 // end::architekturregeln[]

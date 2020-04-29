@@ -1,27 +1,8 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-//
-:doctitle: Datum & Zeit Architekturregeln
-:title: {doctitle}
-
-// Zwangsplatz TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
-
-toc::[]
-
-
 // tag::architekturregeln[]
 
 [[architekturregeln-datum-zeit]]
 == Architekturregeln Datum & Zeit
 
 include::inhalt.adoc[tags=architekturregel]
+include::../Konzept_Datum_Zeit/inhalt.adoc[tags=architekturregel]
 // end::architekturregeln[]

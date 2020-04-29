@@ -1,27 +1,8 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-//
-:doctitle: Logging Architekturregeln
-:title: {doctitle}
-
-// Zwangsplatz TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
-
-toc::[]
-
-
 // tag::architekturregeln[]
 
 [[architekturregeln-logging]]
 == Architekturregeln Logging
 
 include::inhalt.adoc[tags=architekturregel]
+include::../Konzept_Logging/inhalt.adoc[tags=architekturregel]
 // end::architekturregeln[]

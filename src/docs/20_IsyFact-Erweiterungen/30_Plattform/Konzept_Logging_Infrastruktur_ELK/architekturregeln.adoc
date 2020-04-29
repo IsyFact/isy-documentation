@@ -1,7 +1,7 @@
 // tag::architekturregeln[]
 
-[[architekturregeln-redis]]
-== Architekturregeln Redis
+[[architekturregeln-elk]]
+== Architekturregeln Logging Infrastruktur ELK
 
 include::inhalt.adoc[tags=architekturregel]
 // end::architekturregeln[]

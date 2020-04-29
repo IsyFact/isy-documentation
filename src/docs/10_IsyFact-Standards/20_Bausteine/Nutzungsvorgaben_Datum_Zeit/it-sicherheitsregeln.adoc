@@ -1,26 +1,8 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-//
-:doctitle: Datum & Zeit IT-Sicherheitsregeln
-:title: {doctitle}
-
-// Zwangsplatz TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
-
-toc::[]
-
 // tag::it-sicherheitsregeln[]
 
 [[it-sicherheitsregeln-datum-zeit]]
 == IT-Sicherheitsregeln Datum & Zeit
 
 include::inhalt.adoc[tags=sicherheit]
+include::../Konzept_Datum_Zeit/inhalt.adoc[tags=sicherheit]
 // end::it-sicherheitsregeln[]

@@ -18,6 +18,9 @@ include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Se
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Web_GUI/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/10_Blaupausen/Grundlagen_interne_Servicekommunikation/architekturregeln.adoc[tags=architekturregeln]
 
+include::../../../10_IsyFact-Standards/20_Bausteine/Konzept_Fehlerbehandlung/architekturregeln.adoc[tags=architekturregeln]
+include::../../../10_IsyFact-Standards/20_Bausteine/Konzept_Umgang_mit_Sonderzeichen/architekturregeln.adoc[tags=architekturregeln]
+
 include::../../../10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Datum_Zeit/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Isy_Util/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Konfiguration/architekturregeln.adoc[tags=architekturregeln]
@@ -31,13 +34,12 @@ include::../../../10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Ueberwachun
 include::../../../10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/40_Methodik/Java-Programmierkonventionen/architekturregeln.adoc[tags=architekturregeln]
 
+include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Konzept_Session_Management/architekturregeln.adoc[tags=architekturregeln]
 include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_isy-session/architekturregeln.adoc[tags=architekturregeln]
 include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_IsyFact-Benutzerverwaltung/architekturregeln.adoc[tags=architekturregeln]
 
+include::../../../20_IsyFact-Erweiterungen/30_Plattform/Konzept_Logging_Infrastruktur_ELK/architekturregeln.adoc[tags=architekturregeln]
 include::../../../20_IsyFact-Erweiterungen/30_Plattform/Nutzungsvorgaben_Redis/architekturregeln.adoc[tags=architekturregeln]
-
-
-
 
 
 

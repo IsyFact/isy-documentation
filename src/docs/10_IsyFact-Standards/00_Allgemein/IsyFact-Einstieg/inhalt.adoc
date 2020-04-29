@@ -550,23 +550,13 @@ image::IF-Factory.png[align="center",width=70%,pdfwidth=70%]
 
 Während der gesamten Einarbeitung dient außerdem das <<IsyFactGlossar>> dazu, zentrale Begriffe der IsyFact nachzuschlagen.
 
-// Test der automatischen Zusammenführung von Regeln
+// Die unten stehenden Tags architekturregel[] und sicherheit[] muessen bestehen bleiben, solange die Tags nicht im Inhalt verwendet werden.
 
 // tag::architekturregel[]
-[ARCHITEKTURREGEL]
-====
-Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
-Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
-Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
-====
+
 // end::architekturregel[]
 
 // tag::sicherheit[]
-[SICHERHEIT]
-====
-Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
-Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
-====
-// end::sicherheit[]
 
+// end::sicherheit[]
 // end::inhalt[]

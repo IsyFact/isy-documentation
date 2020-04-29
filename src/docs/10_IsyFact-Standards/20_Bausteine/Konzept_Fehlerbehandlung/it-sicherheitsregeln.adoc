@@ -1,7 +1,7 @@
 // tag::it-sicherheitsregeln[]
 
-[[it-sicherheitsregeln-redis]]
-== IT-Sicherheitsregeln Redis
+[[it-sicherheitsregeln-fehlerbehandlung]]
+== IT-Sicherheitsregeln Fehlerbehandlung
 
 include::inhalt.adoc[tags=sicherheit]
 // end::it-sicherheitsregeln[]

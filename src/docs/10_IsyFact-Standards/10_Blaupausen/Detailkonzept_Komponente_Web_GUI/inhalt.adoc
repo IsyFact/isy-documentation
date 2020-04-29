@@ -64,20 +64,10 @@ Die Absicherung von Views (d.h. Masken) erfolgt auf Ebene des Dialogablaufs.
 Die GUI-Komponente verwendet zur Berechtigungsprüfung stets den Baustein Sicherheit.
 
 // tag::architekturregel[]
-[ARCHITEKTURREGEL]
-====
-Der Block ARCHITEKTURREGEL beschreibt Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
-Die Regeln zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
-Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
-====
+
 // end::architekturregel[]
 
 // tag::sicherheit[]
-[SICHERHEIT]
-====
-Der Block SICHERHEIT beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
-Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
-====
-// end::sicherheit[]
 
+// end::sicherheit[]
 // end::inhalt[]

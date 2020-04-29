@@ -1,7 +1,7 @@
 // tag::it-sicherheitsregeln[]
 
-[[it-sicherheitsregeln-redis]]
-== IT-Sicherheitsregeln Redis
+[[it-sicherheitsregeln-datum-zeit]]
+== IT-Sicherheitsregeln Datum & Zeit
 
 include::inhalt.adoc[tags=sicherheit]
 // end::it-sicherheitsregeln[]

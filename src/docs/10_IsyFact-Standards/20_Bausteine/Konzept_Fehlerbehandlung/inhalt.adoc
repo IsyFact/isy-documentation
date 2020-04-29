@@ -1031,3 +1031,11 @@ Der Grund hierfür ist die Anforderung des Aufrufers an die Schnittstelle, die F
 Technische checked Exceptions sind zu verwenden, um den Aufrufer zur Fehlerbehandlung zu zwingen.
 Der Aufrufer muss den Fehler behandeln und nicht in eine technische unchecked Exception wrappen.
 In Einzelfällen mag dies notwendig sein, muss dann aber mit dem Chefarchitekt abgestimmt werden.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

@@ -1,7 +1,7 @@
 // tag::it-sicherheitsregeln[]
 
-[[it-sicherheitsregeln-redis]]
-== IT-Sicherheitsregeln Redis
+[[it-sicherheitsregeln-sonderzeichen]]
+== Architekturregeln Umgang mit Sonderzeichen
 
 include::inhalt.adoc[tags=sicherheit]
 // end::it-sicherheitsregeln[]

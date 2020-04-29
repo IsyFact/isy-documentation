@@ -939,3 +939,12 @@ Damit die Zeichen in der Spalte „Glyph“ korrekt dargestellt werden, muss ein
 |1EF9 |ỹ |LATIN SMALL LETTER Y WITH TILDE
 |20AC |€ |EURO SIGN
 |====
+
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

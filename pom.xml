@@ -47,7 +47,7 @@
                 <version>1.6.0</version>
                 <executions>
 
-                    <!-- Erzeugt das Glossar (muss vor Literaturverzeichnis, da im Glossar Literaturverweise sein könnten
+                    <!-- Erzeugt das Glossar (muss vor Literaturverzeichnis, da im Glossar Literaturverweise sein könnten -->
                     <execution>
                         <id>generate-glossary</id>
                         <phase>generate-sources</phase>
@@ -62,9 +62,9 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution> -->
+                    </execution>
 
-                    <!-- Erzeugt das Literaturverzeichnis
+                    <!-- Erzeugt das Literaturverzeichnis -->
                     <execution>
                         <id>generate-bibliography</id>
                         <phase>generate-sources</phase>
@@ -79,9 +79,9 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>-->
+                    </execution>
 
-                    <!-- Erzeugt ...
+                    <!-- Erzeugt ... -->
 
                     <execution>
                         <id>generate-lists</id>
@@ -97,7 +97,7 @@
                                 <argument>${basedir}/src/docs</argument>
                             </arguments>
                         </configuration>
-                    </execution>-->
+                    </execution>
                     <execution>
                         <id>post-process-html</id>
                         <phase>process-resources</phase>
@@ -423,7 +423,7 @@
                         </configuration>
                     </execution>
 
-                    <!-- <execution>
+                   <execution>
                          <id>Detailkonzept_Komponente_Anwendungskern-html</id>
                          <phase>generate-resources</phase>
                          <goals>
@@ -1660,7 +1660,7 @@
                                  <pdf-style>isyfact-closed</pdf-style>
                              </attributes>
                          </configuration>
-                     </execution>-->
+                     </execution>
                     <execution>
                         <id>IsyFact-Architekturregeln-html</id>
                         <phase>generate-resources</phase>
@@ -1727,24 +1727,6 @@
                             <sourceDocumentName>master.adoc</sourceDocumentName>
                             <outputFile>
                                 ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-IT-Sicherheitsregeln.pdf
-                            </outputFile>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>Einstieg-Architekturregeln</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg
-                            </sourceDirectory>
-                            <sourceDocumentName>architekturregeln.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg-Architekturregeln.pdf
                             </outputFile>
                         </configuration>
                     </execution>
