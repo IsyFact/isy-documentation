@@ -49,8 +49,10 @@ Service-Schnittstellen bestehen in der Regel aus einem _Remote-Bean_, einer _Ser
 Das *Remote-Bean* ist ein Interface, welches die Service-Operationen als Methoden definiert.
 Es definiert ebenfalls die für den Service-Aufruf und die Antwort nötigen Transportobjekte sowie fachliche Exceptions.
 Oft wird das Remote-Bean zusammen mit allen direkt oder indirekt verwendeten Transportobjekten in einer eigenständigen Bibliothek paketiert, damit IT-Systeme die Schnittstellendefinitionen direkt mit ihren Aufrufern austauschen können.
-Die Bibliothek verwendet folgendes Namensschema: `<Anwendungsname>-<Schnittstellentechnologie>-sst-<Servicename>-vx.y-z.jar`.
-
+Die Bibliothek verwendet folgendes Namensschema:
+----
+<Anwendungsname>-<Schnittstellentechnologie>-sst-<Servicename>-vx.y-z.jar
+----
 Die *Service-Fassade* ist eine Klasse, welche die Service-Operationen als Methoden implementiert.
 Ihre Hauptaufgabe ist die Transformation der Service-Aufrufe in interne Aufrufe des Anwendungskerns sowie die Transformation dessen Antworten in Antworten der Service-Schnittstelle.
 Dabei transformiert sie die Geschäftsobjekte des Anwendungskerns in Transportobjekte der Service-Schnittstelle und umgekehrt.

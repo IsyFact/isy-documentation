@@ -275,7 +275,7 @@ Ausnahmen hiervon sind Querschnittsysteme wie das Outputmanagement das z.B. zur 
 === Interne und externe Servicekommunikation
 
 Wie in <<strukturierung-der-systemlandschaft>> beschrieben, kommunizieren IT-Systeme auf Basis von Services.
-Hierbei ist zu unterscheiden, ob ausschließlich IT-Systeme innerhalb Systemlandschaft miteinander kommunizieren oder ob die Kommunikation auch IT-Systeme einschließt, die außerhalb liegen (siehe <<image-overkommIF>>).
+Hierbei ist zu unterscheiden, ob ausschließlich IT-Systeme innerhalb der Systemlandschaft miteinander kommunizieren oder ob die Kommunikation auch IT-Systeme einschließt, die außerhalb liegen (siehe <<image-overkommIF>>).
 
 :desc-image-overkommIF: Überblick Kommunikation in der IsyFact
 [id="image-overkommIF",reftext="{figure-caption} {counter:figures}"]
