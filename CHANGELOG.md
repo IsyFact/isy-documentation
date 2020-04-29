@@ -3,6 +3,7 @@
 - `IFS-279`: Anleitung VS Code hinzugefügt und Ausführungsdefinitionen in der pom.xml erläutert
 - `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
 - `IFS-363`: Maven Central in Tutorial integrieren
+- `IFS-367`: Regelungen zu Präfixen bei Maven-Artefakten hinzugefügt
 - `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert
