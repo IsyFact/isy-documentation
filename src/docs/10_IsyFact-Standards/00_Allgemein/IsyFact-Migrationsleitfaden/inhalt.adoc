@@ -191,15 +191,15 @@ Siehe <<NutzungsvorgabenLogging>> Kapitel: Performance-Logging.
 * Die Überwachungsinformationen für Services werden über _micrometer_ bereitgestellt.
 Die eigentliche Überwachung erfolgt über einen AOP-Advice. Dieser wird per Java-Config konfiguriert:
 +
-Siehe <<KonzeptUeberwachungKonfiguration>> Kapitel: Informationen von Services.
+Siehe <<KonzeptKonfiguration>> Kapitel: Informationen von Services.
 * Die Implementierung von Ping- und Prüfmethoden wird über `HealthIndicator` realisiert.
 +
-Siehe <<KonzeptUeberwachungKonfiguration>> Kapitel: Vorgaben für die Prüfung der Verfügbarkeit.
+Siehe <<KonzeptKonfiguration>> Kapitel: Vorgaben für die Prüfung der Verfügbarkeit.
 * Die Verbindung zur Datenbank wird von einem `HealthIndicator` aus `isy-persistence` überwacht.
 Eine eventuell vorhandene manuelle Prüfung kann entfernt werden.
 * Das Loadbalancer-Servlet wird automatisch konfiguriert und der Eintrag in `web.xml` kann entfernt werden.
 +
-Siehe <<KonzeptUeberwachungKonfiguration>> Kapitel: Integration des Loadbalancer-Servlets.
+Siehe <<KonzeptKonfiguration>> Kapitel: Integration des Loadbalancer-Servlets.
 
 [[kapitel-polling]]
 == Polling

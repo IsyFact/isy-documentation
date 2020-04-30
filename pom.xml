@@ -1346,43 +1346,6 @@
                         </configuration>
                     </execution>
 
-
-                    <execution>
-                        <id>Konzept_Ueberwachung_Konfiguration-html</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung_Konfiguration
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptUeberwachungKonfiguration.html
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Konzept_Ueberwachung_Konfiguration-pdf</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>pdf</backend>
-                            <sourceDirectory>
-                                src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung_Konfiguration
-                            </sourceDirectory>
-                            <sourceDocumentName>master.adoc</sourceDocumentName>
-                            <outputFile>
-                                ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Ueberwachung_Konfiguration/Konzept_Ueberwachung_Konfiguration.pdf
-                            </outputFile>
-                        </configuration>
-                    </execution>
-
-
                     <execution>
                         <id>Nutzungsvorgaben_Isy_Util</id>
                         <phase>generate-resources</phase>
