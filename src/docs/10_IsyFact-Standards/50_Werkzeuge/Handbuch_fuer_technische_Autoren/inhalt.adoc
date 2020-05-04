@@ -317,40 +317,54 @@ Im Folgenden wird mit dem Bearbeiten der Dokumentbestandteile fortgefahren.
 [[vorlagedateien-bearbeiten]]
 == Dateien der Vorlage bearbeiten
 
+Dieser Abschnitt beschreibt, welche Attribute und Inhalte in den den Vorlagedateien (vgl. <<die-mustervorlage-vorbereiten>>) angepasst werden können-
+
 [[master.adoc-bearbeiten]]
 === master.adoc bearbeiten
 
-Die erste Datei, die Sie bearbeiten müssen ist die Datei `master.adoc`.
-// todo: kein bearb-Datum und Revisionsnummer mehr.
-Hier müssen der Titel, das Bearbeitungsdatum und die Revisionsnummer gesetzt werden.
-In dem folgenden Listing sehen Sie die ersten Zeilen des Quelltextes, den Sie im Vorlage-Dokument vorfinden werden.
+Zunächst werden die globalen Attribute aus der Dokumentenvorlage inkludiert, anschließend können einzelne Attribute gesetzt bzw. überschrieben werden (vgl. <<listing-master>>).
+Daraufhin werden die vorgefertigten Abschnitte `title.adoc` und `colophon.adoc` eingebunden.
+In `title.adoc` wird ein einheitlicher Titel aus den Attributen `doctitle` und `document-type` erzeugt.
+Die Datei `colophon.adoc` erzeugt einen einheitlichen Abschnitt mit Metadaten des Dokuments und die Lizenzbestimmungen.
 
 :desc-listing-master: master.adoc
 [id="listing-master",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-master}
 [source,asciidoc,indent=0]
 ----
- // ASCIIDOC Attribute
- include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
- //
- :doctitle: Titel des Dokuments
- :title: {doctitle}
+:doctitle: Super tolles Feature
+:document-type: Konzept
+:license-oss!:
+:factory: IsyFact-Erweiterungen
+
+// Wird normalerweise vom Maven-Plugin gesetzt
+// :revnumber: 1.0.5
+// :revdate: 2020-01-01
+
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 ----
 
-Ersetzen Sie den Mustertext des Attributs `:doctitle:` durch Ihren Dokumenttitel.
-Werden die Revisionsnummer (Versionsnummer) und das Revisionsdatum (Datum der Veröffentlichung) in Ihrem Projekt nicht zentral gesteuert, fügen Sie die beiden Attribute bitte zur `master.adoc` hinzu.
+NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft nur Dokumente, die nicht mit Hilfe des Maven-Plugins erzeugt werden.
+Ansonsten werden diese Attribute über das Maven-Plugin bereitgestellt (siehe <<listing-pom-asciidoc>>)
 
-:desc-listing-revision: Revisionsnummer und Revisionsdatum
-[id="listing-revision",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-revision}
-[source,asciidoc,indent=0]
-----
- :revnumber: Revisionsnummer
- :revdate: Revisionsdatum
-----
+<<table-master-attributes>> zeigt alle Attribute, die in der `master.adoc` Datei angepasst werden können.
 
-NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft in erster Linie die Dokumentation von IsyFact-Erweiterungen.
+:desc-table-master-attributes: Attribute der master.adoc
+[id="table-master-attributes",reftext="{table-caption} {counter:tables}"]
+.{desc-table-master-attributes}
+[cols="2,1,1,3",options="header"]
+|===
+|Attribut|Optional|Default|Beschreibung
+|`doctitle`|Nein||Titel des Dokuments
+|`document-type`|Ja||Dokumententyp (z.B. Konzept), welcher als Untertitel angezeigt wird
+|`factory`|Nein|IsyFact-Standards|Definiert, ob das Dokument zu den IsyFact-Standards oder IsyFact-Erweiterungen gehört
+|`license-oss`|Ja|true|Klassifiziert das Dokument entweder als Open Source oder als Closed Source
+|`revdate`|Nein||Release Datum des Bausteins oder Dokuments
+|`revnumber`|Nein||Versionsnummer des Bausteins oder Dokuments
+|===
 
 Bezieht sich das zu erstellende Dokument auf einen Baustein (Bibliothek) der IsyFact, so ist dieser Baustein inklusive der Version ebenfalls in der master.adoc anzugeben.
 In <<listing-master-bib>> wird beispielsweise auf den Baustein `isy-web` verwiesen.
@@ -1065,10 +1079,9 @@ Folgendes Plugin muss dem Element `<build><plugins>...</plugins></build>` hinzug
 Abschließend wird in die `pom.xml` das Asciidoc-Maven-Plugin integriert, das das Rendern der Dokumente übernimmt.
 Dazu ist folgendes Code-Snippet in das Element `<build><plugins>...</plugins></build>` einzufügen.
 
-
-:desc-pom-asciidoc: Integration des Asciidoc-Maven-Plugins
-[{id-equals}"listing-pom-asciidoc",reftext="{listing-caption} {counter:listings }"]
-.{desc-pom-asciidoc}
+:desc-listing-pom-asciidoc: Integration des Asciidoc-Maven-Plugins
+[id="listing-pom-asciidoc",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-pom-asciidoc}
 [source,xml,subs="attributes+"]
 ----
  <plugin>
