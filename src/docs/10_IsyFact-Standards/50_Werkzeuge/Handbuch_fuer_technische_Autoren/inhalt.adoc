@@ -317,7 +317,7 @@ Im Folgenden wird mit dem Bearbeiten der Dokumentbestandteile fortgefahren.
 [[vorlagedateien-bearbeiten]]
 == Dateien der Vorlage bearbeiten
 
-Dieser Abschnitt beschreibt, welche Attribute und Inhalte in den den Vorlagedateien (vgl. <<die-mustervorlage-vorbereiten>>) angepasst werden können-
+Dieser Abschnitt beschreibt, welche Attribute und Inhalte in den den Vorlagedateien (vgl. <<die-mustervorlage-vorbereiten>>) angepasst werden können.
 
 [[master.adoc-bearbeiten]]
 === master.adoc bearbeiten
@@ -348,7 +348,7 @@ Die Datei `colophon.adoc` erzeugt einen einheitlichen Abschnitt mit Metadaten de
 ----
 
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft nur Dokumente, die nicht mit Hilfe des Maven-Plugins erzeugt werden.
-Ansonsten werden diese Attribute über das Maven-Plugin bereitgestellt (siehe <<listing-pom-asciidoc>>)
+Ansonsten werden diese Attribute über das Maven-Plugin bereitgestellt (siehe <<listing-pom-asciidoc>>).
 
 <<table-master-attributes>> zeigt alle Attribute, die in der `master.adoc` Datei angepasst werden können.
 
