@@ -332,19 +332,19 @@ Die Datei `colophon.adoc` erzeugt einen einheitlichen Abschnitt mit Metadaten de
 .{desc-listing-master}
 [source,asciidoc,indent=0]
 ----
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-:doctitle: Super tolles Feature
-:document-type: Konzept
-:license-oss!:
-:factory: IsyFact-Erweiterungen
+ :doctitle: Super tolles Feature
+ :document-type: Konzept
+ :license-oss!:
+ :factory: IsyFact-Erweiterungen
 
-// Wird normalerweise vom Maven-Plugin gesetzt
-// :revnumber: 1.0.5
-// :revdate: 2020-01-01
+ // Wird normalerweise vom Maven-Plugin gesetzt
+ // :revnumber: 1.0.5
+ // :revdate: 2020-01-01
 
-include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+ include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
+ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 ----
 
 NOTE: Die manuelle Vergabe von Revisionsnummer und -datum betrifft nur Dokumente, die nicht mit Hilfe des Maven-Plugins erzeugt werden.
