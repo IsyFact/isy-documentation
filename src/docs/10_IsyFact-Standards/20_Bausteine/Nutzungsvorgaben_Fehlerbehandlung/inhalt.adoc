@@ -325,11 +325,13 @@ Anwendungsschnittstellen verwendet werden, folgende Vorgaben gemacht:
 Unabhängig von der eingesetzten Technologie gelten für die Antworten an das aufrufende Nachbarsystem folgende Anforderungen:
 
 *Technische Exeptions*
+
 Technische Exceptions sind mit einer allgemeinen Fehler-Nachricht an das aufrufende Nachbarsystem zurückzugeben.
 Zudem muss die Ausnahme-ID und die UUID übermittelt werden, damit der Fehler in der aufgerufenen Anwendung gefunden werden kann.
 Der tatsächliche Fehler wird im Error-Log der aufgerufenden Anwendung gespeichert und muss nachvollziehbar sein, sodass eine Fehlerbehebung möglich ist.
 
 *Fachliche Exceptions*
+
 Fachliche Exceptions sind mit einer ausführlichen und für den Fehler spezifischen Fehler-Nachricht an das aufrufende Nachbarsystem zurückzugeben.
 Die Fehler-Nachricht muss für den Anwender verständlich sein und sollte zur Lösung/Vermeidung des Fehlers beitragen.
 
