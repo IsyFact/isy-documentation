@@ -64,3 +64,5 @@
 - `IFS-187`: Überführung technischer Anteile aus Styleguide in Detailkonzept Web-GUI
 - `IFS-202`: Dokumentation DownloadHelper
 - `IFS-205`: Dokumentation zu horizontaler Navigation hinzugefügt
+- `IFS-218`: Hinweise zu DSGVO-Markern für das Logging hinzugefügt
+- `IFS-269`: Einrichtung Entwicklungsumgebung: Gliederungsebenen korrigiert
