@@ -1,4 +1,5 @@
 # 2.2.0
+- `IFS-563`: Dokumentation MDC-Filter
 
 # 2.1.0
 - `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
