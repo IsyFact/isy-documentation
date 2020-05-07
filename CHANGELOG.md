@@ -1,4 +1,5 @@
 # 2.2.0
+-`IFS-159`: Verwendungder Klasse IsyHttpInvokerServiceExporter anstatt HttpInvokerServiceExporter
 
 # 2.1.0
 - `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
