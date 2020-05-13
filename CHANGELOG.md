@@ -1,4 +1,5 @@
 # 1.8.1
+- `IFS-510`: Hinweis für Aufräumen aller Korrelations-Ids nach Serviceaufrufen hinzugefügt
 
 # 1.8.0
 - `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst

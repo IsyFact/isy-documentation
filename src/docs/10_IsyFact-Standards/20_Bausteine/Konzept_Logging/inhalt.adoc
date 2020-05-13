@@ -177,10 +177,10 @@ Log-Level, Log-Kategorie und Ereignisschlüssel werden in den Nutzungsvorgaben _
 Die Korrelations-ID ist immer mitzuloggen, damit die Logeinträge einzelnen Aufrufen zugeordnet und über die Komponenten der Anwendungs­landschaft verfolgt werden können.
 Die Korrelations-ID besteht aus einer Liste von IDs.
 Jede ID besteht ihrerseits wiederum aus einem UUID sowie einem optionalen Präfix. Die Korrelations-ID enthält die einzelnen IDs in der Reihenfolge, in der sie erzeugt wurden.
-Somit ist die letzte ID der Korrelations-ID stets die des aktuellen Systemaufrufs.
+Somit ist die letzte ID der Korrelations-ID stets die des aktuellen Systemaufrufs. Nach der Abarbeitung allen Systemaufrufen sollen alle bestehenden Korrelations-IDs aufgeräumt werden.
+Dafür soll die Methode entferneKorrelationIds() aus der Klasse MdcHelper verwendet werden.
 
 NOTE: UUID: Universally Unique Identifier
-
 
 
 Eine exemplarische Korrelations-ID ist demnach (als JSON-Array formatiert):
@@ -188,6 +188,8 @@ Eine exemplarische Korrelations-ID ist demnach (als JSON-Array formatiert):
 `{"c15638a2-4c38-4d18-b887-5ebd2a1c427d", +
 "f60143b3-3408-4501-9947-240ec1c48667", +
 "BATCH-c893d44f-3b8e-446e-a360-06a520440e64"}`
+
+NOTE: Die Klasse MdcHelper stellt die Funktion entferneKorrelationIds() für das Löschen aller Korrelations-Ids in MDC (Mapped Diagnostic Context) bereits (siehe <<NutzungsvorgabenLogging>>).
 
 [[nachricht]]
 === Nachricht
