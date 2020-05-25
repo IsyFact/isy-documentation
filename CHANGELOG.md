@@ -1,5 +1,6 @@
 # 1.8.1
 - `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
+- `IFS-551`: Aktualisierung der Dokumentation von WatchdogTasks
 
 # 1.8.0
 - `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
