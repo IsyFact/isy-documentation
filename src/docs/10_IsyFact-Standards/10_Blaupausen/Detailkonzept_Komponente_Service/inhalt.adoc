@@ -72,6 +72,9 @@ Dies geschieht durch die Annotation `@StelltLoggingKontextBereit` an der Methode
 Dabei gilt es zu beachten, dass die Annotation standardmäßig so konfiguriert ist, dass sie vor den Annotationen ohne Prioritätsangabe ausgeführt wird, so dass diese immer Zugriff auf die Korrelations-ID haben.
 Diese Reihenfolge wird durch Einfügen des Orders für den Advisor `stelltLoggingKontextBereitAdvisor` in der Autokonfiguration `IsyServiceApiCoreAutoConfiguration` erreicht.
 
+Dabei ist es zu beachten, dass die Annotation standardmäßig so konfiguriert ist, dass sie vor der Annotationen ohne Prioritätsangabe ausgeführt wird, so dass diese immer Zugriff auf die Korrelations-ID haben.
+Diese Reihenfolge wird durch Einfügen des Orders für den Advisor `stelltLoggingKontextBereitAdvisor` in der Autokonfiguration `IsyServiceApiCoreAutoConfiguration` erreicht.
+
 [NOTE]
 ====
 Die weiteren Inhalte zum Aufbau, zur Realisierung und zur Nutzung von Service-Schnittstellen wurden wegen ihrer Abhängigkeit zur konkreten Schnittstellentechnologie HTTP Invoker in den Baustein HTTP Invoker verschoben.
