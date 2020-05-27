@@ -20,6 +20,16 @@
 # 1.8.1
 - `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
 
+# 1.8.0
+- `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
+- `IFS-259`: DSGVO Anforderungen in Logging-Konzept integriert
+- `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
+- `IFS-375`: Verweis auf Versionierungskonzept ergänzt und redundante Texte entfernt
+- `IFS-409`: Namenskonventionen: Batchparameter eingefügt
+- `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
+- `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom formatiert und getestet.
+- `IFS-468`: Anpassung Dozer-Link nach Umzug auf GitHub (ab Dozer 6.x)
+
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
 - `IFE-15`: Beschreibungen 4-Augen-Prinzip erweitert
