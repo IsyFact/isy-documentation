@@ -50,12 +50,13 @@ Es reicht also folgender Abschnitt, um eine Bibliothek einzubinden:
 = Datenhaltung
 
 In diesem Kapitel wird die Implementierung der Datenhaltung einer Anwendung beschrieben.
-Die Datenhaltung besteht im Wesentlichen aus den Entitätsklassen und den zugehörigen Data Access Objects (DAOs).
+Die Datenhaltung besteht im Wesentlichen aus den Entitätsklassen (Entity) und den zugehörigen Data Access Objects (DAOs).
+Alle Konzepte und Vorgaben zum Thema Persistenz und Datenzugriff stehen im <<DetailkonzeptKomponenteDatenzugriff>>.
 
 [[designvorgaben]]
 == Designvorgaben
 
-* Der eigentliche Datenbankzugriff wird über Java Persistence API (JPA) gekapselt.
+* Der eigentliche Datenbankzugriff wird über die Java Persistence API (JPA) gekapselt.
 Als Implementierung für die JPA wird Hibernate verwendet.
 * Das Datenbank-Mapping wird über Annotation in den Entitätsklassen festgelegt.
 * Der Zugriff auf Entitäten erfolgt immer über DAOs oder durch die Traversierung des persistenten Datenmodells.
@@ -66,6 +67,7 @@ Als Implementierung für die JPA wird Hibernate verwendet.
 * Der Datenzugriff erfolgt entweder über die Komponenten-Schnittstelle oder im Fall der Basisdaten direkt über die Basisdaten-DAOs.
 * Für persistente Entitäten, die über eine Komponentenschnittstelle angeboten werden, werden eigene Schnittstellenobjekte definiert, die per Deep-Copy gefüllt werden. Hierfür wird ein Bean-Mapper verwendet.
 Innerhalb einer Teilanwendung dürfen persistente Entitäten allerdings über Komponentengrenzen hinweg genutzt werden.
+* DAOs und Entitätsklassen werden in einer bestimmten Packetstrucktur abgelegt (siehe <<DetailkonzeptKomponenteDatenzugriff>>).
 * Die Transaktionssteuerung wird per AOP in der Service-Schicht durchgeführt (siehe Kapitel <<anbieten-von-service-schnittstellen>>).
 +
 [NOTE]
@@ -77,23 +79,6 @@ Besteht der fachliche Schlüssel der Entität aus genau einem Attribut, so wird 
 Ansonsten wird ein künstlicher technischer Primärschlüssel verwendet.
 ====
 
-[[packagestruktur]]
-== Packagestruktur
-
-* Die DAOs- und Entitätsklassen werden im Persistence-Package der entsprechenden Komponente implementiert.
-* Für DAOs ist dies +
-`<organisation>.<domäne>.<system>.persistence.<komponente>.dao.impl`. +
-Dazu wird für jedes DAO ein Interface in +
- `<organisation>.<domäne>.<system>.persistence.<komponente>.dao` +
- angelegt
-+
-NOTE: Für das Bundesverwaltungsamt ist dies z.B. `de.bund.bva`
-
-* Entitäten werden in +
-`<organisation>.<domäne>.<system>.persistence.<komponente>.entity` +
-implementiert
-* Die Schnittstellen-Klassen sind Teil der Schnittstelle der zugehörigen Komponente und werden daher im Package der entsprechenden
-Komponente implementiert: `<organisation>.<domäne>.<system>.core.<komponente>.ausgabedaten`
 
 [[klassendesign]]
 == Klassendesign
