@@ -1875,6 +1875,40 @@
                             </outputFile>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>IsyFact-Changelog-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                .
+                            </sourceDirectory>
+                            <sourceDocumentName>changelog.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/Changelog.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Changelog-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                .
+                            </sourceDirectory>
+                            <sourceDocumentName>changelog.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/Changelog.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <!-- Sicherstellen, dass alle POMs Maven-Team-Standard konform sortiert sind. -->

@@ -23,6 +23,7 @@ endif::[]
 
 toc::[]
 
+
 // Einleitung
 include::thisdoc.adoc[]
 
@@ -30,6 +31,9 @@ include::thisdoc.adoc[]
 include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 // Anhänge
 //include::anhaenge.adoc[leveloffset=1]
@@ -44,3 +48,4 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+

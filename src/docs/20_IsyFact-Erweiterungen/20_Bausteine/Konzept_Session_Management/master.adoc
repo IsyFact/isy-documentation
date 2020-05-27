@@ -17,6 +17,7 @@ endif::[]
 
 toc::[]
 
+
 // Einleitung
 include::thisdoc.adoc[leveloffset=1]
 
@@ -24,6 +25,9 @@ include::thisdoc.adoc[leveloffset=1]
 include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]
@@ -37,6 +41,7 @@ include::listoffigures.adoc[]
 include::listoflistings.adoc[]
 // Index
 // include::{isy-dokumentvorlagen}/docs/common//index.adoc[]
+
 
 // Anhänge
 //include::anhaenge.adoc[leveloffset=1]

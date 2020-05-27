@@ -34,6 +34,9 @@ include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
 // Literaturverzeichnis
@@ -44,6 +47,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
 
 // Index
 // include::{isy-dokumentvorlagen}/docs/common/index.adoc[]

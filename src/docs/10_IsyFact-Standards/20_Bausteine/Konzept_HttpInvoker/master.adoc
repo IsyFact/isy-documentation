@@ -26,6 +26,12 @@ include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
+// Anhänge
+include::anhaenge.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
 // Literaturverzeichnis

@@ -28,6 +28,9 @@ include::inhalt.adoc[tags=inhalt]
 
 
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
 // Literaturverzeichnis  (gebaut)
@@ -38,6 +41,9 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
+
+
+
 
 // --------------------------- AB HIER------------------------------------------
 

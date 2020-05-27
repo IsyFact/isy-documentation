@@ -273,13 +273,13 @@ empfohlenen Produkte.
 [cols="28,22"]
 |====
 2+|*Basistechnologien*
-|Programmiersprache |Java 7
+|Programmiersprache |Java 8
 |Web-Technologie |XHTML
 |Architekturmuster |Service Orientierte Architektur (SOA)
 2+|*Systemsoftware*
 |Server-Betriebssystem |SuSE Linux Enterprise Server
 |Datenbankmanagementsystem |Oracle 11g
-|JEE-Applikationsserver |Apache Tomcat v6.0
+|JEE-Applikationsserver |Apache Tomcat v8.5
 |Webserver |Apache
 2+|*Bibliotheken für die Anwendungsentwicklung*
 .2+|Web-Framework |Apache MyFaces
