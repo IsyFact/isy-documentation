@@ -1,15 +1,12 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben Isy-Session
-:title: {doctitle}
-// Dokument unter Closed Source Lizenz
+:doctitle: Baustein Sessionmanagement
+:document-type: Nutzungsvorgaben
 :license-oss!:
 :factory: IsyFact-Erweiterungen
 
-// Zwangsplatz des TOC
 
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 

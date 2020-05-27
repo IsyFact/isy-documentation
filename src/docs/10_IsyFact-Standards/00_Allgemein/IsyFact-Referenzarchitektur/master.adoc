@@ -1,12 +1,8 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: IsyFact-Referenzarchitektur
-:title: {doctitle}
+:doctitle: Referenzarchitektur
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Inhaltsverzeichnis

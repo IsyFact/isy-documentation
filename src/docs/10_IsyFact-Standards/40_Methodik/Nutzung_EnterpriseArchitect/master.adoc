@@ -1,12 +1,9 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzung von Enterprise Architect
-:title: {doctitle}
+:doctitle: Enterprise Architect
+:document-type: Handbuch
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 
