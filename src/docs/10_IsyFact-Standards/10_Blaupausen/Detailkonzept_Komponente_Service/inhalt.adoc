@@ -277,9 +277,10 @@ Die FactoryBean erwartet eine Service-URL und ein Interface zur Initialisierung.
 Der Host-Teil der URL muss in jedem Fall in der betrieblichen Konfiguration der Anwendung zu finden sein.
 Das Interface ist im Schnittstellen-JAR verfügbar.
 
-Die Nutzung des hier im Beispiel verwendeten `TimeoutWiederholungHttpInvokerRequestExecutor` ist optional.
-Dieser Executor bricht nach dem angegebenen Timeout die Anfrage ab und wiederholt sie bis zur maximalen angegebenen
-Wiederholungsanzahl.
+Die Nutzung des hier im Beispiel verwendeten `TimeoutWiederholungHttpInvokerRequestExecutor` ist zwar optional, wird aber dringend empfohlen, um Langläufer zu vermeiden.
+Dieser Executor bricht nach dem angegebenen Timeout die Anfrage ab und wiederholt sie bis zur maximalen angegebenen Wiederholungsanzahl.
+In <<GrundlagenInterneServicekommunikation>> im Kapitel 4.3 wird eine maximale Anzhal von 3 Wiederholungen und ein Timeout Wert von 2s vorgeschlagen.
+Diese Werte sollten auch hier verwendet werden.
 
 Wenn die Anwendung isy-logging (<<NutzungsvorgabenLogging>>) nutzt, muss statt der Spring-eigenen Factory die erweiterte `IsyHttpInvokerProxyFactoryBean` genutzt werden.
 Sie versieht die RemoteBeans automatisch mit einem `LogMethodInterceptor`, der die Aufrufzeiten der ausgehenden Aufrufe misst und loggt.
