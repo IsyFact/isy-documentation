@@ -2,12 +2,22 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: IsyFact-Referenzarchitektur
+:doctitle: Nutzungsvorgaben HTTP Invoker
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3"]
+|====
+|Name |Art |Version
+|`isy-serviceapi-core` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
+|`isy-serviceapi-sst` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
+|====
+
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -28,7 +38,6 @@ include::inhalt.adoc[tags=inhalt]
 
 // Glossar
 include::glossary.adoc[]
-
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
@@ -37,6 +46,3 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
-
-// Anhänge
-// include::anhaenge.adoc[leveloffset=1]

@@ -1,9 +1,7 @@
 = Nutzungsvorgaben Sicherheit: Inhalt
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-
 // tag::inhalt[]
-
 [[grundkonzepte-und-konfiguration]]
 == Grundkonzepte und Konfiguration
 
@@ -299,44 +297,10 @@ Im Parameter `attributes` stehen die für den Zugriff erforderlichen Rechte.
 === Autorisierung an einer Service-Schnittstelle
 
 Beim Aufruf von Service-Schnittstellen wird der Aufrufkontext über Annotationen und Interceptoren an den Service-Methoden ausgelesen.
-Die Autorisierung geschieht ebenfalls auf Ebene der Service-Methoden.
-Weitere Details zur Umsetzung der Autorisierung an Service-Schnittstellen sind in <<DetailkonzeptKomponenteService>> beschrieben.
-
-[[service-absicherung]]
-==== Absicherung der Service-Methoden
-
-Im Gegensatz zu Aufrufen der grafischen Oberfläche werden bei Aufrufen von Service-Methoden keine HTTP-Header zum Transport des Aufrufkontextes verwendet.
-Stattdessen wird der Aufrufkontext als Schnittstellenparameter in Form eines Transportobjekts mit jedem Aufruf übergeben.
-Dieses Transportobjekt, eine Instanz der Klasse `AufrufKontextTo`, muss die Informationen zum anfragenden Anwender und dessen Rollen enthalten.
-
-Die Annotation `@StelltAufrufKontextBereit` signalisiert einem Interceptor, das Transportobjekt auszulesen und die bereitgestellten Informationen in den Aufrufkontext zu übertragen.
-
-Mit dieser Voraussetzung können Service-Methoden durch die Annotation `@Gesichert` abgesichert werden.
-Als Standard-Parameter werden alle Rechte aufgelistet, die eine Anfrage für einen Aufruf beinhalten muss.
-Die Rechte sind immer konjunktiv verknüpft.
-Eine disjunktive Verknüpfung von Rechten ist nicht möglich.
-
-Alle Annotationen nutzen Spring AOP.
-Daher sind sie nur an Methoden mit öffentlicher Sichtbarkeit (`public`) von Spring-Beans funktionsfähig.
-Für HTTP-Invoker-Schnittstellen werden die Service-Methoden der Service-Implementierung (hinter der Exception-Fassade) mit den Annotationen ausgestattet.
-
-Folgendes Beispiel zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch ausgelesen und anschließend die Autorisierung gegen die Baustein Sicherheit durchgeführt wird.
-
-:desc-listing-absichern-einer-service-methode: Absichern einer Service-Methode
-[id="listing-absichern-einer-service-methode",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-absichern-einer-service-methode}
-[source,java]
-----
-@StelltAufrufKontextBereit
-@Gesichert("DialogA.Aufrufen", "DialogB.Aufrufen")
-public void abgesicherteMethode(AufrufKontextTo kontext, ...) {
-    ...
-}
-----
-
-Erfüllt ein Aufrufer die Forderungen der Annotation `@Gesichert` nicht, so wird ein Fehler des Typs `AutorisierungFehlgeschlagenException` erzeugt.
-Der Fehler wird in der Regel nicht lokal behandelt, sondern einfach zurückgegeben.
-Letztlich deuten fehlende Rechte meist auf einen unberechtigten Zugriff oder einen Fehler in der Konfiguration einer aufrufenden Anwendung hin, so dass hier die normale Fehlerbehandlung greift.
+Anhand der Informationen aus dem Aufrufkontext geschieht die Autorisierung auf ähnliche Art und Weise.
+Zentral hierfür sind die Annotationen `@StelltAufrufKontextBereit` und `@Gesichert`.
+Alle Annotationen nutzen Spring AOP und sind daher nur an Methoden mit öffentlicher Sichtbarkeit (`public`) von Spring-Beans funktionsfähig.
+Weitere Details zur Umsetzung der Autorisierung an Service-Schnittstellen sind in den Nutzungsvorgaben der Bausteine zur Umsetzung von Services beschrieben.
 
 [[batch-autorisierung]]
 === Autorisierung eines Batches
@@ -539,6 +503,12 @@ So wird die Korrelations-ID beim Aufruf eines Nachbar­systems als Bestandteil d
 Im Fall einer zentralen Authentifizierung kümmert sich die mitgelieferte Implementierung des Bausteins Sicherheit um die Entgegennahme der Korrelations-ID.
 
 Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übertragen und das IT-System muss für jede Anfrage eine neue Korrelations-ID manuell erzeugen (s. <<listing-manuelle-erzeugung-korrelations-id>>).
+
+[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
+=== Entgegennahme der Korrelations-ID an einer Service-SST
+
+Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP Invoker Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autokonfiguration von `isy-serviceapi-core` durchgeführt.
 
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]
 == Verwenden anwendungsspezifischer Aufrufkontexte

@@ -616,7 +616,7 @@ KommunikationXyzRemoteBean
 [[url]]
 ==== URL
 
-Die Service-URL einer HTTP-Invoker-Schnittstelle muss folgendem Schema entsprechen:
+Die Service-URL einer HTTP Invoker Schnittstelle muss folgendem Schema entsprechen:
 
 :desc-table-ssurl1: Schnittstellen: URL
 [id="table-ssurl1",reftext="{table-caption} {counter:tables}"]
@@ -653,7 +653,7 @@ An dritter Stelle steht die Maven-Versionsnummer des Artefakts.
 |====
 2+|Artefakt-ID von Schnittstellen
 |*Schema* m|<Anwendungsname>-<protokoll>-sst-<sstname>-<version>
-|*Beispiele* m|xyz-ga-httpinvoker-sst-auskunft-v29.1
+|*Beispiele* m|xyz-ga-rest-sst-auskunft-v29.1
 |====
 
 [[transportobjekte]]

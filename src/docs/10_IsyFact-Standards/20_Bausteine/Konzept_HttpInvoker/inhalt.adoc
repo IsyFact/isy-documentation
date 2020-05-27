@@ -1,0 +1,93 @@
+= Konzept HTTP Invoker: Inhalt
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
+[[kommunikation-mit-http-invoker]]
+== Kommunikation mit HTTP Invoker
+
+IT-Systeme können HTTP Invoker zur Kommunikation mit anderen IT-Systemen innerhalb der Systemlandschaft einsetzen.
+Das aufgerufene IT-System exportiert seine Service-Schnittstellen in Form von HTTP Invoker Schnittstellen und das aufrufende IT-System ruft diese direkt auf.
+Da HTTP Invoker auf serialisierten Java-Objekten basiert, können ausschließlich Java-basierte IT-Systeme miteinander kommunizieren.
+Die Kommunikation mit HTTP Invoker verläuft außerdem synchron.
+Asynchrone Kommunikation ist von HTTP Invoker nicht vorgesehen und wird im Weiteren auch nicht beschrieben.
+
+Um eine möglichst lose Kopplung der IT-Systeme zu erreichen, werden folgende Festlegungen getroffen:
+
+* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht:*
+Es wird stets eine explizite Schnittstellen-Bean (Remote-Bean) als HTTP Invoker Schnittstelle implementiert.
+* *Es werden keine Datenbank-Entitäten verfügbar gemacht:*
+Jegliche über HTTP Invoker zu transportierende Objekte sind Transportobjekte.
+* *Es werden keine Exceptions des Anwendungskerns geworfen:* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Service-Schnittstelle verwendet werden.
+
+IT-Systeme definieren für ihre HTTP Invoker Schnittstellen u.a. das Remote-Bean, alle direkt und indirekt verwendeten Transportobjekte sowie alle über die Schnittstelle transportierten Exceptions.
+Es stellt diesen Teil der HTTP Invoker Schnittstelle als Bibliothek anderen IT-Systemen zur Verfügung, sodass diese die Schnittstelle aufrufen können.
+Es ergibt sich so folgendes Szenario für einen Aufruf einer HTTP Invoker Schnittstelle (siehe <<image-KapsCallInvoke>>).
+
+:desc-image-KapsCallInvoke: Aufbau der Kommunikation über HTTP Invoker
+[id="image-KapsCallInvoke",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-KapsCallInvoke}
+image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
+
+
+[[aufbau-der-service-logik]]
+== Aufbau der Service-Logik
+
+Die Service-Logik besteht, wie im <<DetailkonzeptKomponenteService>> beschrieben, aus einem Remote-Bean, einer Exception-Fassade und einer Service-Fassade pro Service. Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
+
+:desc-image-AufbauServLogik: Aufbau der Service-Logik mit HTTP Invoker
+[id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-AufbauServLogik}
+image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
+
+Im Wesentlichen besteht die Service-Logik also aus drei Klassen, die im Folgenden näher beleuchtet werden.
+
+=== Aufbau des Remote-Beans
+
+Als Remote-Bean wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert.
+Es definiert mittels der passenden Spring-Konfiguration im IT-System eine HTTP Invoker Schnittstelle.
+
+Jeder Methode des Remote-Beans wird als erster Parameter das Transportobjekt des Aufrufkontextes übergeben.
+Der Aufrufkontext sorgt dafür, dass jeder Methode des Remote-Beans die Login-Daten (Benutzer, Behörde, ...), die Rollen und die Korrelations-ID zur Verfügung stehen.
+
+=== Aufbau der Exception-Fassade
+
+Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Logik geworfenen Exceptions in Exceptions der Service-Schnittstelle.
+Hierzu implementiert die Exception-Fassade das Remote-Bean-Interface der Service-Schnittstelle und agiert als Wrapper um die Service-Fassade.
+Es ist wichtig, an der Exception-Fassade den Logging-Kontext zu setzen, damit die Log-Einträge zu den Exceptions mit der korrekten Korrelations-ID versehen sind.
+Dazu stellt der Baustein entsprechende Annotationen bereit.
+
+=== Aufbau der Service-Fassade
+
+Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik.
+Sie transformiert die Transportobjekte der Service-Schnittstelle in Objekte des Anwendungskerns und umgekehrt, in der Regel mithilfe eines Bean Mappers.
+Sie führt außerdem die Autorisierung des Aufrufs aus.
+Hierzu verwendet sie den Baustein Sicherheit (siehe <<KonzeptSicherheit>>).
+
+[[auslieferung-einer-service-schnittstelle]]
+== Auslieferung einer Service-Schnittstelle
+
+IT-Systeme teilen sich folgende Java-Klassen der HTTP Invoker Schnittstelle:
+
+* Java-Interface der Schnittstelle (Remote-Bean),
+* Java-Klassen der Transportobjekte,
+* Java-Klassen der Transport-Exceptions.
+
+Diese Klassen werden üblicherweise in einer kleinen Bibliothek pro Service bereitgestellt.
+
+Durch diese enge Kopplung zwischen mehreren IT-Systemen spielt die Java-Version, mit der die Schnittstellen-Bibliotheken kompiliert wurden, eine zentrale Rolle.
+Sie darf nicht neuer sein als die Java-Version aller beteiligter IT-Systeme.
+Es wird daher empfohlen, Schnittstellen mit der ältesten Java-Version zu kompilieren und auszuliefern, die für IT-Systeme verwendet werden darf.
+
+[[versionierung]]
+== Versionierung
+
+Eine HTTP Invoker Schnittstelle vereint mehrere Service-Methoden in einem Remote-Bean.
+Für die Versionierung bedeutet das, dass stets die komplette Remote-Bean-Schnittstelle versioniert wird und nicht die einzelnen Methoden der Remote-Bean-Schnittstelle.
+
+
+[[namenskonventionen]]
+== Namenskonventionen
+
+Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich aufgebaut sein.
+Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben definiert.
+// end::inhalt[]

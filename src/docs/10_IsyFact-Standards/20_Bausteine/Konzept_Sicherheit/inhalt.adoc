@@ -136,7 +136,7 @@ Diese enthalten bereits die Logik zur Weiterleitung des Aufrufkontextes.
 
 Gibt es diese nicht, muss das Nachbarsystem direkt aufgerufen werden.
 Hierbei muss das aufrufende IT-System stets ein entsprechendes Transportobjekt befüllen und mit dem Aufruf an das Nachbarsystem übergeben.
-Für die Technologie Spring HTTP-Invoker stellt die IsyFact passende Transportobjekte in der Bibliothek `isy-serviceapi-sst` bereit.
+Für die Technologie Spring HTTP Invoker stellt die IsyFact passende Transportobjekte in der Bibliothek `isy-serviceapi-sst` bereit.
 
 
 [[rollen-und-rechte]]

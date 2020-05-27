@@ -2,36 +2,29 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Grundlagen der internen Servicekommunikation
+:doctitle: Konzept HTTP Invoker
 :title: {doctitle}
 
 // Zwangsplatz des TOC
 
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
-
-// Executive Summary
-// include::preface.adoc[]
-
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 
-:toc-title!: 
+:toc-title!:
 
 endif::[]
 
 toc::[]
 
-// Einleitung 
-include::thisdoc.adoc[]
+// Einleitung
+include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt 
-include::inhalt.adoc[leveloffset=1]
+// Inhalt
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
-
-// Anhänge
-include::anhaenge.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]
