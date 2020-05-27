@@ -605,7 +605,7 @@ Grundsätzlich können nach dem Schema `spring.jpa.properties.<Schlüssel>=<Wert
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=false
 
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12gDialect
 spring.jpa.properties.hibernate.connection.isolation=4
 spring.jpa.properties.hibernate.connection.useUnicode=true
 spring.jpa.properties.hibernate.connection.characterEncoding=utf-8
@@ -614,6 +614,9 @@ spring.jpa.properties.hibernate.jdbc.use_streams_for_binary=true
 spring.jpa.properties.hibernate.format_sql=false
 spring.jpa.properties.hibernate.default_schema=<Default Schema>
 spring.jpa.properties.hibernate.ejb.metamodel.generation=enabled
+
+# Folgender Parameter ist optional, da er dem Standard entspricht
+spring.jpa.properties.hibernate.transaction.coordinator_class=jdbc
 ----
 
 [[konfiguration-der-datasource]]
