@@ -26,9 +26,10 @@ include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
+
+
 // Glossar
 include::glossary.adoc[]
-
 // Literaturverzeichnis  (gebaut)
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis  (gebaut)

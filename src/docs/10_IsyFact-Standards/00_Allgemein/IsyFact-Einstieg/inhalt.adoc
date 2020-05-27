@@ -553,4 +553,14 @@ Um die IsyFact als Ganzes kennenzulernen, zu verstehen und einzu­setzen, empfeh
 image::IF-Factory.png[align="center",width=70%,pdfwidth=70%]
 
 Während der gesamten Einarbeitung dient außerdem das <<IsyFactGlossar>> dazu, zentrale Begriffe der IsyFact nachzuschlagen.
+
+// Die unten stehenden Tags architekturregel[] und sicherheit[] muessen bestehen bleiben, solange die Tags nicht im Inhalt verwendet werden.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

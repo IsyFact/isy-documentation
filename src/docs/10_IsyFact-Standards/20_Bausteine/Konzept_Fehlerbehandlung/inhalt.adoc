@@ -117,3 +117,11 @@ Daher benötigt jede Komponente drei Exception-Hierarchien:
 Diese werden im Dokument <<NutzungsvorgabenFehlerbehandlung>> beschrieben.
 
 // end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

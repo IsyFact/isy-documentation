@@ -1,0 +1,8 @@
+// tag::architekturregeln[]
+
+[[architekturregeln-task]]
+== Architekturregeln Task Scheduling
+
+include::inhalt.adoc[tags=architekturregel]
+include::../Konzept_Task_Scheduling/inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

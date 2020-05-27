@@ -1452,4 +1452,11 @@ SELECT version
 Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schema-Version vorhanden.
 Liefert es keinen Wert zurück, dann ist die erwartete Schema-Version nicht vorhanden.
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

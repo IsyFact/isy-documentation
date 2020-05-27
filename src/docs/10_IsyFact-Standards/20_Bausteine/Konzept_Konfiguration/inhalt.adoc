@@ -71,3 +71,11 @@ h|Umgebungsabhängigkeit erlaubt |nein |ja |nein
 h|Erlaubte Zugriffsarten der Anwendung |nur lesend |nur lesend |lesend und schreibend
 h|Speicherung|Als Datei im Resources-Ordner |Als Property-Datei im Config-Ordner |In der Datenbank
 |====
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

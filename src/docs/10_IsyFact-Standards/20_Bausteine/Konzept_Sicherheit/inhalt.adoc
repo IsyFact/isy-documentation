@@ -347,3 +347,11 @@ Genauso funktioniert auch das Freischalten einer neuen Fachanwendung für einen 
 In beiden Fällen muss zur eigentlichen Inbetriebnahme, anstatt einer aufwändigen Migration, nur ein Schalter in der betrieblichen Konfiguration umgelegt werden.
 
 // end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

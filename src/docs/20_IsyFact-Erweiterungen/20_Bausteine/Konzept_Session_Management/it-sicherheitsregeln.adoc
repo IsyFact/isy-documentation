@@ -1,0 +1,7 @@
+// tag::it-sicherheitsregeln[]
+
+[[it-sicherheitsregeln-datum-zeit]]
+== IT-Sicherheitsregeln Datum & Zeit
+
+include::inhalt.adoc[tags=sicherheit]
+// end::it-sicherheitsregeln[]

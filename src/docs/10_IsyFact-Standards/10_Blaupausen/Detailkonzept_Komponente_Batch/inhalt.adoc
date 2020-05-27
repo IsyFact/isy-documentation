@@ -1224,4 +1224,11 @@ Wichtig ist, dass die einheitliche Außenschnittstelle der Batchschritte erhalte
 
 Die Dokumentation der abweichenden Batchimplementierung erfolgt im Systementwurf und wird daraus in die Systemdokumentation übernommen.
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

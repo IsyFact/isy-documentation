@@ -290,3 +290,11 @@ public void someTest() {
     DateTimeUtil.getClock().advanceBy(Duration.ofHours(1));
     // Erneuter Test der Anwendung eine Stunde später...
 ----
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

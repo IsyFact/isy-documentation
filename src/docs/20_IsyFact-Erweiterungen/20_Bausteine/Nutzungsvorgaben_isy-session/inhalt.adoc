@@ -152,34 +152,10 @@ Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werde
 
 
 
+// tag::architekturregel[]
 
+// end::architekturregel[]
 
+// tag::sicherheit[]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// end::sicherheit[]

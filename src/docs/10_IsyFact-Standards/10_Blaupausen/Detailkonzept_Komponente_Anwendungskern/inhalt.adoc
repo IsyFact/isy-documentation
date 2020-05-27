@@ -501,4 +501,12 @@ Schnittstellen-Beans transformieren die Geschäftsobjekte des Anwendungskerns in
 Die Stack-Traces der Exceptions werden dabei nicht übertragen, da diese internen Informationen dem Aufrufer keinen Mehrwert bieten.
 Für das Logging des IT-Systems selbst sind sie jedoch wertvoll.
 Statt AOP ist das im <<DetailkonzeptKomponenteService>> beschriebene Konstrukt der Exception-Fassade zu verwenden.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

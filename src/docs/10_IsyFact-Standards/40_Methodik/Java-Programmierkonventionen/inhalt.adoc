@@ -643,3 +643,11 @@ Zur Implementierung von `equals()` und `hashCode()` müssen die Möglichkeiten d
 
 * `static boolean Objects.equals(Object a, Object b)`
 * `static int Objects.hash(Object... values)`
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

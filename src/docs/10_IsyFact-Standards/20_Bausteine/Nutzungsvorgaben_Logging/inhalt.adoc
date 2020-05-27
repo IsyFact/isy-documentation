@@ -1515,3 +1515,11 @@ Der Aufruf dauerte <Dauer in Millisekunden> ms.
 |EISYLO02003 |INFO |JOURNAL |Die Systemversion ist <Versionsnummer>.
 |EISYLO02004 |INFO |JOURNAL |Der Laufzeitparameter <Parametername> besitzt den Wert <Wert>.
 |====
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

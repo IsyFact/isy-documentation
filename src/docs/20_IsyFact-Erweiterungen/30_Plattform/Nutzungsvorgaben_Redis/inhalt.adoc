@@ -359,3 +359,12 @@ Damit Redis diese Events erzeugt, ist in der `redis-default.conf` folgender Para
 
 Details zur Bereinigung abgelaufener Sessions finden sich unter
 http://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-expiration
+
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

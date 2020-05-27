@@ -363,3 +363,10 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 |*Produktauswahl* |Vorlage Produktauswahl |DOT
 |====
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

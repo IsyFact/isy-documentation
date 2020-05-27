@@ -284,3 +284,11 @@ Weiterführende technische Details zu Services sind im Dokument <<DetailkonzeptK
 Neben der GUI, Services, Batch, Anwendungskern und Datenhaltung benötigt ein IT-System mehrere querschnittliche Funktionalitäten.
 Diese querschnittlichen Komponenten sind in jeweils eigenen Dokumenten beschrieben.
 Eine Übersicht dazu liefert das Dokument <<IsyFactEinstieg>>.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

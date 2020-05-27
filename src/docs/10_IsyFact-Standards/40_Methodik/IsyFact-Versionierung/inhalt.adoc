@@ -179,3 +179,11 @@ Zusätzlich muss MAJOR Teil des Packagepfades sein.
 Dies ermöglicht das parallele Einbinden mehrere Versionen ein- und derselben Schnittstelle.
 
 Beispiele: 1.0, 2.33-SNAPSHOT, 1.3-alpha
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

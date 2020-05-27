@@ -24,3 +24,11 @@ Das Package `de.bund.bva.isyfact.util.spring` enthält Werkzeuge für den Umgang
 
 * `MessageSourceHolder`: Der `MessageSourceHolder` ist eine Referenz auf die aktuelle `MessageSource`-Bean.
 Zusätzlich bietet er Convenience-Funktionen zum Auslesen von `ResourceBundle`-Einträgen aus der `MessageSource`.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
