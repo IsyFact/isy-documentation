@@ -10,6 +10,9 @@
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
 - `RF-316`: Detailkonzept Datenzugriff um Namenskonventionen für Datenbankschemas erweitert
 
+# 1.8.1
+- `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
+
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
 - `IFS-353`: Ablösung von Dozer durch Orika beschrieben

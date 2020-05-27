@@ -88,6 +88,12 @@ public class BeispielExceptionFassade implements BeispielRemoteBean
 }
 ----
 
+[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
+==== Entgegennahme der Korrelations-ID an einer Service-SST
+
+Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
+Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autokonfiguration von `isy-serviceapi-core` durchgeführt.
+
 === Aufbau der Service-Fassade
 
 Die Service-Fassade übernimmt die restlichen Aufgaben der Service-Logik:
