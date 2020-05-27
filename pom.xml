@@ -388,7 +388,7 @@
                     </execution>
 
 
-
+                    
                     <execution>
                         <id>IsyFact-Whitepaper-html</id>
                         <phase>generate-resources</phase>
@@ -423,6 +423,42 @@
                             </outputFile>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>IsyFact-Migrationsleitfaden-html</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Migrationsleitfaden
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${html-output-base-directory}/IsyFact-Standards/Allgemein/IsyFactMigrationsleitfaden.html
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>IsyFact-Migrationsleitfaden-pdf</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>pdf</backend>
+                            <sourceDirectory>
+                                src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Migrationsleitfaden
+                            </sourceDirectory>
+                            <sourceDocumentName>master.adoc</sourceDocumentName>
+                            <outputFile>
+                                ${pdf-output-base-directory}/10_IsyFact-Standards/00_Allgemein/IsyFact-Migrationsleitfaden.pdf
+                            </outputFile>
+                        </configuration>
+                    </execution>
+
 
                     <execution>
                         <id>Detailkonzept_Komponente_Anwendungskern-html</id>

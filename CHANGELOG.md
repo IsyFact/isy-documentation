@@ -10,14 +10,15 @@
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
 - `RF-316`: Detailkonzept Datenzugriff um Namenskonventionen für Datenbankschemas erweitert
-
-# 1.8.1
-- `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
+- `IFS-571`: Erstellung eines Migrationsleitfadens IsyFact 1.8 nach IsyFact 2.x
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
 - `IFS-353`: Ablösung von Dozer durch Orika beschrieben
 - `IFS-354`: REST als Option für interne Schnittstellen beschrieben
+
+# 1.8.1
+- `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
 
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
