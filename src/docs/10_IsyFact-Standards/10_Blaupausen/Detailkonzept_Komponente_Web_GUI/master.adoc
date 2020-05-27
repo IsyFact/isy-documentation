@@ -17,10 +17,6 @@ NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden
 |isy-style |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
 
-
-// Executive Summary
-// include::preface.adoc[]
-
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 

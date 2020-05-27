@@ -3,11 +3,9 @@
 
 Die Architektur der IsyFact-Dokumentation besteht aus drei Kernkomponenten:
 
-1. Zentrale Dokumentation (isy-documentation)
-
-2. Bausteindokumentation
-
-2. Dokumentvorlagen (isy-dokumentvorlagen)
+. Zentrale Dokumentation (isy-documentation)
+. Bausteindokumentation
+. Dokumentvorlagen (isy-dokumentvorlagen)
 
 Im Folgenden werden die Komponenten erläutert.
 

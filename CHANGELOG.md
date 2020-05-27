@@ -12,6 +12,7 @@
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
 - `RF-316`: Detailkonzept Datenzugriff um Namenskonventionen für Datenbankschemas erweitert
 - `IFS-571`: Erstellung eines Migrationsleitfadens IsyFact 1.8 nach IsyFact 2.x
+- `IFS-293`: Zusammenfassung für das Management in Einleitung integriert
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards

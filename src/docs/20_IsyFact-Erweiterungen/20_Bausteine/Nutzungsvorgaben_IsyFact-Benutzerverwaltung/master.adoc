@@ -16,8 +16,6 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
 |isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
 |====
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
