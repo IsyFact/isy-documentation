@@ -1,7 +1,0 @@
-// tag::architekturregeln[]
-
-[[architekturregeln-interne-servicekommunikation]]
-== Architekturregeln der internen Servicekommunikation
-
-include::inhalt.adoc[tags=architekturregel]
-// end::architekturregeln[]

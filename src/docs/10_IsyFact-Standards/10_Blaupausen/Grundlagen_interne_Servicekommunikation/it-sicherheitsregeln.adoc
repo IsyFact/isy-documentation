@@ -1,7 +1,0 @@
-// tag::it-sicherheitsregeln[]
-
-[[it-sicherheitsregeln-interne-servicekommunikation]]
-== IT-Sicherheitsregeln der internen Servicekommunikation
-
-include::inhalt.adoc[tags=sicherheit]
-// end::it-sicherheitsregeln[]
