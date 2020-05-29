@@ -1,3 +1,7 @@
+= IsyFact-Referenzarchitektur: Inhalt
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+// tag::inhalt[]
 [[uebersicht]]
 = Übersicht über die IsyFact
 
@@ -871,6 +875,7 @@ Dies umfasst:
 
 Diese Vereinfachungen sind für ein Kleinverfahren nicht zwingend, sondern sie dienen dazu, das Verfahren in einem angemessenen Kosten-Nutzen-Verhältnis zu erstellen.
 Falls die Kosten-Nutzen-Betrachtung es erlaubt, kann auf die Vereinfachungen natürlich auch verzichtet werden.
+// end::inhalt[]
 
 // tag::architekturregel[]
 

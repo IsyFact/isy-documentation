@@ -388,6 +388,7 @@ Aufgrund von Wartungsaktivitäten oder Batches (z.B. einer Datenmigration) in ei
 Andere Services wie z.B. eine Auskunft können während dieser Zeit regulär ausgeführt werden.
 Während der Meldungsservice deaktiviert ist, wird dem Aufrufer eine entsprechende Fehlermeldung zurückgesendet.
 Da die Anforderung besteht, auch andere Services vorübergehend deaktivieren zu können, werden generell alle Services deaktivierbar gemacht.
+// end::inhalt[]
 
 // tag::architekturregel[]
 
@@ -396,4 +397,3 @@ Da die Anforderung besteht, auch andere Services vorübergehend deaktivieren zu 
 // tag::sicherheit[]
 
 // end::sicherheit[]
-// end::inhalt[]

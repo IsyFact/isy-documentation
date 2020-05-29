@@ -504,12 +504,6 @@ Im Fall einer zentralen Authentifizierung kümmert sich die mitgelieferte Implem
 
 Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übertragen und das IT-System muss für jede Anfrage eine neue Korrelations-ID manuell erzeugen (s. <<listing-manuelle-erzeugung-korrelations-id>>).
 
-[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
-=== Entgegennahme der Korrelations-ID an einer Service-SST
-
-Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP Invoker Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
-Die zur Verwendung der Annotation notwendige Konfiguration wird durch die Autokonfiguration von `isy-serviceapi-core` durchgeführt.
-
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
