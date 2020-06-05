@@ -1,3 +1,6 @@
+= Detailkonzept Batch: Einleitung
+
+// tag::inhalt[]
 [[Einleitung]]
 == Einleitung
 
@@ -11,3 +14,4 @@ Die Funktionsweise des Batchrahmens und die verschiedenen Startarten sowie die K
 Dort werden auch die Transaktionssteuerung und die Restart-Funktionalität beschrieben, die es ermöglicht, abgebrochene Batches fortzusetzen.
 Die Überwachung mittels JMX ist ebenfalls enthalten.
 Kapitel <<die-ausfuehrungsbeans>> beschreibt schließlich, wie die konkrete Batchlogik über Ausführungsbeans angebunden wird.
+// end::inhalt[]

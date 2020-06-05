@@ -1,9 +1,11 @@
+= Migrationsleitfaden: Inhalt
 
+// tag::inhalt[]
 [[kapitel-fachanwendung]]
-= Fachanwendung
+== Fachanwendung
 
 [[kapitel-spring-konfiguration]]
-== Spring Konfiguration
+=== Spring Konfiguration
 
 * Die Konfiguration von Spring wird von XML auf Java-Config umgestellt.
 +
@@ -13,14 +15,14 @@ Siehe  <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Vorgaben zur Spring-Ko
 Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfigurationsparameter über Property-Objekte konfigurieren.
 
 [[kapitel-konfiguration]]
-== Konfigurationsparameter
+=== Konfigurationsparameter
 
 * Die Bereitstellung von Konfigurationsparametern innerhalb der Fachanwendung erfolgt über `@ConfigurationProperties`-Klassen.
 Soll die Bibliothek `isy-konfiguration` weiterhin verwendet werden, muss die Bean aus der Spring-Konfiguration entfernt werden.
 Die Liste mit den Property-Dateien wird nach `application.properties` übertragen.
 
 [[Applikationsklasse, Fachanwendung/Applikationsklasse]]
-== Applikationsklasse
+=== Applikationsklasse
 * Für eine auf IsyFact 2.x basierende Anwendung wird eine _Applikationsklasse_ im Root-Package der Anwendung erstellt.
 +
 Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel:  Vorgaben zur Spring-Konfiguration.
@@ -38,11 +40,11 @@ public class IsyFact2Application extends SpringBootServletInitializer {
 
 
 [[kapitel-web-xml]]
-== Deployment Descriptor web.xml
+=== Deployment Descriptor web.xml
 
 Bei einer Migraton von einer IsyFact 1.x Version auf IsyFact 2.x sind Änderungen an der `web.xml` Datei (Deployment Descriptor) vorzunehmen.
 
-=== Spring Kontext
+==== Spring Kontext
 
 * Die Konfiguration des Spring-Kontextes erfolgt über Java-Config / Component Scan. Die Deklaration in der `web.xml` entfällt.
 +
@@ -52,7 +54,7 @@ Bei einer Migraton von einer IsyFact 1.x Version auf IsyFact 2.x sind Änderunge
 image::webxml-spring-context.png[align="center"]
 
 [[web-xml-logging, Logging]]
-=== Logging
+==== Logging
 
 * Die Deklaration zum Logging in der `web.xml` entfällt.
 +
@@ -64,7 +66,7 @@ Siehe Kapitel <<kapitel-logging>>.
 image::webxml-logging.png[align="center"]
 
 [[spring-context-loader, Spring Context Loader]]
-=== Spring Context Loader
+==== Spring Context Loader
 
 * Der Spring-Kontext wird über `ServletInitializer` hochgefahren. Die Listener-Deklaration in der `web.xml` entfällt.
 +
@@ -76,7 +78,7 @@ Siehe Kapitel <<Applikationsklasse>>.
 image::webxml-contextloader.png[align="center"]
 
 [[dispatcher-servlet, Dispatcher Servlet]]
-=== Dispatcher Servlet
+==== Dispatcher Servlet
 
 * Das Dispatcher-Servlet wird automatisch von Spring Boot konfiguriert.
 Die Trennung von Web- und Anwendungskontext entfällt.
@@ -87,7 +89,7 @@ Die Trennung von Web- und Anwendungskontext entfällt.
 image::webxml-dispatcher-servlet.png[align="center"]
 
 [[loadbalancer, Loadbalancer]]
-=== Loadbalancer
+==== Loadbalancer
 
 * Das LoadBalancer-Servlet entfällt.
 +
@@ -99,7 +101,7 @@ Siehe Kapitel <<kapitel-ueberwachung>>.
 image::webxml-loadbalancer.png[align="center"]
 
 [[http-invoker-service-exporter, HttpInvokerServiceExporter ]]
-=== HttpInvokerServiceExporter
+==== HttpInvokerServiceExporter
 
 * Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
 +
@@ -124,7 +126,7 @@ image::webxml-httpinvoker.png[align="center"]
 
 
 [[kapitel-unittests]]
-== Unit-Tests
+=== Unit-Tests
 
 * Verwendung der Annotation `SpringBootTest` bei den Unit-Tests
 +
@@ -138,10 +140,10 @@ public class EintragControllerTest {
 ----
 
 [[kapitel-bausteine]]
-= Bausteine
+== Bausteine
 
 [[kapitel-persistenz]]
-== Persistenz
+=== Persistenz
 
 * Die Spring-Konfiguration für die Persistenz muss geändernt werden (_EntityManager_, _DataSource_).
 Ebenso wird die betriebliche Konfiguration aus `jpa.properties` nach `application.properties` übertragen.
@@ -151,7 +153,7 @@ Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfiguration von JPA �
 * Sollen die alten DAOs aus `isy-persistence` weitergenutzt werden, dann sind diese als Beans in Java-Config zu übernehmen.
 
 [[kapitel-logging, Bausteine/Logging]]
-== Logging
+=== Logging
 
 * Die Konfiguration des Loggings erfolgt über `logback.xml` und zusätzliche Properties in `application.properties`.
 +
@@ -185,7 +187,7 @@ isy.logging.anwendung.typ=GA
 Siehe <<NutzungsvorgabenLogging>> Kapitel: Performance-Logging.
 
 [[kapitel-ueberwachung, Bausteine/Überwachung]]
-== Überwachung
+=== Überwachung
 
 * `isy-ueberwachung` setzt _Spring Boot Actuator_ und _micrometer_ ein.
 * Die Überwachungsinformationen für Services werden über _micrometer_ bereitgestellt.
@@ -202,7 +204,7 @@ Eine eventuell vorhandene manuelle Prüfung kann entfernt werden.
 Siehe <<KonzeptKonfiguration>> Kapitel: Integration des Loadbalancer-Servlets.
 
 [[kapitel-polling]]
-== Polling
+=== Polling
 
 * Die Konfiguration (Polling-Cluster und JMX-Verbindungen) müssen nach `application.properties` überführt werden.
 +
@@ -212,7 +214,7 @@ Siehe <<NutzungsvorgabenPolling>> Kapitel: Konfiguration über Properties.
 Siehe <<NutzungsvorgabenPolling>> Kapitel: Spring-Konfiguration
 
 [[kapitel-batchrahmen]]
-== Batchrahmen
+=== Batchrahmen
 
 * Die Spring-Konfiguration muss in Java-Config überführt werden.
 Eine gesonderte Konfiguration des Anwendungskontextes für den Batchrahmen ist nicht zwingend notwendig.
@@ -224,7 +226,7 @@ Siehe <<DetailkonzeptKomponenteBatch>> Kapitel: Die Konfiguration der Spring-Kon
 Siehe <<DetailkonzeptKomponenteBatch>> Kapitel: Konfigurationsdatei und Kommandozeilen-Parameter
 
 [[kapitel-util, Util]]
-== Standards
+=== Standards
 * In allen Bausteinen (isy-util, isy-sonderzeichen, isy-exeption, ...) der IsyFact Bibliothek `ìsyfact-standards` haben sich die bisherigen Packagepfade von
 +
  de.bund.bva.pliscommon.xxx
@@ -239,7 +241,7 @@ geändert
 
 
 [[kapitel-sicherheit]]
-== Sicherheit
+=== Sicherheit
 
 * Bei der Überführung in Java-Config können bestimmte Beans entfernt werden.
 Automatisch konfiguriert werden die `@Gesichert`-Annotation, die `AufrufKontextFactory` und die Thread-Scopes `thread` und `request` für Spring.
@@ -253,9 +255,9 @@ Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel: Caching von Authentifizierunge
 
 
 [[kapitel-task-scheduler]]
-== Task Scheduler
+=== Task Scheduler
 
-=== Task Spring Konfiguration
+==== Task Spring Konfiguration
 
 * Das Einbinden der XML-Spring-Konfiguration entfällt.
 +
@@ -273,7 +275,7 @@ Siehe <<NutzungsvorgabenTaskScheduling>> Kapitel:  Konfigurationsschlüssel
 
 
 [[kapitel-service, Bausteine/Service]]
-== Service
+=== Service
 
 * Die Konfiguration der HttpInvoker muss nach Java-Config überführt werden.
 * Beans vom Typ `HttpInvokerServiceExporter` werden automatisch von Spring Boot konfiguriert.
@@ -287,7 +289,7 @@ public HttpInvokerServiceExporter meldung() {
 
 
 [[kapitel-dokumentation-vzwei]]
-= Dokumentation
+== Dokumentation
 Die Dokumentation des Major Release Zweigs IsyFact 2.x (Konzepte, Bausteine, ...) basiert auf dem Stand der IsyFact 1.8.0.
 Sollten sich durch die Versionsanhebung Änderungen, z.B. bei der Konfiguration eines IsyFact Bausteins ergeben haben, so wurden diese im jeweiligen Dokument aktualisiert. Es wird daher empfohlen, bei der Migration jeweils die Dokumentation der Version 2.x zu berücksichtigen.
 
@@ -299,7 +301,7 @@ image::dokumentenversion.png[align="center"]
 Auf folgende Dokumentenänderungen (seit IsyFact IF-1.8) soll besonders hingewiesen werden:
 
 [[dok-frondend-technologien]]
-== Frontend Technologien
+=== Frontend Technologien
 Das Dokument `Detailkonzept Komponente-WebGUI` enthielt bisher Erläuterungen zur Bibliothek `isy-webgui`, welche eine rein JSF-basierende Frontend-Demo-Anwendung erzeugt, in der JSF-Widgets beispielhaft implementiert und damit dargestellt werden.
 
 Mit der Einführung von Angular als zweites, großes von der IsyFact unterstütztes Frontend-Framework, wurde das bisherige Dokument `Detailkonzept Komponente-WebGUI` aufgesplittet in
@@ -315,7 +317,7 @@ und den neuen Dokumenten
 
 
 [[dok-sicherheit-grundschutz]]
-== IT-Grundschutz
+=== IT-Grundschutz
 Sicherheit ist ein zentrales Thema einer jeden Fachanwendung.
 Bei der Umsetzung von Fachanwendungen in IT-Systeme wird ein Großteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
 
@@ -327,7 +329,7 @@ Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowi
 
 
 [[kapitel-isyfact-Referenzarchitektur]]
-== IsyFact Referenzarchitektur
+=== IsyFact Referenzarchitektur
 Auf eine Änderung im Dokument `IsyFact Referenzarchitektur` soll besonders hingewiesen werden:
 
 *Service-Framework:* Das Service-Framework dient als Kapsel für die Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
@@ -344,4 +346,4 @@ In der Regel wird ein extern angebotener Service noch durch zusätzliche Daten o
 Diese werden in der Komponente Service-Logik implementiert.
 
 Siehe <<IsyFactReferenzarchitekturITSystem>> Kapitel: Servicezugriffe
-
+// end::inhalt[]

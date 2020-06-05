@@ -1,5 +1,8 @@
+= Nutzungsvorgaben Redis: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Die IsyFact sieht die Nutzung eines zentralen Session-Speichers vor, um Sessions von Webanwendungen zu persistieren und diese damit allen redundanten Instanzen einer Anwendung verfügbar zu machen.
 Dies wird im <<KonzeptSessionManagement>> erläutert.
@@ -8,7 +11,7 @@ Die vorliegenden Nutzungvogaben beschreibt den Aufbau eines Redis-Clusters als z
 Es richtet sich an alle, die am Aufbau und Betrieb des Clusters beteiligt sind.
 
 [[aufbau-und-zweck-des-dokuments]]
-== Aufbau und Zweck des Dokuments
+=== Aufbau und Zweck des Dokuments
 
 Die Nutzungsvorgaben sind wie folgt aufgebaut:
 
@@ -19,3 +22,4 @@ Die Nutzungsvorgaben sind wie folgt aufgebaut:
 * Kapitel <<themensammlung>>: Beinhaltet eine Sammlung von wichtigen Aspekte des Betriebs von Redis
 
 Die Beschreibungen aus diesen Kapiteln über Installation, Betrieb und Überwachung sind bei Einrichtung des Clusters in ein umgebungsspezifisches Betriebshandbuch zu überführen.
+// end::inhalt[]

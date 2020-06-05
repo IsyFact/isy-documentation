@@ -1,10 +1,13 @@
+= Konzept Session Management: Inhalt
+
+// tag::inhalt[]
 [[session-manager]]
-= Session-Manager
+== Session-Manager
 
 Als Session-Manager wird die Bibliothek `isy-session` verwendet, die eine vereinfachte Konfiguration von Spring Session (der eigentlichen Implementierung des Session-Managers) ermöglicht.
 
 [[entwurf-isy-session]]
-== Entwurf isy-session
+=== Entwurf isy-session
 
 `isy-session` kapselt und vereinfacht die Nutzung von Spring-Session:
 
@@ -21,12 +24,12 @@ NOTE: http://docs.spring.io/spring-session/docs/current/reference/html5/guides/h
 Die Konfigurationsparameter werden über `isy-konfiguration` aus der betrieblichen Konfigurationsdatei `session.properties` gelesen.
 
 [[entwurfsentscheidungen]]
-== Entwurfsentscheidungen
+=== Entwurfsentscheidungen
 
 Es wurden folgende Architekturentscheidungen zur Umsetzung des Session-Managers getroffen:
 
 [[vermeidung-konkurrierender-zugriffe]]
-=== Vermeidung konkurrierender Zugriffe
+==== Vermeidung konkurrierender Zugriffe
 
 :desc-table-avoidconcu: Vermeidung konkurrierender Zugriffe auf den Session-Speicher
 [id="table-avoidconcu",reftext="{table-caption} {counter:tables}"]	
@@ -97,12 +100,12 @@ Dies wird akzeptiert, so lange das System in einem konsistenten Zustand bleibt.
 |====
 
 [[session-speicher]]
-= Session-Speicher
+== Session-Speicher
 
 Als Session-Speicher wird ein Redis-Cluster verwendet.
 
 [[entwurf-redis-cluster]]
-== Entwurf Redis-Cluster
+=== Entwurf Redis-Cluster
 
 Der Redis-Cluster besteht aus Master- und Slave-Knoten.
 Jeder Master besitzt einen Slave, auf den die Daten des Masters repliziert werden.
@@ -117,12 +120,12 @@ image::konzept_session_management_003.png[align="center",pdfwidth=100%,width=80%
 Die vollständige technische Infrastruktur des Clusters wird im <<NutzungsvorgabenRedis>> beschrieben.
 
 [[entwurfsentscheidungen-1]]
-== Entwurfsentscheidungen
+=== Entwurfsentscheidungen
 
 Es wurden folgende Architekturentscheidungen zum Aufbau des Session-Speichers getroffen:
 
 [[absicherung-des-session-speichers]]
-=== Absicherung des Session-Speichers
+==== Absicherung des Session-Speichers
 
 :desc-table-savesave: Absicherung des Session-Speichers
 [id="table-savesave",reftext="{table-caption} {counter:tables}"]	
@@ -160,7 +163,7 @@ In der Datenzone haben ausschließlich sichere Clients Zugriff auf Redis.
 |====
 
 [[trennung-der-sessions-der-einzelnen-anwendungen]]
-=== Trennung der Sessions der einzelnen Anwendungen
+==== Trennung der Sessions der einzelnen Anwendungen
 
 :desc-table-spitsess: Trennung der Sessions der einzelnen Anwendungen
 [id="table-spitsess",reftext="{table-caption} {counter:tables}"]	
@@ -195,7 +198,7 @@ Die Trennung der Instanzen ist im Hinblick auf die Datensicherheit des Systems n
 |====
 
 [[persistierung-der-daten-auf-der-festplatte]]
-=== Persistierung der Daten auf der Festplatte
+==== Persistierung der Daten auf der Festplatte
 
 :desc-table-pershdd: Persistierung der Daten auf der Festplatte
 [id="table-pershdd",reftext="{table-caption} {counter:tables}"]	
@@ -228,7 +231,7 @@ Dies wird akzeptiert.
 |====
 
 [[betrieb-in-der-logik--und-verarbeitungszone]]
-=== Betrieb in der Logik- und Verarbeitungszone
+==== Betrieb in der Logik- und Verarbeitungszone
 
 :desc-table-usezone: Betrieb in der Logik- und Verarbeitungszone
 [id="table-usezone",reftext="{table-caption} {counter:tables}"]	
@@ -258,9 +261,7 @@ Im Normalfall wird Redis in der Logik- und Verarbeitungszone betrieben.
 
 |====
 
-
-
-
+// end::inhalt[]
 
 // tag::architekturregel[]
 

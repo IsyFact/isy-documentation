@@ -1,5 +1,4 @@
 = Detailkonzept Anwendungskern: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 [[aufbau-des-anwendungskerns]]

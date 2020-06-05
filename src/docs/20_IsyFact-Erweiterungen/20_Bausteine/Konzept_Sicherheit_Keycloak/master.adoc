@@ -1,36 +1,10 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
-:doctitle: Konzept Sicherheit Keycloak
-:title: {doctitle}
-:license-oss!:
-:factory: IsyFact-Erweiterungen
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Sicherheit Keycloak
+:document-type: Konzept
 
 toc::[]
 
-// Einleitung
-include::thisdoc.adoc[leveloffset=1]
+colophon::[factory="IsyFact-Erweiterungen", open-source="false"]
 
-// Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
 
-:sectnums!:
-
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-//  Tabellenverzeichnis
-include::listoftables.adoc[]
-//  Abbildungsverzeichnis
-include::listoffigures.adoc[]
-//  Listings-Verzeichnis
-include::listoflistings.adoc[]
+include::inhalt.adoc[tags=inhalt]

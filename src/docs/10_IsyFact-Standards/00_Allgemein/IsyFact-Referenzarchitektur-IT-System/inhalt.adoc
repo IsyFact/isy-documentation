@@ -1,10 +1,11 @@
-[[technische-architektur]]
-= Technische Architektur
+= Softwaretechnische Architektur: Inhalt
 
+// tag::inhalt[]
+== Technische Architektur
 Die technische Architektur (<<glossar-T-Architektur>>) beschreibt die Strukturierung der IsyFact-Plattform in IT-Systeme, den Aufbau einzelner IT-Systeme und die verwendeten übergreifenden technischen Konzepte.
 
 [[die-referenzarchitektur-eines-it-systems]]
-== Die Referenzarchitektur eines IT-Systems
+=== Die Referenzarchitektur eines IT-Systems
 
 Die individuell erstellten Anwendungssysteme der Anwendungslandschaft müssen technisch gleichartig aufgebaut sein.
 Daher wird im Folgenden die Referenz-Architektur beschrieben, nach der diese Anwendungssysteme software-technisch in IT-Systeme umgesetzt werden.
@@ -48,7 +49,7 @@ Dadurch können auf einfache Art technische Attribute in die Außenschnittstelle
 Details zur Konstruktion eines IT-Systems werden in <<IsyFactSystementwurf>> festgelegt und für das jeweilige IT-System dokumentiert.
 
 [[uebergreifende-technische-konzeption]]
-== Übergreifende technische Konzeption
+=== Übergreifende technische Konzeption
 
 Für den Aufbau eines IT-Systems gelten einige übergreifende technische Regeln, die im Folgenden vorgestellt werden.
 
@@ -91,7 +92,7 @@ Um diesen großen Funktionsumfang abzudecken, wird ein Produkt zum objekt-relati
 Details hierzu sind in <<DetailkonzeptKomponenteDatenzugriff>> dokumentiert.
 
 [[der-anwendungskern]]
-== Der Anwendungskern
+=== Der Anwendungskern
 
 Zentraler Baustein eines IT-Systems ist der Anwendungskern.
 Im Anwendungskern werden die fachlichen Funktionen (Anwendungslogik) der Anwendung realisiert.
@@ -145,7 +146,7 @@ Komponenten, die externe Services kapseln, sind im Idealfall von außen nicht vo
 Diese Komponenten haben damit zwei Hauptaufgaben: Sie müssen die technische Aspekte der Kommunikation umsetzen und sie müssen Schnittstellendaten und Exceptions der aufgerufenen Services in die Datenformate der Anwendung transformieren.
 
 [[gui]]
-== GUI
+=== GUI
 
 Bei graphischen Benutzeroberflächen (engl. Graphical User Interface, GUI) gibt es eine Vielfalt unterschiedlichster Komplexitäten: von einfachen Stammdatensystemen über Dialogsysteme mit vielen einfachen Dialogen, die aber intensiv miteinander interagieren, bis zu Clients mit wenigen, aber sehr komplexen Dialogen.
 Eine gute Architektur muss für alle relevanten Varianten einen tragfähigen Rahmen schaffen.
@@ -202,7 +203,7 @@ Vorgaben zum Layout sind in <<Styleguide>> beschrieben.
 von Details zur Umsetzung von Berechtigungen sind in <<Berechtigungskonzept>> enthalten.
 
 [[batch]]
-== Batch
+=== Batch
 
 Ein <<glossar-Batch>> realisiert eine eigenständige Verarbeitung ohne direkten Benutzereingriff während des Ablaufes.
 An einen Batch werden verschiedene Anforderungen gestellt: Ausführungszeitpunkt, Abhängigkeiten, Datenvolumen, ausgeführte Funktionalität, Eingaben, Ausgaben usw.
@@ -240,7 +241,7 @@ Es gibt einen Batch-Rahmen, der dies unterstützt.
 Weiterführende technische Details zum Batch sind im Dokument <<DetailkonzeptKomponenteBatch>> enthalten.
 
 [[servicezugriffe]]
-== Servicezugriffe
+=== Servicezugriffe
 
 Services des Anwendungskerns, die vom IT-System zur Verfügung gestellt werden sollen, werden durch die Komponenten von „Service“ innerhalb der Schicht „Nutzung“ angereichert und nach außen gegeben.
 Dabei können alle Dienste des <<glossar-Anwendungskern,Anwendungskerns>> genutzt werden.
@@ -279,11 +280,12 @@ Weiterführende technische Details zu Services sind im Dokument <<DetailkonzeptK
 
 
 [[unterstuetzung-technischer-funktionalitaeten]]
-== Unterstützung technischer Funktionalitäten
+=== Unterstützung technischer Funktionalitäten
 
 Neben der GUI, Services, Batch, Anwendungskern und Datenhaltung benötigt ein IT-System mehrere querschnittliche Funktionalitäten.
 Diese querschnittlichen Komponenten sind in jeweils eigenen Dokumenten beschrieben.
 Eine Übersicht dazu liefert das Dokument <<IsyFactEinstieg>>.
+// end::inhalt[]
 
 // tag::architekturregel[]
 

@@ -1,5 +1,3 @@
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
 // tag::inhalt[]
 [[architekturregeln-der-Isyfact]]
 == Architekturregeln der IsyFact
@@ -16,7 +14,6 @@ include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Ba
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Datenzugriff/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Service/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Web_GUI/architekturregeln.adoc[tags=architekturregeln]
-include::../../../10_IsyFact-Standards/10_Blaupausen/Grundlagen_interne_Servicekommunikation/architekturregeln.adoc[tags=architekturregeln]
 
 include::../../../10_IsyFact-Standards/20_Bausteine/Konzept_Fehlerbehandlung/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/20_Bausteine/Konzept_Umgang_mit_Sonderzeichen/architekturregeln.adoc[tags=architekturregeln]

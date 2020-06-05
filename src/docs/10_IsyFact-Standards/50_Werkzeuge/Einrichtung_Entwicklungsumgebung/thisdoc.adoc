@@ -1,3 +1,6 @@
+= Einrichtung Entwicklungsumgebung: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 In diesem Dokument wird die Installation einer Entwicklungsumgebung erläutert, um Anwendungen mit der IsyFact zu entwickeln. Es richtet sich an Entwickler, die zum ersten Mal mit der <<glossar-IsyFact>> in Berührung kommen und möglichst schnell mit der Entwicklung einer Anwendung auf Basis der IsyFact beginnen möchten.
@@ -22,3 +25,4 @@ Das Kapitel schließt mit einer kurzen Diskussion der verbleibenden Unterschiede
 Das Kapitel <<generierung-von-equals-und-hashcode>> beschreibt insbesondere die Generierung von `equals()` und `hashCode()` konform zu den <<JavaProgrammierkonventionen>>.
 
 Im Kapitel <<einrichtung-von-checkstyle>> wird die Installation und Einrichtung der Checkstyle-Plugins für Eclipse und IntelliJ IDEA beschrieben.
+// end::inhalt[]

@@ -1,5 +1,8 @@
+= Konzept Polling: Inhalt
+
+// tag::inhalt[]
 [[verfahren-fuer-das-polling]]
-= Verfahren für das Polling
+== Verfahren für das Polling
 
 Das Polling erfolgt über mehrere Instanzen der Anwendung.
 Es darf zu einem Zeitpunkt aber nur eine Instanz das Polling aktiv durchführen, um das mehrfache Abrufen von Daten zu verhindern.
@@ -49,6 +52,7 @@ In <<image-003>> wird das noch einmal illustriert.
 image::polling_003.png[align="center",width=50%,pdfwidth=50%]
 
 Näheres zu den Nutzungsvorgaben des Bausteins findet sich in dem Dokument <<NutzungsvorgabenPolling>>.
+// end::inhalt[]
 
 // tag::architekturregel[]
 
