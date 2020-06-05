@@ -188,12 +188,12 @@ Zusätzlich gilt:
 Instabile Entwicklungsversionen sollten nicht über einen längeren Zeitraum in einer Anwendung eingebunden sein,
 da die Gefahr besteht, dass der Build instabil wird.
 
+* Es darf nicht (MUST NOT) die *MAJOR* Version Teil der Maven Versionsnummer sein, sondern muss Teil der Artefakt-ID sein.
+Zusätzlich muss MAJOR Teil des Packagepfades sein. Dies ermöglicht das parallele Einbinden mehrerer Versionen ein- und derselben Schnittstelle.
+
 * Bei *lokalen Schnittstellen*
-** darf nicht (MUST NOT) die *MAJOR* Version Teil der Maven Versionsnummer sein, sondern muss Teil der Artefakt-ID sein.
-Zusätzlich muss MAJOR Teil des Packagepfades sein.
-Dies ermöglicht das parallele Einbinden mehrerer Versionen ein- und derselben Schnittstelle.
 ** kann ein Update auf eine höhrere Java-Version zur Inkompatibilität führen.
-Dies ist zu evaluieren und entsprechend der allgeimene Vorgaben, wie oben beschrieben (<<lokale-remote-schnittstellen>>), zu handhaben.
+Dies ist zu evaluieren und entsprechend der allgemeinen Vorgaben, wie oben beschrieben (<<lokale-remote-schnittstellen>>), zu handhaben.
 
 * Bei *Remote-Schnittstellen*
 ** muss (MUST) auch die *MAJOR* Version in dem URL-Pfad enthalten sein. So können jederzeit parallel unterschiedliche Versionen zur Laufzeit angeboten werden.
@@ -242,7 +242,7 @@ Die Version der Schnittstelle selbst bleibt unverändert bei 5.
 
 ==== Anhebung der IsyFact Version z.B. IsyFact 2.1 auf 2.2 (hier können Änderungen an den serviceapi durchgeführt worden sein)
 Sollten sich z.B. bei einer Anhebung der *MINOR*- oder *MAJOR*-Version die Transportobjekte in der serviceapi geändert haben,
-so ist eine Anhebung der *MINOR*-Version der Schnittstelle empfehlenswert, da es sich dabei um eine überschaubare Änderung.
+so ist eine Anhebung der *MINOR*-Version der Schnittstelle empfehlenswert, da es sich dabei um eine überschaubare Änderung handelt.
 Sollte es dazu führen, dass Änderungen an mehreren Stellen durchgeführt werden müssen, dann ist eine Erhöhung von *MAJOR* vertretbar.
 
 ==== Wie wird die Versionierung angepasst, wenn optionale Attribute bzw. Methoden ergänzt werden (Minor/Major)
