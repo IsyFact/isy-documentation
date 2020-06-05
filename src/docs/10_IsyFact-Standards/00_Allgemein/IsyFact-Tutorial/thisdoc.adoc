@@ -1,3 +1,7 @@
+= Tutorial: Einleitung
+
+// tag::inhalt[]
+[[einleitung]]
 == Einleitung
 
 Dieses Dokument dient als Einstieg in die technischen Grundlagen der IsyFact.
@@ -15,3 +19,4 @@ Danach beleuchten die Kapitel *<<datenhaltung>>* , *<<fachkomponenten-der-anwend
 Kapitel *<<querschnitt>>* fasst alle Querschnittsthemen zusammen.
 Jedes Teilkapitel beginnt in der Regel mit der Auflistung der wichtigsten Designvorgaben und einem Klassendiagramm.
 Es folgt eine Realisierungsanleitung, die alle wesentlichen Schritte zur Umsetzung in Kurzform enthält.
+// end::inhalt[]

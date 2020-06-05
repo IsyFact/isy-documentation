@@ -1,50 +1,10 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-//
-:doctitle: IsyFact-Architekturregeln
 
-include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Executive Summary
-//include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Architekturregeln
 
 toc::[]
 
-// --------------------------- AB HIER------------------------------------------
+colophon::[]
 
-// Einleitung
-include::thisdoc.adoc[]
+include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt
 include::inhalt.adoc[tags=inhalt]
-
-// ---------------------------BIS HIER-----------------------------------------
-
-:sectnums!:
-
-// Glossar
-include::glossary.adoc[]
-
-// Literaturverzeichnis  (gebaut)
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis  (gebaut)
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis  (gebaut)
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis  (gebaut)
-include::listoflistings.adoc[]
-
-// --------------------------- AB HIER------------------------------------------
-
-// Anhänge
-// include::anhaenge.adoc[leveloffset=1]
-
-// ---------------------------BIS HIER-----------------------------------------

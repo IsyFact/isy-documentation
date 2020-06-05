@@ -1,8 +1,6 @@
-= Titel des Dokuments: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= Nutzungsvorgaben Überwachung: Inhalt
 
 // tag::inhalt[]
-
 [[ueberwachung-von-anwendungen]]
 == Überwachung von Anwendungen
 

@@ -1,10 +1,13 @@
+= Nutzungsvorgaben Datum & Zeit: Inhalt
+
+// tag::inhalt[]
 [[dauern-und-zeitzonen]]
-= Dauern und Zeitzonen
+== Dauern und Zeitzonen
 
 Dieses Kapitel enthält einige grundlegende Informationen zum Umgang Dauern und Zeitzonen.
 
 [[zeitdauer-mit-period-und-duration]]
-== Zeitdauer mit Period und Duration
+=== Zeitdauer mit Period und Duration
 
 Zur Darstellung einer Dauer sind die Java 8 Typen `Period` und `Duration` zu verwenden.
 
@@ -24,7 +27,7 @@ Bei der Addition einer `Period` wird dagegen die Uhrzeit auf 18:00 stehen, obwoh
 Das Mischen der beiden Darstellungen (2 Monaten, 3 Stunden) ist nicht möglich.
 
 [[zeitzonen-und-offsets]]
-== Zeitzonen und Offsets
+=== Zeitzonen und Offsets
 
 Zum allgemeinen Verständnis folgen ein paar Erläuterungen zum Thema Offsets (Zeitverschiebung) und Zeitzonen.
 
@@ -44,7 +47,7 @@ Sollten sich diese Datumsangaben im Laufe der Geschichte geändert haben, sind a
 ** Optional ein sprachspezifischer Anzeigename für die Anzeige beim Nutzer.
 
 [[abkürzungen-für-zeitzonen-offsets]]
-== Abkürzungen für Zeitzonen / Offsets
+=== Abkürzungen für Zeitzonen / Offsets
 
 Häufig werden Zeitzonen oder Offsets mit drei oder mehr Buchstaben abgekürzt, wie z.B. MEZ für „Mitteleuropäische Zeit“ oder PST für "Pacific Standard Time".
 Die Verwendung solcher Abkürzungen kann aber zu Problemen führen:
@@ -66,22 +69,22 @@ Abkürzungen sollten nicht geparst oder anderweitig technisch verarbeitet werden
 Die Abkürzungen "UTC" und "GMT" sind die einzigen, die davon explizit ausgenommen sind.
 
 [[verwendung-der-querschnittsbibliothek-isy-datetime]]
-= Verwendung der Querschnittsbibliothek *_isy-datetime_*
+== Verwendung der Querschnittsbibliothek *_isy-datetime_*
 
 In diesem Abschnitt werden Inhalt und Einsatz der Querschnittsbibliothek _isy-datetime_ beschrieben.
 
 [[inhalt-von-isy-datetime]]
-== Inhalt von *_isy-datetime_*
+=== Inhalt von *_isy-datetime_*
 
 [[formatierung]]
-=== Formatierung
+==== Formatierung
 
 Zur formatierten Ein- und Ausgabe stellt _isy-datetime_ die Klassen `InFormat` und `OutFormat` bereit.
 Diese beinhalten vorkonfigurierte `DateTimeFormatter` für die im Konzept beschriebene Formate.
 Die Verarbeitung in der ISO-8601-konformen Darstellung wird direkt durch die Klassen der _Java 8 Date and Time API_ unterstützt.
 
 [[ausgabeformate-fuer-datum--und-zeitangaben]]
-==== Ausgabeformate für Datum- und Zeitangaben
+===== Ausgabeformate für Datum- und Zeitangaben
 
 Folgende Formate und deren zugehörige `DateTimeFormatter` werden von _isy-datetime_ in der Klasse `InFormat` bereitgestellt:
 
@@ -102,7 +105,7 @@ Folgende Formate und deren zugehörige `DateTimeFormatter` werden von _isy-datet
 |====
 
 [[eingabeformate-fuer-datum--und-zeitangaben]]
-==== Eingabeformate für Datum- und Zeitangaben
+===== Eingabeformate für Datum- und Zeitangaben
 
 Für die Eingabe werden `DateTimeFormatter` bereitgestellt.
 Diese sind nach Datum und Zeit getrennt.
@@ -123,7 +126,7 @@ Zur direkten Verwendung dieser Formate stellt die Klasse `InFormat` verschiedene
 |====
 
 [[formate-fuer-dauer]]
-==== Formate für Dauer
+===== Formate für Dauer
 
 Zur Eingabe von Dauern werden folgende Methoden von `InFormat` bereitgestellt:
 
@@ -141,13 +144,13 @@ Hierbei ist zu beachten, dass nicht alle Zeiteinheiten von `Period` bzw. `Durati
 Enthält die Zeichenkette Zeiteinheiten, die nicht unterstützt werden, wird eine Exception geworfen.
 
 [[formate-fuer-zeitraum]]
-==== Formate für Zeitraum
+===== Formate für Zeitraum
 
 Zur Eingabe von Zeiträumen stellt die Klasse `Zeitraum` die Methode `parse()` bereit.
 Unterstützt werden die Eingabe von Anfang und Ende oder von Anfang und Dauer.
 
 [[zeitraum]]
-=== Zeitraum
+==== Zeitraum
 
 Die Repräsentation eines Zeitraums im Sinne des Konzepts wird nicht durch die _Java 8 Date and Time API_ bereitgestellt.
 Für diesen Zweck stellt _isy-datetime_ die Klasse `Zeitraum` bereit.
@@ -161,7 +164,7 @@ Intern werden Anfang und Ende mit Angabe der Zeitzone gespeichert, um die Dauer 
 Wird bei der Erstellung keine Zeitzone angegeben, wird Standard-Zeitzone der JVM verwendet.
 
 [[berechnungen]]
-== Berechnungen
+=== Berechnungen
 
 Wenn möglich, sollten Berechnungen mit Datums- und Zeitangaben mit den Bordmitteln der _Java 8_ Date _and Time API_ umgesetzt werden.
 Für die im Konzept geforderten Berechnungen gibt es folgende Möglichkeiten zur Umsetzung:
@@ -261,7 +264,7 @@ Die Klasse `Zeitraum` aus _isy-datetime_ stellt dazu die Methode `ueberschneidet
 
 
 [[testunterstützung]]
-== Testunterstützung
+=== Testunterstützung
 
 Für die Umsetzung der Testunterstützung stellt _isy-datetime_ die Klasse `TestClock` bereit.
 Sie erweitert die Klasse `java.time.Clock` und wird an Stelle dieser verwendet.
@@ -290,6 +293,8 @@ public void someTest() {
     DateTimeUtil.getClock().advanceBy(Duration.ofHours(1));
     // Erneuter Test der Anwendung eine Stunde später...
 ----
+
+// end::inhalt[]
 
 // tag::architekturregel[]
 

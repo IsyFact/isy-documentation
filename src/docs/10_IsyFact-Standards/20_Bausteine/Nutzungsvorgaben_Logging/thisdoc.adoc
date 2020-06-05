@@ -1,3 +1,6 @@
+= Nutzungsvorgaben Logging: Einleitung
+
+// tag::inhalt[]
 [[konzeptlogging]]
 == Einleitung
 
@@ -35,3 +38,4 @@ Im Kapitel *<<ereignisschluessel-isy-logging>>* ist eine Übersicht der verwende
 
 Das Dokument ist beim erstmaligen Lesen im Ganzen zu lesen und zu berücksichtigen, später dient es als Nachschlagewerk.
 Während der Anwendungsentwicklung ist insbesondere das Kapitel *<<vorgaben-zur-logerstellung>>* relevant und darin im Speziellen der <<loggen-der-schnittstellenkommunikation>>, da die dort definierten Szenarien durch die Entwickler erkannt und gemäß den Vorgaben umgesetzt werden müssen.
+// end::inhalt[]

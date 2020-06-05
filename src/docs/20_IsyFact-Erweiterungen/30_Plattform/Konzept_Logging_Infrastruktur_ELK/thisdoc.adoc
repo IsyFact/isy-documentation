@@ -1,13 +1,17 @@
+= Konzept Logging Infrastruktur ELK: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Dieses Dokument beschreibt den Aufbau einer Log-Infrastruktur und die Verarbeitung der erstellten Logs (auch der von Drittsystemen) durch diese Log-Infrastruktur.
 
 Die Grundlagen der technisch und fachlich einheitlichen Umsetzung des Loggings in der gesamten <<glossar-Anwendungslandschaft>> und die davon abhängige effiziente Auswertung der Logeinträge wird im <<KonzeptLogging>> beschrieben.
 
 [[aufbau-und-zweck-des-dokuments]]
-= Aufbau und Zweck des Dokuments
+=== Aufbau und Zweck des Dokuments
 
 Ziel des Dokuments ist die Beschreibung des *Aufbau der Log-Infrastruktur*, die zur Verteilung, Verarbeitung, Auswertung und Archivierung der erstellen Logdateien eingesetzt wird.
 
 Das Kapitel *<<Konfigurationsvorlagen>>* enthält Konfigurationsvorlagen zur Einrichtung der Log-Infrastruktur.
+// end::inhalt[]

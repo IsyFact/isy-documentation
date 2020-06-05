@@ -1,5 +1,4 @@
-= Detailkonzept Komponente Web-GUI: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= IsyFact-Einstieg: Inhalt
 
 // tag::inhalt[]
 [[vorstellung-der-isyfact]]

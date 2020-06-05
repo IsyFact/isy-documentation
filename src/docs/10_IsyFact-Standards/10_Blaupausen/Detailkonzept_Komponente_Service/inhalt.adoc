@@ -1,5 +1,4 @@
 = Detailkonzept Service: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 [[ueberblick]]

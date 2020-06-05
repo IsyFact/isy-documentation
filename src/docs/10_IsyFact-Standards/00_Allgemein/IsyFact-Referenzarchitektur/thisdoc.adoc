@@ -1,7 +1,7 @@
 = IsyFact-Referenzarchitektur: Einleitung
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
+[[einleitung]]
 == Einleitung
 
 Die *IsyFact* ist eine freie allgemeine <<glossar-Software-Factory>> zum Bau von <<glossar-IT-System,IT-Systemen>>, die vom Bundesverwaltungsamt bereitgestellt wird.

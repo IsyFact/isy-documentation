@@ -1,42 +1,16 @@
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 :doctitle: Baustein Logging
 :document-type: Konzept
 
-include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
-
 toc::[]
 
-// Einleitung
-include::thisdoc.adoc[]
+colophon::[]
 
-// Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
+
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
-
-// Changelog
 include::changelog.adoc[leveloffset=1]
 
-// Anhänge
 include::anhaenge.adoc[leveloffset=1]
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]
-

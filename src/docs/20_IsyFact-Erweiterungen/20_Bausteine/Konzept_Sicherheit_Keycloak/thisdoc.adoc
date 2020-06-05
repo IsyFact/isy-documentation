@@ -1,3 +1,6 @@
+= Konzept Keycloak: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -11,4 +14,10 @@ image::konzept_keycloak_rahmenbedingungen.png[align="center"]
 link:https://www.keycloak.org/[Keycloak] ist ein OpenSource Identity and Accessmanagment System (IAM).
 Es bietet eine Reihe von Standard Protokollen wie _OAuth 2.0_ oder _OpenID Connect_ sowie Features wie _Single-Sign On_ oder eine Benutzerverwaltung.
 
+=== Aufbau und Zweck des Dokuments
+
+Ziele des Konzepts _Sicherheit Keycloak_ sind:
+
+- Bereitstellung der quschnittlichen Konzepte, die für die Verwendung der mitgelieferten Bausteine notwendig sind.
+- Festlegung eines Sets an Attributen, die über das JWT ausgetauscht werden sollen.
 // end::inhalt[]
