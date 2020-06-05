@@ -96,7 +96,7 @@ Beide Optionen erfordern zusätzlichen Forschungs- und Entwicklungsaufwand.
 
 Variante 4: Die Zugriffe auf Redis werden mit Lese- und Schreibschlössern synchronisiert.
 
-Die Anwendung kann per selbst konfigurieren, welche Zugriffe mit einem Leseschloss oder Schreibschloss versehen werden sollen, und verhindern somit Inkonsistenz in der Sessioninformation.
+Es wird über die Konfiguration definiert, welche Zugriffe mit einem Leseschloss bzw. Schreibschloss versehen werden sollten. Somit wird es verhindert, das es zur Inkonsistenz in der Sessioninformation kommen kann.
 
 a|Entscheidung a|
 

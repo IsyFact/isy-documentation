@@ -1,3 +1,6 @@
+# 1.8.1
+- `IFS-91` & `IFS-92`: Migration zum Redisson Client
+
 # 1.8.0
 - `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
 - `IFS-259`: DSGVO Anforderungen in Logging-Konzept integriert
@@ -7,7 +10,6 @@
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom formatiert und getestet.
 - `IFS-468`: Update auf dozer 6.x
-- `IFS-91` & `IFS-92`: Migration zum Redisson Client
 
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert
