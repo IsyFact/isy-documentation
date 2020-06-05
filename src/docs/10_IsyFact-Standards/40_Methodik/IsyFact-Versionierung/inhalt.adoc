@@ -243,7 +243,8 @@ Die Version der Schnittstelle selbst bleibt unverändert bei 5.
 ==== Anhebung der IsyFact Version z.B. IsyFact 2.1 auf 2.2 (hier können Änderungen an den serviceapi durchgeführt worden sein)
 Sollten sich z.B. bei einer Anhebung der *MINOR*- oder *MAJOR*-Version die Transportobjekte in der serviceapi geändert haben,
 so ist eine Anhebung der *MINOR*-Version der Schnittstelle empfehlenswert, da es sich dabei um eine überschaubare Änderung handelt.
-Sollte es dazu führen, dass Änderungen an mehreren Stellen durchgeführt werden müssen, dann ist eine Erhöhung von *MAJOR* vertretbar.
+Sollte es dazu führen, dass eine Anhebung der *MAJOR*-Version zu Änderungen an mehreren Stellen durchgeführt werden müssen,
+dann ist eine Erhöhung von *MAJOR* vertretbar.
 
 ==== Wie wird die Versionierung angepasst, wenn optionale Attribute bzw. Methoden ergänzt werden (Minor/Major)
 // TODO: Klärung von:
