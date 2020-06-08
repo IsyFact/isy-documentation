@@ -1,5 +1,6 @@
 # 1.8.1
 - `IFS-91` & `IFS-92`: Migration zum Redisson Client
+- `IFS-382`: Verweis auf CAMS aus Grafik entfernen
 
 # 1.8.0
 - `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
