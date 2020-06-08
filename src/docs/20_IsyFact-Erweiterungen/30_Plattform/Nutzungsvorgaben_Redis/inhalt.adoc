@@ -47,7 +47,7 @@ redis-server |Dies sind die eigentlichen Binärdaten von Redis.
 |redis-server.sh |Shell-Skript zum Starten des Servers.
 |redis-cli.sh |Shell-Skript zum Aufruf des Command-Line-Interfaces (CLI) zur Interaktion mit dem Server.
 |redis-trib.sh |Shell-Skript zum Aufruf von Redis-Trib, einem Ruby-Programm zur vereinfachten Konfiguration des Clusters.
-|failover-slave-to-master.sh |Führt ein manuelles Failover vom Slave (der auf diesem Server betrieben wird) auf den 
+|failover-slave-to-master.sh |Führt ein manuelles Failover vom Slave (der auf diesem Server betrieben wird) auf den
 dazugehörenden Master aus.
 Hintergrund: Wenn der Master ausfällt, wird der Slave zum neuen Master.
 Wenn der ursprüngliche Master wieder verfügbar ist, wird dieser zunächst der neue Slave.
@@ -190,9 +190,9 @@ Start und Stop von Redis erfolgt über die Init-Skripte `/etc/init.d/redis_<mast
 [[hinzufuegen-eines-servers-knotens]]
 == Hinzufügen eines Servers / Knotens
 
-Die Erweiterung eines bestehenden Masters kann sehr einfach mit kurzem Ausfall des Clusters 
-(Abschnitt <<konfiguration-zur-laufzeit-aendern>>) und recht komplex ohne Ausfall des Clusters 
-erfolgen (Abschnitt <<cluster-konfiguration-neu-erstellen>>). 
+Die Erweiterung eines bestehenden Masters kann sehr einfach mit kurzem Ausfall des Clusters
+(Abschnitt <<konfiguration-zur-laufzeit-aendern>>) und recht komplex ohne Ausfall des Clusters
+erfolgen (Abschnitt <<cluster-konfiguration-neu-erstellen>>).
 Wenn möglich wird die Umsetzung der ersten Variante empfohlen.
 
 [[cluster-konfiguration-neu-erstellen]]
@@ -227,7 +227,7 @@ Um die Cluster-Konfiguration zur Laufzeit zu ändern sind folgende Schritte notw
 +
 Die UID des neuen Masters muss dabei aus der `nodes_master.conf` des neuen Masters ermittelt werden.
 +
-Damit der neue Master auch für die Speicherung von Sessions genutzt wird, muss ein Resharding 
+Damit der neue Master auch für die Speicherung von Sessions genutzt wird, muss ein Resharding
 durchgeführt werden, d.h. der Werte Bereiche der Schlüssel wird neu über die Master verteilt:
 +
   ./redis-trib.rb reshard --from all --to <UID-MASTER-NEU> --slots <SLOT-ANZAHL> --yes <IP-ALT>:<PORT-ALT>
@@ -257,7 +257,7 @@ https://exchange.nagios.org/directory/Plugins/Databases/check_redis-2Epl/details
 == Dimensionierung des Clusters
 
 Die vorgestellte Cluster-Architektur lässt sich ohne weiteres auch auf mehr als 3 Server erweitern.
-Bei der Dimensionierung des Servers muss darauf geachtet werden, dass der Cluster bei Ausfall eines 
+Bei der Dimensionierung des Servers muss darauf geachtet werden, dass der Cluster bei Ausfall eines
 Servers weiterhin lauffähig ist.
 Bei 3 Servern bedeutet dies, dass jeder Server in der Lage sein muss 2/3 der Gesamtlast zu bewältigen
 (bei Ausfall eines Servers laufen auf einem Server 2 Master). Bei 4 Servern sind es nur noch 2/4 bzw.
@@ -266,7 +266,7 @@ die Hälfte der Gesamtlast, etc.
 [[voting-mit-absoluter-mehrheit]]
 == Voting mit absoluter Mehrheit
 
-Bevor ein Slave im Falle eines Ausfalls zum Master werden kann, muss die Mehrheit der Master 
+Bevor ein Slave im Falle eines Ausfalls zum Master werden kann, muss die Mehrheit der Master
 dafür „abgestimmt“ haben.
 Dies muss eine absolute Mehrheit über alle Master (inkl.
 des ausgefallenen) sein.
@@ -276,7 +276,7 @@ Dementsprechend muss ein Redis-Cluster über mindestens 3 Server verteilt sein, 
 [[redis-cluster-hostnames-nicht-unterstuetzt]]
 == Redis-Cluster: Hostnames nicht unterstützt
 
-Die Angabe von Hostnames wird von Redis-Clustern nicht unterstützt – dies betrifft letztlich 
+Die Angabe von Hostnames wird von Redis-Clustern nicht unterstützt – dies betrifft letztlich
 nur die `nodes_<master/slave>.conf`, die mit Hilfe von `redis-trib` in Abschnitt
 <<isy-sessionspeicher.conf-anpassen>> erzeugt wird.
 Stattdessen muss die IP des Servers angegeben werden.
@@ -286,13 +286,13 @@ NOTE: Siehe `https://github.com/antirez/redis/issues/2186`
 [[cluster-knoten-muessen-ueber-einheitliche-ip-und-port-erreichbar-sein]]
 == Cluster-Knoten müssen über einheitliche IP und Port erreichbar sein
 
-Die in der Cluster-Konfiguration angegeben IP-Adressen, über sich die Knoten erreichen, 
-müssen die gleichen IP-Adressen sein, unter denen auch der Client in der Anwendung, 
+Die in der Cluster-Konfiguration angegeben IP-Adressen, über sich die Knoten erreichen,
+müssen die gleichen IP-Adressen sein, unter denen auch der Client in der Anwendung,
 die einzelnen Knoten erreicht.
 Gleiches gilt für den Port.
 
-Dies ist letztlich logisch, stellt aber eine wichtige Einschränkung der Infrastruktur dar, 
-insbesondere da zusätzlich keine Hostnamen (siehe Abschnitt 
+Dies ist letztlich logisch, stellt aber eine wichtige Einschränkung der Infrastruktur dar,
+insbesondere da zusätzlich keine Hostnamen (siehe Abschnitt
 <<redis-cluster-hostnames-nicht-unterstuetzt>>) verwendet werden können.
 
 [[warnung-tcp-backlog]]
@@ -349,26 +349,20 @@ Da aktuell keine Passwörter genutzt werden, ist dies unkritisch.
 [[spring-session-unterstuetzt-kein-passwort]]
 == Spring-Session unterstützt kein Passwort
 
-Die Eingabe von Passwörtern wird durch die aktuelle Version von Spring-Session in Kombination 
-mit dem Jedis-Client nicht unterstützt.
-
-Wird anstelle von Jedis der Lettuce-Treiber verwendet, ist die Verwendung von Passwörtern 
-zwar möglich, es wird beim Hochfahren jedoch eine unkritische Exception angezeigt.
-Dies ist in neueren Versionen des Clients behoben, die jedoch noch nicht mit Spring 
-Session eingesetzt werden können.
+Die Eingabe von Passwörtern wird durch die aktuelle Version von Spring-Session in Kombination mit dem Redisson-Client nicht unterstützt.
 
 Da aktuell keine Passwörter genutzt werden, ist dies unkritisch.
 
 [[passwort-in-allen-knoten-gleich]]
 == Passwort in allen Knoten gleich
 
-Auch wenn in jeder Redis-Instanz des Clusters ein Passwort gesetzt werden kann, 
+Auch wenn in jeder Redis-Instanz des Clusters ein Passwort gesetzt werden kann,
 muss dieses in allen Instanzen gleich sein! Unterschiedliche Passwörter werden nicht unterstützt.
 
 [[redis-und-docker-nat]]
 == Redis und Docker / NAT
 
-Redis unterstützt keine Umgebungen, in denen IPs oder Ports gemapped werden. Docker verwendet 
+Redis unterstützt keine Umgebungen, in denen IPs oder Ports gemapped werden. Docker verwendet
 „Port Mapping“, um mehrere Container eines Servers extern
  über unterschiedliche Ports erreichbar zu machen.
 Um Redis in Docker verwenden zu können, muss der _host networking mode_ von Docker verwendet werden.
@@ -386,45 +380,3 @@ Damit Redis diese Events erzeugt, ist in der `redis-default.conf` folgender Para
 
 Details zur Bereinigung abgelaufener Sessions finden sich unter
 http://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-expiration
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

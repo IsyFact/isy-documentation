@@ -1,4 +1,5 @@
 # 1.8.1
+- `IFS-91,IFS-92`: Migration zum Redisson Client
 - `IFS-510`: Hinweis für Aufräumen aller Korrelations-Ids nach Serviceaufrufen hinzugefügt
 - `IFS-563`: Dokumentation MDC-Filter
 

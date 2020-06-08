@@ -8,7 +8,6 @@
 === Vollständige Liste der Konfigurationsparameter
 
 Im Folgenden werden sämtliche Konfigurationsparameter von isy-sesion aufgelistet.
-Der Präfix sämtlicher Konfigurationsparameter `session.redis` wird zur Vereinfachung der Liste weggelassen.
 
 :desc-table-Confip: Konfigurationsparameter
 [id="table-Confip",reftext="{table-caption} {counter:tables}"]	
@@ -17,42 +16,17 @@ Der Präfix sämtlicher Konfigurationsparameter `session.redis` wird zur Vereinf
 |====
 |Parameter |Wertebereich |Default |Beschreibung
 4+|*Pflichtparameter*
-m|
-$$.nodes[0]$$
-
-$$.nodes[1]$$
-
-$$.nodes[2]$$
-|
-$$<IP>:<Port>$$
-
-Bspw.
-10.0.0.1:7000
-
- |_keiner_ |Adressen der Redis-Knoten [0..n].
+m|filter.session.locking |Boolean |_keiner_ |Aktiviert den Locking-Mechanismus des IsySessionRepositoryFilters.
+m|filter.session.logging |Boolean |_keiner_ |Aktiviert das Loggen durch den SessionLoggingFilters. Muss nur gesetzt werden, wenn der SessionLoggingFilter eingesetzt wird.
 4+|*Optionale Parameter*
-m|.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
-m|.sessionmanager |jedis, lettuce |jedis |Der zu verwendende Redis-Client.
-m|.password |String |_keiner_ a|
-Passwort zum Zugriff auf Redis.
+m|session.redis.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
+m|filter.session.locking.verbs |String
 
-Der Zugriff auf Redis wird in der Regel nicht abgesichert, so dass der Parameter nicht gesetzt werden darf.
+Beispiel: GET,POST |_keiner_ |Komma seperierte Liste von HTTP-Methoden bei denen ein Write Lock verwendet werden soll.
+m|filter.session.locking.uri[0..n]
 
-m|.maxredirects |Integer |3 |Anzahl der maximalen Redirects im Cluster.
-m|.convertpipelineandtxresults |Boolean |true |Konvertierung der Ergebnisse des Redis-Treibers auf den erwarteten Datentyp.
-m|.timeout |Long |2000 |Timeout für den Zugriff auf Redis in Millisekunden.
-m|session.cams.sessionid.header.name|String |keiner |Aktiviert die Verwendung der CAMS-Session-ID als Schlüssel für die Session.
-                                                     Der Wert ist der Name des HTTP-Headers, der die CAMS-Session-ID enthält.
-                                                     *Achtung: Der Präfix des Parameters ist nicht `session.redis`.*
-4+|*Optionale Parameter bei Verwendung von Jedis*
-m|.usepool |Boolean |true |Verwendung eines Connection-Pools.
-4+|*Optionale Parameter bei Verwendung von Lettuce*
-m|.sharenativeconnection |Boolean |true |Mehrere Redis-Connections sollen die gleiche Native-Connection verwenden.
-m|.shutdowntimeout |Long |2000 |Timeout für das Herunterfahren des Clients.
-m|.starttls |Boolean |false |TLS zum Zugriff auf Redis verwenden.
-m|.usessl |Boolean |false |SSL zum Zugriff auf Redis verwenden.
-m|.validateconnection |Boolean |false |Gemeinsam genutzte Native-Connections beim Aufruf validieren.
-m|.verifypeer |Boolean |true |Zertifikat validieren, wenn SSL genutzt wird.
+Bspl:
+filter.session.locking.uri[0] = http://black.listed.uri |String |_keiner_ |Aktiviert ein Writelock, eine Anfrage auf eine der angebenen URIs eingeht.
 |====
 
 [[vollstaendiges-konfigurationstemplate]]
@@ -70,75 +44,104 @@ m|.verifypeer |Boolean |true |Zertifikat validieren, wenn SSL genutzt wird.
 # Wertebereich: Boolean.Default: true.
 session.redis.active=true
 
-# Der zu verwendende Redis-Client.
-# Wertebereich: <lettuce,jedis>. Default: jedis.
-session.redis.sessionmanager=jedis
+# Aktiviert den Locking-Mechanismus vom IsySessionRepositoryFilter
+# Wertebreich: Boolean
+filter.session.locking = true
 
-# Die Redis-Knoten [0..n].
-# Wertebereich: <IP>:<Port>.
-session.redis.nodes[0]=<IP1>:7000
-session.redis.nodes[1]=<IP2>:7002
-session.redis.nodes[2]=<IP3>:7004
+# Aktiviert Write-Locks für Anfragen mit folgenden HTTP-Methoden
+# Wertebereich: String
+filter.session.locking.verbs = post,get
 
-# Das Password zum Zugriff auf Redis.
-# Von Jedis nicht unterstützt.
-# Wertebereich: String.
-# session.redis.password=geheim12
+# Aktiviert Write-Locks für Anfragen mit folgenden URIs
+# Wertebereich: String
+filter.session.locking.uri[0] = http://black.listed.uri0
+filter.session.locking.uri[1] = http://black.listed.uri1
+filter.session.locking.uri[2] = http://black.listed.uri2
 
-# Anzahl der maximalen Redirects im Session-Cluster.
-# Wertebereich: Integer.Default: 3
-session.redis.maxredirects=3
-
-# Gibt an, ob Ergebnisse der Pipeline auf das richtige Datenformat konvertiert werden sollen.
-# Wertebereich: Boolean.Default: true
-session.redis.convertpipelineandtxresults=true
-
-# Timeout für den Zugriff auf Redis.
-# Wertebereich: Long.Default: 2000
-session.redis.timeout=2000
-
-# Angabe, wann die Session an Redis übermittelt wird.
-# Wertebereich: ON_SAVE,IMMEDIATE.Default: SAVE
-session.redis.flushmode=ON_SAVE
-
-# Aktiviert die Verwendung der CAMS-Session-ID als Schlüssel für die Session
-# Wertebereich: String; Der Name des HTTP-Headers, der die CAMS-Session-ID enthält
-# session.cams.sessionid.header.name=CAMS-HTTP-SESSION-ID
-
-# ---
-# --- JEDIS-SPEZIFISCHE PARAMETER
-# ---
-# Gibt an, ob ein Connection-Pool verwendet werden soll.
-# Wertebereich: Boolean.Default: true
-session.redis.usepool=true
-
-# ---
-# --- LETTUCE-SPEZIFISCHE PARAMETER
-# ---
-# Gibt an, ob mehrere Lettuce-Connections die gleiche Native-Connection verwenden sollen.
-# Wertebereich: Boolean.Default: true
-session.redis.sharenativeconnection=true
-
-# Timeout für das Herunterfahren des Clients.
-# Wertebereich: Long.Default: 2000
-session.redis.shutdowntimeout=2000
-
-# Gibt a, ob TLS verwendet werden soll.
-# Wertebereich: Boolean.Default: false
-session.redis.starttls=false
-
-# Gibt a, ob SSL verwendet werden soll.
-# Wertebereich: Boolean.Default: false
-session.redis.usessl=false
-
-# Aktiviert die Validierung von gemeinsam genutzen Native-Connections beim Aufruf.
-# Wertebereich: Boolean.Default: false
-session.redis.validateconnection=false
-
-# Aktiviert Zertifikats-Validierung, wenn SSL genutzt wird.
-# Wertebereich: Boolean.Default: true
-session.redis.verifypeer=true
+# Aktiviert das Loggen der Session durch den SessionLoggingFilter
+# Wertebreich: Boolean
+filter.session.logging = false
 ----
+
+[[liste-der-redissonparameter]]
+=== Liste der Redissonparameter
+
+Hier sind die relevanten Konfigurationsparameter für den Redisson Client gelistet.
+Eine vollständige Liste aller Parameter lässt sich auf https://github.com/redisson/redisson/wiki/2.-Configuration einsehen.
+
+:desc-table-Confip: Redisson Konfigurationsparameter
+[id="table-redissonyaml",reftext="{table-caption} {counter:tables}"]
+.{desc-table-redissonyaml}
+[cols="6,4m,2m,3",options="header"]
+|====
+|Parameter |Wertebereich |Default |Beschreibung
+4+|*_clusterServersConfig_*
+4+|*Pflichtparameter*
+m|$$nodeAddresses$$
+|$$- "redis://<IP>:<Port>"$$
+
+$$Bspw.$$
+$$- "redis://127.0.0.1:7004"$$
+|_keiner_
+|Adressen der Redis-Knoten.
+
+Nutze das $$rediss://$$ Protokoll für eine SSL Verbindung.
+4+|*Optionale Parameter*
+m|scanInterval |Long |1000 |Redis Cluster Scaninterval in Millisekunden.
+m|readMode |SLAVE, MASTER, MASTER_SLAVE |SLAVE |Setze Knotentyp für Leseoperationen
+
+SLAVE - Lese von Slave Knoten. Nutzt MASTER, wenn keine SLAVES vorhanden sind.
+MASTER - Lese von dem Master Knoten.
+MASTER_SLAVE - Lese von Master und Slave Knoten.
+m|subscriptionMode |org.redisson.connection.balancer.WeightedRoundRobinBalancer,
+org.redisson.connection.balancer.RoundRobinLoadBalancer,
+org.redisson.connection.balancer.RandomLoadBalancer |org.redisson.connection.balancer.RoundRobinLoadBalancer | Verbindungs Load Balancer für mehrere Redis Server.
+m|subscriptionConnectionMinimumIdleSize |Integer |1 |Minimale Pool Größe für inaktive Verbindungen für (pub/sub) Kanäle. Genutzt von RTopic, RPatternTopic, RLock, RSemaphore, RCountDownLatch, RClusteredLocalCachedMap, RClusteredLocalCachedMapCache, RLocalCachedMap, RLocalCachedMapCache Objekte und Hibernate READ_WRITE Cache Strategie.
+m|subscriptionConnectionPoolSize |Integer |50 |Maximale Pool Größe für inaktive Verbindungen für (pub/sub) Kanäle. Genutzt von RTopic, RPatternTopic, RLock, RSemaphore, RCountDownLatch, RClusteredLocalCachedMap, RClusteredLocalCachedMapCache, RLocalCachedMap, RLocalCachedMapCache Objekte und Hibernate READ_WRITE Cache Strategie.
+m|slaveConnectionMinimumIdleSize |Integer |24 |Minimale Anzahl inaktiver Redis 'slave' Knoten Verbindungen für *jeden* Slave Knoten.
+m|slaveConnectionPoolSize |Integer |64 |Maximale Anzahl inaktiver Redis 'slave' Knoten Verbindungen für *jeden* Slave Knoten.
+m|masterConnectionMinimumIdleSize |Integer |24 |Minimale Anzahl inaktiver Redis 'master' Knoten Verbindungen für *jeden* Slave Knoten.
+m|masterConnectionPoolSize |Integer |24 |Maximale Anzahl inaktiver Redis 'master' Knoten.
+m|idleConnectionTimeout |Long |10000 |Wenn eine inaktive Verbindung für eine bestimmte Zeit nicht verwendet wird, und die Anzahl inaktiver Verbindungen größer ist als die minimale Anzahl wird die Verbindung nach x Millisekunden geschlossen.
+m|connectTimeout |Long |10000 |Timeout in Millisekunden wärend einer Verbindung einem Redis Server.
+m|timeout |Long |3000 |Redis Antwort Timeout. Startet wenn eine Anfrage an den Redis geschickt wird.
+m|retryAttempts |Integer |3 |Eine Fehler wird geworfen wenn *retryAttempts* oft keine erfolgreiche Anfrage ausgeschickt werden kann.
+m|retryInterval |Long |1500 |Zeitinterval in Millisekunden in dem erneut versucht wird eine Anfrage an den Redis Server zu senden.
+m|password |String |_null_ |Passwort für den Redis Server
+m|username |String |_null_ |Nutzername für den Redis Server
+m|subscriptionsPerConnection |Integer |5 |Unterzeichnung pro Limit der unterzeichneten Verbundungen. Genutzt von RTopic, RPatternTopic, RLock, RSemaphore, RCountDownLatch, RClusteredLocalCachedMap, RClusteredLocalCachedMapCache, RLocalCachedMap, RLocalCachedMapCache Objekte und Hibernate READ_WRITE Cache Strategie.
+m|clientName |String |_null_ |Name des Clienten
+m|pingConnectionInterval |Long |0 |Definiert das Zeitinterval in dem der Ping Befehl pro Verbindung zum Redis gesendet wird. `0` schaltet das Pingen ab.
+m|keepAlive |Boolean |false |Aktiviert TCP-keepAlive für die Verbindung.
+m|tcpNoDelay |Boolean |false |Aktiviert TCP-noDelay für die Verbindung.
+4+|*_Allgemeine Konfigurationen_*
+4+|*Optionale Parameter*
+m|nettyThreads |Intger |32 |Anzahl Threads, die auf alle Redis Clienten von Redisson verteil werden. Netty Threads, die in der Verarbeitung von Antworten und Senden von Anfragen eingesetzt werden.
+m|threads |Integer |16 |Anzahl Threads, die auf die Listener von RTopic Objekten, Invokation Handler von RRemoteService und RExecutorService Tasks verteilt werden.
+m|codec |org.redisson.codec.FstCodec,
+org.redisson.codec.JsonJacksonCodec,
+org.redisson.codec.MarshallingCodec,
+org.redisson.codec.AvroJacksonCodec,
+org.redisson.codec.SmileJacksonCodec,
+org.redisson.codec.CborJacksonCodec,
+org.redisson.codec.MsgPackJacksonCodec,
+org.redisson.codec.IonJacksonCodec,
+org.redisson.codec.KryoCodec,
+org.redisson.codec.SerializationCodec,
+org.redisson.codec.LZ4Codec,
+org.redisson.codec.SnappyCodec,
+org.redisson.codec.SnappyCodec,V2
+org.redisson.codec.TypedJsonJacksonCodec,
+org.redisson.client.codec.StringCodec,
+org.redisson.client.codec.LongCodec,
+org.redisson.client.codec.ByteArrayCodec,
+org.redisson.codec.CompositeCodec |org.redisson.codec.FstCodec |Redis Data Codec, der beim Lesen und Schreiben verwendet wird.
+m|transportMode |TransportMode.NIO,
+TransportMode.EPOLL,
+TransportMode.KQUEUE |TransportMode.NIO |Transport Modus für den Client.
+`TransportMode.EPOLL` braucht `netty-transport-native-epoll` auf dem Klassenpfad.
+`TransportMode.KQUEUE` braucht `netty-transport-native-kqueue` auf dem Klassenpfad.
+|====
 
 [[migration-von-plis-tomcat]]
 == Migration von plis-tomcat
