@@ -2,11 +2,10 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 //
-:doctitle: Konzept HTTP Invoker
-:title: {doctitle}
+:doctitle: HTTP Invoker
+:document-type: Konzept
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Inhaltsverzeichnis

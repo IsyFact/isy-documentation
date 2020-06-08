@@ -1,7 +1,6 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 :doctitle: Tutorial
-:title: {doctitle}
 
 include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]

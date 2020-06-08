@@ -2,10 +2,8 @@
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 //
 :doctitle: IsyFact IT-Sicherheitsregeln
-:title: {doctitle}
 
-// Zwangsplatz TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 // Executive Summary

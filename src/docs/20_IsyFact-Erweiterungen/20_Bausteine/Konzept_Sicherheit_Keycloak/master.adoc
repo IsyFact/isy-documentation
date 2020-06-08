@@ -1,12 +1,14 @@
 // ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-:doctitle: Konzept Sicherheit Keycloak
-:title: {doctitle}
+:doctitle: Sicherheit Keycloak
+:document-type: Konzept
+
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
 :license-oss!:
 :factory: IsyFact-Erweiterungen
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 ifdef::backend-html5[]
 

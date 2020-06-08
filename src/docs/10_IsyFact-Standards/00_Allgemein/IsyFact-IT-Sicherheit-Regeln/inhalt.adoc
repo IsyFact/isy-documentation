@@ -16,7 +16,6 @@ include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Ba
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Datenzugriff/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Service/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 include::../../../10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Web_GUI/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
-include::../../../10_IsyFact-Standards/10_Blaupausen/Grundlagen_interne_Servicekommunikation/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 
 include::../../../10_IsyFact-Standards/20_Bausteine/Konzept_Fehlerbehandlung/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 include::../../../10_IsyFact-Standards/20_Bausteine/Konzept_Umgang_mit_Sonderzeichen/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
