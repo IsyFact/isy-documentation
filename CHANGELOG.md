@@ -1,3 +1,6 @@
+# 1.8.1
+- `IFS-563`: Dokumentation MDC-Filter
+
 # 1.8.0
 - `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
 - `IFS-259`: DSGVO Anforderungen in Logging-Konzept integriert
