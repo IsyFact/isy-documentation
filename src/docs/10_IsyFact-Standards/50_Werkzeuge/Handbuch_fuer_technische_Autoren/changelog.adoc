@@ -11,11 +11,6 @@
 
 // end::release-2.0.0[]
 
-// *Änderungen IsyFact 1.8.0*
-// tag::release-1.8.0[]
-
-// end::release-1.8.0[]
-
 *Änderungen IsyFact 1.7.0*
 // tag::release-1.7.0[]
 - `IFS-212`: Handbuch für technische Autoren: Regel "Ein Satz pro Zeile" hinzugefügt
