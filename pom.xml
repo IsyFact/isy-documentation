@@ -1819,7 +1819,8 @@
                                 <configuration>
                                     <backend>html</backend>
                                     <attributes>
-                                        <disable-isy-attributes />
+                                        <toc />
+                                        <toc2 />
                                     </attributes>
                                     <sourceDirectory>.</sourceDirectory>
                                     <sourceDocumentName>changelog.adoc</sourceDocumentName>
@@ -1838,7 +1839,8 @@
                                     <backend>pdf</backend>
                                     <sourceDirectory>.</sourceDirectory>
                                     <attributes>
-                                        <disable-isy-attributes />
+                                        <toc />
+                                        <toc2 />
                                     </attributes>
                                     <sourceDocumentName>changelog.adoc</sourceDocumentName>
                                     <outputFile>
