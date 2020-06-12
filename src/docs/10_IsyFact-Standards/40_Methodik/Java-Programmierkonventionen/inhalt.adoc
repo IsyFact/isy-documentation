@@ -11,8 +11,157 @@ Hält sie sich noch an allgemein etablierte und bekannte Standards, verkürzt si
 Um das zu erreichen, müssen Konventionen für die Programmierung festgelegt werden.
 
 Die in diesem Dokument beschriebenen Richtlinien sind für die Erstellung von Programmen mit der IsyFact verbindlich.
+Der Strukturen zur Ablage des Quellcodes richten sich an die Empfehlung von <<ApacheMavenStandardDirectoryLayout>> und für die IsyFact erweitert.
 Sie bauen auf <<Vermeulen2000>> auf und präzisieren sie an einigen Stellen.
 Die in <<Vermeulen2000>> beschriebenen Konventionen beruhen auf den Sun Coding Conventions <<Sun1997>> und den Coding Standards der Firma Ambysoft <<Ambler1999>>.
+
+[[anforderungen-vorgaben-fuer-die-quellcodeablage]]
+= Anforderungen/Vorgaben für die Quellcodeablage
+
+=== Anwendungen
+Für Anwendungen, welche die IsyFact verwenden möchten, wird strengstens empfohlen die Anwendung selbst modular mit Maven zu entwickeln.
+So können über die `pom.xml` die einzelnen Artefakte der IsyFact eingebunden werden.
+Die Anwendung selbst wird damit auch in einem oder mehreren Maven-Modulen entwickelt.
+Ein Modul sollte dabei folgende Struktur besitzen:
+
+In dem `license/` Verzeichnis befinden sich Lizenz-Dateien und ggf. einen Dependency-Bericht.
+Das `assembly/` Verzeichnis beinhaltet Dateien, die beim Build des Artefaktes herangezogen werden können.
+Dort ist beschrieben, wie das auszuliefernde Artefakt gepackt wird.
+Der Quellcode, Skripte (SQL, Shell, etc.) und die Tests des Quellcodes liegen in Unterverzeichnissen des `src/` Verzeichnisses.
+Auf oberster Ebene im Wurzelverzeichnis des Projektes (project-root) befinden sich die Dateien zur Organisation des Quellcodes,
+sowie anwendungsbezogene und allgemeine Informationen. Dateien in Klammern sind optional, wenn erforderlich.
+
+:desc-listing-Projektstruktur: Beispiel für eine Projektstruktur
+[id="listing-Projektstruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur}
+[source, xml]
+----
+project-root/
+  |- license/ <!-- beinhaltet Lizenzdateien -->
+  |- assembly/ <!-- beinhaltet Informationen wie das auszuliefernde Artefakt gepackt wird -->
+  |
+  |- src/main/java <!-- Hier befindet sich der Quellcode -->
+  |- src/main/resources <!-- Hier sind Konfigurationdateien,
+				wie z.B. application.properties, Springs Bean-Context XMLs -->
+  |
+  |- src/skripte/ <!-- SQL-Skripte werden hier abgelegt -->
+  |
+  |- src/test/java/ <!-- Die Tests des Quellcodes liegen hier -->
+  |- src/test/resources/ <!-- Ebenso auch die Property-Dateien dazu -->
+  |
+  |- src/webapp/ <!-- Das Frontend einer Web-Anwendung liegt i.d.R in diesem Verzeichnis -->
+  |
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+
+Es ist nicht ausgeschlossen andere Dateien auf oberster Ebene abzulegen, sofern sie für die Organisation der Applikation oder deren Quellcode zuständig ist.
+
+Die einzelnen Quellcode-Dateien werden in einer Package-Struktur abgelegt. Dazu gibt es zwei verschiedene Ansätze:
+
+. Package-Struktur konform der *Schichten (Layer)* einer Anwendung. Also zum Beispiel: +
+
+	com.app.action
+	com.app.model
+	com.app.dao
+	com.app.core
+	com.app.gui
+	com.app.service
+	com.app.util
+
+. Package-Struktur konform der *Funktion (Feature)* einer Anwendung. So zum Beispiel:
+
+	com.app.arbeitsplatz
+	com.app.gebaeude
+	com.app.raum
+	com.app.person
+	com.app.report
+	com.app.security
+
+Im folgenden werden die Vor- und Nachteile der zwei Varianten beleuchtet.
+
+:desc-table-LayerFeaturePackageStruktur: Vor- und Nachteile der Layer- und Feature-Package-Struktur
+[id="table-LayerFeaturePackageStruktur",reftext="{table-caption} {counter:tables}"]
+.{desc-table-LayerFeaturePackageStruktur}
+[cols="1m,3,3",options="header"]
+|====
+
+|Package-Struktur |Pro |Kontra
+|*Layer*
+	|- Die Struktur spiegelt die Schichten einer Anwendung wieder. Das macht für neue Entwickler im Projekt den Einstieg in die Anwendung leichter.
+
+	- Die Struktur wird einmalig angelegt und wird meistens nicht weiter geändert. Selbst unerfahrene Entwickler können mit wenig Aufwand das Projekt fortführen.
+
+	|- Packages sind in anderen Projekten nicht mehr wiederverwendbar, da die Feature über mehrere Layer miteinander verzahnt sind ergibt sich dafür ein zu großer Aufwand der Wiederverwendbarkeit.
+
+	- Zuviele Klassen werden als `public` gekennzeichnet, damit sie übergreifend zu den Packages genutzt werden können. Das führt meistens zu einer starken Kopplung von Packages.
+
+	- Hinzufügen von neuen Features führt zu Änderungen in mehreren Stellen (Schichten). Damit muss der Entwickler besonders darauf achten, dass er nichts vergisst und muss sich den Code verteilt in verschiedenen Pfaden ansehen.
+
+	- Durch die Verteilung in mehreren Packages kann die Behbung eines Fehlers mehr Aufwand kosten.
+|*Feature*
+	|- Wenn alle Klassen eines Features in einem Package sind, erhält die `public`-Kennzeichnung eine größere Ausdrucksstärke, als bei der Layer-Package-Struktur und zeigt welcher Teil des Features wirklich von anderen genutzt werden darf.
+
+	- Weniger Verbindungen zu anderen Packages führt zu einer loseren Kopplung und besseren Wartung des Quellcodes.
+
+	- Anhand der Feature-Struktur erkennt man schnell welche Funktionen die Anwendung anbietet.
+
+	- Die Features sollten dieselben Menge an Klassensets besitzen. Das macht es leichter neue Feature anhand dessen zu entwickeln. Es wird für jedes neue Feature ein neues Package angelegt. Der Entwickler befindet sich zudem meist nur in einem Pfad.
+
+	- Das Transformieren der Anwendung in seperate Microservices wird durch die Feature-Struktur deutlich unterstützt, denn jedes Feature agiert nahezu selbständig in einem eigenen Package.
+
+	|- Mit zunehmender Projektlaufzeit muss dem Package-Baum mehr Beachtung geschenkt werden, da er sich auch im laufe der Projektzeit verändert und die Anwendung komplexer wird.
+	Denn es sollte ab und zu die Struktur geprüft werden, ob nicht ein Feature in mehrere gesplittet werden kann oder welche zusammengeführt werden können.
+
+	- Die Entwickler müssen ein gewissen Fachwissen über die Anwendungsdomaine haben, um die Struktur zielgerichtet und sauber zu halten.
+	Das führt zu höherem Aufwand bei der Einarbeitung von neuen Entwicklern.
+
+	- (Andererseits kann das auch als Vorteil gesehen werden, wenn die Entwickler übergreifend das notwendige Fachwissen besitzen und innerhalb des Teams verteilt werden muss)
+
+|====
+
+// ToDo: Wo/Wie wird Dokumentation abgelegt?
+
+****
+Schnittstellen-Klassen haben immer eine Implementierung in einem `impl`-Package.
+[source, xml]
+----
+(service-package)
+  |- impl/
+      |- MeinServiceImpl.class
+  |- MeinService.class
+----
+****
+
+****
+Bei Batch-Modulen gibt es nur ein `resources/` -Verzeichnis.
+[source, xml]
+----
+(Batch-Modul):
+src/main/resources/
+  |- bin/
+      |- meinBatch.sh
+      |- meinBatch.bat
+----
+****
+
+****
+Bei Deployment-Modulen gibt es nur ein `resources/` -Verzeichnis.
+[source, xml]
+----
+(Deployment-Modul):
+src/main/resources/
+  |- BUILD/
+  |- RPMS.noarch/
+  |- SOURCES/
+  |- SPECS/
+  |- SRPMS/
+----
+****
 
 [[grundsaetzliches]]
 == Grundsätzliches
