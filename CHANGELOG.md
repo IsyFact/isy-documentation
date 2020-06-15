@@ -1,3 +1,6 @@
+# 2.2.0
+- `IFS-211`: Konventionen zur Quellcodeablage
+
 # 2.1.0
 - `IFS-355`: Dokumententitel wurden verkürzt und ein Untertitel für den Dokumententyp ergänzt
 - `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
