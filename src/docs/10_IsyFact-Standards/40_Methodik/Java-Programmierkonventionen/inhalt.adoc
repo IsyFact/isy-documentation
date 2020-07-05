@@ -88,10 +88,10 @@ Darunter wird die Struktur konform zu <<package-namen>> angelegt mit der zusätz
 ----
 project-root/
   |- src/main/java <!-- Hier befindet sich der Quellcode -->
-		|- <package.schnittstellen-version>/
-		    |- MeinRemoteBean.java <!-- interface -->
-		    |- MeinTransportObjektTo.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
-		    |- MeineToException.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
+             |- <package.schnittstellen-version>/
+             |- MeinRemoteBean.java <!-- interface -->
+             |- MeinTransportObjektTo.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
+             |- MeineToException.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
 ----
 
 [[batch]]
@@ -106,14 +106,12 @@ In Batch-Modulen gibt es im Wurzel-Verzeichnis (project-root) nur `src/main/reso
 ----
 project-root/
   |- src/main/resources <!-- Hier sind Ausführungsdateien (Shell-Skripte) und Konfigurationdateien,
-				wie z.B. <verfahren>.properties -->
-		|- bin/
-		    |- meinBatch.sh
-		    |- meinBatch.bat
+                                wie z.B. <verfahren>.properties -->
+             |- bin/
+             |- meinBatch.sh
+             |- meinBatch.bat
   |
-  |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden
-				git-Verzeichnis ist, kann diese Datei beinhaltet sein.
-				Gleiches gilt für die folgenden optionalen Dateien. -->
+  |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden git-Verzeichnis ist, kann diese Datei beinhaltet sein. Gleiches gilt für die folgenden optionalen Dateien. -->
   |- (.gitignore) <!-- OPTIONAL -->
   |- (CHANGELOG.md) <!-- OPTIONAL -->
   |- (LICENSE.md) <!-- OPTIONAL -->
@@ -133,16 +131,14 @@ In Deployment-Modulen gibt es im Wurzel-Verzeichnis (project-root) nur `src/main
 ----
 project-root/
   |- src/main/resources
-		|- BUILD/
-		|- RPMS.noarch/
-		|- SOURCES/
-		|- SPECS/
-		|- SRPMS/
+             |- BUILD/
+             |- RPMS.noarch/
+             |- SOURCES/
+             |- SPECS/
+             |- SRPMS/
   |
   |- build.xml <!-- Beschreibt die Vorgehensweise der Paketzusammenstellung und -erstellung -->
-  |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden
-				git-Verzeichnis ist, kann diese Datei beinhaltet sein.
-				Gleiches gilt für die folgenden optionalen Dateien. -->
+  |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden git-Verzeichnis ist, kann diese Datei beinhaltet sein. Gleiches gilt für die folgenden optionalen Dateien. -->
   |- (.gitignore) <!-- OPTIONAL -->
   |- (CHANGELOG.md) <!-- OPTIONAL -->
   |- (LICENSE.md) <!-- OPTIONAL -->
