@@ -189,7 +189,7 @@ Eine exemplarische Korrelations-ID ist demnach (als JSON-Array formatiert):
 "f60143b3-3408-4501-9947-240ec1c48667", +
 "BATCH-c893d44f-3b8e-446e-a360-06a520440e64"}`
 
-NOTE: Die Klasse MdcHelper stellt die Funktion entferneKorrelationIds() für das Löschen aller Korrelations-Ids in MDC (Mapped Diagnostic Context) bereits (siehe <<NutzungsvorgabenLogging>>).
+NOTE: Die Klasse MdcHelper stellt die Funktion entferneKorrelationIds() für das Löschen aller Korrelations-Ids in MDC (Mapped Diagnostic Context) bereit (siehe <<NutzungsvorgabenLogging>>).
 
 [[nachricht]]
 === Nachricht
