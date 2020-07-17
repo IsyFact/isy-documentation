@@ -41,8 +41,8 @@ project-root/
   |- license/ <!-- beinhaltet Lizenzdateien -->
   |- assembly/ <!-- beinhaltet Informationen wie das auszuliefernde Artefakt gepackt wird -->
   |
-  |- src/main/java <!-- Hier befindet sich der Quellcode -->
-  |- src/main/resources <!-- Hier sind Konfigurationdateien,
+  |- src/main/java/ <!-- Hier befindet sich der Quellcode -->
+  |- src/main/resources/ <!-- Hier sind Konfigurationdateien,
 				wie z.B. application.properties, Springs Bean-Context XMLs -->
   |
   |- src/skripte/ <!-- SQL-Skripte werden hier abgelegt -->
@@ -54,7 +54,7 @@ project-root/
   |
   |- (.gitattributes)
   |- .gitignore
-  |- CHANGELOG.md
+  |- CHANGELOG.md <!-- Dokumentation von Änderungen, z.B. via Eintrag einer Ticketnummer und kurzer Beschreibung -->
   |- (LICENSE.md)
   |- pom.xml
   |- README.md
@@ -87,17 +87,17 @@ Darunter wird die Struktur konform zu <<package-namen>> angelegt mit der zusätz
 [source, xml]
 ----
 project-root/
-  |- src/main/java <!-- Hier befindet sich der Quellcode -->
-             |- <package.schnittstellen-version>/
-             |- MeinRemoteBean.java <!-- interface -->
-             |- MeinTransportObjektTo.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
-             |- MeineToException.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
+  |- src/main/java/ <!-- Hier befindet sich der Quellcode -->
+  |           |- <package.schnittstellen-version>/
+  |           |- MeinRemoteBean.java <!-- interface -->
+  |           |- MeinTransportObjektTo.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
+  |           |- MeineToException.java <!-- ggf. auch weiteren Packeten/Verzeichnissen -->
 ----
 
 [[batch]]
 == Batch
 
-In Batch-Modulen gibt es im Wurzel-Verzeichnis (project-root) nur `src/main/resources/` als einzelnes Unterverzeichnis.
+Beim Batch-Modul besteht das Wurzel-Verzeichnis (project-root) aus dem einzelnen Unterverzeichnis `src/main/resources/`.
 
 :desc-listing-Projektstruktur-Batch: Beispiel für eine Projektstruktur bei Batch-Modulen
 [id="listing-Projektstruktur-Batch",reftext="{listing-caption} {counter:listings }"]
@@ -105,11 +105,11 @@ In Batch-Modulen gibt es im Wurzel-Verzeichnis (project-root) nur `src/main/reso
 [source, xml]
 ----
 project-root/
-  |- src/main/resources <!-- Hier sind Ausführungsdateien (Shell-Skripte) und Konfigurationdateien,
+  |- src/main/resources/ <!-- Hier sind Ausführungsdateien (Shell-Skripte) und Konfigurationdateien,
                                 wie z.B. <verfahren>.properties -->
-             |- bin/
-             |- meinBatch.sh
-             |- meinBatch.bat
+  |           |- bin/
+  |           |- meinBatch.sh
+  |           |- meinBatch.bat
   |
   |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden git-Verzeichnis ist, kann diese Datei beinhaltet sein. Gleiches gilt für die folgenden optionalen Dateien. -->
   |- (.gitignore) <!-- OPTIONAL -->
@@ -122,7 +122,7 @@ project-root/
 [[deployment]]
 == Deployment
 
-In Deployment-Modulen gibt es im Wurzel-Verzeichnis (project-root) nur `src/main/resources/` als einzelnes Unterverzeichnis.
+Ein Deployment-Modul besteht im Wurzel-Verzeichnis (project-root) aus dem einzelnen Unterverzeichnis `src/main/resources/`.
 
 :desc-listing-Projektstruktur-Deployment: Beispiel für eine Projektstruktur bei Deployment-Modulen
 [id="listing-Projektstruktur-Deployment",reftext="{listing-caption} {counter:listings }"]
@@ -130,18 +130,48 @@ In Deployment-Modulen gibt es im Wurzel-Verzeichnis (project-root) nur `src/main
 [source, xml]
 ----
 project-root/
-  |- src/main/resources
-             |- BUILD/
-             |- RPMS.noarch/
-             |- SOURCES/
-             |- SPECS/
-             |- SRPMS/
+  |- src/main/resources/
+  |           |- BUILD/
+  |           |- RPMS.noarch/
+  |           |- SOURCES/
+  |           |- SPECS/
+  |           |- SRPMS/
   |
   |- build.xml <!-- Beschreibt die Vorgehensweise der Paketzusammenstellung und -erstellung -->
   |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden git-Verzeichnis ist, kann diese Datei beinhaltet sein. Gleiches gilt für die folgenden optionalen Dateien. -->
   |- (.gitignore) <!-- OPTIONAL -->
   |- (CHANGELOG.md) <!-- OPTIONAL -->
   |- (LICENSE.md) <!-- OPTIONAL -->
+  |- pom.xml
+  |- (README.md) <!-- OPTIONAL -->
+----
+
+[[dokumentation]]
+== Dokumentation
+
+Ein Dokumentations-Modul besteht im Wurzel-Verzeichnis (project-root) aus dem einzelnen Unterverzeichnis `src/asciidoc/`
+oder `src/adoc/`.
+Unter dem `asciidoc` Verzeichnis ist es ebenfalls möglich eine eigene Ordnerstruktur anzulegen und
+dort die Inhalte in `.adoc` Dateien zu legen. Bei mehreren Unterordnern empfiehlt sich eine `changelog.adoc`-Datei je Unterordner
+anzulegen und diese im `project-root` in einer `changelog.adoc` für die gesamte Dokumentation zusammenzuführen.
+
+:desc-listing-Projektstruktur-Dokumentation: Beispiel für eine Projektstruktur bei Dokumentations-Modulen
+[id="listing-Projektstruktur-Dokumentation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur-Dokumentation}
+[source, xml]
+----
+project-root/
+  |- src/asciidoc/
+  |         |- meinInhalt.adoc
+  |         |- (changelog.adoc) <!-- OPTIONAL -->
+  |         |- images/
+  |         |    |- \*.png
+  |         |    |- \*.jpg
+  |
+  |- (.gitattributes) <!-- Falls das Modul kein Untermodul in einem bereits vorhanden git-Verzeichnis ist, kann diese Datei beinhaltet sein. Gleiches gilt für die folgenden optionalen Dateien. -->
+  |- (.gitignore) <!-- OPTIONAL -->
+  |- changelog.adoc <!-- OPTIONAL -->
+  |- CHANGELOG.md <!-- Dokumentation von Änderungen, z.B. via Eintrag einer Ticketnummer und kurzer Beschreibung -->
   |- pom.xml
   |- (README.md) <!-- OPTIONAL -->
 ----
