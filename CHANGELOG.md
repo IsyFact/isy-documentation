@@ -1,5 +1,4 @@
 # 1.8.1
-<<<<<<< CHANGELOG.md
 - `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
 - `IFS-471`: Deaktivierung von Proxy-Klassen in Abschnitt Sicherheit beschrieben
 - `IFS-551`: Aktualisierung der Dokumentation von WatchdogTasks
