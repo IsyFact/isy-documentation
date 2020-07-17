@@ -78,7 +78,7 @@ void execute();
 
 Das direkte Ableiten vom Interface Task ist nicht empfohlen.
 Die Bibliothek bietet hierfür die abstrakte Klasse `AbstractTask` an.
-`AbstraktTask` ist eine abstrakte Basis-Klasse, die (bis auf die Methode `execute()`) bereits die folgende Standardimplementierung für jede abstrakte Task-Methode mitbringt:
+`AbstractTask` ist eine abstrakte Basis-Klasse, die (bis auf die Methode `execute()`) bereits die folgende Standardimplementierung für jede abstrakte Task-Methode mitbringt:
 
 * *sie aktiviert bzw. deaktiviert*
 
@@ -175,7 +175,7 @@ Anwendungen können den Task einsetzen, in dem sie ihn als Spring Bean konfiguri
 
 Der Task `KonfigurationUpdateTask` erwartet task-spezifische Konfigurationsparameter, wie sie im Kapitel <<aufgabenspezifische-konfiguration>> beschrieben werden:
 
-[source]
+[source,properties]
 ----
 isyfact.task.konfigurationUpdateTask.ausfuehrung=FIXED_DELAY
 isyfact.task.konfigurationUpdateTask.initial-delay=5s
