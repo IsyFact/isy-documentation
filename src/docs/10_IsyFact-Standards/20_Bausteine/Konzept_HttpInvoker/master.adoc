@@ -1,0 +1,43 @@
+// ASCIIDOC Attribute
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+//
+:doctitle: HTTP Invoker
+:document-type: Konzept
+
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+// Inhaltsverzeichnis
+ifdef::backend-html5[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// Einleitung
+include::thisdoc.adoc[tags=inhalt]
+
+// Inhalt
+include::inhalt.adoc[tags=inhalt]
+
+:sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
+// Anhänge
+include::anhaenge.adoc[leveloffset=1]
+
+// Glossar
+include::glossary.adoc[]
+// Literaturverzeichnis
+include::bibliography.adoc[]
+// ? Tabellenverzeichnis
+include::listoftables.adoc[]
+// ? Abbildungsverzeichnis
+include::listoffigures.adoc[]
+// ? Listings-Verzeichnis
+include::listoflistings.adoc[]

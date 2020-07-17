@@ -323,7 +323,42 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 Dieser Abschnitt fasst die Namenskonventionen zusammen, die bei der Entwicklung eines Anwendungssystems nach IsyFact relevant sind.
 Das sind vor allem Klassen- und Dateinamen.
 
-Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig beziehungsweise werden davon abgeleitet.
+Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig, beziehungsweise werden davon abgeleitet.
+
+[[artefakte-module]]
+=== Artefakte und Module
+
+Bei einem Maven-Artefact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
+Group-IDs werden mit einem Punkt konkatiniert.
+Mit der Artefakt-ID wird die Funktionalität des Artefaktes kurz und pregnant definiert.
+Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatinierung erfolgt über ein Minus.
+
+:desc-table-grIDMod: Group-ID von Modulen/Artefakten
+[id="table-grIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-grIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Group-ID von Modulen/Artefakten
+|*Schema Group-ID* m|<sprach-kuerzel>.<organisation>.<firma>.<domaene>
+|*Beispiel* m|de.bund.bva.isyfact
+|====
+
+[[Präfixe]]
+==== Präfixe
+Prinzipiell soll jedes Modul, bzw. Artefakt, z.B. wie in einer Maven-Umgebung einen Präfix definiert haben.
+Artifakte einer Group-ID (Domäne) sollten immer einen einheitlichen Präfix besitzen. So haben alle IsyFact-Artefakte das Präfix `isy-` in ihrer Artefakt-ID.
+
+:desc-table-artIDMod: Artefakt-ID von Modulen/Artefakten
+[id="table-artIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-artIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Artefakt-ID von Modulen/Artefakten
+|*Schema Artifakt-ID* m|<praefix>-<funktion/komponente> +
+<praefix>-<funktion/komponente>-<teilkomponente>
+|*Beispiel* m|isy-documentation +
+isy-documentation-core
+|====
 
 [[technische-systemnamen]]
 === Technische Systemnamen
@@ -581,7 +616,7 @@ KommunikationXyzRemoteBean
 [[url]]
 ==== URL
 
-Die Service-URL einer HTTP-Invoker-Schnittstelle muss folgendem Schema entsprechen:
+Die Service-URL einer HTTP Invoker Schnittstelle muss folgendem Schema entsprechen:
 
 :desc-table-ssurl1: Schnittstellen: URL
 [id="table-ssurl1",reftext="{table-caption} {counter:tables}"]
@@ -591,7 +626,7 @@ Die Service-URL einer HTTP-Invoker-Schnittstelle muss folgendem Schema entsprech
 2+|Schnittstellen: URL
 |*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
 |*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
-                     $$http://qs-xyz.test.de/plis-benutzerverzeichnis/AuskunftBean_v4_1$$
+                     $$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
 |*Variable*        | *Mögliche Ausprägungen*
 m|<Hostname>       | Der Hostname des Servers
 m|<Anwendungsname> | Der Name der Anwendung.
@@ -618,7 +653,7 @@ An dritter Stelle steht die Maven-Versionsnummer des Artefakts.
 |====
 2+|Artefakt-ID von Schnittstellen
 |*Schema* m|<Anwendungsname>-<protokoll>-sst-<sstname>-<version>
-|*Beispiele* m|xyz-ga-httpinvoker-sst-auskunft-v29.1
+|*Beispiele* m|xyz-ga-rest-sst-auskunft-v29.1
 |====
 
 [[transportobjekte]]

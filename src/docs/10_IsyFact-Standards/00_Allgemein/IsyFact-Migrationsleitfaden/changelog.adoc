@@ -1,0 +1,9 @@
+[[changelog, Changelog]]
+== Changelog
+
+*Änderungen IsyFact 2.1.0*
+
+// tag::release-2.1.0[]
+- `IFS-571`: Initiale Erstellung des Dokuments IsyFact-Migrationsleitfaden
+// end::release-2.1.0[]
+

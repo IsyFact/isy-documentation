@@ -1,4 +1,7 @@
+= IsyFact-Referenzarchitektur: Einleitung
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
+// tag::inhalt[]
 == Einleitung
 
 Die *IsyFact* ist eine freie allgemeine <<glossar-Software-Factory>> zum Bau von <<glossar-IT-System,IT-Systemen>>, die vom Bundesverwaltungsamt bereitgestellt wird.
@@ -100,7 +103,7 @@ Im Design des <<glossar-Anwendungskern,Anwendungskerns>> (siehe <<DetailkonzeptK
 Der Anwendungskern unterscheidet dabei noch zwischen Anwendungs-internen Services, die nur innerhalb der Anwendung aufgerufen werden und Anwendungs-externen Services, die über eine Nutzungsschnittstelle als Service anderen Anwendungen zur Verfügung gestellt werden.
 
 Der Entwurf der Services leitet sich in der Referenzarchitektur aus fachlichen Kriterien her.
-Services werden in der Fachlichen Referenzarchitektur identifiziert und finden sich dann auch in der technischen Implementierung wieder.
+Services werden in der fachlichen Referenzarchitektur identifiziert und finden sich dann auch in der technischen Implementierung wieder.
 
 Die in diesem Dokument beschriebene Referenzarchitektur ist eine vollwertige JEE-Architektur.
 Jedoch wird eine zentrale Spezifikation von JEE nicht genutzt: die EJB-Spezifikation aus dem Bereich Enterprise Application.
@@ -112,10 +115,10 @@ Es hat zur Folge, dass als Application Server ein Servlet-Container ausreichend 
 
 Im Bereich der technischen Infrastruktur (<<glossar-TI-Architektur>>) werden folgende Umgebungen beschrieben:
 
-* Produktionsumgebung
-* Staging-Umgebung
-* Schulungs- und externe Testumgebung
-* Entwicklungs- und Abnahme-Testumgebung
+* Produktionsumgebung,
+* Staging-Umgebung,
+* Schulungs- und externe Testumgebung,
+* Entwicklungs- und Abnahme-Testumgebung.
 
 Die Aufteilung in Zonen leitet sich aus dem SAGA 4-Standard ab <<SAGA40>>.
 
@@ -148,3 +151,4 @@ Detaillierung der einzelnen Sichten:
 
 Im Rahmen dieser Referenzarchitektur werden auch betriebliche Aspekte betrachtet, da diese Auswirkungen auf Designentscheidungen haben können.
 Diese Aspekte werden in Kapitel <<betriebliche-aspekte>> beschrieben.
+// end::inhalt[]

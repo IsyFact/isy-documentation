@@ -418,3 +418,11 @@ In solch einem Fall, muss der Entwickler den Interrupt Status selber abfragen.
 Hierfür bietet die Klasse `Thread` eine Methode an, die sich `interrupted()` nennt.
 Zu beachten ist, dass die Methode `interrupted()` den Statusflag immer zurückgesetzt.
 Was man auch beachten sollte ist, dass die `sleep()` Methode ebenso dafür sorgt, dass der Status `interrupted` wieder zurückgesetzt wird.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

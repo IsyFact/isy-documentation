@@ -1,17 +1,10 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: IsyFact - Technische Architektur eines IT-Systems
-:title: {doctitle}
+:doctitle: Softwaretechnische Architektur
+:document-type: Referenzarchitektur
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -30,6 +23,9 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
 // Literaturverzeichnis
@@ -40,6 +36,8 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
+
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]

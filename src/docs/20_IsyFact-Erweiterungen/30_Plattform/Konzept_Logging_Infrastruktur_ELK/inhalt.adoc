@@ -696,3 +696,11 @@ if [type] == "logstash" {
   }
 }
 ----
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

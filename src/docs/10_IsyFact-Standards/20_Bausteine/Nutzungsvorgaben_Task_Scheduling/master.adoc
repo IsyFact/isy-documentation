@@ -1,12 +1,9 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben Task Scheduling
-:title: {doctitle}
+:doctitle: Baustein Task Scheduling
+:document-type: Nutzungsvorgaben
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 *Java Bibliothek / IT-System*
@@ -16,9 +13,6 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |Name |Art |Version
 |isy-task |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
-
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -37,6 +31,9 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
 // Literaturverzeichnis
@@ -47,6 +44,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
 
 // Anhänge
 //include::anhaenge.adoc[leveloffset=1]

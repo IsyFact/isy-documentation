@@ -1,20 +1,13 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben Isy-Session
-:title: {doctitle}
-// Dokument unter Closed Source Lizenz
+:doctitle: Baustein Sessionmanagement
+:document-type: Nutzungsvorgaben
 :license-oss!:
 :factory: IsyFact-Erweiterungen
 
-// Zwangsplatz des TOC
 
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -24,6 +17,7 @@ ifdef::backend-html5[]
 endif::[]
 
 toc::[]
+
 
 // Einleitung
 include::thisdoc.adoc[leveloffset=1]
@@ -36,6 +30,9 @@ include::inhalt.adoc[leveloffset=1]
 // Anhänge
 include::anhaenge.adoc[leveloffset=1]
 
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
 // Literaturverzeichnis
@@ -46,6 +43,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
 // Index
 //include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
 
