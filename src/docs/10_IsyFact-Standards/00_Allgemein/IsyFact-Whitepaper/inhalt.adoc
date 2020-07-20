@@ -273,13 +273,13 @@ empfohlenen Produkte.
 [cols="28,22"]
 |====
 2+|*Basistechnologien*
-|Programmiersprache |Java 7
+|Programmiersprache |Java 8
 |Web-Technologie |XHTML
 |Architekturmuster |Service Orientierte Architektur (SOA)
 2+|*Systemsoftware*
 |Server-Betriebssystem |SuSE Linux Enterprise Server
 |Datenbankmanagementsystem |Oracle 11g
-|JEE-Applikationsserver |Apache Tomcat v6.0
+|JEE-Applikationsserver |Apache Tomcat v8.5
 |Webserver |Apache
 2+|*Bibliotheken für die Anwendungsentwicklung*
 .2+|Web-Framework |Apache MyFaces
@@ -331,15 +331,18 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 3+|*20 Bausteine*
 .2+|*Datum und Zeit* |Konzept Datum und Zeit |PDF
 |Nutzungsvorgaben Datum und Zeit |PDF
-|*Fehlerbehandlung* |Konzept Fehlerbehandlung |PDF
+.2+|*Fehlerbehandlung* |Konzept Fehlerbehandlung |PDF
+|Nutzungsvorgaben Fehlerbehandlung |PDF
 |*LDAP-Zugriffe* |Nutzungsvorgaben Spring LDAP |PDF
 .2+|*Logging* |Konzept Logging |PDF
 |Nutzungsvorgaben Logging |PDF
-|*Polling* |Nutzerdokumentation Polling |PDF
+.2+|*Polling* |Konzept Polling |PDF
+|Nutzerdokumentation Polling |PDF
 .3+|*Sicherheit* |Konzept Sicherheit |PDF
 |Nutzungsvorgaben Sicherheit |PDF
 |Rollen und Rechte Schema |XSD
-.3+|*Sonderzeichen* |Konzept Umgang mit Sonderzeichen |PDF
+.4+|*Sonderzeichen* |Konzept Umgang mit Sonderzeichen |PDF
+|Nutzungsvorgaben Umgang mit Sonderzeichen |PDF
 |Mapping-Tabelle |XLS
 |Transkriptionsregeln |XLS
 .2+|*Task Scheduling* |Konzept Task Scheduling |PDF
@@ -360,3 +363,10 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 |*Produktauswahl* |Vorlage Produktauswahl |DOT
 |====
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

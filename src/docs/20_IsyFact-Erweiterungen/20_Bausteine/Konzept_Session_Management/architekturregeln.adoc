@@ -1,0 +1,7 @@
+// tag::architekturregeln[]
+
+[[architekturregeln-datum-zeit]]
+== Architekturregeln Datum & Zeit
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

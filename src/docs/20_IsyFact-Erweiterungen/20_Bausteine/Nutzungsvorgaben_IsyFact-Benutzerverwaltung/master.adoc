@@ -1,13 +1,10 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben IsyFact-Benutzerverwaltung
-:title: {doctitle}
+:doctitle: Baustein Benutzerverwaltung
+:document-type: Nutzungsvorgaben
 :factory: IsyFact-Erweiterungen
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 *Java Bibliothek / IT-System*
@@ -19,8 +16,6 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
 |isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
 |====
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -31,6 +26,7 @@ endif::[]
 
 toc::[]
 
+
 // Einleitung 
 include::thisdoc.adoc[]
 
@@ -38,6 +34,9 @@ include::thisdoc.adoc[]
 include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]
@@ -49,6 +48,7 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
 
 // Anhänge
 //include::anhaenge.adoc[leveloffset=1]

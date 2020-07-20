@@ -102,7 +102,8 @@ Die Fachkomponenten eines IT-Systems nutzen den Berechtigungsmanager für spezie
 * Anwender können anhand der übergebenen Benutzerkennung (und Passwort) authentifiziert werden.
 Dazu wird das IAM-System bzw. die lokale Authentifizierung angesprochen.
 Die gewonnenen Informationen werden im `AufrufKontextVerwalter` hinterlegt.
-* Das Interface `AccessManager` bietet eine Abstraktion für verschiedene Berechtigungsquellen an.
+* Das Interface `AccessManager` bietet eine Abstraktion für verschiedene Berechtigungsquellen an, indem der `AccessManager` von einem `Sicherheit-Adapter` implementiert wird.
+Für den `Sicherheit-Adapter` wird ein eigenes Modul/Artefakt empfohlen. Dieser `Sicherheit-Adapter` bildet anschließend die Verbindung zu dem IAM-System (Authentifizierungssystem in obiger Abbildung).
 
 Die Authentifizierung und Autorisierung von Web-Zugriffen wird über Spring Security durchgeführt.
 Die Integration von Spring Security und des Bausteins Sicherheit wird im <<DetailkonzeptKomponenteWebGUI>> beschrieben.
@@ -136,7 +137,7 @@ Diese enthalten bereits die Logik zur Weiterleitung des Aufrufkontextes.
 
 Gibt es diese nicht, muss das Nachbarsystem direkt aufgerufen werden.
 Hierbei muss das aufrufende IT-System stets ein entsprechendes Transportobjekt befüllen und mit dem Aufruf an das Nachbarsystem übergeben.
-Für die Technologie Spring HTTP-Invoker stellt die IsyFact passende Transportobjekte in der Bibliothek `isy-serviceapi-sst` bereit.
+Für die Technologie Spring HTTP Invoker stellt die IsyFact passende Transportobjekte in der Bibliothek `isy-serviceapi-sst` bereit.
 
 
 [[rollen-und-rechte]]
@@ -347,3 +348,11 @@ Genauso funktioniert auch das Freischalten einer neuen Fachanwendung für einen 
 In beiden Fällen muss zur eigentlichen Inbetriebnahme, anstatt einer aufwändigen Migration, nur ein Schalter in der betrieblichen Konfiguration umgelegt werden.
 
 // end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

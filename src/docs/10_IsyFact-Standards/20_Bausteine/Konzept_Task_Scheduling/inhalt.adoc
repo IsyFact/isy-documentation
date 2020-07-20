@@ -159,3 +159,11 @@ Die Klasse `TaskKonfiguration` benutzt eine weitere Klasse `TaskStandardKonfigur
 `TaskStandardKonfiguration` ist ebenfalls von `TaskKonfiguration` abgeleitet.
 
 Die Bibliothek muss Anwendungen eine Konfigurationsklasse bzw. Spring Bean bereitstellen, die es ermöglicht, alle konfigurierten Aufgaben beim Start der Anwendung einzulesen und dem Scheduler hinzuzufügen.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

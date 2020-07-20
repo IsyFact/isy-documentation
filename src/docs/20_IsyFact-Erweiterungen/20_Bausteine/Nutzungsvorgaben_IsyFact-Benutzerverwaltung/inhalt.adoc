@@ -326,3 +326,10 @@ Diese Seite soll nur als Beispiel dienen und zeigen, wie die Unterseiten aufgeru
 Bis auf die Login-Seite ist der Zugriff auf die anderen Seiten durch Rollen und Rechte gesichert.
 Diese können daher nur von angemeldeten Benutzern aufgerufen werden.
 ====
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

@@ -1,0 +1,48 @@
+include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+:doctitle: Baustein Polling
+:document-type: Konzept
+
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
+include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
+
+// Executive Summary
+// include::preface.adoc[]
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3",options="header"]
+|====
+|Name |Art |Version
+|isy-polling |Bibliothek |siehe isyfact-bom v{version-ifs}
+|====
+
+// Inhaltsverzeichnis
+ifdef::backend-html5[]
+
+:toc-title!:
+
+endif::[]
+
+toc::[]
+
+// Einleitung
+include::thisdoc.adoc[leveloffset=1]
+
+// Inhalt
+include::inhalt.adoc[leveloffset=1]
+
+:sectnums!:
+
+// Glossar
+include::glossary.adoc[]
+// Literaturverzeichnis
+include::bibliography.adoc[]
+// ? Tabellenverzeichnis
+include::listoftables.adoc[]
+// ? Abbildungsverzeichnis
+include::listoffigures.adoc[]
+// ? Listings-Verzeichnis
+include::listoflistings.adoc[]
+
+// Anhänge
+// include::anhaenge.adoc[leveloffset=1]

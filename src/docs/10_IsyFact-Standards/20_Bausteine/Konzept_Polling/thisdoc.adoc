@@ -1,0 +1,19 @@
+[[einleitung]]
+= Einleitung
+
+Dieses Dokument beschreibt die konzeptionellen Grundlagen des Bausteins Polling.
+
+In <<glossar-Fachanwendung,Fachanwendungen>> und <<glossar-Service-Gateway,Service-Gateways>> müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
+Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden.
+Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services oder proprietäre Datenbank-basierte Schnittstellen, weitere sind denkbar.
+
+Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
+Diese Instanzen müssen synchronisiert werden, sodass Nachrichten nicht mehrfach verarbeitet werden.
+Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an.
+
+In <<image-K001>> wird diese Situation dargestellt.
+
+:desc-image-K001: Polling unter Verwendung eines Loadbalancers
+[id="image-K001",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-K001}
+image::polling_K001.png[align="center", width=55%, pdfwidth=55%]

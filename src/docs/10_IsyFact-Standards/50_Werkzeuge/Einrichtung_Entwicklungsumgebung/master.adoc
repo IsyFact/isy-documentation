@@ -1,17 +1,11 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Einrichtung einer Entwicklungsumgebung
-:title: {doctitle}
+:doctitle: Entwicklungsumgebung
+:document-type: Handbuch
 
-// Zwangsplatz des TOC
 
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -22,6 +16,7 @@ endif::[]
 
 toc::[]
 
+
 // Einleitung
 include::thisdoc.adoc[]
 
@@ -29,6 +24,9 @@ include::thisdoc.adoc[]
 include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]

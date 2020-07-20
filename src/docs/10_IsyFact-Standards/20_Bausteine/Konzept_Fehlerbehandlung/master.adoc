@@ -1,15 +1,13 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Konzept Fehlerbehandlung
-:title: {doctitle}
+:doctitle: Baustein Fehlerbehandlung
+:document-type: Konzept
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
-
+// Executive Summary
+// include::preface.adoc[]
 *Java Bibliothek / IT-System*
 
 [cols="5,2,3",options="header"]
@@ -18,9 +16,6 @@ include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 |isy-exception-core |Bibliothek |siehe isyfact-bom v{version-ifs}
 |isy-exception-sst |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
-
-// Executive Summary
-// include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -32,12 +27,15 @@ endif::[]
 toc::[]
 
 // Einleitung
-include::thisdoc.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
 
 // Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]
@@ -50,5 +48,8 @@ include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
 
+// Index
+// include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
+
 // Anhänge
-//include::anhaenge.adoc[leveloffset=1]
+// include::anhaenge.adoc[leveloffset=1]

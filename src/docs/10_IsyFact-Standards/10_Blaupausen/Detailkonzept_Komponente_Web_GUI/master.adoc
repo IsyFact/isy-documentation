@@ -1,12 +1,9 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Detailkonzept Komponente Web-GUI
-:title: {doctitle}
+:doctitle: Komponente Web-GUI
+:document-type: Detailkonzept
 
-// Zwangsplatz des TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
 
 NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden zurzeit grundlegend überarbeitet. Der vorliegende Stand dieses Dokuments beschreibt noch nicht alle neuen Funktionen von isy-web 4.x.
@@ -20,10 +17,6 @@ NOTE: Das Detailkonzept zur Komponente Web GUI und die Bibliothek isy-web werden
 |isy-style |Bibliothek |siehe isyfact-bom v{version-ifs}
 |====
 
-
-// Executive Summary
-// include::preface.adoc[]
-
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
 
@@ -33,6 +26,7 @@ endif::[]
 
 toc::[]
 
+
 // Einleitung
 include::thisdoc.adoc[tags=inhalt]
 
@@ -40,6 +34,9 @@ include::thisdoc.adoc[tags=inhalt]
 include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
 
 // Glossar
 include::glossary.adoc[]
@@ -51,6 +48,8 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis
 include::listoflistings.adoc[]
+
+
 
 // Anhänge
 // include::anhaenge.adoc[leveloffset=1]

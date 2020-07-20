@@ -262,32 +262,10 @@ Im Normalfall wird Redis in der Logik- und Verarbeitungszone betrieben.
 
 
 
+// tag::architekturregel[]
 
+// end::architekturregel[]
 
+// tag::sicherheit[]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// end::sicherheit[]

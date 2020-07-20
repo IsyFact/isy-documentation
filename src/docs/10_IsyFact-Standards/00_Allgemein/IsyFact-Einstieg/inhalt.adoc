@@ -5,7 +5,6 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 [[vorstellung-der-isyfact]]
 == Vorstellung der IsyFact
 
-
 In diesem Kapitel werden die IsyFact und die zugrundeliegenden Prinzipien erläutert.
 
 [[einfuehrung-in-software-factories]]
@@ -252,7 +251,6 @@ Die Standards für die Benutzeroberflächen werden üblicherweise durch einen St
 Die Dokumente der IsyFact verweisen an verschiedenen Stellen auf den Styleguide und dort zu definierende Regeln.
 Es wird jedoch vorausgesetzt, dass jeder Anwender der IsyFact einen eigenen Styleguide erstellt, der spezifisch auf seinen Anwendungskontext abgestimmt ist.
 
-
 === Struktur der Dokumentation
 
 Die Dokumentation der IsyFact folgt einer festgelegten Struktur.
@@ -369,7 +367,7 @@ Zur Umsetzung von Batches wird der Batchrahmen der IsyFact vorgeschrieben.
 Service::
 Services bieten fachliche Operationen nach außen an und stellen sie anderen IT-Systemen zur Nutzung bereit.
 Das <<DetailkonzeptKomponenteService>> beschreibt die Vorgaben für Services sowie den Aufbau der Service-Komponente.
-Weitere Vorgaben zur Kommunikation zwischen IT-Systemen innerhalb einer Systemlandschaft sind im Dokument <<GrundlagenInterneServicekommunikation>> beschrieben.
+Die konkrete Umsetzung mit dem Service-Framework HTTP Invoker sind im <<KonzeptHttpInvoker>> sowie den <<NutzungsvorgabenHttpInvoker>> beschrieben.
 
 GUI::
 Grafische Oberflächen bieten fachliche Operationen nach außen an und stellen sie Anwendern zur Nutzung bereit.
@@ -438,7 +436,7 @@ Weiterhin wird in diesem Dokument gezeigt, wie die Überwachung und Administrati
 [[behandlung-von-internationalen-sonderzeichen]]
 ==== Behandlung von internationalen Sonderzeichen
 Fachanwendungen müssen zum Teil mit Einträgen umgehen, die nicht den geläufigen Zeichenstandards und Codierungen unterliegen.
-Im Dokument <<KonzeptUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird.
+Im Dokument <<NutzungsvorgabenUmgangMitSonderzeichen>> werden Festlegungen getroffen, wie mit daraus resultierenden Problemstellungen umgegangen wird.
 In diesem Zusammenhang müssen oft auch Namen transkribiert werden.
 Die dafür zu verwendenden Regeln sind ebenfalls im Dokument enthalten.
 
@@ -469,9 +467,11 @@ Der Zugriff auf Daten in einem Verzeichnisdienst, welches über das Lightweight 
 
 [[polling]]
 ==== Polling
+
 In Fachanwendungen müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
 Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden sollen.
-Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
+Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services oder proprietäre Datenbank-basierte Schnittstellen; weitere sind denkbar.
+Das Konzept findet sich in <<KonzeptPolling>>.
 
 Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
 Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
@@ -481,6 +481,7 @@ Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
 
 [[util]]
 ==== Util
+
 Die Bibliothek isy-util bietet nützliche Hilfsmittel, die von den Anwendungen der IsyFact genutzt werden können.
 Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen.
 Diese werden in <<NutzungsvorgabenIsyUtil>> überblicksartig beschrieben.
@@ -496,11 +497,13 @@ NOTE: Bei Interesse wenden Sie sich bitte per E-Mail (isyfact@bva.bund.de) an un
 
 [[bausteine-der-isyfact-erweiterungen]]
 === Bausteine der IsyFact-Erweiterungen
+
 Die IsyFact-Erweiterungen stellen eine Reihe von Bausteine zur Verfügung, die bei Bedarf eingesetzt werden können.
 Diese werden im Folgenden dargestellt:
 
 [[benutzerverwaltung]]
 ==== Benutzerverwaltung
+
 Der Baustein Benutzerverwaltung stellt eine leichtgewichtige Anwendungskomponente zur lokalen Verwaltung von Benutzern und Rollen bereit und ist vor allem für kleine, eigenständige Anwendungen gedacht.
 Anwendungen können mithilfe der Komponente auf einfache Weise Benutzer und Rollen verwalten, die Anwendung absichern sowie auf eine vorgefertigte grafische Oberfläche zurückgreifen.
 Die <<NutzungsvorgabenBenutzerverwaltung>> zeigen, wie die Anwendungskomponente in eine Anwendung integriert und genutzt werden kann.
@@ -511,6 +514,25 @@ Der Baustein Styleguide beschreibt die Gestaltung grafischer Oberflächen nach e
 Das zentrale Dokument, der <<Styleguide>>, enthält Vorgaben zu Aufbau und Gestaltung von Web-GUIs.
 Der Styleguide definiert ebenfalls Form und Funktion der in der IsyFact verfügbaren Anzeige- und Bedienelemente.
 Neben dem Dokument beinhaltet der Baustein eine Software-Bibliothek, welche die Vorgaben als CSS-Stile zur Nutzung bereitstellt.
+
+[[sessionmanagement]]
+==== Session Management
+Für das Session Management wird in IsyFact basierten Anwendungen Spring Session eingesetzt.
+Der Baustein Session Management erleichtert die Konfiguration von Spring Session gemäß den Vorgaben und Anforderungen der IsyFact.
+Die <<NutzungsvorgabenSessionManagement>> zeigen, wie mit Hilfe dieser Erweiterung Sessions in IsyFact Anwendungen verwaltet werden.
+
+[[webjsf]]
+==== Web JSF
+Der Baustein Web JSF enthält alle notwendigen Abhängigkeiten, Spring-Konfigurationen, JSF-Komponenten (Composite Components) sowie zugehörige XHTML-Templates zur Erstellung einer GUI mit JSF.
+
+[[webangular]]
+==== Web Angular
+Der Baustein Web Angular stellt querschnittlich nutzbare Komponenten und Services zur Verwendung mit dem Angular Web Framework zur Verfügung.
+
+[[sicherheitkeycloak]]
+==== Sicherheit Keycloak
+Der Baustein Sicherheit Keycloak erweitert das Modul isy-sicherheit um Funktionalität zur Verwendung des Keycloak Authorization Servers.
+Konkret beinhaltet die Erweiterung die Implementierung des Access Managers für Keycloak sowie einen Filter zur Authentifizierung von REST-Aufrufen.
 
 [[erste-schritte]]
 == Nächste Schritte
@@ -531,4 +553,14 @@ Um die IsyFact als Ganzes kennenzulernen, zu verstehen und einzu­setzen, empfeh
 image::IF-Factory.png[align="center",width=70%,pdfwidth=70%]
 
 Während der gesamten Einarbeitung dient außerdem das <<IsyFactGlossar>> dazu, zentrale Begriffe der IsyFact nachzuschlagen.
+
+// Die unten stehenden Tags architekturregel[] und sicherheit[] muessen bestehen bleiben, solange die Tags nicht im Inhalt verwendet werden.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

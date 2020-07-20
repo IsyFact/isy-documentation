@@ -1,15 +1,9 @@
-// ASCIIDOC Attribute
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 //
-:doctitle: IsyFact-Einstieg
-:title: {doctitle}
+:doctitle: Einstieg
 
-// Zwangsplatz TOC
-
+include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
 include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Executive Summary
-//include::preface.adoc[]
 
 // Inhaltsverzeichnis
 ifdef::backend-html5[]
@@ -32,9 +26,13 @@ include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
 
+
+
+// Changelog
+include::changelog.adoc[leveloffset=1]
+
 // Glossar
 include::glossary.adoc[]
-
 // Literaturverzeichnis  (gebaut)
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis  (gebaut)
@@ -43,6 +41,9 @@ include::listoftables.adoc[]
 include::listoffigures.adoc[]
 // ? Listings-Verzeichnis  (gebaut)
 include::listoflistings.adoc[]
+
+
+
 
 // --------------------------- AB HIER------------------------------------------
 
