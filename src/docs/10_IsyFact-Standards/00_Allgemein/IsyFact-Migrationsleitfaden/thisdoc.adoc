@@ -1,5 +1,8 @@
+= Migrationsleitfaden: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Die IsyFact ist eine vom Bundesverwaltungsamt entwickele Software Factory für den Bau von Informationssystemen in komplexen IT-Anwendungslandschaften.
 Sie bündelt bestehendes technisches Know-how um Anwendungssysteme effizienter entwickeln und betreiben zu können.
@@ -19,6 +22,7 @@ Die Pflege dieses Releasezweigs wird sich auf Security-Patches beschränken und 
 
 
 [[aufbau-und-zweck-des-dokuments]]
-== Aufbau und Zweck des Dokuments
+=== Aufbau und Zweck des Dokuments
 
 Die in diesem Dokument aufgeführten Hinweise sollen IsyFact Anwendungsentwicklern bei der Umstellung einer auf IsyFact 1.x basierenden Anwendung auf IsyFact 2.x helfen.
+// end::inhalt[]

@@ -1,5 +1,8 @@
+= Java-Programmierkonventionen: Innhalt
+
+// tag::inhalt[]
 [[motivation-und-referenzen]]
-= Motivation und Referenzen
+== Motivation und Referenzen
 
 Von den Lebensphasen einer Software macht die Erstellungsphase gegenüber der Erweiterungs- und Wartungsphase nur einen kleinen Teil aus.
 Es ist davon auszugehen, dass im Laufe der Zeit unterschiedliche Personen, Teams oder Dienstleister an einem Softwaresystem arbeiten.
@@ -12,7 +15,7 @@ Sie bauen auf <<Vermeulen2000>> auf und präzisieren sie an einigen Stellen.
 Die in <<Vermeulen2000>> beschriebenen Konventionen beruhen auf den Sun Coding Conventions <<Sun1997>> und den Coding Standards der Firma Ambysoft <<Ambler1999>>.
 
 [[grundsaetzliches]]
-= Grundsätzliches
+== Grundsätzliches
 
 ****
 Programmiere immer im Stil des Originals!
@@ -31,10 +34,10 @@ Abweichungen müssen immer im Entwicklerhandbuch des Projektes mit Begründung d
 Bevor eine Richtlinie verletzt wird, sollte man sicher sein, dass man die Motivation der Regel verstanden hat und die Konsequenzen der Nicht-Einhaltung beurteilen kann.
 
 [[namenskonventionen]]
-= Namenskonventionen
+== Namenskonventionen
 
 [[sprache]]
-== Sprache
+=== Sprache
 
 Die Sprache von Bezeichnern hängt davon ab, was mit ihnen referenziert wird.
 
@@ -62,7 +65,7 @@ Systemen leicht zu Problemen.
 ====
 
 [[allgemeine-regeln]]
-== Allgemeine Regeln
+=== Allgemeine Regeln
 
 ****
 Sprechende Namen wählen!
@@ -100,7 +103,7 @@ Keine Unterscheidung bei Groß-/Kleinschreibung!
 Es dürfen nicht mehrere Namen verwendet werden, die sich ausschließlich durch abweichende Groß-/Kleinschreibung unterscheiden.
 
 [[dateinamen]]
-== Dateinamen
+=== Dateinamen
 
 Um Einheitlichkeit bei den Dateinamen sicherzustellen, sind Namenskonventionen für Dateiendungen und gebräuchliche Dateinamen notwendig.
 
@@ -131,7 +134,7 @@ In der nachfolgenden Tabelle werden gebräuchliche Dateinamen aufgeführt.
 |====
 
 [[bezeichner-und-kommentare]]
-== Bezeichner und Kommentare
+=== Bezeichner und Kommentare
 
 Mehrere Wörter werden bei zusammengesetzten Bezeichnern direkt aneinander geschrieben und nicht durch Sonderzeichen getrennt.
 Die einzelnen Wörter beginnen jeweils mit einem Großbuchstaben.
@@ -145,7 +148,7 @@ Die einzelnen Wörter beginnen jeweils mit einem Großbuchstaben.
 Ansonsten gelten die Regeln der nachfolgenden Abschnitte.
 
 [[package-namen]]
-=== Package-Namen
+==== Package-Namen
 
 ****
 Standard-Package-Struktur verwenden!
@@ -199,7 +202,7 @@ Namen von Packages dürfen nur Kleinbuchstaben enthalten.
 		`de.bund.bva.cd.registercd.admin.service`
 
 [[klassen--und-interface-namen]]
-=== Klassen- und Interface-Namen
+==== Klassen- und Interface-Namen
 
 ****
 Erster Buchstabe immer groß!
@@ -237,7 +240,7 @@ Wenn Interface und Implementierung eigentlich gleiche Namen haben, wird die Impl
 Beispiele: `*ActionListener*, *Runnable*, *Accessable*`
 
 [[methodennamen]]
-=== Methodennamen
+==== Methodennamen
 
 ****
 Methodennamen beginnen immer mit einem Verb!
@@ -257,7 +260,7 @@ JavaBeans-Konventionen einhalten!
 Die JavaBeans-Konventionen müssen eingehalten werden: Lesen von Eigenschaften mittels `*getProperty()*` bzw. `*isProperty()*` für Booleans, Schreiben von Eigenschaften mittels `*setProperty()*`.
 
 [[variablennamen]]
-=== Variablennamen
+==== Variablennamen
 
 Für die Vergabe von Variablennamen gilt: Je globaler die Sichtbarkeit einer Variable ist, desto aussagekräftiger (und ggfls. länger) sollte der Name sein.
 Das schließt nicht aus, das ein für drei Zeilen gültiger Schleifenzähler „*`i`*“ heißt.
@@ -303,7 +306,7 @@ Keine Präfixe außer *this.* verwenden!
 Außer dem Präfix `*this.*` bei Instanzvariablen werden keine Präfixe für Klassen-, Instanzvariablen und für Parameter verwendet.
 
 [[konstanten]]
-=== Konstanten
+==== Konstanten
 
 ****
 Konstanten immer groß!
@@ -316,7 +319,7 @@ Bei jeder Konstante ist zu überlegen, ob sie nicht durch das Typesafe-Enum-Patt
 Beispiele: `*A_MAGIC_NUMBER*, *MAX_VALUE*, *MIN_VALUE*`
 
 [[formatierung]]
-= Formatierung
+== Formatierung
 
 [NOTE]
 ====
@@ -326,7 +329,7 @@ Die Formatierung des Quellcodes gemäß der nachfolgenden Regeln kann durch den 
 ====
 
 [[einrueckungen-und-klammerposition]]
-== Einrückungen und Klammerposition
+=== Einrückungen und Klammerposition
 
 Für das Einrücken sind immer *vier Leerzeichen* zu verwenden.
 Bei Code-Blöcken wird die öffnende Klammer „*{*" immer als letztes Zeichen der Zeile gesetzt, die den Codeblock einleitet.
@@ -355,7 +358,7 @@ if•(condition)•{
 ----
 
 [[leerzeichen-und-leerzeilen-in-kommandos-und-ausdruecken]]
-== Leerzeichen und Leerzeilen in Kommandos und Ausdrücken
+=== Leerzeichen und Leerzeilen in Kommandos und Ausdrücken
 
 Es wird empfohlen, Leerzeichen wie folgt zu verwenden:
 
@@ -377,7 +380,7 @@ Methoden werden durch eine Leerzeile voneinander getrennt.
 Auch innerhalb einer Methode können Leerzeilen die logische Trennung von Blöcken verdeutlichen.
 
 [[aufteilen-langer-codezeilen]]
-== Aufteilen langer Codezeilen
+=== Aufteilen langer Codezeilen
 
 Die Zeichen pro Zeile sind auf eine lesbare Anzahl zu begrenzen.
 Es sollten niemals mehrere Anweisungen in einer Zeile codiert werden.
@@ -397,7 +400,7 @@ Das Umbrechen einer Zeile geschieht möglichst nach einem Komma.
 Die nächste Zeile wird dann an dem Ausdruck vor dem Komma ausgerichtet.
 
 [[dokumentation]]
-= Dokumentation
+== Dokumentation
 
 Folgende Grundsätze sind beim Schreiben von Dokumentation und Kommentaren zu befolgen:
 
@@ -433,7 +436,7 @@ Wenn die Software lange nicht mehr "angefasst" werden musste, kann das sogar der
 In Java wird zwischen Dokumentationskommentaren (`$$*/**...*/*$$`) und Implementierungskommentaren (`$$*/*...*/*, *//*$$`) unterschieden.
 
 [[dokumentationskommentare-javadoc]]
-== Dokumentationskommentare (Javadoc)
+=== Dokumentationskommentare (Javadoc)
 
 Prinzipiell müssen alle Klassen, Interfaces und Methoden einen Dokumentationskommentar (eine Außensicht) enthalten.
 Ausnahmen sind im Einzelfall anonyme innere Klassen und ihre Methoden sowie Implementierungsklassen von Interfaces (dort mit @see auf die Interface-Dokumentation verweisen).
@@ -545,7 +548,7 @@ Die Tags *`@author`* und *`@version`* werden nicht mehr verwendet.
 Autoren (und damit Verantwortlichkeiten für Bestandteile des Quellcodes) sowie Details über die aktuelle Version werden über das verwendete Versionskontrollsystem ermittelt.
 
 [[implementierungskommentare]]
-== Implementierungskommentare
+=== Implementierungskommentare
 
 Code sollte immer selbsterklärend geschrieben werden und möglichst wenige Inline-Kommentare enthalten.
 Implementierungskommentare begründen Designentscheidungen, die aus dem Code nicht allein ersichtlich sind, oder sie erklären aufwändige Algorithmen.
@@ -564,7 +567,7 @@ Wenn eine Stelle im Code noch nicht fertig ist und später kontrolliert oder üb
 Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese speziellen Kommentare analog zu Fehlern in einer ToDo-Liste an.
 
 [[aenderungshistorie]]
-== Änderungshistorie
+=== Änderungshistorie
 
 Es wird immer der Ist-Zustand beschrieben.
 Änderungen werden in der Änderungshistorie beschrieben.
@@ -580,10 +583,10 @@ Die Dokumentationssprache hierfür ist deutsch.
 Darüber hinaus werden keine Versionsinformationen im Source Code gepflegt.
 
 [[codestruktur]]
-= Codestruktur
+== Codestruktur
 
 [[imports]]
-== Imports
+=== Imports
 
 Import-Statements werden nach Packages sortiert und gruppiert.
 Folgende Import-Statements sind zu vermeiden:
@@ -593,7 +596,7 @@ Folgende Import-Statements sind zu vermeiden:
 * redundante oder nicht genutzte Importe
 
 [[deklarationen-in-klassen]]
-== Deklarationen in Klassen
+=== Deklarationen in Klassen
 
 * Variablenbezeichner dürfen sich nicht überdecken.
 Zum Beispiel darf eine lokale Variable nicht genauso heißen wie ein Attribut der Klasse.
@@ -601,7 +604,7 @@ Zum Beispiel darf eine lokale Variable nicht genauso heißen wie ein Attribut de
 * Falls die Variable nicht selbsterklärend ist, wird sie mit einem kurzen einzeiligen Kommentar beschrieben.
 
 [[verwendung-der-kurzschreibweisen]]
-== Verwendung der Kurzschreibweisen
+=== Verwendung der Kurzschreibweisen
 
 Seit Java 1.5 gibt es eine Kurzschreibweise für verschiedene Programmierkonstrukte (z.B. Bedingungen, Schleifen).
 Folgende Kurzschreibweisen sind erlaubt:
@@ -629,7 +632,7 @@ if (COND)
 ----
 
 [[die-equals-und-hashcode-methode]]
-== equals() und hashCode()
+=== equals() und hashCode()
 
 Alle Klassen leiten sich von der Basisklasse Object ab und erben von dieser die Methoden `equals()`, `hashCode()`, `toString()`, `clone()` und `finalize()`.
 Diese Methoden sind bewusst als _non-final_ Methoden angelegt, damit sie klassenspezifisch angepasst werden können.
@@ -643,6 +646,8 @@ Zur Implementierung von `equals()` und `hashCode()` müssen die Möglichkeiten d
 
 * `static boolean Objects.equals(Object a, Object b)`
 * `static int Objects.hash(Object... values)`
+
+// end::inhalt[]
 
 // tag::architekturregel[]
 

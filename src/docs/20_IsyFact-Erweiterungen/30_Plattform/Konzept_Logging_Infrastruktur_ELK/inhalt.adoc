@@ -1,5 +1,8 @@
+= Konzept Logging Infrastruktur ELK: Inhalt
+
+// tag::inhalt[]
 [[aufbau-der-log-infrastruktur]]
-= Aufbau der Log-Infrastruktur
+== Aufbau der Log-Infrastruktur
 
 Die Log-Infrastruktur beschreibt die IT-Systeme und Mechanismen, die zur Verteilung, Verarbeitung, Auswertung und Archivierung der erstellten Logdateien eingesetzt werden und deren Zusammenspiel untereinander.
 In <<image-loginfraelkr>> ist eine Übersicht der logischen Komponenten der Log-Infrastruktur dargestellt.
@@ -58,7 +61,7 @@ Das Verschieben ist Aufgabe der Betriebsumgebung.
 Im Folgenden wird die Konfiguration der einzelnen Komponenten beschrieben.
 
 [[shipper-logstash]]
-== Shipper (Logstash)
+=== Shipper (Logstash)
 
 Eine Logstash-Konfigurationsdatei besteht aus drei Bereichen:
 
@@ -85,7 +88,7 @@ output {
 ----
 
 [[log-quellen-input]]
-=== Log-Quellen (Input)
+==== Log-Quellen (Input)
 
 Als Log-Quellen werden ausschließlich Dateien verwendet, die in gleicher Weise eingelesen werden.
 Die Konfiguration der Quellen erfolgt immer nach folgendem Schema:
@@ -123,12 +126,12 @@ Er wird primär dazu verwendet, um nachfolgende Filterungen zu steuern.
 Die Konfigurationen zum Einlesen der Logdateien der verschiedenen Systemtypen sind in Abschnitt <<logstash-shipper-und-indexer>> dargestellt.
 
 [[filter]]
-=== Filter
+==== Filter
 
 Im Shipper werden keine Filter definiert (dies erfolgt im Indexer), um das Einlesen und Übertragen der Logeinträge in den Puffer möglichst effizient umzusetzen.
 
 [[log-ziele-output]]
-=== Log-Ziele (Output)
+==== Log-Ziele (Output)
 
 Es wird ein einzelner Ausgabekanal definiert, um die Logeinträge zur weiteren Verarbeitung an den Puffer (Redis) zu leiten.
 
@@ -154,13 +157,13 @@ Die Platzhalter bedeuten dabei:
 * **port**: Port, unter dem die Redis-Instanz erreichbar ist. (Standard: 6379)
 
 [[puffer-redis]]
-== Puffer (Redis)
+=== Puffer (Redis)
 
 Für den Einsatz von Redis als Puffer sind keine speziellen Konfigurationen notwendig.
 Der Grund, warum Redis als Puffer eingesetzt wird (und nicht Beispielsweise RabbitMQ), liegt in der hohen Performanz und Einfachheit der Lösung.
 
 [[indexer-logstash]]
-== Indexer (Logstash)
+=== Indexer (Logstash)
 
 Als Indexer wird ebenfalls _logstash_ eingesetzt, dessen grundlegende Funktionsweise bereits in Abschnitt <<shipper-logstash>> beschrieben wurde und an dieser Stelle nicht wiederholt wird.
 
@@ -209,13 +212,13 @@ Die Platzhalter sind dabei selbsterklärend und analog zu den vorgehenden Abschn
 Die verwendeten Filter werden im nachfolgenden Abschnitt beschrieben.
 
 [[filter-1]]
-=== Filter
+==== Filter
 
 Filter werden zum Parsen und Vereinheitlichen der Logeinträge verwendet.
 Es kommen dabei die folgenden Filterarten zum Einsatz:
 
 [[grok]]
-==== grok
+===== grok
 
 
 _grok_-Filter werden verwendet, um Attribute der Logeinträge an Hand regulärer Ausdrücke zu parsen und die enthaltenen Felder in separate Attribute zu schreiben.
@@ -259,7 +262,7 @@ in klar definierte JSON-Attribute aufteilt.
 Die Konfigurationen für die verschiedenen Systemtypen sind in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 
 [[date]]
-==== date
+===== date
 
 _date_-Filter werden verwendet, um den Zeitpunkt des Logeintrags zu parsen und in das Logstash-Event als @timestamp zu übernehmen.
 
@@ -287,7 +290,7 @@ Folgende _date_-Filter werden definiert:
 Diese sind ebenfalls in Abschnitt <<logstash-shipper-und-indexer>> definiert.
 
 [[mutate]]
-==== mutate
+===== mutate
 
 _mutate_-Filter können dazu verwendet werden, Attribute zu setzen oder zu manipulieren.
 Bei allen Log-Quellen, die nicht IsyFact-konform sind, wird ein _mutate_-Filter verwendet, um das Attribut `@timestamp` (siehe Abschnitt <<date>>) einheitlich in das Feld `zeitstempel` zu schreiben:
@@ -302,15 +305,15 @@ mutate {
 Dies ist sinnvoll, da der Zeitstempel dadurch unter einem einheitlichen Namen im ISO-Format abgelegt ist, und das Attribut `@timestamp` eher ein internes Attribut zur Steuerung von logstash ist, welches theoretisch später durch logstash überschrieben werden könnte.
 
 [[konfigurationsvorlagen]]
-= Konfigurationsvorlagen
+== Konfigurationsvorlagen
 
 Dieses Kapitel enthält Konfigurationsvorlagen zur Einrichtung der Log-Infrastruktur.
 
 [[logstash-shipper-und-indexer]]
-== Logstash (Shipper und Indexer)
+=== Logstash (Shipper und Indexer)
 
 [[register-factory-konforme-anwendungen]]
-=== Register Factory-konforme Anwendungen
+==== Register Factory-konforme Anwendungen
 
 *Input im Shipper:*
 
@@ -346,7 +349,7 @@ if [type] == "isy" {
 ----
 
 [[register-factory-konforme-anwendungen-vor-logging-konzept-version-3.0]]
-=== Register Factory-konforme Anwendungen (vor Logging-Konzept Version 3.0)
+==== Register Factory-konforme Anwendungen (vor Logging-Konzept Version 3.0)
 
 *Input im Shipper:*
 
@@ -387,7 +390,7 @@ if [type] == "isy" {
 ----
 
 [[tomcat-access]]
-=== Tomcat access
+==== Tomcat access
 
 *Input im Shipper:*
 
@@ -434,7 +437,7 @@ if [type] == "tomcat_access" {
 ----
 
 [[wrapper-log]]
-=== Wrapper-Log
+==== Wrapper-Log
 
 *Input im Shipper:*
 
@@ -480,7 +483,7 @@ if [type] == "wrapper" {
 ----
 
 [[apache-access-log-und-error-log]]
-=== Apache access-Log und error-Log
+==== Apache access-Log und error-Log
 
 *Input im Shipper:*
 
@@ -537,7 +540,7 @@ if [type] == "apache_access" or [type] == "apache_error" {
 ----
 
 [[mailserver-logs]]
-=== Mailserver-Logs
+==== Mailserver-Logs
 
 *Input im Shipper:*
 
@@ -602,7 +605,7 @@ if [type] == "mailserver" or [type] == "mailerror" or [type] == "smtpprotokoll" 
 ----
 
 [[suchverfahren-log]]
-=== Suchverfahren-Log
+==== Suchverfahren-Log
 
 Das Alphanumerische Suchverfahren erstellt mehrere Logdateien (asv-searches.log, asv-updates.log, asv-compares.log), die alle auf die gleiche Weise verarbeitet werden können.
 
@@ -651,7 +654,7 @@ if [type] == "asv" {
 ----
 
 [[logstash-log]]
-=== logstash-Log
+==== logstash-Log
 
 **Input im Shipper:**
 
@@ -696,6 +699,8 @@ if [type] == "logstash" {
   }
 }
 ----
+
+// end::inhalt[]
 
 // tag::architekturregel[]
 

@@ -1,4 +1,7 @@
+== Softwaretechnische Architektur: Einleitung
 
+// tag::inhalt[]
+[[einleitung]]
 == Einleitung
 
 Die in diesem Dokument beschriebene technische Architektur eines IT-Systems, erläutert wie ein IT-System der Anwendungslandschaft zu beschreiben und umzusetzen ist.
@@ -32,3 +35,4 @@ Die IsyFact-Referenzarchitektur ist eine vollwertige JEE-Architektur.
 Jedoch wird eine zentrale Spezifikation von JEE nicht genutzt: die EJB-Spezifikation aus dem Bereich Enterprise Application.
 Dies hat vor allem Performance- und Komplexitätsgründe.
 Es hat zur Folge, dass als Application Server ein Servlet-Container ausreichend ist.
+// end::inhalt[]

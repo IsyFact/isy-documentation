@@ -1,0 +1,9 @@
+*Java Bibliothek / IT-System*
+
+[options="header",cols="3,1,2"]
+|====
+|Name                               |Art        |Version
+|isy-benutzerverwaltung-core        |Bibliothek |1.5.x
+|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
+|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
+|====

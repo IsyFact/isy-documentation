@@ -1,3 +1,6 @@
+= Konzept Umgang mit Sonderzeichen: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -17,3 +20,4 @@ In diesem Dokument werden zunächst die Anforderungen aufgeführt, die an die Ve
 
 Internationalisierung bedeutet, ein Programm so zu entwerfen und umzusetzen, dass die Anpassung an andere Sprachen möglich ist, ohne den Quellcode zu ändern.
 Jedoch ist Internationalisierung nicht Bestandteil dieses Dokuments.
+// end::inhalt[]

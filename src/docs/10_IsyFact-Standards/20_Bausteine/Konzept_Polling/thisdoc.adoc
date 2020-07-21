@@ -1,5 +1,8 @@
+= Konzept Polling: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Dieses Dokument beschreibt die konzeptionellen Grundlagen des Bausteins Polling.
 
@@ -17,3 +20,4 @@ In <<image-K001>> wird diese Situation dargestellt.
 [id="image-K001",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-K001}
 image::polling_K001.png[align="center", width=55%, pdfwidth=55%]
+// end::inhalt[]

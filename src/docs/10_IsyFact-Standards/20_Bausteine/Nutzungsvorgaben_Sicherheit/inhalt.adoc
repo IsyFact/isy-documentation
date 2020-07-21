@@ -1,5 +1,4 @@
 = Nutzungsvorgaben Sicherheit: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 [[grundkonzepte-und-konfiguration]]
