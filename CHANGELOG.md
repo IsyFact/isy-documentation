@@ -1,5 +1,10 @@
 # 1.8.1
 - `IFS-510`: Hinweis für Aufräumen aller Korrelations-Ids nach Serviceaufrufen hinzugefügt
+- `IFS-91` & `IFS-92`: Migration zum Redisson Client
+- `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
+- `IFS-471`: Deaktivierung von Proxy-Klassen in Abschnitt Sicherheit beschrieben
+- `IFS-551`: Aktualisierung der Dokumentation von WatchdogTasks
+- `IFS-382`: Verweis auf CAMS aus Grafik entfernen
 
 # 1.8.0
 - `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
@@ -9,7 +14,7 @@
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom formatiert und getestet.
-- `IFS-468`: Update auf dozer 6.x
+- `IFS-468`: Anpassung Dozer-Link nach Umzug auf GitHub (ab Dozer 6.x)
 
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert

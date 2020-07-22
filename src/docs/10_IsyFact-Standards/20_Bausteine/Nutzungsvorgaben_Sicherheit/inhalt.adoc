@@ -569,30 +569,6 @@ Im Fall einer zentralen Authentifizierung kümmert sich die mitgelieferte Implem
 
 Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übertragen und das IT-System muss für jede Anfrage eine neue Korrelations-ID manuell erzeugen (s. <<listing-manuelle-erzeugung-korrelations-id>>).
 
-[[entgegennahme-der-korrelations-id-an-einer-service-sst]]
-=== Entgegennahme der Korrelations-ID an einer Service-SST
-
-Die Entgegennahme (und falls nötig, Neuerzeugung) und Registrierung der Korrelations-ID im MDC erfolgt an der Exception-Fassade der HTTP-Invoker-Schnittstelle über die Annotation `@StelltLoggingKontextBereit` aus der Bibliothek `isy-serviceapi-core`.
-
-Dazu ist die folgende Spring-Konfiguration nötig.
-
-:desc-listing-konfiguration-korrelations-id: Spring-Konfiguration zur Entgegennahme der Korrelations-ID
-[id="listing-konfiguration-korrelations-id",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-konfiguration-korrelations-id}
-[source, xml]
-----
-<beans>
-  <bean id="stelltLoggingKontextBereitInterceptor"
-      class="de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereitInterceptor"/>
-  <aop:config>
-    <aop:pointcut id="stelltLoggingKontextBereitPointcut" expression="@annotation(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit) || @within(de.bund.bva.pliscommon.aufrufkontext.service.StelltLoggingKontextBereit)"/>
-    <aop:advisor pointcut-ref="stelltLoggingKontextBereitPointcut"
-        advice-ref="stelltLoggingKontextBereitInterceptor"/>
-  </aop:config>
-</beans>
-----
-
-
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
