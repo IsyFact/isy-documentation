@@ -54,8 +54,17 @@ der Anwendung ergänzt werden:
 <bean class="de.bund.bva.isyfact.session.RedisClusterKonfiguration"></bean>
 ----
 
-Das Bean nutzt einen `WebApplicationInitializer`, um einen Servlet-Filter zu registrieren.
-Es ist daher keine Anpassung in der `web.xml` notwendig.
+Das Bean stellt einen Servlet-Filter mit dem Namen `isySessionRepositoryFilter` bereit, die in der `web.xml` als erster Filter aufgenommen werden muss.
+
+
+Optional kann auch der `SessionLoggingFilter` über folgende Zeile erstellt werden, der Session Information loggt.
+
+[source,xml]
+----
+<bean class="de.bund.bva.isyfact.session.SessionLoggingFilter"/>
+----
+
+Will man den Filter einsetzen, muss auch dieser in der `web.xml` in die Filter aufgenommen werden.
 
 IMPORTANT: Das Bean darf nicht in der Spring-Konfiguration eines Batchs verwendet werden.
 
@@ -76,20 +85,71 @@ Der Aufbau und Inhalt der Konfigurationsdatei wird in <<listing-sessionpropertie
 .{desc-listing-sessionproperties}
 [source,xml]
 ----
-# Die Verbindungsdaten der Redis-Master-Knoten [0..n].
-# Wertebereich: <IP>:<Port>.
-session.redis.nodes[0]=<IP-Knoten-1>:7000
-session.redis.nodes[1]=<IP-Knoten-2>:7002
-session.redis.nodes[2]=<IP-Knoten-3>:7004
-----
+# Switch zum aktivieren des Locking-Mechanismuses.
+filter.session.locking = <true/false>
 
-<IP-Knoten-1,2,3> muss mit der IP der einzelnen Redis-Knoten ersetzt werden.
-Standardmäßig wird Port 7000 verwendet.
+# Switch zum aktivieren des Loggings durch den SessionLoggingFilter.
+# Dieser Eintrag ist nur Notwendig, wenn der Logging-Filter eingesetzt wird.
+filter.session.logging = <true/false>
+----
 
 Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im Anhang 
 <<vollstaendige-liste-der-konfigurationsparameter>> erläutert werden.
 Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate 
 mit allen Parametern dargestellt.
+
+[[schritt-4-redisson.yaml-anlegen]]
+== Schritt 4: redisson.yaml anlegen
+
+Die `redisson.yaml` Datei enhält Konfigurationenparameter für den Redisson-Client.
+So wie die `session.properties` wird diese ebenfalls im Verzeichnis `/src/main/resources/config` angelegt.
+Der Aufbau der Konfigurationsdatei wird in <<listing-redissonyaml>> dargestellt.
+
+:desc-listing-redissonyaml: Konfigurationsdatei redisson.yaml
+[id="listing-redissonyaml",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-redissonyaml}
+[source,yaml]
+----
+---
+clusterServersConfig:
+ idleConnectionTimeout: 10000
+ connectTimeout: 10000
+ timeout: 3000
+ retryAttempts: 3
+ retryInterval: 1500
+ failedSlaveReconnectionInterval: 3000
+ failedSlaveCheckInterval: 60000
+ password: null
+ username: null
+ subscriptionsPerConnection: 5
+ clientName: null
+ loadBalancer: !<org.redisson.connection.balancer.RoundRobinLoadBalancer> {}
+ subscriptionConnectionMinimumIdleSize: 1
+ subscriptionConnectionPoolSize: 50
+ slaveConnectionMinimumIdleSize: 32
+ slaveConnectionPoolSize: 64
+ masterConnectionMinimumIdleSize: 32
+ masterConnectionPoolSize: 64
+ readMode: MASTER
+ subscriptionMode: MASTER
+ nodeAddresses:
+ - "redis://localhost:7000"
+ - "redis://localhost:7002"
+ - "redis://localhost:7003"
+ scanInterval: 1000
+ pingConnectionInterval: 0
+ keepAlive: false
+ tcpNoDelay: false
+threads: 0
+nettyThreads: 0
+codec: !<org.redisson.codec.SerializationCodec> {}
+transportMode: "NIO"
+----
+
+Die Einträge unter `nodeAdresses` müssen mit den IPs der einzelnen Redis-Knoten ersetzt werden.
+Standardmäßig wird Port 7000 verwendet.
+
+Eine Erläuterung der Konfigurationsparameter findet sich im Anhang <<liste-der-redissonparameter>>.
 
 [[vermeidung-haeufiger-fehler]]
 = Vermeidung häufiger Fehler

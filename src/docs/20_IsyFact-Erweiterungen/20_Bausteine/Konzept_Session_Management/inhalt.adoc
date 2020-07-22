@@ -94,14 +94,15 @@ Optionale Ergänzungen:
 
 Beide Optionen erfordern zusätzlichen Forschungs- und Entwicklungsaufwand.
 
+Variante 4: Die Zugriffe auf Redis werden mit Lese- und Schreibschlössern synchronisiert.
+
+Es wird über die Konfiguration definiert, welche Zugriffe mit einem Leseschloss bzw. Schreibschloss versehen werden sollten. Somit wird es verhindert, das es zur Inkonsistenz in der Sessioninformation kommen kann.
+
 a|Entscheidung a|
 
-Es wird Variante 3 umgesetzt.
-Die optionalen Ergänzungen werden nicht umgesetzt.
+Es wird Variante 4 umgesetzt.
 
-Bei normaler Bedienung der Anwendungen treten keine konkurrierenden Zugriffe auf.
-Vom Standard abweichende Bedienung KANN zu einem Fehler führen.
-Dies wird akzeptiert, so lange das System in einem konsistenten Zustand bleibt.
+Die Umsetzung erfolgt über einen Filter, der sich mit Hilfe von Redis verteilte Schlösser erstellt. Somit wird sichergestellt, dass bei schreibenden Aktionen maximal nur eine Instanz Zugriff auf die Session hat und die Daten konsistent bleiben.
 
 |====
 
