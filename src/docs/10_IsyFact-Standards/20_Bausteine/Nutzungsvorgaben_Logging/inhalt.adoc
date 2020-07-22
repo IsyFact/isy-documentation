@@ -671,6 +671,35 @@ Abschnitt <<loggen-fachlicher-daten>>):
 * `liesMarkerFachdaten()`: Gibt an, ob der MDC fachliche Daten enthält.
 * `entferneMarkerFachdaten()`: Entfernt den Marker für Fachdaten.
 
+[[mcdfilter]]
+==== MDC-Filter
+
+Um die Korrelations-ID automatisch bei jedem Request zu setzen, muss in der `web.xml` der Servlet-Filter `HttpHeaderNestedDiagnosticContextFilter` für die gewünschten URLs konfiguriert werden.
+Der Servlet-Filter liest automatisch bei jedem Request die Korrelations-ID aus dem Http-Header aus und setzt sie in den MDC.
+Ist der Header nicht gesetzt, wird eine neue Korrelations-ID generiert.
+
+// tag::important[]
+IMPORTANT: Der `mdcFilter` sollte vor der `springSecurityFilterChain` definiert werden, da diese die gesetzte Korrelations-ID ausließt.
+
+// end::important[]
+
+Beispiel:
+
+[source,xml]
+----
+<filter>
+  <filter-name>mdcFilter</filter-name>
+  <filter-class>
+    de.bund.bva.isyfact.aufrufkontext.http.HttpHeaderNestedDiagnosticContextFilter
+  </filter-class>
+</filter>
+
+<filter-mapping>
+  <filter-name>mdcFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+----
+
 [[diagnosekontext-korrelations-id]]
 === Diagnosekontext / Korrelations-ID
 
