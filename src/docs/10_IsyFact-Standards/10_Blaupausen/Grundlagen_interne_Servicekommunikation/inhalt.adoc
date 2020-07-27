@@ -488,3 +488,13 @@ Die Parameter sollen betrieblich konfigurierbar gemacht werden.
 Andere Services wie z. B. eine Auskunft können während dieser Zeit regulär ausgeführt werden.
 Während der Meldungs-Service deaktiviert ist, wird dem Aufrufer eine entsprechende Fehlermeldung zurückgesendet.
 Da die Anforderung besteht, auch andere Services vorübergehend deaktivieren zu können, werden generell alle Services deaktivierbar gemacht.
+
+[[sicherheit]]
+= Sicherheit
+
+Bei der Übertragung von Daten über eine HTTP-Invoker-Schnittstelle werden Java-Klassen serialisiert und deserialisiert.
+Wird bei der Deserialisierung die Integrität der Daten nicht sichergestellt, können Angreifer schadhaften Code über eine HttpInvoker Schnittstelle einschleusen (siehe link:http://cwe.mitre.org/data/definitions/502.html[CWE-502]).
+Das Betrifft alle HTTP-Invoker-Schnittstellen, die direkt von außerhalb einer Anwendungslandschaft benutzt werden können.
+
+Um die Sicherheit an dieser Stelle zu erhöhen, müssen HTTP-Invoker-Schnittstellen den `IsyHttpInvokerServiceExporter` verwenden.
+Dieser Exporter deaktiviert standardmäßig die Verwendung von Proxy-Klassen, über welche potenziell schadhafter Code deserialisiert werden kann.
