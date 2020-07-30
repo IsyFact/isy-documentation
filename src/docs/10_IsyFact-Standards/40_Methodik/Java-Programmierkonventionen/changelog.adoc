@@ -8,7 +8,7 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 === IsyFact 2.2
 
 // tag::release-2.2.0[]
-Die bereits etablierten Vorgaben zur Quellcodeablage wurden dem Dokument hinzugefügt und Neuerung wie die Ablage von Dokumenten im AsciiDoc-Format ergänzt.
+Die bereits etablierten Vorgaben zur Quellcodeablage wurden dem Dokument hinzugefügt und Neuerungen wie die Ablage von Dokumenten im AsciiDoc-Format ergänzt.
 
 [IMPORTANT]
 ====
