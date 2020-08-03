@@ -22,7 +22,7 @@ Das Kapitel stellt zunächst die Vorgaben für Anwendungsprojekte vor, da diese 
 Die weiteren Projekte (Schnittstellen, Batches, Deployment und Dokumentation) stellen aufgrund ihres starken Fokus Vereinfachungen dieser Struktur dar.
 Als letzte Projektart sind Multi-Modulprojekte beschrieben, die aus Kombinationen der vorangegangenen Projekte bestehen.
 
-[[anwendungen]]
+[[anwendungsprojekte]]
 === Anwendungsprojekte
 Der <<ProduktKatalog>> gibt die Nutzung von Maven vor.
 Daher ist für Anwendungen eine Entwicklung mittels einem oder mehrerer Maven-Module strengstens empfohlen.
@@ -79,7 +79,7 @@ project-root/
 Die Struktur bei der Verwendung mehrerer Maven-Module wird im Abschnitt <<multi-modul-projekte>> erläutert.
 
 
-[[schnittstellen]]
+[[schnittstellenprojekte]]
 === Schnittstellenprojekte
 
 Schnittstellenprojekte sind deutlich einfacher aufgebaut und beinhalten die Definition der Schnittstelle selbst sowie ihrer Transportobjekte.
@@ -114,7 +114,7 @@ project-root/
 <1> Definition der Schnittstelle (Interfaces), Transportobjekte und Transport-Exceptions
 <2> Technische Dokumentation der Schnittstelle im AsciiDoc-Format
 
-[[batch]]
+[[batchprojekte]]
 === Batchprojekte
 
 Batchprojekte bestehen hauptsächlich aus Startskripten und Konfigurationsdateien, um die Batches aufzurufen.
@@ -141,7 +141,7 @@ project-root/
 ----
 <1> Ausführungsdateien (Shell-Skripte) und Konfigurationsdateien
 
-[[deployment]]
+[[deploymentprojekte]]
 === Deploymentprojekte
 
 Deploymentprojekte bestehen im Wesentlichen aus den Skripten zur Erstellung einer Deployment-Einheit.
@@ -173,7 +173,7 @@ project-root/
 <1> Skripte und Vorschriften zur Erstellung eines RPMs
 <2> Optional: Anweisungen zum RPM-Build via Ant (deprecated)
 
-[[dokumentation]]
+[[dokumentationsprojekte]]
 === Dokumentationsprojekte
 
 Dokumentationsprojekte enthalten technische Dokumentation, die keinem Anwendungsprojekt direkt zuzuordnen sind.
@@ -866,8 +866,6 @@ Zur Implementierung von `equals()` und `hashCode()` müssen die Möglichkeiten d
 
 * `static boolean Objects.equals(Object a, Object b)`
 * `static int Objects.hash(Object... values)`
-
-// end::inhalt[]
 
 // tag::architekturregel[]
 
