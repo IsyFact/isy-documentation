@@ -1,3 +1,6 @@
+= Konzept Datum & Zeit: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -23,3 +26,4 @@ Das Dokument ist entsprechend dieser Zielsetzungen folgendermaßen aufgebaut:
 Zunächst werden die *Anforderungen* an die Verarbeitung von Datums- und Zeitwerten definiert, welche die Grundlage für das nachfolgende Kapitel bilden.
 
 Anschließend werden die *Vorgaben* zur Verwendung von Datums- und Zeitwerten innerhalb der Anwendungen sowie zur Umsetzung in der zu diesem Baustein gehörenden Bibliothek definiert.
+// end::inhalt[]

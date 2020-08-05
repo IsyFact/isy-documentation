@@ -1,17 +1,7 @@
-**Dokumentinformationen**
-
-// die UUID des Doks
-|====
-|Dokumenten-ID:| Detailkonzept_Komponente_Batch
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
-
 *Java Bibliothek / IT-System*
 
 [cols="3,1,2",options="header"]
 |====
 |Name |Art |Version
-|isy-batchrahmen |Bibliothek |siehe isyfact-bom v{version-ifs}
+|isy-batchrahmen |Bibliothek |v{version-ifs}
 |====

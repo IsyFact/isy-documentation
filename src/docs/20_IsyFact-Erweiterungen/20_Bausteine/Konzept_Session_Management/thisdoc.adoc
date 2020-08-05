@@ -1,5 +1,8 @@
+= Konzept Session Management: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Um die Skalierbarkeit und Hochverfügbarkeit von Anwendungen zu ermöglichen, sieht die IsyFact eine zustandslose Serverarchitektur vor.
 Diese ermöglicht es, mehrere Instanzen einer Anwendung parallel zu betreiben, was die Grundlage für Loadbalancing und Failover ist.
@@ -15,7 +18,7 @@ Es richtet sich an alle, die den <<glossar-Baustein>> Session Management der Isy
 
 
 [[aufbau-und-zweck-des-dokuments]]
-= Session Management
+== Session Management
 
 Das Session Management besteht aus zwei Komponenten:
 
@@ -33,4 +36,4 @@ Session-Speichers (Kapitel <<session-speicher>>) beschrieben.
 
 Konkrete Anweisungen zum Aufbau des Session-Speichers finden sich in <<NutzungsvorgabenRedis>>. Die Einbindung des
 Session-Managers ist in <<NutzungsvorgabenIsy-Session>> beschrieben.
-
+// end::inhalt[]

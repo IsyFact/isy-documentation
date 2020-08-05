@@ -1,8 +1,8 @@
+*Java Bibliothek / IT-System*
 
-**Dokumentinformationen**
-
+[cols="5,2,3"]
 |====
-|Dokumenten-ID:| Konzept_Sicherheit
+|Name |Art |Version
+|`isy-sicherheit` |Bibliothek |v{version-ifs}
+|`isy-aufrufkontext` |Bibliothek |v{version-ifs}
 |====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.

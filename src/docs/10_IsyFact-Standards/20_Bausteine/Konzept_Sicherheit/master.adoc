@@ -1,41 +1,13 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Konzept Sicherheit
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Änderungsübersicht
-include::docinfo.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Baustein Sicherheit
+:document-type: Konzept
 
 toc::[]
 
-// Einleitung
+colophon::[]
+
+include::docinfo.adoc[]
+
 include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt
 include::inhalt.adoc[tags=inhalt]
-
-:sectnums!:
-
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]

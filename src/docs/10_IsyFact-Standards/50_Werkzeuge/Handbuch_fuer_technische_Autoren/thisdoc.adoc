@@ -1,5 +1,8 @@
+= Handbuch für technische Autoren: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Dieses Handbuch dient technischen Autoren von IsyFact-Dokumenten als Wegweiser.
 
@@ -19,10 +22,12 @@ Eine AsciiDoc-Datei ist nicht binär, sondern besteht aus Klartext, ganz ohne pr
 Einer der Vorteile der AsciiDoc-Syntax ist die leichte Erlernbarkeit, denn AsciiDoc benötigt denkbar wenige Markups.
 AsciiDoc lässt sich zudem problemlos in moderne Versionsverwaltungssysteme integrieren, so dass alle Vorteile solcher Systeme wie z.B. paralleles Arbeiten in Branches, Pull/Merge Requests oder Continuous Integration nun auch auf Dokumente anwendbar sind.
 
-Atom::
+VS Code (Visual Studio Code)::
 
-Für die Dokumentation der IsyFact wird Atom als Editor empfohlen.
-Atom ist ein Open-Source-Texteditor, der von Github entwickelt wird. Neben den ausgereiften Plugins für die Bearbeitung von AsciiDoc-Dokumenten unterstützt Atom Git-basierte Projekte von Haus aus mit vielfältigen Funktionen.
+Zum Erstellen und Bearbeiten von AsciiDoc-Dateien wird ein Texteditor benötigt.
+Für die Dokumentation der IsyFact wird VS Code als Editor empfohlen.
+VS Code ist ein Texteditor, der von Microsoft entwickelt wird und plattformübergreifend für die Betriebssysteme Windows, macOS und Linux verfügbar ist.
+Neben den ausgereiften Plugins für die Bearbeitung von AsciiDoc-Dokumenten unterstützt VS Code Git-basierte Projekte von Haus aus mit vielfältigen Funktionen.
 
 Ausgabeformate HTML und PDF::
 
@@ -30,7 +35,7 @@ AsciiDoc-Dokumente können in verschiedenen Ausgabeformaten wie beispielsweise H
 Bei der IsyFact-Dokumentation sorgen Skripte dafür, dass die erstellten HTML- und PDF-Dateien automatisch auch über ein Literaturverzeichnis, ein Glossar, ein Abbildungsverzeichnis und ein Tabellenverzeichnis verfügen.
 
 [[aufbau-und-zweck-des-dokuments]]
-= Aufbau und Zweck des Dokuments
+=== Aufbau und Zweck des Dokuments
 
 Dieses Dokument ist eine Anleitung für technische Autoren.
 Es ermöglicht ihnen, die vorhandene IsyFact-Dokumentation gemäß der festgelegten Ordnung zu aktualisieren und zu erweitern.
@@ -38,6 +43,9 @@ Gleichzeitig geht es auf die Besonderheiten ein, die bei der Verwendung der Ausz
 
 Das Handbuch ist in folgende Bereiche untergliedert:
 
+- Architekturbeschreibung der Dokumentation
 - Die Arbeitsumgebung einrichten
 - Ein neues Dokument anlegen
-- Ein existierendes Dokument bearbeiten
+- Ein Dokument bearbeiten
+- Ein Dokument als HTML- und PDF-Datei erzeugen
+// end::inhalt[]

@@ -1,5 +1,8 @@
+= Konzept Logging: Inhalt
+
+// tag::inhalt[]
 [[anforderungen-an-das-logging]]
-= Anforderungen an das Logging
+== Anforderungen an das Logging
 
 Im Folgenden werden die Ziele und Anforderungen an das Logging definiert.
 Diese bilden die Grundlage für die Ausgestaltung des Loggings in den darauffolgenden Kapiteln.
@@ -51,19 +54,19 @@ z.B. zur Alarmierung.
 ** **Möglichst geringer Aufwand**: Der Aufwand zur Umsetzung des Loggings im Rahmen der Anwendungsentwicklung muss möglichst geringgehalten werden.
 
 [[vorgaben-zur-logerstellung]]
-= Vorgaben zur Logerstellung
+== Vorgaben zur Logerstellung
 
 In diesem Abschnitt werden sämtliche Aspekte zur Erstellung von Logeinträgen – dem eigentlichen „Logging“ – in den Anwendungen betrachtet und einheitliche Vorgaben definiert.
 Dabei findet eine Standardisierung auf Ebene der Inhalte der Logs (<<log-inhalte>>), der Ausgabe der Logs (<<logausgabe>>) und des eingesetzten Logging-Frameworks (<<logging-framework>>) statt.
 
 [[log-inhalte]]
-== Log-Inhalte
+=== Log-Inhalte
 
 Die Inhalte der Logeinträge sind standardisiert, um eine effiziente Auswertung der Logs zu ermöglichen.
 Ein Logeintrag ist dabei wie eine fachliche Entität des Loggings, mit klar definierten Attributen zu verstehen – analog zu einer persistenten Entität des fachlichen Datenmodells einer Anwendung.
 
 [[entitaeten]]
-=== Entitäten
+==== Entitäten
 
 Um zu verdeutlichen, dass es sich bei Logeinträgen um Entitäten – und nicht einfach nur einen „Freitext“ – handelt, wird der Inhalt eines Logeintrags in <<image-ETYlogmark>> in Form von Entitäten dargestellt.
 
@@ -80,7 +83,7 @@ Dies geschieht in Form von Markern (ETY_Marker), die eine generische Ergänzung 
 Die Inhalte der Entitäten werden im Folgenden beschrieben.
 
 [[ety_logeintrag]]
-==== ETY_Logeintrag
+===== ETY_Logeintrag
 
 [cols="3s,7"]
 |====
@@ -107,7 +110,7 @@ Die Inhalte der Entitäten werden im Folgenden beschrieben.
 |====
 
 [[ety_marker]]
-==== ETY_Marker
+===== ETY_Marker
 
 [cols="3s,7"]
 |====
@@ -125,7 +128,7 @@ Die Inhalte der Entitäten werden im Folgenden beschrieben.
 |====
 
 [[datentypen]]
-==== Datentypen
+===== Datentypen
 
 :desc-table-datentypen: Datentypen
 [id="table-datentypen",reftext="{table-caption} {counter:tables}"]
@@ -150,12 +153,12 @@ Bspw.: `2007-09-05 16:40:36,464Z`
 |====
 
 [[log-level-log-kategorie-und-ereignisschluessel]]
-=== Log-Level, Log-Kategorie und Ereignisschlüssel
+==== Log-Level, Log-Kategorie und Ereignisschlüssel
 
 Log-Level, Log-Kategorie und Ereignisschlüssel werden in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>) beschrieben.
 
 [[korrelations-id]]
-=== Korrelations-ID
+==== Korrelations-ID
 
 Die Korrelations-ID ist immer mitzuloggen, damit die Logeinträge einzelnen Aufrufen zugeordnet und über die Komponenten der Anwendungs­landschaft verfolgt werden können.
 Die Korrelations-ID besteht aus einer Liste von IDs.
@@ -172,7 +175,7 @@ Eine exemplarische Korrelations-ID ist demnach (als JSON-Array formatiert):
 "BATCH-c893d44f-3b8e-446e-a360-06a520440e64"}`
 
 [[nachricht]]
-=== Nachricht
+==== Nachricht
 
 Die Nachricht enthält eine menschenlesbare Beschreibung des eingetretenen Logereignisses.
 Diese ist dann relevant, wenn die Logeinträge unverarbeitet durch einen (menschlichen) Anwender ausgewertet werden, was insbesondere bei der Fehleranalyse der Fall ist.
@@ -181,21 +184,29 @@ Die Nachrichten sind so weit wie möglich zu vereinheitlichen.
 Dazu werden in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>) klare Vorgaben definiert, welche Nachrichten in welcher Situation zu erstellen sind.
 
 [[datenschutz]]
-==== Datenschutz
+===== Datenschutz
 
-Die Nachrichten dürfen keine Daten enthalten, die datenschutzrechtlich relevant oder sicherheitsrelevant sind (d.h. Personendaten, Passwörter, etc.).
+Beim Loggen der Nachrichten sind grundsätzlich die Vorgaben der Datenschutzgrundverordnung (https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE[DSGVO]) einzuhalten.
+Eine besondere Rolle spielen dabei personenbezogene Daten und insbesondere Daten gemäß Artikel 9 DSGVO.
+Ebenso dürfen grundsätzlich keine sicherheitsrelevanten Daten (z.B. Passwörter) geloggt werden.
 
 [underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
 Die entsprechenden Logeinträge müssen durch das Setzen des Flags ATT_Enthält_fachliche_Daten markiert werden, damit sie durch die Loginfrastruktur gesondert behandelt werden können.
+Die Daten dürfen nur so lange aufbewahrt werden, wie es für die Analyse der Daten zwingend erforderlich ist.
+
+Datenverarbeitung im Auftrag – auch Auftragsdatenverarbeitung (ADV) genannt – bezeichnete in Deutschland die Erhebung, Verarbeitung oder Nutzung personenbezogener Daten durch einen Dienstleister im Auftrag des Verantwortlichen.
+Seit Inkrafttreten der DSGVO regelt Artikel 28 der DSGVO die Verarbeitung im Auftrag.
+Artikel 28 verweist wiederum auf Artikel 32 der DSGVO, in dem eine Pseudonymisierung und Verschlüsselung personenbezogener Daten gefordert wird.
+Für die Weitergabe von Log Dateien an Auftragsverarbeiter (Entwickler) bedeutet das konkret, dass personenbezogene Daten nur pseudonymisiert weitergegeben werden dürfen.
 
 [[logausgabe]]
-== Logausgabe
+=== Logausgabe
 
 In diesem Abschnitt werden sämtliche Aspekte zur Ausgabe der Logeinträge betrachtet und für die IsyFact standardisiert.
 Dies umfasst die Definition des Formats der einzelnen Logeinträge (<<logformat>>), die Ablage der Einträge in Logdateien (<<logdateien-log-rotation-und-komprimierung>>).
 
 [[logformat]]
-=== Logformat
+==== Logformat
 
 Die Logeinträge werden im JSON-Format ausgegeben.
 Dies hat den Vorteil, dass die Einträge dadurch sehr einfach maschinell verarbeitet werden können und der Umfang der erzeugten Datenmengen (bspw. im Vergleich zu XML) reduziert wird.
@@ -240,12 +251,12 @@ Ein tatsächlicher Logeintrag (ohne zusätzliche Leerzeichen und Zeilenumbrüche
 ----
 
 [[logdateien-log-rotation-und-komprimierung]]
-=== Logdateien, Log-Rotation und Komprimierung
+==== Logdateien, Log-Rotation und Komprimierung
 
 Die Vorgaben zu Logdateien sowie deren Rotation und Komprimierung sind in den Nutzungsvorgaben _Logging_  <<NutzungsvorgabenLogging>> beschrieben.
 
 [[logging-framework]]
-== Logging-Framework
+=== Logging-Framework
 
 Als Logging-Framework wird in der IsyFact _logback_ eingesetzt.
 
@@ -259,7 +270,7 @@ Die Nutzung und Konfiguration von `isy-logging` sind in den Nutzungsvorgaben _Lo
 Im Folgenden werden die grundlegenden Aspekte der Implementierung von `isy-logging` beschrieben.
 
 [[logging-fassade]]
-=== Logging-Fassade
+==== Logging-Fassade
 
 `isy-logging` stellt eine Fassade zum Zugriff auf logback bzw. auf dessen Schnittstellen, die durch das allgemeine Framework SLF4J definiert werden, bereit.
 Wichtig ist, dass durch `isy-logging` selbst SLF4J nicht implementiert wird.
@@ -306,7 +317,7 @@ Die Klasse wird durch den `IsyLogger` verwendet, um einzelne Attribute (Name/Wer
 |====
 
 [[isylogger]]
-==== IsyLogger
+===== IsyLogger
 
 Das Interface IsyLogger stellt Methoden zum Erstellen von Logeinträgen bereit.
 Es ist in <<image-interface-isylogger>> dargestellt.
@@ -325,7 +336,7 @@ Grundsätzlich ermöglicht es SLF4J jeweils nur einen Marker zu übergeben.
 Marker können jedoch aneinandergehängt werden (Methode add am Marker), so dass ein Marker über diesen Weg weitere Marker enthalten kann.
 
 [[log-aufbereitung]]
-=== Log-Aufbereitung
+==== Log-Aufbereitung
 
 Zur Aufbereitung der Logeinträge im JSON-Layout wird die Klasse `IsyJsonLayout` bereitgestellt.
 Diese erweitert die Klasse `JsonLayout` von _logback_ um die Auswertung der `IsyMarker`.
@@ -345,7 +356,7 @@ In <<image-aufbvLogent>> ist das Zusammenspiel der verschiedenen Klassen zur Auf
 image::iaufbvLogent.png[align="center"]
 
 [[hilfsklassen]]
-=== Hilfsklassen
+==== Hilfsklassen
 
 `isy-logging` stellt zwei Hilfsklassen zur Erstellung von Logeinträgen bereit, um die Umsetzung der in den Nutzungsvorgaben <<NutzungsvorgabenLogging>> definierten Szenarien an die Logerstellung zu vereinfachen.
 Diese sind in <<image-hilfklas>> dargestellt.
@@ -362,7 +373,7 @@ Die Informationen zur Konfiguration und Verwendung der beiden Klassen sind in de
 image::hilfklas.png[align="center"]
 
 [[logging-externer-bibliotheken]]
-=== Logging externer Bibliotheken
+==== Logging externer Bibliotheken
 
 _Logback_ wird als einzige Implementierung von SLF4J eingesetzt (`IsyLoggerFactory` implementiert das Interface `LoggerFactory` von SLF4J nicht). Externe Bibliotheken, die SLF4J oder logback nutzen und in die Anwendung eingebunden werden, nutzen dadurch direkt die `LoggerFactory` und damit auch den `Logger`, der durch _logback_ bereitgestellt wird.
 Dies ist ohne Einschränkungen möglich, da die Vereinheitlichung der Logeinträge durch das `IsyJsonLayout` auch in diesem Fall durchgeführt wird.
@@ -371,7 +382,7 @@ Diese sind zu verwenden, so dass die Erstellung der Logeinträge ausschließlich
 Die Nutzung der Bridges ist in den Nutzungsvorgaben _Logging_ beschrieben (siehe <<NutzungsvorgabenLogging>>).
 
 [[log-auswertung]]
-= Log-Auswertung
+== Log-Auswertung
 
 In diesem Kapitel werden die Informationen beschrieben, die letztendlich im Auswertungstool zur Verfügung stehen, und damit die Grundlage zur Durchführung von Analysen darstellen.
 In den einzelnen Unterabschnitten werden die verschiedenen Logdateien aufgeführt, die an die Log-Infrastruktur  anzubinden sind.
@@ -382,12 +393,12 @@ Konkrete Szenarien zur Auswertung der Logeinträge sind in den Nutzungsvorgaben 
 Die Auswertung der Logeinträge mit Hilfe des Auswertungstools sind in den Nutzungsvorgaben des Logservers <<NutzungsvorgabenLogserver>> beschrieben.
 
 [[allgemeine-hinweise]]
-== Allgemeine Hinweise
+=== Allgemeine Hinweise
 
 In diesem Abschnitt werden allgemeine Hinweise und Besonderheiten zur Auswertung der Logs aufgeführt.
 
 [[kein-log-level-fatal-in-den-logs]]
-=== Kein Log-Level FATAL in den Logs
+==== Kein Log-Level FATAL in den Logs
 
 Wie in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben, besitzen SLF4J und logback kein Log-Level FATAL.
 Log-Einträge im Level FATAL und ERROR erscheinen in den Logs beide im Level ERROR, können aber an Hand der Kategorie (FATAL oder ERROR) unterschieden werden:
@@ -396,13 +407,13 @@ Log-Einträge im Level FATAL und ERROR erscheinen in den Logs beide im Level ERR
 * Log-Level FATAL: {"level":"ERROR", "kategorie":"FATAL", …}
 
 [[auswertung-des-feldes-zeitstempel]]
-=== Auswertung des Feldes „zeitstempel“
+==== Auswertung des Feldes „zeitstempel“
 
 Für die systematische Auswertung der Logeinträge durch die Betriebsplattform ist der Zeitstempel von besonderer Bedeutung.
 Daher stellt die Bibliothek `isy-logging` sicher, dass der Zeitstempel möglichst am Anfang des Logeintrags steht.
 
 [[allgemeine-inhalte-jedes-logeintrags]]
-== Allgemeine Inhalte jedes Logeintrags
+=== Allgemeine Inhalte jedes Logeintrags
 
 Die folgenden Attribute werden automatisch durch logstash gesetzt und sind in jedem Event enthalten:
 
@@ -416,7 +427,7 @@ Die folgenden Attribute werden automatisch durch logstash gesetzt und sind in je
 |====
 
 [[isyfact-konforme-anwendungen]]
-== IsyFact-konforme Anwendungen
+=== IsyFact-konforme Anwendungen
 
 Die Attribute, die durch Anwendungen geloggt werden, die konform zu `isy-logging` umgesetzt sind, werden durch die Entität ETY_Logeintrag in <<entitaeten>> beschrieben.
 Diese werden ergänzt um optionale Marker (Name/Wert-Paare). Beim Einsatz von `isy-logging` werden die folgenden Marker erstellt:
@@ -460,7 +471,7 @@ Der Marker wird in diesem Fall immer auf den Wert `true` gesetzt. Bei konformen 
 |====
 
 [[isyfact-konforme-anwendungen-vor-logging-konzept-version-3.0]]
-== IsyFact-konforme Anwendungen (vor Logging-Konzept Version 3.0)
+=== IsyFact-konforme Anwendungen (vor Logging-Konzept Version 3.0)
 
 Das Logging-Konzept wurde mit der Version 3 grundlegend überarbeitet.
 Die Logeinträge von Systemen, die konform zum Logging-Konzept vor Version 3 umgesetzt sind,
@@ -469,7 +480,7 @@ stellen neben der Lognachricht die folgenden Informationen (analog zu <<entitaet
 * `systemid, hostid, thread, logger, zeitstempel, korrelationsid, level`
 
 [[tomcat-access-log]]
-== Tomcat access-log
+=== Tomcat access-log
 
 Die Logeinträge der Tomcat access-logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht die folgenden Informationen bereit:
 
@@ -496,7 +507,7 @@ Diese wird von mod_jk im Request mitgeliefert. |24 Zeichen. Bspw.: `U08ZosCoAAM-
 |====
 
 [[wrapper-log]]
-== Wrapper-Log
+=== Wrapper-Log
 
 Die Logeinträge des Wrapper-Logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht die folgenden Informationen bereit:
 
@@ -513,7 +524,7 @@ Die Logeinträge des Wrapper-Logs, die konform zur IsyFact konfiguriert sind, st
 |====
 
 [[apache-access-log-und-error-log]]
-== Apache access-log und error-log
+=== Apache access-log und error-log
 
 Die in den Logs der Apache HTTP-Server bereitgestellten Informationen werden im Konzept HTTP-Server Apache <<NutzungskonzeptHTTPServer>> beschrieben.
 
@@ -533,7 +544,7 @@ Da der HTTP-Server ein anderes Zeitstempel-Format verwendet, werden folgende Fel
 Sollten die Requestparameter fachliche Daten enthalten (bspw. weil Suchanfragen über einen REST-Webservice realisiert wurden), so sind alle Apache-Logs des jeweiligen Webservers als „Fachdaten“ zu kennzeichnen (siehe <<NutzungsvorgabenLogging>>).
 
 [[mailserver-log]]
-== Mailserver-log
+=== Mailserver-log
 
 Die Logs des Mailservers stellen neben der Lognachricht, die folgenden Informationen bereit:
 
@@ -548,7 +559,7 @@ Die Logs des Mailservers stellen neben der Lognachricht, die folgenden Informati
 |====
 
 [[suchverfahren-log]]
-== Suchverfahren-Log
+=== Suchverfahren-Log
 
 Die Logs des Alphanumerischen Suchverfahrens der Register Factory stellen zum einen allgemeine Informationen bereit, die in jedem Logeintrag enthalten sind.
 Darüber hinaus werden je nach Logger (asv.search.request, asv.search.result, asv.update.request, asv.update.result, asv.compare.request, asv.compare.result) weitere Informationen bereitgestellt.
@@ -665,7 +676,7 @@ Vollständiges Ergebnisobjekt.
 |====
 
 [[logstash-log]]
-== logstash-log
+=== logstash-log
 
 Logstash stellt neben der Lognachricht, die folgenden Informationen bereit:
 
@@ -679,3 +690,12 @@ Logstash stellt neben der Lognachricht, die folgenden Informationen bereit:
 |zeitstempel |Datum und Uhrzeit im ISO-8601 Format |2012-02-02T00:02:50.000Z
 |level |Log-Level analog zu analog zu Abschnitt <<kein-log-level-fatal-in-den-logs>> |Bspw.: `INFO`
 |====
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

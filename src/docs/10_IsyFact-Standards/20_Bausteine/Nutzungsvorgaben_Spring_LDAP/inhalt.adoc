@@ -1,5 +1,8 @@
+= Nutzungsvorgaben Spring LDAP: Inhakt
+
+// tag::inhalt[]
 [[funktionalitaet-und-faehigkeiten-von-spring-ldap]]
-= Funktionalität und Fähigkeiten von Spring LDAP
+== Funktionalität und Fähigkeiten von Spring LDAP
 
 Hauptziel von Spring LDAP ist das Vereinfachen von Zugriffen auf LDAP-Systeme, wobei folgende wiederkehrende Tätigkeiten gekapselt werden:
 
@@ -9,15 +12,15 @@ Hauptziel von Spring LDAP ist das Vereinfachen von Zugriffen auf LDAP-Systeme, w
 * Verbindungen zum LDAP aufbauen und schließen
 
 [[nutzung-von-spring-ldap]]
-= Nutzung von Spring LDAP
+== Nutzung von Spring LDAP
 
 [[benoetigte-bibliotheken]]
-== Benötigte Bibliotheken
+=== Benötigte Bibliotheken
 
 Alle von Spring LDAP benötigten <<glossar-Bibliothek,Bibliotheken>> können zusammen mit den eigentlichen Spring LDAP Bibliotheken von <<SpringLDAP>> herunter geladen werden.
 
 [[spring-konfiguration]]
-== Spring Konfiguration
+=== Spring Konfiguration
 
 In der Spring-Konfigurationsdatei müssen drei Einträge für die Nutzung von Spring LDAP gesetzt werden:
 
@@ -145,13 +148,13 @@ ldap.minEvictableIdleTimeMillis = 150000
 ----
 
 [[beispiel-fuer-eine-dao-klasse]]
-== Beispiel für eine DAO-Klasse
+=== Beispiel für eine DAO-Klasse
 
 Der hier gezeigte Code dient zum Auslesen der Rollen eines Benutzers sowie zum Anlegen eines neuen Anwenders und ist zentraler Teil der Beispielimplementierung für Spring LDAP.
 Es wird exemplarisch gezeigt, wie über das `LdapTemplate` Suchen und Einfügen in den LDAP funktioniert.
 
 [[auslesen-von-rollen]]
-=== Auslesen von Rollen
+==== Auslesen von Rollen
 
 :desc-listing-AuslesenRollen: Auslesen von Rollen
 [id="listing-AuslesenRollen",reftext="{listing-caption} {counter:listings }"]
@@ -202,7 +205,7 @@ In unserer Klasse werden alle Rollen (Inhalt des LDAP-Attributes `rollen`) des B
 Zusammengefasst sucht diese Methode einen Benutzer der durch seinen Anmeldenamen und sein Organisationskennzeichen identifiziert wird, und gibt die Rollen des Benutzers als Liste von Strings zurück.
 
 [[speichern-eines-anwenders]]
-=== Speichern eines Anwenders
+==== Speichern eines Anwenders
 
 Als Beispiel zum Speichern wird hier das Neuanlegen eines <<glossar-Anwender,Anwenders>> gezeigt.
 Die Klasse `Anwender` ist ein reines Transportobjekt mit Getter- und Setter- Methoden und wird nicht weiter erläutert.
@@ -244,3 +247,13 @@ Bei der Befüllung muss darauf geachtet werden, dass alle Pflichtattribute der a
 
 In der letzten Zeile der Methode wird wiederum das `LdapTemplate` aufgerufen und mit der Methode bind ein neuer Eintrag im LDAP angelegt.
 Als erster Parameter wird der DN des Eintrags mitgeliefert, in den Parametern zwei und drei werden alle zu setzenden Attribute übergeben, entweder als Context oder als Sammlung von Attributen.
+
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

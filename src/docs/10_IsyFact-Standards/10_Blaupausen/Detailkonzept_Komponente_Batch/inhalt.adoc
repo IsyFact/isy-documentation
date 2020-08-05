@@ -1,6 +1,4 @@
 = Detailkonzept Batch: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
 
 // tag::inhalt[]
 == Einführung
@@ -38,7 +36,7 @@ Batchlogik wird in Punkt 1 dargestellt, die fachlichen Operationen der Komponent
 Die querschnittliche Logik wird lediglich als Bibliothek eingebunden und ist in der Abbildung nicht dargestellt.
 
 Die Komponente „Batchsteuerung“ der Zielarchitektur bezieht sich auf die Steuerung eines Batch-Netzes (siehe <<image-BatNetz>>) und
-wird über UC4 (siehe auch <<KonzeptUeberwachungKonfiguration>>) umgesetzt.
+wird über UC4 (siehe auch <<KonzeptKonfiguration>>) umgesetzt.
 Sie wird in diesem Dokument nicht betrachtet.
 
 Die Komponente „Batchlogik“ der Zielarchitektur ist eine logische Komponente, welche die technische Logik der
@@ -132,7 +130,7 @@ Die Komponente Batchrahmen übernimmt die Steuerung des Batches und den Aufruf d
 
 Die Komponenten einer Fachanwendung werden für einen Batch, genau wie in der Webanwendung, über das Spring-Framework verwaltet.
 Damit die Konfigurationen für die Webanwendung und für die Batch-Implementierungen möglichst gleich sind, werden die Komponenten für den Batchrahmen und die Batchlogik in einer separaten Konfigurationsdatei und einem separaten Spring-Kontext abgelegt.
-Dieser Kontext ist ein Kind-Kontext des eigentlichen <<glossar-,Anwendungskontextes>> und kann alle Beans des Anwendungskontextes verwenden.
+Dieser Kontext ist ein Kind-Kontext des eigentlichen <<glossar-Anwendungskontext,Anwendungskontextes>> und kann alle Beans des Anwendungskontextes verwenden.
 So kann die Konfiguration der Webanwendung mit minimalen Anpassungen auch für den Batch verwendet werden.
 
 Der Batchrahmen benötigt für die Speicherung des Fortschritts und des Status der Batches eine Datenbankverbindung.
@@ -416,7 +414,7 @@ Wie in Kapitel <<grobe-architektur-des-batchrahmens>> beschrieben, werden für e
 Für den Kontext der eigentlichen Fachanwendung können die Spring-Konfigurationsdateien übernommen werden.
 In ihnen müssen folgende Anpassungen vorgenommen werden:
 
-* Beans, die für die Batch-Verarbeitung nicht benötigt werden, sollten entfernt werden (HttpInvoker-Beans, GUI-Beans).
+* Beans, die für die Batch-Verarbeitung nicht benötigt werden, sollten entfernt werden (Service-Beans, GUI-Beans).
 * Damit die Entity-Klassen des Batchrahmens gefunden werden können, muss in der Spring-Konfiguration der Batches ein Entity-Scan hinzugefügt werden:
 
  @EntityScan("de.bund.bva.isyfact.batchrahmen.persistence.rahmen")
@@ -1225,4 +1223,11 @@ Wichtig ist, dass die einheitliche Außenschnittstelle der Batchschritte erhalte
 
 Die Dokumentation der abweichenden Batchimplementierung erfolgt im Systementwurf und wird daraus in die Systemdokumentation übernommen.
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

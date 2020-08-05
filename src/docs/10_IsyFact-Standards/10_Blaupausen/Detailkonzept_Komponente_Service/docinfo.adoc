@@ -1,16 +1,8 @@
-**Dokumentinformationen**
-
-|====
-|Dokumenten-ID:| Detailkonzept_Komponente_Service
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
 *Java Bibliothek / IT-System*
 
 [cols="4,1,2",options="header"]
 |====
 |Name |Art |Version
-|isy-serviceapi-core |Bibliothek |siehe isyfact-bom v{version-ifs}
-|isy-serviceapi-sst |Bibliothek |siehe isyfact-bom v{version-ifs}
+|isy-serviceapi-core |Bibliothek |v{version-ifs}
+|isy-serviceapi-sst |Bibliothek |v{version-ifs}
 |====

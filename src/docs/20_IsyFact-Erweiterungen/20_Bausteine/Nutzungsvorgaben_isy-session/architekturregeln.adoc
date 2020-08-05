@@ -1,0 +1,7 @@
+// tag::architekturregeln[]
+
+[[architekturregeln-isy-session]]
+== Architekturregeln Isy-Session
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

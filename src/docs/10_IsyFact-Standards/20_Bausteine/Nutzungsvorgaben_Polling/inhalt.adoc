@@ -1,58 +1,10 @@
-[[verfahren-fuer-das-polling]]
-= Verfahren für das Polling
+= Nutzungsvorgaben Polling: Inhalt
 
-Das Polling erfolgt über mehrere Instanzen der Anwendung.
-Es darf zu einem Zeitpunkt aber nur eine Instanz das Polling aktiv durchführen, um das mehrfache Abrufen von Daten zu verhindern.
-Die Abstimmung darüber, welche Instanz das Polling aktiv durchführt, erfolgt automatisch.
-
-Hierzu verwaltet jede Instanz den Zeitstempel ihrer letzten Polling-Aktivität und stellt den seit ihrer letzten Polling-Aktivität vergangenen Zeitraum per JMX bereit.
-Der Zeitraum wird anhand des Zeitstempels und der aktuellen Systemzeit beim Abruf des Wertes über JMX ermittelt.
-Es wird der Zeitraum und nicht der Zeitpunkt über JMX bereitgestellt, da hiermit das Problem nicht synchron laufender Uhren auf den einzelnen Servern keine Probleme bereitet.
-
-Der Ablauf des Pollings in jeder Instanz ist dann wie folgt:
-
-. Es werden die seit der letzten Polling-Aktivität vergangenen Zeiträume aller anderen Instanzen über JMX ermittelt.
-. Wenn der Zeitraum seit der letzten Polling-Aktivität einer anderen Instanz kleiner als eine Wartezeit X ist, wird die Verarbeitung abgebrochen.
-. In allen anderen Fällen (keine Instanz erreichbar, keine Zeiträume gesetzt, alle Zeiträume größer als eine Wartezeit X) wird mit der Verarbeitung fortgefahren.
-. Zu Beginn des Abrufs von Nachrichten wird der eigene Zeitstempel auf den aktuellen Zeitpunkt gesetzt.
-. Während der Verarbeitung der einzelnen Nachrichten wird der Zeitstempel aktualisiert.
-. Am Ende der Verarbeitung aller abgerufenen Nachrichten wird der Zeitstempel nochmals aktualisiert.
-
-In <<image-002>> wird das Verfahren dargestellt.
-
-:desc-image-002: Angepasstes Verfahren zum Polling
-[id="image-002",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-002}
-image::polling_002.png[align="center",width=50%,pdfwidth=50%]
-
-Dieses Verfahren bietet im Regelfall einen sehr guten Schutz gegen Mehrfachverarbeitung.
-Es kann aber z.B. bei Netzproblemen dazu kommen, dass mehrere Instanzen parallel arbeiten.
-Dies lässt sich prinzipiell durch die Abstimmung per JMX nicht zu 100% ausschließen.
-
-Daher ist es nötig, im Rahmen der Verarbeitung eingegangener Daten weitere Maßnahmen zu treffen.
-Hierzu wird in der Fachanwendung, die die Nachrichten verarbeitet, eine Tabelle für alle eingehenden Daten in der Datenbank angelegt.
-
-Eine solche Tabelle ist häufig bereits vorhanden.
-In dieser Tabelle wird eine zusätzliche Spalte hinzugefügt, die einen Schlüssel aus dem Fremdsystem aufnimmt.
-Dieser Fremdsystemschlüssel kann je nach anlieferndem System z.B. die SMTP-Message-ID, ein Datenbankschlüssel oder auch ein Hashwert sein.
-Die Spalte wird mit einem Unique Constraint versehen.
-So können datenbankseitig Duplikate sicher erkannt werden.
-
-Dafür ist es notwendig, diesen Fremdsystemschlüssel bis in die Fachanwendung zu transportieren, also z.B. vom Mail-Server über das Mail-Gateway.
-Da nur die Datenbank als transaktionales System die Eindeutigkeit der IDs garantieren kann, wird dies in Kauf genommen.
-
-In <<image-003>> wird das noch einmal illustriert.
-
-:desc-image-003: Nachrichten-Tabelle
-[id="image-003",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-003}
-image::polling_003.png[align="center",width=50%,pdfwidth=50%]
-
-
+// tag::inhalt[]
 [[die-bibliothek-isy-polling]]
-= Die Bibliothek isy-polling
+== Die Bibliothek isy-polling
 
-Die Bibliothek `isy-polling` der IsyFact-Standards implementiert den oben dargestellten Synchronisationsmechanismus über JMX.
+Die Bibliothek `isy-polling` der IsyFact-Standards implementiert den im <<KonzeptPolling>> dargestellten Synchronisationsmechanismus über JMX.
 Die Bibliothek kann mit mehreren zu pollenden Datenquellen und beliebig vielen Instanzen der Anwendung zum Abfragen einer Datenquelle umgehen.
 
 Zur weiteren Erläuterung der einzelnen Klassen der Bibliothek wird zunächst der Begriff „Polling-Cluster“ definiert:
@@ -88,7 +40,7 @@ In <<image-004>> ist das Klassendiagramm der Bibliothek `isy-polling` dargestell
 image::polling_004.png[align="center"]
 
 [[einbinden-der-bibliothek-in-die-anwendung]]
-= Einbinden der Bibliothek in die Anwendung
+== Einbinden der Bibliothek in die Anwendung
 
 Polling wird in der Regel in einem Verarbeitungszyklus implementiert, der über einen Timer gestartet wird.
 Der Verarbeitungszyklus kann eine oder nacheinander mehrere Datenquellen abfragen.
@@ -99,14 +51,14 @@ JMX-Verbindungen und Polling-Cluster werden über die Anwendungskonfiguration de
 Im Folgenden wird im Detail beschrieben, wie die Bibliothek eingebunden und genutzt wird.
 
 [[anwendungskonfiguration]]
-== Anwendungskonfiguration
+=== Anwendungskonfiguration
 
 In der Anwendungskonfiguration werden Polling-Cluster und JMX-Verbindungsparameter definiert.
 Bei der Definition der Polling-Cluster hat man die Möglichkeit einen Cluster für einen gesamten Verarbeitungszyklus oder einen Cluster für jede abzufragende Datenquelle zu definieren.
 Welche der beiden Möglichkeiten gewählt wird, hängt vom konkreten Anwendungsfall ab und muss beim Entwurf der Anwendung entschieden werden.
 
 [[lastverteilung-ueber-cluster-definition]]
-=== Lastverteilung über Cluster-Definition
+==== Lastverteilung über Cluster-Definition
 
 Wird ein Polling-Cluster je zu pollender Datenquelle festgelegt, so kann eine gewisse Lastverteilung erreicht werden wie folgendes Beispiel zeigt:
 
@@ -139,7 +91,7 @@ Dieses Beispiel zeigt, dass E-Mail-Konten parallel von beiden Instanzen abgearbe
 
 
 [[konfigurationsklassen]]
-=== Konfiguration über Properties
+==== Konfiguration über Properties
 
 Polling-Cluster und JMX-Verbindungsparameter werden über Properties in `application.properties` konfiguriert.
 Konfigurationsparameter einer Ausprägung haben dann das Namensschema <Konfigurationsklassen-Präfix>.<ID der Ausprägung>.<Name des Konfigurationsparameters>.
@@ -173,7 +125,7 @@ isy.polling.cluster.POSTFACH2_CLUSTER.jmxverbindungen = server1,server2
 ----
 
 [[konfigurationsparameter]]
-==== Konfigurationsparameter
+===== Konfigurationsparameter
 
 JMX-Verbindungen haben die folgenden Attribute:
 
@@ -210,7 +162,7 @@ Die JMX-Domain für den Polling-Verwalter ist in der Regel das Basispackage der 
 `isy.polling.jmx.domain=<Domäne>`
 
 [[konfiguration-fuer-den-test]]
-=== Konfiguration für den Test
+==== Konfiguration für den Test
 
 Für Tests der Anwendung, insbesondere für lokale Entwicklertests, stehen in der Regel nicht mehrere Instanzen der Anwendung zur Verfügung.
 In diesem Fall kann das konfigurierte Polling die Tests behindern.
@@ -224,7 +176,7 @@ Da dieses Verhalten in der Regel im Produktivbetrieb nicht erwünscht ist, wird 
 NOTE: Für das Polling der Anwendung wurden keine JMX-Verbindungsparameter angegeben! Der Polling-Modus wurde auf "Standalone" gesetzt!
 
 [[beispiel-fuer-eine-polling-konfiguration]]
-=== Beispiel für eine Polling-Konfiguration
+==== Beispiel für eine Polling-Konfiguration
 
 In <<listing-BeispielPollingKonfiguration>> ist eine vollständige Polling-Konfiguration für einen Cluster aufgeführt, der aus insgesamt zwei Instanzen der Anwendung besteht.
 
@@ -262,7 +214,7 @@ Cluster können nicht dynamisch nur durch die Konfiguration erzeugt werden.
 Sie sind vielmehr eng mit der Anwendungslogik verknüpft und sollten daher nicht vom Betrieb geändert werden.
 
 [[beispiel-fuer-eine-polling-konfiguration-mit-lastverteilung]]
-=== Beispiel für eine Polling-Konfiguration mit Lastverteilung
+==== Beispiel für eine Polling-Konfiguration mit Lastverteilung
 
 In <<listing-BeispielPollingKonfigurationLastverteilung>> ist die Polling-Konfiguration für zwei zu pollende Datenquellen mit jeweils eigenem Polling-Cluster aufgeführt.
 Die beiden Cluster bestehen jeweils aus den zwei gleichen Instanzen der Anwendung.
@@ -307,7 +259,7 @@ isy.polling.cluster.POSTFACH2_CLUSTER.wartezeit = 600
 ----
 
 [[spring-konfiguration]]
-== Spring-Konfiguration
+=== Spring-Konfiguration
 
 Die Bean für den Polling-Verwalter wird automatisch durch `isy-polling` konfiguriert.
 Der Interceptor, der zur Verwendung der `@PollingAktion`-Annotation notwendig, wird ebenfalls automatisch konfiguriert.
@@ -358,7 +310,7 @@ public MBeanExporter mBeanExporter(@Qualifier("mailabrufClusterMonitor") Polling
 Hierbei ist zu beachten, dass der Cluster-Name aus der Konfiguration hier für die Bildung des Keys für die MBeans verwendet wird.
 
 [[nutzung-im-code]]
-== Nutzung im Code
+=== Nutzung im Code
 
 Wie bereits erwähnt, wird Polling in der Regel in einem Verarbeitungszyklus implementiert, der über einen Timer gestartet wird.
 Der Verarbeitungszyklus kann eine oder nacheinander mehrere Datenquellen abfragen, für die jeweils ein Polling-Cluster definiert sein kann.
@@ -423,3 +375,13 @@ public void doPollingAktion () {
   }
 // ...
 ----
+
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

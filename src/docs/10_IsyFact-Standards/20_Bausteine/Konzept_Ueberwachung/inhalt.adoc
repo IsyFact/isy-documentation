@@ -1,0 +1,942 @@
+= Konzept Überwachung: Inhalt
+
+// tag::inhalt[]
+[[ueberwachung-von-anwendungen]]
+== Überwachung von Anwendungen
+
+In diesem Kapitel werden die Anforderungen an die Überwachung von Anwendungen beschrieben.
+Der Fokus liegt dabei auf der Schaffung von einheitlichen Administrationsschnittstellen, welche dem Betrieb eine einfache Überwachung der Anwendungen erlauben.
+Alle Vorgaben sind beim Entwurf und der Realisierung von neuen Anwendungen nach IsyFact-Architektur zu berücksichtigen.
+Gegebenenfalls können in Systementwürfen Verfeinerungen der hier getroffenen Vorgaben gemacht werden.
+Weiterhin können die hier gemachten Vorgaben als Basis für die Beschreibung der Überwachungsschnittstelle im Betriebshandbuch der Anwendungssysteme verwendet werden.
+
+[[kurzeinfuehrung-in-das-system-monitoring-mit-spring-boot-actuator]]
+=== Kurzeinführung in das System-Monitoring mit Spring Boot Actuator
+
+Spring Boot bringt mit Actuator eine Reihe zusätzlicher Funktionen mit, die dabei helfen, Anwendungen zu überwachen und zu verwalten.
+Die Kommunikation mit der Anwendung erfolgt über sogenannte _Endpoints_.
+Diese können über HTTP oder JMX bereitgestellt werden.
+Actuator bringt eine Reihe von eingebauten Endpoints mit und bietet auch die Möglichkeit, eigene Endpoints hinzuzufügen.
+So wird für Informationen über den Systemzustand der eingebauten Endpoint `health` angeboten und über den Endpoint `metrics` können Metriken gelesen werden.
+
+[[micrometer]]
+==== Micrometer
+
+Die im Endpoint `metrics` bereitgestellen Metriken werden von Micrometer erfasst.
+Micrometer bietet eine einfache anbieterneutrale Fassade für die gängigsten Überwachungssysteme und ermöglicht es, Metriken im Anwendungscode ohne Herstellerbindung zu implementieren.
+Seit Spring Boot 2.0 ist Micrometer die Standardbibliothek zur Bereitstellung von Anwendungsmetriken von Spring.
+
+NOTE: Für eine Liste der unterstützten Monitoring-Systeme siehe http://micrometer.io/docs/concepts#_supported_monitoring_systems
+
+[[festlegungen-und-ausgrenzungen]]
+=== Festlegungen und Ausgrenzungen
+
+Für die Überwachbarkeit der Anwendungen werden die folgenden Festlegungen getroffen:
+
+* Für die Überwachung wird Spring Boot Actuator eingesetzt.
+* Die Endpoints von Actuator werden über HTTP bereitgestellt.
+* Es werden nur die unbedingt benötigten Endpoints freigeschaltet.
+Alle nicht benötigten Endpoints sind zu deaktivieren.
+* Endpoints werden nur passiv benutzt.
+Die Anwendung wird nicht darüber konfiguriert.
+* Der Zugriff auf Endpoints wird mit Benutzername und Passwort abgesichert.
+* Anwendungen stellen einen definierten Satz von Überwachungsinformationen bereit.
+
+
+Folgende Punkte sind bewusst nicht Teil dieses Konzeptes:
+
+* Die Konfiguration eines konkreten Produkts zum System-Monitoring ist nicht Teil des Konzeptes.
+* Micrometer unterstützt die Anbindung zahlreicher Monitoring-Systeme.
+Es werden keine Vorgaben zur Verwendung eines bestimmten Systems gemacht.
+Beispielhaft wird eine mögliche Konfiguration zur Anbindung beschrieben.
+
+[[designvorgaben-fuer-die-ueberwachungsschnittstelle]]
+=== Designvorgaben für die Überwachungsschnittstelle
+
+Diese Kapitel beschreibt die zu verwendenden Designmuster und Konventionen für die Überwachung mit Actuator und Micrometer.
+
+[[vorgaben-fuer-bereitgestellte-informationen]]
+==== Vorgaben für bereitgestellte Informationen
+
+In diesem Kapitel werden die Informationen beschrieben, welche jede Anwendung zur Überwachung bereitstellen muss.
+
+Für das Anbieten dieser genormten Management-Schnittstellen wird eine querschnittliche Bibliothek `isy-ueberwachung`
+bereitgestellt, welche die dafür notwendigen Klassen enthält.
+Die Bibliothek wird in die zu überwachende Anwendung eingebunden.
+Durch das Einbinden von `isy-ueberwachung` werden auch die für Actuator und Micrometer benötigten Dritt-Bibliotheken
+eingebunden.
+
+[[allgemeine-ueberwachungsinformationen]]
+===== Allgemeine Überwachungsinformationen
+
+Actuator stellt über den `metrics` Endpoint allgemeine Überwachungsinformationen bereit.
+Die folgenden Metriken müssen durch Spring Boot automatisch registriert und bereitgestellt werden:
+
+* JVM Metriken
+** Speicher und Puffer
+** Statistiken zur Garbage Collection
+** Nutzung von Threads
+** Anzahl der geladenen Klassen
+* Metriken zur Prozessorauslastung
+* Metriken für Dateideskriptoren
+* Metriken zur Uptime der Anwendung
+* Tomcat-Metriken
+
+[[informationen-von-services]]
+===== Informationen von Services
+
+<<table-StdueberServ>> zeigt eine Liste der zu überwachenden bzw. anzubietenden Informationen für die Services von Anwendungen.
+Die dort aufgelisteten Informationen müssen für jeden Service einzeln angeboten werden.
+
+:desc-table-StdueberServ: Standard Überwachungsinformationen für Services
+[id="table-StdueberServ",reftext="{table-caption} {counter:tables}"]
+.{desc-table-StdueberServ}
+[cols=",",options="header"]
+|====
+2+m|Tags: anwendung = <Package der Anwendung>, servicestatistik = <Name des Service>
+m|AnzahlAufrufeLetzteMinute |Liefert die Anzahl der in der letzten Minute erfolgten Aufrufe des Services insgesamt.
+m|AnzahlFehlerLetzteMinute |Liefert die Anzahl der in der letzten Minute erfolgten Aufrufe des Services, bei denen ein technischer Fehler aufgetreten ist.
+m|DurchschnittsDauerLetzteAufrufe |Liefert die durchschnittliche Bearbeitungsdauer der letzten 10 Aufrufe der Services in Millisekunden (einfacher gleitender Durchschnitt).
+|====
+
+NOTE: Die Summe der Aufrufe wird alle 60 Sekunden aktualisiert.
+
+Da die gesammelten Informationen für alle Services identisch sind, bringt `isy-ueberwachung` eine Klasse `ServiceStatistik`
+mit, die diese transparent erfasst.
+
+Um die Informationen für mehrere Services in einer Anwendung anzubieten, wird die Klasse mehrfach als Spring-Bean konfiguriert.
+Die Aktualisierung der Daten in `ServiceStatistik` wird in der Service-Fassade der jeweiligen Komponente durchgeführt.
+Dazu wird per Spring ein AOP-Advice für die Service-Methoden der Komponente definiert.
+Die Konfiguration für eine `ServiceStatistik`-Bean und den dazugehörigen AOP-Advice ist beispielhaft in <<listing-ServiceStatistikConfig>> dargestellt.
+
+:desc-listing-ServiceStatistikConfig: ServiceStatistik-Bean und AOP-Advice für die Service-Methoden der Komponente
+[id="listing-ServiceStatistikConfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ServiceStatistikConfig}
+[source,java]
+----
+@Configuration
+@EnableAspectJAutoProxy
+public class UeberwachungConfig {
+
+    @Bean
+    public MethodInterceptor verwaltungMonitor(MeterRegistry meterRegistry) {
+        return new ServiceStatistik(meterRegistry, Tags.of("servicestatistik", "verwaltung"));
+    }
+
+    @Bean
+    public Advisor verwaltungMonitorAdvice(@Qualifier("verwaltungMonitor") MethodInterceptor verwaltungMonitor) {
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("target(de.bund.bva.anwendung.service.verwaltung.VerwaltungRemoteBean)");
+        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(pointcut, verwaltungMonitor);
+        advisor.setOrder(1000);
+        return advisor;
+    }
+}
+----
+
+Der Advice bewirkt, dass jeder Aufruf von `VerwaltungRemoteBean` zu einem Aufruf der Methode `zaehleAufruf` in der Bean `verwaltungMonitor` führt.
+Die Bean `verwaltungMonitor` ist die `ServiceStatistik`-Instanz für die `VerwaltungRemoteBean`.
+Eine entsprechende Konfiguration wird also für jeden Service in die Spring-Konfiguration aufgenommen.
+
+Für das Monitoring per AOP werden intern Datenstrukturen gespeichert, die vorhalten, an welchen Stellen Aspekte eingebracht werden.
+Das kann, wenn eine große Anzahl von Service-Klassen mit vielen Methoden genutzt wird, zu einem großen Speicherverbrauch führen.
+Dies muss beim Design der Services berücksichtigt werden.
+Da in Anwendungen pro Komponente in der Regel ein Service angeboten wird und in Anwendung gemäß Referenzarchitektur nur eine eher kleine Anzahl von Komponenten vorhanden ist, stellt dies in der Regel kein Problem dar.
+
+[[ueberwachung-von-caches]]
+===== Überwachung von Caches
+
+Für Caches, die beim Start der Anwendung initialisiert sind, werden automatisch im Endpoint `metrics` Statistiken mit dem Präfix `cache.` geführt.
+Die Art der angezeigten Statistiken ist von der verwendeten Cache-Implementierung abhängig.
+
+
+[[implementierung-von-eigenen-metriken]]
+==== Implementierung von eigenen Metriken
+
+Zusätzlich zu den eingebauten Metriken kann eine Anwendung selber Metriken aufzeichnen und über Micrometer registrieren.
+
+[[implementierung]]
+===== Implementierung
+
+Zum Einsatz von eigenen Metriken werden die von Micrometer angebotenen abstrakten `Meter` über eine `MeterRegistry` registriert und dann in der Anwendung mit Daten befüllt.
+
+
+Die `MeterRegistriy` wird von Spring per Dependency Injection bereitgestellt.
+Bei der Registrierung eines Meters ist ein Tag zur Unterscheidung und eine Beschreibung zu setzen.
+Ein Beispiel zur Registrierung und Verwendung eines `Meters` am Beispiel eines `Counters` zeigt <<listing-custommeter>>.
+Dort wird ein `Counter` mit dem Namen `eintrag.neu` mit einem Tag registriert, der aus einem Schlüssel `komponente` mit dem Wert `verwaltung` besteht.
+Zu den Namenskonventionen bei der Vergabe von Namen und Tags siehe <<namenskonventionen>>.
+
+:desc-listing-custommeter: Registierung und Verwendung eines Counters.
+[id="listing-custommeter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-custommeter}
+[source,java]
+----
+@Component
+public class VerwaltungImpl implements Verwaltung {
+
+    private final Counter neuerEintragCounter;
+
+    ...
+
+    public VerwaltungImpl(MeterRegistry registry) {
+        neuerEintragCounter = registry.counter("eintrag.neu", "komponente", "verwaltung");
+        ...
+    }
+
+    public EintragDaten neuerEintrag(...) {
+        ...
+        neuerEintragCounter.increment();
+        ...
+    }
+}
+----
+
+[[namenskonventionen]]
+===== Namenskonventionen
+
+Bei der Benennung von Metern und Tags sind Konventionen einzuhalten.
+
+[[benennung-von-metern]]
+====== Benennung von Metern
+
+Die Konventionen von Micrometer bei der Vergabe von Namen sehen die Verwendung von kleingeschriebenen Wörtern vor, die durch Punkte (`.`) getrennt werden.
+
+  registry.timer("http.server.requests");
+
+Verschiedene Monitoring-Systeme haben ihre eigenen Namenskonventionen, die untereinander inkompatibel sein können.
+Deshalb sorgt jede Implementierung von Micrometer zur Anbindung eines Monitoring-Systems dafür, dass die Standardkonvention in die Namenskonvention des jeweiligen Monitoring-Systems übertragen werden kann.
+Gleichzeitig stellt die Einhaltung der Konvention sicher, dass keine im angebundenen Monitoring-Systems verbotenen Zeichen verwendet werden und die Namen der Metriken somit möglichst portabel sind.
+
+[[benennung-von-tags]]
+====== Bennung von Tags
+
+Die Benennung von Tags folgt syntaktisch dem gleichen Schema wie die Bennung von Metern.
+Damit wird auch hier eine Übersetzung der Namen in die Konventionen des Monitoring-Systems möglich.
+Bei der Auswahl der Bezeichner ist darauf zu achten, dass diese sprechend sind.
+Das folgende Beispiel  zeigt die Verwendung von Tags.
+Es sollen die Zahl der HTTP Requests und die Zahl der Datenbankzugriffe gemessen werden.
+
+ registry.counter("database.calls", "db", "users")
+ registry.counter("http.requests", "uri", "/api/users")
+
+Damit kann man über den Namen 'database.calls' die Zahl aller Zugriffe auf Datenbank abfragen und dann über den Tag die Aufrufe nach Datenbank weiter aufschlüsseln.
+
+[[allgemeine-tags]]
+====== Allgemeine Tags
+
+Allgemeine Tags werden zu jeder Metrik hinzugefügt, die im System registriert wird.
+Diese werden zur Kennzeichnung der betrieblichen Systemumgebung (Anwendung, Host, Instanz, etc.) gesetzt.
+Allgemeine Tags können über Properties in `application.properties` gesetzt werden.
+Die Properties sind dabei nach dem Schema
+
+  management.metrics.tags.<Schlüssel>=<Wert>
+
+aufgebaut.
+Damit jeder Metrik ein Tag hinzugefügt wird, der den Namen der Anwendung enthält, wird die Property
+
+  management.metrics.tags.anwendung=beispielanwendung
+
+gesetzt.
+
+[[performance]]
+===== Performance
+
+Die im Konzept beschriebenen Überwachungsfunktionen dürfen keinen relevanten negativen Einfluss auf die Performance der Anwendung haben.
+Dazu sind neben der Einhaltung der in Kapitel <<festlegungen-und-ausgrenzungen>> beschriebenen Vorgaben noch einige grundlegende  Regeln zu beachten:
+
+* Da nicht auszuschließen ist, dass ein Überwachungswerkzeug sehr häufig Informationen aus den Endpoints abruft, darf das Bereitstellen der Informationen keine zeitaufwändigen Aktionen im <<glossar-Anwendungssystem>> veranlassen.
+* Bei der Bereitstellung weiterer Überwachungsinformationen ist darauf zu achten, dass die Ermittlung der Kennzahlen keinen relevanten negativen Einfluss auf die Anwendungs-Performance hat.
+Insbesondere dürfen keine fachlichen Funktionen des <<glossar-Anwendungskern,Anwendungskerns>> aufgerufen werden.
+
+[[konfiguration-und-absicherung-von-endpoints]]
+==== Konfiguration und Absicherung von Endpoints
+
+Gemäß den Vorgaben werden nicht benötigte Endpoints deaktiviert und durch Authentifizierung abgesichert.
+
+[[konfiguration-von-endpoints]]
+===== Konfiguration von Endpoints
+
+Zur Überwachung einer Anwendung werden die folgenden eingebauten Endpoints verwendet:
+
+* `health`
+* `metrics`
+
+Diese sind bereits mit Standardwerten konfiguriert.
+Da der Endpoint `health` seine Informationen aus einem Cache abfragt, welcher von einem Task befüllt wird, werden die in <<listing-task-activation>> gezeigten Properties in `application.properties` gesetzt, um das Starten der Tasks zu aktivieren.
+
+:desc-listing-task-activation: Properties zur Aktivierung des Tasks
+[id="listing-task-activation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-task-activation}
+----
+isy.task.autostart=true
+isy.task.default.host=
+----
+
+Endpoints können einzeln aktiviert oder deaktiviert werden.
+Damit wird gesteuert, ob der Endpoint erstellt wird und die dafür notwendigen Beans erzeugt werden.
+Für den Zugriff von außerhalb muss der Endpoint zusätzlich über eine Schnittstelle (HTTP oder JMX) bereitgestellt werden.
+
+Da von Spring standardmäßig fast alle Endpoints aktiviert sind, werden zunächst alle Endpoints ausgeschaltet, und anschließend die Endpoints `health` und `metrics` explizit wieder aktiviert.
+Die Bereitstellung der Endpoints erfolgt nur über HTTP.
+
+Der Task für die Aktualisierung der Informationen für den Endpoint `health` muss regelmäßig ausgeführt werden.
+Durch das Caching ist gewährleistet, dass die wiederholte Abfrage des Endpoints nicht übermäßige Abfragen erzeugt, die auf andere Systeme propagieren können.
+
+Für diese Konfiguration sind die in <<listing-endpointconfig-defaults>> gezeigten Properties standardmäßig gesetzt.
+Diese können bei Bedarf in `application.properties` überschrieben werden.
+
+:desc-listing-endpointconfig-defaults: Properties zur Konfiguration der Endpoints
+[id="listing-endpointconfig-defaults",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-endpointconfig-defaults}
+----
+management.endpoints.enabled-by-default=false
+management.endpoint.health.enabled=true
+management.endpoint.metrics.enabled=true
+management.endpoints.web.exposure.include=health, metrics
+management.endpoints.jmx.exposure.exclude=*
+
+isy.task.tasks.isyHealthTask.ausfuehrung=FIXED_DELAY
+isy.task.tasks.isyHealthTask.initial-delay=5s
+isy.task.tasks.isyHealthTask.fixed-delay=30s
+----
+[[vorgaben-fuer-die-pruefung-der-verfuegbarkeit]]
+==== Vorgaben für die Prüfung der Verfügbarkeit
+
+Anwendungen nach IsyFact-Architektur sollen Mechanismen bereitstellen, die es erlauben, die Verfügbarkeit der Anwendung durch eine betriebliche Überwachung zu prüfen.
+
+Grundlage dafür ist die Bereitstellung eines HealthEndpoints.
+
+[[implementierung-von-ping-und-pruefmethoden]]
+===== Konfiguration des Nachbarsystem-HealthIndicator
+
+Jede Anwendung stellt einen HealthEndpoint unter `/actuator/health` bereit. Zur Konfiguration siehe auch <<konfiguration-von-endpoints>>.
+Dieser zeigt den Status des Systems abhängig von allen vorhandenen Health-Indikatoren (`HealthIndicator`).
+
+Isy-Ueberwachung liefert einen Nachbarsystem-Indikator mit, der den HealthEndpoint aller konfigurierten Nachbarsysteme abfragt.
+
+Dieser lässt sich wie folgt konfigurieren:
+
+:desc-listing-nachbarsysteme: Konfiguration des NachbarsystemIndicators
+[id="listing-nachbarsysteme",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-nachbarsysteme}
+----
+## Konfiguration von Timeout und Retries bei der Abfrage von Nachbarsystemen
+isy.ueberwachung.nachbarsystemcheck.anzahlretries=1
+isy.ueberwachung.nachbarsystemcheck.timeout=2s
+
+## Konfiguration eines Nachbarsystems, das überwacht wird
+isy.ueberwachung.nachbarsysteme.beispielnachbar.systemname=Beispielnachbar
+isy.ueberwachung.nachbarsysteme.beispielnachbar.healthendpoint=http://example.com/actuator/health
+isy.ueberwachung.nachbarsysteme.beispielnachbar.essentiell=false
+
+# weitere Nachbarn
+#isy.ueberwachung.nachbarsysteme.anderernachbar.systemname=EinAndererNachbar
+#...
+----
+Unter `isy.ueberwachung.nachbarsystemcheck` sind die Zeit bis zum Timeout einer Anfrage und die Anzahl der Wiederholungsversuche pro Abfrage konfigurierbar.
+Ist nichts anderes konfiguriert, ist der Standardwert hier 3 Sekunden bis zum Timeout und ein Wiederholungsversuch.
+Alle abzufragenden Nachbarsysteme sind unter `isy.ueberwachung.nachbarsysteme` zu konfigurieren.
+Im Listing oben ist `beispielnachbar` ein selbst zu wählender Schlüssel.
+Für jeden Schlüssel sind folgende Properties zu setzen:
+
+* `systemname`: Wird in der Log-Ausgabe als Name des Nachbarsystems verwendet
+* `healthendpoint`: Die URL, unter der der HealthEndpoint des Nachbarsystems zu erreichen ist
+* `essentiell` (`true`/`false`) : Ist ein essentielles Nachbarsystem nicht erreichbar, wird der Status des Nachbarsystem-Indikators auf DOWN gesetzt und ein Error geloggt.
+Nicht essentielle Nachbarsysteme beeinflussen den Status nicht und werden, falls sie nicht erreichbar sind, nur als Warning geloggt.
+
+==== Implementierung weiterer eigener Health-Indikatoren
+
+Es können weitere Indikatoren zur Überprüfung anderer Komponenten implementiert werden.
+Um einen eigenen `HealthIndicator` zu implementieren, wird eine Spring-Bean registriert, die das Interface `HealthIndicator` implementiert.
+Dort wird die Methode `health()` implementiert, die eine Objekt vom Typ `Health` zurückgibt.
+Diese enthält den Status der überprüften Komponente und kann optional weitere Details zur Anzeige enthalten.
+`HealthIndicator` werden automatisch von Spring Boot erkannt und im `health` Endpoint bereitgestellt.
+
+Hierfür gelten folgende Richtlinien:
+
+* Der `HealthIndicator` wird als Teil der Administrationskomponente implementiert.
+* Der `HealthIndicator` darf keine fachlich relevanten Daten verändern.
+* Der `HealthIndicator` muss zu Beginn eine Korrelations-ID erzeugen, die im Logging-Kontext gesetzt werden muss.
+Bei jedem Aufruf an ein Nachbarsystem ist diese zu übergeben.
+
+Neben den Nachbarsystemen sind weitere Überprüfungen sinnvoll:
+
+* Verfügbarkeit weiterer genutzter Ressourcen, wie beispielsweise der LDAP-Server oder genutzte FTP-Verzeichnisse.
+Bei der Prüfung der genutzten Ressourcen ist zu beachten, dass sich die Implementierung nicht aufhängt und somit die Prüfung nicht weiterläuft.
+Um dies zu vermeiden, sollte zur Prüfung der genutzten Ressourcen das Future-Pattern wie in <<listing-Pruefmethode>> gezeigt, verwendet werden.
++
+[NOTE]
+====
+Als Beispiel sei hier der LDAP-Server genannt. Zur Prüfung des LDAP-Servers wird in der Regel eine Beispielanfrage
+an den Server gesendet.
+Ist vor den LDAP-Server ein Loadbalancer geschaltet, so kann es nach einem Fail-Over passieren, dass diese
+Beispielanfrage endlos läuft.
+====
+
+:desc-listing-Pruefmethode: Demonstration Future-Pattern
+[id="listing-Pruefmethode",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Pruefmethode}
+[source,java]
+----
+boolean pruefeSystem() {
+    ExecutorService executor = Executors.newCachedThreadPool();
+    Future<Boolean> future = executor.submit((Callable<Boolean>) () -> {
+        if (!anwendungXYZ.isAnwendungXYZAlive()) {
+            throw new AnwendungXYZNotAvailableException();
+        }
+        return true;
+    });
+
+    try {
+        return future.get(10, TimeUnit.SECONDS);
+    } catch (Exception e) {
+        return false;
+    }
+}
+----
+
+
+[[absicherung-von-endpoints]]
+===== Absicherung von Endpoints
+
+Der Zugriff auf Endpoints muss mit einer Authentifizierung abgesichert werden.
+Eine Konfiguration für Spring Security, die alle Endpoints mit HTTP Basic Authentication absichert, zeigt <<listing-endpointsecurityconfig>>.
+Der Benutzername und das Passwort werden in `application.properties` gepflegt.
+
+
+:desc-listing-endpointsecurityconfig: Absicherung der Endpoints mit Spring Security
+[id="listing-endpointsecurityconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-endpointsecurityconfig}
+[source,java]
+----
+@Configuration
+@EnableWebSecurity
+@Profile("produktion")
+public class ActuatorSecurityProduktionConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UeberwachungSecurityConfigProperties properties;
+
+    private static final String ENDPOINT_ROLE = "ENDPOINT_ADMIN";
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+         auth.inMemoryAuthentication()
+             .withUser(properties.getUsername())
+             .password(passwordEncoder().encode(properties.getPassword()))
+             .roles(ENDPOINT_ROLE);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.requestMatcher(EndpointRequest.toAnyEndpoint())
+            .authorizeRequests()
+            .anyRequest()
+            .hasRole(ENDPOINT_ROLE)
+            .and()
+            .httpBasic();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+----
+
+[[abschalten-der-absicherung-fuer-die-entwicklung]]
+====== Abschalten der Absicherung für die Entwicklung
+
+Um die Authentifizierung für die Endpoints bei der Entwicklung abzuschalten, kann in <<listing-endpointsecurityconfig>> gezeigte Konfiguration über eine Spring-Profil (im Beispiel `produktion`) aktivert bzw. deaktiviert werden.
+
+[[anbindung-eines-monitoring-systems]]
+=== Anbindung eines Monitoring-Systems
+
+Zur Anbindung eines konkreten Monitoring-Systems wird die passende Meter Registry für das Monitoring-Systems als Maven Dependency in die `pom.xml` aufgenommen.
+
+Die Namen der Dependencies folgen dem Schema `micrometer-registry-<Monitoring-System>`.
+Soll beispielweise _Prometheus_ angebunden werden, muss die folgende Dependecy eingetragen werden.
+
+[source,xml]
+----
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
+</dependency>
+----
+
+Häufig ist keine weitere Konfiguration notwendig, da die Anbindung durch Spring Boot automatische konfiguriert wird.
+Die Konfiguration für die unterstützten Monitoring-System ist in http://micrometer.io/docs beschrieben.
+
+[[anwendungen-deaktivierbar-machen]]
+=== Anwendungen deaktivierbar machen
+
+Für die Durchführung von Updates beim Deployment ist es notwendig, einzelne Knoten eines Anwendungsclusters aus dem Loadbalancing herauszunehmen, so dass dieser Knoten keine Anfragen mehr vom Loadbalancer zugeteilt bekommt.
+
+[[beschreibung-des-loadbalancer-servlets]]
+==== Beschreibung des Loadbalancer-Servlets
+
+Zur Realisierung dieser Anforderung wird als Teil jeder Webanwendung ein sog. Loadbalancer-Servlet ausgeliefert.
+Das Servlet prüft beim Aufrufen seiner URL, ob eine IsAlive-Datei im Konfigurationsverzeichnis (siehe <<DeploymentKonzept>> ) vorhanden ist.
+Ist eine solche Datei vorhanden, liefert das Servlet den HTTP-Statuscode HTTP OK (200) zurück.
+Falls keine IsAlive-Datei gefunden wird liefert das Servlet den Code HTTP FORBIDDEN (403) zurück.
+
+Der Loadbalancer prüft in regelmäßigen Abständen die URL des Servlets und nimmt die entsprechende für die Anwendung den entsprechenden Server aus dem Loadbalancing heraus, falls kein HTTP OK gelesen wird.
+Zu beachten ist, dass auf einem Server prinzipiell mehrere verschiedene Anwendung laufen können.
+Der Loadbalancer muss daher so konfiguriert werden, dass auf dem Server nur die betreffende Anwendung deaktiviert wird, zu der das Loadbalancer-Servlet gehört.
+Alle anderen Anwendungen auf dem entsprechenden Server müssen weiterhin bedient werden.
+
+[[integration-des-loadbalancer-servlets]]
+==== Integration des Loadbalancer-Servlets
+
+Das Loadbalancing-Servlet ist als Teil der Bibliothek `isy-ueberwachung`.
+Es wird automatisch durch die Einbindung der Bibliothek als Servlet registriert.
+Standardmäßig verwendet das Servlet die Datei `/WEB-INF/classes/config/isAlive` als IsAlive-Datei.
+
+NOTE: Nach dem Deployment entspricht dies der Datei `/etc/<anwendungsname>/isAlive`.
+
+Die zu suchende Datei kann bei Bedarf durch die Property `isy.ueberwachung.loadbalancer.isAliveFileLocation` in `application.properties` geändert werden.
+
+[[nutzung-des-loadbalancing-servlets]]
+==== Nutzung des Loadbalancing-Servlets
+
+Durch die oben beschriebene Konfiguration kann die gewünschte Verfügbarkeit der Anwendung über die URL `http://<serverurl>/<anwendungsname>/Loadbalancer abgefragt werden`.
+
+Zur Steuerung des Loadbalancing-Servlets muss die IsAlive-Datei im Konfigurationsverzeichnis der Anwendung durch den Betrieb angelegt bzw. entfernt werden.
+Der Standardname für die IsAlive-Datei ist `/etc/<anwendungsname>/isAlive`.
+Dieses kann der Betrieb bei Bedarf über ein Shell-Skript automatisieren. Die Verwendung des Servlets im Rahmen des Deployments wird in <<DeploymentKonzept>> beschrieben.
+
+[[vorgaben-fuer-konfigurationen]]
+== Vorgaben für Konfigurationen
+
+In diesem Kapitel wird die Handhabung von Konfigurationen für Anwendungen der IsyFact-Architektur beschrieben.
+Dazu gehören Vorgaben für die Ablage von Konfigurationsdateien und Implementierungshinweise zum Lesen der  Konfigurationen.
+Außerdem werden Besonderheiten für die Konfiguration der eingesetzten Bibliotheken und Frameworks beschrieben.
+
+Für das Verständnis ist es wichtig die Konfigurationsparameter von den konkreten Parameterwerten für diese Konfigurationsparameter zu unterscheiden.
+Erstere sind fest von der Anwendungsimplementierung vorgegeben.
+Die Anwendung legt z.B. fest, dass es einen Parameter `datenbank.kennwort` zur Festlegung des Datenbankkennworts gibt.
+Parameterwerte meinen die Einstellungen für diese Parameter und werden z.B. vom Betrieb konfiguriert.
+Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung verstanden.
+
+[[festlegungen-und-ausgrenzungen-1]]
+=== Festlegungen und Ausgrenzungen
+
+* Das Konfigurationskonzept betrifft alle von den IsyFact-Anwendungen verwendeten Konfigurationen.
+Dazu gehören sowohl vom Betrieb zu pflegende Konfigurationsdateien, als auch statische Konfigurationen, die z.B. das Layout von Dialog-Masken beschreiben (Ressource-Dateien).
+Wenn im Folgenden von Konfigurationen gesprochen wird, sind sowohl Konfigurationen im eigentlichen Sinne, als auch Ressourcen gemeint.
+* Nicht zu den hier erfassten Konfigurationen gehört die Konfiguration der Basis-Software, z.B. des Tomcat.
+* Anwendungen müssen im Normalfall für Konfigurationsänderungen neu gestartet werden.
+Ausnahmen hiervon bedürfen besonderer technischer und organisatorischer Maßnahmen.
+Details dazu werden in Kapitel <<konfigurationsaenderungen-zur-laufzeit>> beschrieben.
+* Anwendungen werden im Cluster betrieben und verfügen nicht über ein gemeinsames Datei-System.
+Datei-basierte Konfigurationen müssen daher für alle Knoten eines Clusters einzeln gepflegt werden.
+* Umgebungsspezifische Parameter, z.B. Datenbank-URL und Passwort, sind alleine durch den Betrieb zu pflegen.
+* Das Konfigurationskonzept berücksichtigt sowohl die Konfiguration für die Entwicklungsumgebung als auch geeignete Vorgehensweisen für die Konfiguration der Produktionsumgebung.
+* Jede Fachanwendung enthält einen Konfigurationsparameter zur Deaktivierung der Schreibzugriffe (Meldungen), der z. B. bei Durchführung längerer Datenmigrationen verwendet wird (siehe Abschnitt <<umsetzen-des-auskunftsmodus>>).
+Das Auslesen dieses Parameters wird so realisiert, dass er zur Laufzeit umkonfiguriert werden kann (siehe Abschnitt <<konfigurationsaenderungen-zur-laufzeit>>).
+* Alle Anwendungssysteme und Batches, die schreibend auf eine andere Fachanwendung zugreifen, müssen auf die Nichtverfügbarkeit dieser Komponente vorbereitet sein.
+Entweder können jene Systeme vorübergehend heruntergefahren sein, oder bestimmte Funktionen, z.B. der Schreibzugriff, können über Konfigurationsparameter deaktiviert sein.
+Systeme, bei denen Funktionen deaktiviert sind, zeigen Benutzern frühzeitig einen Hinweis an, welche Funktionen nicht zur Verfügung stehen. +
+Ob eine Anwendung einen Konfigurationsparameter erhält oder heruntergefahren werden kann, muss für jede Anwendung, abhängig von deren Verfügbarkeitsanforderung, individuell entschieden werden.
+
+Als weitere Rahmenbedingung gilt, dass während der Entwicklung die für die Produktion relevanten Werte der Konfigurationsparameter nicht bekannt sind.
+
+[[typisierung-und-handhabung-von-konfigurationen]]
+=== Typisierung und Handhabung von Konfigurationen
+
+Eine Einordnung der Konfigurationen ist für das Deployment und den Betrieb einer Anwendung notwendig.
+Nur so ist sichergestellt, dass z.B. Parameterwerte für die Produktion nicht schon während des Bauens der Anwendung bekannt sein müssen.
+Außerdem wird gewährleistet, dass die jeweilige verantwortliche Personengruppe einen leichten Zugriff auf „ihre“ Konfigurationsparameter erhält.
+
+Das wichtigste Kriterium ist, ob die betreffende Konfiguration für alle Umgebungen (Ziel-Systeme) identisch ist, und die Fragestellung, von wem die Konfiguration angepasst wird.
+Grundsätzlich kommen dafür Entwickler, der Betrieb oder die Fachabteilung in Frage.
+
+Konfigurationen lassen sich wie in <<table-typKonfZiel>> dargestellt typisieren:
+
+Die Spalte „Pflegeverantwortung“ gibt an, wer die entsprechenden Konfigurationen pflegt.
+So wird beispielsweise die Spring-Konfiguration ausschließlich von den Anwendungsentwicklern bearbeitet.
+Die pflegende Gruppe muss aber nicht zwangsläufig die Inhalte des entsprechenden Konfigurationstyps bestimmen.
+So werden Validierungsregeln maßgeblich durch eine Fachabteilung inhaltlich vorgegeben werden.
+Trotzdem ist die Konfiguration statisch, d.h. sie ist schon zur Entwicklungszeit bekannt und auch nach der Installation nicht mehr veränderbar.
+
+Der Spalte „Umgebungsabhängigkeit erlaubt“ lässt sich entnehmen, ob der entsprechende Konfigurationstyp für eine bestimmte Umgebung (d.h. Testumgebungen, Produktionsumgebung) spezifische Teile enthalten darf.
+So dürfen von Entwicklern zu pflegende Konfigurationen niemals umgebungsabhängig sein.
+Wäre dies der Fall müsste, beispielsweise ein Entwickler das Kennwort der Produktionsdatenbank kennen.
+
+Die Spalte „Erlaubte Zugriffsart der Anwendung“ gibt an, ob der entsprechende Konfigurationstyp von der Anwendung nur gelesen oder auch geschrieben werden darf.
+Die wenigsten Konfigurationen sollten durch die Anwendung selbst geschrieben werden.
+Lediglich Benutzerkonfigurationen werden typischerweise zur Laufzeit der Anwendung dynamisch geändert.
+Diese müssen in der Datenbank gespeichert werden.
+
+Die letzte Spalte der Tabelle gibt die bevorzugte Art für die Speicherung der entsprechenden Konfiguration an.
+Der Ablageort ist für die Paketierung der Anwendung (Build) und das Deployment wichtig.
+
+NOTE: Für Details siehe Kapitel <<datei-basierte-konfigurationen>>.
+
+So müssen betriebliche Konfigurationen leicht durch den Betrieb zugänglich und änderbar sein.
+Daher werden diese in einem separaten Ordner `config` in Form von einfachen Property-Dateien abgelegt.
+Statische Konfigurationen sind bereits zum Build-Zeitpunkt bekannt und können als Ressourcen mit der Anwendung verpackt werden.
+Hier kommen häufig auch komplexere, XML basierte Konfigurationsdateien zum Einsatz.
+Da Benutzer-Konfigurationen durch die Anwendung geschrieben werden, dürfen diese nicht im Datei-System abgelegt werden.
+Ansonsten wäre eine gesonderte Synchronisierung dieser Dateien notwendig, wenn die Anwendung im Cluster betrieben wird.
+
+:desc-table-typKonfZiel: Typisierung von Konfigurationen nach Zielgruppen
+[id="table-typKonfZiel",reftext="{table-caption} {counter:tables}"]
+.{desc-table-typKonfZiel}
+[cols="5,3,3,3",options="header"]
+|====
+h|Konfigurationstyp |Statische Konfiguration |Betriebliche Konfiguration |Benutzer-Konfiguration
+h|Pflegeverantwortung |Entwickler |Betrieb |Fachabteilung oder Administratoren
+h|Beispiel 	|Spring-Konfiguration |Datenbank-Benutzer und -Kennwort |Dialog-Einstellungen
+h|Umgebungsabhängigkeit erlaubt |nein |ja |nein
+h|Erlaubte Zugriffsarten der Anwendung |nur lesend |nur lesend |lesend und schreibend
+h|Speicherung|Als Datei im Resources-Ordner |Als Property-Datei im Config-Ordner |In der Datenbank
+|====
+
+NOTE: Der Speicherort der Ordner `Resources` und `Config` wird in Kapitel <<datei-basierte-konfigurationen>> beschrieben.
+
+[[vorgaben-fuer-die-ablage-und-verwendung-von-konfigurationen]]
+=== Vorgaben für die Ablage und Verwendung von Konfigurationen
+
+Dieses Kapitel enthält die Vorgaben wo Konfigurationen abgelegt und wie diese verwendet werden.
+
+[[datei-basierte-konfigurationen]]
+==== Datei-basierte Konfigurationen
+
+Die datei-basierte Konfiguration orientiert sich an den Vorgaben von Spring Boot.
+Konfigurationsparameter, die nicht durch die Anwendung geschrieben werden, sollen in Dateien und nicht in der Datenbank gespeichert werden.
+Als Format kommen bevorzugt Property-Dateien zum Einsatz.
+
+Alle datei-basierten Konfigurationen werden im Klassenpfad abgelegt.
+Dazu werden die Ordner `config` und `resources` verwendet.
+Alle Konfigurationen werden in der Entwicklung unterhalb von `src/main/resources` abgelegt.
+
+NOTE: Die Ablage der Konfigurationsdateien zur Laufzeit wird im Kapitel <<deployment-von-konfigurationsdateien>> beschrieben.
+
+Dort werden Unterordner wie folgt angelegt:
+
+* *Resources-Ordner:* In `src/main/resources/resources/` liegen die statischen Konfigurationen.
+Zur Strukturierung sollen hier Unterordner für gleichartige Konfigurationen angelegt werden (z.B. nachrichten, sicherheit).
+Falls sich eine Konfiguration explizit auf eine Java-Klasse bezieht (z.B. Dialog-Beschreibungen) wird eine Verzeichnisstruktur analog zur Package-Struktur angelegt und die Konfiguration dort abgelegt, z.B.:
++
+`src/main/resources/resources/de/msg/terminfindung/gui/verwaltung/eingabe-dialog.xml`
+* *Config-Ordner:* In `src/main/resources/config/` liegen alle betrieblichen Konfigurationen.
+Hier wird auch die Konfigurationsdatei `application.properties` abgelegt.
+
+[[namenskonventionen-fuer-konfigurationsparameter]]
+===== Namenskonventionen für Konfigurationsparameter
+
+Für die Benennung von Konfigurationsparametern werden Zeichenketten ohne Sonderzeichen verwendet.
+Parameternamen bestehen aus mehreren Teilen, welche durch Punkte getrennt werden.
+Die Teile werden mit dem am wenigstens spezifischen Begriff beginnend sortiert aufgeschrieben:
+
+`datenbank.kennwort
+datenbank.benutzername`
+
+So entsteht eine Hierarchie von Parameternamen (alle mit `datenbank` beginnenden Parameter beziehen sich auf die Datenbankkonfiguration).
+
+Komponentenspezifische Parameter beginnen mit dem Namen der Komponente, die sie konfigurieren.
+
+`verwaltung.regelwerk.regelpfad=…`
+
+Im Übrigen sind möglichst aussagekräftige Bezeichner zu verwenden.
+Die Sprache sollte deutsch sein, sofern es sich nicht um feststehende englische Begriffe handelt (z.B. „Session“).
+
+[[dokumentationskonventionen-fuer-konfigurationsparameter]]
+===== Dokumentationskonventionen für Konfigurationsparameter
+
+In Kapitel <<handhabung-von-default-werten>> wird beschrieben, wie Default-Werte zu handhaben sind.
+Damit wird gleichzeitig eine sinnvolle Dokumentation von Default-Werten sichergestellt.
+Davon abgesehen kann es hilfreich sein, zu wissen ob ein Konfigurationsparameter zur Laufzeit änderbar ist (siehe Kapitel <<konfigurationsaenderungen-zur-laufzeit>>), oder für die Änderung ein Neustart der Anwendung nötig ist.
+Außerdem ist die Angabe eines gültigen Wertebereichs bei vielen Konfigurationsparametern sinnvoll.
+
+Die fachliche Beschreibung, die in Form eines Kommentars für jeden Konfigurationsparameter angegeben sein sollte, soll um folgende Angaben ergänzt werden (variable Werte sind in `<>`  dargestellt):
+
+* Änderung erfordert Neustart: Ja/Nein
+* Wertebereich:
+** Bei Wahrheitswerten: true/false
+** Bei numerischen Werten: <min. Wert> - <max. Wert>
+
+Der Wertebereich ist bei vielen, jedoch nicht bei allen Konfigurationsparametern sinnvoll.
+Werden z.B. Anzeigetexte oder Links konfiguriert, so kann die Angabe des Wertebereichs entfallen.
+Die Angabe, ob ein Neustart bei Änderung erforderlich ist, sollte jedoch immer erfolgen.
+
+[[typsichere-bereitstellung-von-konfiguration]]
+===== Typsichere Bereitstellung von Konfiguration
+
+Zur Bereitstellung von Konfigurationsparametern in der Anwendung wird der von Spring Boot bereitgestellte Mechanismus verwendet.
+Hierzu werden für Konfigurationsparameter logisch zusammenhängende Klassen erstellt, die die Konfigurationswerte aufnehmen und mit `@ConfigurationProperties` annotiert werden.
+Beim Start der Anwendung befüllt Spring automatisch die Werte der Objekte mit den entsprechenden Properties aus `application.properties`.
+Zur Überprüfung der Konfigurationswerte sollte die Standard-Java-Validierung eingesetzt werden.
+Damit können Werte auf Vorhandensein und korrektes Format geprüft werden.
+Zur Verwendung in der Anwendung wird die Konfigurationsklasse als Bean instanziiert und dann in der Anwendung per Dependency Injection gesetzt.
+
+Ein Beispiel für eine Konfigurationsklasse ist in <<listing-beispielConfigurationProperties>> zusehen.
+Die dazugehörige Property lautet dann `projekt.meine-anwendung.person.firstName=<Wert>` und muss aufgrund von `@NotNull` gesetzt sein.
+
+:desc-listing-beispielConfigurationProperties: Konfigurationsklasse (@ConfigurationProperties)
+[id="listing-beispielConfigurationProperties",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-beispielConfigurationProperties}
+[source,java]
+----
+@Component
+@ConfigurationProperties("projekt.meine-anwendung.person")
+@Validated
+public class PersonProperties {
+
+    @NotNull
+    String param;
+
+    public String getParam() {
+        return param;
+    }
+
+    public void setParam(String param) {
+        this.param = param;
+    }
+}
+----
+
+Spring löst die Namen der Properties der Konfigurationsparameter über _Relaxed Binding_ auf.
+Die damit möglichen Schreibweisen für einen Parameternamen sind in <<table-relaxedBinding>> dargestellt.
+
+:desc-table-relaxedBinding: Schreibweisen von Parameternamen
+[id="table-relaxedBinding",reftext="{table-caption} {counter:tables}"]
+.{desc-table-relaxedBinding}
+[cols="2,3",options="header"]
+|====
+| Schreibweise | Anmerkung
+m| projekt.meine-anwendung.person.first-name | Kebab case (Trennung mit '-'). Für die Verwendung in Property-Dateien empfohlen.
+m| projekt.meineAnwendung.person.firstName   | Standard Camel Case Syntax.
+m| projekt.meine_anwendung.person.first_name | Trennung mit Unterstrichen. Alternative für die Verwendung in Property-Dateien.
+m| PROJEKT_MEINEANWENDUNG_PERSON_FIRSTNAME   | Empfohlen für Systemumgebungsvariablen.
+|====
+
+Für die Auswahl werden hier nur Empfehlungen gegeben.
+Die gewählte Schreibweise sollte durchgehend in der Anwendung verwendet werden.
+
+[[handhabung-von-default-werten]]
+===== Handhabung von Default-Werten
+
+Default-Werte werden in den Konfigurationsklassen (mit `@ConfigurationProperties` annotierte Klassen) festgehalten.
+
+Für systemabhängige Werte dürfen keine Default-Werte hinterlegt werden.
+Wichtig ist, dass die Anwendung die Existenz dieser Werte (z.B. URLs zu genutzten Services) bereits bei der Initialisierung durch Validierung prüft (siehe <<typsichere-bereitstellung-von-konfiguration>>).
+Dadurch wird vermieden, dass das Fehlen von Einstellungen erst bei späteren Zugriffen erkannt wird.
+
+Konfigurationsparameter, die nicht zur Laufzeit änderbar sind (siehe Kapitel <<konfigurationsaenderungen-zur-laufzeit>>), können
+zur Performance-Optimierung in Instanzvariablen gehalten werden.
+Dabei kann auch gleich das Vorhandensein der Einstellung geprüft werden, d.h., die Komponente liest bereits bei Ihrer Initialisierung den Parameterwert aus und speichert ihn in einer Instanzvariablen.
+
+[[deployment-von-konfigurationsdateien]]
+===== Deployment von Konfigurationsdateien
+
+Für das Deployment von Konfigurationen ist zu beachten, dass der Resources-Ordner und der Config-Ordner in den Klassenpfad der Anwendung kopiert werden.
+Der Ordner `config` muss nach dem Deployment ungepackt auf dem Dateisystem liegen, er darf z.B. nicht in ein Jar verpackt werden.
+
+Der Inhalt des Resources-Ordners wird beim Deployment in das Verzeichnis `/classes/resources` kopiert.
+Der Config-Ordner wird beim Deployment aus der eigentliche Anwendung herausgezogen und der Inhalt in `/etc/<Anwendungsname>` abgelegt.
+Zusätzlich wird ein symbolischer Link von `/classes/config` auf `/etc/<Anwendungsname>/` angelegt, so dass auch diese Inhalte Teil des Klassenpfads der Anwendung sind.
+Details dazu können dem Konzept <<DeploymentKonzept>> entnommen werden.
+
+In einigen Fällen wird die für die Entwicklung benötigte Konfiguration von der Release-Version abweichen.
+Für jede Konfiguration aus `config` kann es eine Entwicklungs- und genau eine Release-Variante geben: Es werden keine umgebungsabhängigen Varianten in den Sourcen abgelegt.
+Für die Release-Varianten wird in der Entwicklung ein Unterordner:
+
+`src/main/resources/config/release`
+
+angelegt.
+Beim Bauen des Release-Pakets werden alle Dateien aus dem Release-Unterordner in den übergeordneten Ordner verschoben und der Release-Ordner gelöscht.
+Der Config-Ordner enthält dann die Release-Konfigurationen.
+Diese werden wie oben beschrieben deployt.
+
+Beim Deployment einer Anwendung werden alle auf dem Zielsystem liegenden Dateien des Resources-Ordners überschrieben.
+Die Dateien aus dem config-Ordner werden beim Deployment nicht überschrieben.
+Neue Parameter müssen dem Betrieb mitgeteilt werden.
+Für nicht systemabhängige Werte wird ein Default entweder im Java-Code oder in einer Property-Datei aus `resources/default-config` ausgeliefert.
+Für systemabhängige Werte existiert kein Default, diese werden aber bereits während der Initialisierung der Anwendung geprüft (siehe Kapitel <<handhabung-von-default-werten>>).
+Fehlende Einstellungen werden so beim Programmstart erkannt.
+
+[[datenbank-basierte-konfigurationen]]
+==== Datenbank-basierte Konfigurationen
+
+Konfigurationen, welche durch die Anwendung geschrieben werden, sind in der Datenbank abzulegen.
+Die Tabellen hierfür sind Teil des Datenmodells der Anwendung.
+Der Zugriff erfolgt genau wie der auf die übrigen Entitätstypen.
+Für weitere Details siehe <<DetailkonzeptKomponenteDatenzugriff>>.
+
+[[verwendung-von-isy-konfiguration]]
+=== Verwendung von isy-konfiguration
+
+[WARNING] Die Bibliothek `isy-konfiguration` wird nicht mehr weiterentwickelt und ist nur im Ausnahmefall zu verwenden.
+
+Zur Bereitstellung von Konfigurationsparametern in der Anwendung kann die Bibliothek `isy-konfiguration` verwendet werden.
+
+Die Konfigurationsbibliothek enthält Interfaces und Implementierungen für das Laden von Property-Dateien und das typsichere Auslesen von Konfigurationsparametern.
+Die Konfiguration wird der Anwendung als querschnittliche Spring-Bean (im Folgenden Konfigurations-Bean genannt) bei der Verwendung von `isy-konfiguration` automatisch bereitgestellt:
+
+Die Liste der Property-Dateien, die von `isy-konfiguration` gelesen werden sollen, wird in `application.properties` angegeben (<<listing-isykonfigurationproperty>>).
+
+:desc-listing-isykonfigurationproperty: Property zur Konfiguration von isy-konfiguration
+[id="listing-isykonfigurationproperty",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-isykonfigurationproperty}
+[source]
+----
+isy.konfiguration.properties = /config/A.properties, /config/B.properties
+----
+
+Die Klasse `[...].konfiguration.common.impl.ReloadablePropertyKonfiguration` stellt über das Interface `de.bund.bva.isyfact.konfiguration.common.Konfiguration` einen typsicheren Zugriff auf die Konfigurationsparameter zur Verfügung.
+
+Alle Parameter aus den in der Liste aufgeführten Property-Dateien werden der Anwendung als eine gemeinsame Sicht aller Konfigurationsparameter zur Verfügung gestellt.
+Sind Parameter in mehreren Dateien aufgeführt, so überschreiben Werte aus Dateien, die in der Liste hinten stehen, solche von Dateien, die zuvor aufgelistet wurden.
+
+Die Konfigurations-Bean wird den Komponenten per Spring-Dependecy-Injection bereitgestellt.
+
+Für den Fall, dass sehr viele Konfigurationsparameter benötigt werden, können komponentenspezifische Konfigurations-Beans verwendet werden.
+
+Der Zugriff auf einzelne Konfigurationsparameter erfolgt dann über Methoden des Konfigurations-Interfaces, siehe <<listing-ZugriffKonfigurationsparameter>>.
+
+:desc-listing-ZugriffKonfigurationsparameter: Zugriff auf Konfigurationsparameter
+[id="listing-ZugriffKonfigurationsparameter",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-ZugriffKonfigurationsparameter}
+[source,java]
+----
+String url = konfiguration.getAsString (KonfigurationSchluessel.SERVICE_URL);
+----
+
+Das Interface bietet für verschiedene Datentypen (`String`, `Integer`, `Long`, `Double` und `Boolean`) jeweils typsichere Zugriffsmethoden an.
+Für jeden Datentyp wird zusätzlich eine Methode angeboten, welche die Übergabe eines Default-Werts ermöglicht.
+Dieser wird verwendet, falls der Konfigurationsparameter nicht in der Konfigurationsdatei vorhanden ist.
+Wird die Variante ohne Default-Wert aufgerufen und ein Konfigurationswert nicht vorhanden sein, wird eine Exception geworfen.
+
+[[konfigurationsaenderungen-zur-laufzeit]]
+==== Konfigurationsänderungen zur Laufzeit
+
+Betriebliche Konfigurationen werden in Dateien gespeichert und nur beim Starten der Anwendung geladen.
+Im Normalfall werden Konfigurationsparameter beim Start der Anwendung ausgelesen und in Instanzvariablen gehalten.
+Die Bibliothek `isy-konfiguration` bietet die Möglichkeit, Konfigurationsparameter zur Laufzeit neu einzulesen.
+
+Sollen Konfigurationsparameter zur Laufzeit änderbar sein, müssen besondere Vorkehrungen getroffen werden:
+
+* Konfigurationsänderungen gelten nicht zeitgleich für den gesamten Cluster, es muss daher ausgeschlossen werden, dass kurzzeitige Konfigurationsunterschiede zwischen den einzelnen Knoten zu fachlichen oder technischen Inkonsistenzen führen.
+* Konfigurationsparameter, für die Änderungen zur Laufzeit vorgesehen sind, werden im Betriebshandbuch gesondert ausgewiesen.
+* Solche Konfigurationsparameter werden vorzugsweise nicht in Instanz-Variablen gehalten, sondern bei jeder Verwendung aus der Konfigurations-Bean ausgelesen.
+* Falls aufwändige Initialisierungen bei Konfigurationsänderungen durchgeführt werden müssen, kann die entsprechende Komponente sich als Listener bei der Konfigurations-Bean registrieren und so aktiv über Konfigurationsänderungen informiert werden (siehe Kapitel <<reagieren-auf-konfigurationsaenderungen>>).
+
+[[konfigurationsdateien-auf-änderungen-pruefen]]
+===== Konfigurationsdateien auf Änderungen prüfen
+
+Damit die Anwendung Änderungen an betrieblichen Konfigurationsdateien erfährt, wird ein Polling auf die betrieblichen Konfigurationsdateien durchgeführt.
+Dazu implementiert die Konfigurations-Klasse `ReloadablePropertyKonfiguration` das Interface `ReloadableKonfiguration`.
+
+Die vom Interface deklarierte Methode
+
+`public boolean checkAndUpdate();`
+
+sorgt beim Aufruf dafür, dass alle Konfigurationsdateien auf Änderungen geprüft und bei Bedarf neu geladen werden.
+Änderungen werden durch den Änderungszeitstempel der Dateien festgestellt.
+
+Die zuvor genannte Methode muss regelmäßig aufgerufen werden.
+Dazu stellt die Bibliothek `isy-task` einen Task bereit.
+Die Konfiguration dieses Tasks ist in <<NutzungsvorgabenTaskScheduling>> beschrieben.
+
+[[reagieren-auf-konfigurationsaenderungen]]
+===== Reagieren auf Konfigurationsänderungen
+
+Wie zu Beginn des Abschnittes beschrieben, sollen Konfigurationsparameter, für die Änderungen zur Laufzeit zugelassen sind, vorzugsweise bei jeder Verwendung aus der Konfigurations-Bean ausgelesen werden.
+Somit wird automatisch immer der aktuelle Wert verwendet.
+
+In einigen Fällen sind auf Grund von Konfigurationsänderungen jedoch aufwändige Initialisierungen notwendig.
+Ein Beispiel hierfür wäre das Reinitialisieren von Connection-Pools, wenn eine URL geändert wurde.
+In solchen Ausnahmefällen kann daher das im Folgenden beschriebene und von der Konfigurationsbibliothek realisierte Listener-Pattern angewandt werden.
+
+Um bei Änderungen informiert zu werden, registriert sich die betroffene Komponente als Listener bei der Konfigurations-Bean.
+Dafür bietet das von der Konfigurations-Bean implementierte Interface `[...].isyfact.konfiguration.common.ReloadableKonfiguration` die Methode an:
+
+[source,java]
+----
+public void addKonfigurationChangeListener(KonfigurationChangeListener listener);
+----
+
+Die Komponente muss ihrerseits das Interface `[...].isyfact.konfiguration.common.KonfigurationChangelistener` implementieren und die zuvor genannte Methode aufrufen.
+Als Parameter wird die eigene Instanz übergeben.
+
+Bei Änderung der Konfiguration ruft die Konfigurationsbibliothek nun automatisch die Methode
+
+[source,java]
+----
+public void onKonfigurationChanged(Set<String> changedKeys);
+----
+
+der registrierten Listener auf.
+Als Aufruf-Parameter werden die Schlüssel aller geänderten Konfigurationsparameter übergeben.
+
+NOTE: Zu beachten ist, dass der Methoden-Aufruf im Thread-Kontext des Timers, der die Konfigurationsdateien überwacht, erfolgt.
+
+Ein Beispiel dafür findet sich in der Vorlage-Anwendung in der Klasse `…registercd.core.admin.impl.AdminImpl`.
+
+[[spezielle-konfigurationen]]
+=== Spezielle Konfigurationen
+
+In diesem Kapitel werden einige spezielle Aspekte der Konfiguration bzw. Konfigurierbarkeit der entwickelten Anwendungssysteme beschrieben.
+Dazu gehört z.B. die Konfiguration von Frameworks oder die Konfiguration des Tomcat-Kontexts.
+
+Eine detaillierte Beschreibung der Konfiguration einzelner Frameworks findet sich in deren jeweiliger Dokumentation.
+
+[[web-kontext-konfiguration-web.xml]]
+==== Web-Kontext-Konfiguration (web.xml)
+
+Die Web-Kontext-Konfiguration `web.xml` ist eine statische Konfiguration.
+Hierin dürfen keine betrieblichen Parameter aufgenommen werden.
+Die Datei kann aus technischen Gründen nicht im Resources-Ordner abgelegt werden.
+Sie wird daher direkt im Ordner `WEB-INF/` abgelegt.
+
+[[tomcat-kontext-konfiguration-context.xml]]
+==== Tomcat-Kontext-Konfiguration (context.xml)
+
+Tomcat verwaltet für jede Webanwendung eine eigene Konfiguration.
+In dieser Datei werden in einem <context>-Tag spezielle Einstellungen für diese Webanwendung konfiguriert.
+Wird keine Datei ausgeliefert gelten die Standardeinstellungen von Tomcat.
+
+Für das Deployment (siehe <<DeploymentKonzept>>) ist es notwendig, dass symbolische Links im Dateisystem aufgelöst werden.
+Dazu wird eine Datei (`META-INF/context.xml`) mit jeder Webanwendung ausgeliefert.
+Für die Vorlage-Anwendung hat die Datei folgenden Inhalt:
+
+`<Context path="/cd-register" allowLinking="true" />`
+
+Zur Vereinfachung des Deployments wird die Datei nicht im Tomcat-Installationsverzeichnis abgelegt, sondern als Datei `context.xml` im Verzeichnis `META-INF` der Webanwendung abgelegt.
+Dort wird die Datei automatisch von Tomcat gefunden und verwendet.
+
+[[umsetzen-des-auskunftsmodus]]
+==== Umsetzen des Auskunftsmodus
+
+In jeder <<glossar-Fachanwendung>> muss ein Auskunftsmodus implementiert werden.
+In diesem Modus dürfen keine bestandsverändernden Aktionen möglich sein.
+Rein lesende Operationen sind weiterhin erlaubt.
+
+Der Modus wird genutzt, um während längerer Datenmigrationen Änderungen der Bestandsdaten zu unterbinden, während gleichzeitig Auskünfte möglich sind.
+
+Die Anforderung wird durch Einfügen eines Konfigurationsparameter `anwendung.auskunftsmodus.aktiviert` in die betriebliche Konfigurationsdatei umgesetzt.
+
+Die Option kann die Ausprägungen `false` (Alle Funktionen sind aktiv) und `true` (Schreibzugriffe sind deaktiviert) annehmen.
+
+In den Komponenten, die Schreibzugriffe implementieren, wird vor dem Aufruf der Anwendungsfälle geprüft, ob der Parameter auf `true` gesetzt ist.
+Ist dies der Fall, wird eine technische Exception vom Typ `KomponenteDeaktiviertException` geworfen.
+
+Im Falle eines aktivierten Auskunftsmodus sollten die Benutzer einer grafischen Benutzeroberfläche frühzeitig informiert werden – insbesondere nicht erst durch die technische Exception, nachdem sie alle Daten erfasst und abgeschickt haben.
+Je nach Aufbau der Dialoge kann hierbei ein Hinweis auf den Masken dargestellt werden, oder ganze Dialoge durch einen Hinweisdialog ersetzt werden.
+
+Bevor eine Anwendung in den Auskunftsmodus versetzt werden kann, sind alle nutzenden Anwendungen ebenfalls in den Auskunftsmodus zu versetzen.
+Zum Wiederherstellen des vollen Funktionsumfangs wird in umgekehrter Reihenfolge vorgegangen, d.h. schreibende Zugriffe werden zunächst in den genutzten Anwendungen wieder erlaubt und danach die nutzenden Anwendungen umgestellt.
+
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

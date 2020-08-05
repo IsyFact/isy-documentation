@@ -1,46 +1,11 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben Spring LDAP
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Änderungsübersicht
-include::docinfo.adoc[]
-// Executive Summary
-// include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Baustein Spring LDAP
+:document-type: Nutzungsvorgaben
 
 toc::[]
 
-// Einleitung
-include::thisdoc.adoc[leveloffset=1]
+colophon::[]
 
-// Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
 
-:sectnums!:
-
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]
-
-// Anhänge
-//include::anhaenge.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]

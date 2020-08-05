@@ -1,23 +1,11 @@
+= Nutzungsvorgaben Polling: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
-Dieses Dokument beschreibt die Verwendung des Bausteins Polling.
-
-In <<glossar-Fachanwendung,Fachanwendungen>> und <<glossar-,Service-Gateways>> müssen manchmal Polling-basierte Schnittstellen angesprochen werden.
-Polling bedeutet, dass in regelmäßigen Intervallen neue Daten zur Verarbeitung abgeholt werden.
-Die Schnittstellen nutzen unterschiedliche technische Verfahren wie IMAP, Web-Services, HTTP-Invoker oder proprietäre Datenbank-basierte Schnittstellen, weitere sind denkbar.
-
-Aus Gründen der Ausfallsicherheit soll die Abholung der Daten von mehreren Instanzen einer Anwendung durchgeführt werden.
-Diese Instanzen müssen synchronisiert werden, so dass Nachrichten nicht mehrfach verarbeitet werden.
-Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an.
-
-In <<image-001>> wird diese Situation dargestellt.
-
-:desc-image-001: Polling unter Verwendung eines Loadbalancers
-[id="image-001",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-001}
-image::polling_001.png[align="center", width=55%, pdfwidth=55%]
-
-Der <<glossar-Baustein>> Polling definiert ein solches Verfahren und beschreibt die <<glossar-Bibliothek>> `isy-polling`, die dieses Verfahren implementiert.
+Im Konzept _Polling_ <<KonzeptPolling>> werden die konzeptionellen Grundlagen und Vorgaben für Polling definiert, um eine einheitliche Umsetzung in der gesamten <<glossar-Anwendungslandschaft>> zu gewährleisten.
+Dieses Dokument beschreibt die Verwendung der <<glossar-Bibliothek>> `isy-polling`, die dieses Verfahren implementiert.
 
 Dieses Dokument richtet sich an Entwickler und Chefdesigner, die Polling-Funktionalität in eine Anwendung integrieren wollen.
+// end::inhalt[]

@@ -1,12 +1,3 @@
-
-*Dokument-Informationen*
-
-|====
-|Dokumenten-ID:| Nutzungsvorgaben_IsyFact-Benutzerverwaltung
-|====
-
-Informationen zu Änderungen an diesem Dokument finden sich in der Datei <<Aenderungshistorie>>.
-
 *Java Bibliothek / IT-System*
 
 [options="header",cols="3,1,2"]

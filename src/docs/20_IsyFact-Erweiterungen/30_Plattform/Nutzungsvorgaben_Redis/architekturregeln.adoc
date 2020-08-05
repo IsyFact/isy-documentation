@@ -1,0 +1,7 @@
+// tag::architekturregeln[]
+
+[[architekturregeln-redis]]
+== Architekturregeln Redis
+
+include::inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

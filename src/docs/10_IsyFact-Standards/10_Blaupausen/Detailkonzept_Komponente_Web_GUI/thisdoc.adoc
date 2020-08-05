@@ -1,34 +1,17 @@
+= Detailkonzept Komponente Web-GUI: Einleitung
+
+// tag::inhalt[]
 [[Einleitung]]
 == Einleitung
 
-Im Dokument <<IsyFactReferenzarchitekturITSystem>> ist der Aufbau von <<glossar-Fachanwendung,Fachanwendungen>> in fünf Komponenten beschrieben.
-Eine davon ist die Komponente GUI.
-Die T-Architektur und die Komponente sind in <<image-IFRefArcITSysGUI>> dargestellt.
+Die <<IsyFactReferenzarchitekturITSystem>> beschreibt den Aufbau von <<glossar-Fachanwendung,Fachanwendungen>> in fünf Komponenten.
+Eine davon ist die Komponente Web-GUI.
+Das vorliegende Dokument enthält die Detailkonzeption dieser Komponente.
+Es enthält eine Detaillierung der Referenzarchitektur und zeigt, wie die Fachlichkeit in GUI- und Dialog-Komponenten geschnitten wird.
+Darüber hinaus trifft es allgemeine Vorgaben für querschnittliche Aspekte, wie Sicherheit, Transaktionssteuerung und Session Management.
 
-:desc-image-IFRefArcITSysGUI: T-Architektur von Fachanwendungen
-[id="image-IFRefArcITSysGUI",reftext="{figure-caption} {counter:figures}"]	
-.{desc-image-IFRefArcITSysGUI}
-image::IFRefArcITSysGUI.png[align="center"]
+Zielgruppe dieses Dokuments sind Entwickler und Architekten, die Interesse an den allgemeinen Vorgaben der IsyFact in Bezug auf Web-GUIs haben.
 
-Das vorliegende Dokument enthält die Detailkonzeption der Komponente GUI, die entsprechend der <<IsyFactReferenzarchitektur>> als Web-GUI umgesetzt wird.
-
-Beschrieben werden allgemeine Vorgaben zur Erstellung der GUI einer Anwendung nach IsyFact-Architektur.
-Das Dokument gibt zusätzlich einen Überblick über die benötigten Basistechnologien Spring Web Flow, JSF und Facelets.
-Es werden die Randbedingungen und Besonderheiten für deren Einsatz innerhalb einer <<glossar-Anwendungslandschaft>>, die nach den <<glossar-IFS,IsyFact Standards>> gebaut wird, erläutert.
-Darüber hinaus stellt es die wesentlichen Schritte für den effektiven Aufbau einer geeigneten Projektumgebung dar.
-
-Zielgruppe dieses Dokuments sind Entwickler und Architekten, die die IsyFact-konforme Umsetzung einer Web-GUI angehen.
-Vorkenntnisse mit den Technologien Spring Web Flow und JSF erleichtern den Einstieg und das Verständnis der in diesem Konzept enthaltenen Vorgaben.
-
-Das Dokument ist in sieben Teile gegliedert:
-
-* Darstellung der Anforderungen (Kapitel <<anforderungen>>)
-* Überblick über die verwendeten Basistechnologien (Kapitel <<verwendete-basistechnologien>>).
-* Architektur der Web-GUI und deren Einbettung in die IsyFact-Referenzarchitektur (Kapitel <<architektur>>).
-* Anleitung zur Umsetzung einer Web-GUI (Kapitel <<umsetzen-der-web-gui-einer-isyfact-anwendung>>).
-* Erläuterung der wichtigsten Konfigurationseinstellungen (Kapitel <<sicherheit>>).
-* Eine Beschreibung des Spring Web Flow Mechanismus zum Session-Handling (Kapitel <<session-behandlung>>).
-* Eine Checkliste für die Qualitätssicherung in der Umsetzung der oben beschriebenen Tätigkeiten (Kapitel <<checkliste-zur-qs>>).
-
-Das in diesem Dokument vorgestellte Detailkonzept stellt die allgemeinen Architekturmuster einer Webanwendung im Rahmen der IsyFact dar.
-Allgemeine Angaben zur Gestaltung und zur Umsetzung von Oberflächen finden sich im <<Styleguide>>.
+Allgemeine Angaben zur Gestaltung von Oberflächen finden sich im <<Styleguide>>.
+Weitere Informationen zur Umsetzung von Oberflächen sind den konkreten GUI-Bausteinen zu entnehmen.
+// end::inhalt[]

@@ -1,6 +1,4 @@
 = Nutzungsvorgaben Sicherheit: Einleitung
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
 
 // tag::inhalt[]
 [[einleitung]]
