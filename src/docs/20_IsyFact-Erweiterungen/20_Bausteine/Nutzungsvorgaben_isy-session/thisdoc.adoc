@@ -1,5 +1,8 @@
+= Nutzungsvorgaben isy-session: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Die IsyFact sieht die Nutzung eines zentralen Session-Speichers vor, um Sessions von Webanwendungen zu persistieren und diese damit allen redundanten Instanzen einer Anwendung verfügbar zu machen.
 Dies wird im <<KonzeptSessionManagement>> erläutert.
@@ -8,3 +11,4 @@ Das Session-Management in den Anwendungsservern der Webanwendungen muss so angep
 Hierzu wird die Komponente isy-session bereitgestellt.
 Das vorliegende Konzept beschreibt die Einbindung der <<glossar-Anwendungskomponente>> isy-session in eine Webanwendung.
 Es richtet sich an Architekten und Entwickler von Webanwendungen.
+// end::inhalt[]

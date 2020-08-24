@@ -1,5 +1,4 @@
 = Detailkonzept Datenzugriff: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 [[anforderungen]]
@@ -623,7 +622,7 @@ Grundsätzlich können nach dem Schema `spring.jpa.properties.<Schlüssel>=<Wert
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=false
 
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12gDialect
 spring.jpa.properties.hibernate.connection.isolation=4
 spring.jpa.properties.hibernate.connection.useUnicode=true
 spring.jpa.properties.hibernate.connection.characterEncoding=utf-8
@@ -632,6 +631,9 @@ spring.jpa.properties.hibernate.jdbc.use_streams_for_binary=true
 spring.jpa.properties.hibernate.format_sql=false
 spring.jpa.properties.hibernate.default_schema=<Default Schema>
 spring.jpa.properties.hibernate.ejb.metamodel.generation=enabled
+
+# Folgender Parameter ist optional, da er dem Standard entspricht
+spring.jpa.properties.hibernate.transaction.coordinator_class=jdbc
 ----
 
 [[konfiguration-der-datasource]]
@@ -1156,6 +1158,22 @@ Die Methode `leseBestandHistorie(String)` wurde eingefügt.
 
 Die Methode `speichereBestand(Bestand)` wurde entfernt.
 
+[[erstellung-von-datenbankschemas]]
+== Erstellung von Datenbankschemas
+
+In diesem Kapitel werden Vorgaben für die Erstellung von Datenbankschemas erläutert.
+
+[[namenskonventionen-von-datenbankschemas]]
+=== Namenskonventionen
+Für die Benennung von Datenbankschemas sind folgende Einschränkungen zu beachten:
+
+- Vollständige, beschreibende, aussprechbare Namen (oder bekannte Abkürzungen).
+- Der Name eines Datenbankschemas muss mit einem Buchstaben beginnen.
+- Es dürfen nur Buchstaben, Zahlen und Unterstriche (_) im Namen enthalten sein.
+- Umlaute, Sonderzeichen, Bindestriche und Leerzeichen sind nicht erlaubt.
+
+
+
 [[versionierung-von-datenbankschemas]]
 == Versionierung von Datenbankschemas
 
@@ -1451,4 +1469,19 @@ SELECT version
 Liefert dieses SQL-Statement einen Wert zurück, dann ist die erwartete Schema-Version vorhanden.
 Liefert es keinen Wert zurück, dann ist die erwartete Schema-Version nicht vorhanden.
 
+[[verwendung-von-varchar]]
+== Verwendung von VARCHAR
+
+Bei der Verwendung von VARCHAR ist auf die korrekte Schreibweise zu achten.
+Korrekt ist die Variante VARCHAR2 (x char), keinesfalls darf VARCHAR2(x) oder VARCHAR(x) verwendet werden.
+Hintergrund: VARCHAR2 (10 char) bedeutet, dass bis zu 10 Zeichen gespeichert werden können, unabhängig davon, wie viele Bytes ein Zeichen benötigt.
+Beispielsweise kann bei Verwendung von Unicode ein Zeichen bis zu 4 Bytes beanspruchen.
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

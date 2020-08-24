@@ -1,53 +1,16 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben Sicherheit
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-*Java Bibliothek / IT-System*
-
-[cols="5,2,3"]
-|====
-|Name |Art |Version
-|`isy-sicherheit` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
-|`isy-aufrufkontext` |Bibliothek |siehe `isyfact-bom` v{version-ifs}
-|====
-
-// Executive Summary
-// include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Baustein Sicherheit
+:document-type: Nutzungsvorgaben
 
 toc::[]
 
-// Einleitung
+colophon::[]
+
+include::docinfo.adoc[]
+
 include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt
 include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
-
-// Anhänge
 include::anhaenge.adoc[tags=inhalt]
-
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]

@@ -1,4 +1,4 @@
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= Nutzungsvorgaben Konfiguration: Einleitung
 
 // tag::inhalt[]
 [[Einleitung]]
@@ -14,6 +14,5 @@ In diesem Dokument werden konkrete Nutzungs- und Implementierungsvorgaben beschr
 Die Vereinheitlichung der Konfiguration erleichtert nicht nur die Entwicklung der Anwendungen, sondern stellt vor allem eine Erleichterung des Betriebs der Anwendungen da.
 
 Alle Vorgaben orientieren sich an den in den jeweiligen Kapiteln aufgeführten Anforderungen und gelten für alle Anwendungen nach IsyFact-Architektur.
-
 // end::inhalt[]
 

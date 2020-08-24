@@ -1,8 +1,6 @@
-= Titel des Dokuments: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= Nutzungsvorgaben Überwachung: Inhalt
 
 // tag::inhalt[]
-
 [[ueberwachung-von-anwendungen]]
 == Überwachung von Anwendungen
 
@@ -130,83 +128,6 @@ Da in Anwendungen pro Komponente in der Regel ein Service angeboten wird und in 
 Für Caches, die beim Start der Anwendung initialisiert sind, werden automatisch im Endpoint `metrics` Statistiken mit dem Präfix `cache.` geführt.
 Die Art der angezeigten Statistiken ist von der verwendeten Cache-Implementierung abhängig.
 
-[[pruefung-der-verfuegbarkeit]]
-==== Prüfung der Verfügbarkeit
-
-Anwendungen nach IsyFact-Architektur sollen Mechanismen bereitstellen, die es erlauben, die Verfügbarkeit der Anwendung durch eine betriebliche Überwachung zu prüfen.
-Grundlage dafür ist die Bereitstellung eines HealthIndicators und einer Ping-Methode durch die Anwendung.
-
-[[implementierung-von-ping-und-pruefmethoden]]
-===== Implementierung von HealthIndicators und Ping-Methoden
-
-Jede Anwendung muss eine Service-Operation anbieten, die es nutzenden Nachbarsystemen erlaubt, die Erreichbarkeit dieses Systems zu prüfen.
-Bei der Implementierung dieser Ping-Methode sind dabei folgende Vorgaben einzuhalten:
-
-[NOTE]
-====
-Aufgrund der Trivialität dieser Methode wird dafür keine querschnittliche Bibliothek angeboten, sondern die Methode explizit in jeder Anwendung implementiert.
-====
-
-* Die Ping-Methode wird als Service-Methode der Admin-Komponente angeboten.
-* Die Ping-Methode verwendet einen String als Parameter und liefert beim Aufruf den übergebenen String zurück.
-  Neben dem String muss zusätzlich ein weiterer String Parameter mit der Korrelations-ID übergeben werden.
-  Aufrufer müssen das Feld Korrelations-ID immer zwingend befüllen.
-* Für Systeme, die einen Tomcat verwenden, wird genau eine Ping-Methode pro Webanwendung angeboten.
-* Java-Anwendungen, welche dauerhaft laufen und keinen Tomcat verwenden, bieten ebenfalls eine einzelne Ping-Methode an.
-* Nicht dauerhaft laufende Anwendungen, z.B. Batches bieten keine Prüfmethode an.
-
-Neben der Ping-Methode wird in jeder Anwendung ein `HealthIndicator` implementiert, welcher die Funktionsfähigkeit
-des Systems überprüft.
-
-Der `HealthIndicator` wird dabei gemäß den folgenden Anforderungen implementiert:
-
-* Der `HealthIndicator` wird als Teil der Administrationskomponente implementiert.
-* Der `HealthIndicator` darf keine fachlich relevanten Daten verändern.
-* Der `HealthIndicator` muss zu Beginn eine Korrelations-ID erzeugen, die im Logging-Kontext gesetzt werden muss.
-Bei jedem Aufruf an ein Nachbarsystem ist diese zu übergeben.
-* Der `HealthIndicator` muss so implementiert werden, dass mindestens folgende Aspekte der Anwendung getestet werden:
-
-** Verfügbarkeit aller genutzten Nachbarsysteme.
-Hierzu wird die Ping-Methode dieser Nachbarsysteme aufgerufen.
-Der Aufruf einer fachlichen Funktion ist nicht gestattet.
-** Verfügbarkeit weiterer genutzter Ressourcen, wie beispielsweise der LDAP-Server oder genutzte FTP-Verzeichnisse.
-Bei der Prüfung der genutzten Ressourcen ist zu beachten, dass sich Implementierung nicht aufhängt und somit die Prüfung nicht weiterläuft.
-Um dies zu vermeiden, sollte zur Prüfung der genutzten Ressourcen das Future-Pattern wie in <<listing-Pruefmethode>> gezeigt, verwendet werden.
-+
-[NOTE]
-====
-Als Beispiel sei hier der LDAP-Server genannt. Zur Prüfung des LDAP-Servers wird in der Regel eine Beispielanfrage an den Server gesendet.
-Ist vor den LDAP-Server ein Loadbalancer geschaltet, so kann es nach einem Fail-Over passieren, dass diese Beispielanfrage endlos läuft.
-====
-
-:desc-listing-Pruefmethode: Prüfmethode mit Future-Pattern
-[id="listing-Pruefmethode",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-Pruefmethode}
-[source,java]
-----
-boolean pruefeSystem() {
-    ExecutorService executor = Executors.newCachedThreadPool();
-    Future<Boolean> future = executor.submit((Callable<Boolean>) () -> {
-        if (!anwendungXYZ.isAnwendungXYZAlive()) {
-            throw new AnwendungXYZNotAvailableException();
-        }
-        return true;
-    });
-
-    try {
-        return future.get(10, TimeUnit.SECONDS);
-    } catch (Exception e) {
-        return false;
-    }
-}
-----
-
-Um einen eigenen `HealthIndicator` zu implementieren, wird eine Spring-Bean registriert, die das Interface `HealthIndicator` implementiert.
-Dort wird die Methode `health()` implementiert, die eine Objekt vom Typ `Health` zurückgibt.
-Diese enthält den Status der Anwendung und kann optional weitere Details zur Anzeige enthalten.
-`HealthIndicator` werden automatisch von Spring Boot erkannt und im `health` Endpoint bereitgestellt.
-
-
 [[implementierung-von-eigenen-metriken]]
 ==== Implementierung von eigenen Metriken
 
@@ -314,29 +235,145 @@ Gemäß den Vorgaben werden nicht benötigte Endpoints deaktiviert und durch Aut
 [[konfiguration-von-endpoints]]
 ===== Konfiguration von Endpoints
 
-Endpoints können einzeln aktiviert oder deaktiviert werden.
-Damit wird gesteuert, ob der Endpoint erstellt und die dafür notwendigen Beans erzeugt werden.
-Für den Zugriff von außerhalb muss der Endpoint zusätzlich über eine Schnittstelle (HTTP oder JMX) bereitgestellt werden.
 Zur Überwachung einer Anwendung werden die folgenden eingebauten Endpoints verwendet:
 
 * `health`
 * `metrics`
 
-Da per Default fast alle Endpoints aktiviert sind, werden zubnächst alle Endpoints ausgeschaltet, und dann die Endpoints `health` und `metrics` explizit wieder aktiviert.
-Die Bereistellung der Endpoints erfolgt nur über HTTP.
+Diese sind bereits mit Standardwerten konfiguriert.
+Da der Endpoint `health` seine Informationen aus einem Cache abfragt, welcher von einem Task befüllt wird, werden die in <<listing-task-activation>> gezeigten Properties in `application.properties` gesetzt, um das Starten der Tasks zu aktivieren.
 
-Für diese Konfiguration werden die in <<listing-endpointconfig>> gezeigten Porperties in `application.properties` gesetzt.
+:desc-listing-task-activation: Properties zur Aktivierung des Tasks
+[id="listing-task-activation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-task-activation}
+----
+isy.task.autostart=true
+isy.task.default.host=
+----
 
-:desc-listing-endpointconfig: Properties zur Konfiguration der Endpoints
-[id="listing-endpointconfig",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-endpointconfig}
+Endpoints können einzeln aktiviert oder deaktiviert werden.
+Damit wird gesteuert, ob der Endpoint erstellt wird und die dafür notwendigen Beans erzeugt werden.
+Für den Zugriff von außerhalb muss der Endpoint zusätzlich über eine Schnittstelle (HTTP oder JMX) bereitgestellt werden.
+
+Da von Spring standardmäßig fast alle Endpoints aktiviert sind, werden zunächst alle Endpoints ausgeschaltet, und anschließend die Endpoints `health` und `metrics` explizit wieder aktiviert.
+Die Bereitstellung der Endpoints erfolgt nur über HTTP.
+
+Der Task für die Aktualisierung der Informationen für den Endpoint `health` muss regelmäßig ausgeführt werden.
+Durch das Caching ist gewährleistet, dass die wiederholte Abfrage des Endpoints nicht übermäßige Abfragen erzeugt, die auf andere Systeme propagieren können.
+
+Für diese Konfiguration sind die in <<listing-endpointconfig-defaults>> gezeigten Properties standardmäßig gesetzt.
+Diese können bei Bedarf in `application.properties` überschrieben werden.
+
+:desc-listing-endpointconfig-defaults: Properties zur Konfiguration der Endpoints
+[id="listing-endpointconfig-defaults",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-endpointconfig-defaults}
 ----
 management.endpoints.enabled-by-default=false
 management.endpoint.health.enabled=true
 management.endpoint.metrics.enabled=true
 management.endpoints.web.exposure.include=health, metrics
 management.endpoints.jmx.exposure.exclude=*
+
+isy.task.tasks.isyHealthTask.ausfuehrung=FIXED_DELAY
+isy.task.tasks.isyHealthTask.initial-delay=5s
+isy.task.tasks.isyHealthTask.fixed-delay=30s
 ----
+[[vorgaben-fuer-die-pruefung-der-verfuegbarkeit]]
+==== Prüfung der Verfügbarkeit
+
+Anwendungen nach IsyFact-Architektur sollen Mechanismen bereitstellen, die es erlauben, die Verfügbarkeit der Anwendung durch eine betriebliche Überwachung zu prüfen.
+
+Grundlage dafür ist die Bereitstellung eines HealthEndpoints.
+
+[[implementierung-von-ping-und-pruefmethoden]]
+===== Konfiguration des Nachbarsystem-HealthIndicator
+
+Jede Anwendung stellt einen HealthEndpoint unter `/actuator/health` bereit. Zur Konfiguration siehe auch <<konfiguration-von-endpoints>>.
+Dieser zeigt den Status des Systems abhängig von allen vorhandenen Health-Indikatoren (`HealthIndicator`).
+
+Isy-Ueberwachung liefert einen Nachbarsystem-Indikator mit, der den HealthEndpoint aller konfigurierten Nachbarsysteme abfragt.
+
+Dieser lässt sich wie folgt konfigurieren:
+
+:desc-listing-nachbarsysteme: Konfiguration des NachbarsystemIndicators
+[id="listing-nachbarsysteme",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-nachbarsysteme}
+----
+## Konfiguration von Timeout und Retries bei der Abfrage von Nachbarsystemen
+isy.ueberwachung.nachbarsystemcheck.anzahlretries=1
+isy.ueberwachung.nachbarsystemcheck.timeout=2s
+
+## Konfiguration eines Nachbarsystems, das überwacht wird
+isy.ueberwachung.nachbarsysteme.beispielnachbar.systemname=Beispielnachbar
+isy.ueberwachung.nachbarsysteme.beispielnachbar.healthendpoint=http://example.com/actuator/health
+isy.ueberwachung.nachbarsysteme.beispielnachbar.essentiell=false
+
+# weitere Nachbarn
+#isy.ueberwachung.nachbarsysteme.anderernachbar.systemname=EinAndererNachbar
+#...
+----
+Unter `isy.ueberwachung.nachbarsystemcheck` sind die Zeit bis zum Timeout einer Anfrage und die Anzahl der Wiederholungsversuche pro Abfrage konfigurierbar.
+Ist nichts anderes konfiguriert, ist der Standardwert hier 3 Sekunden bis zum Timeout und ein Wiederholungsversuch.
+Alle abzufragenden Nachbarsysteme sind unter `isy.ueberwachung.nachbarsysteme` zu konfigurieren.
+Im Listing oben ist `beispielnachbar` ein selbst zu wählender Schlüssel.
+Für jeden Schlüssel sind folgende Properties zu setzen:
+
+* `systemname`: Wird in der Log-Ausgabe als Name des Nachbarsystems verwendet
+* `healthendpoint`: Die URL, unter der der HealthEndpoint des Nachbarsystems zu erreichen ist
+* `essentiell` (`true`/`false`) : Ist ein essentielles Nachbarsystem nicht erreichbar, wird der Status des Nachbarsystem-Indikators auf DOWN gesetzt und ein Error geloggt.
+Nicht essentielle Nachbarsysteme beeinflussen den Status nicht und werden, falls sie nicht erreichbar sind, nur als Warning geloggt.
+
+==== Implementierung weiterer eigener Health-Indikatoren
+
+Es können weitere Indikatoren zur Überprüfung anderer Komponenten implementiert werden.
+Um einen eigenen `HealthIndicator` zu implementieren, wird eine Spring-Bean registriert, die das Interface `HealthIndicator` implementiert.
+Dort wird die Methode `health()` implementiert, die eine Objekt vom Typ `Health` zurückgibt.
+Diese enthält den Status der überprüften Komponente und kann optional weitere Details zur Anzeige enthalten.
+`HealthIndicator` werden automatisch von Spring Boot erkannt und im `health` Endpoint bereitgestellt.
+
+Hierfür gelten folgende Richtlinien:
+
+* Der `HealthIndicator` wird als Teil der Administrationskomponente implementiert.
+* Der `HealthIndicator` darf keine fachlich relevanten Daten verändern.
+* Der `HealthIndicator` muss zu Beginn eine Korrelations-ID erzeugen, die im Logging-Kontext gesetzt werden muss.
+Bei jedem Aufruf an ein Nachbarsystem ist diese zu übergeben.
+
+Neben den Nachbarsystemen sind weitere Überprüfungen sinnvoll:
+
+* Verfügbarkeit weiterer genutzter Ressourcen, wie beispielsweise der LDAP-Server oder genutzte FTP-Verzeichnisse.
+Bei der Prüfung der genutzten Ressourcen ist zu beachten, dass sich die Implementierung nicht aufhängt und somit die Prüfung nicht weiterläuft.
+Um dies zu vermeiden, sollte zur Prüfung der genutzten Ressourcen das Future-Pattern wie in <<listing-Pruefmethode>> gezeigt, verwendet werden.
++
+[NOTE]
+====
+Als Beispiel sei hier der LDAP-Server genannt. Zur Prüfung des LDAP-Servers wird in der Regel eine Beispielanfrage
+an den Server gesendet.
+Ist vor den LDAP-Server ein Loadbalancer geschaltet, so kann es nach einem Fail-Over passieren, dass diese
+Beispielanfrage endlos läuft.
+====
+
+:desc-listing-Pruefmethode: Demonstration Future-Pattern
+[id="listing-Pruefmethode",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Pruefmethode}
+[source,java]
+----
+boolean pruefeSystem() {
+    ExecutorService executor = Executors.newCachedThreadPool();
+    Future<Boolean> future = executor.submit((Callable<Boolean>) () -> {
+        if (!anwendungXYZ.isAnwendungXYZAlive()) {
+            throw new AnwendungXYZNotAvailableException();
+        }
+        return true;
+    });
+
+    try {
+        return future.get(10, TimeUnit.SECONDS);
+    } catch (Exception e) {
+        return false;
+    }
+}
+----
+
 
 [[absicherung-von-endpoints]]
 ===== Absicherung von Endpoints
@@ -448,4 +485,11 @@ Zur Steuerung des Loadbalancing-Servlets muss die IsAlive-Datei im Konfiguration
 Der Standardname für die IsAlive-Datei ist `/etc/<anwendungsname>/isAlive`.
 Dieses kann der Betrieb bei Bedarf über ein Shell-Skript automatisieren. Die Verwendung des Servlets im Rahmen des Deployments wird in <<DeploymentKonzept>> beschrieben.
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

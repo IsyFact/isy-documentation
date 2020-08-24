@@ -1,5 +1,7 @@
-[[namenskonventionen]]
-= Namenskonventionen
+= Namenskonventionen: Inhalt
+
+// tag::inhalt[]
+== Namenskonventionen
 
 Dieser Abschnitt beschreibt die Namenskonventionen der IsyFact.
 In komplexen Anwendungslandschaften werden <<glossar-Anwendungssystem,Anwendungssysteme>> in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen).
@@ -9,18 +11,18 @@ In folgenden Vorgaben wird daher zwischen Fachanwendungen, Registern und Geschä
 Für andere Kontexte können weitere Systemtypen eingeführt werden, für die entsprechende Vorgaben nach dem gleichen Schema zu definieren sind.
 
 [[allgemein]]
-== Allgemein
+=== Allgemein
 
 In diesem Abschnitt werden allgemeine Namenskonventionen festgehalten.
 
 [[namen-von-anwendungssystemen]]
-=== Namen von Anwendungssystemen
+==== Namen von Anwendungssystemen
 
 Je nach Typ eines Anwendungssystems ist der Name unterschiedlich zu wählen.
 Die verschiedenen Varianten sind wie folgt abgebildet.
 
 [[fachanwendung]]
-==== Fachanwendung
+===== Fachanwendung
 
 :desc-table-SFachanw: Schema für eine Fachanwendung
 [id="table-SFachanw",reftext="{table-caption} {counter:tables}"]
@@ -35,7 +37,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[register]]
-==== Register
+===== Register
 
 :desc-table-SRegister: Schema für ein Register
 [id="table-SRegister",reftext="{table-caption} {counter:tables}"]
@@ -50,7 +52,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[geschaeftsanwendung]]
-==== Geschäftsanwendung
+===== Geschäftsanwendung
 
 :desc-table-SGanw: Schema für eine Geschäftsanwendung
 [id="table-SGanw",reftext="{table-caption} {counter:tables}"]
@@ -65,13 +67,13 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[spezifikation]]
-== Spezifikation
+=== Spezifikation
 
 In diesem Kapitel werden die Namenskonventionen der Spezifikation festgehalten.
 Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>> entnommen.
 
 [[geschäftsprozess]]
-=== Geschäftsprozess
+==== Geschäftsprozess
 
 :desc-table-GFProc:  Geschäftsprozess
 [id="table-GFProc",reftext="{table-caption} {counter:tables}"]
@@ -84,7 +86,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[geschäftsvorfall]]
-=== Geschäftsvorfall
+==== Geschäftsvorfall
 
 :desc-table-GFvorfall:  Geschäftsvorfall
 [id="table-GFvorfall",reftext="{table-caption} {counter:tables}"]
@@ -97,7 +99,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[aktivität]]
-=== Aktivität
+==== Aktivität
 
 :desc-table-aktivi:  Aktivität
 [id="table-aktivi",reftext="{table-caption} {counter:tables}"]
@@ -110,7 +112,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[dokument]]
-=== Dokument
+==== Dokument
 
 :desc-table-dokum:  Dokument
 [id="table-dokum",reftext="{table-caption} {counter:tables}"]
@@ -123,7 +125,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[persistente-daten]]
-=== Persistente Daten
+==== Persistente Daten
 
 :desc-table-Persdat:  Persistente Daten
 [id="table-Persdat",reftext="{table-caption} {counter:tables}"]
@@ -136,7 +138,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[organisationseinheit]]
-=== Organisationseinheit
+==== Organisationseinheit
 
 :desc-table-orgeinh:  Organistationseinheit
 [id="table-orgeinh",reftext="{table-caption} {counter:tables}"]
@@ -149,7 +151,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[anwendungssystem]]
-=== Anwendungssystem
+==== Anwendungssystem
 
 :desc-table-Anwsys:  Anwendungssystem
 [id="table-Anwsys",reftext="{table-caption} {counter:tables}"]
@@ -162,7 +164,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[anwendungskomponente]]
-=== Anwendungskomponente
+==== Anwendungskomponente
 
 :desc-table-anwkomp:  Anwendungskomponente
 [id="table-anwkomp",reftext="{table-caption} {counter:tables}"]
@@ -175,7 +177,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[anwendungsfall]]
-=== Anwendungsfall
+==== Anwendungsfall
 
 :desc-table-anwfall:  Anwendungsfall
 [id="table-anwfall",reftext="{table-caption} {counter:tables}"]
@@ -188,7 +190,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[anwendungsfunktion]]
-=== Anwendungsfunktion
+==== Anwendungsfunktion
 
 :desc-table-anwfkt:  Anwendungsfunktion
 [id="table-anwfkt",reftext="{table-caption} {counter:tables}"]
@@ -201,7 +203,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[batch]]
-=== Batch
+==== Batch
 
 :desc-table-batch1:  Batch
 [id="table-batch1",reftext="{table-caption} {counter:tables}"]
@@ -214,7 +216,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[modellkomponente]]
-=== Modellkomponente
+==== Modellkomponente
 
 :desc-table-modkomp:  Modellkomponente
 [id="table-modkomp",reftext="{table-caption} {counter:tables}"]
@@ -227,7 +229,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[entitätstyp]]
-=== Entitätstyp
+==== Entitätstyp
 
 :desc-table-Enttyp:  Entitätstyp
 [id="table-Enttyp",reftext="{table-caption} {counter:tables}"]
@@ -240,7 +242,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[dialog]]
-=== Dialog
+==== Dialog
 
 :desc-table-dialog1:  Dialog
 [id="table-dialog1",reftext="{table-caption} {counter:tables}"]
@@ -253,7 +255,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[maske]]
-=== Maske
+==== Maske
 
 :desc-table-maske1:  Maske
 [id="table-maske1",reftext="{table-caption} {counter:tables}"]
@@ -266,7 +268,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[druckstück]]
-=== Druckstück
+==== Druckstück
 
 :desc-table-prtstk1:  Druckstück
 [id="table-prtstk1",reftext="{table-caption} {counter:tables}"]
@@ -279,7 +281,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[nachbarschnittstelle]]
-=== Nachbarschnittstelle
+==== Nachbarschnittstelle
 
 :desc-table-nbss1:  Nachbarschnittstelle
 [id="table-nbss1",reftext="{table-caption} {counter:tables}"]
@@ -292,7 +294,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[schnittstellenentitätstyp]]
-=== Schnittstellenentitätstyp
+==== Schnittstellenentitätstyp
 
 :desc-table-ssenttyp:  Schnittstellenentitätstyp
 [id="table-ssenttyp",reftext="{table-caption} {counter:tables}"]
@@ -305,7 +307,7 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[nicht-funktionale-anforderung]]
-=== Nicht-Funktionale Anforderung
+==== Nicht-Funktionale Anforderung
 
 :desc-table-nfktafo:  Nicht-Funktionale Anforderung
 [id="table-nfktafo",reftext="{table-caption} {counter:tables}"]
@@ -318,21 +320,56 @@ Sie sind vor allem der Systemspezifikationsvorlage <<IsyFactSystemspezifikation>
 |====
 
 [[entwicklung]]
-== Entwicklung
+=== Entwicklung
 
 Dieser Abschnitt fasst die Namenskonventionen zusammen, die bei der Entwicklung eines Anwendungssystems nach IsyFact relevant sind.
 Das sind vor allem Klassen- und Dateinamen.
 
-Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig beziehungsweise werden davon abgeleitet.
+Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig, beziehungsweise werden davon abgeleitet.
+
+[[artefakte-module]]
+==== Artefakte und Module
+
+Bei einem Maven-Artefact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
+Group-IDs werden mit einem Punkt konkatiniert.
+Mit der Artefakt-ID wird die Funktionalität des Artefaktes kurz und pregnant definiert.
+Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatinierung erfolgt über ein Minus.
+
+:desc-table-grIDMod: Group-ID von Modulen/Artefakten
+[id="table-grIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-grIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Group-ID von Modulen/Artefakten
+|*Schema Group-ID* m|<sprach-kuerzel>.<organisation>.<firma>.<domaene>
+|*Beispiel* m|de.bund.bva.isyfact
+|====
+
+[[Präfixe]]
+===== Präfixe
+Prinzipiell soll jedes Modul, bzw. Artefakt, z.B. wie in einer Maven-Umgebung einen Präfix definiert haben.
+Artifakte einer Group-ID (Domäne) sollten immer einen einheitlichen Präfix besitzen. So haben alle IsyFact-Artefakte das Präfix `isy-` in ihrer Artefakt-ID.
+
+:desc-table-artIDMod: Artefakt-ID von Modulen/Artefakten
+[id="table-artIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-artIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Artefakt-ID von Modulen/Artefakten
+|*Schema Artifakt-ID* m|<praefix>-<funktion/komponente> +
+<praefix>-<funktion/komponente>-<teilkomponente>
+|*Beispiel* m|isy-documentation +
+isy-documentation-core
+|====
 
 [[technische-systemnamen]]
-=== Technische Systemnamen
+==== Technische Systemnamen
 
 Die technischen Systemnamen entsprechen der technischen Bezeichnung für ein IsyFact-konformes Anwendungssystem.
 Sie werden unter anderem für Projektnamen in Eclipse, Dokument Basis / Context Root bei Schnittstellen-URLs und als Namen von Deployment-Einheiten (vgl. Kapitel <<rpm-pakete>>) verwendet.
 
 [[fachanwendungen]]
-==== Fachanwendungen
+===== Fachanwendungen
 
 :desc-table-namfachanw:  Name einer Fachanwendung
 [id="table-namfachanw",reftext="{table-caption} {counter:tables}"]
@@ -347,7 +384,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[register-1]]
-==== Register
+===== Register
 
 :desc-table-namreg:  Name eines Registers
 [id="table-namreg",reftext="{table-caption} {counter:tables}"]
@@ -362,7 +399,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[geschäftsanwendung-1]]
-==== Geschäftsanwendung
+===== Geschäftsanwendung
 
 :desc-table-namgfanw2:  Name einer Geschäftsanwendung
 [id="table-namgfanw2",reftext="{table-caption} {counter:tables}"]
@@ -377,7 +414,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[servicegateway]]
-==== Servicegateway
+===== Servicegateway
 
 :desc-table-namsgw:  Name eines Servicegateways
 [id="table-namsgw",reftext="{table-caption} {counter:tables}"]
@@ -395,7 +432,7 @@ m|<zielverfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs, mit dem die
 |====
 
 [[mailgateway]]
-==== Mailgateway
+===== Mailgateway
 
 :desc-table-namMGW:  Name eines Mailgateways
 [id="table-namMGW",reftext="{table-caption} {counter:tables}"]
@@ -410,7 +447,7 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
 [[batch-anwendungen]]
-==== Batch-Anwendungen
+===== Batch-Anwendungen
 
 Mit vielen Systemen wird eine eigene Batch-Deploymenteinheit ausgeliefert.
 Diese wird folgendermaßen benannt.
@@ -430,12 +467,12 @@ Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
 |====
 
 [[name-der-web-application]]
-=== Name der Web Application
+==== Name der Web Application
 
 Der Name einer Web-Applikation (Webapp-Root) ist immer gleich dem technischen Systemnamen (siehe Abschnitt <<technische-systemnamen>>)
 
 [[interface-implementierungen]]
-=== Interface-Implementierungen
+==== Interface-Implementierungen
 
 Implementierungen von Interfaces werden durch das Suffix „Impl“ gekennzeichnet.
 
@@ -451,7 +488,7 @@ NachrichtErzeugungImpl
 |====
 
 [[persistenz]]
-=== Persistenz
+==== Persistenz
 
 :desc-table-daossimpl:  Data Access Objects: Interfaces + Implementierung
 [id="table-daossimpl",reftext="{table-caption} {counter:tables}"]
@@ -466,7 +503,7 @@ AkteDaoImpl
 |====
 
 [[business-objekte]]
-=== Business-Objekte
+==== Business-Objekte
 
 Unter Business-Objekten werden nicht-persistente Objekte verstanden, die in Schnittstellen im <<glossar-Anwendungskern>> verwendet werden.
 
@@ -481,7 +518,7 @@ Unter Business-Objekten werden nicht-persistente Objekte verstanden, die in Schn
 |====
 
 [[anwendungsfälle]]
-=== Anwendungsfälle
+==== Anwendungsfälle
 
 Anwendungsfallklassen werden durch das Präfix `Awf` gekennzeichnet.
 Der weitere Teil des Klassennamens leitet sich aus dem Namen des Anwendungsfalls aus der Spezifikation ab, in CamelCase-Schreibweise.
@@ -498,7 +535,7 @@ AwfEntscheidungDurchfuehren
 |====
 
 [[anwendungsfunktionen]]
-=== Anwendungsfunktionen
+==== Anwendungsfunktionen
 
 Analog zu den Anwendungsfällen werden Anwendungsfunktionen mit dem Präfix `Afu` gekennzeichnet.
 
@@ -514,7 +551,7 @@ AfuErmittlungEntscheidungsrelevanz
 |====
 
 [[batches]]
-=== Batches
+==== Batches
 
 Analog zu den Anwendungsfällen werden Batchklassen mit dem Präfix `Bat` gekennzeichnet.
 
@@ -559,13 +596,13 @@ Loeschfunktion.DatumVon=30.11.2019
 
 
 [[schnittstellen]]
-=== Schnittstellen
+==== Schnittstellen
 
 Schnittstellen werden in der IsyFact in eigenen Schnittstellenprojekten bereitgestellt.
 Die Konventionen diesbezüglich sind wie in den folgenden Abschnitten dargestellt.
 
 [[interface-klassennamen]]
-==== Interface-Klassennamen
+===== Interface-Klassennamen
 
 :desc-table-ssclassnam: Interface-Klassennamen
 [id="table-ssclassnam",reftext="{table-caption} {counter:tables}"]
@@ -579,9 +616,9 @@ KommunikationXyzRemoteBean
 |====
 
 [[url]]
-==== URL
+===== URL
 
-Die Service-URL einer HTTP-Invoker-Schnittstelle muss folgendem Schema entsprechen:
+Die Service-URL einer HTTP Invoker Schnittstelle muss folgendem Schema entsprechen:
 
 :desc-table-ssurl1: Schnittstellen: URL
 [id="table-ssurl1",reftext="{table-caption} {counter:tables}"]
@@ -591,7 +628,7 @@ Die Service-URL einer HTTP-Invoker-Schnittstelle muss folgendem Schema entsprech
 2+|Schnittstellen: URL
 |*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
 |*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
-                     $$http://qs-xyz.test.de/plis-benutzerverzeichnis/AuskunftBean_v4_1$$
+                     $$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
 |*Variable*        | *Mögliche Ausprägungen*
 m|<Hostname>       | Der Hostname des Servers
 m|<Anwendungsname> | Der Name der Anwendung.
@@ -605,7 +642,7 @@ m|<Version>       a| Die Versionsnummer des Service, die zweielementig und aufst
 |====
 
 [[projektname-artefakt-id]]
-==== Projektname / Artefakt-ID
+===== Projektname / Artefakt-ID
 
 Die Maven Artefakt-ID von Schnittstellen ist nach dem folgenden Muster aufgebaut.
 Die ersten beiden Teile der Versionsnummer sind Teil der Artefakt-ID, um mehrere Versionen einer Schnittstelle gleichzeitig einbinden zu können.
@@ -618,11 +655,11 @@ An dritter Stelle steht die Maven-Versionsnummer des Artefakts.
 |====
 2+|Artefakt-ID von Schnittstellen
 |*Schema* m|<Anwendungsname>-<protokoll>-sst-<sstname>-<version>
-|*Beispiele* m|xyz-ga-httpinvoker-sst-auskunft-v29.1
+|*Beispiele* m|xyz-ga-rest-sst-auskunft-v29.1
 |====
 
 [[transportobjekte]]
-===== Transportobjekte
+====== Transportobjekte
 
 :desc-table-classnamtransobj: Klassennamen Transportobjekte
 [id="table-classnamtransobj",reftext="{table-caption} {counter:tables}"]
@@ -636,10 +673,10 @@ InformationenXyzTo
 |====
 
 [[web-gui]]
-=== Web-GUI
+==== Web-GUI
 
 [[modelklassen]]
-==== Modelklassen
+===== Modelklassen
 
 :desc-table-classnammodclass: Klassennamen Modelklassen
 [id="table-classnammodclass",reftext="{table-caption} {counter:tables}"]
@@ -652,7 +689,7 @@ InformationenXyzTo
 |====
 
 [[controllerklassen]]
-==== Controllerklassen
+===== Controllerklassen
 
 :desc-table-classnamcontrclass: Klassennamen Controllerklassen
 [id="table-classnamcontrclass",reftext="{table-caption} {counter:tables}"]
@@ -665,7 +702,7 @@ InformationenXyzTo
 |====
 
 [[flows]]
-==== Flows
+===== Flows
 
 :desc-table-flows1: Flows
 [id="table-flows1",reftext="{table-caption} {counter:tables}"]
@@ -678,7 +715,7 @@ InformationenXyzTo
 |====
 
 [[main-view-von-flows]]
-==== Main-View von Flows
+===== Main-View von Flows
 
 :desc-table-mvvflow: Main View von Flows
 [id="table-mvvflow",reftext="{table-caption} {counter:tables}"]
@@ -692,7 +729,7 @@ cdSucheViewState.xhtml
 |====
 
 [[weitere-facelets]]
-==== Weitere Facelets
+===== Weitere Facelets
 
 :desc-table-facelets: Facelets
 [id="table-facelets",reftext="{table-caption} {counter:tables}"]
@@ -705,7 +742,7 @@ cdSucheViewState.xhtml
 |====
 
 [[view-state-javascript-datei]]
-==== View-State Javascript-Datei
+===== View-State Javascript-Datei
 
 :desc-table-vstatejsdat: View-State Javascript-Date
 [id="table-vstatejsdat",reftext="{table-caption} {counter:tables}"]
@@ -721,12 +758,12 @@ cdErwerb.js (übergreifend)
 |====
 
 [[deploymentbetrieb-von-anwendungen]]
-== Deployment/Betrieb von Anwendungen
+=== Deployment/Betrieb von Anwendungen
 
 [[rpm-pakete]]
-=== RPM-Pakete
+==== RPM-Pakete
 
-Für die Benennung von RPM-Paketen existiert eine Konvention, welche durch den RPM-Standard vorgeben wird. 
+Für die Benennung von RPM-Paketen existiert eine Konvention, welche durch den RPM-Standard vorgeben wird.
 Diese Vorgaben sind ebenfalls im <<DeploymentKonzept>> zu finden.
 
 NOTE: Siehe https://rpm-packaging-guide.github.io/#what-is-a-spec-file[RPM Packaging Guide]
@@ -763,7 +800,7 @@ Sollten Anwendungen Architektur-spezifische Bestandteile enthalten, wird hier di
 |====
 
 [[installationspfade]]
-=== Installationspfade
+==== Installationspfade
 
 Die Installationspfade sind ausführlich im Konzept beschrieben.
 
@@ -788,3 +825,4 @@ Die Installationspfade sind ausführlich im Konzept beschrieben.
 |*Schema* m|/etc/<rpm-paketname>
 |*Beispiele* m|/etc/isy-xyz-anwendung
 |====
+// end::inhalt[]

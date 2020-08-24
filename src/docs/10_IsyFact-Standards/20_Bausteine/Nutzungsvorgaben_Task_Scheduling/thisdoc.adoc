@@ -1,3 +1,6 @@
+= Nutzungsvorgaben Task Scheduling: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -21,3 +24,4 @@ Kapitel <<konfigurationsschluessel>> bietet einen Überblick über die Konfigura
 Kapitel <<ueberwachung-mit-jmx>> zeigt, wie die JMX-Überwachung eingebunden wird.
 
 Kapitel <<hinweise-fuer-den-task-im-parallelbetrieb>> gibt Anmerkungen für die Implementierung eines Tasks.
+// end::inhalt[]

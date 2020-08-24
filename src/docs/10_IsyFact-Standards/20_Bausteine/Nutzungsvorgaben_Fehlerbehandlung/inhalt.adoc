@@ -1,8 +1,6 @@
-= Titel des Dokuments: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= Nutzungsvorgaben Fehlerbehandlung: Inhalt
 
 // tag::inhalt[]
-
 [[implementierung-der-fehlerbehandlung]]
 == Implementierung der Fehlerbehandlung
 
@@ -309,23 +307,19 @@ Anwendungsschnittstellen verwendet werden, folgende Vorgaben gemacht:
 ** Übermittlung der Ausnahme-ID
 ** Übermittlung der UUID
 ** Übermittlung des Fehler-Typs („Name“ der Exception)
-** Übermittlung der Fehler-Nachricht (kein Stack-Trace)
+** Übermittlung der Fehlernachricht (kein Stack-Trace)
 * *REST* (keine Exceptions)
 ** Übermittlung der Ausnahme-ID
 ** Übermittlung der UUID
 ** Übermittlung von Fehler-Kategorie (technisch/Art des fachlichen Fehlers)
-** Übermittlung von Fehler-Nachricht (kein Stack-Trace!)
-* *Spring HttpInvoker* (pro Methode)
-** Definition von 0..1 technische Exceptions (gleich für alle Methoden einer Schnittstelle)
-** Definition von 0..n fachliche Exceptions
-** Übermittlung der Ausnahme-ID
-** Übermittlung der UUID
-** Übermittlung von Fehler-Nachricht (kein Stack-Trace!)
+** Übermittlung von Fehlernachricht (kein Stack-Trace!)
+
+Die Vorgaben für HTTP Invoker sind im <<NutzungsvorgabenHttpInvoker>> beschrieben.
 
 [[isyfact-bibliotheken-fuer-fehlerbehandlung]]
 ==== IsyFact-Bibliotheken für Fehlerbehandlung
 
-Die in den vorigen Abschnitten beschriebenen abstrakten Oberklassen, die zur Umsetzung der Exception-Hierachie notwendig sind, werden über die IsyFact-Bibliotheken `isy-exception-core` und `isy-exception-sst` in neue Anwendungen integriert.
+Die in den vorigen Abschnitten beschriebenen abstrakten Oberklassen, die zur Umsetzung der Exception-Hierarchie notwendig sind, werden über die IsyFact-Bibliotheken `isy-exception-core` und `isy-exception-sst` in neue Anwendungen integriert.
 
 Dabei enthält die Bibliothek `isy-exception-core` die notwendigen Klassen für den Anwendungskern, die Bibliothek `isy-exception-sst` die Klassen für die Schnittstellen (Transport-Exceptions).
 
@@ -363,203 +357,8 @@ try {
 }
 ----
 
-Die letzte Variante ist die endgültige Fehlerbehandlung, die in einer Exception-Fassade (siehe <<image-011>>) stattfindet.
-
-:desc-image-011: Aufruf von der Schnittstelle zum Anwendungskern
-[id="image-011",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-011}
-image::fehlerbehandlung011.png[align="center",width=80%,pdfwidth=80%]
-
-Die `ExceptionFassade` bildet die Klammer um einen Aufruf an die Anwendung und ist für die Top-Level Fehlerbehandlung zuständig.
-Sie leitet den Aufruf an die `ServiceFassade` (Details, siehe <<DetailkonzeptKomponenteAnwendungskern>>) weiter, welche die Transaktionsklammer um den Aufruf bildet und ruft die Anwendung bzw. die Komponente auf.
-Dieser zweistufige Prozess ist notwendig, da es unerwartete Exceptions geben kann, wenn die Transaktion geschlossen wird, also ein Commit durchgeführt wird.
-Diese Exceptions treten außerhalb der eigentlichen Anwendung auf.
-Daher muss die Exception-Fassade als Schicht über der Transaktionsklammer liegen, um auch diese Fehler abzufangen, zu loggen, in Transport-Exceptions umzuwandeln und an den Aufrufer weiterzureichen.
-
-Das Vorgehen für die Fehlerbehandlung nach <<image-011>> gilt für alle Arten von Außenschnittstellen.
-Die HTTP-Invoker-Schnittstelle ist die am häufigsten angebotene Schnittstelle in der Anwendungslandschaft.
-Aus diesem Grund wurde diese Schnittstelle für das Code-Beispiel gewählt, zur Veranschaulichung der Top-Level Fehlerbehandlung.
-
-<<listing-FehlerbehandlungExceptionFassade>> zeigt die Fehlerbehandlung in der Exception-Fassade der Meldung im Vorlage-Register für die HTTP-Invoker-Schnittstelle.
-
-:desc-listing-FehlerbehandlungExceptionFassade: Fehlerbehandlung in der Exception-Fassade
-[id="listing-FehlerbehandlungExceptionFassade",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-FehlerbehandlungExceptionFassade}
-[source,java]
-----
-public int cdErworben(
-    AufrufKontextTo kontext,
-    CdAblageDatenTo cdAblageDaten)
-    throws  MeldungVerarbeitungException,
-            MeldungTechnikException {
-    // Logging-Kontext setzen.
-    NDC.push(kontext.getLoggingKontext());
-    try {
-        return meldungServiceFassade.cdErworben(kontext, cdAblageDaten);
-    } catch (MaxBestandUeberschrittenException ex) {
-        LOG.debug("Methode cdErworben fehlgeschlagen.", ex);
-        // Exceptions in Schnittstellen-Exceptions transformieren.
-        throw (MeldungVerarbeitungException)ExceptionMapper.mapException(
-                ex, MeldungVerarbeitungException.class);
-    } catch (CdRegisterTechnicalRunTimeException ex) {
-        LOG.error("Methode cdErworben fehlgeschlagen.", ex);
-        throw (MeldungTechnikException)ExceptionMapper.mapException(
-            ex, MeldungTechnikException.class);
-    } catch (Throwable t) {
-        LOG.error("Methode cdErworben fehlgeschlagen.", t);
-        // unbekannte Exceptions in Schnittstellen-Exceptions transformieren.
-        MeldungTechnikException ex = ExceptionMapper.createToException(
-                AusnahmeIdUtil.getAusnahmeId(t),
-                new FehlertextProviderImpl(),
-                MeldungTechnikException.class);
-        LOG.error("Methode cdErworben fehlgeschlagen: übergebener Fehler: "
-            + ex.getMessage());
-        throw ex;
-    } finally {
-         // Auf jeden Fall am Ende den Logging-Kontext entfernen.
-         NDC.pop();
-    }
-}
-----
-
-Das Code-Beispiel in <<listing-FehlerbehandlungExceptionFassade>> fängt alle Exceptions und wandelt diese in entsprechende Transport-Exceptions um.
-Als erwartete Exceptions gibt es hier die Exception `MaxBestandUeberschrittenException`.
-Diese wird, sofern sie auftritt, in eine `MeldungVerarbeitungException` umgewandelt und weitergereicht.
-Zu beachten ist, dass in das Error-Log nur betrieblich relevante Fehler geschrieben werden sollen.
-Fachliche Fehler sind in der Regel irrelevant für den Betrieb.
-Daher wird die `MaxBestandUeberschrittenException` ins Debug-Log geschrieben.
-
-Weitere erwartete Fehler gibt es nicht, somit wird nun eine Fehlerbehandlung für unerwartete Fehler der Anwendung durchgeführt (alle Exceptions vom Typ `CdRegisterTechnicalRunTimeException`).
-Als letzte mögliche Fehlerbehandlung werden alle unerwarteten Exceptions vom Typ `Throwable` gefangen.
-
-Der erste Block in diesem Beispiel behandelt eine fachliche Exception.
-Die restlichen Blöcke behandeln unerwartete Exceptions.
-Fachliche Exceptions müssen immer in fachliche Transport-Exceptions umgewandelt werden, alle anderen Exceptions sind in technische Transport-Exceptions umzuwandeln.
-
-Alle Blöcke einer solchen Fassade auf der Anwendungsgrenze verwenden die Klasse `ExceptionMapper` (siehe <<mapping-von-exceptions>>) zur Umwandlung der Anwendungs-Exceptions in Transport-Exceptions und zur Erstellung von Transport-Exceptions.
-Letzteres wird im letzten `catch`-Block des obigen Code-Beispiels genutzt, da in diesem Fall keine Exception vom Typ `BaseException` bzw.
-`RuntimeException` vorhanden ist und somit keine Ausnahme-ID, UUID und kein Fehlertext zu übernehmen sind.
-In diesem Fall ist die benötigte Ausnahme-ID zu berechnen, mit Hilfe der Klasse `AusnahmeIdUtil` (siehe <<mapping-von-exceptions>>).
-
-Die `catch`-Blöcke für anwendungsinterne Runtime-Exceptions (vom Typ `<anwendung>TechnicalRunTimeException`) und alle übrigen unerwarteten Exceptions (`Throwable`) müssen immer implementiert werden.
-Hierdurch wird verhindert, dass die Schnittstelle nicht spezifizierte Exceptions weiterreicht.
-
-[[mapping-von-exceptions]]
-==== Mapping von Exceptions
-
-Auf der Schnittstelle einer Anwendung müssen interne Anwendungs-Exceptions in Transport-Exceptions umgewandelt werden, bzw. es müssen neue Transport-Exceptions erstellt werden.
-Hierfür stellt die Bibliothek `isy-exception` eine eigene Klasse zur Verfügung: `ExceptionMapper` (siehe <<image-012>>).
-
-:desc-image-012: Exception Mapper
-[id="image-012",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-012}
-image::fehlerbehandlung012.png[align="center",width=50%,pdfwidth=60%]
-
-Die Klasse `ExceptionMapper` bietet zwei statische Methoden an, um aus `BaseException` und `RuntimeException` entsprechende Transport-Exceptions zu erstellen.
-Hierfür muss lediglich die umzuwandelnde Exception und die Klasse der gewünschten Transport-Exception mitgegeben werden.
-<<listing-MappingExceptionNachToException>> zeigt ein Beispiel für das Mappen einer technischen `BaseException` in eine technische Transport-Exception:
-
-:desc-listing-MappingExceptionNachToException: Mappen einer BaseException in eine technische Transport-Exception
-[id="listing-MappingExceptionNachToException",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-MappingExceptionNachToException}
-[source,java]
-----
-ExceptionMapper.mapException(ex, MeldungTechnikException.class)
-----
-
-Neben den IsyFact-(Runtime-)Exceptions können weitere Exceptions auftreten.
-Diese besitzen jedoch keine Ausnahme-ID oder eine UUID, z. B. Runtime-Exceptions von eingesetzten Frameworks wie Hibernate.
-Auch diese Exceptions müssen in Transport-Exceptions umgewandelt werden.
-Diese Transport-Exceptions werden mittels der `createToException()`-Methode erstellt (<<listing-createToException>>).
-
-:desc-listing-createToException: Erstellen von Transport-Exceptions
-[id="listing-createToException",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-createToException}
-[source,java]
-----
-MeldungTechnikException ex = ExceptionMapper.createToException(
-                                  AusnahmeIdUtil.getAusnahmeId(t),
-                                  new FehlertextProviderImpl(),
-                                  MeldungTechnikException.class);
-----
-
-In diesem Beispiel wird für ein `Throwable t` eine technische Transport-Exception erzeugt.
-Aus dem Code-Beispiel ist außerdem ersichtlich, dass zur Erstellung einer Transport-Exception aus einer unbekannten Exception noch eine weitere Klasse benötigt wird, die Klasse `AusnahmeIdUtil`.
-Dies ist, wie schon in <<isyfact-bibliotheken-fuer-fehlerbehandlung>> erwähnt, notwendig, da keine Ausnahme-ID bekannt ist.
-
-Die Klasse `AusnahmeIdUtil` bietet eine Methode zur Analyse einer übergebenen Exception.
-Ihr Rückgabewert ist die zur Exception passende Ausnahme-ID, siehe <<image-013>>.
-
-:desc-image-013: Ausnahme-ID Util
-[id="image-013",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-013}
-image::fehlerbehandlung013.png[align="center",width=40%,pdfwidth=40%]
-
-Diese Klasse ist anwendungsspezifisch und für jede Anwendung zu implementieren.
-Die Klasse ist als Teil des Paketes
-
-`<organisation>.<domäne>.<anwendung>.common.exception`
-
-zu erstellen und muss immer als Klassennamen `AusnahmeIdUtil` besitzen und die statische Methode `getAusnahmeId(Throwable)` zur Verfügung stellen.
-
-<<listing-MappingExceptions>> zeigt mögliche Implementierung für das Mapping von Exceptions auf Ausnahme-IDs des Vorlage-Registers.
-
-:desc-listing-MappingExceptions: Mapping von Exceptions auf Ausnahme-IDs
-[id="listing-MappingExceptions",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-MappingExceptions}
-[source,java]
-----
-/**
-* Liefert eine passende AusnahmeID zu einer übergebenen Ausnahme.
-* @param throwable Throwable, welches analysiert werden soll
-* @return String Ausnahme-ID
-*/
-public static String getAusnahmeId(Throwable throwable) {
-    if (throwable instanceof DataAccessException) {
-        // generische Datenbank-Fehlermeldung
-        return FehlerSchluessel.MSG_GENERISCHER_DB_FEHLER;
-
-    } else if (throwable instanceof TransactionException) {
-        // generische Datenbank-Fehlermeldung
-        return FehlerSchluessel.MSG_GENERISCHER_DB_FEHLER;
-    } else if (throwable instanceof JmxException) {
-        // generische JMX-Fehlermeldung
-        return FehlerSchluessel.MSG_GENERISCHER_JMX_FEHLER;
-    } else if (throwable instanceof CdRegisterBusinessException) {
-        LOG.warn("Es wurde eine CdRegisterBusinessException analysiert. "
-        + "Eigentlich sollte diese Verarbeitung über catch-Blöcke geschehen.");
-        // Fehler-Code auslesen
-        return ((CdRegisterException) throwable).getAusnahmeID();
-    } else if (throwable instanceof CdRegisterTechnicalException) {
-        LOG.warn("Es wurde eine CdRegisterTechnicalException analysiert. "
-        + "Eigentlich sollte diese Verarbeitung über catch-Blöcke geschehen.");
-        // Fehler-Code auslesen
-        return ((CdRegisterException) throwable).getAusnahmeID();
-    } else if (throwable instanceof CdRegisterTechnicalRunTimeException) {
-        // Fehler-Code auslesen
-        return (
-            (CdRegisterTechnicalRunTimeException)
-                throwable).getAusnahmeID();
-    }
-    // Kein Mapping Möglich: generische Fehlermeldung
-    LOG.debug("Die Exception der Klasse " + throwable.getClass()
-    + "wurde keiner Kategorie zugeordnet: "
-    + "Ausgabe einer generischen Fehlermeldung.");
-    return FehlerSchluessel.MSG_GENERISCHER_FEHLER;
-}
-----
-
-Die Ermittlung der Ausnahme-ID (`AusnahmeIdUtil.getAusnahmeId (Throwable throwable)`) prüft auch auf die internen Exceptions der Anwendung.
-Grundsätzlich sollte es aber nie zu einer positiven Prüfung dieser Bedingungen kommen, da diese Funktionalität nur auf der Schnittstelle verwendet wird.
-Sollte hier also ein Treffer für interne Exceptions auftreten, so wurden die `catch`-Blöcke nicht sauber implementiert (z. B. wurde einfach nur `catch Throwable` verwendet).
-Dies würde dazu führen, dass die Original-Nachricht überschrieben würde, was bei der Verwendung von Fehlertexten mit Platzhaltern zu einem Informationsverlust für den Aufrufer führt.
-
-Das obige Code-Beispiel bzw. die gesamte Klasse `AusnahmeIdUtil` aus dem Vorlage-Register kann als Template für andere Anwendungen genutzt werden.
-Hierfür sind lediglich kleine Anpassungen notwendig: die Prüfung auf anwendungsinterne Exceptions ist anzupassen und die verwendeten Fehlerschlüssel sind auf die Anwendung anzupassen.
-
-Neben der oben gezeigten Fehlerbehandlung für HTTP-Invoker-Schnittstellen gibt es auch eine Fehlerbehandlung für Axis-basierte Schnittstellen, also SOAP und REST.
-Im Unterschied zu HTTP-Invoker-Schnittstellen werden die Transport-Exceptions nicht in Ausnahmen von Typ `Exception`, sondern im Fall von SOAP in `AxisFaults` umgewandelt.
-Auch hier gilt das generelle Prinzip auf oberster Ebene der Anwendung eine Exception-Fassade zu verwenden, siehe <<image-011>>.
+Die letzte Variante ist die endgültige Fehlerbehandlung, die meistens in einer Komponente der Nutzungsschicht geschieht: GUI, Batch oder Service.
+Beschreibungen dazu finden sich in den jeweiligen Detailkonzepten oder den Bausteinen zur Umsetzung der Komponenten, d.h. zu GUI- oder Service-Frameworks.
 
 [[fehlertexte-und-deren-einsatz]]
 === Fehlertexte und deren Einsatz

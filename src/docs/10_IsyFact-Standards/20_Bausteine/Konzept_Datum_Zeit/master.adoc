@@ -1,42 +1,10 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
-//
-:doctitle: Konzept Datum & Zeit
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-
-// Executive Summary
-// include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Baustein Datum & Zeit
+:document-type: Konzept
 
 toc::[]
 
-// Einleitung
-include::thisdoc.adoc[]
+colophon::[]
 
-// Inhalt
-include::inhalt.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
 
-:sectnums!:
-
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]
-// Glossar
-include::glossary.adoc[]
+include::inhalt.adoc[tags=inhalt]

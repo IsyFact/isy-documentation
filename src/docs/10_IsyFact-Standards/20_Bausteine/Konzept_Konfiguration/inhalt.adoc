@@ -1,5 +1,8 @@
+= Konzept Konfiguration: Inhalt
+
+// tag::inhalt[]
 [[konfiguration-von-anwendungen]]
-= Konfiguration von Anwendungen
+== Konfiguration von Anwendungen
 
 In diesem Kapitel werden die Anforderungen an die Konfiguration von Anwendungen beschrieben.
 Der Fokus liegt dabei auf der Schaffung von einheitlichen Administrationsschnittstellen, welche dem Betrieb eine einfache Konfiguration der Anwendungen erlauben.
@@ -14,7 +17,7 @@ Parameterwerte meinen die Einstellungen für diese Parameter und werden z.B. vom
 Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung verstanden.
 
 [[festlegungen-und-ausgrenzungen-1]]
-== Festlegungen und Ausgrenzungen
+=== Festlegungen und Ausgrenzungen
 
 * Das Konfigurationskonzept betrifft alle von den IsyFact-Anwendungen verwendeten Konfigurationen.
   Dazu gehören sowohl vom Betrieb zu pflegende Konfigurationsdateien, als auch statische Konfigurationen, die z.B. das Layout von Dialog-Masken beschreiben (Ressource-Dateien).
@@ -29,7 +32,7 @@ Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung v
   Ob eine Anwendung einen Konfigurationsparameter erhält oder heruntergefahren werden kann, muss für jede Anwendung, abhängig von deren Verfügbarkeitsanforderung, individuell entschieden werden.
 
 [[typisierung-und-handhabung-von-konfigurationen]]
-== Typisierung und Handhabung von Konfigurationen
+=== Typisierung und Handhabung von Konfigurationen
 
 Eine Einordnung der Konfigurationen ist für das Deployment und den Betrieb einer Anwendung notwendig.
 Nur so ist sichergestellt, dass z.B. Parameterwerte für die Produktion nicht schon während des Bauens der Anwendung bekannt sein müssen.
@@ -71,3 +74,12 @@ h|Umgebungsabhängigkeit erlaubt |nein |ja |nein
 h|Erlaubte Zugriffsarten der Anwendung |nur lesend |nur lesend |lesend und schreibend
 h|Speicherung|Als Datei im Resources-Ordner |Als Property-Datei im Config-Ordner |In der Datenbank
 |====
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

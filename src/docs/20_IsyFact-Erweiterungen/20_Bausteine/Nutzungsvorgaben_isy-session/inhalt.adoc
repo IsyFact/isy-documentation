@@ -1,5 +1,8 @@
+= Nutzungsvorgaben isy-session: Inhalt
+
+// tag::inhalt[]
 [[session-management]]
-= Session-Management
+== Session-Management
 
 Für das Session-Management wird Spring Session eingesetzt – `isy-session` erleichtert die
 Konfiguration von Spring Session gemäß den Vorgaben und Anforderungen der IsyFact.
@@ -20,13 +23,13 @@ Die Informationen zu den Slaves werden automatisch durch den Redis-Client ermitt
 image::nutzungsvorgaben_isy-session_001.png[align="center",pdfwidth=80%,width=60%]
 
 [[einbindung-und-konfiguration]]
-= Einbindung und Konfiguration
+== Einbindung und Konfiguration
 
 In diesem Abschnitt wird die Einbindung und Konfiguration von `isy-session` beschrieben, um eine Webanwendung an den zentralen Session-Speicher anzubinden.
 Die nachfolgenden Schritte sind in der anzubindenden Webanwendung durchzuführen.
 
 [[schritt-1-maven-dependency-ergaenzen]]
-== Schritt 1: Maven-Dependency ergänzen
+=== Schritt 1: Maven-Dependency ergänzen
 
 In der `pom.xml` der Anwendung muss lediglich folgende Abhängigkeit ergänzt werden:
 
@@ -45,7 +48,7 @@ In der `pom.xml` der Anwendung muss lediglich folgende Abhängigkeit ergänzt we
 Die Versionsangabe kann entfallen, wenn das `isyfact-masterpom-lib` als Parent verwendet wird.
 
 [[schritt-2-spring-konfiguration-ergänzen]]
-== Schritt 2: Spring-Konfiguration ergänzen
+=== Schritt 2: Spring-Konfiguration ergänzen
 
 Um den Sessionmanager in die Anwendung einzubinden muss folgende Zeile in die Spring-Konfiguration der Anwendung ergänzt werden:
 
@@ -77,7 +80,7 @@ Andernfalls erhält man die Fehlermeldung: `java.lang.NoSuchMethodError: org.spr
 // end::important[]
 
 [[schritt-3-session.properties-anlegen]]
-== Schritt 3: session.properties anlegen
+=== Schritt 3: session.properties anlegen
 
 Die Datei `session.properties` enthält die Konfigurationsparameter des Sessionmanagers.
 Sie muss im Verzeichnis `/src/main/resources/config` (betriebliche Konfiguration) angelegt werden.
@@ -102,12 +105,12 @@ Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im
 Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate mit allen Parametern dargestellt.
 
 [[vermeidung-haeufiger-fehler]]
-= Vermeidung häufiger Fehler
+== Vermeidung häufiger Fehler
 
 Die folgenden Hinweise dienen dazu, häufige Fehlerszenarien bei der Nutzung der Bibliothek `isy-session` zu vermeiden.
 
 [[geaenderte-werte-explizit-zurückspeichern]]
-== Geänderte Werte explizit zurückspeichern
+=== Geänderte Werte explizit zurückspeichern
 
 Die Session gibt, im Unterschied zu POJOs oder Java Beans, Werte nicht als Referenz (_by-reference_), sondern als Kopie (_by-value_) zurück.
 Deswegen müssen Werte, wenn sie außerhalb der Session geändert wurden, explizit zurück in die Session geschrieben werden.
@@ -130,12 +133,12 @@ session.setAttribute(ERLAUBTE_LICHTBILD_IDS, ids);
 ----
 
 [[keine-sonderzeichen-in-technischen-ids-verwenden]]
-== Keine Sonderzeichen in technischen IDs verwenden
+=== Keine Sonderzeichen in technischen IDs verwenden
 
 Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werden, dürfen keine Umlaute oder andere Sonderzeichen enthalten.
 
 [[ereignisschluessel]]
-= Ereignisschlüssel
+== Ereignisschlüssel
 
 `isy-session` verwendet in den Logeinträgen folgende Ereignisschlüssel:
 
@@ -149,37 +152,12 @@ Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werde
 |EISYSE00001 |INFO |JOURNAL |Verwende Konfigurationsparameter <Name>: <Wert>
 |====
 
+// end::inhalt[]
 
+// tag::architekturregel[]
 
+// end::architekturregel[]
 
+// tag::sicherheit[]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// end::sicherheit[]

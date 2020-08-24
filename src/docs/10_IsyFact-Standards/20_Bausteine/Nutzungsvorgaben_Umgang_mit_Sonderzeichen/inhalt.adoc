@@ -1,11 +1,14 @@
+= Nutzungsvorgaben Umgang mit Sonderzeichen: Inhalt
+
+// tag::inhalt[]
 [[konfigurationseinstellungen-fuer-den-zeichensatz]]
-= Konfigurationseinstellungen für den Zeichensatz
+== Konfigurationseinstellungen für den Zeichensatz
 
 Im Folgenden wird die Konfiguration der technischen Systeme zur Verwendung des Zeichensatzes erläutert.
 Um zu erreichen, dass jedes IsyFact-konforme System Sonderzeichen in gleicher Weise verarbeitet, wird durchgängig Unicode v4.x in der UTF-8-Codierung verwendet.
 
 [[betriebssystem]]
-== Betriebssystem
+=== Betriebssystem
 
 Die Standard-Zeichencodierung aller in der <<glossar-Plattform>> verwendeten Betriebssysteme muss einheitlich auf die Verwendung von Unicode v4.x in der UTF-8-Codierung gesetzt werden.
 
@@ -17,7 +20,7 @@ Hier ist die Standard-Zeichencodierung UTF-8. Diese kann über den Konfiguration
 auch für jeden Benutzer individuell gesetzt werden.
 
 [[oracle-datenbank]]
-== Oracle Datenbank
+=== Oracle Datenbank
 
 Die Zeichencodierung aller in der Plattform verwendeten Datenbanken muss ebenfalls einheitlich auf die Verwendung von Unicode v4.x in der UTF-8-Codierung gesetzt werden.
 
@@ -28,7 +31,7 @@ Hierzu muss beim CREATE DATABASE die folgende Eigenschaft gesetzt werden:
 `CHARACTER SET AL32UTF8`
 
 [[hibernate]]
-== Hibernate
+=== Hibernate
 
 Für Hibernate werden der Unicode-Zeichensatz und die UTF-Zeichencodierung über die beiden Parameter
 
@@ -72,7 +75,7 @@ Web and XML -> XML Files: Encoding = ISO 10646/Unicode(UTF-8)
 WARNING: Diese Einstellungen sind Workspace-spezifisch, d.h. sie müssen für jeden Workspace individuell eingestellt werden.
 
 [[java]]
-== Java
+=== Java
 
 Im Java-Compiler wird die Zeichencodierung der Quelldateien beim Aufruf über den Parameter
 
@@ -86,7 +89,7 @@ In der JVM wird die Standard-Zeichencodierung beim Aufruf über den Parameter
 gesetzt.
 
 [[java-property-dateien]]
-== Java Property-Dateien
+=== Java Property-Dateien
 
 Bis zur Java-Version 1.5 werden Property-Dateien grundsätzlich ISO 8859-1 codiert gelesen und geschrieben.
 Das ist unabhängig von den Einstellungen des Zeichensatzes in der JVM und im Betriebssystem.
@@ -95,7 +98,7 @@ Das Tool native2ascii (Native-to-ASCII Converter, siehe http://docs.oracle.com/j
 Bei XML-basierten Property-Dateien, können auch andere Zeichencodierungen verwendet werden.
 
 [[maven]]
-== Maven
+=== Maven
 
 Der Build erfolgt mit Maven. Hier ist die Zeichencodierung wie folgt zu setzen:
 
@@ -145,7 +148,7 @@ Der Build erfolgt mit Maven. Hier ist die Zeichencodierung wie folgt zu setzen:
 ----
 
 [[xml]]
-== XML
+=== XML
 
 UTF-8 ist die Standard-Zeichencodierung für XML.
 Das wird in der ersten Zeile der XML-Datei wie folgt deklariert:
@@ -153,7 +156,7 @@ Das wird in der ersten Zeile der XML-Datei wie folgt deklariert:
 `<?xml version="1.0" **encoding="UTF-8"**?>`
 
 [[html]]
-== HTML
+=== HTML
 
 In HTML wird die Zeichencodierung in den Metadaten des HEAD-Tags wie folgt angegeben:
 
@@ -166,7 +169,7 @@ In HTML wird die Zeichencodierung in den Metadaten des HEAD-Tags wie folgt angeg
 Damit dürfen auch keine HTML-Sonderzeichen mehr verwendet werden, sondern nur noch UTF-8-codierte Zeichen.
 
 [[bibliothek-isy-sonderzeichen]]
-= Bibliothek „isy-sonderzeichen“
+== Bibliothek „isy-sonderzeichen“
 
 Dieses Kapitel beschreibt die Verwendung des Bausteins `isy-sonderzeichen`.
 
@@ -175,7 +178,7 @@ Der Baustein `isy-sonderzeichen` ist eine Querschnittskomponente, die anderen An
 Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
 
 [[funktionsweise]]
-== Funktionsweise
+=== Funktionsweise
 
 Die Transformatoren arbeiten alle nach dem gleichen Schema.
 Sie unterscheiden sich nur durch unterschiedliche Tabellen, die zur Zeichentransformation herangezogen werden.
@@ -195,7 +198,7 @@ Der Nutzen dieses Transformators liegt darin, dass alle nicht String.Latin-Zeich
 Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
 
 [[einbindung-der-bibliothek-in-eine-anwendung]]
-== Einbindung der Bibliothek in eine Anwendung
+=== Einbindung der Bibliothek in eine Anwendung
 
 Um die Bibliothek in einer Anwendung nutzen zu können, sind zwei Schritte notwendig
 
@@ -203,7 +206,7 @@ Um die Bibliothek in einer Anwendung nutzen zu können, sind zwei Schritte notwe
 * Instanziierung der Transformator Factory.
 
 [[integration-mit-maven]]
-=== Integration mit Maven
+==== Integration mit Maven
 
 In der POM der Anwendung muss die Abhängigkeit hinzugefügt werden:
 
@@ -217,7 +220,7 @@ In der POM der Anwendung muss die Abhängigkeit hinzugefügt werden:
 ----
 
 [[instanziierung-der-transformator-factory]]
-=== Instanziierung der Transformator Factory
+==== Instanziierung der Transformator Factory
 
 Die Transformator-Factory und ein konkreter Transformator werden über Spring instanziiert.
 
@@ -240,7 +243,7 @@ Die Regeln in dieser Tabelle überschreiben dabei existierende alte Regeln.
 Es findet also eine Ergänzung der existierenden Regeln statt.
 
 [[schnittstellendefinition]]
-== Schnittstellendefinition
+=== Schnittstellendefinition
 
 Der Aufruf des Transformators erfolgt über die jeweilige Methode der Transformator Schnittstelle.
 Folgende Methoden stehen zur Verfügung:
@@ -326,7 +329,7 @@ So könnten Zeichen außerhalb des Definitionsbereichs (z.B. alle \\u\####\\u030
 Zur Überprüfung ob eine Zeichenkette innerhalb des für den Transformator gültigen Bereichs liegt, sollte daher die Funktion `getRegulaererAusdruck(String[])` benutzt werden um einen regulären Ausdruck für alle gültigen Zeichen zu erstellen.
 
 [[zulaessige-zeichen-innerhalb-der-isyfact]]
-== Zulässige Zeichen innerhalb der IsyFact
+=== Zulässige Zeichen innerhalb der IsyFact
 
 Die im Rahmen der IsyFact zugelassenen Zeichen gliedern sich in Standardzeichen und zusätzliche Zeichen.
 Die Standardzeichen müssen von jeder Anwendung immer unterstützt werden.
@@ -336,7 +339,7 @@ Die Festlegungen für die zulässigen Zeichen orientieren sich an den Festlegung
 Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (Siehe Kapitel _Festlegung des Zeichensatzes und der Codierung_ in <<KonzeptUmgangMitSonderzeichen>>)
 
 [[standardzeichen]]
-== Standardzeichen
+=== Standardzeichen
 
 * Großbuchstaben: A-Z Ä Ö Ü
 * Kleinbuchstaben: a-z ä ö ü ß
@@ -344,7 +347,7 @@ Die für die IsyFact zulässigen Zeichen werden im Folgenden aufgeführt. (Siehe
 * **Sonderzeichen**: ' ( ) + , - . / Leerzeichen
 
 [[zusaetzliche-zeichen]]
-== Zusätzliche Zeichen
+=== Zusätzliche Zeichen
 
 In <<table-zusaetzliche-zeichen>> sind die Zeichen dargestellt, die zusätzlich unterstützt werden.
 Damit die Zeichen in der Spalte „Glyph“ korrekt dargestellt werden, muss ein Font installiert sein, der alle Zeichen unterstützt. (z.B. Code2000, erhältlich unter http://www.code2000.net).
@@ -768,3 +771,4 @@ Damit die Zeichen in der Spalte „Glyph“ korrekt dargestellt werden, muss ein
 |1EF9 |ỹ |LATIN SMALL LETTER Y WITH TILDE
 |20AC |€ |EURO SIGN
 |====
+// end::inhalt[]
