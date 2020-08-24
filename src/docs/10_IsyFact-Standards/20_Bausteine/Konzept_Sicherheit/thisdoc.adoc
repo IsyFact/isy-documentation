@@ -1,6 +1,4 @@
 = Konzept Sicherheit: Einleitung
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
 
 // tag::inhalt[]
 [[einleitung]]
@@ -24,5 +22,4 @@ Zentrale Schnittstellen beschreibt das Kapitel <<aussensicht-der-komponente-sich
 Das Kapitel <<aufruf-von-nachbarsystemen>> befasst sicht mit Vorgaben und Konventionen beim Einbinden von Nachbarsystemen.
 
 Das Kapitel <<rollen-und-rechte>> beschreibt dann, wie Rollen und Rechte für eine neue Fachanwendung spezifiziert werden.
-
 // end::inhalt[]

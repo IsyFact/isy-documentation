@@ -1,16 +1,19 @@
+= Konzept Datum & Zeit: Inhalt
+
+// tag::inhalt[]
 [[anforderungen]]
-= Anforderungen
+== Anforderungen
 
 Im Folgenden werden die Anforderungen an die Verarbeitung von Datums- und Zeitwerten definiert.
 Diese bilden die Grundlage für die Vorgaben im darauffolgenden Kapitel.
 
 [[definitionen]]
-== Definitionen
+=== Definitionen
 
 Die folgenden Begriffe sind zentral für den Baustein „Datum und Zeit“ und werden hier definiert.
 
 [[datumswert]]
-=== Datumswert
+==== Datumswert
 
 Datumswerte sind Daten, in denen Angaben zu einem kalendarischen Datum enthalten sind.
 Typische Bestandteile eines kalendarischen Datums sind Angaben zu Jahr, Monat und Tag.
@@ -22,7 +25,7 @@ Beispiele:
 * 9. Juli 2017 14:50 MESZ (Datumswert mit Zeitwert)
 
 [[zeitwert]]
-=== Zeitwert
+==== Zeitwert
 
 Zeitwerte sind Daten, in denen Angaben zu einem Zeitpunkt enthalten sind.
 Typische Bestandteile eines Zeitpunkts sind Angaben zu Stunde, Minute, Sekunden und Zeitzone.
@@ -34,7 +37,7 @@ Beispiele:
 * 14:50 (Zeitwert, bestehend nur aus Stunde und Minute)
 
 [[dauer]]
-=== Dauer
+==== Dauer
 
 Eine Dauer ist eine quantifizierte Menge einer Zeiteinheit (z.B. 37 Sekunden, 14 Tage, 3 Jahre). Sie beschreibt eine zeitliche Länge unabhängig konkreter zeitlicher Angaben (z.B. Länge eines Spielfilms). In Verbindung mit einer Datums- oder Zeitangabe wird sie genutzt, um einen Zeitraum zu definieren (z.B. die Ausstrahlung des Spielfilms startet um 20:15 Uhr und endet um 21:50 Uhr).
 
@@ -56,13 +59,13 @@ Für die Zeiteinheiten gelten folgende Abkürzungen, welche für Ein- und Ausgab
 |====
 
 [[zeitraum]]
-=== Zeitraum
+==== Zeitraum
 
 Zeiträume bestehen aus zwei Datums- oder Zeitangaben, die den _Start_ und das _Ende_ eines Zeitraums markieren.
 Die _Dauer_ des Zeitraums ist die Differenz aus Ende und Start.
 
 [[darstellung]]
-== Darstellung
+=== Darstellung
 
 Die Bibliothek muss Datums- und Zeitwerte für die Anzeige auf grafischen Oberflächen in das in Deutschland gängige Format umwandeln können.
 Die Bibliothek muss mindestens die folgenden Darstellungen beherrschen (Bestandteile in Klammern sind optional):
@@ -86,7 +89,7 @@ Die Angabe der Zeitzone kann nur dann entfallen, wenn sie global festgelegt wurd
 eindeutig hergeleitet werden kann.
 
 [[eingabe]]
-== Eingabe
+=== Eingabe
 
 Die Bibliothek muss Eingaben von Datums- und Zeitwerten über Schnittstellen aus einer ISO 8601-konformen Darstellung einlesen können.
 
@@ -94,7 +97,7 @@ Eingaben über grafische Oberflächen muss die Bibliothek aus den in Deutschland
 Die unterstützten Formate werden in den folgenden Abschnitten definiert.
 
 [[datumswert-1]]
-=== Datumswert
+==== Datumswert
 
 Eingaben von Datumswerten müssen Zeichenketten in folgendem Format sein:
 
@@ -123,7 +126,7 @@ Anders als in der Anzeige sind keine textuellen Formate für z.B. Wochentage (�
 Das Jahr wird immer vollständig interpretiert und darf nicht verkürzt eingegeben werden (z.B. „69“ für „1969“). Anwendungen können eine solche Logik vorsehen, müssen die Jahreszahlen allerdings immer vollständig an den Baustein übergeben.
 
 [[zeitwert-1]]
-=== Zeitwert
+==== Zeitwert
 
 Eingaben von Zeitwerten müssen Zeichenketten in folgendem Format sein:
 
@@ -157,7 +160,7 @@ Alle Angaben außer Stunden müssen vollständig sein und bei Bedarf mit einer v
 Bei Sekundenbruchteilen reichen üblicherweise drei Nachkommastellen, was einer Genauigkeit im Millisekundenbereich entspricht.
 
 [[dauer-1]]
-=== Dauer
+==== Dauer
 
 Eingaben einer Dauer müssen Zeichenketten in folgendem Format sein:
 
@@ -180,7 +183,7 @@ Eingaben einer Dauer müssen Zeichenketten in folgendem Format sein:
 Eine Dauer muss mindestens eine Zeiteinheit beinhalten („37s“), kann aber auch aus mehreren bestehen („1h 28min“). Die Zeiteinheiten müssen von der gröbsten (Jahr) zur feinsten (Millisekunde) hin sortiert sein.
 
 [[zeitraum-1]]
-=== Zeitraum
+==== Zeitraum
 
 Zeiträume sind kein eigener Datentyp, sondern werden durch zwei Werte beschrieben.
 So gibt es zwei Möglichkeiten, einen Zeitraum darzustellen. Entweder
@@ -206,18 +209,18 @@ deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-
 |====
 
 [[persistierung]]
-== Persistierung
+=== Persistierung
 
 Die Persistierung von Angaben zu Datum, Zeit, Dauer, Zeiträumen und ungewissen Datums- und Zeitangaben (siehe <<ungewisse-datums-und-zeitwerte>>) wird durch die Bibliothek `isy-persistence` behandelt.
 Weitere Details dazu beschreibt das <<DetailkonzeptKomponenteDatenzugriff>>.
 
 [[berechnungen]]
-== Berechnungen
+=== Berechnungen
 
 Die Bibliothek muss bestimmte Berechnungen auf Datumswerten, Zeitwerten und Zeiträumen bereitstellen.
 
 [[datums--zeitwert]]
-=== Datums- & Zeitwert
+==== Datums- & Zeitwert
 
 Die Bibliothek muss die folgenden Berechnungen auf Datums- & Zeitwerten ermöglichen:
 
@@ -230,7 +233,7 @@ Die Bibliothek muss die folgenden Berechnungen auf Datums- & Zeitwerten ermögli
 * Berechnung des nächsten Werktags nach einem übergebenen Datumswert
 
 [[zeitraum-2]]
-=== Zeitraum
+==== Zeitraum
 
 Die Bibliothek muss die folgenden Berechnungen auf Zeiträumen ermöglichen:
 
@@ -239,7 +242,7 @@ Die Bibliothek muss die folgenden Berechnungen auf Zeiträumen ermöglichen:
 * Prüfung, ob sich zwei Zeiträume überlappen
 
 [[ungewisse-datums-und-zeitwerte]]
-== Ungewisse Datums- und Zeitwerte
+=== Ungewisse Datums- und Zeitwerte
 
 Die Bibliothek muss sogenannte _ungewisse_ Datums- und Zeitwerte verarbeiten können.
 Dabei sind Teile eines Datums- oder Zeitwerts zunächst ungewiss.
@@ -284,18 +287,18 @@ Die Anforderungen zur Konkretisierung gelten ebenso für Zeitangaben.
 |====
 
 [[testunterstuetzung]]
-== Testunterstützung
+=== Testunterstützung
 
 Zur Unterstützung des Tests muss die Bibliothek es erlauben, die aktuelle Systemzeit mit eigenen Werten zu überschreiben, um Abläufe in der Vergangenheit oder Zukunft darstellen zu können.
 
 [[vorgaben]]
-= Vorgaben
+== Vorgaben
 
 Die folgenden architektonischen und technischen Vorgaben beziehen sich auf die Umsetzung der
 in Kapitel <<anforderungen>> genannten Anforderungen in der zu diesem Baustein gehörenden Bibliothek.
 
 [[namenskonventionen]]
-== Namenskonventionen
+=== Namenskonventionen
 
 Die Bibliothek besitzt die folgenden Maven-Koordinaten:
 
@@ -305,21 +308,21 @@ Die Bibliothek besitzt die folgenden Maven-Koordinaten:
 Das Stammpackage für alle Klassen der Umsetzung setzt sich aus Group-ID und Artifact-ID zusammen und lautet: `de.bund.bva.isyfact.datetime`.
 
 [[bedeutung-der-standardbibliothek]]
-== Bedeutung der Standardbibliothek
+=== Bedeutung der Standardbibliothek
 
 Die Bibliothek muss zur Umsetzung der Anforderungen so stark wie möglich auf die im JSR 310 beschriebene API setzen.
 Falls einige der Anforderungen aus dem Kapitel <<anforderungen>> komplett durch die Funktionalität dieser API abgedeckt sind, wird in den <<NutzungsvorgabenDatumZeit>> die entsprechende Verwendung der API mit Verweis auf die Standarddokumentation knapp erläutert.
 Abweichungen von der API oder eigene Implementierungen bereits vorhandener Funktionalität müssen in den Nutzungsvorgaben begründet und beschrieben werden.
 
 [[verwendung-der-standardbibliothek]]
-== Verwendung der Standardbibliothek
+=== Verwendung der Standardbibliothek
 
 Innerhalb von Anwendungen können alle Typen des „JSR 310: Date and Time API“ verwendet werden, insofern dieses Konzept an anderer Stelle die Nutzung nicht weiter einschränkt.
 
 Die Bibliothek muss sicherstellen, dass die gesamte Funktionalität für alle geeigneten Typen angeboten wird und an geeigneten Stellen sinnvolle Umwandlungen (d.h. ohne Verlust von Daten oder Genauigkeit) möglich sind.
 
 [[darstellung-eingabe]]
-== Darstellung & Eingabe
+=== Darstellung & Eingabe
 
 Die Bibliothek wird zur Umsetzung der Darstellung sowie Eingabe keine konkrete Technologie zur Erstellung
 grafischer Oberflächen unterstützen.
@@ -331,7 +334,7 @@ gängige Formate leicht ausgeben und einlesen zu können.
 Eine Reihe von Standardformaten, welche die Bibliothek unterstützen muss, sind im Kapitel <<darstellung>> beschrieben.
 
 [[ungewisse-datums--und-zeitwerte-1]]
-== Ungewisse Datums- und Zeitwerte
+=== Ungewisse Datums- und Zeitwerte
 
 Die Bibliothek muss zur Behandlung ungewisser Datums- und Zeitwerte die folgende Funktionalität bereitstellen:
 
@@ -397,7 +400,7 @@ nicht gesetzt (null)
 |====
 
 [[testunterstützung-1]]
-== Testunterstützung
+=== Testunterstützung
 
 Die Umsetzung der Testunterstützung geschieht über das Mocken der Klasse `java.time.Clock`.
 Dazu muss die Bibliothek bei der Erzeugung von Datums- und Zeitangaben die Varianten mit einer `Clock` als Parameter
@@ -405,6 +408,7 @@ benutzen und in der Konfiguration eine `Clock` als Abhängigkeit definieren.
 Des Weiteren müssen sich auch Anwendungen an diese Vorgabe halten, um die Testunterstützung nutzen zu können.
 Insbesondere sind Aufrufe von `System.currentTimeMillis()` sowie der Varianten von `now()` auf Typen der Datums- und
 Zeittypen ohne Verwendung einer `Clock` bei Nutzung dieses Bausteins verboten!
+// end::inhalt[]
 
 // tag::architekturregel[]
 

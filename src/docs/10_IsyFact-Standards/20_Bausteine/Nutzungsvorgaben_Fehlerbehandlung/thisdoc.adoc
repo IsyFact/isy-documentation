@@ -1,3 +1,5 @@
+= Nutzungsvorgaben Fehlerbehandlung: Einleitung
+
 // tag::inhalt[]
 [[einleitung]]
 == Einleitung
@@ -16,6 +18,4 @@ Zur Umsetzung werden ausführliche Beispiele gegeben.
 Im Kapitel <<implementierung-der-fehlerbehandlung>> werden die Nutzungsvorgaben definiert, wie Exceptions zu erstellen sind und wie sie behandelt werden müssen.
 Konkrete Beispiele stammen aus der <<Vorlageanwendung>> die eine Anwendung gemäß den <<glossar-IFS,IsyFact Standards>> (und somit gemäß den Vorgaben aus diesem Konzept) beispielhaft implementiert.
 Abschließend werden in Kapitel <<dos-und-donts>> typische DO's und DON'Ts erläutert, die bei der Fehlerbehandlung beachtet werden müssen.
-
-
 // end::inhalt[]

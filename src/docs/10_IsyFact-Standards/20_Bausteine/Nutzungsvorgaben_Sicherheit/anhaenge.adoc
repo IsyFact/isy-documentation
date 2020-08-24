@@ -1,6 +1,4 @@
 = Nutzungsvorgaben Sicherheit: Anhänge
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
-
 
 // tag::inhalt[]
 == Anhang

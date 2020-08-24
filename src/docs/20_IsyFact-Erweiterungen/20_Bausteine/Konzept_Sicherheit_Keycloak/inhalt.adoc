@@ -1,12 +1,7 @@
+= Konzept Keycloak: Inhalt
+
 // tag::inhalt[]
-= Ziel des Dokuments
-
-Ziele des Konzepts _Sicherheit Keycloak_ sind:
-
-- Bereitstellung der quschnittlichen Konzepte, die für die Verwendung der mitgelieferten Bausteine notwendig sind.
-- Festlegung eines Sets an Attributen, die über das JWT ausgetauscht werden sollen.
-
-= Grundlagen
+== Grundlagen
 
 Für das Verständnis dieses Dokuments werden Kenntnisse über folgende Themen und Technologien vorausgesetzt.
 
@@ -42,7 +37,7 @@ Für das Verständnis dieses Dokuments werden Kenntnisse über folgende Themen u
 |===
 
 
-= Bausteine
+== Bausteine
 
 Neben dem Konzept _Sicherheit Keycloak_ enthält die IsyFact Erweiterung noch folgende Bausteine.
 
@@ -64,16 +59,16 @@ Kümmert sich  um die weitergabe des Access-Tokens über den HTTP-Header.
 
 |===
 
-= Querschnittliche Konzepte
+== Querschnittliche Konzepte
 
 In diesem Abschnitt werden verschiedene querschnittliche Aspekte dokumentiert, die für die Verwendung von Keycloak in Kombination mit IsyFact und _isy-sicherheit-keycloak_, bzw. _isy-iam_ zur berücksichtigen sind.
 
-== Authentifizierung
+=== Authentifizierung
 
 Dieser Abschnitt beschreibt die Architektur der Fach- und Querschnittsanwendungen mit Bezug auf die Authentifizierung.
 Dabei wird differenziert zwischen der Authentifizierung am Service Gateway und der Authentifizierung am Portal.
 
-=== Authentifizierung am Service-Gateway
+==== Authentifizierung am Service-Gateway
 
 Damit ein Client einer externen Anwendung auf die Ressourcen einer Anwendungslandschaft zugreifen kann benötigt er ein gültiges Access-Token.
 Dieses Token muss sich der Client zuerst beschaffen indem er sich beim Keycloak-Server authentifiziert.
@@ -127,7 +122,7 @@ Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen 
 
 |===
 
-=== Authentifizierung am Portal
+==== Authentifizierung am Portal
 
 Ähnlich wie bei der Authentifizierung über das SGW, wird hier die Kommunikation zuerst über ein API Gateway (Reverse Proxy) geführt.
 Die externe Anwendung (i.d.R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Fachanwendungen zugreifen.
@@ -151,7 +146,7 @@ Hierbei muss sichergestellt werden, dass die Anfragen auch wirklich von dem Clie
 
 |===
 
-=== Authentifizierung von Tasks und Batches
+==== Authentifizierung von Tasks und Batches
 
 Tasks oder Batches, die auf Schnittstellen anderer Anwendungen zugreifen, müssen sich ebenfalls authentifizieren um ein Access-Token zu erhalten.
 Tasks und Batches werden innerhalb von Anwendungen bzw. Anwendungslandschaften gestartet und dürfen direkt auf den Keycloak Server zugreifen (vgl. <<image-auth-task>>).
@@ -173,7 +168,7 @@ image::konzept_keycloak_auth_task.png[align="center"]
 
 |===
 
-== Autorisierung
+=== Autorisierung
 
 Für die Autorisierung von Benutzern bietet die Standard Bibliothek _isy-sicherheit_ zurzeit zwei Möglichkeiten.
 
@@ -197,13 +192,13 @@ Somit können die Standard-Konzepte von Spring direkt verwendet werden.
 
 IMPORTANT: Für die Autorisierung von REST-Schnittstellen soll ausschließlich die Standard Mechanismen von Spring Security verwendet werden, da _isy-sicherheit_ perspektivisch den `Aufrufkontext` durch _Spring Security_ ablösen wird.
 
-== Access Token
+=== Access Token
 
 Beim Authentifizierungsprotokoll OpenID Connect gibt es _Idendity-Tokens_ und _Access-Tokens_.
 Für beide Arten wird bei Keycloak der _JSON Web Token (JWT)_ Standard verwendet.
 In diesem Kapitel werden zum einen die Daten beschrieben, die in einem JWT enthalten sein müssen und wie mit dem Token innerhalb von Anwendungen umgegangen werden soll.
 
-=== Daten in JWT (Claims)
+==== Daten in JWT (Claims)
 
 Ein JWT besteht aus drei Bereichen: Header, Payload und einer Signatur, mit der die Authentizität des Tokens verifiziert werden kann.
 Die Attribute innerhalb eines Tokens werden auch Claim genannt, <<table-claim-aufrufkontext>> beschreibt das Minimum an Claims, die ein JWT enthalten muss, damit es in einen Aufrufkontext gewandelt werden kann.
@@ -279,7 +274,7 @@ Daten, die durch die Erweiterung des `Aufrufkontext` zwischen HttpInvoker-Schnit
 |===
 
 [[access-access-tokens]]
-=== Zugriff auf Access Tokens
+==== Zugriff auf Access Tokens
 
 Ein direkter Zugriff auf das Access-Token in einer Anwendung ist nicht notwendig, stattdessen werden die notwendigen Claims des Tokens mit Hilfe eines Filters in ein `Authorization` Objekt gewandelt.
 Das `Authorization` Objekt liegt im `SecurityContext` von Spring und dieser wird von einem `SecurityContextHolder` verwaltet.
@@ -289,7 +284,7 @@ Falls ID-Tokens verwendet werden, stehen die Benutzerdaten schon direkt im Paylo
 Alternativ kann der Zugriff auf Daten zu einem angemeldeten Benutzer über den _user-info-endpoint_ von Keycloak erfolgen.
 Dieser Zugriff wird typischerweise in einem `UserDetailService` gekapselt.
 
-=== Unterstützung von nebenläufigen Zugriffen
+==== Unterstützung von nebenläufigen Zugriffen
 
 Im Abschnitt <<access-access-tokens>> wurde beschrieben, dass der Zugriff auf die Informationen im Access-Token über den `SecurityContext` von Spring Boot gekapselt werden soll.
 Der `SecurityContext` steht standardmäßig nur in dem Thread zur Verfügung, der dem aktiven Request zugeteilt wurde.
@@ -297,7 +292,7 @@ Für Multi-Threaded Umgebungen stellt Spring Boot die Wrapper-Klassen `Delegatin
 Werden nebenläufige Prozesse über eine dieser Wrapper-Klassen gestartet, haben Entwickler innerhalb der Prozesse Zugriff auf den `SecurityContext` (Details sind link:https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/concurrency.html[hier] zu finden).
 
 
-== Keycloak Erweiterungen
+=== Keycloak Erweiterungen
 
 Der Baustein `isy-iam` bietet verschiedene Service Provider Interfaces (SPI) für Keycloak an.
 In diesem Abschnitt wird erläutert, welche querschnittlichen Anforderungen damit leichter umgesetzt werden können.
@@ -350,7 +345,7 @@ Beispielsweise, wenn die Anwendung über mehrere Endgeräte gleichzeitig bedient
 *isyfact-theme*::
 - Anpassung der Login Seite an das Corporate Design
 
-== Offene Punkte
+=== Offene Punkte
 
 Für die Datenübertragung zwischen Anwendungen innerhalb einer Anwendungslandschaft gibt es primär REST- und/oder HttpInvoker Schnittstellen.
 Da die Autorisierung in jeder Anwendung implementiert ist, müssen die Benutzerdaten (Access-Token oder Aufrufkontext) zwischen den Anwendungen weitergeleitet werden.
@@ -394,5 +389,4 @@ Diese Lösung erfordert eine Erweiterung von _isy-sicherheit-keycloak_ und lohnt
 Da der `Aufrufkontext` erweiterbar ist, kann dieser um ein zusätzliches Feld für das Access-Token erweitert werden.
 Im HttpInvoker-Service kann das Token vom `AufrufKontext` in den HTTP-Header des `RestClients` kopiert werden.
 Diese Lösung erfordert eine Anpassung in den betroffenen Anwendungen und lohnt sich, wenn nur sehr wenige Anwendungen von Szenario 4 betroffen sind.
-
 // end::inhalt[]

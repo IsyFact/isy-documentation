@@ -1,23 +1,26 @@
+= Konzept Task Scheduling: Inhalt
+
+// tag::inhalt[]
 [[anforderungen]]
-= Anforderungen
+== Anforderungen
 
 Im Folgenden werden die Anforderungen an die Steuerung von Aufgaben definiert.
 Diese bilden die Grundlage für die Vorgaben im darauffolgenden Kapitel.
 
 [[authentifizierung]]
-== Authentifizierung
+=== Authentifizierung
 
 Aufgaben muss es möglich sein, sich bei Bedarf zu authentifizieren, um entsprechend gesicherte fachliche Operationen durchzuführen.
 Dazu müssen Aufgaben einen Benutzernamen und ein Passwort bereithalten.
 
 [[nachvollziehbarkeit]]
-== Nachvollziehbarkeit
+=== Nachvollziehbarkeit
 
 Aufgaben müssen fachliche Operationen nachvollziehbar aufrufen.
 Das bedeutet, dass sich alle aufgerufenen fachlichen Operationen eindeutig einer bestimmten Ausführung einer Aufgabe zuordnen lassen.
 
 [[logging]]
-== Logging
+=== Logging
 
 Aufgaben müssen mindestens die folgenden Ereignisse ins Log schreiben:
 
@@ -31,7 +34,7 @@ Die Bibliothek muss mindestens die folgenden Ereignisse ins Log schreiben:
 * Aktivierung und Deaktivierung von Aufgaben zur Laufzeit (Log-Level: INFO)
 
 [[überwachung]]
-== Überwachung
+=== Überwachung
 
 Aufgaben müssen Überwachungsmöglichkeiten bieten.
 Die folgenden Parameter müssen lesend zur Verfügung stehen:
@@ -43,7 +46,7 @@ Die folgenden Parameter müssen lesend zur Verfügung stehen:
 Aufgaben müssen über die Überwachung manuell gestartet werden können.
 
 [[programmatische-steuerung]]
-== Programmatische Steuerung
+=== Programmatische Steuerung
 
 Aufgaben müssen, neben der betrieblichen Konfiguration, auch programmatisch gesteuert werden können.
 Dazu gehören die folgenden Operationen:
@@ -52,13 +55,13 @@ Dazu gehören die folgenden Operationen:
 * Aufgaben aktivieren und deaktivieren
 
 [[vorgaben]]
-= Vorgaben
+== Vorgaben
 
 Die folgenden architektonischen und technischen Vorgaben beziehen sich auf die Umsetzung der in Kapitel <<anforderungen>>
 genannten Anforderungen in der zu diesem Baustein gehörenden Bibliothek.
 
 [[namenskonventionen]]
-== Namenskonventionen
+=== Namenskonventionen
 
 Die Bibliothek besitzt die folgenden Maven-Koordinaten:
 
@@ -68,7 +71,7 @@ Die Bibliothek besitzt die folgenden Maven-Koordinaten:
 Das Stammpackage für alle Klassen der Umsetzung lautet: `de.bund.bva.isyfact.task`.
 
 [[bedeutung-der-standardbibliothek]]
-== Bedeutung der Standardbibliothek
+=== Bedeutung der Standardbibliothek
 
 Die Bibliothek muss zur Umsetzung der Anforderungen so stark wie möglich auf die in der Java-Standardbibliothek vorhandenen Möglichkeiten setzen.
 Insbesondere soll sie die Möglichkeiten des Packages `java.util.concurrent` nutzen, darunter vor allem die der Klasse `ScheduledExecutorService`.
@@ -81,13 +84,13 @@ Die folgenden Klassen dürfen von der Bibliothek nicht verwendet werden:
 * `java.util.Timertask` sowie `java.util.Timer` zur Planung und Ausführung von Aufgaben, da diese Klassen wesentlich weniger Funktionalität bieten als die des Packages `java.util.concurrent`,
 
 [[authentifizierung-1]]
-== Authentifizierung
+=== Authentifizierung
 
 Die Bibliothek muss Aufgaben bei Bedarf über den Baustein Sicherheit (s. <<NutzungsvorgabenSicherheit>>) authentifizieren.
 Dazu ist ein Benutzername und ein Passwort nötig, dass die Bibliothek als betriebliche Konfiguration, wie im Baustein Konfiguration (s. <<KonzeptKonfiguration>>) vorgegeben, einlesen muss.
 
 [[nachvollziehbarkeit-1]]
-== Nachvollziehbarkeit
+=== Nachvollziehbarkeit
 
 Die Bibliothek muss zur Sicherstellung der Nachvollziehbarkeit Korrelations-IDs verwenden.
 Das Konzept der Korrelations-ID ist im <<KonzeptLogging>> des Bausteins Logging beschrieben.
@@ -96,7 +99,7 @@ Die Bibliothek muss für jede Ausführung einer Aufgabe eine Korrelations-ID erz
 Die Dokumente <<NutzungsvorgabenLogging>> sowie <<NutzungsvorgabenSicherheit>> der Bausteine Logging und Sicherheit beschreiben im Detail, wo und wie die Korrelations-ID gesetzt werden muss.
 
 [[ueberwachung]]
-== Überwachung
+=== Überwachung
 
 Die Bibliothek muss zur Überwachung von Aufgaben eine JMX-Bean definieren.
 Diese ist mit Standardattributen, die allen Aufgaben gemein sind, gefüllt.
@@ -105,7 +108,7 @@ Anwendungen können von diesen abstrakten JMX-Beans ableiten, um weitere Attribu
 Die Bibliothek muss des Weiteren eine Standardkonfiguration bereitstellen, um JMX-Beans automatisch beim Start der Anwendung zu registrieren.
 
 [[programmatische-steuerung-1]]
-== Programmatische Steuerung
+=== Programmatische Steuerung
 
 Die Bibliothek muss die folgenden Operationen auf Aufgaben anbieten:
 
@@ -116,20 +119,20 @@ Die Deaktivierung von Aufgaben ist temporärer Natur und wird spätestens beim N
 Für eine dauerhafte Änderung muss die betriebliche Konfiguration angepasst werden.
 
 [[zuweisung-zwischen-aufgaben-und-maschinen]]
-== Zuweisung zwischen Aufgaben und Maschinen
+=== Zuweisung zwischen Aufgaben und Maschinen
 
 Die Bibliothek muss vorsehen, dass Aufgaben fest Maschinen zugeordnet werden.
 Dazu wird die Aufgabe mit einem Hostnamen konfiguriert.
 Die Aufgabe wird nur dann dem Scheduler hinzugefügt, wenn der konfigurierte Hostname mit dem der ausführenden Maschine übereinstimmt.
 
 [[darstellung]]
-== Darstellung
+=== Darstellung
 
 Die Bibliothek unterstützt die Darstellung bzw. programmatische Steuerung von Aufgaben mittels grafischen Oberflächen nicht direkt.
 Sie muss ihre Funktionalität allerdings so bereitstellen, dass sie leicht von GUI-Technologien verwendet werden kann.
 
 [[konfiguration]]
-== Konfiguration
+=== Konfiguration
 
 Die Konfiguration der Aufgaben geschieht über Konfigurationsparameter.
 Die Parameter entsprechen Java Properties.
@@ -159,6 +162,8 @@ Die Klasse `TaskKonfiguration` benutzt eine weitere Klasse `TaskStandardKonfigur
 `TaskStandardKonfiguration` ist ebenfalls von `TaskKonfiguration` abgeleitet.
 
 Die Bibliothek muss Anwendungen eine Konfigurationsklasse bzw. Spring Bean bereitstellen, die es ermöglicht, alle konfigurierten Aufgaben beim Start der Anwendung einzulesen und dem Scheduler hinzuzufügen.
+
+// end::inhalt[]
 
 // tag::architekturregel[]
 

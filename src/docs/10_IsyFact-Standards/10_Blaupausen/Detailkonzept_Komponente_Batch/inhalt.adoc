@@ -1,5 +1,4 @@
 = Detailkonzept Batch: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 == Einführung

@@ -1,8 +1,6 @@
-= Titel des Dokuments: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= Konzept Fehlerbehandlung: Inhalt
 
 // tag::inhalt[]
-
 [[anforderungen-an-die-fehlerbehandlung]]
 == Anforderungen an die Fehlerbehandlung
 

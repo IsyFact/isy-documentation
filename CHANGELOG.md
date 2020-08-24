@@ -1,10 +1,12 @@
 # 2.1.0
+- `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
 - `IFS-355`: Dokumententitel wurden verkürzt und ein Untertitel für den Dokumententyp ergänzt
 - `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
 - `IFS-279`: Anleitung VS Code hinzugefügt und Ausführungsdefinitionen in der pom.xml erläutert
 - `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
 - `IFS-363`: Maven Central in Tutorial integrieren
 - `IFS-367`: Regelungen zu Präfixen bei Maven-Artefakten hinzugefügt
+- `IFS-382`: Verweis auf CAMS aus Grafik entfernen
 - `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert

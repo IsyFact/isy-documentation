@@ -1,54 +1,13 @@
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 :doctitle: Baustein Benutzerverwaltung
 :document-type: Nutzungsvorgaben
-:factory: IsyFact-Erweiterungen
-
-include::{isy-dokumentvorlagen}/docs/common/title.adoc[]
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-*Java Bibliothek / IT-System*
-
-[options="header",cols="3,1,2"]
-|====
-|Name                               |Art        |Version
-|isy-benutzerverwaltung-core        |Bibliothek |1.5.x
-|isy-benutzerverwaltung-sicherheit  |Bibliothek |1.5.x
-|isy-benutzerverwaltung-gui-tomahawk|Bibliothek |1.5.x
-|====
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!: 
-
-endif::[]
 
 toc::[]
 
+colophon::[factory="IsyFact-Erweiterungen"]
 
-// Einleitung 
-include::thisdoc.adoc[]
+include::docinfo.adoc[]
 
-// Inhalt 
-include::inhalt.adoc[leveloffset=1]
+include::thisdoc.adoc[tags=inhalt]
 
-:sectnums!:
-
-// Changelog
-include::changelog.adoc[leveloffset=1]
-
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]
-
-
-// Anhänge
-//include::anhaenge.adoc[leveloffset=1]
+include::inhalt.adoc[tags=inhalt]

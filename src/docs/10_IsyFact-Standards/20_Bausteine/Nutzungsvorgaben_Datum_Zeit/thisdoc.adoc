@@ -1,3 +1,6 @@
+= Nutzungsvorgaben Datum & Zeit: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -18,3 +21,4 @@ Das Dokument ist entsprechend dieser Zielsetzungen in die folgenden Kapitel unte
 Das Kapitel *<<dauern-und-zeitzonen>>* enthält grundlegende Informationen zum Umgang mit Dauern und Zeitzonen.
 
 Im Kapitel Verwendung der *<<verwendung-der-querschnittsbibliothek-isy-datetime>>* wird der Inhalt und die Verwendung der Querschnittsbibliothek _isy-datetime_ beschrieben.
+// end::inhalt[]

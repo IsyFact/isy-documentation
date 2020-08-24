@@ -1,5 +1,8 @@
+= Konzept Überwachung: Inhalt
+
+// tag::inhalt[]
 [[ueberwachung-von-anwendungen]]
-= Überwachung von Anwendungen
+== Überwachung von Anwendungen
 
 In diesem Kapitel werden die Anforderungen an die Überwachung von Anwendungen beschrieben.
 Der Fokus liegt dabei auf der Schaffung von einheitlichen Administrationsschnittstellen, welche dem Betrieb eine einfache Überwachung der Anwendungen erlauben.
@@ -8,7 +11,7 @@ Gegebenenfalls können in Systementwürfen Verfeinerungen der hier getroffenen V
 Weiterhin können die hier gemachten Vorgaben als Basis für die Beschreibung der Überwachungsschnittstelle im Betriebshandbuch der Anwendungssysteme verwendet werden.
 
 [[kurzeinfuehrung-in-das-system-monitoring-mit-spring-boot-actuator]]
-== Kurzeinführung in das System-Monitoring mit Spring Boot Actuator
+=== Kurzeinführung in das System-Monitoring mit Spring Boot Actuator
 
 Spring Boot bringt mit Actuator eine Reihe zusätzlicher Funktionen mit, die dabei helfen, Anwendungen zu überwachen und zu verwalten.
 Die Kommunikation mit der Anwendung erfolgt über sogenannte _Endpoints_.
@@ -17,7 +20,7 @@ Actuator bringt eine Reihe von eingebauten Endpoints mit und bietet auch die Mö
 So wird für Informationen über den Systemzustand der eingebauten Endpoint `health` angeboten und über den Endpoint `metrics` können Metriken gelesen werden.
 
 [[micrometer]]
-=== Micrometer
+==== Micrometer
 
 Die im Endpoint `metrics` bereitgestellen Metriken werden von Micrometer erfasst.
 Micrometer bietet eine einfache anbieterneutrale Fassade für die gängigsten Überwachungssysteme und ermöglicht es, Metriken im Anwendungscode ohne Herstellerbindung zu implementieren.
@@ -26,7 +29,7 @@ Seit Spring Boot 2.0 ist Micrometer die Standardbibliothek zur Bereitstellung vo
 NOTE: Für eine Liste der unterstützten Monitoring-Systeme siehe http://micrometer.io/docs/concepts#_supported_monitoring_systems
 
 [[festlegungen-und-ausgrenzungen]]
-== Festlegungen und Ausgrenzungen
+=== Festlegungen und Ausgrenzungen
 
 Die Nutzungsvorgaben finden sich im dem Dokument <<NutzungsvorgabenUeberwachung>>.
 
@@ -39,6 +42,8 @@ Folgende Punkte sind bewusst nicht Teil dieses Konzeptes:
 
 * Micrometer unterstützt die Anbindung zahlreicher Monitoring-Systeme.
   Es werden keine Vorgaben zur Verwendung eines bestimmten Systems gemacht.
+
+// end::inhalt[]
 
 // tag::architekturregel[]
 

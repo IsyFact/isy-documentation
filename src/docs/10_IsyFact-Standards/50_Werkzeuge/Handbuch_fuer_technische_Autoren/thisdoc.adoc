@@ -1,5 +1,8 @@
+= Handbuch für technische Autoren: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Dieses Handbuch dient technischen Autoren von IsyFact-Dokumenten als Wegweiser.
 
@@ -32,7 +35,7 @@ AsciiDoc-Dokumente können in verschiedenen Ausgabeformaten wie beispielsweise H
 Bei der IsyFact-Dokumentation sorgen Skripte dafür, dass die erstellten HTML- und PDF-Dateien automatisch auch über ein Literaturverzeichnis, ein Glossar, ein Abbildungsverzeichnis und ein Tabellenverzeichnis verfügen.
 
 [[aufbau-und-zweck-des-dokuments]]
-= Aufbau und Zweck des Dokuments
+=== Aufbau und Zweck des Dokuments
 
 Dieses Dokument ist eine Anleitung für technische Autoren.
 Es ermöglicht ihnen, die vorhandene IsyFact-Dokumentation gemäß der festgelegten Ordnung zu aktualisieren und zu erweitern.
@@ -45,3 +48,4 @@ Das Handbuch ist in folgende Bereiche untergliedert:
 - Ein neues Dokument anlegen
 - Ein Dokument bearbeiten
 - Ein Dokument als HTML- und PDF-Datei erzeugen
+// end::inhalt[]

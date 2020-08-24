@@ -1,0 +1,7 @@
+*Java Bibliothek / IT-System*
+
+[cols="5,2,3"]
+|====
+|Name |Art |Version
+|isy-sonderzeichen |Bibliothek |v{version-ifs}
+|====

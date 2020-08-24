@@ -1,3 +1,6 @@
+= Detailkonzept Service: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -11,3 +14,4 @@ Das Dokument gliedert sich wie folgt.
 In Abschnitt <<ueberblick>> wird kurz beschrieben, wie sich die Komponente “Service“ in die Gesamtarchitektur eines IT-Systems der Systemlandschaft einfügt.
 In Abschnitt <<aufgaben-der-service-logik>> werden dann die Aufgaben der Komponente erläutert und Abschnitt <<aufbau-der-service-logik>> stellt den Standard-Aufbau der Komponente dar.
 Die restlichen Abschnitte widmen sich fortgeschrittenen Aspekten wie <<transaktionssteuerung>>, <<versionierung>> und <<verfuegbarkeit>>.
+// end::inhalt[]

@@ -1,9 +1,12 @@
+= Einrichtung Entwicklungsumgebung: Inhalt
+
+// tag::inhalt[]
 [[aufbau-und-zweck-des-dokuments]]
-= Aufbau und Zweck des Dokuments
+== Aufbau und Zweck des Dokuments
 
 Mit diesem Leitfaden bauen Sie eine funktionierende Entwicklungsumgebung auf und generieren mit dem Projektgenerator der IsyFact eine Hello-World-Anwendung.
 
-== Aufbau
+=== Aufbau
 Der Leitfaden führt Sie durch folgende Schritte:
 
 . <<virtuelle-maschine-vorbereiten>> (optional)
@@ -11,7 +14,7 @@ Der Leitfaden führt Sie durch folgende Schritte:
 . <<isyfact-projektgenerator-installieren>>
 . <<hello-world-anwendung-generieren>>
 
-== Voraussetzungen
+=== Voraussetzungen
 Zum Abschluss des Leitfadens (ohne Vorbereitung einer virtuellen Maschine) benötigen Sie:
 
 * Git 2.x
@@ -27,13 +30,13 @@ Wenn Sie sich eine virtuelle Maschine vorbereiten möchten, benötigen Sie zusä
 Wenn Sie sich bereits eine geeignete Umgebung geschaffen haben, um die Werkzeuge sowie die IsyFact-Bibliotheken zu installieren, können Sie die Vorbereitung einer virtuellen Maschine überspringen und direkt mit dem Kapitel <<werkzeuge-installieren>> beginnen.
 
 [[virtuelle-maschine-vorbereiten]]
-= Virtuelle Maschine vorbereiten
+== Virtuelle Maschine vorbereiten
 
 In diesem Kapitel bereiten Sie eine virtuelle Maschine (VM) vor, auf der Sie später die IsyFact-Entwicklungsumgebung installieren werden.
 
 TIP: Wenn Sie keine virtuelle Maschine für Ihre IsyFact-Entwicklungsumgebung einsetzen oder bereits eine virtuelle Maschine als Grundlage für Ihre IsyFact-Entwicklungsumgebung vorbereitet haben, können Sie dieses Kapitel überspringen und mit dem Kapitel <<werkzeuge-installieren>> fortfahren.
 
-== VirtualBox installieren und konfigurieren
+=== VirtualBox installieren und konfigurieren
 
 Für die Erstellung der virtuellen Maschine benötigen Sie ein Host-System, das die virtuelle Maschine als Gastsystem verwaltet.
 Das gängigste Produkt hierfür ist Oracle VirtualBox.
@@ -144,7 +147,7 @@ Bestätigen Sie die Änderungen mit einem Klick auf OK.
 
 Danach starten Sie die virtuelle Maschine mit einem Doppelklick auf die neu erstellte Instanz.
 
-== Ubuntu
+=== Ubuntu
 
 Starten Sie Ihre virtuelle Maschine und melden Sie sich an:
 
@@ -186,7 +189,7 @@ Klicken Sie links oben auf "Activities" oder benutzen Sie die Windows-Taste oder
 .{desc-image-leitfaden_entwicklungsumgebung_vb_ubuntu_05}
 image::leitfaden_entwicklungsumgebung_vb_ubuntu_05.png[align="center",width=60%,pdfwidth=70%]
 
-== Die Gasterweiterungen
+=== Die Gasterweiterungen
 
 Oracle VirtualBox bietet Gasterweiterungen an, welche die Performanz des Gastsystems verbessert.
 Ein weiteres Feature ist, dass sich der Bildschirm beliebig skalieren lässt.
@@ -228,11 +231,11 @@ Ihre virtuelle Maschine ist nun einsatzbereit.
 
 
 [[werkzeuge-installieren]]
-= Werkzeuge installieren
+== Werkzeuge installieren
 
 Als Nächstes benötigt Ihre Entwicklungsumgebung ein JDK, Git, Maven und eine Entwicklungsumgebung (in diesem Fall das Eclipse Derivat Spring Source Tool Suite (STS)).
 
-==	JDK
+===	JDK
 
 Auf der Kommandozeile installieren Sie mit folgender Anweisung das JDK:
 
@@ -247,7 +250,7 @@ In der Datei `.bashrc` fügen Sie die Umgebungsvariable `JAVA_HOME` hinzu und er
  export PATH
 
 
-==	Git
+===	Git
 
 Danach installieren Sie Git mit folgender Anweisung:
 
@@ -289,14 +292,14 @@ Beispielsweise beschaffen Sie sich die Hilfestellung zum Optionsparameter `confi
 
  git help config.
 
-==	Maven
+===	Maven
 
 IsyFact besteht aus zahlreichen Maven-Projekten.
 Ubuntu bietet von Haus aus ein eigenes Maven Paket an, das über folgendes Kommando intalliert wird:
 
  sudo apt-get install maven
 
-==	Spring Tool Suite (STS)
+===	Spring Tool Suite (STS)
 
 Im nächsten Schritt installieren Sie die integrierte Entwicklungsumgebung Spring Tool Suite (STS).
 Auf der Webseite https://spring.io/tools/sts/all bietet der Hersteller diesbezüglich eine Reihe von Download-Links an.
@@ -340,7 +343,7 @@ Außerdem wird STS nun auch in der "Activities Overview" angezeigt.
 image::leitfaden_entwicklungsumgebung_werkzeuge_sts_overview.png[align="center",width=70%,pdfwidth=100%]
 
 [[apache-tomcat]]
-== Apache Tomcat
+=== Apache Tomcat
 
 Bei einer IsyFact-Anwendung handelt es sich um eine Webanwendung, die genauso wie andere JavaEE-basierte Webanwendungen in einem Servlet-Container betrieben wird.
 Der gängigste Web Container hierfür ist Catalina bzw. das Produkt Apache Tomcat, das den Catalina Web Container integriert.
@@ -390,12 +393,12 @@ image::leitfaden_entwicklungsumgebung_werkzeuge_apache_tomcat_04.png[align="cent
 
 Klicken Sie auf "Apply and Close".
 
-= IDE einrichten
+== IDE einrichten
 
 Die nachfolgenden Abschnitte zeigen Ihnen, wie Sie Ihre IDE nach den Maßgaben der IsyFact einrichten.
 
 [[formatierung-von-quellcode]]
-== Formatierung von Quellcode
+=== Formatierung von Quellcode
 
 Die Code-Formatierungsregeln sind bei beiden IDEs (Eclipse und IntelliJ IDEA) über Konfigurationsmasken individuell einstellbar.
 Es besteht die Möglichkeit, die Formatierungsregeln als XML-Datei abzuspeichern bzw. vorhandene Formatierungsregeldateien zu importieren.
@@ -406,7 +409,7 @@ Zu den Formatierungskonfigurationsmasken gelangt man über folgende Menüeinträ
 * *IntelliJ IDEA:* menu:File[Settings > Editor > Code Style > Java]
 
 [[tastaturkuerzel-codeformatierung]]
-=== Tastaturkürzel Codeformatierung
+==== Tastaturkürzel Codeformatierung
 
 Wenn man sich innerhalb eines Codefensters befindet, kann man mit folgenden Tastaturkürzeln die Code-Formatierung anstoßen.
 
@@ -414,12 +417,12 @@ Wenn man sich innerhalb eines Codefensters befindet, kann man mit folgenden Tast
 * *IntelliJ IDEA:* kbd:[Strg + Alt + L]
 
 [[import-von-code-style-formatierungsdateien]]
-=== Import von Code Style Formatierungsdateien
+==== Import von Code Style Formatierungsdateien
 
 Dieses Kapitel erläutert den Import der Konfiguration zur Quellcode-Formatierung für die Entwicklungsumgebungen Eclipse und IntelliJ IDEA.
 
 [[intellij-idea-1]]
-==== IntelliJ IDEA
+===== IntelliJ IDEA
 
 NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren auf der IntelliJ IDEA Version 2017.2.
 
@@ -445,7 +448,7 @@ Welcher Scheme-Name angezeigt wird, entscheidet sich durch einen entsprechenden 
 ====
 
 [[eclipse-code-formatter]]
-==== Eclipse
+===== Eclipse
 
 NOTE: Die in dieser Installationsbeschreibung erstellten Screenshots basieren auf der Eclipse Version __Neon__.
 
@@ -471,7 +474,7 @@ Welcher Profilname angezeigt wird, entscheidet sich durch einen entsprechenden E
 ====
 
 [[formatierungsdifferenzen]]
-=== Formatierungsdifferenzen
+==== Formatierungsdifferenzen
 
 Mit Hilfe der Einstellungsmasken für die Formatierung bei den beiden IDEs ist eine fast vollständige Übereinstimmung bei der automatischen Formatierung des Quellcodes möglich.
 Dieses Kapitel führt die noch verbliebenen Differenzen anhand einer Gegenüberstellung auf und diskutiert kurz die Konsequenzen.
@@ -482,7 +485,7 @@ Dieses Kapitel führt die noch verbliebenen Differenzen anhand einer Gegenübers
 image::Einrichtung_Entwicklungsumgebung_008.png[align="center"]
 
 [[leere-zeilen-vor-dem-ende-des-kommentarblocks]]
-====  Leere Zeilen vor dem Ende des Kommentarblocks
+=====  Leere Zeilen vor dem Ende des Kommentarblocks
 
 Im _javadoc_ Bereich löscht IntelliJ IDEA leere Kommentarzeilen, die vor dem Ende des Kommentarblocks stehen:
 
@@ -494,7 +497,7 @@ image::Einrichtung_Entwicklungsumgebung_009.png[align="center"]
 *Bewertung:* Da IntelliJ die Zeilen zwar löscht, aber Eclipse diese nicht wieder hinzufügt, stabilisiert sich dieser Unterschied in der Formatierung nach einem Commit eines Entwicklers, der IntelliJ IDEA verwendet.
 
 [[leerzeilen-bei-for-schleifen-semikolon]]
-==== Leerzeichen bei `for`-Schleifen
+===== Leerzeichen bei `for`-Schleifen
 
 Beide Formatter erlauben es einzustellen, dass nach dem Semikolon in einer for-Schleife ein Leerzeichen stehen soll.
 Bei IntelliJ IDEA wird diese Regel streng umgesetzt, auch bei `for(;;)`, währenddessen Eclipse Leerzeichen nur dann einfügt, wenn hinter dem Semikolon noch ein Ausdruck wie beispielsweise `„b > i“` steht.
@@ -507,7 +510,7 @@ image::Einrichtung_Entwicklungsumgebung_010.png[align="center"]
 *Bewertung:* Ein leeres Abbruchkriterium in der `for`-Schleife mag ein Testfall für eine Formatierungsprüfung sein, darf und sollte in der Praxis jedoch nicht vorkommen.
 
 [[behandlung-von-leeren-statements]]
-==== Behandlung von leeren Statements
+===== Behandlung von leeren Statements
 
 Wenn ein leeres Statement im Quellcode vorhanden ist, fügt IntelliJ IDEA zwei Leerzeilen ein und setzt das Semikolon beim Formatieren in eine neue Zeile.
 
@@ -520,16 +523,16 @@ image::Einrichtung_Entwicklungsumgebung_011.png[align="center"]
 Dieser Fall ist allerdings erneut kein Problem der Formatierung, sondern ein Programmierfehler - das Semikolon sollte gelöscht werden.
 
 [[generierung-von-equals-und-hashcode]]
-== Generierung von equals() und hashCode()
+=== Generierung von equals() und hashCode()
 
 Eine Unterstützung bei der Codegenerierung erhält der Programmentwickler bei Einsatz von IntelliJ IDEA ohne zusätzliche Plug-Ins.
 Um bei der derzeit aktuellen Eclipse Version _Neon_ identische Umsetzungen der beiden Methode zu generieren, wird das Plugin _jenerate_ verwendet.
 
 [[equals-hashcode-eclipse]]
-=== Eclipse
+==== Eclipse
 
 [[installation-jenerate]]
-==== Installation des Plugins _jenerate_
+===== Installation des Plugins _jenerate_
 
 Das Eclipse Plugin _jenerate_ kann innerhalb von Eclipse über den _„Eclipse Marketplace“_ heruntergeladen und installiert werden.
 
@@ -541,7 +544,7 @@ Eclipse Menüpunkt: menu:Help[Eclipse Marketplace]
 image::Einrichtung_Entwicklungsumgebung_001.png[align="center",width=80%,pdfwidth=80%]
 
 [[grundkonfiguration]]
-==== Grundkonfiguration
+===== Grundkonfiguration
 
 Bestimmte Einstellungen zur Steuerung der Erzeugung von Boilerplate Code können bei Eclipse über das Menü menu:Window[Preferences > Java > Jenerate] vorgenommen werden.
 
@@ -562,7 +565,7 @@ Sollte in der _jenerate_ Grundeinstellungsmaske keine oder eine andere Vorauswah
 image::Einrichtung_Entwicklungsumgebung_004.png[pdfwidth=40%,width=40%, align="center"]
 
 [[boilerplate-code-erzeugen]]
-==== Boilerplate Code erzeugen
+===== Boilerplate Code erzeugen
 
 Die Generierung von Boilerplate Code selbst ist intuitiv und erfolgt in drei Schritten.
 
@@ -587,7 +590,7 @@ Alternativ stehen die folgenden Tastenkombinationen zur Verfügung:
 TIP: Werden Klassen zu einem späteren Zeitpunkt um weitere Klassenvariablen ergänzt, welche für die Methoden `compareTo()`, `equals()`, `hashCode()` oder `toString()` relevant sind, so kann der erzeugte Quellcode jederzeit wieder gelöscht und erneut erzeugt werden.
 
 [[equals-hashcode-intellij]]
-=== IntelliJ IDEA
+==== IntelliJ IDEA
 
 In IntelliJ IDEA lässt sich die Vorgabe zur Codegenerierung direkt vorgeben.
 Diese ist im Generierungsdialog unter „Template“ einzustellen.
@@ -599,13 +602,13 @@ Der Dialog wird mit kbd:[Alt + Einfg] und der Auwahl von __equals() and hashCode
 image::Einrichtung_Entwicklungsumgebung_005.png[align="center",width=70%,pdfwidth=70%]
 
 [[einrichtung-von-checkstyle]]
-== Einrichtung von Checkstyle
+=== Einrichtung von Checkstyle
 
 Die Einbindung und Konfiguration von Checkstyle erfolgt über Plugins in der verwendeten IDE.
 
-=== Installation des Plugins
+==== Installation des Plugins
 
-==== Eclipse
+===== Eclipse
 
 *Schritt 1:* Installationsquelle für Checkstyle hinzufügen
 
@@ -629,7 +632,7 @@ image::Einrichtung_Entwicklungsumgebung_012.png[align="center"]
 .{desc-image-checkstyle-auswaehlen}
 image::Einrichtung_Entwicklungsumgebung_013.png[align="center"]
 
-==== IntelliJ IDEA
+===== IntelliJ IDEA
 
 *Schritt 1:* Checkstyle-Plugin suchen
 
@@ -650,9 +653,9 @@ image::Einrichtung_Entwicklungsumgebung_014.png[align="center"]
 .{desc-image-checkstyle-intellij}
 image::Einrichtung_Entwicklungsumgebung_015.png[align="center"]
 
-=== Konfiguration des Plugins
+==== Konfiguration des Plugins
 
-==== Eclipse
+===== Eclipse
 
 *Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
 
@@ -672,7 +675,7 @@ image::Einrichtung_Entwicklungsumgebung_016.png[align="center"]
 
 * Das Checkstyle-Fenster kann anschließend über btn:[Window > Show View > Other... > Checkstyle violations] angezeigt werden
 
-==== IntelliJ IDEA
+===== IntelliJ IDEA
 
 *Schritt 1:* Konfigurationmaske des Checkstyle-Plugin in Eclipse öffnen
 
@@ -694,7 +697,7 @@ image::Einrichtung_Entwicklungsumgebung_017.png[align="center"]
 * Das Checkstyle-Fenster kann anschließend über eine Schaltfläche in den _Tool Buttons_ angezeigt werden
 
 [[isyfact-projektgenerator-installieren]]
-= IsyFact-Projektgenerator installieren
+== IsyFact-Projektgenerator installieren
 
 In diesem Abschnitt wird gezeigt, wie Sie den IsyFact Projektgenerator in der Spring Tool Suite (STS) installieren und Ihre Entwicklungsumgebung auf die Entwicklung einer neuen Anwendung vorbereiten.
 Mit dem Projektgenerator werden Sie später die Hello-World-Anwendung erzeugen.
@@ -767,7 +770,7 @@ image::leitfaden_entwicklungsumgebung_bibliotheken_30.png[align="center"]
 Nachdem das Projekt `isyfact-projektgenerator` importiert worden ist, wechseln Sie in die Perspective "Spring" und führen Sie die Aktion menu:Run As[Maven Install] aus.
 
 [[hello-world-anwendung-generieren]]
-= Hello-World-Anwendung generieren
+== Hello-World-Anwendung generieren
 
 In diesem Abschnitt wird die Generierung der IsyFact-konformen Hello-World-Anwendung gezeigt.
 
@@ -830,3 +833,4 @@ Zum Test geben Sie im ersten Eingabefeld einen Namen und im zweiten eine Nachric
 [id="image-leitfaden_entwicklungsumgebung_projektgenerator_06",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-leitfaden_entwicklungsumgebung_projektgenerator_06}
 image::leitfaden_entwicklungsumgebung_projektgenerator_06.png[align="center"]
+// end::inhalt[]
