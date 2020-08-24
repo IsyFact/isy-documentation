@@ -575,6 +575,24 @@ Dadurch kann der Zugriff auf die tatsächlich benötigten Daten gesteuert und ei
 Im Zweifel, insbesondere bei freien Anfragen, die aus Benutzereingaben erzeugt werden, sollte die Anzahl der selektierten Datensätze beschränkt werden.
 * Um die SQL-Injection Attacken zu verhindern sollen Named-Queries oder Criteria-Queries verwendeten werden, bei denen der OR-Mapper für ein Escaping der Query-Parameter sorgt.
 
+[[packagestruktur]]
+== Packagestruktur für Persistenzklassen
+
+Die DAOs- und Entitätsklassen sollen im Persistence-Package der entsprechenden Komponente implementiert werden.
+
+:desc-table-packagestruktur: Vorgaben zur Packetstrucktur für Persistenzklassen
+[id="table-packagestruktur",reftext="{table-caption} {counter:tables}"]
+.{desc-table-packagestruktur}
+[cols="1,3",options="header"]
+|===
+|Persistenzklasse |Packetstrucktur
+|DAO
+|`<organisation>.<domäne>.<system>.persistence.<komponente>.dao`
+
+|Entity
+|`<organisation>.<domäne>.<system>.persistence.<komponente>.entity`
+|===
+
 [[konfiguration-von-jpa-und-hibernate-in-der-anwendung]]
 == Konfiguration von JPA und Hibernate in der Anwendung
 
