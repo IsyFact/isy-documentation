@@ -391,8 +391,8 @@ Ihm sind alle im eigentlichen Kontext definierten Beans bekannt.
 Der Zugriff aus dem DispatcherServlet-Springkontext auf den eigentlichen Kontext geschieht somit direkt über die
 Definition von Bean-Referenzen im Dispatcher-Kontext.
 Die fachliche Verarbeitung eines HttpInvoker-Aufrufs soll im eigentlichen Kontext durchgeführt werden.
-Deshalb soll in der `HttpInvokerServiceExporter` Bean konfigurierte Service-Bean im eigentlichen Anwendungskontext
-konfiguriert sein.
+Deshalb soll in der `IsyHttpInvokerServiceExporter` Bean konfigurierte Service-Bean im eigentlichen Anwendungskontext
+konfiguriert sein. `IsyHttpInvokerServiceExporter` ist eine Erweiterung von `HttpInvokerServiceExporter` und deaktiviert standardmäßig die Verwendung von Proxy-Klassen.
 
 Dies wird in der folgenden Anwendung illustriert.
 

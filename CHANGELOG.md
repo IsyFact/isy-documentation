@@ -1,4 +1,5 @@
 # 1.8.3
+-`IFS-159`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
 
 # 1.8.1
 - `IFS-563`: Dokumentation MDC-Filter
