@@ -67,8 +67,11 @@ Alternativ kann die Annotation `@Gesichert` auch an der Service-Fassade selbst v
 Die *Exception-Fassade* ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Fassade geworfenen Exceptions in Exceptions der Service-Schnittstelle.
 Dies kann auf mehreren Wegen geschehen.
 Je nach gewählter Schnittstellentechnologie werden z.B. Annotationen oder eigens dafür geschriebene Klassen oder Methoden verwendet.
+
 Bevor die Exception-Fassade aufgerufen wird, muss die Korrelations-ID aus dem Aufrufkontext im Logging-Kontext registriert sein.
 Dies geschieht durch die Annotation `@StelltLoggingKontextBereit` an der Methode oder an der Service-Fassade selbst.
+Dabei gilt es zu beachten, dass die Annotation standardmäßig so konfiguriert ist, dass sie vor den Annotationen ohne Prioritätsangabe ausgeführt wird, so dass diese immer Zugriff auf die Korrelations-ID haben.
+Diese Reihenfolge wird durch Einfügen des Orders für den Advisor `stelltLoggingKontextBereitAdvisor` in der Autokonfiguration `IsyServiceApiCoreAutoConfiguration` erreicht.
 
 [NOTE]
 ====
