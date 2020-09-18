@@ -2,7 +2,7 @@ variables:
   MAVEN_OPTS: "-Xmx2048M -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "-s settings.xml --batch-mode --errors --fail-at-end"
 
-image: $BUILDIMAGE
+image: $BUILDIMAGE_LEGACY
 
 stages:
   - documentation
