@@ -16,13 +16,8 @@ cache:
 .template: &vorlage
   stage: documentation
   tags:
-    - ZIII4
-  before_script:
-    - mvn -v
-    - PFAD=$(pwd)
-    - mkdir -p aptcache
-    - apt-get update
-    - apt-get -o dir::cache::archives="$PFAD/aptcache" install -y gawk --no-install-recommends
+    - zssi
+    - docker
   script:
     - mvn $MAVEN_CLI_OPTS process-resources
 
