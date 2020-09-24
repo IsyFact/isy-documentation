@@ -1,5 +1,6 @@
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
+- `IFS-542`: Ergängung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
 
 # 2.1.0
 - `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks

@@ -917,7 +917,7 @@ Jeder Batch erhält eine eigene Korrelations-ID.
 WARNING: In älteren Versionen des Batchrahmens handelte es sich bei der Korrelations-ID für Batches um die ID des Batches.
 Mittlerweile wurde dies durch eine UUID ersetzt.
 
-Zusätzlich erhält jeder zu verarbeitende Satz die Satznummer als Korrelations-ID, welche an die Korrelations-ID des Batches angehängt wird.
+Zusätzlich erhält jeder zu verarbeitende Satz auch eine eigene Korrelations-ID, welche an die Korrelations-ID des Batches angehängt wird. Die entstehende Korrelations-ID Kette wird dann dem Aufruf-Kontext hinzugefügt.
 
 [[fachliche-logik-in-den-komponenten-der-fachanwendung-implementieren]]
 === Fachliche Logik in den Komponenten der Fachanwendung implementieren
