@@ -1232,7 +1232,7 @@ NOTE: Detaillierte Informationen zur Überwachung sind im <<KonzeptUeberwachung>
 [[designvorgaben-11]]
 ==== Designvorgaben
 
-* Die Erreichbarkeit der Systems wird über einen `HealthCheck` von Spring Boot Actuator realisiert.
+* Die Erreichbarkeit der Systems wird über einen HealthCheck von Spring Boot Actuator realisiert.
 * Server-Metriken werden anbieterneutral mit Micrometer angeboten.
 * Einzelne Services können detailliert überwacht werden. Dazu stellen die Services Statistiken über ihre Nutzung
 als Metriken bereit.
@@ -1265,8 +1265,9 @@ Zur Realisierung der Überwachung muss die in <<listing-bib-ueberwachung>> aufge
 [[konfiguration-der-überwachungsschnittstelle]]
 ===== Konfiguration der Überwachungsschnittstelle
 
-Der HealthCheck, Server-Metriken und das Loadbalancing Servlet werden automatisch durch die Verwendung der Bibliothek
-in die Anwendung eingebunden und aktiviert.
+Der HealthCheck, die Server-Metriken und das Loadbalancing Servlet werden automatisch durch die Verwendung der Bibliothek
+in die Anwendung eingebunden und aktiviert. Für den HealthCheck muss explizit eine Konfiguration in den Application Properties
+erfolgen, damit der Health-Status automatisch aktualisiert wird.
 
 Die im Detail zu überwachenden Services müssen explizit konfiguriert werden. Dazu werden die Service-Beans in
 Service-Statistik-Beans gekapselt, und jeder Service-Aufruf wird durch die Service-Statistik-Beans delegiert. Die
