@@ -1234,9 +1234,10 @@ NOTE: Detaillierte Informationen zur Überwachung sind im <<KonzeptUeberwachung>
 
 * Die Erreichbarkeit der Systems wird über einen `HealthCheck` von Spring Boot Actuator realisiert.
 * Server-Metriken werden anbieterneutral mit Micrometer angeboten.
-* Einzeln Services können detailliert überwacht werden. Dazu stellen die Services Statistiken über ihre Nutzung
+* Einzelne Services können detailliert überwacht werden. Dazu stellen die Services Statistiken über ihre Nutzung
 als Metriken bereit.
-* Zur Steuerung des Loadbalancing wird ein Servlet bereitgestellt, um die Anwendung deaktivierbar zu machen.
+* Zur Steuerung des Loadbalancing ist ein Servlet enthalten, um die Anwendung innerhalb eines Clusters deaktivierbar
+zu machen.
 
 [[realisierung-11]]
 ==== Realisierung
