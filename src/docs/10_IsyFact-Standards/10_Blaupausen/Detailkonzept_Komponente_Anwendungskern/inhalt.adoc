@@ -282,7 +282,32 @@ public class CoreConfig {
 Die Konfiguration der Anwendung wird (wie im Konzept Konfiguration <<KonzeptKonfiguration>> beschrieben) über die Datei `application.properties` durchgeführt.
 Diese Datei enthält sämtliche Konfigurationsparameter der Anwendung.
 Das Setzen einzelner Konfigurationsparameter über `set`-Methoden ist nur in Ausnahmefällen erlaubt.
-// TODO Ein Beispiel dafür ist die Konfigurations-Bean `konfiguration` in der Datei `konfiguration.xml` der Vorlageanwendung.
+
+:desc-listing-konfigurationsbean: Beispiel für Konfiguration des Anwendungskern mittels Konfigurations-Bean
+[id="listing-konfigurationsbean",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-konfigurationsbean}
+[source, java]
+----
+package de.beispiel.if2anwendung.core.config;
+
+...
+
+@Configuration
+@ComponentScan("de.bund.bva.pliscommon.konfiguration.common.impl")
+public class ReloadablePropertyKonfiguration {
+
+    @Bean
+    public ReloadablePropertyKonfiguration() {
+         return new ReloadablePropertyKonfiguration(Arrays.asList(
+            "/resources/nachrichten/gui-linksnavigation.properties",
+            "/config/isy-webgui.properties",
+            "/config/terminfindung.properties",
+            "/config/jpa.properties",
+            "/config/tasks.properties"
+         ));
+   }
+}
+----
 Abweichungen für technische Beans sind erlaubt.
 
 [[abhaengigkeiten-von-komponenten-konfigurieren]]
