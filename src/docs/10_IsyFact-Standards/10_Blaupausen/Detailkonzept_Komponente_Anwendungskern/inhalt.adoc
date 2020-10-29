@@ -297,14 +297,14 @@ package de.beispiel.if2anwendung.core.config;
 public class ReloadablePropertyKonfiguration {
 
     @Bean
-    public ReloadablePropertyKonfiguration() {
-         return new ReloadablePropertyKonfiguration(Arrays.asList(
+    public ReloadablePropertyKonfiguration config() {
+         return new ReloadablePropertyKonfiguration(String[]{
             "/resources/nachrichten/gui-linksnavigation.properties",
             "/config/isy-webgui.properties",
             "/config/terminfindung.properties",
             "/config/jpa.properties",
             "/config/tasks.properties"
-         ));
+         });
    }
 }
 ----
