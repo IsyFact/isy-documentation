@@ -1,3 +1,5 @@
+# 2.2.0
+
 # 2.1.0
 - `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
 - `IFS-355`: Dokumententitel wurden verkürzt und ein Untertitel für den Dokumententyp ergänzt
