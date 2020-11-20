@@ -10,6 +10,7 @@
 - `IFS-363`: Maven Central in Tutorial integrieren
 - `IFS-367`: Regelungen zu Präfixen bei Maven-Artefakten hinzugefügt
 - `IFS-382`: Verweis auf CAMS aus Grafik entfernen
+- `IFS-565`: Warning bei list item index behoben 
 - `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert
@@ -19,6 +20,10 @@
 - `RF-316`: Detailkonzept Datenzugriff um Namenskonventionen für Datenbankschemas erweitert
 - `IFS-571`: Erstellung eines Migrationsleitfadens IsyFact 1.8 nach IsyFact 2.x
 - `IFS-293`: Zusammenfassung für das Management in Einleitung integriert
+- `IFS-488`: Beschreibung der Order-Eingabe für 'stelltAufrufKontextBereitAdvisor' ergänzt
+- `IFS-393`: Beschreibung der Behandlung von Fehlern aus Nachbarsystemen
+- `IFS-376`: Vorgaben zu DAOs im Detailkonzept Persistenz zusammenfassen
+- `IFS-618`: Dokumentenbuild auf AsciidoctorJ-Extensions umgestellt. Changelogs werden zukünftig ebenfalls von Markdown auf Ascii-Doc umgestellt.
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
