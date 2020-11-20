@@ -1,4 +1,5 @@
 # 2.2.0
+- `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
 
 # 2.1.0
 - `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
