@@ -16,7 +16,9 @@ cache:
 .template: &vorlage
   stage: documentation
   tags:
-   - ZIII4
+   - docker
+   - zssi
+   
   before_script:
    - mvn -v
    - PFAD=$(pwd)
