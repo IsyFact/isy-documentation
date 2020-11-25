@@ -1,3 +1,5 @@
+:imagesdir: images
+
 = Detailkonzept Anwendungskern: Inhalt
 
 // tag::inhalt[]
@@ -14,7 +16,7 @@ Diese drei Aspekte werden im Folgenden im Detail beschrieben.
 :desc-image-IFBestAWK: Bestandteile des Anwendungskerns
 [id="image-IFBestAWK",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFBestAWK}
-image::IFBestAWK.png[align="center",width=90%, pdfwidth=90%]
+image::IFBestAWK.png[align="center",width=90%,pdfwidth=90%]
 
 [[die-fachkomponenten]]
 === Die Fachkomponenten
@@ -26,7 +28,8 @@ Das ist der Schlüssel für gute Wartbarkeit und einfache Weiterentwickelbarkeit
 Diese Struktur findet sich auch in anderen Schichten wieder, z. B. in der Persistenz: dort sind die Fachkomponenten auch gemäß den Komponenten aus der fachlichen Architektur strukturiert.
 In der Vorlageanwendung sind z.B. die Komponenten _Erstellung_, _Teilnahme_ und _Verwaltung_ Fachkomponenten.
 
-Die Fachkomponenten operieren auf Geschäftsobjekten (Entitäten). Jedes Geschäftsobjekt ist genau einer Komponente zugeordnet, die die Datenhoheit über dieses Geschäftsobjekt besitzt und seinen Lebenszyklus verwaltet.
+Die Fachkomponenten operieren auf Geschäftsobjekten (Entitäten).
+Jedes Geschäftsobjekt ist genau einer Komponente zugeordnet, die die Datenhoheit über dieses Geschäftsobjekt besitzt und seinen Lebenszyklus verwaltet.
 In der Vorlageanwendung gibt es z.B. die Entitäten `Terminfindung`, `Tag` und `Teilnehmer`.
 
 Es kann aber auch den Fall geben, dass ein Geschäftsobjekt fachlich nicht genau einer Komponente zugeordnet werden kann.
@@ -68,8 +71,7 @@ Diese fachlichen Säulen werden im folgenden Teilanwendungen genannt.
 Das Ziel ist die fachliche Trennung und Minimierung inhaltlicher Abhängigkeiten.
 Die Teilanwendungen sollen Fachlichkeit kapseln.
 
-Damit kann eine IT-Anwendung sowohl vertikal in Teilanwendungen (fachliche Sicht) und horizontal in Schichten
-(technische Sicht) strukturiert werden, wie in <<image-SchichtTAnw>> dargestellt.
+Damit kann eine IT-Anwendung sowohl vertikal in Teilanwendungen (fachliche Sicht) und horizontal in Schichten (technische Sicht) strukturiert werden, wie in <<image-SchichtTAnw>> dargestellt.
 
 :desc-image-SchichtTAnw: Schichten und Teilanwendungen
 [id="image-SchichtTAnw",reftext="{figure-caption} {counter:figures}"]
@@ -104,11 +106,9 @@ Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie
 * Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachung>>.
 * Die Verwendung der Schnittstellentechnologie HTTP Invoker, beschrieben im Konzept <<KonzeptHttpInvoker>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
-* Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
-Dokument <<DetailkonzeptKomponenteWebGUI>>.
+* Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im Dokument <<DetailkonzeptKomponenteWebGUI>>.
 
-Alle anderen Spring-Funktionalitäten (Validierung über Spring, Emailing, Thread Pooling, Scripting)
-werden nicht verwendet.
+Alle anderen Spring-Funktionalitäten (Validierung über Spring, Emailing, Thread Pooling, Scripting) werden nicht verwendet.
 
 Dieses Kapitel teilt sich in vier Teile:
 
@@ -128,8 +128,8 @@ Es sollen nur die Komponenten eingesetzt werden, welche zu geringerer Komplexit�
 *Einheitlichkeit der Nutzung:* Spring soll in den verschiedenen Anwendungen einheitlich eingesetzt werden.
 Hierfür sind geeignete Vorgaben für die Nutzung zu verwenden.
 
-*Verständlichkeit der Konfiguration:* Die Konfiguration der Spring-Komponenten erfolgt über Annotationen an den Komponenten. Wenn erforderlich,
-werden Komponenten außerhalb der Anwendung über Java-Konfigurationsklassen konfiguriert.
+*Verständlichkeit der Konfiguration:* Die Konfiguration der Spring-Komponenten erfolgt über Annotationen an den Komponenten.
+Wenn erforderlich, werden Komponenten außerhalb der Anwendung über Java-Konfigurationsklassen konfiguriert.
 
 *Komponentenorientierung wahren:* Über Spring sollen Komponenten konfiguriert werden: Es soll nicht möglich sein, direkt auf Implementierungsklassen einer Komponente zuzugreifen.
 
@@ -144,11 +144,9 @@ Diese Konfigurationsarten werden in den folgenden Kapiteln beschrieben.
 [[die-konfiguration-von-spring-beans]]
 ==== Die Konfiguration von Spring-Beans
 
-Spring ist ein Applikations-Container, welcher sogenannte Spring-Beans instanziiert, per _Dependency Injection_
-konfiguriert und bereitstellt.
+Spring ist ein Applikations-Container, welcher sogenannte Spring-Beans instanziiert, per _Dependency Injection_ konfiguriert und bereitstellt.
 Spring-Beans sind beliebige Java-Klassen.
-Für diese Klassen kann man benötigte andere Beans oder Konfigurationsparameter konfigurieren,
-welche der Klasse daraufhin im Konstruktor oder per `set`-Methode übergeben werden.
+Für diese Klassen kann man benötigte andere Beans oder Konfigurationsparameter konfigurieren, welche der Klasse daraufhin im Konstruktor oder per `set`-Methode übergeben werden.
 
 Konfiguriert werden Beans und ihre Abhängigkeiten durch von Spring bereitgestellte Annotationen.
 Diese werden beim Start des Applikations-Containers gescannt und ausgewertet (_Component Scan_).
@@ -200,8 +198,7 @@ Sind Klassen nicht von relevanter Bedeutung, so können sie beim Erzeugen der Sp
 ===== Querschnittsdienste als Beans konfigurieren
 
 Querschnittsdienste (etwa für JMX, für Nachrichten, für die Versendung von Mails) sind als Beans zu konfigurieren.
-Dies gilt unabhängig davon, ob die Querschnittsdienste statisch verfügbar sind oder über Dependency Injection
-gesetzt werden (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>).
+Dies gilt unabhängig davon, ob die Querschnittsdienste statisch verfügbar sind oder über Dependency Injection gesetzt werden (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>).
 
 Ebenfalls über Beans durchzuführen ist die Konfiguration diverser Frameworks, z.B. Hibernate.
 Die Konfiguration dieser Frameworks wird in ihren Nutzungsvorgaben beschrieben.
@@ -209,8 +206,7 @@ Die Konfiguration dieser Frameworks wird in ihren Nutzungsvorgaben beschrieben.
 [[beans-standardmäßig-als-singletons-definieren]]
 ===== Beans standardmäßig als Singletons definieren
 
-Beans können entweder als Singletons mit nur einer Instanz, mit einer Instanz pro Aufruf oder mit einer Instanz
-pro Abhängigkeit (Prototype) erzeugt werden.
+Beans können entweder als Singletons mit nur einer Instanz, mit einer Instanz pro Aufruf oder mit einer Instanz pro Abhängigkeit (Prototype) erzeugt werden.
 Die Komponenten-Beans einer Anwendung sollen zustandslos sein und werden als Singleton-Beans erzeugt.
 Wo technisch erforderlich können auch andere Scopes verwendet werden.
 
@@ -227,9 +223,10 @@ Zusätzlich erbt die Klasse von `SpringBootServletInitializer`, damit die Anwend
 Die Konfigurationsklassen der Schichten werden per `@Import`-Annotation eingebunden.
 +
 :desc-listing-applikationsklasse: Applikationsklasse der Anwendung
+
 [id="listing-applikationsklasse",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-applikationsklasse}
-[source, java]
+[source,java]
 ----
 package de.beispiel.if2anwendung;
 
@@ -247,17 +244,16 @@ public class IsyFactApplication extends SpringBootServletInitializer {
 }
 ----
 
-
-2. Für jede Schicht wird im Package `<org>.<domäne>.<anwendung>.<schicht>.config` eine mit `@Configuration` annotierte
-Konfigurationsklasse erstellt (<<listing-konfigurationsklasse>>).
+2. Für jede Schicht wird im Package `<org>.<domäne>.<anwendung>.<schicht>.config` eine mit `@Configuration` annotierte Konfigurationsklasse erstellt (<<listing-konfigurationsklasse>>).
 Diese wird zusätzlich mit `@ComponentScan` annotiert.
 Der _Component Scan_ mit wird dem Attribut `basePackages` auf das Package der Schicht beschränkt.
 Annotationen, die querschnittliche Aspekte konfigurieren (z.B. `@EnableTransactionManagement`), werden an die Konfigurationsklasse der inhaltlich passenden Schicht geschrieben.
 +
 :desc-listing-konfigurationsklasse: Konfigurationsklasse innerhalb einer Schicht
+
 [id="listing-konfigurationsklasse",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-konfigurationsklasse}
-[source, java]
+[source,java]
 ----
 package de.beispiel.if2anwendung.core.config;
 
@@ -274,7 +270,7 @@ public class CoreConfig {
 ----
 
 3. Die Beans der Komponenten werden mit der Annotation `@Component` bzw. deren Spezialisierungen (`@Repository`, `@Service`, `@Controller` etc.) versehen.
-   Externe Beans, die nicht annotiert werden können, werden in der Konfigurationsklasse der Schicht per `@Bean-Methoden` konfiguriert.
+Externe Beans, die nicht annotiert werden können, werden in der Konfigurationsklasse der Schicht per `@Bean-Methoden` konfiguriert.
 
 [[konfigurationsparameter-ueber-property-objekte-konfigurieren]]
 ==== Konfigurationsparameter über Property-Objekte konfigurieren
@@ -315,6 +311,7 @@ Diese muss den Bean-Namen der benutzten Holder-Klassen enthalten.
 Der Kontextparameter `webAppRootKey` muss in der `web.xml` auf den eindeutigen Namen der Webanwendung gesetzt werden, wie in <<listing-webAppRootKey>> gezeigt.
 
 :desc-listing-webAppRootKey: Konfiguration des webAppRootKey
+
 [id="listing-webAppRootKey",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-webAppRootKey}
 [source,xml]
@@ -325,28 +322,24 @@ Der Kontextparameter `webAppRootKey` muss in der `web.xml` auf den eindeutigen N
 </context-param>
 ----
 
-*Hintergrund*: Spring speichert standardmäßig den Pfad zum Wurzelverzeichnis der Webanwendung im Webserver in der
-Kontextvariable `webapp.root`.
+*Hintergrund*: Spring speichert standardmäßig den Pfad zum Wurzelverzeichnis der Webanwendung im Webserver in der Kontextvariable `webapp.root`.
 Wenn mehrere Anwendungen gleichzeitig in einem Tomcat betrieben werden (bspw.
 in einer Entwicklungsumgebung), wird dieser Parameter durch die verschiedenen Anwendungen überschrieben.
 Dies kann zu ungewünschten Seiteneffekten führen.
 Ist der Kontextparameter `webAppRootKey` wie im obigen Beispiel gesetzt, wird der Pfad statt im Parameter `webapp.root`
 im Parameter `terminfindung` abgelegt.
-Da jede Webanwendung einen eindeutigen Namen besitzt, und damit einen eigenen Kontextparameter verwendet,
-wird das Überschreiben vermieden.
+Da jede Webanwendung einen eindeutigen Namen besitzt, und damit einen eigenen Kontextparameter verwendet, wird das Überschreiben vermieden.
 
 [[die-direkte-verwendung-des-spring-frameworks]]
 === Die direkte Verwendung des Spring-Frameworks
 
-Neben der Konfiguration der Beans enthält eine Anwendung kaum Abhängigkeiten von Spring: Da die benötigten Objekte per
-Dependency Injection konfiguriert werden, müssen diese nach ihrer Konfiguration lediglich verwendet werden.
+Neben der Konfiguration der Beans enthält eine Anwendung kaum Abhängigkeiten von Spring: Da die benötigten Objekte per Dependency Injection konfiguriert werden, müssen diese nach ihrer Konfiguration lediglich verwendet werden.
 
 In einigen Fällen existieren jedoch weitere Abhängigkeiten von Spring:
 
 * Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptKonfiguration>>).
 
-* Bei HTTP Invoker Schnittstellen-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
-(siehe <<NutzungsvorgabenHttpInvoker>>).
+* Bei HTTP Invoker Schnittstellen-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden (siehe <<NutzungsvorgabenHttpInvoker>>).
 
 * Beans werden per Namen aus dem Anwendungskontext ausgelesen.
 
@@ -376,8 +369,7 @@ In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die 
 Dies entspricht nicht den Konventionen des Spring-Frameworks und ist nur in Ausnahmefällen erlaubt.
 
 Die entsprechenden Hilfsklassen werden als _Holder_ bezeichnet.
-Sie besitzen ein statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung
-zu stellenden Bean initialisiert werden.
+Sie besitzen ein statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung zu stellenden Bean initialisiert werden.
 
 [[transaktionssteuerung]]
 === Transaktionssteuerung
@@ -414,6 +406,7 @@ Im Anwendungskern bieten sich dazu sich die Klassen der Implementierung der Schn
 Gibt es ein für die Klasse gemeinsames Verhalten, kann stattdessen auch die Klasse mit der Annotation versehen werden.
 
 :desc-listing-transactional: Verwendung der Annotation @Transactional an Klassen und Methoden
+
 [id="listing-transactional",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-transactional}
 [source,java]
@@ -437,6 +430,7 @@ Des Weiteren wird festgelegt, dass bei jedem Fehler ein Rollback durchgeführt w
 Damit Spring die Annotation `@Transactional` auswertet, muss folgende Spring-Konfiguration aktiv sein:
 
 :desc-listing-transaction-spring-config: Spring-Konfiguration zur Verwendung von @Transactional
+
 [id="listing-transaction-spring-config",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-transaction-spring-config}
 [source,xml]
@@ -500,6 +494,25 @@ Schnittstellen-Beans transformieren die Geschäftsobjekte des Anwendungskerns in
 Die Stack-Traces der Exceptions werden dabei nicht übertragen, da diese internen Informationen dem Aufrufer keinen Mehrwert bieten.
 Für das Logging des IT-Systems selbst sind sie jedoch wertvoll.
 Statt AOP ist das im <<DetailkonzeptKomponenteService>> beschriebene Konstrukt der Exception-Fassade zu verwenden.
+
+[[dependency-injection]]
+=== Dependency Injection
+
+Um im Anwendungskern das Single-Responsibility-Prinzip nicht zu verletzten, wird auf das Entwurfsmuster _Dependency Injection_ zurückgegriffen.
+Dabei werden die Verantwortlichkeiten für den Aufbau des Abhängigkeitsnetzes zwischen den Objekten aus den einzelnen Klassen in eine zentrale Komponente überführt.
+Anders als bei der herkömmlichen Vorgehensweise in der objektorientierten Programmierung ist bei der _Dependency Injection_ nicht jedes Objekt selbst dafür zuständig, seine Abhängigkeiten (benötigte Objekte und Ressourcen) zu verwalten.
+
+In der folgenden Grafik wird das Muster der _Dependency Injection_ exemplarisch visualisiert.
+
+:desc-image-dependeny-injection: Dependency Injection
+[id="image-dependeny-injection",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-dependeny-injection}
+image::DependencyInjection.svg[]
+
+[[vorgabe-dependency-injection]]
+==== Vorgabe zur Dependency Injection
+
+
 
 // tag::architekturregel[]
 
