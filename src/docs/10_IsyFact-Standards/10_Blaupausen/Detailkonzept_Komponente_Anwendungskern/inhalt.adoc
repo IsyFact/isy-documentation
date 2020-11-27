@@ -502,17 +502,35 @@ Um im Anwendungskern das Single-Responsibility-Prinzip nicht zu verletzten, wird
 Dabei werden die Verantwortlichkeiten für den Aufbau des Abhängigkeitsnetzes zwischen den Objekten aus den einzelnen Klassen in eine zentrale Komponente überführt.
 Anders als bei der herkömmlichen Vorgehensweise in der objektorientierten Programmierung ist bei der _Dependency Injection_ nicht jedes Objekt selbst dafür zuständig, seine Abhängigkeiten (benötigte Objekte und Ressourcen) zu verwalten.
 
-In der folgenden Grafik wird das Muster der _Dependency Injection_ exemplarisch visualisiert.
+In der folgenden Grafik ist das Entwurfsmuster der _Dependency Injection_ exemplarisch visualisiert.
 
 :desc-image-dependeny-injection: Dependency Injection
 [id="image-dependeny-injection",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-dependeny-injection}
 image::DependencyInjection.svg[]
 
-[[vorgabe-dependency-injection]]
-==== Vorgabe zur Dependency Injection
+Es existieren 3 verschiedene Verfahren der _Dependency Injection_:
 
+- Constructor Injection
+- Field Injection
+- Method Injection
 
+Da die _Constructor Injection_ diverse Vorteile gegenüber den beiden anderen Techniken liefert, ist die _Constructor Injection_ die bevorzugte Technik des _Dependency Injection_ in allen Projekten der Isy- und Register-Factory.
+
+[[constructor-injection]]
+==== Constructor Injection
+
+Bei dem _Constructor Injection_ werden alle Abhängigkeiten einer Klasse über die Konstruktoren von außen injiziert.
+Dadurch werden automatisch auch die benötigten Abhängigkeiten definiert, welche der Erzeuger des Objektes zur Verfügung stellen muss.
+Dieses Vorgehen hat den Vorteil, dass alle benötigten Abhängigkeiten in der Initialisierungsphase des Objektes zur Verfügung stehen.
+Zusätzlich werden durch dieses Verfahren mögliche `NullPointerExceptions` vermieden.
+
+_Constructor Injector_ hilft ebenfalls beim Identifizieren von zu vielen Abhängigkeiten zu einem Objekt.
+Wenn ein Konstruktor zu viele Argumente aufweist, kann dies ein Zeichen für eine zu große Verantwortlichkeit des Objektes sein.
+Ist dies der Fall, müsste àn dieser Stelle über ein `Code-Refactoring` nachgedacht werden.
+
+Ein weiterer Vorteil von _Constructor Injection_ ist, dass die injizierten Abhängigkeiten während der Laufzeit nicht veränderbar.
+So wird die `Thread-Safe`-Eigenschaft der Abhängigkeiten sichergestellt.
 
 // tag::architekturregel[]
 
