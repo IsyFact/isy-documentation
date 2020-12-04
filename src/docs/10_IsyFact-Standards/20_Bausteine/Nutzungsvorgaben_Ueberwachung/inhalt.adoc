@@ -227,10 +227,45 @@ Dazu sind neben der Einhaltung der in dem Dokument <<KonzeptUeberwachung>> besch
 * Bei der Bereitstellung weiterer Überwachungsinformationen ist darauf zu achten, dass die Ermittlung der Kennzahlen keinen relevanten negativen Einfluss auf die Anwendungs-Performance hat.
 Insbesondere dürfen keine fachlichen Funktionen des <<glossar-Anwendungskern>>s aufgerufen werden.
 
+[[statische-informationen-ueber-die-anwendung]]
+==== Statische Informationen über die Anwendung
+
+Der Info-Endpoint liefert statische Informationen über die Anwendung, und ist im Baustein Überwachung aktiviert. Die
+Informationen müssen von der Anwendung explizit bereitgestellt werden.
+Z.B. könnten Informationen über den Build und Quellcode-Stand (GIT) der Anwendung geliefert werden. Durch die
+Einbindung von passenden Maven-Plugins können diese Informationen automatisch bei jedem Build erzeugt werden:
+
+:desc-listing-info-maven-config: Maven Konfiguration für Build- und GIT Informationen
+[id="listing-info-maven-config",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-info-maven-config}
+[source,xml]
+----
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>build-info</id>
+                <goals>
+                    <goal>build-info</goal>
+                </goals>
+            </execution>
+        </executions>
+</plugin>
+<plugin>
+    <groupId>pl.project13.maven</groupId>
+    <artifactId>git-commit-id-plugin</artifactId>
+</plugin>
+----
+
+Bei Bedarf können weitere statische Anwendungsinformationen von der Anwendung bereitgestellt werden.
+
+
 [[konfiguration-und-absicherung-von-endpoints]]
 ==== Konfiguration und Absicherung von Endpoints
 
-Gemäß den Vorgaben werden nicht benötigte Endpoints deaktiviert und durch Authentifizierung abgesichert.
+Gemäß den Vorgaben werden nicht benötigte Endpoints deaktiviert, und jeder veröffentlichte Endpoint wird durch
+Authentifizierung abgesichert.
 
 [[konfiguration-von-endpoints]]
 ===== Konfiguration von Endpoints
@@ -271,17 +306,77 @@ Diese können bei Bedarf in `application.properties` überschrieben werden.
 management.endpoints.enabled-by-default=false
 management.endpoint.health.enabled=true
 management.endpoint.metrics.enabled=true
-management.endpoints.web.exposure.include=health, metrics
+management.endpoint.info.enabled=true
+management.endpoints.web.exposure.include=health, metrics, info
 management.endpoints.jmx.exposure.exclude=*
 
 isy.task.tasks.isyHealthTask.ausfuehrung=FIXED_DELAY
 isy.task.tasks.isyHealthTask.initial-delay=5s
 isy.task.tasks.isyHealthTask.fixed-delay=30s
 ----
+
+[[absicherung-von-endpoints]]
+===== Absicherung von Endpoints
+
+Der Zugriff auf Endpoints muss mit einer Authentifizierung abgesichert werden.
+Eine Konfiguration für Spring Security, die alle Endpoints mit HTTP Basic Authentication absichert,
+zeigt <<listing-endpointsecurityconfig>>.
+Der Benutzername und das Passwort werden in `application.properties` gepflegt.
+
+
+:desc-listing-endpointsecurityconfig: Absicherung der Endpoints mit Spring Security
+[id="listing-endpointsecurityconfig",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-endpointsecurityconfig}
+[source,java]
+----
+@Configuration
+@EnableWebSecurity
+@Profile("produktion")
+public class ActuatorSecurityProduktionConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UeberwachungSecurityConfigProperties properties;
+
+    private static final String ENDPOINT_ROLE = "ENDPOINT_ADMIN";
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+         auth.inMemoryAuthentication()
+             .withUser(properties.getUsername())
+             .password(passwordEncoder().encode(properties.getPassword()))
+             .roles(ENDPOINT_ROLE);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.requestMatcher(EndpointRequest.toAnyEndpoint())
+            .authorizeRequests()
+            .anyRequest()
+            .hasRole(ENDPOINT_ROLE)
+            .and()
+            .httpBasic();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+----
+
+[[abschalten-der-absicherung-fuer-die-entwicklung]]
+====== Abschalten der Absicherung für die Entwicklung
+
+Um die Authentifizierung für die Endpoints bei der Entwicklung abzuschalten, kann in <<listing-endpointsecurityconfig>>
+gezeigte Konfiguration über eine Spring-Profil (im Beispiel `produktion`) aktivert bzw. deaktiviert werden.
+
+
+
 [[vorgaben-fuer-die-pruefung-der-verfuegbarkeit]]
 ==== Prüfung der Verfügbarkeit
 
-Anwendungen nach IsyFact-Architektur sollen Mechanismen bereitstellen, die es erlauben, die Verfügbarkeit der Anwendung durch eine betriebliche Überwachung zu prüfen.
+Anwendungen nach IsyFact-Architektur sollen Mechanismen bereitstellen, die es erlauben, die Verfügbarkeit der
+Anwendung durch eine betriebliche Überwachung zu prüfen.
 
 Grundlage dafür ist die Bereitstellung eines HealthEndpoints.
 
@@ -374,59 +469,6 @@ boolean pruefeSystem() {
 }
 ----
 
-
-[[absicherung-von-endpoints]]
-===== Absicherung von Endpoints
-
-Der Zugriff auf Endpoints muss mit einer Authentifizierung abgesichert werden.
-Eine Konfiguration für Spring Security, die alle Endpoints mit HTTP Basic Authentication absichert, zeigt <<listing-endpointsecurityconfig>>.
-Der Benutzername und das Passwort werden in `application.properties` gepflegt.
-
-
-:desc-listing-endpointsecurityconfig: Absicherung der Endpoints mit Spring Security
-[id="listing-endpointsecurityconfig",reftext="{listing-caption} {counter:listings }"]
-.{desc-listing-endpointsecurityconfig}
-[source,java]
-----
-@Configuration
-@EnableWebSecurity
-@Profile("produktion")
-public class ActuatorSecurityProduktionConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private UeberwachungSecurityConfigProperties properties;
-
-    private static final String ENDPOINT_ROLE = "ENDPOINT_ADMIN";
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-         auth.inMemoryAuthentication()
-             .withUser(properties.getUsername())
-             .password(passwordEncoder().encode(properties.getPassword()))
-             .roles(ENDPOINT_ROLE);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatcher(EndpointRequest.toAnyEndpoint())
-            .authorizeRequests()
-            .anyRequest()
-            .hasRole(ENDPOINT_ROLE)
-            .and()
-            .httpBasic();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-}
-----
-
-[[abschalten-der-absicherung-fuer-die-entwicklung]]
-====== Abschalten der Absicherung für die Entwicklung
-
-Um die Authentifizierung für die Endpoints bei der Entwicklung abzuschalten, kann in <<listing-endpointsecurityconfig>> gezeigte Konfiguration über eine Spring-Profil (im Beispiel `produktion`) aktivert bzw. deaktiviert werden.
 
 [[anbindung-eines-monitoring-systems]]
 === Anbindung eines Monitoring-Systems
