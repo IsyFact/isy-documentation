@@ -258,7 +258,7 @@ Einbindung von passenden Maven-Plugins können diese Informationen automatisch b
 </plugin>
 ----
 
-Bei Bedarf können weitere statische Anwendungsinformationen von der Anwendung bereitgestellt werden.
+Bei Bedarf können weitere statische Informationen von der Anwendung bereitgestellt werden.
 
 
 [[konfiguration-und-absicherung-von-endpoints]]
