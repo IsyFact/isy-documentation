@@ -82,12 +82,18 @@ Die Angabe, ob ein Neustart bei Änderung erforderlich ist, sollte jedoch immer 
 ===== Typsichere Bereitstellung von Konfiguration
 
 Zur Bereitstellung von Konfigurationsparametern in der Anwendung wird der von Spring Boot bereitgestellte Mechanismus verwendet.
-Hierzu werden für Konfigurationsparameter logisch zusammenhängende Klassen erstellt, die die Konfigurationswerte aufnehmen und mit `@ConfigurationProperties` annotiert werden.
+Hierzu werden für Konfigurationsparameter logisch zusammenhängende Klassen erstellt, die die Konfigurationswerte aufnehmen und
+mit `@ConfigurationProperties` annotiert werden.
+
 Beim Start der Anwendung befüllt Spring automatisch die Werte der Objekte mit den entsprechenden Properties aus `application.properties`.
+Die Konfigurationswerte werden dabei in Java Standard-Typen (`String`, `int`, `boolean`, usw. ) konvertiert. Für Zeitdauern, Zeitperioden und
+Dateigrößen wird eine erweiterte Syntax für die Konfigurationswerte verwendet. Die Werte dieser Konfigurationstypen werden automatisch in
+die komplexen Datentypen `Duration`, `Period` und `DataSize` umgewandelt.
+
 Zur Überprüfung der Konfigurationswerte sollte die Standard-Java-Validierung eingesetzt werden.
 Damit können Werte auf Vorhandensein und korrektes Format geprüft werden.
-Zur Verwendung in der Anwendung wird die Konfigurationsklasse als Bean instanziiert und dann in der Anwendung per Dependency Injection gesetzt.
 
+Zur Verwendung in der Anwendung wird die Konfigurationsklasse als Bean instanziiert und dann in der Anwendung per Dependency Injection gesetzt.
 Ein Beispiel für eine Konfigurationsklasse ist in <<listing-beispielConfigurationProperties>> zusehen.
 Die dazugehörige Property lautet dann `projekt.meine-anwendung.person.firstName=<Wert>` und muss aufgrund von `@NotNull` gesetzt sein.
 
