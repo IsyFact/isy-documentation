@@ -230,9 +230,9 @@ Insbesondere dürfen keine fachlichen Funktionen des <<glossar-Anwendungskern>>s
 [[statische-informationen-ueber-die-anwendung]]
 ==== Statische Informationen über die Anwendung
 
-Der Info-Endpoint liefert statische Informationen über die Anwendung, und ist im Baustein Überwachung aktiviert. Die
-Informationen müssen von der Anwendung explizit bereitgestellt werden.
-Z.B. könnten Informationen über den Build und Quellcode-Stand (GIT) der Anwendung geliefert werden. Durch die
+Der Info-Endpoint liefert statische Informationen über die Anwendung und ist im Baustein Überwachung aktiviert.
+Die Informationen müssen von der Anwendung explizit bereitgestellt werden.
+Es können z. B. Informationen über den Build und Quellcode-Stand (Git) der Anwendung geliefert werden. Durch die
 Einbindung von passenden Maven-Plugins können diese Informationen automatisch bei jedem Build erzeugt werden:
 
 :desc-listing-info-maven-config: Maven Konfiguration für Build- und GIT Informationen
@@ -260,6 +260,7 @@ Einbindung von passenden Maven-Plugins können diese Informationen automatisch b
 
 Bei Bedarf können weitere statische Informationen von der Anwendung bereitgestellt werden.
 
+NOTE: Weiterführende Informationen enthält die https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-application-info[Dokumentation von Spring Boot zum Info-Endpoint].
 
 [[konfiguration-und-absicherung-von-endpoints]]
 ==== Konfiguration und Absicherung von Endpoints
