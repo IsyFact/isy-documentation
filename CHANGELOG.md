@@ -1,5 +1,6 @@
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
+- `IFS-658`: Vorgabe "Source-Code Kommentierung auf Englisch"
 
 # 2.1.0
 - `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
