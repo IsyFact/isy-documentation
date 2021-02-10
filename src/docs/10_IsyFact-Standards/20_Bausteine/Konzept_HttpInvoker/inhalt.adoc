@@ -1,4 +1,5 @@
 = Konzept HTTP Invoker: Inhalt
+
 include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
@@ -13,10 +14,8 @@ Asynchrone Kommunikation ist von HTTP Invoker nicht vorgesehen und wird im Weite
 
 Um eine möglichst lose Kopplung der IT-Systeme zu erreichen, werden folgende Festlegungen getroffen:
 
-* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht:*
-Es wird stets eine explizite Schnittstellen-Bean (Remote-Bean) als HTTP Invoker Schnittstelle implementiert.
-* *Es werden keine Datenbank-Entitäten verfügbar gemacht:*
-Jegliche über HTTP Invoker zu transportierende Objekte sind Transportobjekte.
+* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht:* Es wird stets eine explizite Schnittstellen-Bean (Remote-Bean) als HTTP Invoker Schnittstelle implementiert.
+* *Es werden keine Datenbank-Entitäten verfügbar gemacht:* Jegliche über HTTP Invoker zu transportierende Objekte sind Transportobjekte.
 * *Es werden keine Exceptions des Anwendungskerns geworfen:* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Service-Schnittstelle verwendet werden.
 
 IT-Systeme definieren für ihre HTTP Invoker Schnittstellen u.a. das Remote-Bean, alle direkt und indirekt verwendeten Transportobjekte sowie alle über die Schnittstelle transportierten Exceptions.
@@ -28,11 +27,20 @@ Es ergibt sich so folgendes Szenario für einen Aufruf einer HTTP Invoker Schnit
 .{desc-image-KapsCallInvoke}
 image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
 
+[[kompatibilitaet-zu-weiteren-iam-systemen]]
+=== Kompatibilität zu weiteren IAM-Systemen
+
+Um die Kompatibilität zu weiteren IAM-Systemen (siehe <<KonzeptSicherheit>>) zu gewährleisten, werden systemspezifische Daten des IAM-Systems von der HTTP Invoker Schnittstelle verarbeitet und weitergeleitet.
+
+Bei der Verarbeitung werden die systemspezifischen Daten im AufrufkontextVerwalter abgelegt sind so jeder Methode des Remote-Beans zugänglich (siehe <<aufbau-des-remote-beans>>).
+
+Die Weiterleitung dieser Daten erfolgt über den HTTP-Header des HTTP-Request.
 
 [[aufbau-der-service-logik]]
 == Aufbau der Service-Logik
 
-Die Service-Logik besteht, wie im <<DetailkonzeptKomponenteService>> beschrieben, aus einem Remote-Bean, einer Exception-Fassade und einer Service-Fassade pro Service. Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
+Die Service-Logik besteht, wie im <<DetailkonzeptKomponenteService>> beschrieben, aus einem Remote-Bean, einer Exception-Fassade und einer Service-Fassade pro Service.
+Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
 
 :desc-image-AufbauServLogik: Aufbau der Service-Logik mit HTTP Invoker
 [id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
@@ -41,6 +49,8 @@ image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
 
 Im Wesentlichen besteht die Service-Logik also aus drei Klassen, die im Folgenden näher beleuchtet werden.
 
+[[aufbau-des-remote-beans]]
+]
 === Aufbau des Remote-Beans
 
 Als Remote-Bean wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert.
@@ -89,7 +99,6 @@ Es wird daher empfohlen, Schnittstellen mit der ältesten Java-Version zu kompil
 
 Eine HTTP Invoker Schnittstelle vereint mehrere Service-Methoden in einem Remote-Bean.
 Für die Versionierung bedeutet das, dass stets die komplette Remote-Bean-Schnittstelle versioniert wird und nicht die einzelnen Methoden der Remote-Bean-Schnittstelle.
-
 
 [[namenskonventionen]]
 == Namenskonventionen
