@@ -498,3 +498,29 @@ Das Betrifft alle HTTP-Invoker-Schnittstellen, die direkt von außerhalb einer A
 
 Um die Sicherheit an dieser Stelle zu erhöhen, müssen HTTP-Invoker-Schnittstellen den `IsyHttpInvokerServiceExporter` verwenden.
 Dieser Exporter deaktiviert standardmäßig die Verwendung von Proxy-Klassen, über welche potenziell schadhafter Code deserialisiert werden kann.
+
+== Kompatibilität zu OAuth 2
+
+Um die Kompatibilität zu OAuth 2 zu gewährleisten, wird das Bearer Token von allen HTTP Invoker Schnittstellen verarbeitet und weitergeleitet.
+Das Bearer Token wird dabei im `AufrufkontextVerwalter` abgelegt und ist so jeder Methode des Remote-Beans zugänglich.
+Die Weiterleitung des Bearer Tokens erfolgt über einen HTTP-Header und ist so für existierende Schnittstellen transparent.
+
+Der Zugriff auf das Bearer Token geschieht über den `AufrufKontextVerwalter`.
+Die Klasse enthält hierfür ein Attribut `bearerToken`.
+
+:desc-listing-aufrufkontextverwalter: Bearer Token in AufrufKontextVerwalter
+
+[id="listing-aufrufkontextverwalter",reftext="{listing-caption} {counter:listings}"]
+.{desc-listing-aufrufkontextverwalter}
+[source,java]
+----
+public interface AufrufKontextVerwalter<T extends AufrufKontext> {
+
+    String getBearerToken();
+
+    void setBearerToken(String bearerToken);
+
+}
+----
+
+Zur Übertragung wird der HTTP-Header `Authorization` verwendet.
