@@ -1,5 +1,7 @@
 = Nutzungsvorgaben HTTP Invoker: Inhalt
 
+:imagesdir: images
+
 // tag::inhalt[]
 [[maven-konfiguration]]
 == Maven-Konfiguration
@@ -423,10 +425,13 @@ Der Fehler wird in der Regel nicht lokal behandelt, sondern einfach zurückgegeb
 Letztlich deuten fehlende Rechte meist auf einen unberechtigten Zugriff oder einen Fehler in der Konfiguration einer aufrufenden Anwendung hin, sodass hier die normale Fehlerbehandlung greift.
 
 [[kompatibilitaet-zu-weiteren-iam-systemen]]
-=== Kompatibilität zu weiteren IAM-Systemen
+=== Kompatibilität zu OAuth 2
 
-Aufgrund der Umstellungen auf ein neues IAM-System und der Umstieg auf eine andere Schnittstellentechnologie (siehe <<KonzeptREST>>) kommt es übergangsweise zum Einsatz von unterschiedlichen Schnittstellentechnologien.
-Um die Kompatibilität zu diesen Systemen zu gewährleisten, wurde der `AufrufKontextVerwalter` um das Attribut `Bearer Token` erweitert.
+Aufgrund der Umstellung auf OAuth 2 zur Authentifizierung und Autorisierung muss das Bearer Token bei jedem Schnittstellenaufruf übertragen werden.
+Dies geschieht für existierende Schnittstellen transparent.
+
+Der Zugriff auf das Bearer Token geschieht über den `AufrufKontextVerwalter`.
+Die Klasse enthält hierfür ein Attribut `bearerToken`.
 
 :desc-listing-aufrufkontextverwalter: Bearer Token in AufrufKontextVerwalter
 
@@ -435,54 +440,15 @@ Um die Kompatibilität zu diesen Systemen zu gewährleisten, wurde der `AufrufKo
 [source,java]
 ----
 public interface AufrufKontextVerwalter<T extends AufrufKontext> {
-    /**
-     * Liefert das OAuth2 Bearer Token zurück.
-     *
-     * @return das OAuth2 Bearer Token.
-     */
+
     String getBearerToken();
 
-    /**
-     * Setzt das OAuth2 Bearer Token. Schneidet das Präfix 'bearer ' ab, falls es vorhanden ist.
-     *
-     * @param bearerToken das base64-codierte OAuth2 Bearer Token
-     */
     void setBearerToken(String bearerToken);
+
 }
 ----
 
-Bei der Verarbeitung eines HTTP-Request wird das `Bearer Token` aus dem Request gelesen und in dem AufrufKontextVerwalter gesetzt.
-
-:desc-listing-handlerequest: Auslesen und Setzen des Bearer Tokens
-
-[id="listing-handlerequest",reftext="{listing-caption} {counter:listings}"]
-.{desc-listing-handlerequest}
-[source,java]
-----
-@Override
-public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String token = request.getHeader(AUTHORIZATION_HEADER);
-    this.aufrufKontextVerwalter.setBearerToken(token);
-    super.handleRequest(request, response);
-}
-----
-
-In der Methode `prepareConnection` aus der Klasse `TimeoutWiederholungHttpInvokerRequestExecutor` wird der HTTP-Header um das `Bearer Token` erweitert.
-
-:desc-listing-prepareconnection: Setzen des Bearer Tokens in HTTP-Header
-
-[id="listing-prepareconnection",reftext="{listing-caption} {counter:listings}"]
-.{desc-listing-prepareconnection}
-[source,java]
-----
-@Override
-protected void prepareConnection(HttpURLConnection con, int contentLength) throws IOException {
-    super.prepareConnection(con, contentLength);
-    con.setRequestProperty("Authorization", aufrufKontextVerwalter.getBearerToken());
-    con.setReadTimeout(this.timeout);
-    con.setConnectTimeout(this.timeout);
-    }
-----
+Zur Übertragung wird der HTTP-Header `Authorization` verwendet.
 
 [[paketierung]]
 == Paketierung einer Service-Schnittstelle
