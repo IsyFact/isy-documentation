@@ -32,7 +32,7 @@ image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
 
 Um die Kompatibilität zu OAuth 2 (siehe <<KonzeptSicherheit>>) zu gewährleisten, wird das Bearer Token von allen HTTP Invoker Schnittstellen verarbeitet und weitergeleitet.
 Das Bearer Token wird dabei im `AufrufkontextVerwalter` abgelegt und ist so jeder Methode des Remote-Beans zugänglich (siehe <<aufbau-des-remote-beans>>).
-Die Weiterleitung des Bearer Tokens erfolgt über einen HTTP-Header, sodass es für existierende Schnittstellen transparent erfolgt.
+Die Weiterleitung des Bearer Tokens erfolgt über einen HTTP-Header und ist so für existierende Schnittstellen transparent.
 
 [[aufbau-der-service-logik]]
 == Aufbau der Service-Logik
