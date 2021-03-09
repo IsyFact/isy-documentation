@@ -33,7 +33,7 @@ Weitere Vorteile sind höhere Sicherheit und Softwarequalität durch Einsatz erp
 :desc-image-IFBereiche: Durch die IsyFact abgedeckte Bereiche
 [id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFBereiche}
-image::IFBereiche.png[align="center",pdfwidth=70%,width=70%]
+image::../../common/images/IFBereiche.png[align="center",pdfwidth=60%,width=60%]
 
 Die IsyFact bietet standardisierte Lösungen zu wichtigen Themen beim Bau von Fachanwendungen.
 Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Besonderheiten seiner Fachanwendung konzentrieren.

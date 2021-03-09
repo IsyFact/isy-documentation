@@ -43,10 +43,10 @@ Bspw.: Protokollierung, Regelwerk etc.
 
 Die Artefakte der IsyFact-Standards und IsyFact-Erweiterungen werden in gleicher Weise in 5 Säulen klassifiziert, die der Strukturierung der Inhalte der Factory dienen.
 
-:desc-image-Saeulen: Die 5 Säulen der IsyFact
-[id="image-Saeulen",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-Saeulen}
-image::Saeulen.png[align="center",width=60%,pdfwidth=60%]
+:desc-image-IFBereiche: Die 5 Säulen der IsyFact
+[id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-IFBereiche}
+image::../../common/images/IFBereiche.png[align="center",width=60%,pdfwidth=60%]
 
 Die einzelnen Säulen sind:
 

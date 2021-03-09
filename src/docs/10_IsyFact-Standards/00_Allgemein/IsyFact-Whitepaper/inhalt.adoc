@@ -53,10 +53,10 @@ Sowohl die IsyFact, also auch die IsyFact-Standards orientieren sich an dieser S
 * Konventionen und Vorgaben für die Spezifikation und Programmierung sowie das Projektvorgehen nach V-Modell XT: der *Methodik* und
 * Tools für teilweise Automatisierung von Modellierung, Programmierung, Tests und Fehlerverfolgung: den *Werkzeugen*
 
-:desc-image-fuenfsaeulen: Die fünf Säulen der IsyFact
-[id="image-fuenfsaeulen",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-fuenfsaeulen}
-image::fuenfsaeulen.png[align="center"]
+:desc-image-IFBereiche: Die fünf Säulen der IsyFact
+[id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-IFBereiche}
+image::../../common/images/IFBereiche.png[align="center",width=60%,pdfwidth=60%]
 
 Die Säulen werden nachfolgend im Detail beschrieben.
 
