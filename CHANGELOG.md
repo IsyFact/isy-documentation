@@ -1,4 +1,6 @@
 # 1.8.1
+- `IFS-849`: Tabelle mit zusätzlichen Zeichen im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
+- `IFS-928`: Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
 - `IFS-563`: Dokumentation MDC-Filter
 - `IFS-510`: Hinweis für Aufräumen aller Korrelations-Ids nach Serviceaufrufen hinzugefügt
 - `IFS-91` & `IFS-92`: Migration zum Redisson Client
