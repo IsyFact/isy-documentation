@@ -1321,7 +1321,7 @@ Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
 Die Transformatoren arbeiten alle nach dem gleichen Schema.
 Sie unterscheiden sich nur durch unterschiedliche Tabellen, die zur Zeichentransformation herangezogen werden.
 
-. Alle Zeichen werden gemäß einer Mapping-Tabelle transformiert <<SLMapping>>.
+. Alle Zeichen werden gemäß einer Mapping-Tabelle transformiert (Beispiel in <<table-transkription>>).
 . Unbekannte oder nicht abbildbare Zeichen werden durch Leerzeichen ersetzt.
 . Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
 . Zwei aufeinanderfolgende Leerzeichen werden durch ein einzelnes Leerzeichen ersetzt.
@@ -1331,8 +1331,14 @@ Darüber hinaus werden folgende Transformatoren mitgeliefert:
 
 *Identischer Transformator*
 
-Dieser Transformator bildet alle gültigen String.Latin-Zeichen auf sich selber ab (Spalte C, Tabelle  <<SLMapping>>). Der
+Dieser Transformator bildet alle gültigen String.Latin-Zeichen auf sich selber ab. Der
 Nutzen dieses Transformators liegt darin, dass alle nicht String.Latin-Zeichen aus der übergebenen Zeichenkette entfernt werden.
+Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
+
+*Transkription Transformator*
+
+Dieser Transformator führt die in <<table-transkription>> dargestellte Transkription durch. Die Transkription ist eine aussprachebasierte
+Darstellung der übergebenen Zeichenkette, die mit dem ASCII-Zeichensatz dargestellt werden kann.
 Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
 
 [[einbindung-der-bibliothek-in-eine-anwendung]]
