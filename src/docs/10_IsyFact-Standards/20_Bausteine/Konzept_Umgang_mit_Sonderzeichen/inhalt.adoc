@@ -269,11 +269,12 @@ Zeichen verwendet, ist bei ICAO-MRTD das Ziel, diakritische Zeichen vollständig
 auf den ASCII-Zeichensatz zu ermöglichen.
 Eine bereits umgeschriebene Zeichenfolge wird durch eine erneute Transkription nicht mehr verändert.
 
-Die Tabelle für die Abbildungsregeln ist im Dokument <<table-transkription>> enthalten.
+In <<table-transkription>> sind die Transkriptionsregeln für die verschiedenen Zeichen dargestellt.
+
 :desc-table-transkription: Transkriptionsregeln
 [id="table-transkription",reftext="{table-caption} {counter:tables}"]
 .{desc-table-transkription}
-[cols="2,1,7",options="header"]
+[cols="2,1,7,2,1",options="header"]
 |===
 |Unicode-Wert $$U+….$$ |Glyph |Unicode-Zeichenname |Unicode-Wert der Transkription |Transkription
 |0009 |� |CHARACTER TABULATION |0009 |
@@ -489,7 +490,7 @@ Die Tabelle für die Abbildungsregeln ist im Dokument <<table-transkription>> en
 |007A 0308 |z̈ |LATIN SMALL LETTER Z WITH COMBINING DIAERESIS |005A |Z
 |007A 0327 |z̧ |LATIN SMALL LETTER Z WITH COMBINING CEDILLA |005A |Z
 |007B |{ |LEFT CURLY BRACKET |007B |{
-|007C || |VERTICAL LINE |007C ||
+|007C |\| |VERTICAL LINE |007C |\|
 |007D |} |RIGHT CURLY BRACKET |007D |}
 |007E |~ |TILDE |007E |~
 |00A0 |  |NO-BREAK SPACE | |
@@ -1718,7 +1719,7 @@ unterstützt. (z.B. Code2000, erhältlich unter http://www.code2000.net).
 |007A 0308 |z̈ |LATIN SMALL LETTER Z WITH COMBINING DIAERESIS
 |007A 0327 |z̧ |LATIN SMALL LETTER Z WITH COMBINING CEDILLA
 |007B |{ |LEFT CURLY BRACKET
-|007C || |VERTICAL LINE
+|007C |\| |VERTICAL LINE
 |007D |} |RIGHT CURLY BRACKET
 |007E |~ |TILDE
 |00A0 |  |NO-BREAK SPACE
