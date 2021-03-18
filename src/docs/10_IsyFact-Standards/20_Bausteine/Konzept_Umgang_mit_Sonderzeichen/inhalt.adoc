@@ -378,10 +378,13 @@ lateinischen Buchstaben ohne diakritische Zeichen), Alpha-Latein-Diakrit (alle g
 Dieses Kapitel beschreibt die Verwendung des Bausteins `isy-sonderzeichen`.
 
 Der Baustein `isy-sonderzeichen` ist eine Querschnittskomponente, die anderen Anwendungen Services zur
-Transformation von Zeichenketten zur Verfügung stellt.
-
-Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche
+Transformation von Zeichenketten zur Verfügung stellt. Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche
 Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
+
+Im Zuge der Umsetzung der DIN Spezifikation 91 379 wurde `isy-sonderzeichen` erweitert. Um die ursprüngliche Funktionalität zu erhalten,
+wurde die Bibliothek in zwei Packages aufgeteilt. Das _stringlatin1_1_ Package enthält die ursprüngliche Funktionalität. Die Umsetzung der
+DIN Spezifikation wurde im Package _dinspec91379_ umgesetzt. Die Architektur und Funktionsweise der Komponente wurde im Zuge der
+Umsetzung nicht verändert.
 
 [[funktionsweise]]
 == Funktionsweise
@@ -438,16 +441,16 @@ Die Transformator-Factory und ein konkreter Transformator werden über Spring in
 
 [source,xml]
 ----
-<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.TransformatorFactory">
+<bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.pliscommon.plissonderzeichen.stringlatin1_1.core.transformation.TransformatorFactory">
   <property name="transformator" ref="sonderzeichenTransformator" >
   <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
 </bean>
 
-<bean id="sonderzeichenTransformator" class="de.bund.bva.pliscommon.plissonderzeichen.core.transformation.impl.IdentischerTransformator">
+<bean id="sonderzeichenTransformator" class="de.bund.bva.pliscommon.plissonderzeichen.stringlatin1_1.core.transformation.impl.IdentischerTransformator">
 </bean>
 ----
 
-In obigem Beispiel wird dabei der Transformator _IdentischerTransformator_ geladen.
+In obigem Beispiel wird dabei der Transformator _IdentischerTransformator_ aus der ursprünglichen Umsetzung geladen.
 Jeder der Transformatoren setzt bereits eine fest implementierte Transformationstabelle nach einem bestimmten
 Vorgehen um (siehe <<funktionsweise>>).
 
@@ -455,6 +458,8 @@ Bei der Konfiguration der _TransformatorFactory_ kann die zusätzliche (optional
 Eigenschaft _transformationsTabelle_ dazu genutzt werden, eine weitere Transformationstabelle anzugeben.
 Die Regeln in dieser Tabelle überschreiben dabei existierende alte Regeln.
 Es findet also eine Ergänzung der existierenden Regeln statt.
+
+Das Vorgehen für die Komponenten der DIN Spezifikation 91 379 ist analog. Es müssen lediglich die Package-Pfade der Klassen aktualisiert werden.
 
 [[schnittstellendefinition]]
 == Schnittstellendefinition
