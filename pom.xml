@@ -1413,6 +1413,77 @@
                                     </outputFile>
                                 </configuration>
                             </execution>
+
+                            <execution>
+                                <id>IsyFact-Vorlage-Systementwurf-html</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>html</backend>
+                                    <sourceDirectory>
+                                        src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Vorlage-Systementwurf
+                                    </sourceDirectory>
+                                    <sourceDocumentName>master.adoc</sourceDocumentName>
+                                    <outputFile>
+                                        ${html-output-base-directory}/IsyFact-Standards/Methodik/Systementwurf/IsyFactVorlageSystementwurf.html
+                                    </outputFile>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>IsyFact-Vorlage-Systementwurf-pdf</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>pdf</backend>
+                                    <sourceDirectory>
+                                        src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Vorlage-Systementwurf
+                                    </sourceDirectory>
+                                    <sourceDocumentName>master.adoc</sourceDocumentName>
+                                    <outputFile>
+                                        ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/20_Systementwurf/IsyFact-Vorlage-Systementwurf.pdf
+                                    </outputFile>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>IsyFact-Vorlage-Systemhandbuch-html</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>html</backend>
+                                    <sourceDirectory>
+                                        src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Vorlage-Systemhandbuch
+                                    </sourceDirectory>
+                                    <sourceDocumentName>master.adoc</sourceDocumentName>
+                                    <outputFile>
+                                        ${html-output-base-directory}/IsyFact-Standards/Methodik/Implementierung/IsyFactVorlageSystemhandbuch.html
+                                    </outputFile>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>IsyFact-Vorlage-Systemhandbuch-pdf</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>pdf</backend>
+                                    <sourceDirectory>
+                                        src/docs/10_IsyFact-Standards/40_Methodik/IsyFact-Vorlage-Systemhandbuch
+                                    </sourceDirectory>
+                                    <sourceDocumentName>master.adoc</sourceDocumentName>
+                                    <outputFile>
+                                        ${pdf-output-base-directory}/10_IsyFact-Standards/40_Methodik/30_Implementierung/IsyFact-Vorlage-Systemhandbuch.pdf
+                                    </outputFile>
+                                </configuration>
+                            </execution>
+
                             <execution>
                                 <id>Java-Programmierkonventionen-html</id>
                                 <phase>generate-resources</phase>
