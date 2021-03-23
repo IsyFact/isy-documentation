@@ -107,6 +107,14 @@
 					</snapshots>
 				</pluginRepository>
 				<pluginRepository>
+					<id>repository-release</id>
+					<name>Projekt-release-repository</name>
+					<url>${env.REPOSITORY_PROJECT_RELEASE}</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
 					<id>repository-snapshot</id>
 					<name>Projekt-snapshot-repository</name>
 					<url>${env.REPOSITORY_PROJECT_SNAPSHOT}</url>
