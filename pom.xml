@@ -8,8 +8,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <html-output-base-directory>${project.build.directory}/html</html-output-base-directory>
-        <pdf-output-base-directory>${project.build.directory}/pdf</pdf-output-base-directory>
+        <html-output-base-directory>${project.build.directory}/doc/html</html-output-base-directory>
+        <pdf-output-base-directory>${project.build.directory}/doc/pdf</pdf-output-base-directory>
         <maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
     </properties>
 
