@@ -81,7 +81,7 @@ Für die Abbildung von griechischen Zeichen wird der Standard ISO-843 verwendet.
 Während der ISO-Standard (ISO-9) für die Transkription von kyrillischen Zeichen noch diakritische lateinische Zeichen verwendet, ist bei ICAO-MRTD das Ziel, diakritische Zeichen vollständig zu vermeiden, um eine Abbildung auf den ASCII-Zeichensatz zu ermöglichen.
 Eine bereits umgeschriebene Zeichenfolge wird durch eine erneute Transkription nicht mehr verändert.
 
-Die Tabelle für die Abbildungsregeln ist im Dokument <<Transskriptionsregeln>> enthalten.
+In <<table-transkription>> sind die Transkriptionsregeln für die verschiedenen Zeichen dargestellt.
 
 [[umsetzung-im-system]]
 ==== Umsetzung im System
