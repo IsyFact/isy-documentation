@@ -455,7 +455,7 @@ Exception(de.bund.bva.
 Isyfact.logging.
 hilfsklassen.TestZiel
 ParameterPerson,
-java.lang.String) throws java.lang.Throwable`
+java.lang.String)`
 |dauer a|
 Dauer eines Methodenaufrufs.
 
