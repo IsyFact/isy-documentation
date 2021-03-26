@@ -176,7 +176,7 @@ Bei der Erstellung einer neuen Anwendung ist in der Spezifikations- bzw. Konstru
 Dies ist ebenfalls analog zur Definition der Ausnahme-IDs – es wird für Ausnahme-IDs und Ereignisschlüssel die gleiche Komponenten-ID verwendet.
 * *3 Ziffern*, als laufende Nummer der Ereignisschlüssel der jeweiligen Komponente.
 
-Ein exemplarischer Ereignisschlüssel der Fachanwendung XYZ ist demnach:
+Ein exemplarischer Ereignisschlüssel der Geschäftsanwendung XYZ ist demnach:
 
 [frame="none"]
 |====

@@ -24,7 +24,7 @@ Für das Verständnis dieses Dokuments werden Kenntnisse über folgende Themen u
 
 |Resource Server
 |Server, auf welchem die Geschützten Ressourcen liegen.
-|Fachanwendung, Register, Querschnittssystem
+|Geschäftsanwendung, Register, Querschnittssystem
 
 |Client
 |Anwendung, die mit Hilfe des Resource Owner auf eine geschützte Ressource zugreifen möchte.
@@ -65,7 +65,7 @@ In diesem Abschnitt werden verschiedene querschnittliche Aspekte dokumentiert, d
 
 === Authentifizierung
 
-Dieser Abschnitt beschreibt die Architektur der Fach- und Querschnittsanwendungen mit Bezug auf die Authentifizierung.
+Dieser Abschnitt beschreibt die Architektur der Geschäfts- und Querschnittsanwendungen mit Bezug auf die Authentifizierung.
 Dabei wird differenziert zwischen der Authentifizierung am Service Gateway und der Authentifizierung am Portal.
 
 ==== Authentifizierung am Service-Gateway
@@ -102,7 +102,7 @@ image::konzept_keycloak_auth_sgw.png[align="center"]
 |Authorization Server und OpenID Provider.
 
 |Anwendung
-|Beliebige interne Fachanwendung.
+|Beliebige interne Geschäftsanwendung.
 
 |===
 
@@ -125,7 +125,7 @@ Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen 
 ==== Authentifizierung am Portal
 
 Ähnlich wie bei der Authentifizierung über das SGW, wird hier die Kommunikation zuerst über ein API Gateway (Reverse Proxy) geführt.
-Die externe Anwendung (i.d.R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Fachanwendungen zugreifen.
+Die externe Anwendung (i.d.R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Geschäftsanwendungen zugreifen.
 Im Portal übernimmt _isy-sicherheit-keycloak_ die Aufgabe das Access-Token ggf. in einen `Aufrufkontext` zu wandeln.
 
 :desc-image-auth-portal: Authentifizierung am Portal bzw. API-Gateway

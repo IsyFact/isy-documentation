@@ -16,6 +16,12 @@ Durch die Erweiterung des Dokuments wurde eine Restrukturierung der Kapitel notw
 ====
 // end::release-2.2.0[]
 
+// *Änderungen IsyFact 2.2.0*
+
+// tag::release-2.2.0[]
+
+// end::release-2.2.0[]
+
 // *Änderungen IsyFact 2.1.0*
 
 // tag::release-2.1.0[]

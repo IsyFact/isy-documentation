@@ -21,16 +21,16 @@ _Die Systemdokumentation wird separat erstellt, dabei werden Teile dieses Dokume
 
 *_Umfang:_*
 
-_In der Regel wird für jedes IT-System (Fachanwendung) jeweils ein eigenes Dokument Systementwurf angelegt.
+_In der Regel wird für jedes IT-System (Geschäftsanwendung) jeweils ein eigenes Dokument Systementwurf angelegt.
 Es gibt jedoch auch IT-Systeme die alleinstehend keine sinnvolle Funktion erbringen können.
 Dafür kann ein gemeinsamer Systementwurf in einem Dokument erstellt werden._
 
 _Beispiel:_
 
-_Für ein neues Verfahren sind eine Fachanwendung und ein Service-Gateway zu erstellen.
-Das Service-Gateway stellt die Services der Fachanwendung bereit.
-Weiterhin wird ein Native-Client benötigt, welcher ebenfalls die Fachanwendung aufruft.
-Für diesen Fall werden Fachanwendung, Native-Client und Service-Gateway als Teilsysteme in einem gemeinsamen Systementwurf beschrieben._
+_Für ein neues Verfahren sind eine Geschäftsanwendung und ein Service-Gateway zu erstellen.
+Das Service-Gateway stellt die Services der Geschäftsanwendung bereit.
+Weiterhin wird ein Native-Client benötigt, welcher ebenfalls die Geschäftsanwendung aufruft.
+Für diesen Fall werden Geschäftsanwendung, Native-Client und Service-Gateway als Teilsysteme in einem gemeinsamen Systementwurf beschrieben._
 
 *_Nutzung:_*
 
@@ -344,7 +344,7 @@ Abweichungen zur Referenzarchitektur sind in Tabelle 2 dokumentiert und begründ
 == Systemarchitektur des Gesamtsystems
 
 ====
-_In diesem Kapitel wird ein Systemüberblick gegeben und die Aspekte des Gesamtsystems beschrieben, die für alle oder mehrere Teilsysteme gelten. Das können Verfahren, Festlegungen oder die Beschreibung gemeinsam genutzter Komponenten sein. In der Regel hat ein System mehrere Teilsysteme, z. B. eine Fachanwendung und ein Service Gateway._
+_In diesem Kapitel wird ein Systemüberblick gegeben und die Aspekte des Gesamtsystems beschrieben, die für alle oder mehrere Teilsysteme gelten. Das können Verfahren, Festlegungen oder die Beschreibung gemeinsam genutzter Komponenten sein. In der Regel hat ein System mehrere Teilsysteme, z. B. eine Geschäftsanwendung und ein Service Gateway._
 
 _Festlegungen, die bereits in den übergeordneten Dokumenten (z.B. Referenzarchitektur, Sicherheitsrichtlinie, …) gemacht wurden, sind im gesamten Kapitel nur zu referenzieren, Abweichungen hiervon sind zu begründen._
 ====
@@ -356,7 +356,7 @@ _Festlegungen, die bereits in den übergeordneten Dokumenten (z.B. Referenzarchi
 *_Zweck_*
 
 _Dieser Abschnitt beschreibt, aus welchen Teilsystemen das Gesamtsystem besteht und gibt damit einen Top-level-Überblick über das System.
-Teilsysteme sind z. B.: ein Service-Gateway oder eine Fachanwendung.
+Teilsysteme sind z. B.: ein Service-Gateway oder eine Geschäftsanwendung.
 Dieses Kapitel ist die nächste Konkretisierungsstufe nach der Einordnung in die Anwendungslandschaft aus Kapitel <<einbettung-in-anwendungslandschaft, Systemüberblick/Einbettung in die Anwendungslandschaft>>_
 
 *_Inhalte_*
@@ -381,7 +381,7 @@ image::teilsysteme.png[align = center, title-align=center]
 ====
 _Die Farbgebung für ein Teilsystem-Element orientiert sich an der fachlichen Referenzarchitektur. Für die verschiedenen Systeme sind folgende Hintergründe zu verwenden:_
 
-* _Blau für Fachanwendungen (R/G/B: 153 / 204 / 255)_
+* _Blau für Geschäftsanwendungen (R/G/B: 153 / 204 / 255)_
 * _Orange für Register (R/G/B: 255 / 204 / 153)_
 * _Gelb für Querschnittssysteme (R/G/B: 255 / 255 / 153)_
 * _Violett für das Service-Gateway (R/G/B: 255 / 153 / 204)_
@@ -451,7 +451,7 @@ Ggf. kann man noch eine Festlegung aufnehmen, ob einmalige Ausreißer erlaubt si
 ====
 _In der Regel ein kurzer Satz:_
 
-_Durch die Verwendung der IsyFact-Referenzarchitektur erfüllt die Anwendung XYZ die Anforderungen, die allgemein an Fachanwendungen gestellt werden: Sie läuft auf separaten Hardware-Systemen, die Failover und Lastverteilung ermöglichen.
+_Durch die Verwendung der IsyFact-Referenzarchitektur erfüllt die Anwendung XYZ die Anforderungen, die allgemein an Geschäftsanwendungen gestellt werden: Sie läuft auf separaten Hardware-Systemen, die Failover und Lastverteilung ermöglichen.
 Eine weitere Skalierung ist durch Hinzufügen weiterer Systeme möglich._
 ====
 
@@ -614,7 +614,7 @@ _Schließlich finden sich in diesem Kapitel noch Details, auf die der Chefdesign
 
 *_Beschreibung der Teilsysteme_*
 
-_Die Teilsysteme haben (soweit es sich um Fachanwendungen handelt) folgende, fest vorgegebene T-Architektur:_
+_Die Teilsysteme haben (soweit es sich um Geschäftsanwendungen handelt) folgende, fest vorgegebene T-Architektur:_
 ====
 
 :desc-image-darstellung-teilsysteme: Darstellung der Teilsysteme

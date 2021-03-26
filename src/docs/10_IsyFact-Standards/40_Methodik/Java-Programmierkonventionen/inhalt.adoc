@@ -393,7 +393,7 @@ komponente>. ...
 	= <für Anwendungssystem> | <subsystem/komponente>
 	  <-
       <für Anwendungssystem>
-		= ... (Name der Fachanwendung bzw. querschnittlichen Komponente gemäß fachlicher Architektur)
+		= ... (Name der Geschäftsanwendung bzw. querschnittlichen Komponente gemäß fachlicher Architektur)
 ----
 
 Unterhalb von `<subsystem/komponente>` werden die Packages projektspezifisch strukturiert.
