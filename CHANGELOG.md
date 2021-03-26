@@ -1,4 +1,5 @@
 # 2.2.0
+- `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
 

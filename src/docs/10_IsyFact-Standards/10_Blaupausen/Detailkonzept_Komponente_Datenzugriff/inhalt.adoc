@@ -747,7 +747,7 @@ Standardmäßig ist für Hibernate ein optimistisches Locking zu verwenden: Obje
 Stattdessen wird am Ende der Transaktion geprüft, ob lokal veränderte Objekte parallel in der Datenbank geändert wurden.
 Ist dies der Fall, wird eine Ausnahme geworfen.
 
-Dieser Vorgehensweise liegt die Annahme zugrunde, dass konkurrierende schreibende Zugriffe in einer Fachanwendung nicht oder höchstens in Ausnahmefällen vorkommen.
+Dieser Vorgehensweise liegt die Annahme zugrunde, dass konkurrierende schreibende Zugriffe in einer Geschäftsanwendung nicht oder höchstens in Ausnahmefällen vorkommen.
 Sollte dies nicht zutreffen, muss explizites Locking verwendet werden (vgl.
 Abschnitt <<bei-bedarf-explizites-locking-verwenden>>). In der Anwendung ist keine explizite Fehlerbehandlung (etwa durch das Mergen der Daten) zu implementieren.
 Die geworfene Ausnahme ist (gewrappt) an den Aufrufer weiter zu geben.

@@ -221,7 +221,7 @@ Da diese Konfiguration in der Regel langjährig unverändert verwendet wird und 
 ==== Autorisierung in der GUI: Spring Konfiguration
 
 Die Aufrufe der GUI erfolgen über HTTP.
-Der CAMS-Server stellt am Webserver vor Weiterleitung der Anfrage an eine Fachanwendung sicher, dass diese erfolgreich authentifiziert wurde.
+Der CAMS-Server stellt am Webserver vor Weiterleitung der Anfrage an eine Geschäftsanwendung sicher, dass diese erfolgreich authentifiziert wurde.
 Mit der Authentifizierung des Anwenders fügt der CAMS-Server HTTP-Header in die Anfrage ein.
 Diese Header enthalten neben Informationen der Identifikation des anfragenden Anwenders auch die Gesamtheit seiner Rollen.
 Die Informationen aus dem HTTP-Header werden in den Aufrufkontext übertragen.
