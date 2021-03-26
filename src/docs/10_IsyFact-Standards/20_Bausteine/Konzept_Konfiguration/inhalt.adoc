@@ -26,7 +26,7 @@ Als Konfiguration wird die Menge aller Konfigurationsparameter einer Anwendung v
   Ausnahmen hiervon bedürfen besonderer technischer und organisatorischer Maßnahmen.
   Details dazu werden in dem Dokument <<NutzungsvorgabenKonfiguration>> beschrieben.
 * Das Konfigurationskonzept berücksichtigt sowohl die Konfiguration für die Entwicklungsumgebung als auch geeignete Vorgehensweisen für die Konfiguration der Produktionsumgebung.
-* Alle Anwendungssysteme und Batches, die schreibend auf eine andere Fachanwendung zugreifen, müssen auf die Nichtverfügbarkeit dieser Komponente vorbereitet sein.
+* Alle Anwendungssysteme und Batches, die schreibend auf eine andere Geschäftsanwendung zugreifen, müssen auf die Nichtverfügbarkeit dieser Komponente vorbereitet sein.
   Entweder können jene Systeme vorübergehend heruntergefahren sein, oder bestimmte Funktionen, z.B. der Schreibzugriff, können über Konfigurationsparameter deaktiviert sein.
   Systeme, bei denen Funktionen deaktiviert sind, zeigen Benutzern frühzeitig einen Hinweis an, welche Funktionen nicht zur Verfügung stehen.
   Ob eine Anwendung einen Konfigurationsparameter erhält oder heruntergefahren werden kann, muss für jede Anwendung, abhängig von deren Verfügbarkeitsanforderung, individuell entschieden werden.

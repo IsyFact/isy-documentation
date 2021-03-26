@@ -24,7 +24,7 @@ Es enthält nur solche Informationen, welche die eigentliche Software betreffen,
 
 _In diesem Dokument werden alle Systeme eines Verfahrens gemeinsam beschrieben.
 Die Abgrenzung, welche Systeme zusammen beschrieben werden, ist ggf. im Einzelfall abzuwägen.
-Typischerweise werden eine Fachanwendung und ein zugehöriges Service Gateway gemeinsam beschrieben, aber z.B. nicht zwei Fachanwendungen die zu unterschiedlichen Fachverfahren gehören, auch wenn Sie sich gegenseitig aufrufen.
+Typischerweise werden eine Geschäftsanwendung und ein zugehöriges Service Gateway gemeinsam beschrieben, aber z.B. nicht zwei Geschäftsanwendungen die zu unterschiedlichen Fachverfahren gehören, auch wenn Sie sich gegenseitig aufrufen.
 Ein wichtiges Kriterium für die Auswahl der Systeme ist deren Entwicklungszyklus.
 Systeme die immer gemeinsam weiterentwickelt werden, können gut in einem gemeinsamen Dokument beschrieben werden.
 Querschnittssysteme werden in eigenen Dokumenten beschrieben._
@@ -330,7 +330,7 @@ Die entsprechende Datei ist mit den Schlüsseln und Mappings im Releaseletter de
 
 Nach der SSL-Terminierung durch den Loadbalancer vor der Informations- & Dienstezone gelangen die HTTP-Requests zu einem Apache Web Server in der Informations- & Dienstezone.
 
-Der Apache Server muss konfiguriert werden, um die Requests an den Tomcat der XXX-Fachanwendung in der Logik- und Verarbeitungszone weiterzuleiten.
+Der Apache Server muss konfiguriert werden, um die Requests an den Tomcat der XXX-Geschäftsanwendung in der Logik- und Verarbeitungszone weiterzuleiten.
 Die Weiterleitung geschieht mithilfe des Apache Tomcat Connectors (mod_jk).
 
 Im conf-Ordner des Apache Servers (`/usr/local/apache2/conf`) sind folgende Dateien anzupassen:
@@ -790,7 +790,7 @@ h|Log-Datei h|Inhalt / Bemerkung
 |/var/log/isy-xxx-ga/info_log_HOSTNAME_xxx-ga |Info-Log der XXX-GA
 |/var/log/isy-xxx-ga/error_log_HOSTNAME_xxx-ga |Error-Log der XXX-GA
 2+^|*XXX-SGW*
-|/var/log/isy-xxx-sgw/debug_log_HOSTNAME_xxx-sgw |Debug-Log des XXX Fachanwendung
+|/var/log/isy-xxx-sgw/debug_log_HOSTNAME_xxx-sgw |Debug-Log des XXX Geschäftsanwendung
 |/var/log/isy-xxx-sgw/info_log_HOSTNAME_xxx-sgw |Info-Log des XXX-Service-Gateway
 |/var/log/isy-xxx-sgw/error_log_HOSTNAME_xxx-sgw |Error-Log des XXX-Service-Gateway
 |===
