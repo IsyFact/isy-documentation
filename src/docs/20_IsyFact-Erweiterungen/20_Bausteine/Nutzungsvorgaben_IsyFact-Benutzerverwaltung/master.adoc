@@ -1,6 +1,6 @@
-
 :doctitle: Baustein Benutzerverwaltung
 :document-type: Nutzungsvorgaben
+:vs-einstufung: open-source
 
 toc::[]
 
