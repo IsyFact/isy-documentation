@@ -108,6 +108,7 @@
                                 <revnumber>IF-${project.version}</revnumber>
                                 <revdate>${maven.build.timestamp}</revdate>
                                 <version-ifs>${project.version}</version-ifs>
+                                <vs-einstufung>open-source</vs-einstufung>
                             </attributes>
                         </configuration>
 
