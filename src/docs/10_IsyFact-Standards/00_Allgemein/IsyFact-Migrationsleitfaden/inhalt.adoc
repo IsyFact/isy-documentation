@@ -1,8 +1,8 @@
 = Migrationsleitfaden: Inhalt
 
 // tag::inhalt[]
-[[kapitel-fachanwendung]]
-== Fachanwendung
+[[kapitel-geschaeftsanwendung]]
+== Geschäftsanwendung
 
 [[kapitel-spring-konfiguration]]
 === Spring Konfiguration
@@ -17,11 +17,11 @@ Siehe <<DetailkonzeptKomponenteAnwendungskern>> Kapitel: Konfigurationsparameter
 [[kapitel-konfiguration]]
 === Konfigurationsparameter
 
-* Die Bereitstellung von Konfigurationsparametern innerhalb der Fachanwendung erfolgt über `@ConfigurationProperties`-Klassen.
+* Die Bereitstellung von Konfigurationsparametern innerhalb der Geschäftsanwendung erfolgt über `@ConfigurationProperties`-Klassen.
 Soll die Bibliothek `isy-konfiguration` weiterhin verwendet werden, muss die Bean aus der Spring-Konfiguration entfernt werden.
 Die Liste mit den Property-Dateien wird nach `application.properties` übertragen.
 
-[[Applikationsklasse, Fachanwendung/Applikationsklasse]]
+[[Applikationsklasse, Geschäftsanwendung/Applikationsklasse]]
 === Applikationsklasse
 * Für eine auf IsyFact 2.x basierende Anwendung wird eine _Applikationsklasse_ im Root-Package der Anwendung erstellt.
 +
@@ -318,8 +318,8 @@ und den neuen Dokumenten
 
 [[dok-sicherheit-grundschutz]]
 === IT-Grundschutz
-Sicherheit ist ein zentrales Thema einer jeden Fachanwendung.
-Bei der Umsetzung von Fachanwendungen in IT-Systeme wird ein Großteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
+Sicherheit ist ein zentrales Thema einer jeden Geschäftsanwendung.
+Bei der Umsetzung von Geschäftsanwendungen in IT-Systeme wird ein Großteil der Anforderungen an die Sicherheit durch Maßnahmen der IT-Sicherheit abgedeckt.
 
 Gerade bei einer Migration von einer IsyFact Version kleiner als v1.8 ist zu prüfen, ob alle aktuellen sicherheitsrelevanten Vorgaben erfüllt werden.
 Die IsyFact richtet sich beim Thema Sicherheit nach behördlichen Standards sowie De-Facto-Standards aus der Industrie:

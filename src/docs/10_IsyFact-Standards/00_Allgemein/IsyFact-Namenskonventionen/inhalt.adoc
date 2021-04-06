@@ -5,9 +5,9 @@
 
 Dieser Abschnitt beschreibt die Namenskonventionen der IsyFact.
 In komplexen Anwendungslandschaften werden <<glossar-Anwendungssystem,Anwendungssysteme>> in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen).
-Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Fachanwendungen existieren, wird meist allgemein von „Fachanwendungen“ gesprochen.
+Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Geschäftsanwendungen existieren, wird meist allgemein von „Geschäftsanwendungen“ gesprochen.
 
-In folgenden Vorgaben wird daher zwischen Fachanwendungen, Registern und Geschäftsanwendungen unterschieden.
+In folgenden Vorgaben wird daher zwischen Geschäftsanwendungen und Registern unterschieden.
 Für andere Kontexte können weitere Systemtypen eingeführt werden, für die entsprechende Vorgaben nach dem gleichen Schema zu definieren sind.
 
 [[allgemein]]
@@ -21,18 +21,18 @@ In diesem Abschnitt werden allgemeine Namenskonventionen festgehalten.
 Je nach Typ eines Anwendungssystems ist der Name unterschiedlich zu wählen.
 Die verschiedenen Varianten sind wie folgt abgebildet.
 
-[[fachanwendung]]
-===== Fachanwendung
+[[geschaeftsanwendung]]
+===== Geschäftsanwendung
 
-:desc-table-SFachanw: Schema für eine Fachanwendung
-[id="table-SFachanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-SFachanw}
+:desc-table-SGanw: Schema für eine Geschäftsanwendung
+[id="table-SGanw",reftext="{table-caption} {counter:tables}"]
+.{desc-table-SGanw}
 [cols="1,4",options="header"]
 |====
-2+|Name einer Fachanwendung
-|*Schema*    m|<verfahren> Anwendung
-|*Beispiele* m|Xyz Anwendung
-|*Variable*   |*Mögliche Ausprägungen*
+2+|Name einer Geschäftsanwendung
+|*Schema* m|<verfahren> Geschäftsanwendung
+|*Beispiele* m|Xyz Geschäftsanwendung
+|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -48,21 +48,6 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |*Schema* m|<verfahren> Register
 |*Beispiele* m|Xyz Register
 |*Variable* |*Erklärung / Ausprägungen*
-m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
-|====
-
-[[geschaeftsanwendung]]
-===== Geschäftsanwendung
-
-:desc-table-SGanw: Schema für eine Geschäftsanwendung
-[id="table-SGanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-SGanw}
-[cols="1,4",options="header"]
-|====
-2+|Name einer Geschäftsanwendung
-|*Schema* m|<verfahren> Geschäftsanwendung
-|*Beispiele* m|Xyz Geschäftsanwendung
-|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -368,18 +353,18 @@ isy-documentation-core
 Die technischen Systemnamen entsprechen der technischen Bezeichnung für ein IsyFact-konformes Anwendungssystem.
 Sie werden unter anderem für Projektnamen in Eclipse, Dokument Basis / Context Root bei Schnittstellen-URLs und als Namen von Deployment-Einheiten (vgl. Kapitel <<rpm-pakete>>) verwendet.
 
-[[fachanwendungen]]
-===== Fachanwendungen
+[[geschaeftsanwendung-1]]
+===== Geschäftsanwendung
 
-:desc-table-namfachanw:  Name einer Fachanwendung
-[id="table-namfachanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-namfachanw}
+:desc-table-namgfanw2:  Name einer Geschäftsanwendung
+[id="table-namgfanw2",reftext="{table-caption} {counter:tables}"]
+.{desc-table-namgfanw2}
 [cols="1,4",options="header"]
 |====
-2+|Name einer Fachanwendung
-|*Schema* m|<verfahren>-anwendung
-|*Beispiele* m|meinverfahren-anwendung
-|*Variable* |*Erklärung / Ausprägungen*
+2+|Name einer Geschäftsanwendung
+|*Schema* m|<verfahren>-gk
+|*Beispiele* m|xyz-gk
+|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -395,21 +380,6 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |*Schema* m|<verfahren>-register
 |*Beispiele* m|xyz-register
 |*Variable* |*Erklärung / Ausprägungen*
-m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
-|====
-
-[[geschäftsanwendung-1]]
-===== Geschäftsanwendung
-
-:desc-table-namgfanw2:  Name einer Geschäftsanwendung
-[id="table-namgfanw2",reftext="{table-caption} {counter:tables}"]
-.{desc-table-namgfanw2}
-[cols="1,4",options="header"]
-|====
-2+|Name einer Geschäftsanwendung
-|*Schema* m|<verfahren>-ga
-|*Beispiele* m|xyz-ga
-|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -444,6 +414,62 @@ m|<zielverfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs, mit dem die
 |*Beispiele* m|xyz-mailgw
 |*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
+|====
+
+[[querschnittsanwendung]]
+===== Querschnittsanwendung
+
+:desc-table-namqa:  Name einer Querschnittsanwendung
+[id="table-namqa",reftext="{table-caption} {counter:tables}"]
+.{desc-table-namqa}
+[cols="1,4",options="header"]
+|====
+2+|Name einer Querschnittsanwendung
+|*Schema* m|<verfahren>-qk
+|*Beispiele* m|xyz-qk
+|*Variable* |*Mögliche Ausprägungen*
+m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
+|====
+
+[[auslagern-fachkomponente-aus-anwendung]]
+===== Auslagern einer Fachkomponente aus einer Geschäftsanwendung
+Wenn eine Geschäftsanwendung in mehrere Fachkomponenten getrennt wird,
+dann wird die herausgebildete Fachkomponente wie folgt genannt:
+
+:desc-table-fachGK:  Name einer ausgelagerten fachlichen Geschäftskomponente
+[id="table-fachGK",reftext="{table-caption} {counter:tables}"]
+.{desc-table-fachGK}
+[cols="1,4",options="header"]
+|====
+2+|Name einer fachlichen Geschäftskomponente
+|*Schema* m|<anwendungsname>-<fachlichkeit>-gk
+|*Beispiele* m|xyz-fach1-gk +
+xyz-fach1-register
+|*Variable* |*Mögliche Ausprägungen*
+m|<anwendungsname> |Der Name einer Anwendung, wie in den vorigen Abschnitten beschrieben.
+Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
+m|<fachlichkeit> |Der Name der Fachkomponente, welche aus der Geschäftsanwendung ausgelagert wird.
+|====
+
+[[auslagern-technische-komponente-aus-anwendung]]
+===== Auslagern einer technischen Komponente aus einer Anwendung
+Wenn eine Geschäftsanwendung oder Fachkomponente technisch in mehrere IT-Systeme getrennt wird,
+dann werden diese Systeme wie folgt genannt:
+
+:desc-table-techGK:  Name einer ausgelagerten technsichen Geschäftskomponente
+[id="table-techGK",reftext="{table-caption} {counter:tables}"]
+.{desc-table-techGK}
+[cols="1,4",options="header"]
+|====
+2+|Name einer technischen Geschäftskomponente
+|*Schema* m|<anwendungsname>-<fachlichkeit>-gk<komponente>
+|*Beispiele* m|xyz-fach1-gkgui +
+xyz-qkbatch
+|*Variable* |*Mögliche Ausprägungen*
+m|<anwendungsname> |Der Name einer Anwendung, wie in den vorigen Abschnitten beschrieben.
+Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
+m|<fachlichkeit> |Der Name der Fachkomponente, welche aus der Geschäftsanwendung ausgelagert wird.
+m|<komponente> |Der Name der technischen Komponente: meist `gui` für eine ausgelagerte grafische Oberfläche oder `batch` für einen ausgelagerten Batch.
 |====
 
 [[batch-anwendungen]]
@@ -775,7 +801,7 @@ NOTE: Siehe https://rpm-packaging-guide.github.io/#what-is-a-spec-file[RPM Packa
 |====
 2+|RPM-Pakete
 |*Schema* m|<paketname>-<versionsnummer>-<build-version>.<architektur>.rpm
-|*Beispiele* m|isy-fachanwendung-batch-1.2.0-01.noarch.rpm
+|*Beispiele* m|isy-geschaeftsanwendung-batch-1.2.0-01.noarch.rpm
 |*Variable* |*Mögliche Ausprägungen*
 m|<paketname> a|
 Name der Deployment-Einheit.
@@ -784,8 +810,8 @@ Deployment-Einheiten der Anwendungslandschaft IsyFact besitzen z.B. das Präfix 
 
 Beispiel:
 
-* <awl>-fachanwendung-gk-...
-* <awl>-fachanwendung-gkbatch-...
+* `<awl>-fachanwendung-gk-...`
+* `<awl>-fachanwendung-gkbatch-...`
 
 m|<versionsnummer> |Versionsnummer der Deployment-Einheit, z.B. „1.2.0“. Die Versionierung basiert auf Semantic Versioning und ist im Konzept <<IsyFactVersionierung>> beschrieben.
 m|<build-version> a|

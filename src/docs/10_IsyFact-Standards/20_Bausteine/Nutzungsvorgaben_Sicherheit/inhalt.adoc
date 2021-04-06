@@ -126,13 +126,13 @@ Wird der Parameter `isy.sicherheit.cache.maxelements` auf 0 gesetzt, werden beli
 [[konfiguration-von-rollen-und-rechten]]
 === Konfiguration von Rollen und Rechten
 
-Jede Fachanwendung spezifiziert im Rahmen ihrer Systemspezifikation Rechte und bildet diese auf fachliche und technische Rollen ab.
+Jede Geschäftsanwendung spezifiziert im Rahmen ihrer Systemspezifikation Rechte und bildet diese auf fachliche und technische Rollen ab.
 Bei der technischen Umsetzung müssen alle spezifizierten Rollen und Rechte konfiguriert und korrekt zugeordnet werden.
 Dies geschieht in der statischen Konfiguration in der Datei `/resources/sicherheit/rollenrechte.xml`.
 Der Baustein liefert ein <<rollen-rechte-schema,XML-Schema für den Aufbau der Konfigurationsdatei>> mit.
 
 ====
-Die Fachanwendung X spezifiziert zwei Rechte, `DialogA.Aufrufen` und `DialogB.Aufrufen`.
+Die Geschäftsanwendung X spezifiziert zwei Rechte, `DialogA.Aufrufen` und `DialogB.Aufrufen`.
 Aus diesen werden zwei fachliche Rollen gebildet:
 
 * `FAX_DialogNutzerA` darf nur Dialog A aufrufen,
@@ -147,7 +147,7 @@ Dieses Beispiel führt zu folgender Konfigurationsdatei.
 .{desc-listing-RollenRechte}
 [source,xml]
 ----
-<tns:Anwendung AnwendungsId="FachanwendungX"
+<tns:Anwendung AnwendungsId="GeschäftsanwendungX"
     xmlns:tns="http://www.isyfact.de/RollenRechteSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.isyfact.de/RollenRechteSchema RollenRechteSchema.xsd ">
@@ -178,15 +178,15 @@ Rollen können überlappende Teilmengen von Rechten enthalten.
 
 Die Konfiguration muss die folgenden Anforderungen erfüllen:
 
-* Es sind alle in der Fachanwendung spezifizierten Rechte definiert.
-* Es sind alle in der Fachanwendung spezifizierten Rollen definiert.
+* Es sind alle in der Geschäftsanwendung spezifizierten Rechte definiert.
+* Es sind alle in der Geschäftsanwendung spezifizierten Rollen definiert.
 
 Werden in Überprüfungen Rollen oder Rechte verwendet, die hier nicht definiert sind, so wird ein technischer Fehler erzeugt.
-Die Konfiguration gibt also verlässlich Auskunft darüber, welche Rollen und Rechte in der Fachanwendung überprüft werden.
+Die Konfiguration gibt also verlässlich Auskunft darüber, welche Rollen und Rechte in der Geschäftsanwendung überprüft werden.
 
 Der Baustein Sicherheit ermöglicht eine Autorisierung nur auf Basis von Rechten, nicht von Rollen.
 Jeder Rolle muss also zumindest ein Recht zugeordnet werden, um anhand ihr eine Autorisierung durchführen zu können.
-Werden im Lebenszyklus der Fachanwendung weitere Rollen (z.B. für neu hinzukommende Akteure) spezifiziert und mit bestehenden Rechten ausgestattet, so sind neben den Änderungen in der Konfigurationsdatei keine weiteren Änderungen notwendig.
+Werden im Lebenszyklus der Geschäftsanwendung weitere Rollen (z.B. für neu hinzukommende Akteure) spezifiziert und mit bestehenden Rechten ausgestattet, so sind neben den Änderungen in der Konfigurationsdatei keine weiteren Änderungen notwendig.
 
 
 [[autorisierung]]
@@ -382,7 +382,7 @@ Dazu benutzt der Serviceanbieter ein Client-Zertifikat, eine Benutzerkennung und
 Bei erfolgreicher Authentifizierung erstellt der Serviceanbieter einen neuen Aufrufkontext und speichert ihn im Verwalter.
 Der eigentliche Prozess der Authentifizierung sowie die Ermittlung der Rollen ist für Nutzer des Service-Gateways vollständig transparent.
 
-Das Service-Gateway übergibt den Fachanwendungen bei der Weiterleitung der Anfragen den Aufrufkontext als Transportobjekt an die jeweilige Service-Schnittstelle (vgl. <<aufrufen-von-nachbarsystemen>>).
+Das Service-Gateway übergibt den Geschäftsanwendungen bei der Weiterleitung der Anfragen den Aufrufkontext als Transportobjekt an die jeweilige Service-Schnittstelle (vgl. <<aufrufen-von-nachbarsystemen>>).
 
 [[awk-autorisierung]]
 === Autorisierung im Anwendungskern
@@ -506,7 +506,7 @@ Im Fall der lokalen Authentifizierung wird keine Korrelations-ID von außen übe
 [[verwenden-anwendungsspezifischer-aufrufkontexte]]
 == Verwenden anwendungsspezifischer Aufrufkontexte
 
-Gelegentlich möchte eine Fachanwendung zusätzliche Informationen im Aufrufkontext ablegen.
+Gelegentlich möchte eine Geschäftsanwendung zusätzliche Informationen im Aufrufkontext ablegen.
 Hierzu kann von der Standard-Implementierung (`de.bund.bva.isyfact.aufrufkontext.impl.AufrufKontextImpl`) geerbt und die neue, anwendungsspezifische Klasse um zusätzliche Attribute erweitert werden.
 
 Die anwendungsspezifische Implementierung muss in der Spring-Konfiguration hinterlegt werden.

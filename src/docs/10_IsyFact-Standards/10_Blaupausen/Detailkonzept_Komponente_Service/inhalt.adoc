@@ -286,9 +286,9 @@ Unabhängig von der Konfiguration kann es trotz Loadbalancer und Anwendungsclust
 zu einer Nichtverfügbarkeit kommen.
 ====
 
-*Batchläufe:* Wenn lang laufende Batches in Fachanwendungen durchgeführt werden, dürfen in dieser Zeit keine Meldungen gemacht werden.
+*Batchläufe:* Wenn lang laufende Batches in Geschäftsanwendungen durchgeführt werden, dürfen in dieser Zeit keine Meldungen gemacht werden.
 So werden Dateninkonsistenzen vermieden.
-Meldungsaufrufe sind in dieser Zeit nicht verfügbar und werden von der Fachanwendung nicht beantwortet.
+Meldungsaufrufe sind in dieser Zeit nicht verfügbar und werden von der Geschäftsanwendung nicht beantwortet.
 
 [[retries-loadbalancer]]
 *Retries des Loadbalancers:* Tritt ein Ausfall von Hard- oder Software auf (siehe _Ausfall von Hard- oder Software_ oben), bekommt der Loadbalancer beim Weiterleiten einer Anfrage an einen ausgefallenen Knoten ein Timeout.
@@ -386,7 +386,7 @@ Die Parameter sind Bestandteil der betrieblichen Konfiguration (s. <<KonzeptKonf
 
 ==== Deaktivierung von Services
 
-Aufgrund von Wartungsaktivitäten oder Batches (z.B. einer Datenmigration) in einer Fachanwendung kann es vorkommen, dass der Meldungsservice einer Fachanwendung vorübergehend deaktiviert wird.
+Aufgrund von Wartungsaktivitäten oder Batches (z.B. einer Datenmigration) in einer Geschäftsanwendung kann es vorkommen, dass der Meldungsservice einer Geschäftsanwendung vorübergehend deaktiviert wird.
 Andere Services wie z.B. eine Auskunft können während dieser Zeit regulär ausgeführt werden.
 Während der Meldungsservice deaktiviert ist, wird dem Aufrufer eine entsprechende Fehlermeldung zurückgesendet.
 Da die Anforderung besteht, auch andere Services vorübergehend deaktivieren zu können, werden generell alle Services deaktivierbar gemacht.
