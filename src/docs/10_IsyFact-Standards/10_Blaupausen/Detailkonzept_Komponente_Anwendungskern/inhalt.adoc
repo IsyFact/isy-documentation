@@ -117,8 +117,6 @@ Dieses Kapitel teilt sich in vier Teile:
 * Die Vorgaben für den direkten Zugriff auf das Spring-Framework in der Anwendung.
 * Die Vorgaben für aspektorientierte Programmierung mit Spring.
 
-Nicht beschrieben wird hier der Einsatz von Tools für die Entwicklung von Spring-Anwendungen.
-
 [[anforderungen]]
 === Anforderungen
 
