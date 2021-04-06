@@ -129,7 +129,7 @@ Wird kein Autostart konfiguriert, kann alternativ der `TaskScheduler` über die 
 taskScheduler.starteKonfigurierteTasks();
 ----
 
-In diesem Fall muss der `TaskManager` auch manuell gestoppt werden, wenn die Fachanwendung herunterfährt.
+In diesem Fall muss der `TaskManager` auch manuell gestoppt werden, wenn die Geschäftsanwendung herunterfährt.
 Hierfür wird die Methode `shutdownMitTimeout()` aufgerufen, um die Tasks ordentlich zu beenden.
 
 [source, java]
@@ -180,7 +180,7 @@ Hierbei wird die Aufgabe nicht über eine Konfigurationsdatei geplant, sondern p
 
 Für die programmatische Variante erstellen Sie eine `TaskKonfiguration`.
 Der `TaskKonfiguration` werden die Properties mithilfe von Setter-Methoden übergeben.
-Für die Properties in der TaskKonfiguration gelten dieselben Regeln wie für die Schlüssel in der Konfigurationsdatei. 
+Für die Properties in der TaskKonfiguration gelten dieselben Regeln wie für die Schlüssel in der Konfigurationsdatei.
 
 [source, java]
 ----
@@ -377,7 +377,7 @@ Der MBean-Exporter wird gemäß dem <<KonzeptUeberwachung>> konfiguriert.
 == Hinweise für den Task im Parallelbetrieb
 
 Bei der Implementierung eines Tasks muss beachtet werden, dass ihn die Querschnittsbibliothek im Parallelbetrieb betreiben wird.
-Werden hierbei die Besonderheiten der Java Multithreading API nicht berücksichtigt, kann dies zu einem fehlerhaften Verhalten in der <<glossar-Fachanwendung>> führen.
+Werden hierbei die Besonderheiten der Java Multithreading API nicht berücksichtigt, kann dies zu einem fehlerhaften Verhalten in der <<glossar-Geschaeftsanwendung>> führen.
 
 [[threadsicherheit]]
 === Threadsicherheit
@@ -388,7 +388,7 @@ Grundsätzlich ist es so, dass Rechner mit mehreren Rechnerkernen, den Parallelb
 Die Anzahl der Rechnerkerne braucht programmatisch aber nicht berücksichtigt werden, weil die Java Laufzeitumgebung auch die Rechenzeit eines einzelnen Rechnerkerns in feingranulare Zeitscheiben schneidet.
 Hierdurch kann die Rechenzeit einer blockierenden Aufgabe für die Erledigung anderer Aufgaben genutzt werden.
 Allerdings bietet dies auch ein hohes Potenzial für ein fehlerhaftes Verhalten.
-Denn die Zuordnung der Zeitscheiben erfolgt bei jeder erneuten Ausführung der Fachanwendung unterschiedlich.
+Denn die Zuordnung der Zeitscheiben erfolgt bei jeder erneuten Ausführung der Geschäftsanwendung unterschiedlich.
 Daher kann ein erfolgreicher JUnit-Test eine fehlerfreie Ausführung in der Produktionsumgebung nicht gewährleisten.
 Selbst die Aufteilung auf unterschiedliche Rechnerkerne verhindert von sich aus kein fehlerhaftes Verhalten.
 Aus diesem Grund müssen Methoden, die nicht von mehreren Threads gleichzeitig durchlaufen werden sollen, über einen Lock-Mechanismus (beispielsweise über das Schlüsselwort synchronized) davor geschützt werden.
