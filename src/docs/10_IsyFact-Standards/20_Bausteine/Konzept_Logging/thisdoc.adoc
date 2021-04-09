@@ -10,7 +10,7 @@ Es bildet damit die Grundlage der technisch und fachlich einheitlichen Umsetzung
 Der Aufbau einer Log-Infrastruktur zur Verarbeitung der erstellen Logdateien ist im Dokument <<KonzeptLoggingInfrastrukturELK>> beschrieben.
 
 Die daraus abgeleitete Umsetzung des Loggings im Rahmen einer Anwendungsentwicklung und die möglichen Auswertungen der Logs sind in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>) beschrieben.
-Zu beachten ist, dass die Nutzungsvorgaben an einen größeren Leserkreis gerichtet sind und verschiedene Aspekte sowohl für das Logging-Konzept als auch für die Nutzungsvorgaben relevant sind.
+Zu beachten ist, dass die Nutzungsvorgaben an einen größeren Leserkreis gerichtet sind und einige Aspekte, sind nicht nur für das Logging-Konzept sondern auch für die Nutzungsvorgaben relevant.
 Um Redundanzen zu vermeiden, werden diese Aspekte alle in den Nutzungsvorgaben beschrieben und im vorliegenden Dokument darauf verwiesen.
 
 [[aufbau-und-zweck-des-dokuments]]
@@ -36,7 +36,7 @@ Logging ist ein querschnittliches Thema einer <<glossar-Anwendungslandschaft>> m
 Folgende Abgrenzungen werden dabei getroffen:
 
 * In diesem Dokument werden die Grundlagen geschaffen, um eine effiziente Auswertung der Logs zu ermöglichen.
-Die eigentliche Auswertung mit Hilfe von Analysetools ist nicht Teil des Dokuments und wird in <<NutzungsvorgabenLogserver>> beschrieben.
+Die eigentliche Auswertung mit Hilfe von Analysetools ist nicht Teil des Dokuments.
 * Konfiguration von Drittsystemen: Die Konfiguration des Loggings von Systemen, die nicht mit der IsyFact entwickelt wurden (bspw.
 Apache Webserver, Apache Tomcat, Mailserver), wird in den Konzepten der einzelnen Systeme adressiert.
 Das Logging-Konzept definiert jedoch, welche Informationen durch die einzelnen Systeme bereitgestellt werden (Kapitel <<log-auswertung>>).
