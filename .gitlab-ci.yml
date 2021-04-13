@@ -2,8 +2,7 @@ variables:
   MAVEN_OPTS: "-Xmx2048M -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "-s settings.xml --batch-mode --errors --fail-at-end"
 
-image: $BUILDIMAGE_LEGACY
-
+image: $BUILDIMAGE
 stages:
   - documentation
 
@@ -16,13 +15,8 @@ cache:
 .template: &vorlage
   stage: documentation
   tags:
-   - ZIII4
-  before_script:
-   - mvn -v
-   - PFAD=$(pwd)
-   - mkdir -p aptcache
-   - apt-get update
-   - apt-get -o dir::cache::archives="$PFAD/aptcache" install -y gawk --no-install-recommends
+   - docker
+   - zssi
   script:
    - mvn $MAVEN_CLI_OPTS process-resources
 
