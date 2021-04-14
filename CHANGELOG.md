@@ -1,3 +1,6 @@
+# 1.9.0
+- `IFS-650`: Version Anhebung auf 1.9.0
+
 # 1.8.3
 - `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
 - `IFE-315`: Umstrukturierung der Filter
