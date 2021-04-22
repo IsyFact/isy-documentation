@@ -2,6 +2,8 @@
 - `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
 
 # 1.8.1
+- `IFS-849`: Zusätzliche Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
+- `IFS-928`: Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
 - `IFS-563`: Dokumentation MDC-Filter
 - `IFS-510`: Hinweis für Aufräumen aller Korrelations-Ids nach Serviceaufrufen hinzugefügt
 - `IFS-91` & `IFS-92`: Migration zum Redisson Client

@@ -31,6 +31,8 @@ include::inhalt.adoc[leveloffset=1]
 
 :sectnums!:
 
+// Anhänge
+include::anhaenge.adoc[leveloffset=1]
 // Literaturverzeichnis
 include::bibliography.adoc[]
 // ? Tabellenverzeichnis
@@ -43,6 +45,3 @@ include::listoflistings.adoc[]
 // include::glossary.adoc[]
 // Index
 // include::../common/index.adoc[]
-
-// Anhänge
-//include::anhaenge.adoc[leveloffset=1]
