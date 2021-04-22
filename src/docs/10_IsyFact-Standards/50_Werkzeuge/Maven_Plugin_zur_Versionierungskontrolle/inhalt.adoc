@@ -1,11 +1,14 @@
+= Maven-Plugin zur Versionierungskontrolle: Inhalt
+
+// tag::inhalt[]
 [[maven-plugin-versionierungskontrolle]]
-= IsyFact Maven-Plugin zur Versionierungskontrolle
+== IsyFact Maven-Plugin zur Versionierungskontrolle
 
 Zur Sicherstellung einer validen Versionierung der Anwendung wird das Maven-Plugin isy-versioning-maven-plugin eingesetzt.
 Die Einbindung des Maven-Plugin ist unter <<einbindung-konfiguration>> erläutert.
 
 [[funktionweise]]
-== Funktionsweise
+=== Funktionsweise
 Das Maven-Plugin prüft beim Build-Vorgang, ob die angegebene Version den Versionierungsvorgaben in <<IsyFactVersionierung>> entspricht.
 Die Versionsangabe wird in der Lifecycle-Phase "validate" geprüft. Dies ist im Default-Lifecycle der erste Schritt.
 
@@ -38,7 +41,7 @@ Aus diesem Grund enthält die Schnittstelle nur noch die *`<patch>`*-Version als
 Bei Test-Versionen wird die Version noch um ein Label erweitert (*`<patch>[-<label>]`*).
 
 [[einbindung-konfiguration]]
-== Einbindung und Konfiguration in der Anwendung
+=== Einbindung und Konfiguration in der Anwendung
 
 *Schritt 1: Einbindung des Maven-Plugin in ein Projekt*
 
@@ -108,3 +111,4 @@ Zusätzlich kann mittels der Maven-Konsole die Konfigurationsparameter mit einem
 -DVersionValidatorEnabled=true/false
 -DVersionValidatorRelease=true/false
 -----------------
+// end::inhalt[]

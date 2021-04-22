@@ -1,55 +1,13 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: IsyFact–Tutorial
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-
-// Executive Summary
-include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Tutorial
 
 toc::[]
 
-// --------------------------- AB HIER------------------------------------------
+colophon::[]
 
-// Einleitung
-include::thisdoc.adoc[]
+include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt
-include::inhalt.adoc[leveloffset=1]
-
-// ---------------------------BIS HIER-----------------------------------------
+include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
-
-// Glossar  (gebaut)
-include::glossary.adoc[]
-
-// Literaturverzeichnis  (gebaut)
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis  (gebaut)
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis  (gebaut)
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis  (gebaut)
-include::listoflistings.adoc[]
-
-
-// --------------------------- AB HIER------------------------------------------
-
-// Anhänge
-//include::anhaenge.adoc[]
-
-// ---------------------------BIS HIER-----------------------------------------
+include::changelog.adoc[leveloffset=1]

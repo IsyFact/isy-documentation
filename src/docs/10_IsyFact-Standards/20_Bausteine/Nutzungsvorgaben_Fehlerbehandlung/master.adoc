@@ -1,56 +1,13 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Nutzungsvorgaben Fehlerbehandlung
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-*Java Bibliothek / IT-System*
-
-[cols="5,2,3",options="header"]
-|====
-|Name |Art |Version
-|isy-exception-core |Bibliothek |siehe isyfact-bom v{version-ifs}
-|isy-exception-sst |Bibliothek |siehe isyfact-bom v{version-ifs}
-|====
-
-// Executive Summary
-// include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!:
-
-endif::[]
+:doctitle: Baustein Fehlerbehandlung
+:document-type: Nutzungsvorgaben
 
 toc::[]
 
-// Einleitung
+colophon::[]
+
+include::docinfo.adoc[]
+
 include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt
 include::inhalt.adoc[tags=inhalt]
-
-:sectnums!:
-
-// Glossar
-include::glossary.adoc[]
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]
-
-// Index
-// include::{isy-dokumentvorlagen}/docs/common/index.adoc[]
-
-// Anhänge
-// include::anhaenge.adoc[leveloffset=1]

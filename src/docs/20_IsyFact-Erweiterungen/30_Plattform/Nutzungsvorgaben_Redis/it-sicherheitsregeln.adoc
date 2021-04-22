@@ -1,0 +1,7 @@
+// tag::it-sicherheitsregeln[]
+
+[[it-sicherheitsregeln-redis]]
+== IT-Sicherheitsregeln Redis
+
+include::inhalt.adoc[tags=sicherheit]
+// end::it-sicherheitsregeln[]

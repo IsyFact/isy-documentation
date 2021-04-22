@@ -1,0 +1,11 @@
+:doctitle: Sicherheit Keycloak
+:document-type: Konzept
+:vs-einstufung: offen
+
+toc::[]
+
+colophon::[factory="IsyFact-Erweiterungen", open-source="false"]
+
+include::thisdoc.adoc[tags=inhalt]
+
+include::inhalt.adoc[tags=inhalt]

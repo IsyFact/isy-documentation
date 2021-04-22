@@ -1,5 +1,8 @@
+= Whitepaper: Inhalt
+
+// tag::inhalt[]
 [[standardisierung-durch-software-factories]]
-= Standardisierung durch Software Factories
+== Standardisierung durch Software Factories
 
 Bei der Entwicklung von Anwendungssystemen ist eine Vielzahl von Detailproblemen zu lösen.
 Dies beginnt bei der allgemeinen Systemarchitektur, setzt sich fort über die Kommunikationsmechanismen zwischen Systemen, die Oberflächengestaltung, die Benutzerverwaltung, das Monitoring und den Betrieb und geht bis hin zur Auswahl konkreter Frameworks, mit denen die Systeme implementiert werden.
@@ -39,12 +42,12 @@ Das BVA behält sich vor, diese nach eigenem Ermessen in den Standard aufzunehme
 Nicht zuletzt soll durch die Vergrößerung des Anwenderkreises der Umfang und die Qualität der IsyFact gesteigert werden.
 
 [[die-fuenf-saeulen]]
-= Die fünf Säulen
+== Die fünf Säulen
 
 Eine Software Factory stellt Ihre Inhalte strukturiert in 5 Bereichen zur Verfügung.
 Sowohl die IsyFact, also auch die IsyFact-Standards orientieren sich an dieser Struktur und bieten Ihre Hilfsmittel in fünf Bereichen, den fünf Säulen der IsyFact an:
 
-* Vorlagen für die Erstellung von Fachanwendungen auf fachlicher, software-technischer und technisch-infrastruktureller Ebene: den *Blaupausen*
+* Vorlagen für die Erstellung von Geschäftsanwendungen auf fachlicher, software-technischer und technisch-infrastruktureller Ebene: den *Blaupausen*
 * Wieder verwendbare Softwarelösungen, querschnittliche Systeme sowie Programmierbibliotheken und -vorlagen: den *Bausteinen*
 * Eine einheitliche, hochverfügbare Betriebsumgebung mit leistungsfähiger Hardware und der benötigten Systemsoftware: der *Plattform*
 * Konventionen und Vorgaben für die Spezifikation und Programmierung sowie das Projektvorgehen nach V-Modell XT: der *Methodik* und
@@ -58,13 +61,13 @@ image::fuenfsaeulen.png[align="center"]
 Die Säulen werden nachfolgend im Detail beschrieben.
 
 [[blaupausen]]
-== Blaupausen
+=== Blaupausen
 
 Die Blaupausen beschreiben die Architektur und Konzepte der Anwendungslandschaft.
-Diese beinhaltet die Architekturen einer Fachanwendung auf fachlicher Ebene (A-Architektur), die software-technische Umsetzung (T-Architektur) sowie die darunter liegende Hardware und Systemsoftware (TI-Architektur).
+Diese beinhaltet die Architekturen einer Geschäftsanwendung auf fachlicher Ebene (A-Architektur), die software-technische Umsetzung (T-Architektur) sowie die darunter liegende Hardware und Systemsoftware (TI-Architektur).
 
 [[fachliche-referenzarchitektur-a-architektur]]
-=== Fachliche Referenzarchitektur (A-Architektur)
+==== Fachliche Referenzarchitektur (A-Architektur)
 
 Die fachliche Architektur strukturiert die Anwendungslandschaft hierarchisch in Domänen, Systeme und Komponenten.
 
@@ -76,13 +79,13 @@ image::AnwendungslandschaftIF.png[align="center"]
 Anwendungssysteme bieten dabei eine zusammengehörige, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es werden zwei Typen unterschieden:
 
-* *Fachanwendungen* implementieren fachliche Logik, Prozesse oder speichern Daten.
-Sie können Präsentationslogik enthalten, oder reine Datenspeicher im Hintergrund sein, die anderen Fachanwendungen ihre Daten bereitstellen.
-Je nach Anwendungsdomäne kann es unterschiedliche Arten von Fachanwendungen geben, die spezielle Aufgaben wahrnehmen.
-* *Querschnittssysteme* stellen Dienste für mehrere Fachanwendungen bereit, beispielsweise ein Suchverfahren oder die Anwenderverwaltung.
+* *Geschäftsanwendungen* implementieren fachliche Logik, Prozesse oder speichern Daten.
+Sie können Präsentationslogik enthalten, oder reine Datenspeicher im Hintergrund sein, die anderen Geschäftsanwendungen ihre Daten bereitstellen.
+Je nach Anwendungsdomäne kann es unterschiedliche Arten von Geschäftsanwendungen geben, die spezielle Aufgaben wahrnehmen.
+* *Querschnittssysteme* stellen Dienste für mehrere Geschäftsanwendungen bereit, beispielsweise ein Suchverfahren oder die Anwenderverwaltung.
 
 Ein Anwendungssystem besteht aus Anwendungskomponenten, die eine Menge funktional zusammenhängender Anwendungsfälle beschreiben.
-<<image-fachref>> zeigt beispielhaft die Aufteilung einer Fachanwendung mit Benutzerschnittstelle.
+<<image-fachref>> zeigt beispielhaft die Aufteilung einer Geschäftsanwendung mit Benutzerschnittstelle.
 
 
 :desc-image-fachref: Fachliche Referenzarchitektur eines Anwendungssystems
@@ -93,7 +96,7 @@ image::fachref.png[align="center"]
 Für den Zugriff der Anwender auf die Anwendungssysteme gibt es eine **Portaloberfläche**. Externen Anwendungssystemen stellen *Service-Gateways* die entsprechenden Schnittstellen über Web-Services zur Verfügung.
 
 [[software-technische-referenzarchitektur-t-architektur]]
-=== Software-technische Referenzarchitektur (T-Architektur)
+==== Software-technische Referenzarchitektur (T-Architektur)
 
 Die Software-Architektur beschreibt die in der fachlichen Architektur definierten Elemente in technischer Form von IT-Systemen, Komponenten, Klassen, Datenmodellen etc.
 
@@ -117,13 +120,13 @@ Ergänzend zu GUI, Service, Batch, Anwendungskern und Datenhaltung gibt es in de
 Die IsyFact enthält Blaupausen für die Nutzungsschichten GUI, Batch, Servicekommunikationen sowie für den Anwendungskern und den Datenzugriff.
 
 [[die-referenzarchitektur-der-technischen-infrastruktur-ti-architektur]]
-=== Die Referenzarchitektur der technischen Infrastruktur (TI-Architektur)
+==== Die Referenzarchitektur der technischen Infrastruktur (TI-Architektur)
 
 Die Referenzarchitektur der technischen Infrastruktur, auch TI-Architektur genannt, beschreibt den Aufbau der Betriebsumgebung für die IT-Systeme einer IsyFact-konformen Anwendungslandschaft.
 Dazu gehören die physischen Geräte (Rechnersysteme, Netzwerkverbindungen und -komponenten, Drucker etc.), die installierte Systemsoftware (Betriebssystem, Applikationsserver, Middleware, Datenbanksystem) und das Zusammenspiel von Hardware und Systemsoftware.
 
 [[strukturierungsrahmen-der-isyfact]]
-=== Strukturierungsrahmen der IsyFact
+==== Strukturierungsrahmen der IsyFact
 
 Ziel der IsyFact ist ein klarer Strukturierungsrahmen zwischen den drei Architektursichten.
 Die fachlichen Komponenten der A-Architektur werden dabei im Software-Entwicklungsprozess auf die Komponenten der T-Architektur abgebildet, welche wiederum Elementen der TI-Architektur zugeordnet sind.
@@ -139,7 +142,7 @@ image::archsichten.png[align="center"]
 Ziel ist es, in jeder Sicht auf die Gesamtarchitektur eine für diese Sicht adäquate Zerlegung zu finden.
 
 [[bausteine]]
-== Bausteine
+=== Bausteine
 
 *Die Bausteine der IsyFact-Standards sind wieder verwendbare Softwarelösungen.*
 
@@ -182,9 +185,9 @@ Es handelt sich dabei um kleinere Utility-Klassen, wie z.B. Interzeptoren, mit d
 
 
 [[plattform]]
-== Plattform
+=== Plattform
 
-*Eine einheitliche Plattform über alle Fachanwendungen ermöglicht einen standardisierten und effizienten Systembetrieb.*
+*Eine einheitliche Plattform über alle Geschäftsanwendungen ermöglicht einen standardisierten und effizienten Systembetrieb.*
 
 :desc-image-plattform: Betriebsplattform der IsyFact
 [id="image-plattform",reftext="{figure-caption} {counter:figures}"]
@@ -208,7 +211,7 @@ Die Plattform definiert einen allgemeinen Rahmen für den Anwendungsbetrieb und 
 Soweit möglich werden Produkte aus dem Open Source-Umfeld eingesetzt, wie beispielsweise Apache Webserver oder Tomcat Applikationsserver.
 
 [[methodik]]
-== Methodik
+=== Methodik
 
 *Grundlage für die Umsetzung von Projekten mit der IsyFact ist eine standardisierte Vorgehensweise nach dem V-Modell XT.*
 
@@ -228,9 +231,9 @@ Die spezifische Methodik der IsyFact umfasst:
 image::Methodik_V-Modell.png[align="center"]
 
 [[werkzeuge]]
-== Werkzeuge
+=== Werkzeuge
 
-*Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Fachanwendungen.
+*Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Geschäftsanwendungen.
 Dazu bietet sie vorkonfigurierte Werkzeuge für Modellierung, Programmierung, Installation, Tests oder die Fehlerverfolgung.*
 
 Für die Softwareentwicklung setzt die IsyFact auf das Programmierwerkzeug Eclipse und bietet entsprechende Generatoren dafür an.
@@ -240,7 +243,7 @@ Für Softwaretests wird eine Eigenentwicklung genutzt.
 Das Fehler- und Änderungsmanagement wird unterstützt durch das Tool Jira.
 
 [[vorteile-nutzen]]
-= Vorteile / Nutzen
+== Vorteile / Nutzen
 
 Die IsyFact wird seit 2007 durch das Bundesverwaltungsamt entwickelt und in unterschiedlichen Projekten in der Praxis eingesetzt.
 Das BVA bietet die IsyFact als Einer-für-Alle-System auch anderen Behörden zur Nutzung und Weiterentwicklung an.
@@ -253,14 +256,14 @@ Die IsyFact-Standards stellt das Bundesverwaltungsamt seit Januar 2015 auch für
 Die Vorteile bei Nutzung der IsyFact-Standards sind:
 
 * *Festes Fundament durch fünf Säulen:* Blaupausen, Bausteine, Plattform, Methodik, Werkzeuge
-* *Universelle Vorbereitung für verschiedenste Fachanwendungen:* Nutzung der Gemeinsamkeiten von Fachanwendungen
-* *Effizienter Bau von Fachanwendungen:* Schneller und kostengünstiger als ohne IsyFact-Standards
-* *Effizienter Betrieb von Fachanwendungen:* Vorteile durch Standardisierung und Nutzungsvorgaben
-* *In der Praxis erprobtes Verfahren:* Migration bestehender und Umsetzung neuer Fachanwendungen im Bundesverwaltungsamt
+* *Universelle Vorbereitung für verschiedenste Geschäftsanwendungen:* Nutzung der Gemeinsamkeiten von Geschäftsanwendungen
+* *Effizienter Bau von Geschäftsanwendungen:* Schneller und kostengünstiger als ohne IsyFact-Standards
+* *Effizienter Betrieb von Geschäftsanwendungen:* Vorteile durch Standardisierung und Nutzungsvorgaben
+* *In der Praxis erprobtes Verfahren:* Migration bestehender und Umsetzung neuer Geschäftsanwendungen im Bundesverwaltungsamt
 * *Austausch von Komponenten:* Ermöglicht den Austausch von Bausteinen und Komponenten mit anderen Nutzern der IsyFact-Standards.
 
 [[produktueberblick]]
-= Produktüberblick
+== Produktüberblick
 
 Basistechnologie der IsyFact ist die Programmiersprache Java.
 Soweit möglich nutzt die IsyFact etablierte Softwareprodukte, Frameworks und Bibliotheken.
@@ -273,13 +276,13 @@ empfohlenen Produkte.
 [cols="28,22"]
 |====
 2+|*Basistechnologien*
-|Programmiersprache |Java 7
+|Programmiersprache |Java 8
 |Web-Technologie |XHTML
 |Architekturmuster |Service Orientierte Architektur (SOA)
 2+|*Systemsoftware*
 |Server-Betriebssystem |SuSE Linux Enterprise Server
 |Datenbankmanagementsystem |Oracle 11g
-|JEE-Applikationsserver |Apache Tomcat v6.0
+|JEE-Applikationsserver |Apache Tomcat v8.5
 |Webserver |Apache
 2+|*Bibliotheken für die Anwendungsentwicklung*
 .2+|Web-Framework |Apache MyFaces
@@ -300,7 +303,7 @@ empfohlenen Produkte.
 |====
 
 [[uebersicht-isyfact-standards]]
-= Übersicht IsyFact-Standards
+== Übersicht IsyFact-Standards
 
 Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 
@@ -363,3 +366,12 @@ Die IsyFact-Standards umfassen die folgenden Dokumente und Komponenten:
 |*Produktauswahl* |Vorlage Produktauswahl |DOT
 |====
 
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

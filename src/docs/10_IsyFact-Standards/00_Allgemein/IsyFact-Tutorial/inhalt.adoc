@@ -1,5 +1,8 @@
+= Tutorial: Inhalt
+
+// tag::inhalt[]
 [[bezug-isyfact]]
-= Bezug und Nutzung der IsyFact
+== Bezug und Nutzung der IsyFact
 
 Alle Bibliotheken der IsyFact stehen über <<MavenCentral>> zum Download bereit.
 Zur Nutzung der Bibliotheken in der Anwendungsentwicklung steht ein zentrales BOM (Bill Of Materials) zur Verfügung, das Teil der Maven-Konfiguration (`pom.xml`) wird:
@@ -47,15 +50,16 @@ Es reicht also folgender Abschnitt, um eine Bibliothek einzubinden:
 
 
 [[datenhaltung]]
-= Datenhaltung
+== Datenhaltung
 
 In diesem Kapitel wird die Implementierung der Datenhaltung einer Anwendung beschrieben.
-Die Datenhaltung besteht im Wesentlichen aus den Entitätsklassen und den zugehörigen Data Access Objects (DAOs).
+Die Datenhaltung besteht im Wesentlichen aus den Entitätsklassen (Entity) und den zugehörigen Data Access Objects (DAOs).
+Alle Konzepte und Vorgaben zum Thema Persistenz und Datenzugriff stehen im <<DetailkonzeptKomponenteDatenzugriff>>.
 
 [[designvorgaben]]
-== Designvorgaben
+=== Designvorgaben
 
-* Der eigentliche Datenbankzugriff wird über Java Persistence API (JPA) gekapselt.
+* Der eigentliche Datenbankzugriff wird über die Java Persistence API (JPA) gekapselt.
 Als Implementierung für die JPA wird Hibernate verwendet.
 * Das Datenbank-Mapping wird über Annotation in den Entitätsklassen festgelegt.
 * Der Zugriff auf Entitäten erfolgt immer über DAOs oder durch die Traversierung des persistenten Datenmodells.
@@ -66,6 +70,7 @@ Als Implementierung für die JPA wird Hibernate verwendet.
 * Der Datenzugriff erfolgt entweder über die Komponenten-Schnittstelle oder im Fall der Basisdaten direkt über die Basisdaten-DAOs.
 * Für persistente Entitäten, die über eine Komponentenschnittstelle angeboten werden, werden eigene Schnittstellenobjekte definiert, die per Deep-Copy gefüllt werden. Hierfür wird ein Bean-Mapper verwendet.
 Innerhalb einer Teilanwendung dürfen persistente Entitäten allerdings über Komponentengrenzen hinweg genutzt werden.
+* DAOs und Entitätsklassen werden in einer bestimmten Packetstrucktur abgelegt (siehe <<DetailkonzeptKomponenteDatenzugriff>>).
 * Die Transaktionssteuerung wird per AOP in der Service-Schicht durchgeführt (siehe Kapitel <<anbieten-von-service-schnittstellen>>).
 +
 [NOTE]
@@ -77,26 +82,9 @@ Besteht der fachliche Schlüssel der Entität aus genau einem Attribut, so wird 
 Ansonsten wird ein künstlicher technischer Primärschlüssel verwendet.
 ====
 
-[[packagestruktur]]
-== Packagestruktur
-
-* Die DAOs- und Entitätsklassen werden im Persistence-Package der entsprechenden Komponente implementiert.
-* Für DAOs ist dies +
-`<organisation>.<domäne>.<system>.persistence.<komponente>.dao.impl`. +
-Dazu wird für jedes DAO ein Interface in +
- `<organisation>.<domäne>.<system>.persistence.<komponente>.dao` +
- angelegt
-+
-NOTE: Für das Bundesverwaltungsamt ist dies z.B. `de.bund.bva`
-
-* Entitäten werden in +
-`<organisation>.<domäne>.<system>.persistence.<komponente>.entity` +
-implementiert
-* Die Schnittstellen-Klassen sind Teil der Schnittstelle der zugehörigen Komponente und werden daher im Package der entsprechenden
-Komponente implementiert: `<organisation>.<domäne>.<system>.core.<komponente>.ausgabedaten`
 
 [[klassendesign]]
-== Klassendesign
+=== Klassendesign
 
 :desc-image-Datenhaltung: Klassendesign für die Datenhaltung
 [id="image-Datenhaltung",reftext="{figure-caption} {counter:figures}"]
@@ -130,12 +118,12 @@ Dieser Fall ist auch in <<image-Datenhaltung>> dargestellt.
 Weitere Details können <<IsyFactReferenzarchitektur>> entnommen werden.
 
 [[realisierung]]
-== Realisierung
+=== Realisierung
 
 Zur Realisierung der Datenhaltung müssen folgende Aktivitäten durchgeführt werden.
 
 [[anlegen-des-datenbankschemas]]
-=== Anlegen des Datenbankschemas
+==== Anlegen des Datenbankschemas
 
 Das Datenbankschema muss angelegt werden.
 Dazu werden die benötigten DDL-Anweisungen, wie im <<DetailkonzeptKomponenteDatenzugriff>> beschrieben, in einem Verzeichnis abgelegt.
@@ -149,7 +137,7 @@ Nutzungsdokumentation unter:
 http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide[http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide]
 
 [[einbinden-der-bibliotheken]]
-=== Einbinden der Bibliotheken
+==== Einbinden der Bibliotheken
 
 Die benötigten Bibliotheken müssen als Abhängigkeiten in die Maven-Konfiguration (`pom.xml`) aufgenommen werden:
 
@@ -171,14 +159,14 @@ Die benötigten Bibliotheken müssen als Abhängigkeiten in die Maven-Konfigurat
 Eine passende Beispielkonfiguration findet sich in der Maven-Konfiguration der <<Vorlageanwendung>>.
 
 [[implementierung-der-entitätsklassen-und-daos]]
-=== Implementierung der Entitätsklassen und DAOs
+==== Implementierung der Entitätsklassen und DAOs
 
 Die Entitäts-Klassen und Schnittstellen-Klassen müssen implementiert werden.
 In den Entitätsklassen müssen die Mapping-Informationen für JPA als Annotationen eingetragen werden.
 Die Implementierung der DAOs wird automatisch generiert.
 
 [[implementierung-von-schnittstellen-klassen]]
-=== Implementierung von Schnittstellen-Klassen
+==== Implementierung von Schnittstellen-Klassen
 
 Schnittstellen-Klassen dienen als eine nur Lese-Sicht auf persistente Entitäten.
 Dieses wird benötigt, wenn Komponenten persistente Entitäten über ihre Schnittstelle herausgeben, um zu verhindern, dass andere Komponenten diese Daten ändern.
@@ -204,12 +192,12 @@ RegisterEintragDaten daten = mapper.map(registerEintrag, RegisterEintragDaten.cl
 ----
 
 [[fachkomponenten-der-anwendung]]
-= Fachkomponenten der Anwendung
+== Fachkomponenten der Anwendung
 
 In diesem Kapitel wird die Realisierung von Fachkomponenten beschrieben.
 
 [[designvorgaben-1]]
-== Designvorgaben
+=== Designvorgaben
 
 * Alle Komponenten definieren ihre Schnittstelle über ein Java-Interface.
 Eine Ausnahme bildet die Komponente Basisdaten.
@@ -223,7 +211,7 @@ Diese Klasse kann die Anwendungsfälle im einfachen Fall direkt implementieren o
 Für fachliche Komponenten wird eine Basisimplementierung in <<IsyFactReferenzarchitektur>> beschrieben.
 
 [[klassendesign-1]]
-== Klassendesign
+=== Klassendesign
 
 :desc-image-Fachliche_Komponente:  Klassendesign für Fachkomponenten
 [id="image-Fachliche_Komponente",reftext="{figure-caption} {counter:figures}"]
@@ -251,7 +239,7 @@ Falls ein Anwendungsfall weitere Komponenten (Konfiguration, Regelwerk) etc. ben
 |====
 
 [[package-struktur]]
-== Package-Struktur
+=== Package-Struktur
 
 * Die Realisierung der Komponenten-Schnittstelle erfolgt im Package +
   `<organisation>.<domäne>.<system>.core.<komponente>`
@@ -265,17 +253,17 @@ NOTE: Für das Bundesverwaltungsamt ist dies z.B. `de.bund.bva`
   implementiert.
 
 [[realisierung-1]]
-== Realisierung
+=== Realisierung
 
 * Die Implementierungsklassen und Interfaces der Komponente werden implementiert.
 * Die Komponente mit `@Component` bzw. mit einer passenden Spezialisierung annotiert, damit sie von Spring als Bean konfiguriert wird.
 * Je nach Bedarf wird die Komponente anderen Komponenten per Dependency Injection bekannt gemacht.
 
 [[anwendungsnutzung]]
-= Anwendungsnutzung
+== Anwendungsnutzung
 
 In diesem Kapitel wird die Realisierung von verschiedenen, technischen Zugangswegen zum Anwendungskern beschrieben, mit Ausnahme des GUI-Zugangs.
-Das Thema umfasst das Anbieten von internen Service-Schnittstellen per HttpInvoker, das Nutzen derselben und die Nutzung des Anwendungskerns im
+Das Thema umfasst das Anbieten von internen Service-Schnittstellen per HTTP Invoker, das Nutzen derselben und die Nutzung des Anwendungskerns im
 Rahmen der Batch-Verarbeitung.
 
 :desc-image-RAIT:  Referenzarchitektur eines IT-Systems
@@ -284,25 +272,25 @@ Rahmen der Batch-Verarbeitung.
 image::RAIT.png[align="center"]
 
 [[anbieten-von-service-schnittstellen]]
-== Anbieten von Service-Schnittstellen
+=== Anbieten von Service-Schnittstellen
 
-Dieser Abschnitt beschreibt die Realisierung von HttpInvoker-Schnittstellen (siehe <<Spring>>).
-HttpInvoker-Schnittstellen sind interne Service-Schnittstellen, die innerhalb der Anwendungslandschaft durch andere Anwendungen genutzt werden dürfen.
+Dieser Abschnitt beschreibt die Realisierung von HTTP Invoker Schnittstellen (siehe <<Spring>>).
+HTTP Invoker Schnittstellen sind interne Service-Schnittstellen, die innerhalb der Anwendungslandschaft durch andere Anwendungen genutzt werden dürfen.
 
 [NOTE]
 ====
 Ab IsyFact 2.0 ist die Verwendung von REST-Schnittstellen erlaubt.
-Spring HTTP-Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
-Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
+HTTP Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
+Die Verwendung von REST-Schnittstellen wird einem gesonderten Konzept erläutert.
 ====
 
 Extern verfügbare Services sind durch WebService-Schnittstellen anzubieten, über einen ServiceGateway.
 
 [[designvorgaben-2]]
-=== Designvorgaben
+==== Designvorgaben
 
-* Interne Services werden per Spring-HttpInvoker angeboten.
-* Es werden keine Komponenten des Anwendungskern extern verfügbar gemacht: Es wird stets eine eigene Service-Schicht implementiert.
+* Interne Services werden per Spring HTTP Invoker angeboten.
+* Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht: Es wird stets eine eigene Service-Schicht implementiert.
 Dazu gehört auch die Definition einer Service-Schnittstelle als Java-Interface (RemoteBean).
 * Jede Service-Methode erhält einen zusätzlichen Parameter `AufrufKontext`. Im Aufrufkontext werden Informationen zum Aufrufer
 (Name, Behördenkennzeichen, Rollen…) übermittelt.
@@ -317,10 +305,10 @@ Die Java-Version darf nicht neuer sein, als diejenige des Nutzers.
 Gegebenenfalls muss die Schnittstelle auf eine ältere Version kompiliert werden.
 
 [[package-struktur-1]]
-=== Package-Struktur
+==== Package-Struktur
 
 * Schnittstellen werden versioniert.
-Die Versionsnummer wird dreistellig im Package-Namen der Serviceschnittstelle angegeben.
+Die Versionsnummer wird dreistellig im Package-Namen der Service-Schnittstelle angegeben.
 Beispiel: Die Version 1.0.0 der Schnittstelle der Komponente Meldung der Anwendung Vorlage-Register, wird in den folgenden
 Packages implementiert: +
 `de.bund.bva.cd.registercd.service.httpinvoker.v1_0_0.*`
@@ -334,9 +322,9 @@ NOTE: Das sind genau die Inhalte, die im eigenen Projekt `<system>-httpinvoker-s
   `<organisation>.<domäne>.<system>.service.httpinvoker.vX_Y_Z.impl`.
 
 [[klassendesign-2]]
-=== Klassendesign
+==== Klassendesign
 
-:desc-image-KDServiceSS: Klassendesign für HttpInvoker-Service-Schnittstellen
+:desc-image-KDServiceSS: Klassendesign für HTTP Invoker Service-Schnittstellen
 [id="image-KDServiceSS",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-KDServiceSS}
 image::KDServiceSS.png[align="center"]
@@ -347,7 +335,7 @@ image::KDServiceSS.png[align="center"]
 [cols="1,2"]
 |====
 |*AuskunftRemoteBean* a|
-Externes Interface für den Zugriff auf die Auskunft-Komponente per HttpInvoker.
+Externes Interface für den Zugriff auf die Auskunft-Komponente per HTTP Invoker.
 Bei Nutzung einer Service-Schnittstelle generiert Spring auf Basis dieses Interfaces einen Proxy für den Remote-Zugriff. +
 Die Methoden dieser Komponente verwenden ausschließlich Transportobjekte und -Exceptions. +
 Die Überwachung der Service-Aufrufe (siehe Kapitel <<überwachung>>) wird als Aspekt der RemoteBean konfiguriert.
@@ -387,13 +375,13 @@ Diese wird per Spring-AOP über Annotations konfiguriert (siehe Kapitel <<datenh
 |====
 
 [[realisierung-2]]
-=== Realisierung
+==== Realisierung
 
 Zur Realisierung einer Service-Schnittstelle müssen einige Aktivitäten ausgeführt werden.
 Diese werden im Folgenden beschrieben.
 
 [[anlegen-des-schnittstellen-projekts]]
-==== Anlegen des Schnittstellen Projekts
+===== Anlegen des Schnittstellen Projekts
 
 Das neue Projekt `<system>-httpinvoker-sst` muss angelegt werden.
 Dazu wird eine neue `pom.xml` angelegt.
@@ -407,12 +395,12 @@ Das Schnittstellen-Projekt erhält dieselbe Group-ID wie das eigentliche Anwendu
 Die Artifact-ID ist `<system>-httpinvoker-sst`.
 
 [[realisierung-der-externen-service-schnittstelle]]
-==== Realisierung der „externen“ Service-Schnittstelle
+===== Realisierung der „externen“ Service-Schnittstelle
 
 Das RemoteBean-Interface, die Transportobjekte und -Exceptions müssen im Schnittstellen-Projekt angelegt werden.
 
 [[realisierung-der-service-implementierung]]
-==== Realisierung der Service-Implementierung
+===== Realisierung der Service-Implementierung
 
 Im Projekt der eigentlichen Anwendung müssen die Exception-Fassade, das Service-Interface (z.B. `AuskunftService`) und die Implementierung dieses Interfaces angelegt werden.
 
@@ -431,9 +419,9 @@ An den Methoden der Service-Implementierung werden die Annotationen `@StelltAufr
 Beispiele dafür finden sich in <<Vorlageanwendung>>.
 
 [[konfigurieren-der-service-schnittstelle]]
-==== Konfigurieren der Service-Schnittstelle
+===== Konfigurieren der Service-Schnittstelle
 
-In der Konfigurationsklasse der Service-Schicht wird die HttpInvoker-Konfiguration der
+In der Konfigurationsklasse der Service-Schicht wird die HTTP Invoker Konfiguration der
 Service-Schnittstelle durchgeführt.
 Dazu werden das Remote-Bean-Interface und die zugehörige Implementierung in Form der Exception-Fassade als Service
 konfiguriert <<listing-httpinvokerserviceexporter>>.
@@ -448,8 +436,8 @@ Der Bean-Name ist für die URL, unter welcher der Service erreichbar sein wird, 
 public class ServiceConfiguration {
 
     @Bean("/AuskunftBean_v1_0")
-    public HttpInvokerServiceExporter auskunftService(AuskunftExceptionFassade auskunftFassade) {
-        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
+    public IsyHttpInvokerServiceExporter auskunftService(AuskunftExceptionFassade auskunftFassade) {
+        IsyHttpInvokerServiceExporter exporter = new IsyHttpInvokerServiceExporter();
         exporter.setService(auskunftFassade);
         exporter.setServiceInterface(AuskunftRemoteBean.class);
         return exporter;
@@ -457,11 +445,13 @@ public class ServiceConfiguration {
 }
 ----
 
+`IsyHttpInvokerServiceExporter` ist eine Erweiterung von `HttpInvokerServiceExporter` und deaktiviert standardmäßig die Verwendung von Proxy-Klassen.
+
 [[einbinden-der-benötigten-bibliotheken]]
-==== Einbinden der benötigten Bibliotheken
+===== Einbinden der benötigten Bibliotheken
 
 [[bibliotheken-für-das-service-schnittstellen-projekt]]
-===== Bibliotheken für das Service-Schnittstellen-Projekt
+====== Bibliotheken für das Service-Schnittstellen-Projekt
 
 Das Projekt der Service-Schnittstelle benötigt die in <<listing-bib-sst>> aufgelisteten Bibliotheken:
 
@@ -485,7 +475,7 @@ Das Projekt der Service-Schnittstelle benötigt die in <<listing-bib-sst>> aufge
 ----
 
 [[bibliotheken-für-die-implementierung-der-service-schnittstelle]]
-===== Bibliotheken für die Implementierung der Service-Schnittstelle
+====== Bibliotheken für die Implementierung der Service-Schnittstelle
 
 In die Build-Konfiguration des Hauptprojekts des Anwendungssystems müssen folgende Bibliotheken aufgenommen werden:
 
@@ -528,19 +518,19 @@ Die verwendete Version von _Orika_ ist dem Produktkatalog zu entnehmen.
 ====
 
 [[nutzen-von-service-schnittstellen]]
-== Nutzen von Service-Schnittstellen
+=== Nutzen von Service-Schnittstellen
 
 Dieser Abschnitt beschreibt, wie Service-Schnittstellen genutzt, d.h. aufgerufen werden können.
 
 [[designvorgaben-3]]
-=== Designvorgaben
+==== Designvorgaben
 
 Die genutzte Schnittstelle soll vom eigenen Anwendungskern entkoppelt werden.
 D.h. im eigenen Anwendungskern werden keine Exceptions oder Transportobjekte der genutzten Schnittstelle verwendet.
 Dazu wird ein Wrapper um die Schnittstelle implementiert.
 
 [[klassendesign-3]]
-=== Klassendesign
+==== Klassendesign
 
 :desc-image-implClntAd: Beispiel für die Implementierung eines Client-Adapters
 [id="image-implClntAd",reftext="{figure-caption} {counter:figures}"]
@@ -555,19 +545,19 @@ Der Adapter implementiert im Beispiel ein eigenes `Auskunft`-Interface für die 
 
 Für die Remote Zugriffe wird der `HttpInvokerProxy` benutzt.
 Dieser wird automatisch von Spring erzeugt.
-Er bietet das RemoteBean-Interface auf Client-Seite an und sorgt dafür, dass Aufrufe per HttpInvoker an den Service weitergereicht werden.
+Er bietet das RemoteBean-Interface auf Client-Seite an und sorgt dafür, dass Aufrufe per HTTP Invoker an den Service weitergereicht werden.
 
 [[realisierung-3]]
-=== Realisierung
+==== Realisierung
 
 [[einbinden-der-schnittstellen-bibliothek]]
-==== Einbinden der Schnittstellen-Bibliothek
+===== Einbinden der Schnittstellen-Bibliothek
 
 Zur Realisierung wird die Bibliothek mit der zu nutzenden Service-Schnittstelle benötigt.
 Dieses befindet sich im Deployment-Repository der zu nutzenden Anwendung.
 Das Jar wird in das eigene Projekt-Repository kopiert und via Maven eingebunden.
 
-Zusätzlich müssen die HttpInvoker-Bibliotheken von Spring eingebunden werden.
+Zusätzlich müssen die HTTP Invoker Bibliotheken von Spring eingebunden werden.
 Eine vollständige Liste zeigt <<listing-bib-sst-nutzung>>.
 
 :desc-listing-bib-sst-nutzung: Einbindung der Bibliotheken zur Nutzung von Service-Schnittstellen
@@ -599,9 +589,9 @@ Eine vollständige Liste zeigt <<listing-bib-sst-nutzung>>.
 ====
 
 [[durchführen-der-konfiguration]]
-==== Durchführen der Konfiguration
+===== Durchführen der Konfiguration
 
-Spring erzeugt anhand des Service-Interfaces HttpInvoker-Proxies, die den eigentlichen HttpInvoker-Aufruf durchführen.
+Spring erzeugt anhand des Service-Interfaces HTTP Invoker Proxies, die den eigentlichen Aufruf durchführen.
 Diese Proxies werden als Spring-Bean konfiguriert:
 
 :desc-listing-proxconf: Proxy-Konfiguration
@@ -622,12 +612,12 @@ public class ServiceConfig {
 ----
 
 Auf der Bean können alle Methoden des Interfaces `serviceInterface` aufgerufen werden, der Aufruf erfolgt dann automatisch
-per HttpInvoker gegen das in `serviceUrl` konfigurierte Ziel-System.
+per HTTP Invoker gegen das in `serviceUrl` konfigurierte Ziel-System.
 
 NOTE: Die URL wird als betriebliche Konfiguration in `application.properties` ausgelagert und durch eine `@ConfigurationProperties`-Klasse von Spring Boot gesetzt.
 
 [[erweiterung-um-die-aufrufwiederholung-mittels-service-utilities]]
-==== Erweiterung um die Aufrufwiederholung mittels Service Utilities
+===== Erweiterung um die Aufrufwiederholung mittels Service Utilities
 
 Die in diesem Kapitel aufgeführte Konfiguration eines aufzurufenden Dienstes kann durch die Verwendung einer Aufruf-Wiederholungsimplementierung
 erweitert werden, so dass Aufrufe bei Timeouts wiederholt werden.
@@ -663,7 +653,7 @@ Dieser `RequestExecutor` erweitert den Standard-`RequestExecutor` von Spring um 
 Dieser `RequestExecutor` ist der Spring-HttpInvokerProxyFactoryBean bekannt zu machen.
 
 [[implementierung-des-wrappers]]
-==== Implementierung des Wrappers
+===== Implementierung des Wrappers
 
 Zur Entkopplung des eigenen Anwendungskerns von der Schnittstelle wird ein Wrapper für die Schnittstelle implementiert.
 Der Wrapper führt das Mapping der internen Datenobjekte auf die Transportobjekte durch.
@@ -673,19 +663,19 @@ Zusätzlich führt der Wrapper das Exception-Handling durch.
 Der Wrapper kann auftretende Exceptions in eigene Exceptions umwandeln (Exception-Chaining) oder explizit behandeln.
 
 [[batch-verarbeitung]]
-== Batch-Verarbeitung
+=== Batch-Verarbeitung
 
 In diesem Kapitel wird die Implementierung von Batches zu einer Anwendung beschrieben.
 
 [[designvorgaben-4]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Die Batch-Verarbeitung verwendet den Anwendungskern der zugehörigen Anwendung.
 Der Anwendungskern ist Teil des Batch-Deployments, d.h. der Code ist sowohl Teil der Server-Anwendung als auch der Batch-Anwendung in Bezug auf Deploymenteinheiten.
 * Zur Realisierung der Batchlogik wird eine Batch-Ausführungs-Bean implementiert.
-* Falls für die Verarbeitung im Batch eigene Fachlogik benötigt wird, ist diese trotzdem den entsprechenden Anwendungskomponenten der zugehörigen Fachanwendung hinzuzufügen.
+* Falls für die Verarbeitung im Batch eigene Fachlogik benötigt wird, ist diese trotzdem den entsprechenden Anwendungskomponenten der zugehörigen Geschäftsanwendung hinzuzufügen.
 * Im Rahmen der Initialisierung hat die Ausführungs-Bean unter anderem die Aufgabe, die Konsistenz und Korrektheit der Eingabedaten zu prüfen.
-* Falls die zu verarbeitenden Sätze eines Batches das Ergebnis einer Datenbank-Query sind, ist in der Initialisierung die Query über eine Anwendungskomponente der zugehörigen Fachanwendung abzusetzen.
+* Falls die zu verarbeitenden Sätze eines Batches das Ergebnis einer Datenbank-Query sind, ist in der Initialisierung die Query über eine Anwendungskomponente der zugehörigen Geschäftsanwendung abzusetzen.
 Diese Query soll die (fachlichen) Schlüssel von Entitäten, nicht Entitäten selbst auslesen.
 * Die Batches sind möglichst robust zu konstruieren: Falls auf ein fachliches Problem in der Ausführungs-Bean reagiert werden kann, sollte dies getan werden.
 * Batches erzeugen ein Ausführungsprotokoll.
@@ -695,7 +685,7 @@ Die Ausführungs-Bean übermittelt dem Batchrahmen Status-Informationen für das
 * Alle Batches zu einer Anwendung werden als eigenständige Deployment-Einheit ausgeliefert.
 
 [[klassendesign-4]]
-=== Klassendesign
+==== Klassendesign
 
 :desc-image-KDBatch: Klassendesign eines Batches
 [id="image-KDBatch",reftext="{figure-caption} {counter:figures}"]
@@ -716,10 +706,10 @@ Die Transaktionssteuerung im Batch sieht vor, mehrere Arbeitsschritte in einer T
 Die Größe der Transaktion (Commit-Rate) wird über den Batchrahmen konfiguriert.
 
 [[realisierung-4]]
-=== Realisierung
+==== Realisierung
 
 [[einbinden-der-bibliothek]]
-==== Einbinden der Bibliothek
+===== Einbinden der Bibliothek
 
 Zur Realisierung von Batches muss die in <<listing-bib-batch>> aufgelistete Bibliothek eingebunden werden.
 
@@ -739,7 +729,7 @@ Zur Realisierung von Batches muss die in <<listing-bib-batch>> aufgelistete Bibl
 ----
 
 [[implementierung-der-batch-logik]]
-==== Implementierung der Batch-Logik
+===== Implementierung der Batch-Logik
 
 Die Batch-Logik wird implementiert, in dem eine Batch-Bean im Package `<organisation>.<domäne>.<anwendung>.batch` implementiert wird.
 Für die Realisierung ist es notwendig, dass die Batch-Bean das Interface `BatchAusfuehrungsBean` aus der Bibliothek `isy-batchrahmen` implementiert.
@@ -751,17 +741,17 @@ Details dazu werden im JavaDoc der Methode beschrieben.
 Der Parameter `BatchErgebnisProtokoll` enthält eine Referenz auf ein Protokollobjekt, welches der Batch verwendet, um Protokoll-Meldungen und Statistiken an den Batchrahmen zu übergeben.
 
 [[konfiguration-des-batches-und-batchrahmens]]
-==== Konfiguration des Batches und Batchrahmens
+===== Konfiguration des Batches und Batchrahmens
 
 Für jeden Batch muss eine Property-Datei in `/src/main/resources/resources/batch` angelegt werden.
 In dieser statischen Konfiguration werden unter anderem die Batch-ID und die Transaktionssteuerung konfiguriert.
 Eine Beschreibung der Parameter ist in <<DetailkonzeptKomponenteBatch>> enthalten.
 
 Die betriebliche Konfiguration des Batches ist identisch zu derjenigen der zugehörigen Anwendung.
-Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebliche Konfiguration der Fachanwendung aufgenommen.
+Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebliche Konfiguration der Geschäftsanwendung aufgenommen.
 
 [[spring-konfiguration-anlegen]]
-==== Spring-Konfiguration anlegen
+===== Spring-Konfiguration anlegen
 
 Für den Batchrahmen werden in der Konfigurationsklasse der Batch-Schicht die Spring-Beans des Batchrahmens und für jeden existierenden Batch die Ausführungs-Bean als Spring-Bean definiert.
 
@@ -783,7 +773,7 @@ Dazu müssen Beans, nicht die nicht für Ausführung eines Batches instanziiert 
 `@ExcludeFromBatchContext` annotiert werden.
 
 [[konfiguration-des-batch-deployments]]
-==== Konfiguration des Batch-Deployments
+===== Konfiguration des Batch-Deployments
 
 Für das Deployment des Batches wird ein neues Maven-Projekt `<system>-batch` angelegt.
 Dieses hat die Aufgabe das Deployment-Paket für den Batch zusammenzustellen.
@@ -796,17 +786,17 @@ Das Batch-Projekt enthält keinen Java-Code.
 Die Batch-Beans liegen im normalen Anwendungsprojekt.
 
 [[querschnitt]]
-= Querschnitt
+== Querschnitt
 
 In diesem Kapitel wird die Umsetzung querschnittlicher Aspekte beschrieben.
 
 [[logging]]
-== Logging
+=== Logging
 
 In diesem Abschnitt wird beschrieben, wie das Logging umzusetzen und zu konfigurieren ist.
 
 [[designvorgaben-5]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Für Logging wird die Bibliothek `isy-logging` verwendet.
 * Es wird ein Debug-, Info- und ein Error-Log geführt.
@@ -817,10 +807,10 @@ In diesem Abschnitt wird beschrieben, wie das Logging umzusetzen und zu konfigur
   Diese identifiziert den Aufruf über die Anwendungslandschaft hinweg.
 
 [[realisierung-5]]
-=== Realisierung
+==== Realisierung
 
 [[implementierung-von-log-ausgaben]]
-==== Implementierung von Log-Ausgaben
+===== Implementierung von Log-Ausgaben
 
 Log-Ausgaben können an beliebigen Stellen im Code erzeugt werden.
 Dazu wird in jeder Klasse ein eigener Logger erzeugt (<<listing-logger>>).
@@ -849,7 +839,7 @@ public int cdErworben(AufrufKontext kontext, …)
 ----
 
 [[einbinden-der-bibliotheken-1]]
-==== Einbinden der Bibliotheken
+===== Einbinden der Bibliotheken
 
 Um die Logging Funktionen in der eigenen Anwendung nutzen zu können müssen die in <<listing-bib-logging>> aufgelisteten Bibliotheken eingebunden werden.
 
@@ -872,19 +862,19 @@ Dadurch wird die Bibliothek `isy-logging` sowie Logback als verwendetes Produkt 
 
 
 [[anlegen-der-konfiguration]]
-==== Anlegen der Konfiguration
+===== Anlegen der Konfiguration
 
 In `/src/main/resources/` muss die Datei `logback-spring.xml` angelegt werden.
 Diese definiert, wohin Log-Ausgaben geschrieben werden und wie das Layout dafür ist.
 Die Bibliothek `isy-logging` bringt fertig konfigurierte Layouts mit, die dort eingebunden werden.
 
 [[konfiguration]]
-== Konfiguration
+=== Konfiguration
 
 In diesem Kapitel wird die Verarbeitung von Konfigurationen in Anwendungen beschrieben.
 
 [[designvorgaben-6]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Für die Konfiguration werden betriebliche, statische und Benutzerkonfigurationen unterschieden.
 Eine Definition und Kriterien zur Typisierung können in <<KonzeptKonfiguration>> nachgelesen werden.
@@ -895,10 +885,10 @@ Eine Definition und Kriterien zur Typisierung können in <<KonzeptKonfiguration>
 * Für das Laden von betrieblichen Konfigurationen werden `@ConfigurationProperties`-Klassen verwendet.
 
 [[realisierung-6]]
-=== Realisierung
+==== Realisierung
 
 [[auslesen-von-konfigurationsparametern-in-der-anwendung]]
-==== Auslesen von Konfigurationsparametern in der Anwendung
+===== Auslesen von Konfigurationsparametern in der Anwendung
 
 Für den Zugriff auf Konfigurationsparameter in `application.properties` werden Klassen erstellt, die beim Start
 der Anwendung mit den Werten aus `application.properties` befüllt werden.
@@ -908,12 +898,12 @@ Dependendy Injection verfügbar gemacht.
 Details zur Implementierung siehe <<KonzeptKonfiguration>>.
 
 [[fehlerbehandlung]]
-== Fehlerbehandlung
+=== Fehlerbehandlung
 
 In diesem Kapitel wird beschrieben, wie die Fehlerbehandlung durchzuführen ist.
 
 [[designvorgaben-7]]
-=== Designvorgaben
+==== Designvorgaben
 
 * In jeder Anwendung bzw. Bibliothek wird eine eigene Exception-Hierarchie angelegt.
 * Für Anwendungs-Exceptions wird die oberste Exception dieser Hierarchie von den in der Bibliothek `isy-exception-core` enthaltenen Exception-Klassen abgeleitet.
@@ -941,7 +931,7 @@ Destruktiv gewrappte Exceptions sind in jedem Fall vor dem Wrappen zu loggen.
 Weitere Hinweise für die richtige Behandlung von Fehlern sind in <<KonzeptFehlerbehandlung>> enthalten.
 
 [[paketstruktur]]
-=== Paketstruktur
+==== Paketstruktur
 
 Exceptions die querschnittlich, also von mehreren Komponenten genutzt werden, werden im Paket:
 
@@ -955,7 +945,7 @@ Komponente genutzt werden, gehören in das Paket:
 `<organisation>.<domäne>.<anwendung>.core.<komponente>`
 
 [[realisierung-7]]
-=== Realisierung
+==== Realisierung
 
 Die Bibliothek ist in zwei Teile aufgeteilt: `isy-exception-core` und `isy-exception-sst`.
 Das Core-Paket enthält anwendungsinterne Exception-Klassen und Hilfsklassen für das Exception-Mapping.
@@ -970,7 +960,7 @@ werden lediglich die Transport-Exceptions aus `isy-exception-sst` benötigt
 (siehe Kapitel <<bibliotheken-für-das-service-schnittstellen-projekt>>).
 
 [[einbinden-der-bibliothek-1]]
-==== Einbinden der Bibliothek
+===== Einbinden der Bibliothek
 
 Zur Realisierung der Fehlerbehandlung und Implementierung von Exceptions müssen die in <<listing-bib-fehlerbehandlung>>
 aufgelisteten Bibliotheken eingebunden werden.
@@ -998,7 +988,7 @@ aufgelisteten Bibliotheken eingebunden werden.
 `isy-util` enthält Hilfsklassen zum Laden von Fehlertexten.
 
 [[anlegen-der-exception-klassen]]
-==== Anlegen der Exception-Klassen
+===== Anlegen der Exception-Klassen
 
 In jeder Anwendung wird für jede Exception-Art (technisch, fachlich) eine eigene Oberklasse angelegt.
 Diese erbt von der entsprechenden Klasse aus `isy-exception-core`. Zum Laden der
@@ -1008,7 +998,7 @@ Diese unterstützt das Laden von Fehlertexten aus einer Spring-Message-Source.
 Ein Beispiel für die Verwendung ist in der <<Vorlageanwendung>> enthalten.
 
 [[fehlerbehandlung-an-der-anwendungsschnittstelle]]
-==== Fehlerbehandlung an der Anwendungsschnittstelle
+===== Fehlerbehandlung an der Anwendungsschnittstelle
 
 Fehler sind entweder zu behandeln und zu loggen oder weiterzuwerfen.
 Es muss jedoch sichergestellt werden, dass interne Fehler der Anwendung nicht über die
@@ -1035,12 +1025,12 @@ Beim Umwandeln der internen Exceptions in Transport-Exceptions wird der Stack-Tr
 Ein Beispiel hierfür ist wieder in <<Vorlageanwendung>> enthalten.
 
 [[protokollierung]]
-== Protokollierung
+=== Protokollierung
 
 In diesem Kapitel wird beschrieben, wie eine fachliche Protokollierung umzusetzen ist.
 
 [[designvorgaben-8]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Protokolleinträge und Daten des Anwendungsfalls (Meldung, Auskunft…) werden innerhalb derselben
 Transaktion geschrieben.
@@ -1052,10 +1042,10 @@ Bis dahin werden die Binärdaten mit einem Lösch-Flag versehen und stehen nur n
 Dies kann über ein eigenes Feld in den Protokoll-Daten und einem Foreign-Key-Constraint in der Datenbank sichergestellt werden.
 
 [[realisierung-8]]
-=== Realisierung
+==== Realisierung
 
 [[einbinden-der-bibliothek-2]]
-==== Einbinden der Bibliothek
+===== Einbinden der Bibliothek
 
 Zur Realisierung der Protokollierung muss die in <<listing-bib-protokollierung>> aufgelisteten Bibliothek eingebunden werden.
 
@@ -1077,7 +1067,7 @@ Zur Realisierung der Protokollierung muss die in <<listing-bib-protokollierung>>
 Die Bibliothek enthält Basis-Entitäten, von denen eigene Protokollentitäten erben müssen.
 
 [[implementierung-der-protokollierungskomponente]]
-==== Implementierung der Protokollierungskomponente
+===== Implementierung der Protokollierungskomponente
 
 Die Protokollierungskomponente wird analog zu den übrigen fachlichen Komponenten entwickelt.
 Es wird keine Basisimplementierung dafür vorgeben.
@@ -1091,7 +1081,7 @@ Die Protokollierungskomponente benötigt in der Regel Kontextinformationen über
 Dazu wird in der Anwendung eine Aufrufkontext-Komponente (siehe <<aufrufkontextverwaltung>>) eingebunden.
 
 [[aufrufkontextverwaltung]]
-== Aufrufkontextverwaltung
+=== Aufrufkontextverwaltung
 
 Einige Komponenten der Anwendung, z.B. die Protokollierung oder die Autorisierung benötigen
 Kontextinformationen über den Aufrufer.
@@ -1099,16 +1089,16 @@ Damit diese nicht durch die gesamte Anwendung gereicht werden müssen, kann in d
 ein `AufrufKontextVerwalter` verwendet werden.
 
 [[designvorgaben-9]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Die Komponente wird so implementiert, dass sie spezifische Informationen über den Aufrufkontext speichern kann (z.B. Name des aufrufenden Benutzers).
 * Die Komponente kann in einer Anwendung so erweitert werden, dass sie beliebige weitere Kontext-Informationen aufnehmen kann.
 
 [[realisierung-9]]
-=== Realisierung
+==== Realisierung
 
 [[einbinden-der-bibliothek-3]]
-==== Einbinden der Bibliothek
+===== Einbinden der Bibliothek
 
 Zur Realisierung des Aufrufkontextes müssen die in <<listing-bib-aufrufkontext>> aufgelisteten Bibliotheken eingebunden werden.
 
@@ -1130,7 +1120,7 @@ Zur Realisierung des Aufrufkontextes müssen die in <<listing-bib-aufrufkontext>
 Die Bibliothek `isy-aufrufkontext` enthält die Komponente `AufrufKontextVerwalter`, welcher den benutzerspezifischen Aufrufkontext im Thread-Scope (alternativ Request-Scope) hält.
 
 [[konfiguration-der-bibliothek]]
-==== Konfiguration der Bibliothek
+===== Konfiguration der Bibliothek
 
 Die Komponente `AufrufKontextVerwalter` wird als Spring-Bean konfiguriert.
 Dabei wird festgelegt, dass Spring eine neue Instanz für jeden Thread (alternativ Request) anlegen soll:
@@ -1157,12 +1147,12 @@ Zur Entgegennahme des Aufrufkontextes an der Service-Schnittstelle wird die Anno
 Die Konfiguration ist in <<NutzungsvorgabenSicherheit>> beschrieben.
 
 [[authentifizierung-und-autorisierung]]
-== Authentifizierung und Autorisierung
+=== Authentifizierung und Autorisierung
 
 Dieses Kapitel beschreibt die Realisierung der Authentifizierung und Autorisierung von Anfragen.
 
 [[designvorgaben-10]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Die Authentifizierung von Anfragen wird im Servicegateway und im Portal mit Hilfe des Access Managers durchgeführt.
 * Prozesse, die innerhalb des Anwendungssystems oder der Anwendungslandschaft starten (z.B. Timertasks, Batches) verwenden einen technischen Benutzer und authentifizieren diesen selbständig gegen den Access Manager.
@@ -1177,10 +1167,10 @@ Daten des aufrufenden Benutzers entgegengenommen und in einen `AufrufKontext` ge
 Dieser Parameter wird im `AufrufKontextVerwalter` hinterlegt und beim Aufruf weiterer Nachbarsysteme durchgereicht.
 
 [[realisierung-10]]
-=== Realisierung
+==== Realisierung
 
 [[einbinden-der-bibliothek-4]]
-==== Einbinden der Bibliothek
+===== Einbinden der Bibliothek
 
 Zur Realisierung der Autorisierung müssen die in <<listing-bib-sicherheit>> aufgelisteten Bibliotheken eingebunden werden.
 
@@ -1211,14 +1201,14 @@ Zusätzlich wird als Abhängigkeit der `AufrufKontextVerwalter` (siehe <<aufrufk
 der die Informationen zum Aufrufer kennt.
 
 [[konfiguration-der-sicherheitskomponente]]
-==== Konfiguration der Sicherheitskomponente
+===== Konfiguration der Sicherheitskomponente
 
 Die Komponente Sicherheit wird als Spring-Bean in einer Konfigurationsklasse konfiguriert.
 
 Die einer Rolle zugeordneten Rechte werden in der Datei `/src/main/resources/resources/rollenrechte.xml` konfiguriert.
 
 [[prüfen-der-berechtigung]]
-==== Prüfen der Berechtigung
+===== Prüfen der Berechtigung
 
 Die Berechtigungsprüfung erfolgt in der Regel vor der fachlichen Verarbeitung in der Service-Schnittstelle oder im Dialog-Controller einer Anwendung.
 Dies erfolgt über Annotationen oder im Webflow (siehe <<NutzungsvorgabenSicherheit>>).
@@ -1234,12 +1224,12 @@ manager.pruefeRecht(RechteSchluessel.RECHT_MELDEN);
 die Autorisierung durchführen.
 
 [[überwachung]]
-== Überwachung
+=== Überwachung
 
 In diesem Abschnitt wird beschrieben, wie die Überwachung einer Anwendung realisiert wird.
 
 [[designvorgaben-11]]
-=== Designvorgaben
+==== Designvorgaben
 
 * Zur Überwachung werden `HealthIndicator` von Spring Boot Actuator verwendet.
 * Metriken werden anbieterneutral mit Micrometer angeboten.
@@ -1249,7 +1239,7 @@ NOTE: Eine Liste der angebotenen Metriken ist in <<KonzeptUeberwachung>> enthalt
 * Jede Anwendung muss eine Service-Operation anbieten, die es nutzenden Nachbarsystemen erlaubt, die Erreichbarkeit dieses Systems zu prüfen (`Ping`-Methode).
 
 [[klassendesign-5]]
-=== Klassendesign
+==== Klassendesign
 
 // TODO Grafik anpassen
 //:desc-image-berwachung: Klassendesign für die Überwachung
@@ -1269,10 +1259,10 @@ Admin-Komponente angeboten.
 Der `HealthIndicator` wird ebenfalls in der Admin-Komponente implementiert.
 
 [[realisierung-11]]
-=== Realisierung
+==== Realisierung
 
 [[einbinden-der-bibliothek-5]]
-==== Einbinden der Bibliothek
+===== Einbinden der Bibliothek
 
 Zur Realisierung der Überwachung muss die in <<listing-bib-ueberwachung>> aufgelistete Bibliothek eingebunden werden.
 
@@ -1294,7 +1284,7 @@ Zur Realisierung der Überwachung muss die in <<listing-bib-ueberwachung>> aufge
 Die Bibliothek enthält Beans, welche das von Anwendungen bereitzustellende Management-Interface implementieren.
 
 [[konfiguration-der-überwachungsschnittstelle]]
-==== Konfiguration der Überwachungsschnittstelle
+===== Konfiguration der Überwachungsschnittstelle
 
 Zum Anbieten der Service-Statistik sind alle benötigten Implementierungen in `isy-ueberwachung` enthalten.
 Es muss lediglich die Spring-Konfiguration durchgeführt werden.
@@ -1306,12 +1296,12 @@ Dieser Advice wird so konfiguriert, dass bei jedem Aufruf einer Methode der Remo
 (siehe <<klassendesign-2>>) die Statistik-Bean aufgerufen wird.
 
 [[implementierung-der-ping--und-prüf-methoden]]
-==== Implementierung der Ping-Methode und HealthIndicator
+===== Implementierung der Ping-Methode und HealthIndicator
 
 Um die Verfügbarkeit bzw. Erreichbarkeit eines Systems automatisiert überprüfen zu können, muss eine Ping-Methode und ein
 `HealthIndicator` in der Komponente „Administration“ implementiert werden.
 
-Die Ping-Methode wird per HttpInvoker als Service-Methode angeboten (siehe <<anbieten-von-service-schnittstellen>>).
+Die Ping-Methode wird per HTTP Invoker als Service-Methode angeboten (siehe <<anbieten-von-service-schnittstellen>>).
 Die Implementierung besteht darin, einfach den übergebenen String zurückzugeben.
 
 Der `HealthIndicator` muss für jedes System individuell implementiert werden.
@@ -1320,7 +1310,7 @@ Als Grundsatz soll darin die Verfügbarkeit jedes Nachbarsystems und die aller g
 NOTE: Die Bibliothek `isy-persistence` bringt einen eigenen `HealthIndicator` für die Verfügbarkeit der Datenbank mit.
 
 [[ldap-zugriff]]
-== LDAP-Zugriff
+=== LDAP-Zugriff
 
 In diesem Abschnitt wird beschrieben, wie LDAP-Zugriffe in einer Anwendung realisiert werden.
 Dies kann notwendig sein, wenn ein Zugriff auf Daten notwendig ist, die noch nicht über eine querschnittliche Bibliothek oder einen Querschnittsdienst (z.B. Schlüsselverzeichnis) angeboten werden.
@@ -1344,7 +1334,7 @@ Daher muss die in <<listing-bib-ldap>> aufgelistete Bibliothek eingebunden werde
 ----
 
 [[spring-konfiguration]]
-=== Spring Konfiguration
+==== Spring Konfiguration
 
 In der Spring-Konfigurationsdatei müssen drei Einträge für die Nutzung von Spring LDAP gesetzt werden:
 
@@ -1401,7 +1391,7 @@ Die Bean `ldapTemplate` definiert die Klasse, die den Zugriff auf den LDAP kapse
 Sie benötigt nur die Bean `contextSource` als Parameter.
 
 [[realisierung-12]]
-=== Realisierung
+==== Realisierung
 
 LDAP-Zugriffe sind keine eigene Bibliothek, daher wird im Folgenden eine DAO-Klasse
 vorgestellt, welche einen lesenden und schreibenden Zugriff auf einen LDAP zeigt.
@@ -1411,7 +1401,7 @@ Es wird exemplarisch gezeigt, wie über das `LdapTemplate` Suchen und Einfügen 
 LDAP funktioniert.
 
 [[auslesen-von-rollen]]
-==== Auslesen von Rollen
+===== Auslesen von Rollen
 
 :desc-listing-AusRollen: exemplarisch: Auslesen von Rollen
 [id="listing-AusRollen",reftext="{listing-caption} {counter:listings}"]
@@ -1462,7 +1452,7 @@ In unserer Klasse werden alle Rollen (Inhalt des LDAP-Attributes `rollen`) des B
 Zusammengefasst sucht diese Methode einen Benutzer, der durch seinen Anmeldenamen und sein Behörden-/Organisationskennzeichen identifiziert wird, und gibt die Rollen des Benutzers als Liste von Strings zurück.
 
 [[speichern-eines-anwenders]]
-==== Speichern eines Anwenders
+===== Speichern eines Anwenders
 
 Als Beispiel zum Speichern wird hier das Neuanlegen eines Anwenders gezeigt.
 
@@ -1510,3 +1500,12 @@ In der letzten Zeile der Methode wird wiederum das `LdapTemplate` aufgerufen und
 Methode `bind` ein neuer Eintrag im LDAP angelegt.
 Als erster Parameter wird der DN des Eintrags mitgeliefert, in den Parametern zwei und drei werden alle zu
 setzenden Attribute übergeben, entweder als Context oder als Sammlung von Attributen.
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

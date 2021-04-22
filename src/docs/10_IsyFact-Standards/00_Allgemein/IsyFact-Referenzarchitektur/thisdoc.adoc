@@ -1,14 +1,17 @@
+= IsyFact-Referenzarchitektur: Einleitung
 
+// tag::inhalt[]
+[[einleitung]]
 == Einleitung
 
 Die *IsyFact* ist eine freie allgemeine <<glossar-Software-Factory>> zum Bau von <<glossar-IT-System,IT-Systemen>>, die vom Bundesverwaltungsamt bereitgestellt wird.
-Sie wurde entwickelt, um unterschiedliche <<glossar-Fachanwendung,Fachanwendungen>> effizient entwerfen, realisieren und betreiben zu können.
+Sie wurde entwickelt, um unterschiedliche <<glossar-Geschaeftsanwendung,Geschäftsanwendungen>> effizient entwerfen, realisieren und betreiben zu können.
 Der Begriff Factory steht für die schnelle Erzeugung neuer <<glossar-Anwendung,Anwendungen>> durch Anpassung und Ausgestaltung vorgefertigter Elemente, die in eine standardisierte <<glossar-Plattform>> integriert werden können.
 
 Die IsyFact besteht aus den IsyFact-Standards und IsyFact-Erweiterungen:
 
 Die *IsyFact-Standards* bilden das architektonische, technologische und methodische Fundament der IsyFact.
-Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Fachanwendungen relevant und verpflichtend sind.
+Sie umfassen allgemeingültige und wiederverwendbare Konzepte und Komponenten, die für die Entwicklung beliebiger Geschäftsanwendungen relevant und verpflichtend sind.
 Bspw.: Allgemeine Softwarereferenzarchitektur, Vorgaben zur Fehlerbehandlung, Logging etc.
 
 Die *IsyFact-Erweiterungen* sind optionale wiederverwendbare Lösungen für verschiedene Problemstellungen, die aufgrund spezifischer Anforderungen des BVA oder seiner
@@ -40,34 +43,34 @@ Diese Architektursichten werden im Folgenden beschrieben.
 [[fachliche-referenzarchitektur]]
 ==== Fachliche Referenzarchitektur
 
-Eine Anwendungslandschaft baut sich aus Anwendungsdomänen, Anwendungssystemen (Fachanwendungen und Querschnittssystemen), dem Portal und den Service-Gateways auf.
-Dies ist in <<image-FA-AW>> dargestellt.
+Eine Anwendungslandschaft baut sich aus Anwendungsdomänen, Anwendungssystemen (Geschäftsanwendungen und Querschnittssystemen), dem Portal und den Service-Gateways auf.
+Dies ist in <<image-GA-AW>> dargestellt.
 
 
-:desc-image-FA-AW: Fachliche Architektur einer Anwendungslandschaft
-[id="image-FA-AW",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-FA-AW}
-image::FA-AW.png[align="center"]
+:desc-image-GA-AW: Fachliche Architektur einer Anwendungslandschaft
+[id="image-GA-AW",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-GA-AW}
+image::GA-AW.png[align="center"]
 
 *Anwendungsdomänen:* Eine <<glossar-Anwendungsdomaene>> gruppiert fachlich zusammengehörende Anwendungssysteme zur Unterstützung von Geschäftsprozessen, die als eine Einheit angesehen werden können.
 
 *Anwendungssysteme:* Ein <<glossar-Anwendungssystem>> ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es besteht aus Anwendungskomponenten und Querschnittskomponenten.
 Anwendungssysteme unterstützen Geschäftsprozesse.
-Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine <<glossar-Fachanwendung>>.
+Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine <<glossar-Geschaeftsanwendung>>.
 Ein Anwendungssystem ist Bestandteil der <<glossar-A-Architektur>>.
 Aus Sicht der <<glossar-T-Architektur>> bildet ein <<glossar-IT-System>> die software-technische Umsetzung eines Anwendungssystems ab.
 
 Ein häufig anzutreffendes Beispiel hierfür ist die Trennung in ein Anwendungssystem zur Bestandsverwaltung (Register) und einem Anwendungssystem für die Benutzerinteraktion, die auf die Bestandsverwaltung zugreift.
 Im Zuge einer solchen Aufgabenteilung werden auch weitergehende Regeln definiert, wie Anwendungssysteme aufeinander zugreifen dürfen.
 Derartige Strukturierungsprinzipien und Regeln sind jedoch immer spezifisch für den jeweiligen Kontext der Anwendungslandschaft und können nicht allgemeingültig festgelegt werden.
-Im vorliegenden Dokument verwenden wir daher den neutralen Begriff *<<glossar-Fachanwendung>>* für alle Arten von Anwendungssystemen, die eine bestimmte fachliche Funktionalität innerhalb einer Anwendungsdomäne realisieren.
+Im vorliegenden Dokument verwenden wir daher den neutralen Begriff *<<glossar-Geschaeftsanwendung>>* für alle Arten von Anwendungssystemen, die eine bestimmte fachliche Funktionalität innerhalb einer Anwendungsdomäne realisieren.
 
-*Querschnittssysteme* sind Anwendungssysteme, die <<glossar-Basisdienst,Basisdienste>> für mehrere Fachanwendungen bereitstellen.
+*Querschnittssysteme* sind Anwendungssysteme, die <<glossar-Basisdienst,Basisdienste>> für mehrere Geschäftsanwendungen bereitstellen.
 Diese Dienste sind oft technisch motiviert.
 
 *Portal:* Das <<glossar-Portal>> stellt den Benutzern eine einheitliche Dialogoberfläche für den Zugriff auf die Dienste der Anwendungslandschaft zur Verfügung.
-Einzelne Fachanwendungen stellen Nutzerschnittstellen zur Verfügung, das Portal integriert diese, bildet einen zentralen Einstiegspunkt für alle Web-Anwendungen und übernimmt die Aufgabe der Authentifizierung und der Autorisierung auf Anwendungsebene.
+Einzelne Geschäftsanwendungen stellen Nutzerschnittstellen zur Verfügung, das Portal integriert diese, bildet einen zentralen Einstiegspunkt für alle Web-Anwendungen und übernimmt die Aufgabe der Authentifizierung und der Autorisierung auf Anwendungsebene.
 
 *Service-Gateway:* Im <<glossar-Service-Gateway>> werden alle Services der Anwendungssysteme bereitgestellt, die externe Nutzer direkt nutzen dürfen.
 Dazu führt das Service-Gateway die Authentifizierung und Autorisierung der Service-Aufrufer auf Anwendungsebene durch.
@@ -78,7 +81,7 @@ Dies sind in der Regel Web Service-Aufrufe.
 ==== Software Referenzarchitektur
 
 Die individuell erstellten Anwendungssysteme der Anwendungslandschaft sind technisch gleichartig aufgebaut.
-Daher wird eine Referenzarchitektur aufgestellt, nach denen Anwendungssysteme (Fachanwendungen und Querschnittssysteme) software-technisch in <<glossar-IT-System,IT-Systeme>> umgesetzt werden.
+Daher wird eine Referenzarchitektur aufgestellt, nach denen Anwendungssysteme (Geschäftsanwendungen und Querschnittssysteme) software-technisch in <<glossar-IT-System,IT-Systeme>> umgesetzt werden.
 Das Dokument <<IsyFactReferenzarchitekturITSystem>> beschreibt diese Referenzarchitektur.
 
 Skalierbarkeit und Hochverfügbarkeit sind wichtige Anforderungen an die Referenzarchitektur.
@@ -100,7 +103,7 @@ Im Design des <<glossar-Anwendungskern,Anwendungskerns>> (siehe <<DetailkonzeptK
 Der Anwendungskern unterscheidet dabei noch zwischen Anwendungs-internen Services, die nur innerhalb der Anwendung aufgerufen werden und Anwendungs-externen Services, die über eine Nutzungsschnittstelle als Service anderen Anwendungen zur Verfügung gestellt werden.
 
 Der Entwurf der Services leitet sich in der Referenzarchitektur aus fachlichen Kriterien her.
-Services werden in der Fachlichen Referenzarchitektur identifiziert und finden sich dann auch in der technischen Implementierung wieder.
+Services werden in der fachlichen Referenzarchitektur identifiziert und finden sich dann auch in der technischen Implementierung wieder.
 
 Die in diesem Dokument beschriebene Referenzarchitektur ist eine vollwertige JEE-Architektur.
 Jedoch wird eine zentrale Spezifikation von JEE nicht genutzt: die EJB-Spezifikation aus dem Bereich Enterprise Application.
@@ -112,10 +115,10 @@ Es hat zur Folge, dass als Application Server ein Servlet-Container ausreichend 
 
 Im Bereich der technischen Infrastruktur (<<glossar-TI-Architektur>>) werden folgende Umgebungen beschrieben:
 
-* Produktionsumgebung
-* Staging-Umgebung
-* Schulungs- und externe Testumgebung
-* Entwicklungs- und Abnahme-Testumgebung
+* Produktionsumgebung,
+* Staging-Umgebung,
+* Schulungs- und externe Testumgebung,
+* Entwicklungs- und Abnahme-Testumgebung.
 
 Die Aufteilung in Zonen leitet sich aus dem SAGA 4-Standard ab <<SAGA40>>.
 
@@ -148,3 +151,4 @@ Detaillierung der einzelnen Sichten:
 
 Im Rahmen dieser Referenzarchitektur werden auch betriebliche Aspekte betrachtet, da diese Auswirkungen auf Designentscheidungen haben können.
 Diese Aspekte werden in Kapitel <<betriebliche-aspekte>> beschrieben.
+// end::inhalt[]

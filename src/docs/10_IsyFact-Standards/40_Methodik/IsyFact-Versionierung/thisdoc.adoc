@@ -1,3 +1,6 @@
+= Versionierung: Einleitung
+
+// tag::inhalt[]
 [[Einleitung]]
 == Einleitung
 
@@ -6,3 +9,4 @@ Dieses Konzept trifft Vorgaben und Empfehlungen zum Aufbau der Versionsnummern, 
 
 *Die Isyfact bietet mit dem Maven-Plugin zur Versionierungskontrolle ein Werkzeug, um die Versionierung automatisch zu überprüfen.
 Eine Anleitung zur Einbindung und Nutzung des Maven-Plugins findet sich in <<MavenPluginVersionierungskontrolle>>.*
+// end::inhalt[]

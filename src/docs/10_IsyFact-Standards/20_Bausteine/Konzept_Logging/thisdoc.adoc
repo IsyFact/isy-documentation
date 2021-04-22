@@ -1,3 +1,6 @@
+= Konzept Logging: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -26,6 +29,7 @@ Im Kapitel *<<log-auswertung>>* werden die Informationen beschrieben, die letzte
 
 Im Kapitel *<<anhang-a-logging-glossar>>* werden die Begriffe und Abkürzungen definiert, die spezifisch für das Themenfeld „Logging“ sind.
 
+[[abgrenzung-logging-protokollierung]]
 *Abgrenzung*
 
 Logging ist ein querschnittliches Thema einer <<glossar-Anwendungslandschaft>> mit Schnittstellen zu zahlreichen weiteren Themen.
@@ -58,3 +62,4 @@ anlassbezogen - Prüfung einzelner Logdateien bei Störung oder Verdacht auf sec
 |Einschränkung der Auswertung auf |Administratoren |Administratoren |dedizierte Fachadministratoren der Protokollrecherche
 |Zielsetzung |zeitnahe Feststellung von Störungen und potentiellen Angriffen |Überwachung des Betriebszustands der Anwendungen plus Alarmierung bei Störungen |Nachvollziehbarkeit, Vorfallsaufklärung
 |====
+// end::inhalt[]

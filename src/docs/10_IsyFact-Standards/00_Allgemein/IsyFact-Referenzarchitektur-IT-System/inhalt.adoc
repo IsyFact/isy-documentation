@@ -1,10 +1,11 @@
-[[technische-architektur]]
-= Technische Architektur
+= Softwaretechnische Architektur: Inhalt
 
+// tag::inhalt[]
+== Technische Architektur
 Die technische Architektur (<<glossar-T-Architektur>>) beschreibt die Strukturierung der IsyFact-Plattform in IT-Systeme, den Aufbau einzelner IT-Systeme und die verwendeten übergreifenden technischen Konzepte.
 
 [[die-referenzarchitektur-eines-it-systems]]
-== Die Referenzarchitektur eines IT-Systems
+=== Die Referenzarchitektur eines IT-Systems
 
 Die individuell erstellten Anwendungssysteme der Anwendungslandschaft müssen technisch gleichartig aufgebaut sein.
 Daher wird im Folgenden die Referenz-Architektur beschrieben, nach der diese Anwendungssysteme software-technisch in IT-Systeme umgesetzt werden.
@@ -48,7 +49,7 @@ Dadurch können auf einfache Art technische Attribute in die Außenschnittstelle
 Details zur Konstruktion eines IT-Systems werden in <<IsyFactSystementwurf>> festgelegt und für das jeweilige IT-System dokumentiert.
 
 [[uebergreifende-technische-konzeption]]
-== Übergreifende technische Konzeption
+=== Übergreifende technische Konzeption
 
 Für den Aufbau eines IT-Systems gelten einige übergreifende technische Regeln, die im Folgenden vorgestellt werden.
 
@@ -91,7 +92,7 @@ Um diesen großen Funktionsumfang abzudecken, wird ein Produkt zum objekt-relati
 Details hierzu sind in <<DetailkonzeptKomponenteDatenzugriff>> dokumentiert.
 
 [[der-anwendungskern]]
-== Der Anwendungskern
+=== Der Anwendungskern
 
 Zentraler Baustein eines IT-Systems ist der Anwendungskern.
 Im Anwendungskern werden die fachlichen Funktionen (Anwendungslogik) der Anwendung realisiert.
@@ -145,7 +146,7 @@ Komponenten, die externe Services kapseln, sind im Idealfall von außen nicht vo
 Diese Komponenten haben damit zwei Hauptaufgaben: Sie müssen die technische Aspekte der Kommunikation umsetzen und sie müssen Schnittstellendaten und Exceptions der aufgerufenen Services in die Datenformate der Anwendung transformieren.
 
 [[gui]]
-== GUI
+=== GUI
 
 Bei graphischen Benutzeroberflächen (engl. Graphical User Interface, GUI) gibt es eine Vielfalt unterschiedlichster Komplexitäten: von einfachen Stammdatensystemen über Dialogsysteme mit vielen einfachen Dialogen, die aber intensiv miteinander interagieren, bis zu Clients mit wenigen, aber sehr komplexen Dialogen.
 Eine gute Architektur muss für alle relevanten Varianten einen tragfähigen Rahmen schaffen.
@@ -202,7 +203,7 @@ Vorgaben zum Layout sind in <<Styleguide>> beschrieben.
 von Details zur Umsetzung von Berechtigungen sind in <<Berechtigungskonzept>> enthalten.
 
 [[batch]]
-== Batch
+=== Batch
 
 Ein <<glossar-Batch>> realisiert eine eigenständige Verarbeitung ohne direkten Benutzereingriff während des Ablaufes.
 An einen Batch werden verschiedene Anforderungen gestellt: Ausführungszeitpunkt, Abhängigkeiten, Datenvolumen, ausgeführte Funktionalität, Eingaben, Ausgaben usw.
@@ -240,7 +241,7 @@ Es gibt einen Batch-Rahmen, der dies unterstützt.
 Weiterführende technische Details zum Batch sind im Dokument <<DetailkonzeptKomponenteBatch>> enthalten.
 
 [[servicezugriffe]]
-== Servicezugriffe
+=== Servicezugriffe
 
 Services des Anwendungskerns, die vom IT-System zur Verfügung gestellt werden sollen, werden durch die Komponenten von „Service“ innerhalb der Schicht „Nutzung“ angereichert und nach außen gegeben.
 Dabei können alle Dienste des <<glossar-Anwendungskern,Anwendungskerns>> genutzt werden.
@@ -248,36 +249,48 @@ Die Service-Komponenten werden entsprechend den Anwendungskern-Komponente geschn
 Service-Komponenten werden nicht mehrere Anwendungskern-Komponenten.
 Dies würde dem Gebot, in den Services keine Logik zu implementieren, widersprechen.
 
-Der Aufbau der Schicht Service ist in <<image-TeileServ>> dargestellt.
-Intern besteht diese Schicht aus zwei Komponenten, dem Service-Framework und der Service-Logik.
+Der Aufbau der Komponente Service ist in <<image-TeileServ>> dargestellt.
+Intern besteht die Komponente „Service“ aus zwei Teilen: dem Service-Framework und der Service-Logik.
 
 :desc-image-TeileServ: Die Bestandteile von Services
 [id="image-TeileServ",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-TeileServ}
 image::TeileServ.png[align="center"]
 
-*Service-Framework:* Das Service-Framework dient als Kapsel für die Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
-Hierfür wird das Framework Spring HTTP-Invoker verwendet.
+*Service-Framework:* Das Service-Framework ist die Bezeichnung für die Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
 
 [NOTE]
 ====
+Hierfür wird aktuell das Framework Spring HTTP Invoker verwendet.
 Ab IsyFact 2.0 ist die Verwendung von REST-Schnittstellen erlaubt.
-Spring HTTP-Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
-Die Verwendung von REST-Schnitstellen wird einem gesonderten Konzept erläutert.
+HTTP Invoker wird in folgenden Releases (IsyFact 2.x) als Schnittstellenformat abgelöst.
+Die Verwendung von REST-Schnittstellen wird einem gesonderten Konzept erläutert.
 ====
 
 In der Regel wird ein extern angebotener Service noch durch zusätzliche Daten oder Logik ergänzt.
 Diese werden in der Komponente Service-Logik implementiert.
 
-*Service-Logik:* Die Komponente Service-Logik enthält Daten und Funktionalität, die für die Bereitstellung des Services relevant sind.
-In der Service-Logik wird keine Fachlogik implementiert, sie nutzt die Funktionalität des Anwendungskerns, um den Dienst bereitzustellen.
-Die eigentliche Funktionalität des Dienstes ist also im Anwendungskern implementiert.
-Die Schnittstelle zwischen den Schichten „Service“ und „Anwendungslogik“ ist daher eine interne Service-Schnittstelle.
-Eine Kernaufgabe der Service-Logik ist die Umsetzung der internen Datenstrukturen und Exceptions des IT-Systems auf Transportobjekte und Exceptions der Service-Schnittstelle sowie die Autorisierung der Nutzung von angebotenen Services.
+*Service-Logik:* Die Service-Logik enthält Daten und Funktionalität, die für die Bereitstellung des Services relevant sind.
+Im Normalfall ist der Funktionsumfang der Komponente Service-Logik viel geringer als der Funktionsumfang der Entsprechungen im Anwendungskern.
+Dies liegt darin begründet, dass die Komponente Service-Logik die Funktionalität des Anwendungskerns nutzt, um den Service bereitzustellen.
+Die Kernfunktionalität des Services ist also im Anwendungskern implementiert.
+Die Schnittstelle zwischen den Komponenten „Service“ und „Anwendungskern“ ist daher eine interne Schnittstelle.
+
+Weiterführende technische Details zu Services sind im Dokument <<DetailkonzeptKomponenteService>> enthalten.
+
 
 [[unterstuetzung-technischer-funktionalitaeten]]
-== Unterstützung technischer Funktionalitäten
+=== Unterstützung technischer Funktionalitäten
 
 Neben der GUI, Services, Batch, Anwendungskern und Datenhaltung benötigt ein IT-System mehrere querschnittliche Funktionalitäten.
 Diese querschnittlichen Komponenten sind in jeweils eigenen Dokumenten beschrieben.
 Eine Übersicht dazu liefert das Dokument <<IsyFactEinstieg>>.
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

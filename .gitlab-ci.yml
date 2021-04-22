@@ -1,47 +1,13 @@
-variables:
-  MAVEN_OPTS: "-Xmx2048M -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
-  MAVEN_CLI_OPTS: "-s settings.xml --batch-mode --errors --fail-at-end"
+include:
+  - project: 'IsyFact/isy-gitlabci-templates'
+    file: '/maven/.gitlab-ci-maven.yml'
 
-image: $BUILDIMAGE
+build:
+  extends: .maven-build
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - '**/target/doc/**'
 
 stages:
-  - documentation
-
-cache:
-  paths:
-    - aptcache/
-    - .m2/repository
-  key: "isyfactdoc"
-
-.template: &vorlage
-  stage: documentation
-  tags:
-    - ZIII4
-  before_script:
-    - mvn -v
-    - PFAD=$(pwd)
-    - mkdir -p aptcache
-    - apt-get update
-    - apt-get -o dir::cache::archives="$PFAD/aptcache" install -y gawk --no-install-recommends
-  script:
-    - mvn $MAVEN_CLI_OPTS process-resources
-
-documentation:branches:
-  <<: *vorlage
-  artifacts:
-    paths:
-      - target/html/
-      - target/pdf/
-    expire_in: 1 weeks
-  except:
-    - schedules
-
-documentation:schedule:
-  <<: *vorlage
-  artifacts:
-    paths:
-      - target/html/
-      - target/pdf/
-    expire_in: 2 days
-  only:
-    - schedules
+  - build

@@ -1,4 +1,7 @@
-= Einbinden von isy-benutzerverwaltung-core
+= Nutzungsvorgaben Benutzerverwaltung: Inhalt
+
+// tag::inhalt[]
+== Einbinden von isy-benutzerverwaltung-core
 
 In diesem Abschnitt wird beschrieben, wie man das Modul `isy-benutzerverwaltung-core` in die eigene Anwendung integriert.
 Nach der Einbindung kann mit Hilfe der Schnittstelle 
@@ -7,7 +10,7 @@ Nach der Einbindung kann mit Hilfe der Schnittstelle
     
 beispielsweise eine eigene grafische Oberfläche geschrieben werden, um auf die Funktionen  (z.B. Anlegen, Suchen und Löschen von Benutzern) der Benutzerverwaltung zuzugreifen.
 
-== Maven
+=== Maven
 
 Zur Integration der Kernkomponente muss die Anwendung die folgende Abhängigkeit in ihrem POM definieren:
 
@@ -20,7 +23,7 @@ Zur Integration der Kernkomponente muss die Anwendung die folgende Abhängigkeit
 </dependency>
 ----
 
-== Datenbank
+=== Datenbank
 
 Um die für die _IsyFact-Benutzerverwaltung_ benötigten Tabellen anzulegen gibt es mehrere Möglichkeiten.
 
@@ -42,7 +45,7 @@ Die Zuordnung von Rechten zu Rollen geschieht aber in der Datei `rollenrechte.xm
 Damit diese Zuordnung funktioniert, müssen die vergebenen _Rollen-IDs_ der Datenkbank mit denen aus der `rollenrechte.xml` übereinstimmen.
 Zum Aufbau der Datei `rollenrechte.xml` sei auf die <<NutzungsvorgabenSicherheit>> verwiesen.
 
-== Spring
+=== Spring
 
 Die Spring-Konfiguration von `isy-benutzerverwaltung-core` wird folgendermaßen in die eigene Anwendung integriert:
 
@@ -67,9 +70,9 @@ public class ...
 ----
 
 
-== Sonstiges
+=== Sonstiges
 
-=== Persistenz
+==== Persistenz
 
 In der Datei `persistence.xml` muss ein Eintrag für die Entities `Benutzer` und `Rolle` hinzugefügt werden.
 
@@ -88,18 +91,18 @@ In der Datei `persistence.xml` muss ein Eintrag für die Entities `Benutzer` und
 </persistence>
 ----
 
-=== Integration in Anwendungen
+==== Integration in Anwendungen
 
 Da Anwendungen nicht direkt auf die Tabellen der Benutzerverwaltung zugreifen und diese ändern dürfen, müssen sie immer über die Schnittstelle des Anwendungskerns gehen.
 <<glossar-Anwendungskomponente,Anwendungskomponenten>> müssen trotzdem Referenzen auf Benutzer speichern können.
 Dazu ist zur Integration in die Entitäten der Anwendung die Klasse `BenutzerReferenz` vorgesehen.
 Hinweise zur Verwendung sind in der API-Dokumentation der Klasse enthalten.
 
-= Einbinden von isy-benutzerverwaltung-sicherheit
+== Einbinden von isy-benutzerverwaltung-sicherheit
 
 Das Modul `isy-benutzerverwaltung-sicherheit` implementiert einen `AccessManager` aus `isy-sicherheit` als zentrale Komponente zur Authentifizierung.
 
-== Maven
+=== Maven
 
 
 Zur Integration der Sicherheitskomponente muss die Anwendung die folgende Abhängigkeit in ihrem POM definieren:
@@ -113,7 +116,7 @@ Zur Integration der Sicherheitskomponente muss die Anwendung die folgende Abhän
 </dependency>
 ----
 
-== Spring
+=== Spring
 
 Zur Integration der Sicherheitskomponente muss die Anwendung die XML-Konfiguration der Komponente importieren:
 
@@ -178,7 +181,7 @@ public static CustomScopeConfigurer customScopeConfigurer() {
 }
 ----
 
-= Einbinden von isy-benutzerverwaltung-gui-tomahawk
+== Einbinden von isy-benutzerverwaltung-gui-tomahawk
 
 Für die Benutzerverwaltung existieren zwei Module, die eine Verwaltungsoberfläche für die Benutzerverwaltung umsetzen.
 Damit können Benutzer gegen eine lokale Datenbank authentifiziert und Benutzer und Rollen angelegt, bearbeitet, gesucht und gelöscht werden.
@@ -187,7 +190,7 @@ Das Modul `isy-benutzerverwaltung-gui-tomahawk` nutzt die GUI-Komponenten aus de
 
 Im Folgenden wird beschrieben, wie das Modul `isy-benutzerverwaltung-gui-tomahawk` in die eigene Anwendung integriert wird.
 
-== Maven
+=== Maven
 
 Folgende Abhängigkeit ist in der `pom.xml` zu ergänzen:
 
@@ -203,7 +206,7 @@ Folgende Abhängigkeit ist in der `pom.xml` zu ergänzen:
 </dependency>
 ----
 
-== Spring
+=== Spring
 
 Die Spring-Konfiguration von `isy-benutzerverwaltung-gui-tomahawk` wird folgendermaßen in die eigene Anwendung integriert:
 
@@ -219,7 +222,7 @@ Die Spring-Konfiguration von `isy-benutzerverwaltung-gui-tomahawk` wird folgende
 </beans>
 ----
 
-== Maskentexte
+=== Maskentexte
 
 Um den Titel der Anwendung auf den Seiten der Benutzerverwaltung zu setzen gibt es mehrere Möglichkeiten.
 Eine davon ist die Datei `/WEB-INF/gui/common/seitenelemente/messageRessources.xhtml` in der eigenen Anwendung zu überschreiben und darin eine eigene _Properties_-Datei für den Anwendungstitel zu laden.
@@ -245,9 +248,9 @@ Eine davon ist die Datei `/WEB-INF/gui/common/seitenelemente/messageRessources.x
 MEL_Anwendungsname = Terminfindung
 ----
 
-== Sonstiges
+=== Sonstiges
 
-=== Rollen und Rechte
+==== Rollen und Rechte
 
 In beiden Implementierungen der Benutzeroberfläche ist die GUI durch folgende Rechte gesichert:
 
@@ -316,7 +319,7 @@ Diese Rechte können in der eigenen Anwendung einer beliebigen Rolle zugeordnet 
 
 Im gezeigten Beispiel wird eine Rolle `BenutzerAdmin` angelegt, der alle Rechte für die _IsyFact-Benutzerverwaltung_ zugeordnet sind und eine Rolle `Benutzer`, die nur das Recht hat, ihre eigenen Kontaktdaten zu ändern.
 
-=== HTML-Beispielseite
+==== HTML-Beispielseite
 
 Unter `src/main/resources/WEB-INF/gui/` befindet sich eine Seite `index.html`, auf der Links zu den Unterseiten von `isy-benutzerverwaltung-gui-tomahawk` zu finden sind.
 Diese Seite soll nur als Beispiel dienen und zeigen, wie die Unterseiten aufgerufen werden können. 
@@ -326,3 +329,13 @@ Diese Seite soll nur als Beispiel dienen und zeigen, wie die Unterseiten aufgeru
 Bis auf die Login-Seite ist der Zugriff auf die anderen Seiten durch Rollen und Rechte gesichert.
 Diese können daher nur von angemeldeten Benutzern aufgerufen werden.
 ====
+
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]

@@ -1,5 +1,4 @@
 = Detailkonzept Anwendungskern: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 [[aufbau-des-anwendungskerns]]
@@ -37,7 +36,7 @@ Hierfür wird die Komponente _Basisdaten_ definiert, die nur die eine Aufgabe ha
 === Das Anwendungskern-Framework
 
 Für querschnittliche Funktionalität innerhalb des Anwendungskerns wird das Spring-Framework genutzt.
-Hauptaufgabe des Frameworks ist es, die Komponenten zu konfigurieren und miteinander bekannt zu machen.
+Hauptaufgabe des Frameworks ist es, die Komponenten zu konfigurieren und miteinander bekanntzumachen.
 Dadurch wird die Trennung zwischen Fachlichkeit und Technik verbessert.
 Beispiel für querschnittliche Funktionalität ist die deklarative Steuerung von Transaktionen.
 
@@ -65,7 +64,7 @@ Das Ziel ist es, eine Durchmischung von Technologien zu verhindern, so darf z. 
 *Fachliche Sicht:* Die fachliche Sicht beschreibt eine Teilaufgabe, z. B. Meldung, Auskunft oder Fristenkontrolle.
 Innerhalb dieser Teilaufgabe wird der Anwendungskern über eine GUI, Services oder Batches angesprochen, der wiederum über die Datenzugriffsschicht mit der Datenbank kommunizieren muss.
 Daher zerlegt die fachliche Sicht das IT-System in fachliche Säulen.
-Diese fachlichen Säulen werden im Folgenden Teilanwendungen genannt.
+Diese fachlichen Säulen werden im folgenden Teilanwendungen genannt.
 Das Ziel ist die fachliche Trennung und Minimierung inhaltlicher Abhängigkeiten.
 Die Teilanwendungen sollen Fachlichkeit kapseln.
 
@@ -100,10 +99,10 @@ Neben seiner Kern-Funktionalität der Verwaltung, Konfiguration und aspektorient
 Die IsyFact verwendet ausgewählte Funktionalitäten des Spring-Frameworks in der Anwendungsentwicklung.
 Die Verwendung dieser Funktionalitäten ist in den Blaupausen und Bausteinen wie folgt beschrieben:
 
-* Die Konfiguration der Datenzugriffschicht, beschrieben im <<DetailkonzeptKomponenteDatenzugriff>>.
+* Die Konfiguration der Datenzugriffsschicht, beschrieben im <<DetailkonzeptKomponenteDatenzugriff>>.
 * Die Konfiguration des Loggings über Spring, beschrieben im Konzept <<NutzungsvorgabenLogging>>.
 * Die Bereitstellung von Metriken zur Überwachung, beschrieben im Konzept <<KonzeptUeberwachung>>.
-* Die Verwendung der HTTP-Invoker-Schnittstellentechnologie, beschrieben im Konzept <<DetailkonzeptKomponenteService>>.
+* Die Verwendung der Schnittstellentechnologie HTTP Invoker, beschrieben im Konzept <<KonzeptHttpInvoker>>.
 * Die Zugriffe auf ein LDAP erfolgen über Spring-LDAP, beschrieben im Konzept <<NutzungsvorgabenSpringLDAP>>.
 * Die Implementierung von Dialogen und Masken erfolgt mit JSF und Spring-Webflow, beschrieben im
 Dokument <<DetailkonzeptKomponenteWebGUI>>.
@@ -138,8 +137,8 @@ werden Komponenten außerhalb der Anwendung über Java-Konfigurationsklassen kon
 === Konfiguration von Spring
 
 Das grundlegende Konzept von Spring ist das der Spring-Bean.
-Die Konfiguration von Spring teilt sich deshalb in zwei Teile: In die Konfiguration der Spring-Beans sowie in die Konfiguration von Spring selbst (innerhalb eines Tomcat Servers).
-Um die Konfiguration von Spring und der eingesetzten Baustein einfach zu halten, werden die Autokonfigurationsmechanismen von Spring Boot eingesetzt.
+Die Konfiguration von Spring teilt sich deshalb in zwei Teile: in die Konfiguration der Spring-Beans sowie in die Konfiguration von Spring selbst (innerhalb eines Tomcat Servers).
+Um die Konfiguration von Spring und der eingesetzten Bausteine einfach zu halten, werden die Autokonfigurationsmechanismen von Spring Boot eingesetzt.
 Diese Konfigurationsarten werden in den folgenden Kapiteln beschrieben.
 
 [[die-konfiguration-von-spring-beans]]
@@ -174,7 +173,7 @@ Für die Modellierung und Konfiguration der Spring-Beans werden im Folgenden Vor
 Anwendungen werden in Form von Komponenten implementiert.
 Jede Komponente besitzt ein Interface mit den Operationen aller Anwendungsfallklassen der Komponente.
 Auf eine Komponente wird nur über ihr Interface zugegriffen.
-Das Interface realisiert damit eine Fassadenfunktion.
+Das Interface realisiert damit eine Fassade.
 Dies wird in der folgenden Abbildung dargestellt.
 
 :desc-image-KompSSBImp: Komponenten: Ihre Interfaces und ihre als Beans konfigurierten Implementierungen
@@ -213,14 +212,14 @@ Die Konfiguration dieser Frameworks wird in ihren Nutzungsvorgaben beschrieben.
 Beans können entweder als Singletons mit nur einer Instanz, mit einer Instanz pro Aufruf oder mit einer Instanz
 pro Abhängigkeit (Prototype) erzeugt werden.
 Die Komponenten-Beans einer Anwendung sollen zustandslos sein und werden als Singleton-Beans erzeugt.
-Wo technisch erforderlich, können auch andere Scopes verwendet werden.
+Wo technisch erforderlich können auch andere Scopes verwendet werden.
 
 [[vorgaben-zur-spring-konfiguration]]
 ===== Vorgaben zur Spring-Konfiguration
 
 Die Spring-Konfiguration der Anwendung ist nach folgenden Vorgaben zu erstellen.
 
-1. Der zentraler Ausgangspunkt für die Spring-Konfiguration ist die Applikationsklasse der Anwendung (<<listing-applikationsklasse>>).
+1. Der zentrale Ausgangspunkt für die Spring-Konfiguration ist die Applikationsklasse der Anwendung (<<listing-applikationsklasse>>).
 Diese wird im Wurzelpackage der Anwendung (`<org>.<domäne>.<anwendung>.<anwendung>Application`) erstellt.
 Sie ist mit `@Configuration` und `@EnableAutoConfiguration` annotiert.
 Damit wird die Autokonfiguration von Spring Boot eingeschaltet.
@@ -275,7 +274,7 @@ public class CoreConfig {
 ----
 
 3. Die Beans der Komponenten werden mit der Annotation `@Component` bzw. deren Spezialisierungen (`@Repository`, `@Service`, `@Controller` etc.) versehen.
-   Externe Beans, die nicht annotiert werden können, werden in der Konfigurationklasse der Schicht per `@Bean-Methoden` konfiguriert.
+   Externe Beans, die nicht annotiert werden können, werden in der Konfigurationsklasse der Schicht per `@Bean-Methoden` konfiguriert.
 
 [[konfigurationsparameter-ueber-property-objekte-konfigurieren]]
 ==== Konfigurationsparameter über Property-Objekte konfigurieren
@@ -303,7 +302,7 @@ Falls man innerhalb des Konstruktors eine andere Bean benötigt, so konfiguriert
 In einigen Fällen wird auf Beans allerdings statisch, über statische Methoden oder eine Bean-Holderklasse, zugegriffen (siehe Kapitel <<statischer-zugriff-auf-bean-instanzen-nur-in-sonderfaellen>>).
 
 Eine Bean-Holderklasse wird als Spring-Bean mit einer Abhängigkeit definiert.
-Sie stellet Beans über statische Methoden bereit und ist nur im Ausnahmefall zu verwenden.
+Sie stellt Beans über statische Methoden bereit und ist nur im Ausnahmefall zu verwenden.
 Beim Aufruf der `set`-Methode für die abhängige Bean wird diese in eine statische Variable gespeichert.
 Falls in einem Bean-Konstruktor oder einer `set`-Methode statisch auf eine Holder-Klasse zugegriffen wird, so kennt Spring die Abhängigkeit zur Bean der Holder-Klasse nicht.
 Es muss sichergestellt werden, dass die Holder-Klasse bereits befüllt wurde.
@@ -346,8 +345,8 @@ In einigen Fällen existieren jedoch weitere Abhängigkeiten von Spring:
 
 * Für die Bereitstellung von JMX-Beans wird der Spring-MbeanExporter Mechanismus verwendet (siehe <<KonzeptKonfiguration>>).
 
-* Bei HttpInvoker Server-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
-(siehe <<DetailkonzeptKomponenteService>>.
+* Bei HTTP Invoker Schnittstellen-Beans muss explizit eine Bean des eigentlichen Anwendungskontextes aufgerufen werden
+(siehe <<NutzungsvorgabenHttpInvoker>>).
 
 * Beans werden per Namen aus dem Anwendungskontext ausgelesen.
 
@@ -377,7 +376,7 @@ In einem solchen Fall reduziert es die Komplexität der Anwendung, wenn auf die 
 Dies entspricht nicht den Konventionen des Spring-Frameworks und ist nur in Ausnahmefällen erlaubt.
 
 Die entsprechenden Hilfsklassen werden als _Holder_ bezeichnet.
-Sie besitzen eine statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung
+Sie besitzen ein statisches Attribut mit statischen `get`- und `set`-Methoden, die per Spring mit dem zur Verfügung
 zu stellenden Bean initialisiert werden.
 
 [[transaktionssteuerung]]
@@ -468,14 +467,11 @@ Ihr Einsatz kann über „PointCuts“ konfiguriert werden.
 Pointcuts definieren (etwa über reguläre Ausdrücke) Klassen und Methoden, welche um den Aspekt erweitert werden.
 
 Zu intensive Nutzung kann leicht zu einem schwer durchschaubaren Programmfluss führen.
+Deshalb soll AOP nur für folgende Bereichen genutzt werden: die Steuerung von Transaktionen, die Überwachung und die Berechtigungsprüfung.
 
-* In folgenden Bereichen soll AOP genutzt werden
-** für die Steuerung von Transaktionen,
-** für die Überwachung,
-** für die Berechtigungsprüfung.
-* Nicht benutzt werden soll AOP
-** für die Fehlerbehandlung.
-* Die Verwendung von AOP für andere Bereiche ist nur in begründeten Ausnahmefällen erlaubt.
+Explizit nicht benutzt werden soll AOP für die Fehlerbehandlung.
+
+Die Verwendung von AOP für andere Bereiche ist nur in begründeten Ausnahmefällen erlaubt.
 
 [[aop-fuer-transaktionssteuerung-verwenden]]
 ==== AOP für Transaktionssteuerung verwenden
@@ -488,7 +484,7 @@ Zusammengefasst gilt:
 * Für jeden Aufruf des Anwendungskerns wird eine Transaktion gestartet.
 * Falls kein Fehler auftritt, wird die Transaktion abgeschlossen (Commit), sonst zurückgerollt (Rollback).
 
-[[aop-für-berechtigungsprüfungen-verwenden]]
+[[aop-fuer-berechtigungspruefungen-verwenden]]
 ==== AOP für Berechtigungsprüfungen verwenden
 
 Die Berechtigungsprüfung wird über Spring AOP mit den vom Baustein „Sicherheit“ angebotenen Annotationen umgesetzt (siehe <<NutzungsvorgabenSicherheit>>).
@@ -496,15 +492,20 @@ Die Berechtigungsprüfung wird über Spring AOP mit den vom Baustein „Sicherhe
 [[aop-nicht-fuer-das-logging-von-exceptions-verwenden]]
 ==== AOP nicht für das Logging von Exceptions verwenden
 
-Sämtliche im System geworfenen und nicht behandelten Ausnahmen müssen inklusive ihrer Stacktraces geloggt werden.
+Sämtliche in einem IT-System geworfenen und nicht behandelten Ausnahmen müssen inklusive ihrer Stacktraces geloggt werden.
 Geloggt wird dies in den Methoden der Schnittstellen-Beans.
 Hierfür soll Spring-AOP nicht verwendet werden.
 
-Es wäre z.B. bei HttpInvoker-Schnittstellen nicht sinnvoll, über AOP die Exceptions der Schnittstellen-Bean-Methoden zu
-loggen.
-Es würden nicht alle relevanten Informationen geloggt werden:
+Schnittstellen-Beans transformieren die Geschäftsobjekte des Anwendungskerns in Transportobjekte der Schnittstelle.
+Die Stack-Traces der Exceptions werden dabei nicht übertragen, da diese internen Informationen dem Aufrufer keinen Mehrwert bieten.
+Für das Logging des IT-Systems selbst sind sie jedoch wertvoll.
+Statt AOP ist das im <<DetailkonzeptKomponenteService>> beschriebene Konstrukt der Exception-Fassade zu verwenden.
 
-Eine HttpInvoker-Bean fängt alle Ausnahmen und wirft statt der erhaltenen Exceptions eigene Schnittstellen-Exceptions,
-welche den Stacktrace der erhaltenen Exception nicht enthalten.
+// tag::architekturregel[]
 
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

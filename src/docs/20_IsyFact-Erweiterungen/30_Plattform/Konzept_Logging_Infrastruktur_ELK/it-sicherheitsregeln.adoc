@@ -1,0 +1,7 @@
+// tag::it-sicherheitsregeln[]
+
+[[it-sicherheitsregeln-elk]]
+== IT-Sicherheitsregeln Logging Infrastruktur ELK
+
+include::inhalt.adoc[tags=sicherheit]
+// end::it-sicherheitsregeln[]

@@ -1,5 +1,8 @@
+= Java-Programmierkonventionen: Inhalt
+
+// tag::inhalt[]
 [[motivation-und-referenzen]]
-= Motivation und Referenzen
+== Motivation und Referenzen
 
 Von den Lebensphasen einer Software macht die Erstellungsphase gegenüber der Erweiterungs- und Wartungsphase nur einen kleinen Teil aus.
 Es ist davon auszugehen, dass im Laufe der Zeit unterschiedliche Personen, Teams oder Dienstleister an einem Softwaresystem arbeiten.
@@ -8,11 +11,231 @@ Hält sie sich noch an allgemein etablierte und bekannte Standards, verkürzt si
 Um das zu erreichen, müssen Konventionen für die Programmierung festgelegt werden.
 
 Die in diesem Dokument beschriebenen Richtlinien sind für die Erstellung von Programmen mit der IsyFact verbindlich.
-Sie bauen auf <<Vermeulen2000>> auf und präzisieren sie an einigen Stellen.
+Die Strukturen zur Ablage des Quellcodes richten sich nach der Empfehlung von <<ApacheMavenStandardDirectoryLayout>> und wurden für die IsyFact erweitert.
+Die Programmierkonventionen basieren auf <<Vermeulen2000>> und präzisieren sie an einigen Stellen.
 Die in <<Vermeulen2000>> beschriebenen Konventionen beruhen auf den Sun Coding Conventions <<Sun1997>> und den Coding Standards der Firma Ambysoft <<Ambler1999>>.
 
+[[vorgaben-fuer-die-quellcodeablage]]
+== Vorgaben für die Quellcodeablage
+
+Das Kapitel stellt zunächst die Vorgaben für Anwendungsprojekte vor, da diese die komplexeste Struktur aufweisen.
+Die weiteren Projekte (Schnittstellen, Batches, Deployment und Dokumentation) stellen aufgrund ihres starken Fokus Vereinfachungen dieser Struktur dar.
+Als letzte Projektart sind Multi-Modulprojekte beschrieben, die aus Kombinationen der vorangegangenen Projekte bestehen.
+
+[[anwendungsprojekte]]
+=== Anwendungsprojekte
+Der <<ProduktKatalog>> gibt die Nutzung von Maven vor.
+Daher ist für Anwendungen eine Entwicklung mittels einem oder mehrerer Maven-Module strengstens empfohlen.
+
+Wird ein Maven-Modul verwendet, sollte es folgende Struktur besitzen:
+
+* Auf oberster Ebene, d.h. im Wurzelverzeichnis des Projekts (`project-root`), befinden sich die Dateien zur Organisation des Quellcodes,
+sowie anwendungsbezogene und allgemeine Informationen.
+Dateien in Klammern sind optional, wenn erforderlich.
+Es ist nicht ausgeschlossen, andere Dateien auf oberster Ebene abzulegen, sofern sie für die Organisation der Applikation oder deren Quellcode zuständig ist.
+* Der Quellcode, Dokumentation, Skripte (SQL, Shell, etc.) und die Tests des Quellcodes liegen in Unterverzeichnissen des Verzeichnisses `src`.
+* Im Verzeichnis `license` befinden sich Lizenz-Dateien und ggf. einen Dependency-Bericht.
+* Das Verzeichnis `assembly/` beinhaltet Dateien, die beim Build des Artefaktes herangezogen werden können.
+Dort ist beschrieben, wie das auszuliefernde Artefakt gepackt wird.
+
+Der Quellcode wird wiederum gemäß den Vorgaben aus <<package-namen>> strukturiert.
+
+:desc-listing-Projektstruktur: Struktur eines Anwendungsprojekts
+[id="listing-Projektstruktur",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur}
+[source, xml]
+----
+project-root/
+  |- license/ <1>
+  |- assembly/ <2>
+  |
+  |- src/main/java/ <3>
+  |- src/main/resources/ <4>
+  |
+  |- src/docs/asciidoc/ <5>
+  |
+  |- src/skripte/ <6>
+  |
+  |- src/test/java/ <7>
+  |- src/test/resources/ <8>
+  |
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md <9>
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+<1> Lizenz-Dateien und ggf. Dependency-Berichte
+<2> Beschreibungen, wie das auszuliefernde Artefakt gepackt wird
+<3> Quellcode in Java
+<4> Konfigurationsdateien (z.B. `application.properties`) und anderen Ressourcen (z.B. UI- oder Fehlertexte)
+<5> Technische Dokumentation (Systementwurf, Systemhandbuch) im AsciiDoc-Format
+<6> Skripte (z.B. SQL- oder Shell-Skripte)
+<7> Tests des Quellcodes in Java
+<8> Konfigurationsdateien für die Tests selbst oder für das zu testende IT-System
+<9> Dokumentation von Änderungen, z.B. via Eintrag einer Ticketnummer und kurzer Beschreibung
+
+Die Struktur bei der Verwendung mehrerer Maven-Module wird im Abschnitt <<multi-modul-projekte>> erläutert.
+
+
+[[schnittstellenprojekte]]
+=== Schnittstellenprojekte
+
+Schnittstellenprojekte sind deutlich einfacher aufgebaut und beinhalten die Definition der Schnittstelle selbst sowie ihrer Transportobjekte.
+Die Implementierung geschieht in der Anwendung, welche die Schnittstelle bereitstellt.
+
+Schnittstellenprojekte enthalten daher nur Quellcode und Dokumentation.
+Tests werden keine benötigt, da die Transportobjekte kein eigenes Verhalten besitzen.
+Sie sind einzig zur Datenübertragung vorgesehen.
+Ebenso verhält es sich mit Ressourcen und Skripten.
+Diese sind Teil der Implementierung, die in der Regel Teil eines Anwendungsprojekts ist.
+
+Schnittstellenprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) die Verzeichnisse `src/main/java` und `src/docs/asciidoc/`.
+Der Aufbau des Verzeichnisses wird im <<DetailkonzeptKomponenteService>> beschrieben.
+
+:desc-listing-Projektstruktur-Schnittstellen: Struktur eines Schnittstellenprojekts
+[id="listing-Projektstruktur-Schnittstellen",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur-Schnittstellen}
+[source, xml]
+----
+project-root/
+  |- src/main/java/ <1>
+  |
+  |- src/docs/asciidoc/ <2>
+  |
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+<1> Definition der Schnittstelle (Interfaces), Transportobjekte und Transport-Exceptions
+<2> Technische Dokumentation der Schnittstelle im AsciiDoc-Format
+
+[[batchprojekte]]
+=== Batchprojekte
+
+Batchprojekte bestehen hauptsächlich aus Startskripten und Konfigurationsdateien, um die Batches aufzurufen.
+Die Implementierung der Batches geschieht in der Anwendung, welche die Batches bereitstellt.
+Daher enthalten Batchprojekte weder Quellcode, noch Tests.
+
+Batchprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/main/resources/`.
+Der Aufbau des Verzeichnisses wird im <<DetailkonzeptKomponenteBatch>> beschrieben.
+
+:desc-listing-Projektstruktur-Batch: Struktur eines Batchprojekts
+[id="listing-Projektstruktur-Batch",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur-Batch}
+[source, xml]
+----
+project-root/
+  |- src/main/resources/ <1>
+  |
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+<1> Ausführungsdateien (Shell-Skripte) und Konfigurationsdateien
+
+[[deploymentprojekte]]
+=== Deploymentprojekte
+
+Deploymentprojekte bestehen im Wesentlichen aus den Skripten zur Erstellung einer Deployment-Einheit.
+
+Deploymentprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/main/resources/`.
+In diesem finden sich weitere Unterverzeichnisse, die für die Erstellung von RPMs angepasst sind.
+
+:desc-listing-Projektstruktur-Deployment: Struktur eines Deploymentprojekts
+[id="listing-Projektstruktur-Deployment",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur-Deployment}
+[source, xml]
+----
+project-root/
+  |- src/main/resources/ <1>
+  |    |- BUILD/
+  |    |- RPMS.noarch/
+  |    |- SOURCES/
+  |    |- SPECS/
+  |    |- SRPMS/
+  |
+  |- (build.xml) <2>
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+<1> Skripte und Vorschriften zur Erstellung eines RPMs
+<2> Optional: Anweisungen zum RPM-Build via Ant (deprecated)
+
+[[dokumentationsprojekte]]
+=== Dokumentationsprojekte
+
+Dokumentationsprojekte enthalten technische Dokumentation, die keinem Anwendungsprojekt direkt zuzuordnen sind.
+Beispiele dafür sind Dokumente übergreifender Natur aus architektonischer, technischer oder betrieblicher Sicht.
+
+Dokumentationsprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/docs/asciidoc/`.
+In diesem finden sich weitere Verzeichnisse, z.B. für Inhalte allgemeiner Natur, sowie für die Dokumente.
+Es empfiehlt sich, für jedes Dokument ein eigenes Verzeichnis zur Ablage spezifischer Inhalte (neben Texten z.B. auch Bilder und Diagramme) anzulegen.
+Vorgaben für die Struktur einzelner Dokumente finden sich im <<HandbuchFuerTechnischeAutoren>>.
+
+:desc-listing-Projektstruktur-Dokumentation: Struktur eines Dokumentationsprojekts
+[id="listing-Projektstruktur-Dokumentation",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur-Dokumentation}
+[source, xml]
+----
+project-root/
+  |- src/docs/asciidoc/ <1>
+  |
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+<1> Quelltext der Dokumente
+
+[[multi-modul-projekte]]
+=== Multi-Modul-Projekte
+
+Die bisher beschriebenen Projekte finden sich oft als Teil eines größeren Projekts wieder.
+In diesem Fall werden sie in einem Multi-Modul-Projekt zusammengefasst.
+
+Ein Multi-Modul-Projekt beinhaltet unterhalb seines Wurzelverzeichnisses seine Module, die nach einer der obigen Vorlagen strukturiert sind.
+In der Regel gibt es ein Modul für die Anwendung selbst und eines für das Deployment.
+Ob es Schnittstellen- und Batch-Module gibt, hängt von den fachlichen Anforderungen an das Projekt ab.
+
+:desc-listing-Projektstruktur-Multi-Modul: Struktur eines Multi-Modul-Projekts
+[id="listing-Projektstruktur-Multi-Modul",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-Projektstruktur-Multi-Modul}
+[source, xml]
+----
+project-root/
+  |- {anwendung} <1>
+  |- ({anwendung}-schnittstelle-1)
+  |- ({anwendung}-schnittstelle-2)
+  |- ({anwendung}-batch)
+  |- {anwendung}-deployment
+  |
+  |- (.gitattributes)
+  |- .gitignore
+  |- CHANGELOG.md
+  |- (LICENSE.md)
+  |- pom.xml
+  |- README.md
+----
+<1> Der Platzhalter `{anwendung}` steht für den Namen oder das Kürzel der umzusetzenden Anwendung
+
+Grundsätzlich können bei diesem Aufbau redundante Dateien in den Wurzelverzeichnissen der Module (z.B. `.gitignore`) entfallen, wenn sie bereits im Wurzelverzeichnis des Multi-Modul-Projekts vorhanden sind.
+
 [[grundsaetzliches]]
-= Grundsätzliches
+== Vorgaben für die Programmierung
 
 ****
 Programmiere immer im Stil des Originals!
@@ -31,10 +254,10 @@ Abweichungen müssen immer im Entwicklerhandbuch des Projektes mit Begründung d
 Bevor eine Richtlinie verletzt wird, sollte man sicher sein, dass man die Motivation der Regel verstanden hat und die Konsequenzen der Nicht-Einhaltung beurteilen kann.
 
 [[namenskonventionen]]
-= Namenskonventionen
+=== Namenskonventionen
 
 [[sprache]]
-== Sprache
+==== Sprache
 
 Die Sprache von Bezeichnern hängt davon ab, was mit ihnen referenziert wird.
 
@@ -62,7 +285,7 @@ Systemen leicht zu Problemen.
 ====
 
 [[allgemeine-regeln]]
-== Allgemeine Regeln
+==== Allgemeine Regeln
 
 ****
 Sprechende Namen wählen!
@@ -100,7 +323,7 @@ Keine Unterscheidung bei Groß-/Kleinschreibung!
 Es dürfen nicht mehrere Namen verwendet werden, die sich ausschließlich durch abweichende Groß-/Kleinschreibung unterscheiden.
 
 [[dateinamen]]
-== Dateinamen
+==== Dateinamen
 
 Um Einheitlichkeit bei den Dateinamen sicherzustellen, sind Namenskonventionen für Dateiendungen und gebräuchliche Dateinamen notwendig.
 
@@ -131,7 +354,7 @@ In der nachfolgenden Tabelle werden gebräuchliche Dateinamen aufgeführt.
 |====
 
 [[bezeichner-und-kommentare]]
-== Bezeichner und Kommentare
+==== Bezeichner und Kommentare
 
 Mehrere Wörter werden bei zusammengesetzten Bezeichnern direkt aneinander geschrieben und nicht durch Sonderzeichen getrennt.
 Die einzelnen Wörter beginnen jeweils mit einem Großbuchstaben.
@@ -145,7 +368,7 @@ Die einzelnen Wörter beginnen jeweils mit einem Großbuchstaben.
 Ansonsten gelten die Regeln der nachfolgenden Abschnitte.
 
 [[package-namen]]
-=== Package-Namen
+==== Package-Namen
 
 ****
 Standard-Package-Struktur verwenden!
@@ -170,7 +393,7 @@ komponente>. ...
 	= <für Anwendungssystem> | <subsystem/komponente>
 	  <-
       <für Anwendungssystem>
-		= ... (Name der Fachanwendung bzw. querschnittlichen Komponente gemäß fachlicher Architektur)
+		= ... (Name der Geschäftsanwendung bzw. querschnittlichen Komponente gemäß fachlicher Architektur)
 ----
 
 Unterhalb von `<subsystem/komponente>` werden die Packages projektspezifisch strukturiert.
@@ -199,7 +422,7 @@ Namen von Packages dürfen nur Kleinbuchstaben enthalten.
 		`de.bund.bva.cd.registercd.admin.service`
 
 [[klassen--und-interface-namen]]
-=== Klassen- und Interface-Namen
+==== Klassen- und Interface-Namen
 
 ****
 Erster Buchstabe immer groß!
@@ -237,7 +460,7 @@ Wenn Interface und Implementierung eigentlich gleiche Namen haben, wird die Impl
 Beispiele: `*ActionListener*, *Runnable*, *Accessable*`
 
 [[methodennamen]]
-=== Methodennamen
+==== Methodennamen
 
 ****
 Methodennamen beginnen immer mit einem Verb!
@@ -257,7 +480,7 @@ JavaBeans-Konventionen einhalten!
 Die JavaBeans-Konventionen müssen eingehalten werden: Lesen von Eigenschaften mittels `*getProperty()*` bzw. `*isProperty()*` für Booleans, Schreiben von Eigenschaften mittels `*setProperty()*`.
 
 [[variablennamen]]
-=== Variablennamen
+==== Variablennamen
 
 Für die Vergabe von Variablennamen gilt: Je globaler die Sichtbarkeit einer Variable ist, desto aussagekräftiger (und ggfls. länger) sollte der Name sein.
 Das schließt nicht aus, das ein für drei Zeilen gültiger Schleifenzähler „*`i`*“ heißt.
@@ -303,7 +526,7 @@ Keine Präfixe außer *this.* verwenden!
 Außer dem Präfix `*this.*` bei Instanzvariablen werden keine Präfixe für Klassen-, Instanzvariablen und für Parameter verwendet.
 
 [[konstanten]]
-=== Konstanten
+==== Konstanten
 
 ****
 Konstanten immer groß!
@@ -316,7 +539,7 @@ Bei jeder Konstante ist zu überlegen, ob sie nicht durch das Typesafe-Enum-Patt
 Beispiele: `*A_MAGIC_NUMBER*, *MAX_VALUE*, *MIN_VALUE*`
 
 [[formatierung]]
-= Formatierung
+=== Formatierung
 
 [NOTE]
 ====
@@ -326,7 +549,7 @@ Die Formatierung des Quellcodes gemäß der nachfolgenden Regeln kann durch den 
 ====
 
 [[einrueckungen-und-klammerposition]]
-== Einrückungen und Klammerposition
+==== Einrückungen und Klammerposition
 
 Für das Einrücken sind immer *vier Leerzeichen* zu verwenden.
 Bei Code-Blöcken wird die öffnende Klammer „*{*" immer als letztes Zeichen der Zeile gesetzt, die den Codeblock einleitet.
@@ -336,26 +559,26 @@ Zur Einrückung des Textes *niemals Tabulatoren*, sondern immer Leerzeichen verw
 
 Geschweifte Klammern sollen auch dann verwendet werden, wenn innerhalb eines Blocks nur ein Statement vorhanden ist und somit syntaktisch auf deren Verwendung verzichtet werden könnte.
 
-Beispiele für Anwendung der Formatierungsregeln (• steht für ein Leerzeichen):
+Beispiele für Anwendung der Formatierungsregeln (`·` steht für ein Leerzeichen):
 
 [source,java]
 ----
-public•class•MyClass•{
-••••statements;
+public·class·MyClass·{
+····statements;
 }
 ----
 
 [source,java]
 ----
-if•(condition)•{
-••••statements;
-}•else•{
-••••statements;
+if·(condition)·{
+····statements;
+}·else·{
+····statements;
 }
 ----
 
 [[leerzeichen-und-leerzeilen-in-kommandos-und-ausdruecken]]
-== Leerzeichen und Leerzeilen in Kommandos und Ausdrücken
+==== Leerzeichen und Leerzeilen in Kommandos und Ausdrücken
 
 Es wird empfohlen, Leerzeichen wie folgt zu verwenden:
 
@@ -364,11 +587,11 @@ Es wird empfohlen, Leerzeichen wie folgt zu verwenden:
 * zwischen einer Klammer „*)*" und einer direkt darauf folgenden Klammer „*{*"
 * nach einem Komma (z. B. bei einer Methode mit mehreren Parametern)
 * zwischen einem binären (ternären) Operator (außer dem Punktoperator) und dem vorausgehenden und dem nachfolgenden Ausdruck +
-Beispiel: `double•length•=•Math.sqrt(x•*•x•+•y•*•y);`
+Beispiel: `+double·length·=·Math.sqrt(x·*·x·+·y·*·y);+`
 +
 [frame="none",width="57%"]
 |====
-^|Dies gilt insbesondere für `•=•` und `•==•`
+^|Dies gilt insbesondere für `·=·` und `·==·`
 |====
 
 
@@ -377,7 +600,7 @@ Methoden werden durch eine Leerzeile voneinander getrennt.
 Auch innerhalb einer Methode können Leerzeilen die logische Trennung von Blöcken verdeutlichen.
 
 [[aufteilen-langer-codezeilen]]
-== Aufteilen langer Codezeilen
+==== Aufteilen langer Codezeilen
 
 Die Zeichen pro Zeile sind auf eine lesbare Anzahl zu begrenzen.
 Es sollten niemals mehrere Anweisungen in einer Zeile codiert werden.
@@ -397,7 +620,7 @@ Das Umbrechen einer Zeile geschieht möglichst nach einem Komma.
 Die nächste Zeile wird dann an dem Ausdruck vor dem Komma ausgerichtet.
 
 [[dokumentation]]
-= Dokumentation
+=== Dokumentation
 
 Folgende Grundsätze sind beim Schreiben von Dokumentation und Kommentaren zu befolgen:
 
@@ -416,7 +639,7 @@ Für die technische Dokumentation hat sich eine klare und schnörkellose Sprache
 
 Bei der Dokumentation von Programmcode sind zwei Adressatenkreise zu unterscheiden:
 
-Personen, die den Code einsetzen, d. h. nutzen wollen.
+Personen, die den Code einsetzen, d.h. nutzen wollen.
 Sie sind an den öffentlichen Programmierschnittstellen der Packages und der Klassen bzw. Interfaces interessiert, also an der *Außensicht*.
 
 Personen, die den Code warten und weiterentwickeln müssen.
@@ -433,7 +656,7 @@ Wenn die Software lange nicht mehr "angefasst" werden musste, kann das sogar der
 In Java wird zwischen Dokumentationskommentaren (`$$*/**...*/*$$`) und Implementierungskommentaren (`$$*/*...*/*, *//*$$`) unterschieden.
 
 [[dokumentationskommentare-javadoc]]
-== Dokumentationskommentare (Javadoc)
+==== Dokumentationskommentare (Javadoc)
 
 Prinzipiell müssen alle Klassen, Interfaces und Methoden einen Dokumentationskommentar (eine Außensicht) enthalten.
 Ausnahmen sind im Einzelfall anonyme innere Klassen und ihre Methoden sowie Implementierungsklassen von Interfaces (dort mit @see auf die Interface-Dokumentation verweisen).
@@ -541,11 +764,23 @@ Beispiel:
 */
 ----
 
+****
+Bei überschriebenen Methoden wird `@inheritDoc` nur verwendet, wenn Ergänzungen dokumentiert werden.
+****
+
+`@inheritDoc` sollte nur genutzt werden, wenn beim Überschreiben der Methode weitere Informationen im Javadoc gegenüber dem
+Parent ergänzt werden. Wenn die überschreibende Methode keine zusätzlichen Informationen im Javadoc mitgegeben bekommt,
+kann `@inheritDoc` weggelassen werden. Javadoc kopiert automatisch die Beschreibung des Parents, wenn keine Beschreibung
+angegeben wird.
+
+****
 Die Tags *`@author`* und *`@version`* werden nicht mehr verwendet.
+****
+
 Autoren (und damit Verantwortlichkeiten für Bestandteile des Quellcodes) sowie Details über die aktuelle Version werden über das verwendete Versionskontrollsystem ermittelt.
 
 [[implementierungskommentare]]
-== Implementierungskommentare
+==== Implementierungskommentare
 
 Code sollte immer selbsterklärend geschrieben werden und möglichst wenige Inline-Kommentare enthalten.
 Implementierungskommentare begründen Designentscheidungen, die aus dem Code nicht allein ersichtlich sind, oder sie erklären aufwändige Algorithmen.
@@ -564,7 +799,7 @@ Wenn eine Stelle im Code noch nicht fertig ist und später kontrolliert oder üb
 Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese speziellen Kommentare analog zu Fehlern in einer ToDo-Liste an.
 
 [[aenderungshistorie]]
-== Änderungshistorie
+==== Änderungshistorie
 
 Es wird immer der Ist-Zustand beschrieben.
 Änderungen werden in der Änderungshistorie beschrieben.
@@ -580,10 +815,10 @@ Die Dokumentationssprache hierfür ist deutsch.
 Darüber hinaus werden keine Versionsinformationen im Source Code gepflegt.
 
 [[codestruktur]]
-= Codestruktur
+=== Codestruktur
 
 [[imports]]
-== Imports
+==== Imports
 
 Import-Statements werden nach Packages sortiert und gruppiert.
 Folgende Import-Statements sind zu vermeiden:
@@ -593,7 +828,7 @@ Folgende Import-Statements sind zu vermeiden:
 * redundante oder nicht genutzte Importe
 
 [[deklarationen-in-klassen]]
-== Deklarationen in Klassen
+==== Deklarationen in Klassen
 
 * Variablenbezeichner dürfen sich nicht überdecken.
 Zum Beispiel darf eine lokale Variable nicht genauso heißen wie ein Attribut der Klasse.
@@ -601,7 +836,7 @@ Zum Beispiel darf eine lokale Variable nicht genauso heißen wie ein Attribut de
 * Falls die Variable nicht selbsterklärend ist, wird sie mit einem kurzen einzeiligen Kommentar beschrieben.
 
 [[verwendung-der-kurzschreibweisen]]
-== Verwendung der Kurzschreibweisen
+==== Verwendung der Kurzschreibweisen
 
 Seit Java 1.5 gibt es eine Kurzschreibweise für verschiedene Programmierkonstrukte (z.B. Bedingungen, Schleifen).
 Folgende Kurzschreibweisen sind erlaubt:
@@ -629,7 +864,7 @@ if (COND)
 ----
 
 [[die-equals-und-hashcode-methode]]
-== equals() und hashCode()
+==== equals() und hashCode()
 
 Alle Klassen leiten sich von der Basisklasse Object ab und erben von dieser die Methoden `equals()`, `hashCode()`, `toString()`, `clone()` und `finalize()`.
 Diese Methoden sind bewusst als _non-final_ Methoden angelegt, damit sie klassenspezifisch angepasst werden können.
@@ -643,3 +878,12 @@ Zur Implementierung von `equals()` und `hashCode()` müssen die Möglichkeiten d
 
 * `static boolean Objects.equals(Object a, Object b)`
 * `static int Objects.hash(Object... values)`
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
+// end::inhalt[]

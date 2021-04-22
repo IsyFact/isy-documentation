@@ -1,5 +1,8 @@
+= Whitepaper: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Bei der Entwicklung von Anwendungssystemen für eine bestimmte Domäne stehen Architekten und Entwickler häufig vor denselben, wiederkehrenden Problemen.
 Zwar unterscheiden sich je nach Anwendung die Datenstrukturen, die Geschäftslogik und die Benutzeroberflächen, aber die allgemeinen Prinzipien, z.B. der Datenhaltung, der Architektur und der Gestaltung von Benutzerschnittstellen, sind in der Regel für alle Anwendungen identisch und somit wiederverwendbar.
@@ -14,6 +17,7 @@ Die Grundlage einer Software Factory sind die Standards, nach denen sich alle an
 
 
 [[aufbau-und-zweck-des-dokuments]]
-== Aufbau und Zweck des Dokuments
+=== Aufbau und Zweck des Dokuments
 
 Die in diesem Dokument vorgestellten IsyFact-Standards bilden diese Grundlage für die IsyFact.
+// end::inhalt[]
