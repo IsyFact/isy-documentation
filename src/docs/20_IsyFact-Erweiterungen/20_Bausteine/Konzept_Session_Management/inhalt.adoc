@@ -10,7 +10,7 @@ von Spring Session (der eigentlichen Implementierung des Session-Managers) ermö
 `isy-session` kapselt und vereinfacht die Nutzung von Spring-Session:
 
 :desc-image-aufbauisysession: Entwurf isy-session
-[id="image-aufbauisysession",reftext="{figure-caption} {counter:figures}"]	 
+[id="image-aufbauisysession",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-aufbauisysession}
 image::konzept_session_management_002.png[align="center",pdfwidth=100%,width=80%]
 
@@ -18,7 +18,7 @@ image::konzept_session_management_002.png[align="center",pdfwidth=100%,width=80%
 Sie initialisiert Spring Session mittels Java-Konfiguration gemäß dem offiziellen _HttpSession Guide_ für Redis.
 
 NOTE: http://docs.spring.io/spring-session/docs/current/reference/html5/guides/httpsession.html
- 
+
 Die Konfigurationsparameter werden über `isy-konfiguration` aus der betrieblichen Konfigurationsdatei `session.properties` gelesen.
 
 [[entwurfsentscheidungen]]
@@ -30,7 +30,7 @@ Es wurden folgende Architekturentscheidungen zur Umsetzung des Session-Managers 
 === Vermeidung konkurrierender Zugriffe
 
 :desc-table-avoidconcu: Vermeidung konkurrierender Zugriffe auf den Session-Speicher
-[id="table-avoidconcu",reftext="{table-caption} {counter:tables}"]	
+[id="table-avoidconcu",reftext="{table-caption} {counter:tables}"]
 .{desc-table-avoidconcu}
 [cols="2,5",options="header"]
 |====
@@ -40,11 +40,11 @@ Wie wird mit konkurrierenden Zugriffen auf den Session-Speicher umgegangen?
 
 *Hintergrund:*
 
-Konkurrierende Zugriffe auf eine Session im Session-Speicher treten dann auf, wenn ein Client Requests an 
+Konkurrierende Zugriffe auf eine Session im Session-Speicher treten dann auf, wenn ein Client Requests an
 den Server sendet, bevor vorhergehende Requests verarbeitet wurden.
 
 Dies kann bspw.
-bei der Nutzung von Ajax der Fall sein, wenn ein Anwender eine Maske im Browser aktualisiert oder mehrere 
+bei der Nutzung von Ajax der Fall sein, wenn ein Anwender eine Maske im Browser aktualisiert oder mehrere
 Fenster parallel genutzt werden.
 
 Je nach Session-Manager sind hierfür nur die Requests relevant, die auch tatsächlich die Session verändern.
@@ -62,11 +62,11 @@ Es wird akzeptiert, dass Sessions potentiell überschrieben werden.
 
 Variante 2: Erweiterung Spring Session.
 
-Spring Session könnte erweitert werden, so dass Sessions während der Verarbeitung eines Requests immer 
-gesperrt werden (pessimistische Sperre), oder dass vor Speichern eines Requests geprüft wird, ob die 
-Session verändert wurde (optimistische Sperre). Letzteres könnte mittels einer Redis-Transaktion 
+Spring Session könnte erweitert werden, so dass Sessions während der Verarbeitung eines Requests immer
+gesperrt werden (pessimistische Sperre), oder dass vor Speichern eines Requests geprüft wird, ob die
+Session verändert wurde (optimistische Sperre). Letzteres könnte mittels einer Redis-Transaktion
 (Stichwort: _watch_) umgesetzt werden, diese wird aktuell aber nicht durch Spring Data unterstützt
-(`InvalidDataAccessApiUsageException: WATCH is currently not supported in cluster mode`). (siehe 
+(`InvalidDataAccessApiUsageException: WATCH is currently not supported in cluster mode`). (siehe
 auch: https://redis.io/topics/transactions#cas).
 
 Die Erweiterungspunkte in Spring Session sind nicht klar definiert, so dass diese Variante risikobehaftet ist.
@@ -77,7 +77,7 @@ Es werden folgende Regeln in das Konzept „Web GUI“ aufgenommen:
 
 * Die parallele Nutzung mehrerer Browser-Fenster zum Zugriff auf die Anwendung wird nicht unterstützt.
 +
-Anmerkung: Ein Problem mit mehreren parallelen Fenstern kann letztlich nur dann auftreten, wenn in einem 
+Anmerkung: Ein Problem mit mehreren parallelen Fenstern kann letztlich nur dann auftreten, wenn in einem
 Fenster eine Aktion gestartet wird, während sich eine Aktion eines anderen Fensters noch in Bearbeitung befindet.
 Zur Sicherheit werden parallele Fenster aber grundsätzlich ausgeschlossen.
 
@@ -135,7 +135,7 @@ Es wurden folgende Architekturentscheidungen zum Aufbau des Session-Speichers ge
 === Absicherung des Session-Speichers
 
 :desc-table-savesave: Absicherung des Session-Speichers
-[id="table-savesave",reftext="{table-caption} {counter:tables}"]	
+[id="table-savesave",reftext="{table-caption} {counter:tables}"]
 .{desc-table-savesave}
 [cols="2,5",options="header"]
 |====
@@ -173,7 +173,7 @@ In der Datenzone haben ausschließlich sichere Clients Zugriff auf Redis.
 === Trennung der Sessions der einzelnen Anwendungen
 
 :desc-table-spitsess: Trennung der Sessions der einzelnen Anwendungen
-[id="table-spitsess",reftext="{table-caption} {counter:tables}"]	
+[id="table-spitsess",reftext="{table-caption} {counter:tables}"]
 .{desc-table-spitsess}
 [cols="2,5",options="header"]
 |====
@@ -208,7 +208,7 @@ Die Trennung der Instanzen ist im Hinblick auf die Datensicherheit des Systems n
 === Persistierung der Daten auf der Festplatte
 
 :desc-table-pershdd: Persistierung der Daten auf der Festplatte
-[id="table-pershdd",reftext="{table-caption} {counter:tables}"]	
+[id="table-pershdd",reftext="{table-caption} {counter:tables}"]
 .{desc-table-pershdd}
 [cols="2,5",options="header"]
 |====
@@ -241,7 +241,7 @@ Dies wird akzeptiert.
 === Betrieb in der Logik- und Verarbeitungszone
 
 :desc-table-usezone: Betrieb in der Logik- und Verarbeitungszone
-[id="table-usezone",reftext="{table-caption} {counter:tables}"]	
+[id="table-usezone",reftext="{table-caption} {counter:tables}"]
 .{desc-table-usezone}
 [cols="2,5",options="header"]
 |====

@@ -4,7 +4,7 @@
 Für das Session-Management wird Spring Session eingesetzt – `isy-session` erleichtert die
 Konfiguration von Spring Session gemäß den Vorgaben und Anforderungen der IsyFact.
 
-Spring Session wird mit Hilfe eines Servlet Filters in den Webserver integriert, um die 
+Spring Session wird mit Hilfe eines Servlet Filters in den Webserver integriert, um die
 Sessions verwalten zu können.
 
 Als Session-Speicher wird ein Redis Cluster verwendet.
@@ -15,7 +15,7 @@ In der Webanwendung werden die Verbindungsdaten zu allen drei Mastern hinterlegt
 Die Informationen zu den Slaves werden automatisch durch den Redis-Client ermittelt:
 
 :desc-image-sesmancluster: Anbindung Webanwendung an Session-Speicher
-[id="image-sesmancluster",reftext="{figure-caption} {counter:figures}"]	 
+[id="image-sesmancluster",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-sesmancluster}
 image::nutzungsvorgaben_isy-session_001.png[align="center",pdfwidth=80%,width=60%]
 
@@ -46,7 +46,7 @@ In der `pom.xml` der Anwendung muss lediglich folgende Abhängigkeit ergänzt we
 [[schritt-2-spring-konfiguration-ergänzen]]
 == Schritt 2: Spring-Konfiguration ergänzen
 
-Um den Sessionmanager in die Anwendung einzubinden muss folgende Zeile in die Spring-Konfiguration 
+Um den Sessionmanager in die Anwendung einzubinden muss folgende Zeile in die Spring-Konfiguration
 der Anwendung ergänzt werden:
 
 [source,xml]
@@ -82,7 +82,7 @@ Der Aufbau und Inhalt der Konfigurationsdatei wird in <<listing-sessionpropertie
 :desc-listing-sessionproperties: Konfigurationsdatei session.properties
 [id="listing-sessionproperties",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-sessionproperties}
-[source,xml]
+[source,sql]
 ----
 # Switch zum Aktivieren des Locking-Mechanismuses.
 isy.session.filter.locking.active = <true/false>
@@ -91,9 +91,9 @@ isy.session.filter.locking.active = <true/false>
 isy.session.filter.logging.active = <true/false>
 ----
 
-Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im Anhang 
+Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im Anhang
 <<vollstaendige-liste-der-konfigurationsparameter>> erläutert werden.
-Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate 
+Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate
 mit allen Parametern dargestellt.
 
 [[schritt-5-redisson.yaml-anlegen]]
@@ -159,7 +159,7 @@ Die folgenden Hinweise dienen dazu, häufige Fehlerszenarien bei der Nutzung der
 
 Die Session gibt, im Unterschied zu POJOs oder Java Beans, Werte nicht als Referenz (_by-reference_),
 sondern als Kopie (_by-value_) zurück.
-Deswegen müssen Werte, wenn sie außerhalb der Session geändert wurden, explizit zurück in die 
+Deswegen müssen Werte, wenn sie außerhalb der Session geändert wurden, explizit zurück in die
 Session geschrieben werden.
 
 :desc-listing-sessionwerte: Werte in die Session zurück schreiben
@@ -167,7 +167,7 @@ Session geschrieben werden.
 .{desc-listing-sessionwerte}
 [source,java]
 ----
-HttpSession session = 
+HttpSession session =
   (HttpSession) FacesContext.getCurrentInstance().getExternalContext()
                                                     .getSession(true);
 
@@ -185,7 +185,7 @@ session.setAttribute(ERLAUBTE_LICHTBILD_IDS, ids);
 [[keine-sonderzeichen-in-technischen-ids-verwenden]]
 == Keine Sonderzeichen in technischen IDs verwenden
 
-Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werden, 
+Schlüssel bzw. technische IDs, anhand derer Werte in der Session abgelegt werden,
 dürfen keine Umlaute oder andere Sonderzeichen enthalten.
 
 [[ereignisschluessel]]
@@ -194,7 +194,7 @@ dürfen keine Umlaute oder andere Sonderzeichen enthalten.
 `isy-session` verwendet in den Logeinträgen folgende Ereignisschlüssel:
 
 :desc-table-ekeysess: Ereignisschlüssel isy-session
-[id="table-ekeysess",reftext="{table-caption} {counter:tables}"]	
+[id="table-ekeysess",reftext="{table-caption} {counter:tables}"]
 .{desc-table-ekeysess}
 [cols="2m,1,2,4m",options="header"]
 |====
