@@ -51,20 +51,11 @@ der Anwendung ergänzt werden:
 
 [source,xml]
 ----
-<bean class="de.bund.bva.isyfact.session.RedisClusterKonfiguration"></bean>
+<bean class="de.bund.bva.isyfact.session.config.IsySessionConfiguration" />
 ----
 
-Das Bean stellt einen Servlet-Filter mit dem Namen `isySessionRepositoryFilter` bereit, die in der `web.xml` als erster Filter aufgenommen werden muss.
-
-
-Optional kann auch der `SessionLoggingFilter` über folgende Zeile erstellt werden, der Session Information loggt.
-
-[source,xml]
-----
-<bean class="de.bund.bva.isyfact.session.SessionLoggingFilter"/>
-----
-
-Will man den Filter einsetzen, muss auch dieser in der `web.xml` in die Filter aufgenommen werden.
+Das Bean konfiguriert abhängig von den session.properties alle notwendigen Servelt-Filter, welche mittels
+eines WebApplicationInitializers automatisch eingebunden werden.
 
 IMPORTANT: Das Bean darf nicht in der Spring-Konfiguration eines Batchs verwendet werden.
 
@@ -73,8 +64,16 @@ IMPORTANT: Die Konfiguration der Anwendung über Annotationen muss aktiviert sei
 IMPORTANT: Es muss Spring 4.2.8 oder höher verwendet werden.
 Andernfalls erhält man die Fehlermeldung: `java.lang.NoSuchMethodError: org.springframework.core.serializer.support.DeserializingConverter.<init>`
 
-[[schritt-3-session.properties-anlegen]]
-== Schritt 3: session.properties anlegen
+[[schritt-3-benutzerdefiniert-http-session-id-resolver]]
+=== Schritt 3 (Optional): Einen benutzerdefinierten HttpSessionIdResolver erstellen
+
+Isy-session nutzt standardmäßig einen default `CookieHttpSessionIdResolver` zur einheitlichen Bestimmung und
+Persistierung der Session ID. Soll die Session ID auf anderem Weg bestimmt werden, muss lediglich eine
+Implementierung von `HttpSessionIdResolver` als Bean bereitgestellt werden, welche den Standardresolver
+ersetzen wird.
+
+[[schritt-4-session.properties-anlegen]]
+== Schritt 4: session.properties anlegen
 
 Die Datei `session.properties` enthält die Konfigurationsparameter des Sessionmanagers.
 Sie muss im Verzeichnis `/src/main/resources/config` (betriebliche Konfiguration) angelegt werden.
@@ -85,12 +84,11 @@ Der Aufbau und Inhalt der Konfigurationsdatei wird in <<listing-sessionpropertie
 .{desc-listing-sessionproperties}
 [source,xml]
 ----
-# Switch zum aktivieren des Locking-Mechanismuses.
-filter.session.locking = <true/false>
+# Switch zum Aktivieren des Locking-Mechanismuses.
+isy.session.filter.locking.active = <true/false>
 
-# Switch zum aktivieren des Loggings durch den SessionLoggingFilter.
-# Dieser Eintrag ist nur Notwendig, wenn der Logging-Filter eingesetzt wird.
-filter.session.logging = <true/false>
+# Switch zum Aktivieren des Loggings durch den SessionLoggingFilter.
+isy.session.filter.logging.active = <true/false>
 ----
 
 Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im Anhang 
@@ -98,8 +96,8 @@ Darüber hinaus existieren noch weitere optionale Konfigurationsparameter die im
 Im Anhang <<vollstaendiges-konfigurationstemplate>> ist ein vollständiges Konfigurationstemplate 
 mit allen Parametern dargestellt.
 
-[[schritt-4-redisson.yaml-anlegen]]
-== Schritt 4: redisson.yaml anlegen
+[[schritt-5-redisson.yaml-anlegen]]
+== Schritt 5: redisson.yaml anlegen
 
 Die `redisson.yaml` Datei enhält Konfigurationenparameter für den Redisson-Client.
 So wie die `session.properties` wird diese ebenfalls im Verzeichnis `/src/main/resources/config` angelegt.
@@ -202,40 +200,8 @@ dürfen keine Umlaute oder andere Sonderzeichen enthalten.
 |====
 4+|Ereignisschlüssel isy-session
 |Schlüssel |Level |Kategorie |Text
-|EISYSE00001 |INFO |JOURNAL |Verwende Konfigurationsparameter <Name>: <Wert>
+|EISYSE00001 |INFO |JOURNAL |Session-Filter wurde initialisiert.
+|EISYSE00002 |INFO |JOURNAL |Initialisierung des Session-Filters: <Filter>.
+|EISYSE00003 |WARN |_Keine_ |Der Header <Header-Name> konnte nicht gefunden werden.
+|EISYSE00004 |WARN |_Keine_ |Konnte Session Cookie Konfigurationen nicht einlesen: <Konfiguration>
 |====
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

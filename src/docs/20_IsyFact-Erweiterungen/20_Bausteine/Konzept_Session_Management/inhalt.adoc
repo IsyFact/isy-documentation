@@ -14,7 +14,7 @@ von Spring Session (der eigentlichen Implementierung des Session-Managers) ermö
 .{desc-image-aufbauisysession}
 image::konzept_session_management_002.png[align="center",pdfwidth=100%,width=80%]
 
-`RedisClusterKonfiguration` ist die zentrale Klasse der Komponente.
+`IsySessionConfiguration` ist die zentrale Klasse der Komponente.
 Sie initialisiert Spring Session mittels Java-Konfiguration gemäß dem offiziellen _HttpSession Guide_ für Redis.
 
 NOTE: http://docs.spring.io/spring-session/docs/current/reference/html5/guides/httpsession.html
@@ -107,7 +107,7 @@ Die Umsetzung erfolgt über einen Filter, der sich mit Hilfe von Redis verteilte
 |====
 
 [[session-speicher]]
-= Session-Speicher
+== Session-Speicher
 
 Als Session-Speicher wird ein Redis-Cluster verwendet.
 
@@ -120,7 +120,7 @@ Ein Slave wird zum neuen Master, wenn der jeweilige Master ausfällt.
 Die einzelnen Master- und Slave-Knoten werden so auf die verschiedenen Hosts verteilt, dass ein Single-Point-of-Failure vermieden wird.
 
 :desc-image-clusterredis: Aufbau Redis-Cluster
-[id="image-clusterredis",reftext="{figure-caption} {counter:figures}"]	 
+[id="image-clusterredis",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-clusterredis}
 image::konzept_session_management_003.png[align="center",pdfwidth=100%,width=80%]
 

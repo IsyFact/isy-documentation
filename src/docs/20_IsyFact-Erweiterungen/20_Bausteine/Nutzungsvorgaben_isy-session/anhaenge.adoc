@@ -7,7 +7,7 @@
 [[vollstaendige-liste-der-konfigurationsparameter]]
 === Vollständige Liste der Konfigurationsparameter
 
-Im Folgenden werden sämtliche Konfigurationsparameter von isy-sesion aufgelistet.
+Im Folgenden werden sämtliche Konfigurationsparameter von isy-session aufgelistet.
 
 :desc-table-Confip: Konfigurationsparameter
 [id="table-Confip",reftext="{table-caption} {counter:tables}"]	
@@ -15,18 +15,19 @@ Im Folgenden werden sämtliche Konfigurationsparameter von isy-sesion aufgeliste
 [cols="6,4m,2m,3",options="header"]
 |====
 |Parameter |Wertebereich |Default |Beschreibung
-4+|*Pflichtparameter*
-m|filter.session.locking |Boolean |_keiner_ |Aktiviert den Locking-Mechanismus des IsySessionRepositoryFilters.
-m|filter.session.logging |Boolean |_keiner_ |Aktiviert das Loggen durch den SessionLoggingFilters. Muss nur gesetzt werden, wenn der SessionLoggingFilter eingesetzt wird.
 4+|*Optionale Parameter*
-m|session.redis.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
-m|filter.session.locking.verbs |String
+m|isy.session.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
+m|isy.session.filter.locking.active |Boolean |false |Aktiviert den Locking-Mechanismus mittels des IsySessionLockingFilter.
+m|isy.session.filter.logging.active |Boolean |false |Aktiviert das Loggen durch den SessionLoggingFilters.
+m|isy.session.filter.locking.verbs |String
 
 Beispiel: GET,POST |_keiner_ |Komma seperierte Liste von HTTP-Methoden bei denen ein Write Lock verwendet werden soll.
-m|filter.session.locking.uri[0..n]
+m|isy.session.filter.locking.uri[0..n]
 
 Bspl:
-filter.session.locking.uri[0] = http://black.listed.uri |String |_keiner_ |Aktiviert ein Writelock, eine Anfrage auf eine der angebenen URIs eingeht.
+isy.session.filter.locking.uri[0] = http://black.listed.uri |String |_keiner_ |Liste der URLs, für welche ein Writelock aktiviert werden soll.
+m|isy.session.filter.use-existing-session-id.active |Boolean |false |Definiert, ob die Session Id aus der existierenden Session für die Erstellung der neuen Session verwendet werden soll.
+m|session.cams.sessionid.header.name |String |_keiner_ |Name des Attributes, welche, die CAMS Session-ID beinhaltet, um diese als HTTP-Session-ID zu nutzen.
 |====
 
 [[vollstaendiges-konfigurationstemplate]]
