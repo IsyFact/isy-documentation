@@ -7,26 +7,27 @@
 [[vollstaendige-liste-der-konfigurationsparameter]]
 === Vollständige Liste der Konfigurationsparameter
 
-Im Folgenden werden sämtliche Konfigurationsparameter von isy-sesion aufgelistet.
+Im Folgenden werden sämtliche Konfigurationsparameter von isy-session aufgelistet.
 
 :desc-table-Confip: Konfigurationsparameter
-[id="table-Confip",reftext="{table-caption} {counter:tables}"]	
+[id="table-Confip",reftext="{table-caption} {counter:tables}"]
 .{desc-table-Confip}
 [cols="6,4m,2m,3",options="header"]
 |====
 |Parameter |Wertebereich |Default |Beschreibung
-4+|*Pflichtparameter*
-m|filter.session.locking |Boolean |_keiner_ |Aktiviert den Locking-Mechanismus des IsySessionRepositoryFilters.
-m|filter.session.logging |Boolean |_keiner_ |Aktiviert das Loggen durch den SessionLoggingFilters. Muss nur gesetzt werden, wenn der SessionLoggingFilter eingesetzt wird.
 4+|*Optionale Parameter*
-m|session.redis.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
-m|filter.session.locking.verbs |String
+m|isy.session.active |Boolean |true |Session-Persistierung in Redis aktivieren / deaktivieren.
+m|isy.session.filter.logging.active |Boolean |false |Aktiviert das Loggen durch den SessionLoggingFilters. Zusätzlich, muss der Logger `de.bund.bva.isyfact.session.IsySessionLoggingFilter` auf `DEBUG` gesetzt werden.
+m|isy.session.filter.locking.active |Boolean |false |Aktiviert den Locking-Mechanismus mittels des IsySessionLockingFilter.
+m|isy.session.filter.locking.verbs |String
 
 Beispiel: GET,POST |_keiner_ |Komma seperierte Liste von HTTP-Methoden bei denen ein Write Lock verwendet werden soll.
-m|filter.session.locking.uri[0..n]
+m|isy.session.filter.locking.uri[0..n]
 
 Bspl:
-filter.session.locking.uri[0] = http://black.listed.uri |String |_keiner_ |Aktiviert ein Writelock, eine Anfrage auf eine der angebenen URIs eingeht.
+isy.session.filter.locking.uri[0] = /app/a/b/c |String |_keiner_ |Liste der URLs, für welche ein Writelock aktiviert werden soll.
+m|isy.session.filter.use-existing-session-id.active |Boolean |false |Definiert, ob die Session Id aus der existierenden Session für die Erstellung der neuen Session verwendet werden soll.
+m|session.cams.sessionid.header.name |String |_keiner_ |Name des Attributes, welche, die CAMS Session-ID beinhaltet, um diese als HTTP-Session-ID zu nutzen.
 |====
 
 [[vollstaendiges-konfigurationstemplate]]
@@ -42,25 +43,26 @@ filter.session.locking.uri[0] = http://black.listed.uri |String |_keiner_ |Aktiv
 # ---
 # Aktivieren der Sessionverwaltung.
 # Wertebereich: Boolean.Default: true.
-session.redis.active=true
+isy.session.active = true
 
-# Aktiviert den Locking-Mechanismus vom IsySessionRepositoryFilter
+# Aktiviert den Locking-Mechanismus vom IsySessionLockingFilter
 # Wertebreich: Boolean
-filter.session.locking = true
+isy.session.filter.locking.active = true
 
 # Aktiviert Write-Locks für Anfragen mit folgenden HTTP-Methoden
 # Wertebereich: String
-filter.session.locking.verbs = post,get
+isy.session.filter.locking.verbs = post,get
 
 # Aktiviert Write-Locks für Anfragen mit folgenden URIs
 # Wertebereich: String
-filter.session.locking.uri[0] = http://black.listed.uri0
-filter.session.locking.uri[1] = http://black.listed.uri1
-filter.session.locking.uri[2] = http://black.listed.uri2
+isy.session.filter.locking.uri[0] = /app/path1
+isy.session.filter.locking.uri[1] = /app/path2
+isy.session.filter.locking.uri[2] = /app/path3
 
-# Aktiviert das Loggen der Session durch den SessionLoggingFilter
+# Aktiviert das Loggen der Session durch den IsySessionLoggingFilter
+# zusätzlich den Logger de.bund.bva.isyfact.session.IsySessionLoggingFilter auf DEBUG stellen
 # Wertebreich: Boolean
-filter.session.logging = false
+isy.session.filter.logging.active = false
 ----
 
 [[liste-der-redissonparameter]]
@@ -175,5 +177,5 @@ UCP im `lib`-Verzeichnis des Tomcats abgelegt.
 Die WAR-Datei der Webanwendung beinhaltet den Oracle UCP hierbei nicht (Maven-Depency im Scope `provided`).
 Mit `isy-session` benötigt der Tomcat selbst keine Datenbankverbindung mehr. Daher muss
 ..  der Oracle UCP aus dem `lib`-Verzeichnis des Tomcats entfernt und
-..  die Angabe des Scopes der Maven-Dependency auf den UCP in der Webanwendung entfernt werden, so 
+..  die Angabe des Scopes der Maven-Dependency auf den UCP in der Webanwendung entfernt werden, so
 dass der UCP mit in die WAR-Datei aufgenommen wird.

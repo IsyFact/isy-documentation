@@ -1,5 +1,6 @@
 # 1.8.3
 - `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
+- `IFE-315`: Umstrukturierung der Filter
 
 # 1.8.1
 - `IFS-849`: Zusätzliche Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
