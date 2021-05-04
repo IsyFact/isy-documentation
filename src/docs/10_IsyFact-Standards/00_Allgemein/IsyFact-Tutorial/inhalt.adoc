@@ -436,14 +436,16 @@ Der Bean-Name ist für die URL, unter welcher der Service erreichbar sein wird, 
 public class ServiceConfiguration {
 
     @Bean("/AuskunftBean_v1_0")
-    public HttpInvokerServiceExporter auskunftService(AuskunftExceptionFassade auskunftFassade) {
-        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
+    public IsyHttpInvokerServiceExporter auskunftService(AuskunftExceptionFassade auskunftFassade) {
+        IsyHttpInvokerServiceExporter exporter = new IsyHttpInvokerServiceExporter();
         exporter.setService(auskunftFassade);
         exporter.setServiceInterface(AuskunftRemoteBean.class);
         return exporter;
     }
 }
 ----
+
+`IsyHttpInvokerServiceExporter` ist eine Erweiterung von `HttpInvokerServiceExporter` und deaktiviert standardmäßig die Verwendung von Proxy-Klassen.
 
 [[einbinden-der-benötigten-bibliotheken]]
 ===== Einbinden der benötigten Bibliotheken
