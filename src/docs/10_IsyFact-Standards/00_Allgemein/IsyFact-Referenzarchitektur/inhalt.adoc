@@ -48,13 +48,13 @@ Diese Bausteine liegen in unterschiedlichen Formen vor: Es gibt fachliche und te
 Dazu gehören auch am Markt verfügbare Fertigprodukte, für die detaillierte Nutzungsvorgaben erstellt wurden.
 
 *Betriebsplattform:* Die <<glossar-Plattform>> definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von Anwendungslandschaften, die sich aus der Verwendung der IsyFact ergeben.
-Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben. 
+Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 Die Betriebsplattform besteht aus Hardware und Netzen sowie der benötigten Middleware mit Anwendungsserver oder Datenbankserver und ist hochverfügbar.
 Diese Plattform ist über alle Geschäftsanwendungen einheitlich und ermöglicht so einen standardisierten und effizienten Systembetrieb.
 
 *Methodik:* Im Rahmen einer Software-Factory bildet die <<glossar-Methodik>> die Grundlage für die Umsetzung von Geschäftsanwendungen.
 Die Methodik der IsyFact bietet verschiedene Vorschläge zu allen Phasen des Software-Entwicklungsprozesses, wie z. B. Vorlagen für die Spezifikation oder die Programmierung.
-Dieses Dokument ist übrigens V-Modell®-XT konform.
+Dieses Dokument ist V-Modell®-XT konform.
 
 *Werkzeuge:* Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Registern.
 Dazu bietet sie Konfigurationsanleitungen ausgewählter <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
@@ -362,12 +362,12 @@ Zur Implementierung der Geschäftslogik kann die Geschäftsanwendung auch <<glos
 Im vorliegenden Fall wird nur ein Service-Provider benötigt, da nur Aufrufe entgegengenommen werden.
 Diese werden authentifiziert, autorisiert, und an das zugehörige IT-System weitergeleitet.
 
-Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten Anwendungssysteme und Aufruf-Beziehungen.
-Die in dieser Abbildung angedeuteten Schichten eines Anwendungssystems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
+Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten IT-Systeme und Aufruf-Beziehungen.
+Die in dieser Abbildung angedeuteten Schichten eines IT-Systems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
 Wichtig in Hinblick auf diese Schichten sind folgende Punkte:
 
-* Die Komponente _Batch_ der Geschäftsanwendung wird im Beispiel nicht implementiert, da die Geschäftsanwendung keine Schnittstelle für Batchläufe anbietet.
-* Alle externen Aufrufe an die Geschäftsanwendung werden durch _Service-Komponente_ verarbeitet: Keine andere Komponente darf externe Schnittstellen bereitstellen, insbesondere nicht in den _Anwendungskern_.
+* Die Komponente _Batch_ der Geschäftsanwendung wird im obigen Beispiel nicht implementiert, da die Geschäftsanwendung keine Schnittstelle für Batchläufe anbietet.
+* Alle externen Aufrufe an die Geschäftsanwendung werden durch eine _Service-Komponente_ verarbeitet: Keine andere Komponente darf externe Schnittstellen bereitstellen, insbesondere nicht in den _Anwendungskern_.
 * Es wurden keine Aufrufe von Querschnittskomponenten eingezeichnet.
 Für derartige Aufrufe gibt es keine Vorgaben: Sie können aus beliebigen Schichten von Geschäftsanwendungen und Service Gateways aus aufgerufen werden.
 ====
@@ -579,8 +579,8 @@ Der Aufbau der Produktionsumgebung ist so gestaltet, dass eine Verfügbarkeit vo
 In der Produktionsumgebung einer IsyFact-Systemlandschaft wird die geforderte Verfügbarkeit über das Mittel der Redundanz realisiert.
 Jede Komponente der technischen Infrastruktur ist mindestens zweimal vorhanden.
 Auf einem Rechnersystem können mehrere Instanzen eines Servers (Applikationsserver, Datenbankserver) betrieben werden.
-Bei einem Ausfall einer Komponente kann der Wirkbetrieb immer noch über die andere Komponente abgewickelt werden (Failover). 
-Die Zustandslosigkeit der Applikationsserver (siehe Kapitel <<die-software-referenzarchitektur>>) unterstützt diese Redundanz und das Failover: 
+Bei einem Ausfall einer Komponente kann der Wirkbetrieb immer noch über die andere Komponente abgewickelt werden (Failover).
+Die Zustandslosigkeit der Applikationsserver (siehe Kapitel <<die-software-referenzarchitektur>>) unterstützt diese Redundanz und das Failover:
 Beim Ausfall eines Applikationsservers sind die notwendigen Informationen, um den Betrieb über einen anderen Applikationsserver abzuwickeln, beim Ausfall des Knotens nicht verloren gegangen.
 
 Die Server-Knoten der technischen Infrastruktur sind über verschiedene Standorte, Racks, Enclosures verteilt.
@@ -636,7 +636,7 @@ Alle Komponenten der Betriebsumgebung, das heißt Hardware-Komponenten, System­
 Eine Konfiguration beschreibt die Betriebsumgebung durch die Angabe der Versionen der einzelnen Komponenten zu einem Zeitpunkt.
 Wird an der Betriebsumgebung eine Änderung zum Beispiel durch Austausch einer Hardware-Komponente durchgeführt, dann erhält diese Hardware-Komponente eine neue Versionsnummer.
 Gleichzeitig hat sich die Konfiguration der Betriebsumgebung verändert und wird ebenfalls mit einer neuen Versionsnummer bezeichnet.
-Gleiches gilt, wenn sich zum Beispiel die Parameter eines Anwendungsservers ändern: 
+Gleiches gilt, wenn sich zum Beispiel die Parameter eines Anwendungsservers ändern:
 Eine neue Version der Parameter liegt vor und damit liegt auch eine neue Konfiguration der Betriebsumgebung vor.
 Um nachvollziehen zu können, was sich wann warum geändert hat, ist es empfehlenswert, dass jede Veränderung an der Betriebsumgebung genehmigt und nachvollziehbar dokumentiert wird.
 
