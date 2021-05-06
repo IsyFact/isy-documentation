@@ -132,7 +132,7 @@ Die Inhalte der Entitäten werden im Folgenden beschrieben.
 
 [cols="3s,7"]
 |====
-|Kurzbeschreibung |Die Attributen von den Entitäten ETY_Logeintrag und ETY_Marker werden aus diesen Datentypen ausgewählt.
+|Kurzbeschreibung |Die Attribute von den Entitäten ETY_Logeintrag und ETY_Marker werden aus diesen Datentypen ausgewählt.
 |====
 
 :desc-table-datentypen: Datentypen
