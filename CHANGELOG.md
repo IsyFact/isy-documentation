@@ -4,6 +4,8 @@
 - `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
 - `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
 - `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
+- `IFS-563`: Dokumentation MDC-Filter
+- `IFS-658`: Vorgabe "Source-Code Kommentierung auf Englisch"
 - `IFS-929`: 
     - Zusätzlichen Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
     - Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
