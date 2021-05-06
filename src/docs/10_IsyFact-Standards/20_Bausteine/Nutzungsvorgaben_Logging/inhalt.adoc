@@ -613,6 +613,12 @@ Darüber hinaus werden Methoden zum Kennzeichen der Inhalte im MDC als fachlich 
 * `liesMarkerFachdaten()`: Gibt an, ob der MDC fachliche Daten enthält.
 * `entferneMarkerFachdaten()`: Entfernt den Marker für Fachdaten.
 
+[[mcdfilter]]
+==== MDC-Filter
+
+Durch die Spring-Autokonfiguration in `isy-aufrufkontext` wird ein Servlet-Filter erstellt, welcher automatisch bei jedem Request die Korrelations-ID aus dem Http-Header ausliest und in den MDC setzt.
+Ist der Header nicht gesetzt, wird eine neue Korrelations-ID generiert.
+
 [[diagnosekontext-korrelations-id]]
 ==== Diagnosekontext / Korrelations-ID
 
