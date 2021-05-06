@@ -33,7 +33,7 @@ Es kann aber z.B. bei Netzproblemen dazu kommen, dass mehrere Instanzen parallel
 Dies lässt sich prinzipiell durch die Abstimmung per JMX nicht zu 100% ausschließen.
 
 Daher ist es nötig, im Rahmen der Verarbeitung eingegangener Daten weitere Maßnahmen zu treffen.
-Hierzu wird in der Fachanwendung, die die Nachrichten verarbeitet, eine Tabelle für alle eingehenden Daten in der Datenbank angelegt.
+Hierzu wird in der Geschäftsanwendung, die die Nachrichten verarbeitet, eine Tabelle für alle eingehenden Daten in der Datenbank angelegt.
 
 Eine solche Tabelle ist häufig bereits vorhanden.
 In dieser Tabelle wird eine zusätzliche Spalte hinzugefügt, die einen Schlüssel aus dem Fremdsystem aufnimmt.
@@ -41,7 +41,7 @@ Dieser Fremdsystemschlüssel kann je nach anlieferndem System z.B. die SMTP-Mess
 Die Spalte wird mit einem Unique Constraint versehen.
 So können datenbankseitig Duplikate sicher erkannt werden.
 
-Dafür ist es notwendig, diesen Fremdsystemschlüssel bis in die Fachanwendung zu transportieren, also z.B. vom Mail-Server über das Mail-Gateway.
+Dafür ist es notwendig, diesen Fremdsystemschlüssel bis in die Geschäftsanwendung zu transportieren, also z.B. vom Mail-Server über das Mail-Gateway.
 Da nur die Datenbank als transaktionales System die Eindeutigkeit der IDs garantieren kann, wird dies in Kauf genommen.
 
 In <<image-003>> wird das noch einmal illustriert.

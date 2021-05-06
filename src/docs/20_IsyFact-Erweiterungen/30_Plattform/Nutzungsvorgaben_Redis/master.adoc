@@ -1,6 +1,6 @@
-
 :doctitle: Baustein Redis
 :document-type: Nutzungsvorgaben
+:vs-einstufung: offen
 
 toc::[]
 
