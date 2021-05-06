@@ -91,8 +91,8 @@ Details hierzu sind in <<DetailkonzeptKomponenteDatenzugriff>> dokumentiert.
 Zentraler Baustein eines IT-Systems ist der Anwendungskern.
 Im Anwendungskern werden die fachlichen Funktionen (Anwendungslogik) der Anwendung realisiert.
 Dazu gehören zum Beispiel Datenvalidierungen oder Funktionen zum Verarbeiten von Geschäftsobjekten, die über den Datenzugriff geladen wurden.
+Innerhalb dieser Anwendungslogik befinden sich die Funktionalität, welche allgemein verwendbar ist.
 
-Innerhalb dieser Anwendungslogik befinden sich aber nur Funktionalitäten, die allgemein verwendbar sind und die von mehreren Anwendern genutzt werden könnten.
 Daneben gibt es spezielle Dialogabläufe, zum Beispiel dialogspezifische Bearbeitungsverfahren wie die Anwenderführung über Wizards.
 Diese Prozesse, die nur durch einen einzigen Dialog genutzt werden, sind nicht Teil des Anwendungskerns, sondern Teil der Schicht Nutzung.
 Damit stellt der Anwendungskern innerhalb des Systems allgemein nutzbare <<glossar-Dienst,Dienste>> zur Verfügung.
@@ -129,7 +129,11 @@ Vereinfachend können Anwendungskern-Komponenten persistente Daten an die <<glos
 Dies ist insbesondere dann angebracht, wenn die Komponente ausschließlich durch eine Service-Komponente genutzt wird. +
 Da die Service-Schicht keine Logik enthält und daher ohnehin keine Änderung an solchen Entitäten vornehmen darf und eindeutig der Anwendungskern-Komponente zugeordnet ist, bedeutet dies keine Verletzung der Datenhoheit.
 Da die Anwendungskern-Komponente an Ihrer Schnittstelle nun potentiell persistente und nicht persistente Entitäten bereitstellt, müssen Verwechselungen vermieden werden, z.B. in dem solche Methoden in getrennten Interfaces deklariert werden.
-Im Zweifel sollte darauf verzichtet werden persistente Entitäten aus der Anwendungskern-Komponente herauszugeben.
+
+[ARCHITEKTURREGEL]
+====
+Persistente Entitäten dürfen nicht über den Anwendungskern hinaus herausgegeben werden. Sie haben im Anwendungskern zu verbleiben.
+====
 
 *Komponenten-Framework:* Für querschnittliche Funktionalität innerhalb des Anwendungskerns wird das Spring-Framework genutzt.
 Hauptaufgabe des Frameworks ist es, die Komponenten zu konfigurieren und miteinander bekannt zu machen.
