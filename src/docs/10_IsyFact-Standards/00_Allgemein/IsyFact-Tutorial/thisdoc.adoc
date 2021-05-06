@@ -12,7 +12,7 @@ einer zur IsyFact konformen Anwendungslandschaft.
 Im Sinne einer Referenz enthält es jedoch nicht alle Details der zugrunde liegenden Konzepte.
 Der Fokus liegt darauf, einen schnellen Überblick über die einzelnen Themen zu geben und die wichtigsten Realisierungsaufgaben
 zusammenfassend darzustellen.
-An vielen Stellen bezieht sich das Tutorial auf die <<Vorlageanwendung>>, die eine kleine Fachanwendung beispielhaft implementiert sind.
+An vielen Stellen bezieht sich das Tutorial auf die <<Vorlageanwendung>>, die eine kleine Geschäftsanwendung beispielhaft implementiert sind.
 
 Zunächst beschreibt das Kapitel *<<bezug-isyfact>>*, wie sich die IsyFact in Entwicklungsprojekte einbinden lässt.
 Danach beleuchten die Kapitel *<<datenhaltung>>* , *<<fachkomponenten-der-anwendung>>* und *<<anwendungsnutzung>>* jeweils einzelne Kernthemen der Anwendungsentwicklung.

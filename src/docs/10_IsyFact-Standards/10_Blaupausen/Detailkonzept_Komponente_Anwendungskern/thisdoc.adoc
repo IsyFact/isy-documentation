@@ -7,7 +7,7 @@ include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 Im Anwendungskern werden die fachlichen Funktionen der Anwendung realisiert.
 Diese Funktionen sind im Anwendungskern genau einmal implementiert und können von unterschiedlichen Komponenten einer Anwendung genutzt werden.
-Eine Meldung in einer Fachanwendung kann z.B. sowohl über die GUI als auch über einen Batch oder einen Serviceaufruf vorgenommen werden.
+Eine Meldung in einer Geschäftsanwendung kann z.B. sowohl über die GUI als auch über einen Batch oder einen Serviceaufruf vorgenommen werden.
 Alle diese Aufrufer nutzen dieselbe Implementierung.
 Der Anwendungskern wird aus Fachkomponenten und Komponenten zur Nutzung externer Services aufgebaut.
 
@@ -21,7 +21,8 @@ Dieses Dokument richtet sich an Architekten und Entwickler.
 Neben der Festlegung der Architektur des Anwendungskerns ist die Hauptaufgabe dieses Dokuments, die Verwendung von Spring als Anwendungskern-Framework zu erläutern.
 Daher werden im Folgenden Spring-Kenntnisse vorausgesetzt.
 
-Für ein Verständnis der in diesem Dokument geforderten Spring-Nutzung ist vor allem die <<Vorlageanwendung>> zu empfehlen.
+// TODO Der Hinweis passt nicht, da die Vorlageanwendung noch auf IsyFact 1.7 basiert und die Spring-Nutzung daher nicht mit diesem Dokument übereinstimmt. Er sollte wieder eingefügt werden, sobald es eine aktuellere Vorlageanwendung gibt.
+// Für ein Verständnis der in diesem Dokument geforderten Spring-Nutzung ist vor allem die <<Vorlageanwendung>> zu empfehlen.
 
 [[ueberblick]]
 == Überblick

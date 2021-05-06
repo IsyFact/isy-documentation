@@ -393,7 +393,7 @@ komponente>. ...
 	= <für Anwendungssystem> | <subsystem/komponente>
 	  <-
       <für Anwendungssystem>
-		= ... (Name der Fachanwendung bzw. querschnittlichen Komponente gemäß fachlicher Architektur)
+		= ... (Name der Geschäftsanwendung bzw. querschnittlichen Komponente gemäß fachlicher Architektur)
 ----
 
 Unterhalb von `<subsystem/komponente>` werden die Packages projektspezifisch strukturiert.
@@ -764,7 +764,19 @@ Beispiel:
 */
 ----
 
+****
+Bei überschriebenen Methoden wird `@inheritDoc` nur verwendet, wenn Ergänzungen dokumentiert werden.
+****
+
+`@inheritDoc` sollte nur genutzt werden, wenn beim Überschreiben der Methode weitere Informationen im Javadoc gegenüber dem
+Parent ergänzt werden. Wenn die überschreibende Methode keine zusätzlichen Informationen im Javadoc mitgegeben bekommt,
+kann `@inheritDoc` weggelassen werden. Javadoc kopiert automatisch die Beschreibung des Parents, wenn keine Beschreibung
+angegeben wird.
+
+****
 Die Tags *`@author`* und *`@version`* werden nicht mehr verwendet.
+****
+
 Autoren (und damit Verantwortlichkeiten für Bestandteile des Quellcodes) sowie Details über die aktuelle Version werden über das verwendete Versionskontrollsystem ermittelt.
 
 [[implementierungskommentare]]
