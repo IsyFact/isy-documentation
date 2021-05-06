@@ -33,7 +33,7 @@ Weitere Vorteile sind höhere Sicherheit und Softwarequalität durch Einsatz erp
 :desc-image-IFBereiche: Durch die IsyFact abgedeckte Bereiche
 [id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFBereiche}
-image::../../common/images/IFBereiche.png[align="center",pdfwidth=60%,width=60%]
+image::../../common/images/IFBereiche.png[align="center",pdfwidth=45%,width=45%]
 
 Die IsyFact bietet standardisierte Lösungen zu wichtigen Themen beim Bau von Geschäftsanwendungen.
 Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Besonderheiten seiner Geschäftsanwendung konzentrieren.
@@ -343,7 +343,7 @@ Die Nutzungsschicht eines IT-Systems bietet anderen IT-Systemen über Services, 
 Im Folgenden wird ein Beispiel-Szenario zur Nutzung eines IT-Systems vorgestellt.
 
 ====
-Es soll eine Geschäftsanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
+*_Beispiel:_* Es soll eine Geschäftsanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
 
 Für eine zur Architektur konforme Umsetzung dieser Anforderungen müssen verschiedene IT-Systeme umgesetzt werden:
 
