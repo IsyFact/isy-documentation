@@ -436,14 +436,16 @@ Der Bean-Name ist für die URL, unter welcher der Service erreichbar sein wird, 
 public class ServiceConfiguration {
 
     @Bean("/AuskunftBean_v1_0")
-    public HttpInvokerServiceExporter auskunftService(AuskunftExceptionFassade auskunftFassade) {
-        HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
+    public IsyHttpInvokerServiceExporter auskunftService(AuskunftExceptionFassade auskunftFassade) {
+        IsyHttpInvokerServiceExporter exporter = new IsyHttpInvokerServiceExporter();
         exporter.setService(auskunftFassade);
         exporter.setServiceInterface(AuskunftRemoteBean.class);
         return exporter;
     }
 }
 ----
+
+`IsyHttpInvokerServiceExporter` ist eine Erweiterung von `HttpInvokerServiceExporter` und deaktiviert standardmäßig die Verwendung von Proxy-Klassen.
 
 [[einbinden-der-benötigten-bibliotheken]]
 ===== Einbinden der benötigten Bibliotheken
@@ -671,9 +673,9 @@ In diesem Kapitel wird die Implementierung von Batches zu einer Anwendung beschr
 * Die Batch-Verarbeitung verwendet den Anwendungskern der zugehörigen Anwendung.
 Der Anwendungskern ist Teil des Batch-Deployments, d.h. der Code ist sowohl Teil der Server-Anwendung als auch der Batch-Anwendung in Bezug auf Deploymenteinheiten.
 * Zur Realisierung der Batchlogik wird eine Batch-Ausführungs-Bean implementiert.
-* Falls für die Verarbeitung im Batch eigene Fachlogik benötigt wird, ist diese trotzdem den entsprechenden Anwendungskomponenten der zugehörigen Fachanwendung hinzuzufügen.
+* Falls für die Verarbeitung im Batch eigene Fachlogik benötigt wird, ist diese trotzdem den entsprechenden Anwendungskomponenten der zugehörigen Geschäftsanwendung hinzuzufügen.
 * Im Rahmen der Initialisierung hat die Ausführungs-Bean unter anderem die Aufgabe, die Konsistenz und Korrektheit der Eingabedaten zu prüfen.
-* Falls die zu verarbeitenden Sätze eines Batches das Ergebnis einer Datenbank-Query sind, ist in der Initialisierung die Query über eine Anwendungskomponente der zugehörigen Fachanwendung abzusetzen.
+* Falls die zu verarbeitenden Sätze eines Batches das Ergebnis einer Datenbank-Query sind, ist in der Initialisierung die Query über eine Anwendungskomponente der zugehörigen Geschäftsanwendung abzusetzen.
 Diese Query soll die (fachlichen) Schlüssel von Entitäten, nicht Entitäten selbst auslesen.
 * Die Batches sind möglichst robust zu konstruieren: Falls auf ein fachliches Problem in der Ausführungs-Bean reagiert werden kann, sollte dies getan werden.
 * Batches erzeugen ein Ausführungsprotokoll.
@@ -746,7 +748,7 @@ In dieser statischen Konfiguration werden unter anderem die Batch-ID und die Tra
 Eine Beschreibung der Parameter ist in <<DetailkonzeptKomponenteBatch>> enthalten.
 
 Die betriebliche Konfiguration des Batches ist identisch zu derjenigen der zugehörigen Anwendung.
-Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebliche Konfiguration der Fachanwendung aufgenommen.
+Auch Parameter, die nur für den Batch benötigt werden, werden in die betriebliche Konfiguration der Geschäftsanwendung aufgenommen.
 
 [[spring-konfiguration-anlegen]]
 ===== Spring-Konfiguration anlegen
