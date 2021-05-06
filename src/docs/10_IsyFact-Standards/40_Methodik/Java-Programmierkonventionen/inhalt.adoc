@@ -632,7 +632,7 @@ Wenn Code verändert wird, muss sichergestellt werden, dass die entsprechenden K
 Nach jedem Refactoring muss ein Überprüfen und eventuelles Anpassen der Dokumentation erfolgen.
 
 ****
-Kommentare deutlich in aktiver Sprache formulieren und Floskeln vermeiden!
+Kommentare sind in Englisch zu verfassen. Es ist deutliche Sprache zu verwenden und Floskeln sind zu vermeiden!
 ****
 
 Für die technische Dokumentation hat sich eine klare und schnörkellose Sprache bewährt.
@@ -797,6 +797,7 @@ Implementierungskommentare werden für folgende Zwecke eingesetzt:
 
 Wenn eine Stelle im Code noch nicht fertig ist und später kontrolliert oder überarbeitet werden soll, so ist sie mit `*// TODO: Grund*` zu markieren.
 Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese speziellen Kommentare analog zu Fehlern in einer ToDo-Liste an.
+Alle Kommentare sind in Englisch zu verfassen.
 
 [[aenderungshistorie]]
 ==== Änderungshistorie

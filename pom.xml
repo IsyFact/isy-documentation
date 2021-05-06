@@ -11,6 +11,7 @@
         <html-output-base-directory>${project.build.directory}/doc/html</html-output-base-directory>
         <pdf-output-base-directory>${project.build.directory}/doc/pdf</pdf-output-base-directory>
         <maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
+        <asciidoctorj-extensions.version>2.2.0</asciidoctorj-extensions.version>
     </properties>
 
     <profiles>
@@ -32,7 +33,7 @@
                             <dependency>
                                 <groupId>de.bund.bva.isyfact</groupId>
                                 <artifactId>isy-asciidoctorj-extensions</artifactId>
-                                <version>2.2.0</version>
+                                <version>${asciidoctorj-extensions.version}</version>
                             </dependency>
                         </dependencies>
 
@@ -98,7 +99,7 @@
                             <dependency>
                                 <groupId>de.bund.bva.isyfact</groupId>
                                 <artifactId>isy-asciidoctorj-extensions</artifactId>
-                                <version>2.2.0</version>
+                                <version>${asciidoctorj-extensions.version}</version>
                             </dependency>
                         </dependencies>
 
