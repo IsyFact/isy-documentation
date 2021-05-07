@@ -1,5 +1,6 @@
 :doctitle: Sicherheit Keycloak
 :document-type: Konzept
+:vs-einstufung: offen
 
 toc::[]
 

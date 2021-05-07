@@ -1,5 +1,7 @@
 = Nutzungsvorgaben HTTP Invoker: Inhalt
 
+:imagesdir: images
+
 // tag::inhalt[]
 [[maven-konfiguration]]
 == Maven-Konfiguration
@@ -7,6 +9,7 @@
 Zur Verwendung des Bausteins HTTP Invoker genügt es, die folgenden zwei Bibliotheken aus der IsyFact als Maven-Abhängigkeiten einzubinden.
 
 :desc-listing-pom: Einbindung des Bausteins HTTP Invoker
+
 [id="listing-pom",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-pom}
 [source,xml]
@@ -49,6 +52,7 @@ Daneben enthält die Schnittstelle natürlich noch weitere, fachliche Parameter,
 Die Verwendung von Parametern in einer Schnittstelle ist im folgenden Beispiel dargestellt:
 
 :desc-listing-BSPRemoteBean: Beispiel für ein Remote-Bean
+
 [id="listing-BSPRemoteBean",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPRemoteBean}
 [source,java]
@@ -98,6 +102,7 @@ Die Implementierung der Service-Operation reicht den Methodenaufruf an die imple
 Der `try`-`catch`-Block unterscheidet zwischen Exceptions der Datenbankzugriffsschicht (`DataAccessException`) und allen anderen Exceptions (`Throwable`), um einen passenden Fehlertext in die Log-Dateien zu schreiben.
 
 :desc-listing-BSPExceptionFassade: Beispiel für eine Exception-Fassade
+
 [id="listing-BSPExceptionFassade",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPExceptionFassade}
 [source,java]
@@ -138,19 +143,18 @@ Intern arbeitet die Anwendung mit ihren eigenen Entitäten.
 Diese können sich von den nach außen hin angebotenen Transportobjekten unterscheiden, z.B. weil sie zusätzliche Attribute enthalten, einzelne Attribute anders benennen oder die Daten in irgendeiner Form anders repräsentieren als die Transportobjekte.
 
 In der Service-Fassade erfolgt auch die Autorisierung eines Zugriffs auf eine Service-Methode.
-Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die
-Annotation `@StelltAufrufKontextBereit` aus der Bibliothek `isy-serviceapi-core` an der Service-Methode.
+Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten AufrufKontextes über die Annotation `@StelltAufrufKontextBereit` aus der Bibliothek `isy-serviceapi-core` an der Service-Methode.
 Anschließend kann über die Annotation `@Gesichert` der Bibliothek `isy-sicherheit` die Berechtigung zum Zugriff auf die Methode geprüft werden.
 Hier werden alle benötigten Rechte des Aufrufers überprüft.
 Alternativ kann die Annotation `@Gesichert` auch an der Service-Klasse verwendet werden, wenn alle Methoden die gleiche Autorisierung erfordern.
 
 Das Mapping im Beispiel wird durch einen Bean Mapper umgesetzt.
-Vor dem Aufruf werden die Parameter gemappt (Klasse `BeispielHolenAnfrageTo` auf Klasse `BeispielHolenAnfrage`),
-nach dem Aufruf der Rückgabewert (Klasse `BeispielHolenAntwort` auf Klasse `BeispielHolenAntwortTo`).
+Vor dem Aufruf werden die Parameter gemappt (Klasse `BeispielHolenAnfrageTo` auf Klasse `BeispielHolenAnfrage`), nach dem Aufruf der Rückgabewert (Klasse `BeispielHolenAntwort` auf Klasse `BeispielHolenAntwortTo`).
 
 Die Komponente Service-Logik wird durch eine entsprechende Spring-Konfigurationsklasse verschaltet.
 
 :desc-listing-BSPServiceFassade: Beispiel für eine Service-Fassade
+
 [id="listing-BSPServiceFassade",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-BSPServiceFassade}
 [source,java]
@@ -186,6 +190,7 @@ Transportobjekte dürfen keine externen Abhängigkeiten haben, da sie Teil der a
 Bei Transportobjekten ist zu beachten, dass die UID stets 0 ist (s. <<listing-to-uid>>).
 
 :desc-listing-to-uid: Definition der UID an Transportobjekten
+
 [id="listing-to-uid",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-to-uid}
 [source,java]
@@ -239,6 +244,7 @@ Daher liegt die Exception-Fassade noch vor der Service-Fassade, um auch diese Fe
 <<listing-FehlerbehandlungExceptionFassade>> zeigt die Fehlerbehandlung in der Exception-Fassade für das Beispiel-Remote-Bean.
 
 :desc-listing-FehlerbehandlungExceptionFassade: Fehlerbehandlung in der Exception-Fassade
+
 [id="listing-FehlerbehandlungExceptionFassade",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-FehlerbehandlungExceptionFassade}
 [source,java]
@@ -319,6 +325,7 @@ Hierfür muss lediglich die umzuwandelnde Exception und die Klasse der gewünsch
 <<listing-MappingExceptionNachToException>> zeigt ein Beispiel für die Umwandlung einer technischen Exception in eine technische Transport-Exception.
 
 :desc-listing-MappingExceptionNachToException: Mappen einer BaseException in eine technische Transport-Exception
+
 [id="listing-MappingExceptionNachToException",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-MappingExceptionNachToException}
 [source,java]
@@ -332,6 +339,7 @@ Auch diese Exceptions müssen in Transport-Exceptions umgewandelt werden.
 <<listing-createToException>> zeigt ein Beispiel für eine solche Umwandlung.
 
 :desc-listing-createToException: Erstellen von Transport-Exceptions
+
 [id="listing-createToException",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-createToException}
 [source,java]
@@ -351,6 +359,7 @@ Diese Klasse ist anwendungsspezifisch und für jede Anwendung zu implementieren.
 <<listing-MappingExceptions>> zeigt eine mögliche Implementierung für das Mapping von Exceptions auf Ausnahme-IDs.
 
 :desc-listing-MappingExceptions: Beispielhaftes Mapping von Exceptions auf Ausnahme-IDs
+
 [id="listing-MappingExceptions",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-MappingExceptions}
 [source,java]
@@ -399,6 +408,7 @@ Eine disjunktive Verknüpfung von Rechten ist nicht möglich.
 Folgendes Beispiel (<<listing-absichern-einer-service-methode>>) zeigt die Implementierung einer Service-Methode, für die der Aufrufkontext automatisch ausgelesen und anschließend die Autorisierung gegen den Baustein Sicherheit durchgeführt wird.
 
 :desc-listing-absichern-einer-service-methode: Absichern einer Service-Methode
+
 [id="listing-absichern-einer-service-methode",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-absichern-einer-service-methode}
 [source,java]
@@ -413,6 +423,32 @@ public void abgesicherteMethode(AufrufKontextTo kontext, ...) {
 Erfüllt ein Aufrufer die Forderungen der Annotation `@Gesichert` nicht, so wird ein Fehler des Typs `AutorisierungFehlgeschlagenException` erzeugt.
 Der Fehler wird in der Regel nicht lokal behandelt, sondern einfach zurückgegeben.
 Letztlich deuten fehlende Rechte meist auf einen unberechtigten Zugriff oder einen Fehler in der Konfiguration einer aufrufenden Anwendung hin, sodass hier die normale Fehlerbehandlung greift.
+
+[[kompatibilitaet-zu-weiteren-iam-systemen]]
+=== Kompatibilität zu OAuth 2
+
+Aufgrund der Umstellung auf OAuth 2 zur Authentifizierung und Autorisierung muss das Bearer Token bei jedem Schnittstellenaufruf übertragen werden.
+Dies geschieht für existierende Schnittstellen transparent.
+
+Der Zugriff auf das Bearer Token geschieht über den `AufrufKontextVerwalter`.
+Die Klasse enthält hierfür ein Attribut `bearerToken`.
+
+:desc-listing-aufrufkontextverwalter: Bearer Token in AufrufKontextVerwalter
+
+[id="listing-aufrufkontextverwalter",reftext="{listing-caption} {counter:listings}"]
+.{desc-listing-aufrufkontextverwalter}
+[source,java]
+----
+public interface AufrufKontextVerwalter<T extends AufrufKontext> {
+
+    String getBearerToken();
+
+    void setBearerToken(String bearerToken);
+
+}
+----
+
+Zur Übertragung wird der HTTP-Header `Authorization` verwendet.
 
 [[paketierung]]
 == Paketierung einer Service-Schnittstelle
@@ -430,11 +466,11 @@ Sie werden anhand der Vorgaben in <<DetailkonzeptKomponenteService>> und <<IsyFa
 == Bereitstellung einer Service-Schnittstelle
 
 In der Konfigurationsklasse der Service-Schicht wird die HTTP Invoker Konfiguration der Service-Schnittstelle eingebunden.
-Dazu werden das Remote-Bean-Interface und die zugehörige Implementierung in Form der Exception-Fassade als Service
-konfiguriert <<listing-httpinvokerserviceexporter>>.
+Dazu werden das Remote-Bean-Interface und die zugehörige Implementierung in Form der Exception-Fassade als Service konfiguriert <<listing-httpinvokerserviceexporter>>.
 Der Bean-Name ist für die URL, unter welcher der Service erreichbar sein wird, wichtig.
 
 :desc-listing-httpinvokerserviceexporter: Konfiguration von Remote Bean und Exception Fassade als Service
+
 [id="listing-httpinvokerserviceexporter",reftext="{listing-caption} {counter:listings}"]
 .{desc-listing-httpinvokerserviceexporter}
 [source,java]
@@ -455,12 +491,12 @@ public class ServiceConfiguration {
 [[nutzung]]
 == Nutzung einer Service-Schnittstelle
 
-Zur Nutzung einer entfernten Schnittstelle bindet ein IT-System das JAR der Schnittstelle via Maven ein und
-initialisiert die Remote-Beans damit.
+Zur Nutzung einer entfernten Schnittstelle bindet ein IT-System das JAR der Schnittstelle via Maven ein und initialisiert die Remote-Beans damit.
 Das geschieht über die vom Spring Framework bereitgestellte Factory-Klasse `HttpInvokerProxyFactoryBean`, wie in <<listing-invokerconfig>> dargestellt.
 Auf dieser Bean können dann die entfernten Methoden aufgerufen werden.
 
 :desc-listing-invokerconfig: Konfiguration für die Nutzung einer entfernten Schnittstelle
+
 [id="listing-invokerconfig",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-invokerconfig}
 [source,java]
@@ -499,6 +535,7 @@ Sie versieht die Remote-Beans automatisch mit einem `LogMethodInterceptor`, der 
 Die Konfiguration erfolgt wie in <<listing-isyinvokerconfig>> gezeigt.
 
 :desc-listing-isyinvokerconfig: Konfiguration mit IsyHttpInvokerProxyFactoryBean
+
 [id="listing-isyinvokerconfig",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-isyinvokerconfig}
 [source,java]
