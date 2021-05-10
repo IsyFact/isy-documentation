@@ -33,7 +33,7 @@ Dies umfasst die folgenden Teilaspekte:
 ** **Keine Abhängigkeit zwischen Anwendungen**: Jede Anwendung besitzt eigene Logdateien und eigene Mechanismen zum Schreiben der Logs.
 Es gibt keine gemeinsam genutzten Logdateien und keine zentrale Anwendung zum _Erstellen_ der Logs.
 ** **Eindeutige Zuordnung von Logdateien**: Logdateien müssen eindeutig einer Anwendung zugeordnet werden können.
-** **Es wird nur ein Logging-Framework verwendet**: Alle Anwendungen müssen das gleiche Logging-Framework verwenden (`isy-logging` auf Basis von logback).
+** **Es wird nur ein Logging-Framework verwendet**: Alle Anwendungen müssen das gleiche Logging-Framework verwenden.
 ** *Minimale Auswirkungen auf Performanz:* Das Logging darf die Performanz der Anwendung nur minimal beeinträchtigen.
 
 [underline]#Anforderungen an die Log-Infrastruktur#
@@ -130,6 +130,11 @@ Die Inhalte der Entitäten werden im Folgenden beschrieben.
 [[datentypen]]
 ===== Datentypen
 
+[cols="3s,7"]
+|====
+|Kurzbeschreibung |Die Attribute von den Entitäten ETY_Logeintrag und ETY_Marker werden aus diesen Datentypen ausgewählt.
+|====
+
 :desc-table-datentypen: Datentypen
 [id="table-datentypen",reftext="{table-caption} {counter:tables}"]
 .{desc-table-datentypen}
@@ -149,7 +154,6 @@ Bspw.: `2007-09-05 16:40:36,464Z`
 |DTY_Ereignisschlüssel |Zeichenkette |Eindeutige Identifikation des Zwecks eines Logeintrags (siehe <<log-level-log-kategorie-und-ereignisschluessel>>). |Bspw.: `LISYLOO01001`
 |DTY_Zeichenkette |Zeichenkette |Frei wählbare Zeichenketten. |UTF-8 Zeichenkette
 |DTY_Wahrheitswert |Wahrheitswert |Ein Wahrheitswert kann genau zwei Zustände annehmen: „true“ oder „false“. |`true, false`
-|DTY_Ganzzahl |Ganzzahl |Frei wählbare Ganzzahl. |Bspw.: `1, 2, 3, 4`
 |====
 
 [[log-level-log-kategorie-und-ereignisschluessel]]
@@ -184,20 +188,24 @@ Die Nachrichten sind so weit wie möglich zu vereinheitlichen.
 Dazu werden in den Nutzungsvorgaben _Logging_ (siehe <<NutzungsvorgabenLogging>>) klare Vorgaben definiert, welche Nachrichten in welcher Situation zu erstellen sind.
 
 [[datenschutz]]
-===== Datenschutz
-
-Beim Loggen der Nachrichten sind grundsätzlich die Vorgaben der Datenschutzgrundverordnung (https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE[DSGVO]) einzuhalten.
-Eine besondere Rolle spielen dabei personenbezogene Daten und insbesondere Daten gemäß Artikel 9 DSGVO.
-Ebenso dürfen grundsätzlich keine sicherheitsrelevanten Daten (z.B. Passwörter) geloggt werden.
-
-[underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
-Die entsprechenden Logeinträge müssen durch das Setzen des Flags ATT_Enthält_fachliche_Daten markiert werden, damit sie durch die Loginfrastruktur gesondert behandelt werden können.
-Die Daten dürfen nur so lange aufbewahrt werden, wie es für die Analyse der Daten zwingend erforderlich ist.
+==== Datenschutz
 
 Datenverarbeitung im Auftrag – auch Auftragsdatenverarbeitung (ADV) genannt – bezeichnete in Deutschland die Erhebung, Verarbeitung oder Nutzung personenbezogener Daten durch einen Dienstleister im Auftrag des Verantwortlichen.
 Seit Inkrafttreten der DSGVO regelt Artikel 28 der DSGVO die Verarbeitung im Auftrag.
 Artikel 28 verweist wiederum auf Artikel 32 der DSGVO, in dem eine Pseudonymisierung und Verschlüsselung personenbezogener Daten gefordert wird.
 Für die Weitergabe von Log Dateien an Auftragsverarbeiter (Entwickler) bedeutet das konkret, dass personenbezogene Daten nur pseudonymisiert weitergegeben werden dürfen.
+
+[ARCHITEKTURREGEL]
+====
+Beim Loggen der Nachrichten sind grundsätzlich die Vorgaben der Datenschutzgrundverordnung (https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE[DSGVO]) einzuhalten.
+Eine besondere Rolle spielen dabei personenbezogene Daten und insbesondere Daten gemäß Artikel 9 DSGVO.
+Ebenso dürfen grundsätzlich keine sicherheitsrelevanten Daten (z.B. Passwörter) geloggt werden.
+====
+
+[underline]#Ausnahme#: Sollten die datenschutzrechtlich- oder sicherheitsrelevanten Daten zur Analyse zwingend notwendig sein – bspw., wenn fachlich fehlerhafte Daten zu technischen Fehlern führen – dürfen diese Daten im dafür notwendigen Maße mitgeschrieben werden.
+Die entsprechenden Logeinträge müssen durch einen Marker markiert werden, damit sie durch die Loginfrastruktur gesondert behandelt werden können.
+Die Daten dürfen nur so lange aufbewahrt werden, wie es für die Analyse der Daten zwingend erforderlich ist.
+
 
 [[logausgabe]]
 === Logausgabe
@@ -258,12 +266,14 @@ Die Vorgaben zu Logdateien sowie deren Rotation und Komprimierung sind in den Nu
 [[logging-framework]]
 === Logging-Framework
 
-Als Logging-Framework wird in der IsyFact _logback_ eingesetzt.
+Als Logging-Framework wird in der IsyFact _logback_ eingesetzt (Siehe <<ProduktKatalog>>).
 
 NOTE: Für mehr Informationen zu logback siehe http://logback.qos.ch/
 
-Durch die Querschnittsbibliothek `isy-logging` wird eine Fassade bereitgestellt, die eine einheitliche Nutzung von _logback_ sicherstellt.
-Als Grundsätzliche Vorgabe gilt, dass logback durch eine Anwendung niemals direkt, sondern ausschließlich über `isy-logging` aufgerufen wird (Ausnahme sind hierbei externe Bibliotheken – siehe <<logging-externer-bibliotheken>>).
+[ARCHITEKTURREGEL]
+====
+Logback wird durch eine Anwendung niemals direkt, sondern ausschließlich über die Querschnittsbibliothek `isy-logging` aufgerufen. Dadurch wird die einheitliche Nutzung von _logback_ sichergestellt. Ausnahme sind hierbei externe Bibliotheken (Siehe <<logging-externer-bibliotheken>>).
+====
 
 Die Nutzung und Konfiguration von `isy-logging` sind in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben.
 
@@ -337,8 +347,7 @@ Marker können jedoch aneinandergehängt werden (Methode add am Marker), so dass
 
 [[log-aufbereitung]]
 ==== Log-Aufbereitung
-
-Zur Aufbereitung der Logeinträge im JSON-Layout wird die Klasse `IsyJsonLayout` bereitgestellt.
+Zur Aufbereitung der Logeinträge im JSON-Layout (Siehe Kapitel <<logformat>>) steht die Klasse `IsyJsonLayout` zur Verfügung.
 Diese erweitert die Klasse `JsonLayout` von _logback_ um die Auswertung der `IsyMarker`.
 Wird ein entsprechender Marker übergeben, so schreibt die Klasse diesen und alle enthaltenen Marker als Name/Wert-Paare (JSON-Attribute) in das Log.
 Diese Klasse übernimmt außerdem die Funktion zur Kontrolle der Länge eines Logeintrags und kürzt den Logeintrag, falls dieser die maximale Länge überschreitet.
@@ -389,8 +398,6 @@ In den einzelnen Unterabschnitten werden die verschiedenen Logdateien aufgeführ
 Wichtig ist, dass die Logeinträge der Systeme der Log-Infrastruktur selbst, auch in die Auswertung einfließen  müssen, um Probleme bei der Verarbeitung der Logs zu erkennen.
 
 Konkrete Szenarien zur Auswertung der Logeinträge sind in den Nutzungsvorgaben _Logging_ <<NutzungsvorgabenLogging>> beschrieben.
-
-Die Auswertung der Logeinträge mit Hilfe des Auswertungstools sind in den Nutzungsvorgaben des Logservers <<NutzungsvorgabenLogserver>> beschrieben.
 
 [[allgemeine-hinweise]]
 === Allgemeine Hinweise
@@ -509,6 +516,7 @@ Diese wird von mod_jk im Request mitgeliefert. |24 Zeichen. Bspw.: `U08ZosCoAAM-
 [[wrapper-log]]
 === Wrapper-Log
 
+Die Wrapper-Logs sind Teil des Drittsystem Tomcats (siehe Tanuki Service Wrapper im <<ProduktKatalog>>).
 Die Logeinträge des Wrapper-Logs, die konform zur IsyFact konfiguriert sind, stellen neben der Lognachricht die folgenden Informationen bereit:
 
 :desc-table-LogeintragWrapper: Informationen für Wrapper-log
