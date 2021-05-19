@@ -2,6 +2,7 @@
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
 - `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
+- `IFS-516`: Versionierungskonzept Schnittstellen mit "Best-Practices" + REST erweitern
 - `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
 - `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
 - `IFS-563`: Dokumentation MDC-Filter
