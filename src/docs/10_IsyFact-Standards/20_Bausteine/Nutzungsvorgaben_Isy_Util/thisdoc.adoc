@@ -1,3 +1,6 @@
+= Nutzungsvorgaben Isy Util: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
 == Einleitung
 
@@ -5,3 +8,4 @@ Die <<glossar-Bibliothek>> `isy-util` bietet nützliche Hilfsmittel, die von den
 Es handelt sich dabei um kleinere Utility-Klassen, welche die Implementierung vereinfachen.
 Diese werden im Folgenden überblicksartig beschrieben.
 Details sind den JavaDoc der einzelnen Klassen zu entnehmen.
+// end::inhalt[]

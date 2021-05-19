@@ -1,14 +1,17 @@
+== Softwaretechnische Architektur: Einleitung
 
+// tag::inhalt[]
+[[einleitung]]
 == Einleitung
 
-Die in diesem Dokument beschriebene technische Architektur eines IT-Systems, erläutert wie ein IT-System der Anwendungslandschaft zu beschreiben und umzusetzen ist.
+Die in diesem Dokument beschriebene technische Architektur eines IT-Systems, erläutert wie ein IT-System der Systemlandschaft zu beschreiben und umzusetzen ist.
 
 [[kurzüberblick-referenzarchitektur-eines-it-systems]]
 === Kurzüberblick Referenzarchitektur eines IT-Systems
 
 Dieser Abschnitt gibt einen kurzen Überblick über die wesentlichen Inhalte der technischen Architektur, die in späteren Kapiteln ausführlich dargestellt werden.
 
-Die individuell erstellten Anwendungssysteme der Anwendungslandschaft sollen technisch gleichartig aufgebaut sein.
+Die individuell erstellten Anwendungssysteme der Systemlandschaft sollen technisch gleichartig aufgebaut sein.
 Daher wird in diesem Dokument die Referenzarchitektur definiert (s. <<image-SchichtITS>>), nach der alle Anwendungssysteme der IsyFact software-technisch in IT-Systeme umgesetzt werden.
 
 
@@ -18,8 +21,7 @@ Daher wird in diesem Dokument die Referenzarchitektur definiert (s. <<image-Schi
 image::SchichtITS.png[align="center",width=80%,pdfwidth=80%]
 
 
-Die Referenzarchitektur für ein IT-System basiert auf der bekannten Drei-Schichten-Architektur.
-Diese drei Schichten sind:
+Die Referenzarchitektur für ein IT-System basiert auf der bekannten Drei-Schichten-Architektur:
 
 *Persistenz*: Diese Schicht enthält alle Funktionalitäten zum Erzeugen, Suchen, Bearbeiten und Löschen von Datenobjekten.
 
@@ -32,3 +34,4 @@ Die IsyFact-Referenzarchitektur ist eine vollwertige JEE-Architektur.
 Jedoch wird eine zentrale Spezifikation von JEE nicht genutzt: die EJB-Spezifikation aus dem Bereich Enterprise Application.
 Dies hat vor allem Performance- und Komplexitätsgründe.
 Es hat zur Folge, dass als Application Server ein Servlet-Container ausreichend ist.
+// end::inhalt[]

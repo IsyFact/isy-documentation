@@ -1,0 +1,8 @@
+// tag::architekturregeln[]
+
+[[architekturregeln-konfiguration]]
+== Architekturregeln Konfiguration
+
+include::inhalt.adoc[tags=architekturregel]
+include::../Konzept_Konfiguration/inhalt.adoc[tags=architekturregel]
+// end::architekturregeln[]

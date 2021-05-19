@@ -1,21 +1,58 @@
 # 2.2.0
+- `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
+- `IFS-472`: Dokument IF-Einstieg überarbeiten
+- `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
 - `IFS-516`: Versionierungskonzept Schnittstellen mit "Best-Practices" + REST erweitern
+- `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
+- `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
+- `IFS-563`: Dokumentation MDC-Filter
+- `IFS-658`: Vorgabe "Source-Code Kommentierung auf Englisch"
+- `IFS-929`: 
+    - Zusätzlichen Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
+    - Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
+- `IFS-962`: Alte Tickets zur Anpassung der Dokumentation auf Aktualität geprüft und Dokumentation entsprechend angepasst.
 
 # 2.1.0
+- `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks
+- `IFS-355`: Dokumententitel wurden verkürzt und ein Untertitel für den Dokumententyp ergänzt
 - `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
 - `IFS-279`: Anleitung VS Code hinzugefügt und Ausführungsdefinitionen in der pom.xml erläutert
 - `IFS-366`: Upgrade von asciidoctor-maven-plugin und asciidoctorj-pdf
 - `IFS-363`: Maven Central in Tutorial integrieren
+- `IFS-367`: Regelungen zu Präfixen bei Maven-Artefakten hinzugefügt
+- `IFS-382`: Verweis auf CAMS aus Grafik entfernen
+- `IFS-565`: Warning bei list item index behoben 
 - `IFS-387`: Datei docinfo.adoc entfernen
 - `IFS-409`: Namenskonventionen: Batchparameter eingefügt
 - `IFS-433`: Handbuch für techn. Autoren angepasst: Auslagerung der Dokumentation in Bausteine integriert
 - `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
+- `IFS-436`: Überwachung: Konfiguration des HealthEndpoints statt ping-Methode hinzugefügt.
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom fortmatiert und getestet.
+- `RF-316`: Detailkonzept Datenzugriff um Namenskonventionen für Datenbankschemas erweitert
+- `IFS-571`: Erstellung eines Migrationsleitfadens IsyFact 1.8 nach IsyFact 2.x
+- `IFS-293`: Zusammenfassung für das Management in Einleitung integriert
+- `IFS-488`: Beschreibung der Order-Eingabe für 'stelltAufrufKontextBereitAdvisor' ergänzt
+- `IFS-393`: Beschreibung der Behandlung von Fehlern aus Nachbarsystemen
+- `IFS-376`: Vorgaben zu DAOs im Detailkonzept Persistenz zusammenfassen
+- `IFS-618`: Dokumentenbuild auf AsciidoctorJ-Extensions umgestellt. Changelogs werden zukünftig ebenfalls von Markdown auf Ascii-Doc umgestellt.
 
 # 2.0.0
 - `IFS-228`: Einführung von Spring Boot in die Bausteine der IsyFact-Standards
 - `IFS-353`: Ablösung von Dozer durch Orika beschrieben
 - `IFS-354`: REST als Option für interne Schnittstellen beschrieben
+
+# 1.8.1
+- `IFS-417`: Abschnitt zur Korrelations-ID in Serivice-SST von Nutzungsvorgaben Sicherheit in Detailkonzept Service verschoben.
+
+# 1.8.0
+- `IFE-78`: Bausteindokumentation JSF (isy-web) angepasst
+- `IFS-259`: DSGVO Anforderungen in Logging-Konzept integriert
+- `IFS-263`: Hinweis zu Zwischenreleases für Änderungen bei Ressourcen in Versionierungskonzept aufgenommen
+- `IFS-375`: Verweis auf Versionierungskonzept ergänzt und redundante Texte entfernt
+- `IFS-409`: Namenskonventionen: Batchparameter eingefügt
+- `IFS-419`: Dokumentation für Maven-Versionierungs-Plugin erstellt
+- `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom formatiert und getestet.
+- `IFS-468`: Anpassung Dozer-Link nach Umzug auf GitHub (ab Dozer 6.x)
 
 # 1.7.0
 - `IFE-11`: Beschreibungen der JSF-Komponenten erweitert

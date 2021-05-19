@@ -27,6 +27,8 @@ src/docs/20_*/**/listoftables.adoc
 src/docs/20_*/**/glossary.adoc
 src/docs/20_*/**/bibliography.adoc
 
+# Ignore Asciidoctor extensions
+.asciidoctor
 
 # Ignore index files
 .directory

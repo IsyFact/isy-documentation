@@ -1,4 +1,4 @@
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+= Nutzungsvorgaben Überwachung: Einleitung
 
 // tag::inhalt[]
 [[Einleitung]]
@@ -15,6 +15,4 @@ Die Realisierung einer einheitlichen Überwachungsschnittstelle erlaubt es dem B
 Dadurch können Ausfallzeiten minimiert werden.
 
 Alle Vorgaben orientieren sich an den in den jeweiligen Kapiteln aufgeführten Anforderungen und gelten für alle Anwendungen nach IsyFact-Architektur.
-
 // end::inhalt[]
-

@@ -1,4 +1,7 @@
+== Namenskonventionen: Einleitung
 
+// tag::inhalt[]
+[[einleitung]]
 == Einleitung
 
 Die umfassenden Konzepte der IsyFact automatisieren und vereinheitlichen den Bau von Anwendungen.
@@ -18,3 +21,4 @@ Es ist dabei unterteilt in allgemeine Konventionen sowie Konventionen in der Ent
 Jede Namenskonvention ist in Tabellenform dargestellt.
 Es ist jeweils das Namensschema der Konvention mit Beispielen zu sehen.
 Ergänzt wird diese Darstellung durch eine Erklärung der genutzten Variablen und ihrer möglichen Ausprägungen.
+// end::inhalt[]

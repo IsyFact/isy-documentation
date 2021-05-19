@@ -1,5 +1,8 @@
+= Nutzungsvorgaben Spring LDAP: Einleitung
+
+// tag::inhalt[]
 [[einleitung]]
-= Einleitung
+== Einleitung
 
 Im Rahmen der IsyFact wird eine einheitliche Implementierung verwendet, um via LDAP auf Verzeichnisdienste zuzugreifen, in denen Daten zu den verschiedenen <<glossar-Anwender,Anwendern>> der Anwendungen einer Plattform gespeichert werden.
 In diesem Dokument wird der Einsatz von Spring LDAP exemplarisch beschrieben.
@@ -7,3 +10,4 @@ In diesem Dokument wird der Einsatz von Spring LDAP exemplarisch beschrieben.
 Spring LDAP ist eine Erweiterung des Frameworks Spring, das innerhalb der <<glossar-IFS,IsyFact Standards>> verwendet wird <<DetailkonzeptKomponenteAnwendungskern>> .
 
 Dieses Dokument richtet sich an Architekten und Entwickler, die IsyFact-konforme Anwendungen entwickeln möchten.
+// end::inhalt[]

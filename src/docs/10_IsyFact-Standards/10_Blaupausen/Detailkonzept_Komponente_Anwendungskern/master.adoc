@@ -1,46 +1,14 @@
-// ASCIIDOC Attribute
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
-//
-:doctitle: Detailkonzept Komponente Anwendungskern
-:title: {doctitle}
-
-// Zwangsplatz des TOC
-
-include::{isy-dokumentvorlagen}/docs/common/colophon.adoc[]
-
-// Executive Summary
-// include::preface.adoc[]
-
-// Inhaltsverzeichnis
-ifdef::backend-html5[]
-
-:toc-title!: 
-
-endif::[]
+:doctitle: Komponente Anwendungskern
+:document-type: Detailkonzept
 
 toc::[]
 
-// Einleitung 
+colophon::[]
+
 include::thisdoc.adoc[tags=inhalt]
 
-// Inhalt
 include::inhalt.adoc[tags=inhalt]
 
 :sectnums!:
-
-// Glossar
-include::glossary.adoc[]
-
-// Literaturverzeichnis
-include::bibliography.adoc[]
-// ? Tabellenverzeichnis
-include::listoftables.adoc[]
-// ? Abbildungsverzeichnis
-include::listoffigures.adoc[]
-// ? Listings-Verzeichnis
-include::listoflistings.adoc[]
-
-
-// Anhänge
-// include::anhaenge.adoc[leveloffset=1]
+include::changelog.adoc[leveloffset=1]

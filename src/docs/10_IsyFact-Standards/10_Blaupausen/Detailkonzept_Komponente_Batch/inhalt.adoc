@@ -1,5 +1,4 @@
 = Detailkonzept Batch: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
 
 // tag::inhalt[]
 == Einführung
@@ -16,7 +15,7 @@ Was darunter verstanden wird, wird in Kapitel <<die-aufteilung-in-batchrahmen-un
 [[was-ist-ein-batch]]
 === Was ist ein Batch?
 
-Eine Fachanwendung stellt über ihre Komponenten fachliche Operationen bereit.
+Eine Geschäftsanwendung stellt über ihre Komponenten fachliche Operationen bereit.
 Diese Operationen werden (zum Teil) als Services bereitgestellt.
 Sie werden aber auch bei der automatisierten Bearbeitung größerer Datenmengen in Batches verwendet.
 Typischerweise verarbeiten Batches dabei Dateilieferungen oder eine definierte Menge von Datensätzen aus dem Datenbestand.
@@ -25,7 +24,7 @@ Einige der Operationen von Anwendungskomponenten werden nur für Services, einig
 [[die-bestandteile-eines-batches-und-die-zielarchitektur]]
 ==== Die Bestandteile eines Batches und die Zielarchitektur
 
-Ein Batch verwendet für die fachliche Verarbeitungslogik die Operationen der Komponenten der Fachanwendung.
+Ein Batch verwendet für die fachliche Verarbeitungslogik die Operationen der Komponenten der Geschäftsanwendung.
 Neben der fachlichen Verarbeitungslogik besteht die Anwendungslogik eines Batches aus folgenden Bestandteilen:
 
 * der technischen Logik, welche spezifisch für genau eine Batch-Implementierung ist: Funktionalität für das Einlesen der für die Verarbeitung benötigten Daten, das Aufrufen der Fachkomponenten etc.
@@ -41,9 +40,9 @@ wird über UC4 (siehe auch <<KonzeptKonfiguration>>) umgesetzt.
 Sie wird in diesem Dokument nicht betrachtet.
 
 Die Komponente „Batchlogik“ der Zielarchitektur ist eine logische Komponente, welche die technische Logik der
-Batchimplementierungen der Fachanwendung beinhaltet.
+Batchimplementierungen der Geschäftsanwendung beinhaltet.
 Diese Logik ist technisch gesehen keine Komponente, sondern eine Sammlung unabhängiger Klassen in der Batch-Schicht
-der Fachanwendung.
+der Geschäftsanwendung.
 Im Dokument wird unter Batchlogik diese Klassensammlung und keine Komponente verstanden.
 
 :desc-image-AnwLogBat: Die Anwendungslogik eines Batches (Zielarchitektur)
@@ -76,21 +75,21 @@ Diese Verarbeitungsschritte (_Batch-Schritte_) eines Batches bilden ein „Batch
 image::BatNetz.png[align="center"]
 
 Die meisten Batch-Schritte sind keine Anwendungen: Sie werden komplett über ein Skript umgesetzt.
-Nur die Schritte, welche die Verarbeitung in der Fachanwendung durchführen, sind Anwendungen und besitzen eine Java-Implementierung (die _Batchschritt-Implementierung_). In obiger Abbildung wird die Verarbeitung in der Fachanwendung durch drei Batch-Schritte parallel durchgeführt.
+Nur die Schritte, welche die Verarbeitung in der Geschäftsanwendung durchführen, sind Anwendungen und besitzen eine Java-Implementierung (die _Batchschritt-Implementierung_). In obiger Abbildung wird die Verarbeitung in der Geschäftsanwendung durch drei Batch-Schritte parallel durchgeführt.
 Alle drei verwenden dieselbe Batchschritt-Implementierung, arbeiten aber auf anderen Daten.
 
 Ein Batch-Netz wird durch einen Job-Scheduler gesteuert.
 Ein Batch-Schritt ist dabei der Aufruf, welcher vom Scheduler aufgerufen wird.
 Aufgerufen wird ein Skript mit einer bestimmten Konfiguration. Über dieses Skript wird ggf.
-eine Fachanwendung mit der übergebenen Konfiguration ausgeführt.
+eine Geschäftsanwendung mit der übergebenen Konfiguration ausgeführt.
 Die Konfiguration eines Batchschrittes enthält stets eine Batchschritt-ID, welche den Batchschritt eindeutig identifiziert.
 Das bedeutet, dass jeder der drei Batchschritte in <<image-BatNetz>> eine eigene Batchschritt-ID erhält, obwohl alle drei Batchschritte die gleiche Batchschritt-Implementierung verwenden.
 Der Grund ist, dass jeder Batchschritt auf einem anderen Nummernkreis arbeitet und somit die Batchschritte unterscheidbar sein müssen.
 Diese Unterscheidung erfolgt über die Batchschritt-ID.
 
 Dieses Dokument befasst sich nicht mit Batch-Netzen oder ihrer Steuerung.
-Es behandelt die Fachanwendung-Batchimplementierungen und ihre Konfigurationen.
-Der Einfachheit halber wird deshalb ein Fachanwendung-Batchschritt als „Batch“ und eine Batchschritt-ID als „Batch-ID“ bezeichnet.
+Es behandelt die Geschäftsanwendung-Batchimplementierungen und ihre Konfigurationen.
+Der Einfachheit halber wird deshalb ein Geschäftsanwendung-Batchschritt als „Batch“ und eine Batchschritt-ID als „Batch-ID“ bezeichnet.
 
 Wichtig ist jedoch die Unterscheidung zwischen Batch und Batch-Implementierung: Der Batch ist der Aufruf aus der Produktionssteuerung heraus. Über ihn wird die aufzurufende Batch-Implementierung sowie seine Konfiguration (inklusive der Batch-ID) definiert.
 Die Implementierung ist Java-Code, der von mehreren Batches verwendet werden darf.
@@ -105,7 +104,7 @@ Neben dieser Logik enthält eine Batch-Implementierung Querschnittsfunktionalit�
 Für eine Batch-Implementierung umfasst diese Querschnittsfunktionalität folgende Punkte:
 
 * Einlesen der Konfiguration des Batches über die Kommandozeile und Konfigurationsdateien
-* Instanziieren der Fachanwendungs-Komponenten in einem Spring-Kontext
+* Instanziieren der Geschäftsanwendungs-Komponenten in einem Spring-Kontext
 * Initialisieren, Auslesen und Verwalten der Batch-Statustabelle
 * Aufruf des Überlesens von Datensätzen bei einem Restart
 * Steuerung der Transaktionen inklusive Speicherung des Fortschritts in einer Status-Tabelle
@@ -114,7 +113,7 @@ Für eine Batch-Implementierung umfasst diese Querschnittsfunktionalität folgen
 * Konfiguration, Instanziierung und Aufruf der eigentlichen Batchlogik
 
 Diese Funktionalität wird in einer Batch-Implementierung durch eine querschnittliche Komponente namens _Batchrahmen_ umgesetzt.
-Diese wird über eine Bibliothek bereitgestellt, welche in jede Fachanwendung eingebunden wird.
+Diese wird über eine Bibliothek bereitgestellt, welche in jede Geschäftsanwendung eingebunden wird.
 
 [[grobe-architektur-des-batchrahmens]]
 ==== Grobe Architektur des Batchrahmens
@@ -129,7 +128,7 @@ image::GrobArchBatCanv.png[align="center",width=80%,pdfwidth=80%]
 Der Batchrahmen besteht aus einem Startprogramm, welches notwendige Initialisierungen vornimmt, und einer Komponente Batchrahmen.
 Die Komponente Batchrahmen übernimmt die Steuerung des Batches und den Aufruf der Batchlogik.
 
-Die Komponenten einer Fachanwendung werden für einen Batch, genau wie in der Webanwendung, über das Spring-Framework verwaltet.
+Die Komponenten einer Geschäftsanwendung werden für einen Batch, genau wie in der Webanwendung, über das Spring-Framework verwaltet.
 Damit die Konfigurationen für die Webanwendung und für die Batch-Implementierungen möglichst gleich sind, werden die Komponenten für den Batchrahmen und die Batchlogik in einer separaten Konfigurationsdatei und einem separaten Spring-Kontext abgelegt.
 Dieser Kontext ist ein Kind-Kontext des eigentlichen <<glossar-Anwendungskontext,Anwendungskontextes>> und kann alle Beans des Anwendungskontextes verwenden.
 So kann die Konfiguration der Webanwendung mit minimalen Anpassungen auch für den Batch verwendet werden.
@@ -143,20 +142,20 @@ Die Einbindung weiterer Datenbanken ist in <<DetailkonzeptKomponenteDatenzugriff
 [[batches-als-eigenes-it-system]]
 === Batches als eigenes IT-System
 
-Batches existieren meistens als weiterer Zugangsweg in der Nutzungsschicht einer bestehenden Fachanwendung
+Batches existieren meistens als weiterer Zugangsweg in der Nutzungsschicht einer bestehenden Geschäftsanwendung
 (siehe <<image-AnwLogBat>>), da sie auf den Daten des jeweiligen Anwendungssystems operieren.
 
-Es kann allerdings auch Batches geben, die unabhängig von einer bestimmten Fachanwendung sind.
-Dies kann beispielsweise der Fall sein, wenn ein Import-Batch angelieferte Dateien in verschiedene Fachanwendungen importiert.
+Es kann allerdings auch Batches geben, die unabhängig von einer bestimmten Geschäftsanwendung sind.
+Dies kann beispielsweise der Fall sein, wenn ein Import-Batch angelieferte Dateien in verschiedene Geschäftsanwendungen importiert.
 Wenn Batches nicht eindeutig einem Anwendungssystem zugeordnet werden können, kann man sie auch als eigenständiges IT-System implementieren.
-Dieses „Batch-System“ kann dann die Service-Schnittstellen anderer Fachanwendungen aufrufen.
+Dieses „Batch-System“ kann dann die Service-Schnittstellen anderer Geschäftsanwendungen aufrufen.
 Insgesamt ist dies jedoch als Sonderfall zu betrachten.
-In der Regel gehören Batches zu Fachanwendungen, sie enthalten damit den fachlichen Code dieser Anwendung und
+In der Regel gehören Batches zu Geschäftsanwendungen, sie enthalten damit den fachlichen Code dieser Anwendung und
 nutzen diesen nicht über Service-Schnittstellen (siehe Kapitel <<das-deployment-eines-batches>>).
 
 In diesem Fall ist das Anwendungssystem architektonisch ein eigenständiges IT-System nach Zielarchitektur, nur ohne Service und GUI Bereiche in der Nutzungsschicht.
 
-Batches die zu einer Fachanwendung gehören sollen jedoch nicht als eigenständiges IT-System umgesetzt werden.
+Batches die zu einer Geschäftsanwendung gehören sollen jedoch nicht als eigenständiges IT-System umgesetzt werden.
 
 [[anforderungen]]
 == Anforderungen
@@ -186,8 +185,8 @@ Falls in Ausnahmefällen direkte Datenbankzugriffe notwendig sind, sind alle wei
 Diese wird nicht durch den Batchrahmen umgesetzt.
 Insbesondere die Statistikinformationen sind für Betrieb und Fachbereich wichtige Informationsquellen, um beispielsweise Laufzeitabschätzungen für die Produktion durchführen zu können.
 In der Statistik sollte immer enthalten sein, wie viele Sätze verarbeitet wurden (erfolgreich und mit Fehlern) und was konkret unter dem Begriff „Satz“ zu verstehen ist.
-Ist dies in der Statistik nicht vermerkt, wird davon ausgegangen, dass es sich um den Hauptsatz der Fachanwendung handelt.
-Was der Hauptsatz einer Fachanwendung ist, hängt von der konkreten Anwendung ab.
+Ist dies in der Statistik nicht vermerkt, wird davon ausgegangen, dass es sich um den Hauptsatz der Geschäftsanwendung handelt.
+Was der Hauptsatz einer Geschäftsanwendung ist, hängt von der konkreten Anwendung ab.
 * Die Batchlogik soll die Funktionalität des „Überlesens“ von Datensätzen übernehmen.
 Ob und welche Datensätze zu überlesen sind, teilt der Batchrahmen mit.
 * Die Batchlogik soll dem Batchrahmen hinreichende Informationen übergeben, um den Wiederanlaufpunkt bei einem späteren Restart zu bestimmen.
@@ -253,7 +252,7 @@ Multithreading innerhalb eines Batches wird nicht unterstützt.
 Der Batchrahmen ist das Framework, in welches sich die Logik eines konkreten Batches einfügt.
 Der Batchrahmen ruft (anhand einer Konfiguration) diese Logik auf.
 Da eine Batch-Anwendung über Spring verwaltet wird, wird die Batchlogik als Spring-Bean konfiguriert, als sogenannte _Ausführungsbean_.
-Diese Bean wiederum ruft die Fachanwendungs-Komponenten auf, welche die fachliche Logik enthalten.
+Diese Bean wiederum ruft die Geschäftsanwendungs-Komponenten auf, welche die fachliche Logik enthalten.
 
 Für die Vorlage-Anwendung <<Vorlageanwendung>> zeigt <<image-BeanGriffBat>> eine Auswahl der vorhandenen Beans.
 Wichtig ist ihre Verteilung auf zwei Anwendungskontexte: Der Batchrahmen und die Ausführungsbeans werden in einem eigenen Kontext konfiguriert.
@@ -264,8 +263,8 @@ So müssen wenige Anpassungen vorgenommen werden, um aus der Anwendungskontext-K
 .{desc-image-BeanGriffBat}
 image::BeanGriffBat.png[align="center"]
 
-Für neue Batch-Implementierungen einer Fachanwendung müssen ggf.
-Fachanwendungs-Komponenten angepasst, Ausführungsbeans erstellt und diese im Batch-Springkontext konfiguriert werden.
+Für neue Batch-Implementierungen einer Geschäftsanwendung müssen ggf.
+Geschäftsanwendungs-Komponenten angepasst, Ausführungsbeans erstellt und diese im Batch-Springkontext konfiguriert werden.
 Die folgenden Abschnitte liefern die zur Entwicklung dieser Beans und zur Verwendung des Batchrahmens notwendigen Informationen.
 Im Einzelnen werden die folgenden Aspekte beschrieben:
 
@@ -273,7 +272,7 @@ Im Einzelnen werden die folgenden Aspekte beschrieben:
 * Das Transaktions-Handling, die Restart-Funktionalität und die Status-Tabellen des Batchrahmens.
 * Die im Batchrahmen enthaltenen Überwachungsmöglichkeiten.
 * Die Authentifizierung und Autorisierung eines Batch-Benutzers.
-* Das Deployment der Batches einer Fachanwendung.
+* Das Deployment der Batches einer Geschäftsanwendung.
 
 [[die-status-und-startarten-des-batchrahmens]]
 === Die Status und Startarten des Batchrahmens
@@ -362,7 +361,7 @@ Aus der Property-Datei werden durch den Batchrahmen folgende Properties gelesen:
 |====
 |Property |Beschreibung
 |`Batchrahmen.BeanName` |Name der Batchrahmen-Bean
-|`Anwendung.SpringDateien.<N>` |Vollqualifizierte Namen der Spring-Konfigurationsklassen der Fachanwendung
+|`Anwendung.SpringDateien.<N>` |Vollqualifizierte Namen der Spring-Konfigurationsklassen der Geschäftsanwendung
 |`Batchrahmen.SpringDateien.<N>` |Vollqualifizierte Namen der Spring-Konfigurationsklassen des Batchrahmens
 |`Batchrahmen.CommitIntervall` |Anzahl Satz-Verarbeitungen pro Commit
 |`AusfuehrungsBean` |Name der Ausführungsbean für die Batchlogik
@@ -390,13 +389,13 @@ Deshalb ist die Konfigurationsdatei nicht im für den Betrieb vorgesehenen confi
 
 Falls für die Ausführungsbean eines Batches Konfigurationen notwendig sind, welche durch den Betrieb gepflegt werden müssen, so ist dies auf eine von zwei Arten umzusetzen:
 
-* Die Konfigurationen können der betrieblichen Konfiguration der Fachanwendung hinzugefügt werden. +
+* Die Konfigurationen können der betrieblichen Konfiguration der Geschäftsanwendung hinzugefügt werden. +
 +
-NOTE: Konfiguration der Fachanwendung: Die im Ordner `config` liegenden, durch den Betrieb pflegbaren Konfigurationsdateien.
+NOTE: Konfiguration der Geschäftsanwendung: Die im Ordner `config` liegenden, durch den Betrieb pflegbaren Konfigurationsdateien.
 +
-Die Ausführungsbean kann dann die Fachanwendungs-Konfigurationsbean per Dependency Injection erhalten und sich darüber konfigurieren.
+Die Ausführungsbean kann dann die Geschäftsanwendungs-Konfigurationsbean per Dependency Injection erhalten und sich darüber konfigurieren.
 +
-Diese Möglichkeit ist zu verwenden, falls nur ein Batch für die Fachanwendung umgesetzt wird.
+Diese Möglichkeit ist zu verwenden, falls nur ein Batch für die Geschäftsanwendung umgesetzt wird.
 Falls mehrere Batches umgesetzt werden, ist sie dann zu verwenden, wenn sich die Konfigurationen für die einzelnen Batches nicht widersprechen (also für verschiedene Batches verschiedene Werte für die gleiche Property erwartet werden).
 
 * Die Konfiguration kann in einer neuen Datei abgelegt werden, welche nur für diesen Batch verwendet wird.
@@ -409,13 +408,13 @@ Diese Möglichkeit ist zu verwenden, falls für verschiedene Batches verschieden
 
 Wie in Kapitel <<grobe-architektur-des-batchrahmens>> beschrieben, werden für einen Batch zwei Spring-Kontexte erzeugt:
 
-* Ein Kontext mit den Beans der eigentlichen Fachanwendung.
-* Ein Kontext mit der Batchrahmen-Bean, der Batchrahmen JMX-Bean sowie den Ausführungsbeans für die Batches der Fachanwendung.
+* Ein Kontext mit den Beans der eigentlichen Geschäftsanwendung.
+* Ein Kontext mit der Batchrahmen-Bean, der Batchrahmen JMX-Bean sowie den Ausführungsbeans für die Batches der Geschäftsanwendung.
 
-Für den Kontext der eigentlichen Fachanwendung können die Spring-Konfigurationsdateien übernommen werden.
+Für den Kontext der eigentlichen Geschäftsanwendung können die Spring-Konfigurationsdateien übernommen werden.
 In ihnen müssen folgende Anpassungen vorgenommen werden:
 
-* Beans, die für die Batch-Verarbeitung nicht benötigt werden, sollten entfernt werden (HttpInvoker-Beans, GUI-Beans).
+* Beans, die für die Batch-Verarbeitung nicht benötigt werden, sollten entfernt werden (Service-Beans, GUI-Beans).
 * Damit die Entity-Klassen des Batchrahmens gefunden werden können, muss in der Spring-Konfiguration der Batches ein Entity-Scan hinzugefügt werden:
 
  @EntityScan("de.bund.bva.isyfact.batchrahmen.persistence.rahmen")
@@ -469,7 +468,7 @@ Für einen Batch werden folgende Informationen verwendet:
 |====
 |Spalte |Beschreibung
 |`BatchId` |Der Schlüssel für den Batch.
-Die ID sollte aus einem gemeinsamen Präfix für die Fachanwendung, gefolgt von einem Suffix für den konkreten Batch, bestehen.
+Die ID sollte aus einem gemeinsamen Präfix für die Geschäftsanwendung, gefolgt von einem Suffix für den konkreten Batch, bestehen.
 |`BatchName` |Ein kurzer informativer Name des Batches.
 |`BatchStatus` a|
 Einer der folgenden Werte: +
@@ -487,7 +486,7 @@ des letzten Laufes.
 |`DatumLetzterErfolg` |Das Datum des letzten erfolgreichen Abschlusses des Batches.
 |====
 
-Die Tabelle liegt im Datenbank-Schema der eigenen Fachanwendung.
+Die Tabelle liegt im Datenbank-Schema der eigenen Geschäftsanwendung.
 Es darf keine übergreifenden Tabellen oder ein übergreifendes Datenbankschema für alle Batches gemäß IsyFact-Architektur geben.
 
 [[verwaltung-der-tabelle]]
@@ -496,7 +495,7 @@ Es darf keine übergreifenden Tabellen oder ein übergreifendes Datenbankschema 
 Die Tabelle dient nicht der Steuerung des Batches über den Betrieb, sondern nur der Ablage von Informationen zwischen zwei Batch-Läufen.
 Die Befüllung der Tabelle wird deshalb komplett über den Batchrahmen durchgeführt: Es müssen keine Datensätze manuell befüllt werden: Ist ein Datensatz für einen Batch noch nicht vorhanden, wird er angelegt.
 
-Üblicherweise ist das Locking-Verhalten in Fachanwendungen optimistisch: Datensätze werden nicht explizit gelockt.
+Üblicherweise ist das Locking-Verhalten in Geschäftsanwendungen optimistisch: Datensätze werden nicht explizit gelockt.
 Stattdessen wird über Versions-Attribute zum Commit-Zeitpunkt geprüft, ob der Datensatz innerhalb der Transaktion verändert wurde.
 Für die Tabelle des Batchrahmens wird _nicht_ optimistisch, sondern pessimistisch gelockt.
 Zusätzlich wird als Hibernate Locking-Strategie `LOCK_NOWAIT` verwendet: Falls auf einen Datensatz zugegriffen wird, welcher gerade gelockt ist, wird nicht bis zur Freigabe gewartet, sondern eine Exception geworfen.
@@ -686,9 +685,9 @@ eigenen Benutzer ausstatten.
 === Das Deployment eines Batches
 
 Die Batches werden nicht einzeln deployed.
-Stattdessen wird ein Paket angeboten, welches sämtliche Batches der Fachanwendung enthält.
+Stattdessen wird ein Paket angeboten, welches sämtliche Batches der Geschäftsanwendung enthält.
 
-Das erstellte Paket enthält den Code des Batchrahmens sowie den Code der eigentlichen Fachanwendung inklusive der Batch-Ausführungsklassen und der benötigten nicht-betrieblichen Batch-Konfigurationsdateien.
+Das erstellte Paket enthält den Code des Batchrahmens sowie den Code der eigentlichen Geschäftsanwendung inklusive der Batch-Ausführungsklassen und der benötigten nicht-betrieblichen Batch-Konfigurationsdateien.
 Für jeden Batch wird ein Shellskript zum Start bereitgestellt.
 
 Für die Shellskripte existieren keine Vorgaben.
@@ -918,15 +917,15 @@ Jeder Batch erhält eine eigene Korrelations-ID.
 WARNING: In älteren Versionen des Batchrahmens handelte es sich bei der Korrelations-ID für Batches um die ID des Batches.
 Mittlerweile wurde dies durch eine UUID ersetzt.
 
-Zusätzlich erhält jeder zu verarbeitende Satz die Satznummer als Korrelations-ID, welche an die Korrelations-ID des Batches angehängt wird.
+Zusätzlich erhält jeder zu verarbeitende Satz auch eine eigene Korrelations-ID, welche an die Korrelations-ID des Batches angehängt wird. Die entstehende Korrelations-ID Kette wird dann dem Aufruf-Kontext hinzugefügt.
 
-[[fachliche-logik-in-den-komponenten-der-fachanwendung-implementieren]]
-=== Fachliche Logik in den Komponenten der Fachanwendung implementieren
+[[fachliche-logik-in-den-komponenten-der-geschaeftsanwendung-implementieren]]
+=== Fachliche Logik in den Komponenten der Geschäftsanwendung implementieren
 
-Falls für die Verarbeitung im Batch Fachlogik benötigt wird, welche für die Webanwendung nicht benötigt wird, ist diese trotzdem den Fachanwendungskomponenten hinzuzufügen.
+Falls für die Verarbeitung im Batch Fachlogik benötigt wird, welche für die Webanwendung nicht benötigt wird, ist diese trotzdem den Geschäftsnwendungskomponenten hinzuzufügen.
 Die Ausführungsbean erhält die Referenzen auf die Komponenten über Dependency Injection und ruft die Fachlogik dort auf.
 
-Auch wenn in Sonderfällen Datenbank-Aufrufe direkt durch die Ausführungsbean ausgeführt werden müssen, ist die sonstige fachliche Logik an die Fachkomponenten der Fachanwendung zu delegieren.
+Auch wenn in Sonderfällen Datenbank-Aufrufe direkt durch die Ausführungsbean ausgeführt werden müssen, ist die sonstige fachliche Logik an die Fachkomponenten der Geschäftsanwendung zu delegieren.
 
 [[plausibilitaetspruefung-in-der-initialisierung]]
 === Plausibilitätsprüfung in der Initialisierung
@@ -1224,4 +1223,11 @@ Wichtig ist, dass die einheitliche Außenschnittstelle der Batchschritte erhalte
 
 Die Dokumentation der abweichenden Batchimplementierung erfolgt im Systementwurf und wird daraus in die Systemdokumentation übernommen.
 
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
 // end::inhalt[]

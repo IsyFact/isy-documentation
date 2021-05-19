@@ -1,5 +1,8 @@
+= Versionierung: Inhalt
+
+// tag::inhalt[]
 [[allgemeine-nomenklatur-und-vorgaben]]
-= Allgemeine Nomenklatur und Vorgaben
+== Allgemeine Nomenklatur und Vorgaben
 
 Versionen müssen nach dem folgenden Format aufgebaut sein (Inhalte in eckigen Klammern sind optional):
 
@@ -59,7 +62,7 @@ Wie zum Beispiel von IsyFact 1.x auf IsyFact 2.0.
 // end::important[]
 
 [[versionierung-von-anwendungen]]
-= Versionierung von Anwendungen
+== Versionierung von Anwendungen
 
 Versionen von Anwendungssystemen folgen dem folgenden Muster:
 
@@ -86,7 +89,7 @@ Das heißt, Fixes an Skripten sowie die Nachlieferungen fehlender Skripte müsse
 ====
 
 [[versionierung-im-scm]]
-== Versionierung im SCM
+=== Versionierung im SCM
 
 Die Benennung von Branches in einem SCM wie SVN oder Git hängt im Wesentlichen vom gewählten Workflow ab.
 Die Version eines finalen Tags einer Anwendung muss dem oben genannten Format folgen.
@@ -105,13 +108,13 @@ Diese sollten daher dem folgenden Schema folgen:
 Beispiele: 1.0.2+CG.101, 2.5.1+BSERV.277, 1.2.1+CG.54
 
 [[versionierung-von-containern]]
-== Versionierung von Containern
+=== Versionierung von Containern
 
 Zusätzlich zur Version der Anwendung muss der Container oder die Installationsdatei mit Buildmetadaten versehen werden, um
 möglichst genau feststellen zu können, welcher Entwicklungsstand enthalten ist.
 
 [[rpm]]
-=== RPM
+==== RPM
 
 Bei RPM-Paketen muss die Versionsnummer des RPMs folgendes Format aufweisen:
 
@@ -127,7 +130,7 @@ dies entspricht auch +
 Beispiele: 1.0.2+CG.101-1, 2.5.1+BSERV.277-1, 1.2.1+CG.54.sha.5114f85-1, 1.0.2-1
 
 [[versionierung-von-bibliotheken]]
-= Versionierung von Bibliotheken
+== Versionierung von Bibliotheken
 
 Versionsangaben von Bibliotheken folgen dem folgenden Muster:
 
@@ -158,7 +161,7 @@ Instabile Entwicklungsversionen sollten nicht über einen längeren Zeitraum in 
 Beispiele: 1.0.0, 2.3.5-SNAPSHOT, 1.3.2-alpha
 
 [[versionierung-von-schnittstellen]]
-= Versionierung von Schnittstellen
+== Versionierung von Schnittstellen
 
 Versionsangaben von Schnittstellen folgen dem folgenden Muster:
 
@@ -253,3 +256,13 @@ dann ist eine Erhöhung von *MAJOR* vertretbar.
 // -> Major Version sollte hochgezählt werden <-- Warum? Begründung!
 Bei Remote-Schnittstellen reicht für den Schnittstellen-Anbieter eine Erhöhung des MINOR.
 Seine bisherige Funktionalität sollte nach wie vor geboten sein.
+
+// end::inhalt[]
+
+// tag::architekturregel[]
+
+// end::architekturregel[]
+
+// tag::sicherheit[]
+
+// end::sicherheit[]
