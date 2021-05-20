@@ -478,6 +478,14 @@ Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardve
 Der Baustein Polling definiert ein solches Verfahren.
 Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
 
+[[http-invoker]]
+==== HTTP-Invoker
+Für den externen Zugriff auf Anwendungskomponenten werden deren Schnittstellen über das HTTP(S)-Protokoll exponiert.
+Dies ermöglicht eine standardisierte und lose Kopplung der Anwendungen untereinander, insbesondere da die Schnittstellen in verschiedenen, zeitgleich verfügbaren Versionen ausgeliefert werden.
+Dazu wird der HTTP-Invoker von Spring verwendet. Details sind zu finden unter <<Konzept_HttpInvoker>>.
+
+
+
 [[util]]
 ==== Util
 

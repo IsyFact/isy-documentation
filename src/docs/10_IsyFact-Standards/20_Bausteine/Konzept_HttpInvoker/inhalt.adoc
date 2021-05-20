@@ -85,7 +85,8 @@ IT-Systeme teilen sich folgende Java-Klassen der HTTP Invoker Schnittstelle:
 * Java-Klassen der Transportobjekte,
 * Java-Klassen der Transport-Exceptions.
 
-Diese Klassen werden üblicherweise in einer kleinen Bibliothek pro Service bereitgestellt.
+Diese Klassen werden üblicherweise in einer Bibliothek pro Service bereitgestellt, deren Benennung in
+<<IsyFactNamenskonventionen, Namenskonvention>> im Abschnitt der Paketierung als Bibliothek spezifiziert wird.
 
 Durch diese enge Kopplung zwischen mehreren IT-Systemen spielt die Java-Version, mit der die Schnittstellen-Bibliotheken kompiliert wurden, eine zentrale Rolle.
 Sie darf nicht neuer sein als die Java-Version aller beteiligter IT-Systeme.
@@ -99,7 +100,44 @@ Für die Versionierung bedeutet das, dass stets die komplette Remote-Bean-Schnit
 
 [[namenskonventionen]]
 == Namenskonventionen
+Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich nach folgendem Schema aufgebaut sein.
 
-Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich aufgebaut sein.
-Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben definiert.
+// tag::namenskonvention[]
+:desc-table-ssurl1: Schnittstellen: URL
+[id="table-ssurl1",reftext="{table-caption} {counter:tables}"]
+.{desc-table-ssurl1}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-ssurl1}
+|*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
+|*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
+$$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
+|*Variable*        | *Mögliche Ausprägungen*
+m|<Hostname>       | Der Hostname des Servers
+m|<Anwendungsname> | Der Name der Anwendung.
+Siehe Kapitel <<namen-von-anwendungssystemen>>. Wenn es sich um eine Querschnittskomponente handelt, muss dieser mit dem Präfix „isy-“ beginnen.
+m|<Servicename>    | Der Name des Services.
+m|<Version>       a| Die Versionsnummer des Service, die zweielementig und aufsteigend vergeben wird.
+Hierbei wird sich am Schema Major- und Minor-Level orientiert. Beispiele:
+
+* 1_0
+* 12_7
+|====
+
+[[transportobjekte]]
+=== Transportobjekte
+
+:desc-table-classnamtransobj: Klassennamen Transportobjekte
+[id="table-classnamtransobj",reftext="{table-caption} {counter:tables}"]
+.{desc-table-classnamtransobj}
+[cols="1,4",options="header"]
+|====
+2+|Klassennamen Transportobjekte
+|*Schema* m|<Entitaetsname>To
+|*Beispiele* m|AkteTo +
+InformationenXyzTo
+|====
+
+// end::namenskonvention[]
+
 // end::inhalt[]

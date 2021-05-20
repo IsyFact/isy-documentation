@@ -21,6 +21,28 @@ Sie werden aber auch bei der automatisierten Bearbeitung größerer Datenmengen 
 Typischerweise verarbeiten Batches dabei Dateilieferungen oder eine definierte Menge von Datensätzen aus dem Datenbestand.
 Einige der Operationen von Anwendungskomponenten werden nur für Services, einige nur für Batch-Verarbeitungen, andere für beides verwendet.
 
+=== Namenskonvention für eine Batchanwendung
+//tag::namenskonvention[]
+Mit vielen Systemen wird eine eigene Batch-Deploymenteinheit ausgeliefert.
+Diese wird folgendermaßen benannt.
+
+:desc-table-nambat:  Name einer Batchanwendung
+[id="table-nambat",reftext="{table-caption} {counter:tables}"]
+.{desc-table-nambat}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-nambat}
+|*Schema* m|<anwendungsname>-batch
+|*Beispiele* m|xyz-ga-batch +
+xyz-register-batch
+|*Variable* |*Mögliche Ausprägungen*
+m|<anwendungsname> |Der Name einer Anwendung, wie in den vorigen Abschnitten beschrieben.
+Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
+|====
+
+//end::namenskonvention[]
+
+
 [[die-bestandteile-eines-batches-und-die-zielarchitektur]]
 ==== Die Bestandteile eines Batches und die Zielarchitektur
 
@@ -319,8 +341,38 @@ Folgende Startarten sind möglich:
 [[konfigurationsdatei-und-kommandozeilen-parameter]]
 ==== Konfigurationsdatei und Kommandozeilen-Parameter
 
-Die Konfiguration des Batchrahmens wird über zwei Arten durchgeführt: Über Kommandozeilen-Parameter und über eine Konfigurationsdatei.
+Die Konfiguration des Batchrahmens wird über zwei Arten durchgeführt: über
 
+- Kommandozeilen-Parameter und
+- Konfigurationsdateien.
+
+Alle Konfigurationsparameter werden an die Ausführungsbean übergeben und können genutzt werden, um sie zu konfigurieren.
+
+NOTE: Bei der Nutzung von Dateien, egal ob für Kommandozeilenparameter oder für Konfigurationsdateien,
+müssen die Dateien mit absoluten Pfaden angegeben werden.
+
+===== Reihenfolge der Auswertung
+Konfigurationsparameter werden in der folgenden Reihenfolge im Spring-Kontext angezogen. Gleichnamige Parameter werden in dieser Reihenfolge überschrieben.
+
+. Konfiguration des Betriebssystems / der JVM
+. Konfigurationsdatei
+. Kommandouzeilen-Parameter
+
+==== Kommandozeilen-Parameter
+===== Namenskonvention
+//tag::namenskonvention[]
+:desc-table-batckonfig-konfigurationsparameter-kommandozeile: Batches: Konfigurationsparameter Kommandozeile
+[id="table-batckonfig-konfigurationsparameter-kommandozeile",reftext="{table-caption} {counter:tables}"]
+.{desc-table-batckonfig-konfigurationsparameter-kommandozeile}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-batckonfig-konfigurationsparameter-kommandozeile}
+|*Schema* m|-<Parametername> <Parameterwert>
+|*Beispiele* m|-laufzeit 10
+|====
+//end::namenskonvention[]
+
+===== Standard-Parameter
 Vom Batchrahmen werden folgende Kommandozeilen-Parameter interpretiert:
 
 :desc-table-CLIBATCanv: Kommandozeilen-Parameter des Batchrahmens
@@ -329,7 +381,7 @@ Vom Batchrahmen werden folgende Kommandozeilen-Parameter interpretiert:
 [cols="3,7",options="header"]
 |====
 |Parameter |Beschreibung
-|`-cfg <Dateiname>` |Name einer Property-Datei mit Konfigurations-Einträgen.
+|`-cfg <Dateiname>` |Name einer Property-Datei mit Konfigurationseinträgen.
 Der Dateiname wird relativ zum Klassenpfad interpretiert.
 |`-start` a|
 Starten des Batches und Verarbeitung der Daten ab dem ersten Datensatz. +
@@ -348,9 +400,50 @@ Wird die angegebene Zeit überschritten, wird der aktuelle Datensatz zu Ende bea
 Der Batch bricht vor der Verarbeitung des nächsten Datensatzes mit einem dedizierten Return-Code ab.
 |====
 
-Es können auch andere Parameter angegeben werden, diese müssen die Form -<Parametername> <Parameterwert> besitzen.
-Diese werden der Konfiguration der Property-Datei hinzugefügt und überschreiben vorhandene Einträge.
-Solche Parameter müssen nach den Standard-Kommandozeilen-Parametern angegeben werden.
+===== Weitere Parameter
+
+Es können auch andere Parameter angegeben werden, die der Namenskonvention genügen
+
+==== Konfigurationsdatei(en)
+Konfigurationsdateien sind syntaktisch property-Dateien.
+Die Konfigurationsdatei mit den unten aufgelisteten Parametern wird als statische Konfiguration im Verzeichnis`resources` abgelegt und
+kann daher nicht vom Betrieb angepasst werden.
+
+Betriebliche Konfigurationen müssen wie in Kapitel <<betriebliche-konfiguration-der-ausfuehrungsbean>> beschriebenen
+umgesetzt werden.
+
+===== Namenskonvention
+
+:desc-table-batch-property-files: Batches: Benennung Konfigurationsdateien
+[id="table-batch-property-files",reftext="{table-caption} {counter:tables}"]
+.{desc-table-batch-property-files}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-batch-property-files} (unter resources/resources/batch)
+|*Schemata* m|<batchname-des-batches>.properties
+|*Beispiele* m|loeschfrist-pruefen.properties +
+import-bhknz-liste.properties
+|====
+
+
+//tag::namenskonvention[]
+:desc-table-batckonfig-konfigurationsparameter-konfigurationsdatei: Batches: Konfigurationsparameter Konfigurationsdatei
+[id="table-batckonfig-konfigurationsparameter-konfigurationsdatei",reftext="{table-caption} {counter:tables}"]
+.{desc-table-batckonfig-konfigurationsparameter-konfigurationsdatei}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-batckonfig-konfigurationsparameter-konfigurationsdatei}
+|*Schema* m|<Parametername>=<Parameterwert> +
+<Parametername>.<Parametername>=<Parameterwert>
+|*Beispiele* m| BatchName=LoeschBatch +
+Loeschfunktion.DatumVon=30.11.2019
+|====
+//end::namenskonvention[]
+
+
+===== Standard-Konfigurationsparameter
+Die nachfolgenden Parameter sind in der Batchkomponente als Standard definiert und werden der
+Konfiguration in der Property-Datei hinzugefügt.
 
 Aus der Property-Datei werden durch den Batchrahmen folgende Properties gelesen:
 
@@ -371,21 +464,14 @@ Aus der Property-Datei werden durch den Batchrahmen folgende Properties gelesen:
 |`Batchrahmen.Ergebnisdatei` |Pfad zur XML-Ergebnisdatei des Batchrahmens (siehe Kapitel <<rueckgabewerte-des-batchrahmens>>)
 |====
 
-Die Property-Datei darf beliebige weitere Properties enthalten.
-Alle Properties (und damit Kommandozeilen-Parameter) werden an die Ausführungsbean übergeben und können genutzt werden, um sie zu konfigurieren.
-
-Die Property-Datei wird als statische Konfiguration abgelegt und kann daher nicht vom Betrieb angepasst werden.
-Betriebliche Konfigurationen müssen wie in Kapitel <<betriebliche-konfiguration-der-ausfuehrungsbean>> beschriebenen
-umgesetzt werden.
-
-Dateien, egal ob für Kommandozeilenparameter oder für Properties, müssen mit absoluten Pfaden angegeben werden.
+===== Weitere Parameter
+Die Property-Datei darf beliebige weitere Properties enthalten, die der Namenskonvention genügen.
 
 [[betriebliche-konfiguration-der-ausfuehrungsbean]]
 ==== Betriebliche Konfiguration der Ausführungsbean
 
 Sämtliche obigen Parameter müssen vom Betrieb nicht angepasst werden.
 Falls im Ausnahmefall die Batch-ID angepasst werden muss, kann dies über den Kommandozeilen-Parameter –BatchId <BatchId> geschehen.
-Deshalb ist die Konfigurationsdatei nicht im für den Betrieb vorgesehenen config-Verzeichnis, sondern im resources-Verzeichnis abgelegt.
 
 Falls für die Ausführungsbean eines Batches Konfigurationen notwendig sind, welche durch den Betrieb gepflegt werden müssen, so ist dies auf eine von zwei Arten umzusetzen:
 
@@ -892,6 +978,25 @@ Im vorangegangenen Kapitel wurden die Eigenschaften des Batchrahmens erläutert.
 Dieser existiert bereits und muss verwendet werden, indem Ausführungsbeans dafür entwickelt werden.
 In diesem Kapitel werden Vorgaben für die Ausführungsbeans definiert.
 
+=== Namenskonvention
+Ausführungsbeans folgend folegender Namenskonvention:
+
+//tag::namenskonvention[]
+Analog zu den Anwendungsfällen werden Batchklassen mit dem Präfix `Bat` gekennzeichnet.
+
+:desc-table-batclass2: Batches: Klassen
+[id="table-batclass2",reftext="{table-caption} {counter:tables}"]
+.{desc-table-batclass2}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-batclass2}
+|*Schema* m|Bat<Batchname>
+|*Beispiele* m|BatLoeschfristPruefen +
+BatSendenAllerInformationen
+|====
+
+//end::namenskonvention[]
+
 [[keine-transaktionssteuerung-in-einer-ausfuehrungsbean]]
 === Keine Transaktionssteuerung in einer Ausführungsbean
 
@@ -1083,12 +1188,32 @@ um Datenbankabzüge für statistische Auswertungen zu erstellen.
 [[aufbau-von-shell-batches]]
 === Aufbau von Shell-Batches
 
+
 Ein Shell-Batch besteht aus einem SH-Skript und ggf.
 weiteren Dateien:
 
 * Property-Datei für Konfigurationen, wie bspw. die zu verwendende Datenbankverbindung
 * SQL-Skripte, die vom SH-Skript ausgeführt werden
 * weitere SH-Skripte die, die vom SH-Skript ausgeführt werden
+
+==== Namenskonvemtion
+Ein Shell-Skript muss folgender Namenskonvention folgen:
+//tag::namenskonvention[]
+
+:desc-table-shellskript: Batches: Shellskript
+[id="table-shellskript",reftext="{table-caption} {counter:tables}"]
+.{desc-table-shellskript}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-shellskript}
+|*Schemata* m|<batchname-des-batches>.sh
+|*Beispiele* m|loeschfrist-pruefen.sh +
+import-bhknz-liste.sh
+|====
+
+//end::namenskonvention[]
+
+
 
 Die Dateien sollten entweder in einen eigenen Ordner unter `/opt` abgelegt werden oder – falls der Batch Teil eines bestehenden Batch-Projekts ist – in den vorhandenen Batch-Ordner des Systems deployed werden.
 

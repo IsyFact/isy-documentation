@@ -4,7 +4,7 @@
 [[motivation-und-referenzen]]
 == Motivation und Referenzen
 
-Von den Lebensphasen einer Software macht die Erstellungsphase gegenüber der Erweiterungs- und Wartungsphase nur einen kleinen Teil aus.
+Von den Lebensphasen einer Software macht die Erstellung gegenüber der Weiterentwicklung und Wartung nur einen kleinen Teil aus.
 Es ist davon auszugehen, dass im Laufe der Zeit unterschiedliche Personen, Teams oder Dienstleister an einem Softwaresystem arbeiten.
 Allen Beteiligten wird die Einarbeitung deutlich erleichtert, wenn die Software „aus einem Guss“ erscheint.
 Hält sie sich noch an allgemein etablierte und bekannte Standards, verkürzt sich die Einarbeitungszeit noch weiter.
@@ -24,12 +24,51 @@ Als letzte Projektart sind Multi-Modulprojekte beschrieben, die aus Kombinatione
 
 [[anwendungsprojekte]]
 === Anwendungsprojekte
+==== Maven
 Der <<ProduktKatalog>> gibt die Nutzung von Maven vor.
 Daher ist für Anwendungen eine Entwicklung mittels einem oder mehrerer Maven-Module strengstens empfohlen.
 
+===== Artefakte
+
+Bei einem Maven-Artefact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
+Group-IDs werden mit einem Punkt konkateniert.
+Mit der Artefakt-ID wird die Funktionalität des Artefaktes kurz und pregnant definiert.
+Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatenierung erfolgt über ein Minus.
+
+//tag::namenskonvention[]
+:desc-table-maven-grIDMod: Group-ID von Modulen/Artefakten
+[id="table-maven-grIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-maven-grIDMod}
+[cols="1,4",options="header"]
+|====
+2+|Group-ID von Maven-Modulen/-Artefakten
+|*Schema Group-ID* m|<sprach-kuerzel>.<organisation>.<firma>.<domaene>
+|*Beispiel* m|de.bund.bva.isyfact
+|====
+//end::namenskonvention[]
+===== Präfixe
+Prinzipiell soll jedes Modul, bzw. Artefakt, z. B. wie in einer Maven-Umgebung ein Präfix definiert haben.
+Artefakte einer Group-ID (Domäne) sollten immer ein einheitliches Präfix besitzen.
+So haben alle IsyFact-Artefakte das Präfix `isy-` in ihrer Artefakt-ID.
+
+//tag::namenskonvention[]
+
+:desc-table-maven-artIDMod: Artefakt-ID von maven-Modulen/-Artefakten
+[id="table-table-maven-artIDMod",reftext="{table-caption} {counter:tables}"]
+.{desc-table-maven-artIDMod}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-maven-artIDMod}
+|*Schema Artifakt-ID* m|<praefix>-<funktion/komponente> +
+<praefix>-<funktion/komponente>-<teilkomponente>
+|*Beispiel* m|isy-documentation +
+isy-documentation-core
+|====
+
+//end::namenskonvention[]
 Wird ein Maven-Modul verwendet, sollte es folgende Struktur besitzen:
 
-* Auf oberster Ebene, d.h. im Wurzelverzeichnis des Projekts (`project-root`), befinden sich die Dateien zur Organisation des Quellcodes,
+* Auf oberster Ebene, d. h. im Wurzelverzeichnis des Projekts (`project-root`), befinden sich die Dateien zur Organisation des Quellcodes,
 sowie anwendungsbezogene und allgemeine Informationen.
 Dateien in Klammern sind optional, wenn erforderlich.
 Es ist nicht ausgeschlossen, andere Dateien auf oberster Ebene abzulegen, sofern sie für die Organisation der Applikation oder deren Quellcode zuständig ist.
@@ -69,12 +108,12 @@ project-root/
 <1> Lizenz-Dateien und ggf. Dependency-Berichte
 <2> Beschreibungen, wie das auszuliefernde Artefakt gepackt wird
 <3> Quellcode in Java
-<4> Konfigurationsdateien (z.B. `application.properties`) und anderen Ressourcen (z.B. UI- oder Fehlertexte)
+<4> Konfigurationsdateien (z. B. `application.properties`) und anderen Ressourcen (z.B. UI- oder Fehlertexte)
 <5> Technische Dokumentation (Systementwurf, Systemhandbuch) im AsciiDoc-Format
-<6> Skripte (z.B. SQL- oder Shell-Skripte)
+<6> Skripte (z. B. SQL- oder Shell-Skripte)
 <7> Tests des Quellcodes in Java
 <8> Konfigurationsdateien für die Tests selbst oder für das zu testende IT-System
-<9> Dokumentation von Änderungen, z.B. via Eintrag einer Ticketnummer und kurzer Beschreibung
+<9> Dokumentation von Änderungen, z. B. via Eintrag einer Ticketnummer und kurzer Beschreibung
 
 Die Struktur bei der Verwendung mehrerer Maven-Module wird im Abschnitt <<multi-modul-projekte>> erläutert.
 
@@ -115,16 +154,16 @@ project-root/
 <2> Technische Dokumentation der Schnittstelle im AsciiDoc-Format
 
 [[batchprojekte]]
-=== Batchprojekte
+=== Batch-Projekte
 
-Batchprojekte bestehen hauptsächlich aus Startskripten und Konfigurationsdateien, um die Batches aufzurufen.
+Batch-Projekte bestehen hauptsächlich aus Startskripten und Konfigurationsdateien, um die Batches aufzurufen.
 Die Implementierung der Batches geschieht in der Anwendung, welche die Batches bereitstellt.
-Daher enthalten Batchprojekte weder Quellcode, noch Tests.
+Daher enthalten Batch-Projekte weder Quellcode, noch Tests.
 
-Batchprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/main/resources/`.
+Batch-Projekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/main/resources/`.
 Der Aufbau des Verzeichnisses wird im <<DetailkonzeptKomponenteBatch>> beschrieben.
 
-:desc-listing-Projektstruktur-Batch: Struktur eines Batchprojekts
+:desc-listing-Projektstruktur-Batch: Struktur eines Batch-Projekts
 [id="listing-Projektstruktur-Batch",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Projektstruktur-Batch}
 [source, xml]
@@ -142,14 +181,14 @@ project-root/
 <1> Ausführungsdateien (Shell-Skripte) und Konfigurationsdateien
 
 [[deploymentprojekte]]
-=== Deploymentprojekte
+=== Deployment-Projekte
 
-Deploymentprojekte bestehen im Wesentlichen aus den Skripten zur Erstellung einer Deployment-Einheit.
+Deployment-Projekte bestehen im Wesentlichen aus den Skripten zur Erstellung einer Deployment-Einheit.
 
-Deploymentprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/main/resources/`.
+Deployment-Projekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/main/resources/`.
 In diesem finden sich weitere Unterverzeichnisse, die für die Erstellung von RPMs angepasst sind.
 
-:desc-listing-Projektstruktur-Deployment: Struktur eines Deploymentprojekts
+:desc-listing-Projektstruktur-Deployment: Struktur eines Deployment-Projekts
 [id="listing-Projektstruktur-Deployment",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-Projektstruktur-Deployment}
 [source, xml]
@@ -180,8 +219,8 @@ Dokumentationsprojekte enthalten technische Dokumentation, die keinem Anwendungs
 Beispiele dafür sind Dokumente übergreifender Natur aus architektonischer, technischer oder betrieblicher Sicht.
 
 Dokumentationsprojekte besitzen unter dem Wurzelverzeichnis (`project-root`) ein einzelnes Unterverzeichnis `src/docs/asciidoc/`.
-In diesem finden sich weitere Verzeichnisse, z.B. für Inhalte allgemeiner Natur, sowie für die Dokumente.
-Es empfiehlt sich, für jedes Dokument ein eigenes Verzeichnis zur Ablage spezifischer Inhalte (neben Texten z.B. auch Bilder und Diagramme) anzulegen.
+In diesem finden sich weitere Verzeichnisse, z. B. für Inhalte allgemeiner Natur, sowie für die Dokumente.
+Es empfiehlt sich, für jedes Dokument ein eigenes Verzeichnis zur Ablage spezifischer Inhalte (neben Texten z. B. auch Bilder und Diagramme) anzulegen.
 Vorgaben für die Struktur einzelner Dokumente finden sich im <<HandbuchFuerTechnischeAutoren>>.
 
 :desc-listing-Projektstruktur-Dokumentation: Struktur eines Dokumentationsprojekts
@@ -306,7 +345,7 @@ Existiert ein Glossar, sind die dort aufgeführten Bezeichner zu verwenden.
 Nur der erste Buchstabe einer Abkürzung groß!
 ****
 
-Zur besseren Unterscheidung der Namensbestandteile eines Bezeichners wird bei Abkürzungen nur der erste Buchstabe der Abkürzung groß geschrieben.
+Zur besseren Unterscheidung der Namensbestandteile eines Bezeichners wird bei Abkürzungen nur der erste Buchstabe der Abkürzung großgeschrieben.
 
 [cols="1,4m",frame="none"]
 |====
@@ -329,7 +368,7 @@ Um Einheitlichkeit bei den Dateinamen sicherzustellen, sind Namenskonventionen f
 
 Dateinamen enthalten keine Sonderzeichen, Umlaute oder Leerzeichen.
 Erlaubt sind die Buchstaben von A-Z (groß und klein), Ziffern, der Unterstrich, der Mittelstrich und der Punkt.
-Datumsangaben werden dem Dateinamen vorangestellt und erfolgen im Format <JJJJ-MM-TT_Dateiname>.
+Datumsangaben werden dem Dateinamen vorangestellt und erfolgen im Format `<JJJJ-MM-TT_Dateiname>`.
 
 :desc-table-Datendung: Dateiendungen
 [id="table-Datendung",reftext="{table-caption} {counter:tables}"]
@@ -406,7 +445,7 @@ Der Anwendungsname in `<anwendungssystem>` wird an Java-Package-Konventionen ang
 Leer- und Sonderzeichen in den Anwendungsnamen werden gestrichen.
 
 ****
-Package-Namen immer klein schreiben!
+Package-Namen immer kleinschreiben!
 ****
 
 Namen von Packages dürfen nur Kleinbuchstaben enthalten.
@@ -428,7 +467,7 @@ Namen von Packages dürfen nur Kleinbuchstaben enthalten.
 Erster Buchstabe immer groß!
 ****
 
-Bei Klassen- und Interface-Namen wird der erste Buchstabe jedes Teilwortes immer groß geschrieben.
+Bei Klassen- und Interface-Namen wird der erste Buchstabe jedes Teilwortes immer großgeschrieben.
 
 Beispiele: `*DemoClass*, *PrintStream*, *ActionListener*`
 
@@ -437,9 +476,8 @@ Substantive als Klassennamen!
 ****
 
 Für die Namen von Klassen sind Substantive zu verwenden.
-Besteht der Zweck der Klasse ausschließlich oder zum größten Teil aus der Implementierung eines Interfaces, dann wird die Klasse so genannt wie das Interface, ergänzt um das Suffix `Impl`.
 
-Beispiele: `*Meldung*, *KundeDaoImpl*`
+Beispiel: `*Meldung*`
 
 ****
 Plural für Zusammenfassungen!
@@ -455,7 +493,27 @@ Bei Interfaces Substantive oder Adjektive verwenden!
 
 Bei Interfaces soll der Bezeichner ein Substantiv oder ein Adjektiv sein.
 Namen von Interfaces werden NICHT mit dem Präfix „*`I`*" versehen.
-Wenn Interface und Implementierung eigentlich gleiche Namen haben, wird die Implementierung mit dem Suffix „`*Impl*`“ versehen.
+
+[[interface-implementierungen]]
+==== Interface-Implementierungen
+
+//tag::namenskonvention[]
+
+Besteht der Zweck genau einer Klasse ausschließlich oder zum größten Teil aus der Implementierung eines Interfaces,
+dann wird die Klasse so genannt wie das Interface, ergänzt um das Suffix `Impl`.
+
+:desc-table-ssimpl:  Namen der Interface-Implementierungen bei hauptsächlicher Impl. des Interfaces
+[id="table-ssimpl",reftext="{table-caption} {counter:tables}"]
+.{desc-table-ssimpl}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-ssimpl}
+|*Schema* m|<Interface>Impl
+|*Beispiele* m|MeldungImpl +
+NachrichtErzeugungImpl
+|====
+
+//end::namenskonvention[]
 
 Beispiele: `*ActionListener*, *Runnable*, *Accessable*`
 
@@ -467,7 +525,7 @@ Methodennamen beginnen immer mit einem Verb!
 ****
 
 Methodennamen sind Verben und beginnen immer mit einem Kleinbuchstaben.
-Danach wird der erste Buchstabe eines jeden Teilwortes groß geschrieben.
+Danach wird der erste Buchstabe eines jeden Teilwortes großgeschrieben.
 Teilworte werden nicht durch Sonderzeichen getrennt, insbesondere nicht durch Unterstriche.
 Nachfolgende Teilworte können Substantive sein.
 
@@ -482,7 +540,7 @@ Die JavaBeans-Konventionen müssen eingehalten werden: Lesen von Eigenschaften m
 [[variablennamen]]
 ==== Variablennamen
 
-Für die Vergabe von Variablennamen gilt: Je globaler die Sichtbarkeit einer Variable ist, desto aussagekräftiger (und ggfls. länger) sollte der Name sein.
+Für die Vergabe von Variablennamen gilt: Je globaler die Sichtbarkeit einer Variable ist, desto aussagekräftiger (und ggf. länger) sollte der Name sein.
 Das schließt nicht aus, das ein für drei Zeilen gültiger Schleifenzähler „*`i`*“ heißt.
 
 ****
@@ -490,7 +548,7 @@ Als Variablennamen Substantive verwenden und immer klein beginnen!
 ****
 
 Variablennamen beginnen immer mit einem Kleinbuchstaben und sind ein Substantiv.
-Danach wird der erste Buchstabe eines jeden Teilwortes groß geschrieben.
+Danach wird der erste Buchstabe eines jeden Teilwortes großgeschrieben.
 Teilworte werden nicht durch Sonderzeichen getrennt.
 
 Beispiel: `*mySampleVariable*`
@@ -585,7 +643,7 @@ Es wird empfohlen, Leerzeichen wie folgt zu verwenden:
 * zwischen einem Schlüsselwort und einer direkt darauf folgenden „*{*" Klammer
 * zwischen der Klammer „*)*" bzw. „*}*" und einem direkt darauf folgenden Schlüsselwort
 * zwischen einer Klammer „*)*" und einer direkt darauf folgenden Klammer „*{*"
-* nach einem Komma (z. B. bei einer Methode mit mehreren Parametern)
+* nach einem Komma (z. B. bei einer Methode mit mehreren Parametern)
 * zwischen einem binären (ternären) Operator (außer dem Punktoperator) und dem vorausgehenden und dem nachfolgenden Ausdruck +
 Beispiel: `+double·length·=·Math.sqrt(x·*·x·+·y·*·y);+`
 +
@@ -639,7 +697,7 @@ Für die technische Dokumentation hat sich eine klare und schnörkellose Sprache
 
 Bei der Dokumentation von Programmcode sind zwei Adressatenkreise zu unterscheiden:
 
-Personen, die den Code einsetzen, d.h. nutzen wollen.
+Personen, die den Code einsetzen, d. h. nutzen wollen.
 Sie sind an den öffentlichen Programmierschnittstellen der Packages und der Klassen bzw. Interfaces interessiert, also an der *Außensicht*.
 
 Personen, die den Code warten und weiterentwickeln müssen.
@@ -660,7 +718,7 @@ In Java wird zwischen Dokumentationskommentaren (`$$*/**...*/*$$`) und Implement
 
 Prinzipiell müssen alle Klassen, Interfaces und Methoden einen Dokumentationskommentar (eine Außensicht) enthalten.
 Ausnahmen sind im Einzelfall anonyme innere Klassen und ihre Methoden sowie Implementierungsklassen von Interfaces (dort mit @see auf die Interface-Dokumentation verweisen).
-Es wird empfohlen, je Package eine Datei „package-info.java" zu erzeugen, die das Zusammenspiel von Klassen/Interfaces in dem Package erläutert.
+Es wird empfohlen, je Package eine Datei `package-info.java` zu erzeugen, die das Zusammenspiel von Klassen/Interfaces in dem Package erläutert.
 
 Für die Erstellung von Dokumentationskommentaren gelten die folgenden Regeln:
 
@@ -784,7 +842,7 @@ Autoren (und damit Verantwortlichkeiten für Bestandteile des Quellcodes) sowie 
 
 Code sollte immer selbsterklärend geschrieben werden und möglichst wenige Inline-Kommentare enthalten.
 Implementierungskommentare begründen Designentscheidungen, die aus dem Code nicht allein ersichtlich sind, oder sie erklären aufwändige Algorithmen.
-Sie wiederholen nicht den Code in Prosa (Negativbeispiel: "Erhöhe Schleifenzähler um 1.").
+Sie wiederholen nicht den Code in Prosa (Negativbeispiel: "Erhöhe Schleifenzähler um 1").
 Implementierungskommentare werden für folgende Zwecke eingesetzt:
 
 * Erklärung spezieller oder komplizierter Ausdrücke
@@ -796,7 +854,7 @@ Implementierungskommentare werden für folgende Zwecke eingesetzt:
 * Verzierungen (aus "***" gemalte Rechtecke oder Trennlinien) sind zu unterlassen.
 
 Wenn eine Stelle im Code noch nicht fertig ist und später kontrolliert oder überarbeitet werden soll, so ist sie mit `*// TODO: Grund*` zu markieren.
-Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese speziellen Kommentare analog zu Fehlern in einer ToDo-Liste an.
+Einige Entwicklungsumgebungen wie z. B. Eclipse und IntelliJ zeigen diese speziellen Kommentare analog zu Fehlern in einer To-do-Liste an.
 Alle Kommentare sind in Englisch zu verfassen.
 
 [[aenderungshistorie]]
@@ -811,7 +869,7 @@ Für die Analyse von Codeänderungen sind die bekannten DIFF-Werkzeuge einzusetz
 NOTE: Werkzeug, mit dem sich Unterschiede zwischen zwei Textdateien http://de.wikipedia.org/wiki/Synopse[synoptisch] darstellen lassen (diff unter http://de.wikipedia.org/wiki/Unix[Unix]; .UltraEdit)
 
 Änderungen werden mittels eines Version Control System (z. B. Subversion) nachverfolgt.
-Dazu ist es zwingend erforderlich, die durchgeführten Änderungen bzw. die Ursache dafür beim Check-In ausreichend zu dokumentieren.
+Dazu ist es zwingend erforderlich, die durchgeführten Änderungen bzw. die Ursache dafür beim Check-in ausreichend zu dokumentieren.
 Die Dokumentationssprache hierfür ist deutsch.
 Darüber hinaus werden keine Versionsinformationen im Source Code gepflegt.
 
@@ -839,7 +897,7 @@ Zum Beispiel darf eine lokale Variable nicht genauso heißen wie ein Attribut de
 [[verwendung-der-kurzschreibweisen]]
 ==== Verwendung der Kurzschreibweisen
 
-Seit Java 1.5 gibt es eine Kurzschreibweise für verschiedene Programmierkonstrukte (z.B. Bedingungen, Schleifen).
+Seit Java 1.5 gibt es eine Kurzschreibweise für verschiedene Programmierkonstrukte (z. B. Bedingungen, Schleifen).
 Folgende Kurzschreibweisen sind erlaubt:
 
 [source,java]
