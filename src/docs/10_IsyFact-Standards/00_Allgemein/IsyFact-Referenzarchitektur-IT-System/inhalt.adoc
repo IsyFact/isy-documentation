@@ -120,10 +120,8 @@ Diese Objekte stammen aus den korrespondierenden Komponenten in der Persistenz-S
 Nur die korrespondierende Anwendungskern-Komponente darf Änderungen an den entsprechenden persistenten Objekten vornehmen.
 Die persistenten Objekte dürfen nicht über Komponentengrenzen hinweg herausgegeben werden.
 In diesem Fall wäre nicht sichergestellt, dass keine Änderungen außerhalb der Komponente passieren.
-Für den Transfer über Komponentengrenzen hinweg müssen eigene, nicht-persistente Schnittstellen-Objekte erzeugt werden, die dann aus den persistenten Objekten
-mittels eines Bean-Mappers befüllt werden können. +
-Wenn Objekte von mehreren Komponenten genutzt werden und keiner einzelnen Komponente zugeordnet werden können, werden sie in einem eigenen querschnittlichen
-Package abgelegt werden.
+Für den Transfer über Komponentengrenzen hinweg müssen eigene, nicht-persistente Schnittstellen-Objekte erzeugt werden, die dann aus den persistenten Objekten mittels eines Bean-Mappers befüllt werden können. +
+Wenn Objekte von mehreren Komponenten genutzt werden und keiner einzelnen Komponente zugeordnet werden können, sollten sie in einem eigenen querschnittlichen Package abgelegt werden.
 
 Vereinfachend können Anwendungskern-Komponenten persistente Daten an die <<glossar-Service>>-Schicht (Kapitel <<servicezugriffe>>) weitergeben.
 Dies ist insbesondere dann angebracht, wenn die Komponente ausschließlich durch eine Service-Komponente genutzt wird. +
@@ -292,6 +290,7 @@ Eine Übersicht dazu liefert das Dokument <<IsyFactEinstieg>>.
 // tag::architekturregel[]
 
 // end::architekturregel[]
+
 
 // tag::sicherheit[]
 
