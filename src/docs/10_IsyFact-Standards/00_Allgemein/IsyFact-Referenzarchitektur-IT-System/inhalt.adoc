@@ -162,7 +162,13 @@ Die Dialogabläufe bilden einen Workflow.
 Dieser ist in der Regel in der Dialogsteuerung abgebildet, er kann auch durch eine Workflow-Komponente gesteuert werden.
 * Der Dialog muss direkt mit dem Anwendungskern kommunizieren, um Daten zu lesen, die veränderten Daten zu speichern und komplexere fachliche Funktionen auszuführen.
 
-Die in <<image-KompGUI>> dargestellte GUI-Architektur besteht aus 4 Komponenten, die diese wesentlichen Aufgaben übernehmen.
+Vorgaben zum Layout sind in <<Styleguide>> beschrieben.
+Details zur Umsetzung von Berechtigungen sind in <<Berechtigungskonzept>> enthalten.
+
+[[Web-GUI]]
+==== Klassische Web-GUI
+
+Die in <<image-KompGUI>> dargestellte GUI-Architektur für eine klassische Webanwendung besteht aus 4 Komponenten, die die oben geschilderten wesentlichen Aufgaben übernehmen.
 Diese Komponenten sind der Dialograhmen, die Dialoge, die GUI-Bibliothek und die Dialoglogik.
 
 *Dialograhmen:* Die Komponente Dialograhmen definiert die Ablaufumgebung für Dialoge.
@@ -199,8 +205,26 @@ Dies erfolgt dadurch, dass der Client eine Session-ID übergibt und der Server d
 Mit dieser Lösung lassen sich sehr einfach Loadbalancing- und Failover-Lösungen über Rechner-Cluster realisieren.
 
 Weiterführende technische Details zur GUI sind im Dokument <<DetailkonzeptKomponenteWebGUI>> enthalten.
-Vorgaben zum Layout sind in <<Styleguide>> beschrieben.
-Details zur Umsetzung von Berechtigungen sind in <<KonzeptSicherheit>> enthalten.
+
+[[SPA]]
+==== Single Page Application
+
+Als moderne Alternative zur klassischen Web-Anwendung kann eine GUI als Single Page Application (SPA) umgesetzt werden. Hierbei wird nur eine Seite aufgerufen, welche die gesamte Dialoglogik und den Sitzungszustand auf der Clientseite belässt und Inhalte dynamisch über RESTful-Services (in der IsyFact angesiedelt in den Fachanwendungen) nachlädt, die unabhängig und losgekoppelt vom Client implementiert werden.
+
+Dadurch ist eine Reduzierung der Last auf den Server möglich und die Umsetzung von komplexeren Nutzerinteraktionen wird erleichtert;
+vor allem bei diesen Fällen kann sich eine Migration lohnen.
+Zudem können teilweise Offline-Funktionalitäten umgesetzt werden.
+
+Genauer zu prüfen ist der Einsatz von SPAs vor allem in Fällen, in denen Clients nur über sehr schwache Ressourcen verfügen.
+
+Folgende Komponenten kommen in einer SPA normalerweise zum Einsatz:
+
+* GUI-Framework: Das Framework kümmert sich darum, vom Browser korrekt renderbaren Code zu erzeugen und gibt die dazu nötigen Mittel vor. Für die IsyFact ist hier Angular vorgesehen (Baustein Angular).
+* GUI-Bibliothek(en): Die GUI-Bibliotheken bieten wiederverwendbare und stylebare Komponenten im Kontext des Frameworks an.
+* Dialoglogik: Die Dialoglogik liegt rein clientseitig vor; sie ist der Ort, an dem Front-End-Code entwickelt wird.
+
+Weitere technische Details zur SPA-GUI sind im Dokument <<KonzeptAngular>> enthalten.
+
 
 [[batch]]
 === Batch
