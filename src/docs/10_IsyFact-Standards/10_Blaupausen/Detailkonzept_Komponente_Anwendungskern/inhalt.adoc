@@ -306,24 +306,24 @@ public class IsyFactApplication extends SpringBootServletInitializer {
 ----
 
 
-. Für jede Schicht wird im Package `<org>.<domäne>.<anwendung>.<schicht>.config` eine mit `@Configuration` annotierte
-Konfigurationsklasse erstellt (<<listing-konfigurationsklasse>>).
-Diese wird zusätzlich mit `@ComponentScan` annotiert.
-Der _Component Scan_ mit wird dem Attribut `basePackages` auf das Package der Schicht beschränkt.
-Annotationen, die querschnittliche Aspekte konfigurieren (z. B. `@EnableTransactionManagement`), werden an die Konfigurationsklasse der inhaltlich passenden Schicht geschrieben.
+2. Für jede Schicht wird im Stammpackage `<org>.<domäne>.<anwendung>.<schicht>` parallel zu den Interfaces der Komponentenschnittstellen
+eine mit `@Configuration` annotierte Konfigurationsklasse erstellt (<<listing-konfigurationsklasse>>).
+Diese wird zusätzlich mit `@ComponentScan` annotiert;
+durch die Positionierung im Stammpackage entfällt der Bedarf, ein Attribut zu übergeben.
+Annotationen, die querschnittliche Aspekte konfigurieren (z.B. `@EnableTransactionManagement`), werden an die Konfigurationsklasse der inhaltlich passenden Schicht geschrieben.
 +
 :desc-listing-konfigurationsklasse: Konfigurationsklasse innerhalb einer Schicht
 [id="listing-konfigurationsklasse",reftext="{listing-caption} {counter:listings }"]
 .{desc-listing-konfigurationsklasse}
 [source, java]
 ----
-package de.beispiel.if2anwendung.core.config;
+package de.beispiel.if2anwendung.core;
 
 ...
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("de.beispiel.if2anwendung.core")
+@ComponentScan
 public class CoreConfig {
 
     @Bean

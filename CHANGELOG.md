@@ -1,6 +1,7 @@
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
+- `IFS-469`: Komponenten eines IT-Systems werden über eine Konfigurationsklasse im Stammpackage konfiguriert
 - `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
 - `IFS-516`: Versionierungskonzept Schnittstellen mit "Best-Practices" + REST erweitern
 - `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
