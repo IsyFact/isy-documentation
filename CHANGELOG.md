@@ -1,13 +1,17 @@
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
+- `IFS-472`: Dokument IF-Einstieg überarbeiten
+- `IFS-469`: Komponenten eines IT-Systems werden über eine Konfigurationsklasse im Stammpackage konfiguriert
 - `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
+- `IFS-516`: Versionierungskonzept Schnittstellen mit "Best-Practices" + REST erweitern
 - `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
 - `IFS-597`: Verwendung der Klasse `IsyHttpInvokerServiceExporter` anstatt `HttpInvokerServiceExporter`
+- `IFS-563`: Dokumentation MDC-Filter
 - `IFS-658`: Vorgabe "Source-Code Kommentierung auf Englisch"
 - `IFS-929`: 
     - Zusätzlichen Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
     - Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
-- `IFS-469`: Komponenten eines IT-Systems werden über eine Konfigurationsklasse im Stammpackage konfiguriert 
+- `IFS-962`: Alte Tickets zur Anpassung der Dokumentation auf Aktualität geprüft und Dokumentation entsprechend angepasst.
 
 # 2.1.0
 - `IFS-326`: Anpassung der Task-Nutzungsvorgaben, um das Starten/Stoppen der Tasks

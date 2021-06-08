@@ -23,8 +23,8 @@ Für das Verständnis dieses Dokuments werden Kenntnisse über folgende Themen u
 |-
 
 |Resource Server
-|Server, auf welchem die Geschützten Ressourcen liegen.
-|Geschäftsanwendung, Register, Querschnittssystem
+|Server, auf welchem die geschützten Ressourcen liegen.
+|Fachanwendung, Register, Querschnittssystem
 
 |Client
 |Anwendung, die mit Hilfe des Resource Owner auf eine geschützte Ressource zugreifen möchte.
@@ -50,7 +50,7 @@ Neben dem Konzept _Sicherheit Keycloak_ enthält die IsyFact Erweiterung noch fo
 
 |_isy-sicherheit-keycloak_
 |Transformiert das Access-Token, damit es für die Autorisierung sowohl von _Spring Security_ als auch von _Isy Security_ (über den Aufrufkontext) verwendet werden kann.
-Kümmert sich  um die weitergabe des Access-Tokens über den HTTP-Header.
+Kümmert sich um die weitergabe des Access-Tokens über den HTTP-Header.
 |<<NutzungsvorgabenSicherheitKeycloak>>
 
 |_isy-iam_
@@ -71,7 +71,7 @@ Dabei wird differenziert zwischen der Authentifizierung am Service Gateway und d
 ==== Authentifizierung am Service-Gateway
 
 Damit ein Client einer externen Anwendung auf die Ressourcen einer Anwendungslandschaft zugreifen kann benötigt er ein gültiges Access-Token.
-Dieses Token muss sich der Client zuerst beschaffen indem er sich beim Keycloak-Server authentifiziert.
+Dieses Token muss sich der Client zuerst beschaffen, indem er sich beim Keycloak-Server authentifiziert.
 Damit der Client nicht direkt auf den Keycloak-Server zugreifen kann erfolgt die Kommunikation über ein API Gateway welches als Reverse Proxy zwischen den Systemen und Anwendungen und den externen Clients fungiert (vgl. <<image-auth-sgw>>).
 Das Service-Gateway behält seine Funktion als Adapter zwischen den verschiedenen Protokollen, kümmert sich aber nicht mehr um die Authentifizierung der Clients.
 Für Anwendungen mit HttpInvoker-Schnittstellen wird ein `Aufrufkontext` statt eines Access-Tokens erwartet.
@@ -96,7 +96,7 @@ image::konzept_keycloak_auth_sgw.png[align="center"]
 |Kapselt den Zugriff auf die API, insbesondere den Zugriff auf die API des Keycloak Servers.
 
 |Service Gateway (Adapter)
-|Wandelt SOAP/HTTP Anfragen in Formate, die von internen Anwendungen verstanden werden (z.B. HttpInvoker oder REST).
+|Wandelt SOAP/HTTP Anfragen in Formate, die von internen Anwendungen verstanden werden (z. B. HttpInvoker oder REST).
 
 |Keycloak Server (isy-iam)
 |Authorization Server und OpenID Provider.
@@ -118,14 +118,14 @@ NOTE: Ein Service-Gateway wird nur benötigt, falls eine Wandlung zwischen Proto
 
 |Authorization Code
 |Die Anwendungslandschaft stellt eine Schnittstelle bereit, ohne zu wisse welche Clients später diese Schnittstelle verwenden möchten.
-Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen Behörde
+Der Client ist beispielsweise eine SPA oder ein nativer Client in einer anderen Behörde.
 
 |===
 
 ==== Authentifizierung am Portal
 
 Ähnlich wie bei der Authentifizierung über das SGW, wird hier die Kommunikation zuerst über ein API Gateway (Reverse Proxy) geführt.
-Die externe Anwendung (i.d.R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Geschäftsanwendungen zugreifen.
+Die externe Anwendung (i. d. R. eine grafische Benutzeroberfläche) besorgt sich in gültiges Access-Token beim Keycloak Server und kann anschließend auf die Ressourcen der einzelnen Fachanwendungen zugreifen.
 Im Portal übernimmt _isy-sicherheit-keycloak_ die Aufgabe das Access-Token ggf. in einen `Aufrufkontext` zu wandeln.
 
 :desc-image-auth-portal: Authentifizierung am Portal bzw. API-Gateway
@@ -141,14 +141,14 @@ image::konzept_keycloak_auth_portal.png[align="center"]
 |Grant Type|Beispiel Szenario
 
 |Authorization Code
-|Das Portal liefert eine GUI (z.B. SPA) an den User Agend (Browser) eines Benutzers aus.
-Hierbei muss sichergestellt werden, dass die Anfragen auch wirklich von dem Client stammten, der im User-Agend des berechtigten Benutzers ausgeführt wird.
+|Das Portal liefert eine GUI (z. B. SPA) an den User Agent (Browser) eines Benutzers aus.
+Hierbei muss sichergestellt werden, dass die Anfragen auch wirklich von dem Client stammten, der im User-Agent des berechtigten Benutzers ausgeführt wird.
 
 |===
 
 ==== Authentifizierung von Tasks und Batches
 
-Tasks oder Batches, die auf Schnittstellen anderer Anwendungen zugreifen, müssen sich ebenfalls authentifizieren um ein Access-Token zu erhalten.
+Tasks oder Batches, die auf Schnittstellen anderer Anwendungen zugreifen, müssen sich ebenfalls authentifizieren, um ein Access-Token zu erhalten.
 Tasks und Batches werden innerhalb von Anwendungen bzw. Anwendungslandschaften gestartet und dürfen direkt auf den Keycloak Server zugreifen (vgl. <<image-auth-task>>).
 
 :desc-image-auth-task: Authentifizierung von Tasks
@@ -170,7 +170,7 @@ image::konzept_keycloak_auth_task.png[align="center"]
 
 === Autorisierung
 
-Für die Autorisierung von Benutzern bietet die Standard Bibliothek _isy-sicherheit_ zurzeit zwei Möglichkeiten.
+Für die Autorisierung von Benutzern bietet die Standardbibliothek _isy-sicherheit_ zurzeit zwei Möglichkeiten.
 
 :desc-table-autorisierung: Möglichkeiten der Autorisierung über isy-sicherheit
 [id="table-autorisierung",reftext="{table-caption} {counter:tables}"]
@@ -190,7 +190,7 @@ Somit können die Standard-Konzepte von Spring direkt verwendet werden.
 
 |===
 
-IMPORTANT: Für die Autorisierung von REST-Schnittstellen soll ausschließlich die Standard Mechanismen von Spring Security verwendet werden, da _isy-sicherheit_ perspektivisch den `Aufrufkontext` durch _Spring Security_ ablösen wird.
+IMPORTANT: Für die Autorisierung von REST-Schnittstellen soll ausschließlich die Standardmechanismen von Spring Security verwendet werden, da _isy-sicherheit_ perspektivisch den `Aufrufkontext` durch _Spring Security_ ablösen wird.
 
 === Access Token
 
@@ -240,7 +240,7 @@ Einige Felder des `Aufrufkontext` können nicht mehr aus dem JWT befüllt werden
 
 * `durchfuehrenderBenutzerPasswort` - Das Passwort wird aus Sicherheitsgründen nicht mehr in die Anwendungen übertragen.
 
-* `korrelationsId` - Die Korrelations-ID ist nicht Teil des Authentifizierungs und wird stattdessen über den HTTP-Header oder den MDC übertragen.
+* `korrelationsId` - Die Korrelations-ID ist nicht Teil der Authentifizierung und wird stattdessen über den HTTP-Header oder den MDC übertragen.
 
 * `rollenErmittelt` - Wird ein Aufrufkontext aus einem JWT Token erzeugt, kann immer davon ausgegangen werden, dass die Rollen ermittelt sind, da diese direkt im JWT stehen.
 
@@ -349,7 +349,7 @@ Beispielsweise, wenn die Anwendung über mehrere Endgeräte gleichzeitig bedient
 
 Für die Datenübertragung zwischen Anwendungen innerhalb einer Anwendungslandschaft gibt es primär REST- und/oder HttpInvoker Schnittstellen.
 Da die Autorisierung in jeder Anwendung implementiert ist, müssen die Benutzerdaten (Access-Token oder Aufrufkontext) zwischen den Anwendungen weitergeleitet werden.
-Dabei sind folgende Szenarien denkbar
+Dabei sind folgende Szenarien denkbar:
 
 :desc-table-szenarien-schnittstellen: Szenarien von Schnittstellenkommunikation
 [id="table-szenarien-schnittstellen",reftext="{table-caption} {counter:tables}"]
@@ -360,7 +360,7 @@ Dabei sind folgende Szenarien denkbar
 
 |S1
 |HttpInvoker -> HttpInvoker
-|Kommunikation wischen zwei Anwendungen in IF-1.8
+|Kommunikation zwischen zwei Anwendungen in IF-1.8
 
 |S2
 |REST -> REST
@@ -379,7 +379,7 @@ Dabei sind folgende Szenarien denkbar
 Die Szenarien 1 bis 3 werden vom Baustein _isy-sicherheit-keycloak_ abgedeckt.
 Der Baustein leitet zum einen die Tokens zwischen REST-Services über den HTTP-Header weiter (REST -> REST) und zum anderen erzeugt er einen Aufrufkontext für die Kommunikation mit HttpInvoker Services (REST -> HttpInvoker).
 
-Für das 4. Szenario besteht noch keine standardisierte Lösung,mögliche Lösungsansätze wären.
+Für das 4. Szenario besteht noch keine standardisierte Lösung, mögliche Lösungsansätze wären.
 
 *Authorisation Header in HttpInvoker Requests*:: Das Access-Token wird wie bei REST über einen HTTP-Header ausgetauscht.
 Mit einer Erweiterung des Interceptors aus _isy-sicherheit-keycloak_ kann das Access-Token vom Header der HTTP-Response in den HTTP-Header des neuen Requests kopiert werden.
