@@ -684,7 +684,7 @@ Grundsätzlich können nach dem Schema `spring.jpa.properties.<Schlüssel>=<Wert
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=false
 
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12gDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect
 spring.jpa.properties.hibernate.connection.isolation=4
 spring.jpa.properties.hibernate.connection.useUnicode=true
 spring.jpa.properties.hibernate.connection.characterEncoding=utf-8
