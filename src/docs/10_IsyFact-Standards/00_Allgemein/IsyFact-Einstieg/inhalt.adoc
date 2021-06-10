@@ -43,10 +43,10 @@ Bspw.: Protokollierung, Regelwerk etc.
 
 Die Artefakte der IsyFact-Standards und IsyFact-Erweiterungen werden in gleicher Weise in 5 Säulen klassifiziert, die der Strukturierung der Inhalte der Factory dienen.
 
-:desc-image-Saeulen: Die 5 Säulen der IsyFact
-[id="image-Saeulen",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-Saeulen}
-image::Saeulen.png[align="center",width=60%,pdfwidth=60%]
+:desc-image-IFBereiche: Die 5 Säulen der IsyFact
+[id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-IFBereiche}
+image::../../common/images/IFBereiche.png[align="center",width=60%,pdfwidth=60%]
 
 Die einzelnen Säulen sind:
 
@@ -477,6 +477,14 @@ Diese Instanzen müssen synchronisiert werden, sodass Nachrichten nicht mehrfach
 Die zugrunde liegenden Schnittstellen-Technologien bieten dafür kein Standardverfahren an.
 Der Baustein Polling definiert ein solches Verfahren.
 Die Nutzerdokumentation befindet sich unter <<NutzungsvorgabenPolling>>.
+
+[[http-invoker]]
+==== HTTP-Invoker
+Für den externen Zugriff auf Anwendungskomponenten werden deren Schnittstellen über das HTTP(S)-Protokoll exponiert.
+Dies ermöglicht eine standardisierte und lose Kopplung der Anwendungen untereinander, insbesondere da die Schnittstellen in verschiedenen, zeitgleich verfügbaren Versionen ausgeliefert werden.
+Dazu wird der HTTP-Invoker von Spring verwendet. Details sind zu finden unter <<Konzept_HttpInvoker>>.
+
+
 
 [[util]]
 ==== Util

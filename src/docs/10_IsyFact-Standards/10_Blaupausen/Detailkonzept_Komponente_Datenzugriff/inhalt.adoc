@@ -1,4 +1,5 @@
 = Detailkonzept Datenzugriff: Inhalt
+:imagesdir: images
 
 // tag::inhalt[]
 [[anforderungen]]
@@ -31,7 +32,65 @@ Ein Persistenz-Klassenmodell ist das Modell der Entitäten, welche dauerhaft abg
 Bevor auf den Einsatz von JPA eingegangen wird, werden in diesem Kapitel gewünschte Eigenschaften des Persistenz-Klassenmodells beschrieben.
 Für das Modell werden Verwendungsregeln aufgestellt.
 
+
+=== Namenskonvention Entity
+Das zu persistierende Objekt (Entität) wird nach der Namenskonvention für Entitäten benannt.
+In der Persistenz wird der Name der Entität ohne Präfix verwendet.
+
+//tag::namenskonvention[]
+:desc-table-entity:  Namenskonvention Persistenz : Entity
+[id="table-entity",reftext="{table-caption} {counter:tables}"]
+.{desc-table-entity}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-entity}
+|*Schema* m|<Entitaetsname>
+|*Beispiele* m| Termin
+|====
+//end::namenskonvention[]
+
+=== Namenskonvention Persistenz
+
+Der Name einer DatenzugriffsKlasse setzt sich aus dem Namen der Entität und dem Suffix "DaoImpl" zusammen.
+Die konkrete Implementierung leitet von dem Interface ab, das aus dem Namen der Entität und dem Suffix "Dao" zusammengesetzt ist.
+//tag::namenskonvention[]
+
+:desc-table-daossimpl: Data Access Objects: Interfaces + Implementierung
+[id="table-daossimpl",reftext="{table-caption} {counter:tables}"]
+.{desc-table-daossimpl}
+[cols="1,4",options="header"]
+|====
+2+|Data Access Objects: Interfaces + Implementierung
+|*Schema* m|<Entitaetsname>Dao +
+<Entitaetsname>DaoImpl
+|*Beispiele* m|AkteDao +
+AkteDaoImpl
+|====
+
+//end::namenskonvention[]
+
+[[namenskonvention-spring-data]]
+=== Namenskonvention bei Verwendung von Spring-Data
+//tag::namenskonvention[]
+
+Der Name eines Persistenz-Funktionsinterface wird vom Namen der Entität bestimmt, die darüber "bearbeitet" wird,
+und mit dem Suffix "Repository" versehen.
+
+:desc-table-repossimpl: Repositories: Interfaces + Implementierung
+[id="table-repossimpl",reftext="{table-caption} {counter:tables}"]
+.{desc-table-repossimpl}
+[cols="1,4",options="header"]
+|====
+2+|Data Access Objects:  Abgeleitet von Interface CrudRepository
+|*Schema* m|<Entitaetsname>Repository
+|*Beispiele* m|AkteRepository
+|====
+
+//end::namenskonvention[]
+
+
 [[persistenz-klassenmodell-und-datenbank-schema-sollen-moeglichst-aehnlich-sein]]
+
 === Persistenz-Klassenmodell und Datenbank-Schema sollen möglichst ähnlich sein
 
 Im Idealfall wird jedes Persistenzobjekt auf eine Tabelle des Datenbankschemas abgebildet.
@@ -69,7 +128,7 @@ Falls Vererbung im Persistenz-Klassenmodell eingesetzt wird, ist sie im Datenban
 
 * Über eine Tabelle, welche die Daten aller Klassen der Hierarchie („Table per class hierarchy“, siehe <<BaKi07>> Kapitel 5.1.3) enthält.
 Diese Art der Abbildung ist vorzuziehen.
-Falls sie auf Grund vieler unterschiedlicher Felder oder Problemen mit Pflichtfeldern in den Klassen nicht verwendbar ist, können auch andere Strategien verwendet werden.
+Falls sie aufgrund vieler unterschiedlicher Felder oder Problemen mit Pflichtfeldern in den Klassen nicht verwendbar ist, können auch andere Strategien verwendet werden.
 Die Vor- und Nachteile der einzelnen Strategien sind in <<BaKi07>> beschrieben.
 
 Die Klassenhierarchie ist in jedem Fall möglichst flach zu halten: Soweit möglich sollen nur zwei Stufen verwendet werden.
@@ -78,7 +137,7 @@ Die Klassenhierarchie ist in jedem Fall möglichst flach zu halten: Soweit mögl
 === Fachlogik in Persistenzklassen vermeiden
 
 Die Implementierung von fachlicher Logik in den Persistenzklassen ist zu vermeiden.
-Idealerweise sollten die Persistenzklassen lediglich `get-` und `set-` Methoden für die persistierten Daten enthalten.
+Idealerweise sollten die Persistenzklassen lediglich Getter- und Setter-Methoden für die persistierten Daten enthalten.
 Jegliche Logik sollte im Anwendungskern implementiert werden.
 
 Zur Fachlogik gehören auch Validierungen.
@@ -91,7 +150,7 @@ Im Normalfall müssen für Entitätsklassen die Methoden `equals` und `hashCode`
 Nur für Embeddable-Klassen (siehe <<BaKi07>> Kapitel 4.4.2) müssen die Methoden `equals` und `hashCode` implementiert werden.
 Die Methoden müssen dafür sämtliche Attribute mit einbeziehen Zusätzlich muss das Interface `Serializable` implementiert werden.
 
-Für Beispiele zu den `equals-` und `hashCode-` Implementierungen siehe die Klasse `Organisator` der Vorlage-Anwendung <<Vorlageanwendung>>.
+Für Beispiele zu den `equals-` und `hashCode-`Implementierungen siehe die Klasse `Organisator` der Vorlage-Anwendung <<Vorlageanwendung>>.
 
 [[initialisieren-von-string-feldern]]
 === Initialisieren von String-Feldern
@@ -103,7 +162,8 @@ In Objekten, die in das Regelwerk eingegeben werden sollen, wird daher bei der D
 ----
 public class Teilnehmer {
    private String name = "";
-...
+   // ...
+}
 ----
 
 [[die-definition-des-mappings-zwischen-objekten-und-datenbank]]
@@ -112,12 +172,12 @@ public class Teilnehmer {
 Im vorherigen Abschnitt wurden allgemeine Regeln für das Persistenz-Klassenmodell aufgestellt.
 In diesem Kapitel wird die Abbildung dieses Modells auf ein Datenbankschema in JPA beschrieben.
 
-[[definition-des-mappings-über-annotationen]]
+[[definition-des-mappings-ueber-annotationen]]
 === Definition des Mappings über Annotationen
 
 Die Definition des Mappings wird über Annotationen in den Persistenzklassen (Entitätsklassen) durchgeführt.
 Pro Klasse wird über die Annotationen definiert, auf welche Tabelle sie abgebildet werden und wie ihre Variablen auf Datenbank-Felder abgebildet werden.
-Für Beispiele zu Annotationen siehe die Klassen `Terminfindung`, `Tag` und `Zeitraum` in der Vorlage-Anwendung <<Vorlageanwendung>> .
+Für Beispiele zu Annotationen siehe die Klassen `Terminfindung`, `Tag` und `Zeitraum` in der <<Vorlageanwendung>>.
 
 Über Annotationen können einige wenige Mappings nicht definiert werden, welche über eine XML-Konfigurationsdatei definierbar sind.
 Ein Beispiel dafür ist das Mapping einer Klasse auf zwei verschiedene Tabellen.
@@ -197,7 +257,7 @@ Das Mapping muss dann folgendermaßen festgelegt werden:
 private Date updateDate;
 ----
 
-Hibernate erzeugt beim Laden der Daten aus der Datenbank implizit `java.sql.Timestamp-` bzw. `javal.sql.Date-` Objekte für diese Attribute.
+Hibernate erzeugt beim Laden der Daten aus der Datenbank implizit Objekte der Typen `java.sql.Timestamp` bzw. `java.sql.Date` für diese Attribute.
 Beide Typen sind von `java.util.Date` abgeleitet und dieses Verhalten damit für den Entwickler transparent.
 
 Vergleiche von Zeitangaben unterschiedlicher Genauigkeit sind jedoch problematisch:
@@ -270,7 +330,7 @@ Beispiel für eine Enum-Klasse mit natürlichem Schlüssel:
 .{desc-listing-enum-natural-key}
 [source,java]
 ----
-public enum Geschlecht\{
+public enum Geschlecht {
   MAENNLICH("M"),
   WEIBLICH("W");
 
@@ -341,9 +401,8 @@ In dem Sinne ist es sinnvoll während der Entwicklung zunächst nur die sicher n
 
 Initial sind folgende Indizes vorzusehen:
 
-* Ein Index auf jeder Spalte, die als Fremdschlüssel verwendet wird
-* Ein Index auf (fachliche) Schlüsselattribute die sehr häufig im Rahmen der Verarbeitung genutzt werden.
-Beispiel Nummer eines Registereintrags, Kennung einer Nachricht usw.
+* ein Index auf jeder Spalte, die als Fremdschlüssel verwendet wird,
+* ein Index auf (fachliche) Schlüsselattribute, die sehr häufig im Rahmen der Verarbeitung genutzt werden (Beispiele: Nummer eines Registereintrags, Kennung einer Nachricht).
 
 [[verwendung-von-jpa-in-der-anwendung]]
 == Verwendung von JPA in der Anwendung
@@ -360,7 +419,7 @@ Die Persistenzfunktionen werden in Data-Access-Objects (DAOs) mithilfe des JPA E
 
 Um den Anteil an Boilerplate Code bei der Implementierung von Data Access Objects deutlich zu reduzieren, wird die Abstraktion für Data Access Object von Spring Data eingesetzt.
 Die häufig verwendeten CRUD-Methoden (Create, Read, Update, Delete) werden vom Interface `CrudRepository` (siehe <<listing-crudrepository>>) aus Spring Data zur direkten Verwendung angeboten.
-Zur Implementierung werden zwei Typparameter benötigt: Der Entitätstyp `T` und der Typ des Primärschlüssels `ID`.
+Zur Implementierung werden zwei Typparameter benötigt: der Entitätstyp `T` und der Typ des Primärschlüssels `ID`.
 
 :desc-listing-crudrepository: Methoden von CrudRepository
 [id="listing-crudrepository",reftext="{listing-caption} {counter:listings }"]
@@ -383,7 +442,8 @@ public interface CrudRepository<T,ID> {
 ----
 
 Für ein konkretes DAO ist ein eigenes Interface von der Basisschnittstelle `CrudRepository` abzuleiten.
-In dieser können weitere DAO-Operationen definiert werden, zum Beispiel zur Durchführung von Queries.
+Die Benennung erfolgt gemäß der <<namenskonvention-spring-data>>.
+In der Dao-Klasse können weitere DAO-Operationen definiert werden, zum Beispiel zur Durchführung von Queries.
 Ein Beispiel hierfür ist in <<listing-beispielrepository>> zu sehen.
 
 Weiterhin ist das eigene Interface mit der Annotation `@Repository` zu versehen, damit alle vom Entity Manager erzeugten Exceptions in die besser auszuwertenden Spring-`DataAccessExceptions` umgewandelt werden.
@@ -418,7 +478,7 @@ Zudem wird für jedes DAO ein Interface angelegt.
 
 DAOs werden im Persistenzpaket der Komponente abgelegt, welche die Datenhoheit über die Tabelle(n) des DAOs besitzt (zum Thema Datenhoheit siehe <<IsyFactReferenzarchitekturITSystem>>).
 Falls die Datenhoheit keiner einzelnen Komponente zugewiesen werden kann, erhält die Komponente Basisdaten die Datenhoheit (siehe auch <<DetailkonzeptKomponenteAnwendungskern>>).
-Die DAOs werden nur von Klassen der Datenhoheits-Komponente aufgerufen.
+Die DAOs werden nur von Klassen der Komponente mit Datenhoheit aufgerufen.
 
 Während über DAOs Persistenzobjekte aus der Datenbank gelesen und in die Datenbank eingefügt werden, können sie auch außerhalb dieser Klassen verändert bzw. befüllt werden.
 Dies darf jedoch gemäß der Referenzarchitektur <<IsyFactReferenzarchitektur>> nur von Klassen innerhalb der gleichen Teilanwendung  erfolgen: Komponenten anderer Teilanwendungen dürfen sie nicht verändern oder befüllen.
@@ -459,12 +519,12 @@ interface PersonRepository extends Repository<Person, Long> {
 }
 ----
 +
-Bei dieser Ableitung wird der Präfix des Methodennamens abgeschnitten und der Rest geparst.
+Bei dieser Ableitung wird das Präfix des Methodennamens abgeschnitten und der Rest geparst.
 Nach dem ersten `By` beginnen die eigentlichen Abfragekriterien.
 In den Abfragekriterien werden Bedingungen auf Feldern der Entität definiert und diese können mit 'And' und 'Or'
 verknüpft werden.
 +
-NOTE: Eine Übersicht zur Ableitung von Queries aus Methodenamen findet in der Referenzdokumentation zu Spring Data JPA:
+NOTE: Eine Übersicht zur Ableitung von Queries aus Methodennamen findet in der Referenzdokumentation zu Spring Data JPA:
 https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details[https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details]
 
 
@@ -525,7 +585,7 @@ Eine Kurzanleitung zur Verwendung von Oracle-Traces für die Ermittlung von Ausf
 `alter system set sql_trace=true;`
 * Time-Informationen anschalten +
 `alter system set timed_statistics=true;`
-* Ort an dem das Trace-File liegt ermitteln: +
+* Ort, an dem das Trace-File liegt, ermitteln: +
 `select value from v$parameter where name = 'user_dump_dest'`
 * TKPROF drüberlaufen lassen, als oracle user, damit tkprof schon gesetzt ist +
 `tkprof ora_19952.trc auswertung.txt`
@@ -550,13 +610,13 @@ Filter müssen als Annotationen mit `@FilterDef`, `@Filters` und `@Filter` umges
 JPA bietet über die Methode `query.executeUpdate()` die Möglichkeit in JPQL formulierte `DELETE`- und `UPDATE`-Statements, sog. Bulk-Queries, auszuführen.
 Die Nutzung solcher Bulk-Queries ist verboten.
 Wo aus Performancegründen massenhafte `DELETE`- oder `UPDATE`-Statements direkt in der Datenbank benötigt werden, können native SQL-Anweisungen verwendet werden.
-Sofern bei solchen Bulk-Operationen kaskadierende Änderungen benötigt werden (z.B. weil Kind-Tabellen mitgelöscht werden sollen), müssen entsprechende Constraints in der Datenbank angelegt werden.
+Sofern bei solchen Bulk-Operationen kaskadierende Änderungen benötigt werden (z. B. weil Kind-Tabellen mitgelöscht werden sollen), müssen entsprechende Constraints in der Datenbank angelegt werden.
 
-Begründung: Hibernate erzeugt bei der Ausführung von `BULK`-Queries unter bestimmten Umständen zur Laufzeit implizit Hilfstabellen (Temporäre Tabellen mit dem Präfix HT_).
+Begründung: Hibernate erzeugt bei der Ausführung von `BULK`-Queries unter bestimmten Umständen zur Laufzeit implizit Hilfstabellen (temporäre Tabellen mit dem Präfix HT_).
 
 NOTE: siehe http://in.relation.to/Bloggers/MultitableBulkOperations
 
-Dies führt dazu, dass der Datenbank-User der Anwendung entsprechende `CREATE TABLE`-Rechte benötigt, was i.d.R. nicht zugelassen ist.
+Dies führt dazu, dass der Datenbank-User der Anwendung entsprechende `CREATE TABLE`-Rechte benötigt, was i. d. R. nicht zugelassen ist.
 Weiterhin führt die Nutzung der temporären Tabellen in vielen Fällen zu Performance-Problemen.
 
 Um die Einhaltung dieser Anforderung sicherzustellen, sollten auch in der Entwicklung bzw. bei frühen Tests die Rechte auf die Testdatenbanken entsprechend beschränkt werden.
@@ -566,32 +626,34 @@ Um die Einhaltung dieser Anforderung sicherzustellen, sollten auch in der Entwic
 
 Bei der Formulierung von Anfragen sind einige Aspekte zu beachten, da ansonsten negative Auswirkungen auf die Stabilität, die Verfügbarkeit oder Sicherheit der Anwendung die Folge sind.
 
-* Der %-Operator ist nach Möglichkeit zu vermeiden, da hiermit leicht inperformante Abfragen erzeugt werden können, die die Anwendung blockieren und die Datenbank unnötig belasten können.
-* Für rein lesende Zugriffe und feste Auswertungen sind nach Mög­lichkeit Views zu verwenden und die Berechtigungen entsprechend zu setzen.
+* Der %-Operator ist nach Möglichkeit zu vermeiden, da hiermit leicht lang laufende Abfragen erzeugt werden können, die die Anwendung blockieren und die Datenbank unnötig belasten können.
+* Für rein lesende Zugriffe und feste Auswertungen sind nach Möglichkeit Views zu verwenden und die Berechtigungen entsprechend zu setzen.
 Dadurch kann der Zugriff auf die tatsächlich benötigten Daten gesteuert und eingeschränkt werden.
 * Bei der Formulierung von Anfragen sind die Eigenheiten des Optimizers des eingesetzten DMBS zu beachten.
 * Es ist darauf zu achten, dass Datenbankabfragen in Anwendungen durch Indizes in der Datenbank unterstützt werden.
 * Bei der Definition von Anfragen ist darauf zu achten, dass nicht zu viele Daten selektiert werden.
 Im Zweifel, insbesondere bei freien Anfragen, die aus Benutzereingaben erzeugt werden, sollte die Anzahl der selektierten Datensätze beschränkt werden.
-* Um die SQL-Injection Attacken zu verhindern sollen Named-Queries oder Criteria-Queries verwendeten werden, bei denen der OR-Mapper für ein Escaping der Query-Parameter sorgt.
+* Um SQL-Injection Attacken zu verhindern, sollen Named-Queries oder Criteria-Queries verwendeten werden, bei denen der OR-Mapper für ein Escaping der Query-Parameter sorgt.
 
 [[packagestruktur]]
-== Packagestruktur für Persistenzklassen
+== Paketstruktur für Persistenzklassen
 
 Die DAOs- und Entitätsklassen sollen im Persistence-Package der entsprechenden Komponente implementiert werden.
-
-:desc-table-packagestruktur: Vorgaben zur Packetstrucktur für Persistenzklassen
-[id="table-packagestruktur",reftext="{table-caption} {counter:tables}"]
-.{desc-table-packagestruktur}
+//tag::namenskonvention[]
+:desc-table-paketstruktur: Vorgaben zur Paketstruktur für Persistenzklassen
+[id="table-paketstruktur",reftext="{table-caption} {counter:tables}"]
+.{desc-table-paketstruktur}
 [cols="1,3",options="header"]
 |===
-|Persistenzklasse |Packetstrucktur
+|Persistenzklasse |Paketstruktur
 |DAO
 |`<organisation>.<domäne>.<system>.persistence.<komponente>.dao`
 
 |Entity
 |`<organisation>.<domäne>.<system>.persistence.<komponente>.entity`
 |===
+
+//end::namenskonvention[]
 
 [[konfiguration-von-jpa-und-hibernate-in-der-anwendung]]
 == Konfiguration von JPA und Hibernate in der Anwendung
@@ -604,8 +666,8 @@ In den folgenden Abschnitten werden konkrete Vorgaben gemacht, welche Konfigurat
 Die für die Verwendung von JPA benötigten Beans werden von Spring Boot beim Start der Anwendung automatisch instanziiert.
 
 Teile dieser automatischen Konfiguration können bei Bedarf überschrieben werden.
-Soll z.B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean durch eine andere überschrieben werden.
-Das gleiche gilt für die Anbindung einer zweiten Datenbank, siehe dazu <<nutzung-und-anbindung-einer-zweiten-datenbank>>.
+Soll z. B. für die Entwicklung eine andere Datenbank verwendet werden, kann die automatisch konfigurierte `DataSource`-Bean durch eine andere überschrieben werden.
+Das Gleiche gilt für die Anbindung einer zweiten Datenbank, siehe dazu <<nutzung-und-anbindung-einer-zweiten-datenbank>>.
 
 [[konfiguration-des-entitymanagers]]
 === Konfiguration des EntityManagers
@@ -622,7 +684,7 @@ Grundsätzlich können nach dem Schema `spring.jpa.properties.<Schlüssel>=<Wert
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=false
 
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12gDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect
 spring.jpa.properties.hibernate.connection.isolation=4
 spring.jpa.properties.hibernate.connection.useUnicode=true
 spring.jpa.properties.hibernate.connection.characterEncoding=utf-8
@@ -720,7 +782,7 @@ Standardmäßig verwendet Hibernate für alle 1:n und n:m Assoziationen ein Lazy
 Standardmäßig soll für alle Assoziationen Lazy Loading verwendet werden, wobei Bytecode-Manipulationen für Lazy Loading nicht verwendet werden sollen.
 
 Um Lazy Loading auch für 1:1 Assoziationen einzuschalten, wird das `fetch`-Attribut auf `FetchType.LAZY` gesetzt.
-Damit das Lazy Loading über Proxies funktioniert, muss die Assoziation nicht optional sein, d.h., dass Feld darf nicht `null` sein.
+Damit das Lazy Loading über Proxies funktioniert, muss die Assoziation nicht optional sein, d. h., dass Feld darf nicht `null` sein.
 
 [source,java]
 ----
@@ -750,7 +812,7 @@ Ist dies der Fall, wird eine Ausnahme geworfen.
 Dieser Vorgehensweise liegt die Annahme zugrunde, dass konkurrierende schreibende Zugriffe in einer Geschäftsanwendung nicht oder höchstens in Ausnahmefällen vorkommen.
 Sollte dies nicht zutreffen, muss explizites Locking verwendet werden (vgl.
 Abschnitt <<bei-bedarf-explizites-locking-verwenden>>). In der Anwendung ist keine explizite Fehlerbehandlung (etwa durch das Mergen der Daten) zu implementieren.
-Die geworfene Ausnahme ist (gewrappt) an den Aufrufer weiter zu geben.
+Die geworfene Ausnahme ist (gewrappt) an den Aufrufer weiterzugeben.
 
 Um zu erkennen, ob sich das Objekt in der Datenbank verändert hat, empfiehlt Hibernate die Verwendung eines numerischen Versions-Felds in jeder Datenbank-Tabelle.
 Dazu wird in den Entitäten eine numerische Property mit der Annotation `@Version` gekennzeichnet.
@@ -770,11 +832,11 @@ Dieses Feld wird einzig von Hibernate verwaltet. Es ist weder zu lesen noch zu s
 
 Falls für einen Teil der Entitäten konkurrierende Zugriffe möglich sind, ist für genau diese Entitäten ein explizites (pessimistisches) Locking zu verwenden.
 
-[[aufrufübergreifendes-caching-vermeiden]]
+[[aufrufuebergreifendes-caching-vermeiden]]
 === Aufrufübergreifendes Caching vermeiden
 
 Caching-Strategien sind kein Teil der JPA-Spezifikation.
-Für das Definieren eines Caches muss deswegen auf Hibernate-spezifische Mechanismen zugegriffen werden.
+Für das Definieren eines Cache muss deswegen auf Hibernate-spezifische Mechanismen zugegriffen werden.
 
 Jeder Aufruf der Persistenzschicht geschieht innerhalb einer Transaktion.
 In der Regel läuft jeder Aufruf in einer eigenen Transaktion ab, weswegen kein Zustand und keine Daten zwischen zwei Aufrufen gehalten oder geteilt werden können.
@@ -784,12 +846,12 @@ Ist ein aufrufübergreifendes Caching dennoch notwendig, ist dies nicht in der P
 Hibernate bietet für das Caching von Objekten prinzipiell zwei Möglichkeiten:
 
 * *Cache in der Hibernate-Session:* Die Hibernate-Session ist an einen Thread gebunden.
-Die Nutzungsschicht verwendet für jeden Anfrage einen neuen Thread (und damit eine frische Hibernate-Session).
+Die Nutzungsschicht verwendet für jede Anfrage einen neuen Thread (und damit eine frische Hibernate-Session).
 Deshalb kann dieser Cache höchstens im Rahmen einer Anfrage an das IT-System gelten.
-Diese Nutzung eines Caches ist nicht sinnvoll.
+Diese Nutzung eines Cache ist nicht sinnvoll.
 * *VM-weiter „2nd Level Cache“:* Dieser Cache ist vor allem für unveränderliche, häufig verwendete Informationen (z.B. Schlüsseldaten) gedacht.
 In der IsyFact werden solche Daten jedoch bereits durch andere Mechanismen vorgehalten.
-Deshalb ist eine Verwendung dieses Caches ebenfalls unnötig.
+Deshalb ist eine Verwendung dieses Cache ebenfalls unnötig.
 
 Die Verwendung von über einen Aufruf hinausgehenden Cache ist deshalb zu vermeiden.
 Falls aufgrund spezieller Anforderungen trotzdem ein 2nd Level Cache benötigt wird, ist auf folgende Punkte zu achten:
@@ -805,7 +867,7 @@ Einige Anwendungsfälle machen es notwendig, eine zweite Datenbank zu nutzen.
 Das ist beispielsweise notwendig, wenn Daten aus einem Altsystem über die Datenbank für andere Systeme bereitgestellt werden und diese Daten in eine IsyFact-Anwendung über einen Batch importiert werden sollen.
 Der Batch muss dann sowohl auf die Datenbank der IsyFact-Anwendung, als auch auf die Datenbank des Altsystems zugreifen.
 
-Die Anbindung einer zweiten Datenbank erfolgt analog zur Anbindung der primären Datenbank über Spring und die  Nutzung über JPA, die in Kapitel <<konfiguration-von-jpa-ueber-spring-beans-durchfuehren>> beschrieben ist.
+Die Anbindung einer zweiten Datenbank erfolgt analog zur Anbindung der primären Datenbank über Spring und die Nutzung über JPA, die in Kapitel <<konfiguration-von-jpa-ueber-spring-beans-durchfuehren>> beschrieben ist.
 Dabei erfolgt der Zugriff auf die zweite Datenbank getrennt über einen weiteren Entity Manager und eine weitere Data Source.
 
 Die Beans für die `EntityManagerFactory` und den `TransactionManager` müssen manuell konfiguriert werden <<listing-datasource1>>.
@@ -919,15 +981,15 @@ Ein Konfigurationsbeispiel kann folgendermaßen aussehen:
 === Grundlagen
 
 Unter Historisierung (auch temporale Datenhaltung genannt <<Deme05>>) versteht man das Festhalten der zeitlichen Entwicklung von Daten durch Speichern in einer Datenbank.
-Bei den Datensätzen gibt es zwei relevante Aspekte: Den Gültigkeitszeitraum eines Datensatzes und den Bearbeitungszeitpunkt eines Datensatzes.
+Bei den Datensätzen gibt es zwei relevante Aspekte: den Gültigkeitszeitraum eines Datensatzes und den Bearbeitungszeitpunkt eines Datensatzes.
 
 Der Gültigkeitszeitraum gibt an, wie lange ein Datensatz gültig ist.
 Während der Beginn des Gültigkeitszeitraumes meistens genau bekannt ist, so kann das Ende der Gültigkeit so lange unbekannt sein, bis der Datensatz ungültig wird.
 Beispiel: Der Preis einer Ware oder Dienstleistung ist so lange gültig, bis er neu festgelegt wird.
 
-Der Bearbeitungszeitpunkt definiert den Zeitpunkt wann eine Entscheidung getroffen wurde und ist in vielen Fällen identisch mit dem Beginn des Gültigkeitszeitraumes , kann jedoch auch davon abweichen, wenn z. B. für eine Ware eine Preisänderung zu einem bestimmten Datum im Voraus festgelegt wird.
+Der Bearbeitungszeitpunkt definiert den Zeitpunkt wann eine Entscheidung getroffen wurde und ist in vielen Fällen identisch mit dem Beginn des Gültigkeitszeitraumes , kann jedoch auch davon abweichen, wenn z. B. für eine Ware eine Preisänderung zu einem bestimmten Datum im Voraus festgelegt wird.
 
-Eine Historisierung von Datensätzen wird durchgeführt, wenn Fragen über den Wert eines Datensatzes zu einem vergangenen Zeitpunkt beantwortet werden müssen (z. B. Was kostete X zum Zeitpunkt Y), oder wenn der Verlauf eines Wertes über die Zeit beobachtet werden muss (z. B. Wann und warum wurde welche Änderung durchgeführt?).
+Eine Historisierung von Datensätzen wird durchgeführt, wenn Fragen über den Wert eines Datensatzes zu einem vergangenen Zeitpunkt beantwortet werden müssen (z. B. Was kostete X zum Zeitpunkt Y), oder wenn der Verlauf eines Wertes über die Zeit beobachtet werden muss (z. B. Wann und warum wurde welche Änderung durchgeführt).
 
 [[abgrenzung-archivierung]]
 ==== Abgrenzung Archivierung
@@ -974,14 +1036,14 @@ Diese Anforderungen führen zu folgenden Festlegungen:
 
 Die Referenzarchitektur dieses Historienverwalters ist im folgenden Kapitel beschrieben.
 
-[[architektur-für-die-umsetzung-von-historisierung]]
+[[architektur-fuer-die-umsetzung-von-historisierung]]
 === Architektur für die Umsetzung von Historisierung
 
 In diesem Kapitel wird beschrieben, wie die technische Umsetzung der Historisierung erfolgt.
 Dabei werden die beiden in Kapitel <<grundlagen>> eingeführten Aspekte der Historisierung „Gültigkeitszeitraum“
 und „Verlauf der Bearbeitung“ getrennt beschrieben, wobei der zweite Aspekt aufwändiger umzusetzen ist und daher den Großteil des Kapitels einnimmt.
 
-[[abbildung-eines-gültigkeitszeitraums]]
+[[abbildung-eines-gueltigkeitszeitraums]]
 ==== Abbildung eines Gültigkeitszeitraums
 
 Manche Daten haben einen Zeitbezug, d. h. der Inhalt eines Datensatzes bezieht sich nur auf einen bestimmten Zeitraum.
@@ -1018,7 +1080,7 @@ Diese Entwurfsmuster sind für den Entwickler leichter zu handhaben.
 [[vorgehen-zur-historisierung-der-bearbeitung]]
 === Vorgehen zur Historisierung der Bearbeitung
 
-[[schritt-1-ergänzen-von-datumsattributen]]
+[[schritt-1-ergaenzen-von-datumsattributen]]
 ==== Schritt 1: Ergänzen von Datumsattributen
 
 Historisierte Versionen und die aktuelle Version eines Datensatzes werden in der gleichen Tabelle gepflegt.
@@ -1041,30 +1103,97 @@ Der somit aus mehreren Attributen zusammengesetzte fachliche Schlüssel wird gen
 [[schritt-2-erweiterung-des-daos]]
 ==== Schritt 2: Erweiterung des DAOs
 
-Alle Datenzugriffe auf zu persistierende Objekte werden über das zugehörige DAO (Data Access Object) vorgenommen.
+Alle Datenzugriffe auf zu persistierende Objekte (Entities) werden über das zugehörige DAO (Data Access Object) vorgenommen.
 Insbesondere muss das DAO auch dafür sorgen, dass die Attribute `aktuellVon` und `aktuellBis` mit den korrekten Werten belegt sind.
 
-Falls das zu persistierende Objekt den Namen `Xyz` trägt, heißt das zugehörige DAO `XyzDao`.
-Es hat die Funktion eines Datenverwalters.
-Dieses DAO wird wie folgt angepasst und erweitert:
+Das auf die Entität bezogene DAO wird wie folgt angepasst und erweitert:
 
-*Erstellen einer neuen Methode `Xyz leseXyz(Schluessel, Calendar)`:* Durch die Historisierung wird der bisherige Schlüssel des Objekts um einen Datumsbezug erweitert.
-Daher muss jetzt beim Lesen eines Objekts ein Datum angegeben werden, an dem das zu lesende Objekt aktuell sein soll.
-Diese Methode liefert das Objekt mit dem übergebenen Schlüssel, das zum übergebenen Datum aktuell war.
+===== Erstelle neue Methode: Lesen der zu dem Datum gültigen Entität
+Die Funkion liefert die zu dem übergebenen Zeitpunkt (Parameter calendar) gültige Entität.
+//tag::namenskonvention[]
 
-*Ändern der Methode `Xyz lese Xyz(Schluessel)`:* Diese Methode ist im DAO bereits vorhanden.
+:desc-table-dao-ext-lese-valid-entity-by-date:  DAO: Erweiterung: Lesen der zu dem Datum gültigen Entität
+[id="table-dao-ext-lese-valid-entity-by-date",reftext="{table-caption} {counter:tables}"]
+.{desc-table-dao-ext-lese-valid-entity-by-date}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-dao-ext-lese-valid-entity-by-date}
+|*Schema* m|<Entity> lese<Entity>(<Schluessel>, Calendar)`
+|*Beispiele* m|AkteDao leseAkte(id, Calendar)
+|====
+
+//end::namenskonvention[]
+===== Ändern der Methode `Xyz lese Xyz(Schluessel)`
+
+Diese Methode ist im DAO bereits vorhanden.
 Sie wird so angepasst, dass sie das aktuell gültige Objekt zurückgibt.
 Dies ist das Objekt mit den übergebenen Schlüsselattributen, dessen `aktuellBis`-Eintrag der 31.12.9999 ist.
 
-*Erstellen einer neuen Methode `List<Xyz> leseXyzHistorie(Schluessel)`:* Diese Methode liefert die gesamte Historie
-eines Datensatzes.
+//tag::namenskonvention[]
 
-*Erstellen einer neuen Methode `Xyz erzeugeNeueVersion(Xyz)`:* Bei einer Umsetzung ohne Historisierung konnten
-Objekte direkt über ihren Konstruktor erzeugt werden und mit Hilfe der Methode `speichereXyz(Xyz)` persistiert werden.
+:desc-table-dao-ext-lese-current-valid-entity:  Data Access Objects: Anpassung: Lesen der aktuell gültigen Entität
+[id="table-dao-ext-lese-current-valid-entity",reftext="{table-caption} {counter:tables}"]
+.{desc-table-dao-ext-lese-current-valid-entity}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-dao-ext-lese-current-valid-entity}
+|*Schema* m|<Entity> lese<Entity>(<Schluessel>)`
+|*Beispiele* m|AkteDao  leseAkte(id)
+|====
+
+//end::namenskonvention[]
+
+===== Erstellen einer neuen Methode `List<Xyz> leseXyzHistorie(Schluessel)`
+Diese Methode liefert die gesamte Historie eines Datensatzes.
+
+//tag::namenskonvention[]
+
+:desc-table-dao-ext-lese-Historie-von-entitaet:  Data Access Objects: Erweiterung: Lesen der Historie einer Entität
+[id="table-dao-ext-lese-Historie-von-entitaet",reftext="{table-caption} {counter:tables}"]
+.{desc-table-dao-ext-lese-Historie-von-entitaet}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-dao-ext-lese-Historie-von-entitaet}
+|*Schema* m|List<Entität> lese<Enitität>Historie(Schluessel)
+|*Beispiele* m|List<AkteDao> leseAkteHistorie(id)
+|====
+
+//end::namenskonvention[]
+
+===== Erstellen einer neuen Methode `Xyz erzeugeNeueVersion(Xyz)`
+Bei einer Umsetzung ohne Historisierung konnten Objekte direkt über ihren Konstruktor erzeugt werden
+und mithilfe der Methode `speichereXyz(Xyz)` persistiert werden.
 Dies ist jetzt nicht mehr möglich, da in diesem Fall die Attribute `aktuellVon` und `aktuellBis` nicht korrekt belegt
- werden würden.
+werden würden.
 Daher bietet das DAO eine Methode an, um auf Basis eines bestehenden Objekts eine neue Version dieses Objekts zu erstellen.
+
 Die Idee dabei ist, dass das bisher aktuelle Objekt einen Nachfolger erhält.
+
+//tag::namenskonvention[]
+
+:desc-table-dao-neue-methode:  Data Access Objects: Erweiterung: Erzeugen einer neuen Version einer Entität
+[id="table-dao-neue-methode",reftext="{table-caption} {counter:tables}"]
+.{desc-table-dao-neue-methode}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-dao-neue-methode}
+|*Schema* m|Entität erzeugeNeueVersion(Entität)
+|*Beispiele* m|AkteDao leseAkteHistorie(AkteDao)
+|====
+
+:desc-table-dao-max-anzahl:  Data Access Objects: optionale Erweiterung: Maximale Anzahl der gespeicherten Versionen
+[id="table-dao-max-anzahl",reftext="{table-caption} {counter:tables}"]
+.{desc-table-dao-max-anzahl}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-dao-max-anzahl}
+|*Schema* m|MAX_EINTRAEGE_HISTORIE
+|====
+
+
+//end::namenskonvention[]
+
+
 Beim bisher aktuellen Objekt wird vermerkt, dass es nicht mehr aktuell ist und das neu erzeugte Objekt wird als aktuelles Objekt gekennzeichnet.
 Im Detail werden dabei die folgenden Schritte durchgeführt:
 
@@ -1082,15 +1211,16 @@ Als Parameter der Methode darf auch `null` übergeben werden.
 In diesem Fall wird ein neuer, leerer Datensatz angelegt, dessen Zeitstempel aber korrekt befüllt sind.
 Dies ist nötig, um das erste Objekt einer Historie erzeugen zu können.
 
-Nach konkretem Bedarf kann die Methode `Xyz erzeugeNeueVersion()` auch noch durch zusätzliche „convenience“-Methoden ergänzt werden, die andere Parameter erwarten, z. B. durch eine Methode, die als Parameter nur die Schlüsselwerte des Objekts und nicht das Objekt selbst erwartet oder durch eine Methode, die die aktuellste Version eines Datensatzes selber ermittelt.
-
-*Löschen der Methode `void speichereXyz(Xyz)`*: Es ist nicht mehr möglich, ein neues Objekt zu erzeugen und direkt in der Datenbank zu speichern und damit die Historisierung zu umgehen.
+Nach konkretem Bedarf kann die Methode `<Entität> erzeugeNeueVersion(Entität)` auch noch durch zusätzliche „convenience“-Methoden ergänzt werden, die andere Parameter erwarten, z. B. durch eine Methode, die als Parameter nur die Schlüsselwerte des Objekts und nicht das Objekt selbst erwartet oder durch eine Methode, die die aktuellste Version eines Datensatzes selber ermittelt.
 
 *Optionale Erweiterungen:* Falls eine Obergrenze für die Anzahl der zu historisierenden Datensätze vorgegeben ist, wird die Einhaltung dieser Obergrenze ebenfalls durch das DAO sichergestellt.
 In diesem Fall wird bei der Erzeugung einer neuen Version geprüft, ob dadurch die Obergrenze überschritten wird und ggf. die älteste Version gelöscht.
 Der Wert dieser Obergrenze wird in einer Klassenkonstante des DAOs gehalten.
 Diese Klassenkonstante ist `public`, damit deren Wert bei einer Veränderung der Historie außerhalb des DAOs berücksichtigt werden kann.
 Sie trägt den Namen `MAX_EINTRAEGE_HISTORIE`.
+
+===== Löschen der Methode `void speichereXyz(Xyz)`
+Es ist nicht mehr möglich, ein neues Objekt zu erzeugen und direkt in der Datenbank zu speichern und damit die Historisierung zu umgehen.
 
 Es wurden in der Schnittstelle des DAOs bewusst keine Funktionen vorgesehen, um die Historie verändern zu können.
 Der Regelfall ist der, dass die Zeitstempel automatisch durch den Historienverwalter gesetzt werden und die Historie nicht mehr verändert wird.
@@ -1152,7 +1282,7 @@ Die Methode `erzeugeNeueVersionBestand(Bestand)` wurde eingefügt.
 
 Die Methode `leseBestand(String, Calendar)` wurde eingefügt.
 
-Die Methode `leseBestand(String)` wurde geändert, so dass der aktuelle Datensatz geliefert wird.
+Die Methode `leseBestand(String)` wurde geändert, sodass der aktuelle Datensatz geliefert wird.
 
 Die Methode `leseBestandHistorie(String)` wurde eingefügt.
 
@@ -1207,6 +1337,7 @@ Hierzu muss jedes Datenbankschema die folgenden Tabellen enthalten.
 Die Tabelle M_SCHEMA_VERSION enthält die Information über die aktuelle Version des Schemas.
 Die Tabelle hat die folgende Struktur:
 
+//tag::namenskonvention[]
 :desc-table-TabMSHEVERS: Tabelle M_SCHEMA_VERSION
 [id="table-TabMSHEVERS",reftext="{table-caption} {counter:tables}"]
 .{desc-table-TabMSHEVERS}
@@ -1224,6 +1355,7 @@ Status des Schemas:
 * ungueltig: Das Schema befindet sich im Aufbau bzw. in der Änderung oder die Installation wurde nur teilweise durchgeführt und wurde mit Fehlern abgebrochen.
 Das Schema kann nicht verwendet werden und muss überprüft werden.
 |====
+//end::namenskonvention[]
 
 [[tabelle-m_schema_log]]
 ==== Tabelle M_SCHEMA_LOG
@@ -1231,6 +1363,7 @@ Das Schema kann nicht verwendet werden und muss überprüft werden.
 Die Tabelle M_SCHEMA_LOG enthält Information über eingespielte Skripte zur Anpassung des Schemas.
 Die Tabelle hat die folgende Struktur:
 
+//tag::namenskonvention[]
 :desc-table-TabMSHELOG: Tabelle M_SCHEMA_LOG
 [id="table-TabMSHELOG",reftext="{table-caption} {counter:tables}"]
 .{desc-table-TabMSHELOG}
@@ -1250,6 +1383,7 @@ Status der Skriptausführung:
 * wird ausgeführt: Skript wurde gestartet und läuft oder wurde abgebrochen
 * erfolgreich: Skript wurde erfolgreich abgearbeitet
 |====
+//end::namenskonvention[]
 
 [[installationsablauf-bei-der-neuanlage]]
 === Installationsablauf bei der Neuanlage
@@ -1257,28 +1391,28 @@ Status der Skriptausführung:
 Die Neuinstallation eines Datenbankschemas erfolgt in mehreren Schritten, die jeweils aufeinander aufbauen.
 Für die automatisierte Installation werden diese Schritte von einem Datenbankskript nacheinander durchgeführt.
 
-*Schritt 1: Umgebungsvariablen laden* +
+Schritt 1: Umgebungsvariablen laden::
 Für Testzwecke ist es erforderlich, Datenbankschemas in unterschiedlichen Umgebungen zu installieren.
-Umgebungsspezifische Konfigurationsparameter, wie z.B. der Schemaname oder die Angaben zur Datenbankverbindung werden in einem eigenen Datenbankskript abgelegt, das Umgebungsvariablen mit den entsprechenden Werten setzt.
+Umgebungsspezifische Konfigurationsparameter, wie z. B. der Schemaname oder die Angaben zur Datenbankverbindung werden in einem eigenen Datenbankskript abgelegt, das Umgebungsvariablen mit den entsprechenden Werten setzt.
 Die übrigen Installationsschritte verwenden dann diese Variablen.
 
-*Schritt 2: Tablespace erstellen* +
+Schritt 2: Tablespace erstellen::
 Erstellen aller Tablespaces, die für die Installation der Datenbank­objekte benötigt werden.
 
-*Schritt 3: Benutzer anlegen* +
+Schritt 3: Benutzer anlegen::
 Anlegen aller Datenbankbenutzer einschließlich ihrer Rollen und Berechtigungen.
-Mit diesen Benutzern werden die anwendungs­spezifischen Datenbankobjekte angelegt.
+Mit diesen Benutzern werden die anwendungsspezifischen Datenbankobjekte angelegt.
 Es müssen daher alle hierfür benötigten Rechte für die Dauer der Installation gesetzt werden.
 
-*Schritt 4: Erzeugen der anwendungsspezifischen Datenbankobjekte* +
+Schritt 4: Erzeugen der anwendungsspezifischen Datenbankobjekte::
 Es werden alle Tabellen, Indexe, Views, Prozeduren und Funktionen für die Anwendung angelegt.
-Weiterhin werden benötigte spezielle Datenbankobjekte, z.B. für das Oracle-Advanced-Queuing angelegt.
+Weiterhin werden benötigte spezielle Datenbankobjekte, z. B. für das Oracle-Advanced-Queuing angelegt.
 Die anwendungsspezifischen Datenbankobjekte werden mit den in Schritt 3 angelegten Benutzern erstellt.
 
-*Schritt 5: Abschlussbearbeitung* +
+Schritt 5: Abschlussbearbeitung::
 In diesem Schritt können alle Operationen ausgeführt werden, die sich auf die bisher angelegten Datenbankobjekte beziehen.
 
-*Schritt 6: Rechte entziehen* +
+Schritt 6: Rechte entziehen::
 Falls den Benutzern im Schritt 3 Rechte zugewiesen wurden, die nur für die Installation benötigt wurden, werden sie in diesem Schritt wieder entzogen.
 
 Die nachfolgende Abbildung zeigt noch einmal die einzelnen Schritte der Installation.
@@ -1294,17 +1428,20 @@ image::instbeineuan.png[align="center"]
 Für die automatisierte Installation wird eine Strukturierung der Installationsskripte festgelegt.
 Es existieren folgende Aufrufbeziehungen:
 
-*Shell-Skripte:* Über die Shell-Skripte `install-db-schema.bat` (Windows) bzw.
-`install-db-schema.sh` (Linux) wird das SQL-Skript `00_install-main.sql` aufgerufen.
+Shell-Skripte::
+Über die Shell-Skripte `install-db-schema.bat` (Windows) bzw. `install-db-schema.sh` (Linux) wird das SQL-Skript `00_install-main.sql` aufgerufen.
 Als Parameter werden das Skript für das Anlegen der Umgebungsvariablen und die Log-Datei mitgegeben.
 
-*00_install-main.sql:* Das SQL-Skript ruft die eigentlichen Installationsskripte in der richtigen Reihenfolge über das Hilfsskript `99_starte-skript-mit-logging.sql` nacheinander auf.
+00_install-main.sql::
+Das SQL-Skript ruft die eigentlichen Installationsskripte in der richtigen Reihenfolge über das Hilfsskript `99_starte-skript-mit-logging.sql` nacheinander auf.
 Dabei werden auch die Tabellen zur Versionierung angelegt und korrekt gefüllt.
 
-*99_starte-skript-mit-logging.sql:* Das Hilfsskript führt ein SQL-Skript aus und befüllt die Versionstabelle korrekt.
+99_starte-skript-mit-logging.sql::
+Das Hilfsskript führt ein SQL-Skript aus und befüllt die Versionstabelle korrekt.
 Als Parameter werden der Pfad des Skripts, die Schnittnummer inklusiv der Unterschrittnummer und die Beschreibung mit übergeben.
 
-*<Installationsskript>.sql:* Die eigentlichen Installationsskripte haben das feste Namensschema: `<Schrittnummer>-<Unterschrittnummer>_<Name>.sql`.
+<Installationsskript>.sql::
+Die eigentlichen Installationsskripte haben das feste Namensschema: `<Schrittnummer>-<Unterschrittnummer>_<Name>.sql`.
 Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus Kapitel <<installationsablauf-bei-der-neuanlage>>.
 Falls zu einem Schritt mehrere Skripte gehören, gibt die Unterschrittnummer die Reihenfolge an, in der diese ausgeführt werden.
 Der Name kann frei vergeben werden, sollte aber sprechend sein.
@@ -1324,22 +1461,22 @@ Templates für die Skripte sind als Ressourcen in der Bibliothek `isy-persistenc
 Die Änderung eines Datenbankschemas erfolgt analog zur Neuanlage ebenfalls in mehreren Schritten, die jeweils aufeinander aufbauen.
 Für die automatisierte Änderung werden diese Schritte von einem Datenbankskript nacheinander durchgeführt.
 
-*Schritt 1: Umgebungsvariablen laden* +
+Schritt 1: Umgebungsvariablen laden::
 Dieser Schritt unterscheidet sich nicht von der Neuanlage.
 Je nach Art der durchzuführenden Änderung kann es aber erforderlich sein, hier weitere Variablen zu setzen.
 
-*Schritt 2: Rechte setzen* +
+Schritt 2: Rechte setzen::
 Falls erforderlich, werden für den Benutzer, mit dem die Änderungen durchgeführt werden sollen, alle für die Änderung des Datenbankschemas benötigten Berechtigungen gesetzt.
 
-*Schritt 3: Durchführen der Schemaänderungen* +
+Schritt 3: Durchführen der Schemaänderungen::
 Es werden alle Änderungen am Datenbankschema vorgenommen.
-Das umfasst sowohl das Anlegen neuer Datenbankobjekte, wie z.B. Tabellen, Views und Indexe, als auch die Änderung bereits vorhandener Datenbankobjekte, wie z.B. das Löschen und Hinzufügen von Spalten in Tabellen.
+Das umfasst sowohl das Anlegen neuer Datenbankobjekte, wie z. B. Tabellen, Views und Indexe, als auch die Änderung bereits vorhandener Datenbankobjekte, wie z. B. das Löschen und Hinzufügen von Spalten in Tabellen.
 Die Änderungen werden mit dem Benutzer durchgeführt, für den in Schritt 2 die Berechtigungen entsprechend gesetzt wurden.
 
-*Schritt 4: Abschlussbearbeitung* +
+Schritt 4: Abschlussbearbeitung::
 In diesem Schritt können alle Operationen ausgeführt werden, die sich auf die bisher angelegten Datenbankobjekte beziehen.
 
-*Schritt 5: Rechte entziehen* +
+Schritt 5: Rechte entziehen::
 Falls in Schritt 2 für Benutzer Rechte gesetzt wurden, die nur für die Durchführung der Änderungen benötigt wurden, werden sie in diesem Schritt wieder entzogen.
 
 Die nachfolgende Abbildung zeigt noch einmal die einzelnen Schritte der Installation.
@@ -1356,17 +1493,20 @@ Für die automatisierte Änderung wird eine Strukturierung der Änderungsskripte
 Diese ist analog zur Struktur der Installationsskripte aus Abschnitt <<struktur-der-installationsskripte-fuer-die-neuanlage>>.
 Es existieren folgende Aufrufbeziehungen:
 
-*Shell-Skripte:* Über die Shell-Skripte `update-db-schema.bat` (Windows) bzw. `update-db-schema.sh` (Linux) wird das SQL-Skript `00_update-main.sql` aufgerufen.
+Shell-Skripte::
+Über die Shell-Skripte `update-db-schema.bat` (Windows) bzw. `update-db-schema.sh` (Linux) wird das SQL-Skript `00_update-main.sql` aufgerufen.
 Als Parameter werden das Skript für das Anlegen der Umgebungsvariablen und die Log-Datei mitgegeben.
 
-*00_update-main.sql:* Das SQL-Skript ruft die eigentlichen Installationsskripte in der richtigen Reihenfolge über das Hilfsskript `99_starte-skript-mit-logging.sql` nacheinander auf.
+00_update-main.sql::
+Das SQL-Skript ruft die eigentlichen Installationsskripte in der richtigen Reihenfolge über das Hilfsskript `99_starte-skript-mit-logging.sql` nacheinander auf.
 Dabei werden auch die Tabellen zur Versionierung angelegt und korrekt gefüllt.
 
-*99_starte-skript-mit-logging.sql:* Das Hilfsskript führt ein SQL-Skript aus und befüllt die Versionstabelle korrekt.
+99_starte-skript-mit-logging.sql::
+Das Hilfsskript führt ein SQL-Skript aus und befüllt die Versionstabelle korrekt.
 Als Parameter werden der Pfad des Skripts, die Schnittnummer inklusiv der Unterschrittnummer und die Beschreibung mit übergeben.
 
-*<Update-Skript>.sql:* Die eigentlichen Änderungsskripte haben das feste
-Namensschema `<Schrittnummer>-<Unterschrittnummer>_<Name>.sql`.
+<Update-Skript>.sql::
+Die eigentlichen Änderungsskripte haben das feste Namensschema `<Schrittnummer>-<Unterschrittnummer>_<Name>.sql`.
 Die Schrittnummer ist 2-stellig und entspricht der Schrittnummer aus Kapitel <<installationsablauf-bei-der-schemaaenderung>>.
 Falls zu einem Schritt mehrere Skripte gehören, gibt die Unterschrittnummer die Reihenfolge an, in der diese ausgeführt werden.
 Der Name kann frei vergeben werden, sollte aber sprechend sein.
@@ -1385,7 +1525,7 @@ Templates für die Skripte sind als Ressourcen in der Bibliothek `isy-persistenc
 
 Die Skripte werden im Source-Projekt der Anwendung, zu der sie gehören, im Verzeichnis `src/main/skripte/sql/<dbschema-name>` abgelegt.
 In diesem Verzeichnis liegen die Unterverzeichnisse `db-install-<Versionsnummer>` für Installationsskripte und `db-update-<Versionsnummer>` für Updateskripte.
-`<Versionsnummer>` gibt dabei die Versionsnummer des Datenbankschemas einschließlich der Update-Nummer an, z.B. `1.2.3_01`.
+`<Versionsnummer>` gibt dabei die Versionsnummer des Datenbankschemas, einschließlich der Update-Nummer, an (z. B. `1.2.3_01`).
 
 Für die aktuelle Datenbankversion muss es ein vollständiges Installationsskript geben.
 Wurden Änderungen am Schema vorgenommen, gibt es zusätzlich ein entsprechendes Update-Skript von der Vorversion auf die aktuelle Version.

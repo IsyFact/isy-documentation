@@ -33,7 +33,7 @@ Weitere Vorteile sind höhere Sicherheit und Softwarequalität durch Einsatz erp
 :desc-image-IFBereiche: Durch die IsyFact abgedeckte Bereiche
 [id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFBereiche}
-image::IFBereiche.png[align="center",pdfwidth=70%,width=70%]
+image::../../common/images/IFBereiche.png[align="center",pdfwidth=45%,width=45%]
 
 Die IsyFact bietet standardisierte Lösungen zu wichtigen Themen beim Bau von Geschäftsanwendungen.
 Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Besonderheiten seiner Geschäftsanwendung konzentrieren.
@@ -48,16 +48,16 @@ Diese Bausteine liegen in unterschiedlichen Formen vor: Es gibt fachliche und te
 Dazu gehören auch am Markt verfügbare Fertigprodukte, für die detaillierte Nutzungsvorgaben erstellt wurden.
 
 *Betriebsplattform:* Die <<glossar-Plattform>> definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von Anwendungslandschaften, die sich aus der Verwendung der IsyFact ergeben.
-Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben. 
+Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 Die Betriebsplattform besteht aus Hardware und Netzen sowie der benötigten Middleware mit Anwendungsserver oder Datenbankserver und ist hochverfügbar.
 Diese Plattform ist über alle Geschäftsanwendungen einheitlich und ermöglicht so einen standardisierten und effizienten Systembetrieb.
 
 *Methodik:* Im Rahmen einer Software-Factory bildet die <<glossar-Methodik>> die Grundlage für die Umsetzung von Geschäftsanwendungen.
 Die Methodik der IsyFact bietet verschiedene Vorschläge zu allen Phasen des Software-Entwicklungsprozesses, wie z. B. Vorlagen für die Spezifikation oder die Programmierung.
-Das Projektvorgehen selbst ist konform zum V-Modell®-XT.
+Dieses Dokument ist V-Modell®-XT konform.
 
 *Werkzeuge:* Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Registern.
-Dazu bietet sie vorkonfigurierte <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
+Dazu bietet sie Konfigurationsanleitungen ausgewählter <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
 
 [[einordnung-der-referenzarchitektur-in-die-isyfact]]
 === Einordnung der Referenzarchitektur in die IsyFact
@@ -183,7 +183,7 @@ In <<image-GA-AW2>> werden Anwendungskomponenten nicht dargestellt: Sie wären d
 === Fachliche Referenzarchitekturen für Anwendungssysteme
 
 Die fachliche Referenzarchitektur muss beim Einsatz der IsyFact innerhalb des jeweiligen Anwendungskontexts definiert werden.
-Die IsyFact dient hier als allgemeiner technischer und konzeptioneller Rahmen und macht keine Vorgaben über die Arten von Anwendungssystemen, die in einem bestimmten Kontext vorkommen.
+Die IsyFact dient hier als allgemeiner konzeptioneller Rahmen und macht keine Vorgaben über die Arten von Anwendungssystemen, die in einem bestimmten Kontext vorkommen.
 
 Als Teil der fachlichen Architektur ist unter anderem folgendes zu definieren:
 
@@ -206,8 +206,7 @@ Obwohl unterschiedliche Systeme sehr unterschiedliche Fachlichkeiten umsetzen k�
 Der Begriff der Anwendungslandschaft ist fachlich motiviert.
 Die technische Entsprechung hierfür ist der Begriff der <<glossar-Systemlandschaft>>.
 Eine Systemlandschaft, die eine Anwendungslandschaft nach den IsyFact-Standards umsetzt, wird im Folgenden als _IsyFact-Systemlandschaft_ bezeichnet.
-Eine solche IsyFact-Systemlandschaft beinhaltet alle software-technisch umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z. B. Datenbanken, Web-Server, usw.). 
-Sie wird auf einer technischen Infrastruktur betrieben und bildet einen in sich geschlossenen Sicherheitsbereich.
+Eine solche IsyFact-Systemlandschaft beinhaltet alle software-technisch umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z. B. Datenbanken, Web-Server, usw.).
 
 Die technische Architektur eines IT-Systems wird in <<IsyFactReferenzarchitekturITSystem>> definiert.
 Im Folgenden wird, aufbauend auf diesem Konzept, beschrieben:
@@ -256,19 +255,15 @@ Die Kommunikation mit dem Browser des Nutzers muss immer über das Portal erfolg
 Ein Portal im Sinne der Referenzarchitektur besteht aus:
 
 * Einem Web-Server-Cluster, der Aufrufe entgegennimmt und an die Application-Server der Geschäftsanwendungen weiterleitet.
-* Einem Loadbalancer, der die Lastverteilung im Web-Server-Cluster vornimmt und die SSL-Verbindung terminiert.
-* Einem Access-Manager, über den ein Single-Sign-On realisiert wird und in dem pro URL (und damit pro Geschäftsanwendung) konfiguriert ist, welche Berechtigungen für die Nutzung der Anwendung vorhanden sein müssen.
-  Innerhalb dieses Systems werden die Authentifizierung, die Prüfung der Sitzungszertifikate und eine grundlegende Autorisierung vorgenommen.
 * Einer zentralen Startseite, welche den eingeloggten Benutzern die Geschäftsanwendungen der Anwendungslandschaft, für welche sie berechtigt sind, präsentiert.
 
-Ein Portal wird somit nicht über ein eigens dafür implementiertes Programm, sondern über konfigurierte Software-Produkte umgesetzt.
 Der Zweck eines Portals ist die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen und die Indirektion des Zugriffs von Nutzern auf die Geschäftsanwendungen.
 
 *Das <<glossar-Querschnittssystem>>:* Ein Querschnittssystem bietet Geschäftsanwendungen querschnittlich genutzte Funktionalitäten an, etwa für die Bereitstellung von Schlüsseldaten.
 Querschnittssysteme können eine eigene Datenhaltung besitzen.
 
-Querschnittssysteme werden nicht direkt von Benutzern oder externen Systemen außerhalb der IsyFact-Systemlandschaft aufgerufen und rufen selbst nicht direkt externe Systeme auf.
-Ausnahmen hiervon sind Querschnittsysteme wie das Outputmanagement das z.B. zur Versendung von externen E-Mails einen Mailserver nutzt oder zur Versendung von Faxen einen Fax-Server.
+Querschnittsysteme werden nur von internen Benutzern oder anderen IT-Systemen derselben Systemlandschaft aufgerufen. Sie rufen selbst nur andere Querschnittsysteme auf.
+Eine Ausnahme bilden Querschnittsysteme, wie z.B. ein Mailserver für den Versand an externe E-Mail-Empfänger.
 
 [[interne-und-externe-servicekommunikation]]
 === Interne und externe Servicekommunikation
@@ -347,7 +342,8 @@ Nachdem im Dokument <<IsyFactReferenzarchitekturITSystem>> die technische Archit
 Die Nutzungsschicht eines IT-Systems bietet anderen IT-Systemen über Services, dem Betrieb über Batches und menschlichen Nutzern über eine GUI Schnittstellen zur Nutzung der implementierten Fachlichkeit an.
 Im Folgenden wird ein Beispiel-Szenario zur Nutzung eines IT-Systems vorgestellt.
 
-Es soll eine Geschäftsanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
+====
+*_Beispiel:_* Es soll eine Geschäftsanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
 
 Für eine zur Architektur konforme Umsetzung dieser Anforderungen müssen verschiedene IT-Systeme umgesetzt werden:
 
@@ -364,16 +360,17 @@ Zur Implementierung der Geschäftslogik kann die Geschäftsanwendung auch <<glos
 
 *Das Service-Gateway-System:* Wie in Kapitel <<strukturierung-der-systemlandschaft>> beschrieben, dient das Service-Gateway-System als Schnittstelle für die Kommunikation mit bzw. der Annahme der Aufrufe von externen Systemen.
 Im vorliegenden Fall wird nur ein Service-Provider benötigt, da nur Aufrufe entgegengenommen werden.
-Diese werden authentifiziert, autorisiert, und an das zugehörige Anwendungssystem weitergeleitet.
+Diese werden authentifiziert, autorisiert, und an das zugehörige IT-System weitergeleitet.
 
-Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten Anwendungssysteme und Aufruf-Beziehungen.
-Die in dieser Abbildung angedeuteten Schichten eines Anwendungssystems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
+Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten IT-Systeme und Aufruf-Beziehungen.
+Die in dieser Abbildung angedeuteten Schichten eines IT-Systems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
 Wichtig in Hinblick auf diese Schichten sind folgende Punkte:
 
-* Die Schicht _Batch_ der Geschäftsanwendung wird im Beispiel nicht implementiert, da die Geschäftsanwendung keine Schnittstelle für Batchläufe anbietet.
-* Alle externen Aufrufe an die Geschäftsanwendung werden durch die Schicht _Service_ verarbeitet: Keine andere Schicht darf externe Schnittstellen bereitstellen, insbesondere nicht die Schicht _Anwendungslogik_.
+* Die Komponente _Batch_ der Geschäftsanwendung wird im obigen Beispiel nicht implementiert, da die Geschäftsanwendung keine Schnittstelle für Batchläufe anbietet.
+* Alle externen Aufrufe an die Geschäftsanwendung werden durch eine _Service-Komponente_ verarbeitet: Keine andere Komponente darf externe Schnittstellen bereitstellen, insbesondere nicht in den _Anwendungskern_.
 * Es wurden keine Aufrufe von Querschnittskomponenten eingezeichnet.
 Für derartige Aufrufe gibt es keine Vorgaben: Sie können aus beliebigen Schichten von Geschäftsanwendungen und Service Gateways aus aufgerufen werden.
+====
 
 :desc-image-CallFAmGuX: Aufrufbeziehungen für eine Geschäftsanwendung mit GUI und XML-Schnittstelle
 [id="image-CallFAmGuX",reftext="{figure-caption} {counter:figures}"]
@@ -400,7 +397,7 @@ Hierzu gehören z.B. das Betriebssystem, Web-Server, Application-Server, Access-
 *Bibliotheken für die Anwendungsentwicklung:* Die Anwendungs­entwicklung wird durch den Einsatz von Frameworks und entsprechenden Bibliotheken vereinfacht und beschleunigt.
 IsyFact verwendet insbesondere Spring, Hibernate und JSF.
 
-Eine detaillierte Liste der verwendbaren Produkte sind im Dokument <<ProduktKatalog>> zu finden.
+Eine detaillierte Liste der verbindlichen und empfohlenen Produkte sind im Dokument <<ProduktKatalog>> zu finden.
 
 [[die-referenzarchitektur-der-technischen-infrastruktur]]
 == Die Referenzarchitektur der technischen Infrastruktur
@@ -582,8 +579,8 @@ Der Aufbau der Produktionsumgebung ist so gestaltet, dass eine Verfügbarkeit vo
 In der Produktionsumgebung einer IsyFact-Systemlandschaft wird die geforderte Verfügbarkeit über das Mittel der Redundanz realisiert.
 Jede Komponente der technischen Infrastruktur ist mindestens zweimal vorhanden.
 Auf einem Rechnersystem können mehrere Instanzen eines Servers (Applikationsserver, Datenbankserver) betrieben werden.
-Bei einem Ausfall einer Komponente kann der Wirkbetrieb immer noch über die andere Komponente abgewickelt werden (Failover). 
-Die Zustandslosigkeit der Applikationsserver (siehe Kapitel <<die-software-referenzarchitektur>>) unterstützt diese Redundanz und das Failover: 
+Bei einem Ausfall einer Komponente kann der Wirkbetrieb immer noch über die andere Komponente abgewickelt werden (Failover).
+Die Zustandslosigkeit der Applikationsserver (siehe Kapitel <<die-software-referenzarchitektur>>) unterstützt diese Redundanz und das Failover:
 Beim Ausfall eines Applikationsservers sind die notwendigen Informationen, um den Betrieb über einen anderen Applikationsserver abzuwickeln, beim Ausfall des Knotens nicht verloren gegangen.
 
 Die Server-Knoten der technischen Infrastruktur sind über verschiedene Standorte, Racks, Enclosures verteilt.
@@ -639,7 +636,7 @@ Alle Komponenten der Betriebsumgebung, das heißt Hardware-Komponenten, System­
 Eine Konfiguration beschreibt die Betriebsumgebung durch die Angabe der Versionen der einzelnen Komponenten zu einem Zeitpunkt.
 Wird an der Betriebsumgebung eine Änderung zum Beispiel durch Austausch einer Hardware-Komponente durchgeführt, dann erhält diese Hardware-Komponente eine neue Versionsnummer.
 Gleichzeitig hat sich die Konfiguration der Betriebsumgebung verändert und wird ebenfalls mit einer neuen Versionsnummer bezeichnet.
-Gleiches gilt, wenn sich zum Beispiel die Parameter eines Anwendungsservers ändern: 
+Gleiches gilt, wenn sich zum Beispiel die Parameter eines Anwendungsservers ändern:
 Eine neue Version der Parameter liegt vor und damit liegt auch eine neue Konfiguration der Betriebsumgebung vor.
 Um nachvollziehen zu können, was sich wann warum geändert hat, ist es empfehlenswert, dass jede Veränderung an der Betriebsumgebung genehmigt und nachvollziehbar dokumentiert wird.
 
