@@ -537,9 +537,27 @@ Es existieren 3 verschiedene Verfahren der _Dependency Injection_:
 
 - Constructor Injection
 - Field Injection
-- Method Injection
+- Method Injection (Setter-Injection)
 
 Da die _Constructor Injection_ diverse Vorteile gegenüber den beiden anderen Techniken liefert, ist die _Constructor Injection_ die bevorzugte Technik des _Dependency Injection_ in allen Projekten der Isy- und Register-Factory.
+
+
+|===
+|DI-Methode |Einsatzszenario |Bemerkung
+
+|Field-Injection
+|Vermeidung von Boilerplate-Code
+|Darf nicht in Produktiv-Code verwendet werden.
+
+|Method-Injection (Setter-Injection)
+|Flexibles Austauschen von Beans zur Laufzeit
+|Nicht immutable. Sollte nur eingesetzt werden, wenn diese Eigenschaft benötigt wird.
+
+|Constructor-Injection
+|Für alle Beans, welche keine dynamische Anpassung zur Laufzeit benötigen.
+|Kann in Produktiv-Code eingesetzt werden. Ist der Standard von Spring.
+|===
+
 
 [[constructor-injection]]
 ==== Constructor Injection
@@ -551,9 +569,9 @@ Zusätzlich werden durch dieses Verfahren mögliche `NullPointerExceptions` verm
 
 _Constructor Injector_ hilft ebenfalls bei dem Identifizieren von zu vielen Abhängigkeiten zu einem Objekt.
 Wenn ein Konstruktor zu viele Argumente aufweist, kann dies ein Zeichen für eine zu große Verantwortlichkeit des Objektes sein.
-Ist dies der Fall, müsste àn dieser Stelle über ein `Code-Refactoring` nachgedacht werden.
+Ist dies der Fall, sollte an dieser Stelle über ein `Code-Refactoring` nachgedacht werden.
 
-Ein weiterer Vorteil von _Constructor Injection_ ist, dass die injizierten Abhängigkeiten während der Laufzeit nicht veränderbar.
+Ein weiterer Vorteil von _Constructor Injection_ ist, dass die injizierten Abhängigkeiten während der Laufzeit nicht veränderbar sind.
 So wird die `Thread-Safe`-Eigenschaft der Abhängigkeiten sichergestellt.
 
 // tag::architekturregel[]
