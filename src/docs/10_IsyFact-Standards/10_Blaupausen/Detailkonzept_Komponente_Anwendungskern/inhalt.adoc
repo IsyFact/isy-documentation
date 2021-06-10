@@ -1,4 +1,5 @@
 = Detailkonzept Anwendungskern: Inhalt
+:imagesdir: images
 
 // tag::inhalt[]
 [[aufbau-des-anwendungskerns]]
@@ -583,15 +584,17 @@ In der folgenden Grafik ist das Entwurfsmuster der _Dependency Injection_ exempl
 .{desc-image-dependeny-injection}
 image::DependencyInjection.svg[]
 
-Es existieren 3 verschiedene Verfahren der _Dependency Injection_:
+Es existieren drei verschiedene Verfahren der _Dependency Injection_:
 
 - Constructor Injection
 - Field Injection
 - Method Injection (Setter-Injection)
 
-Da die _Constructor Injection_ diverse Vorteile gegenüber den beiden anderen Techniken liefert, ist die _Constructor Injection_ die bevorzugte Technik des _Dependency Injection_ in allen Projekten der Isy- und Register-Factory.
+Da die _Constructor Injection_ diverse Vorteile gegenüber den beiden anderen Techniken liefert, empfiehlt die IsyFact die Verwendung von  _Constructor Injection_.
 
-
+:desc-table-dependeny-injection: Vergleich der Verfahren zur Dependency Injection
+[id="table-dependeny-injection",reftext="{table-caption} {counter:tables}"]
+.{desc-table-dependeny-injection}
 |===
 |DI-Methode |Einsatzszenario |Bemerkung
 
@@ -612,17 +615,37 @@ Da die _Constructor Injection_ diverse Vorteile gegenüber den beiden anderen Te
 [[constructor-injection]]
 ==== Constructor Injection
 
-Bei dem _Constructor Injection_ werden alle Abhängigkeiten einer Klasse über die Konstruktoren von außen injiziert.
+Bei der _Constructor Injection_ werden alle Abhängigkeiten einer Klasse über die Konstruktoren von außen injiziert.
 Dadurch werden automatisch auch die benötigten Abhängigkeiten definiert, welche der Erzeuger des Objektes zur Verfügung stellen muss.
 Dieses Vorgehen hat den Vorteil, dass alle benötigten Abhängigkeiten in der Initialisierungsphase des Objektes zur Verfügung stehen.
-Zusätzlich werden durch dieses Verfahren mögliche `NullPointerExceptions` vermieden.
+Zusätzlich werden durch dieses Verfahren Überprüfungen auf `null` und die Behandlung von nicht aufgelösten Abhängigkeiten unnötig, da die Abhängigkeiten vorhanden sein müssen.
 
 _Constructor Injector_ hilft ebenfalls bei dem Identifizieren von zu vielen Abhängigkeiten zu einem Objekt.
 Wenn ein Konstruktor zu viele Argumente aufweist, kann dies ein Zeichen für eine zu große Verantwortlichkeit des Objektes sein.
-Ist dies der Fall, sollte an dieser Stelle über ein `Code-Refactoring` nachgedacht werden.
+Ist dies der Fall, sollte an dieser Stelle über ein Refactoring nachgedacht werden.
 
-Ein weiterer Vorteil von _Constructor Injection_ ist, dass die injizierten Abhängigkeiten während der Laufzeit nicht veränderbar sind.
-So wird die `Thread-Safe`-Eigenschaft der Abhängigkeiten sichergestellt.
+Ein weiterer Vorteil von _Constructor Injection_ ist, dass die injizierten Abhängigkeiten während der Laufzeit nicht veränderbar sind und so Nebenläufigkeiten und Seiteneffekte vermieden werden (s. <<listing-constructor-injection>>).
+
+:desc-listing-constructor-injection: Verwendung von Constructor Injection
+[id="listing-constructor-injection",reftext="{listing-caption} {counter:listings }"]
+.{desc-listing-constructor-injection}
+[source,java]
+----
+@Component
+public class SomeBean {
+
+  private final AnotherBean anotherBean;
+
+  public SomeBean(AnotherBean anotherBean) {
+    this.anotherBean = anotherBean;
+  }
+
+  AnotherBean getAnotherBean() {
+    return anotherBean;
+  }
+
+}
+----
 
 // tag::architekturregel[]
 
