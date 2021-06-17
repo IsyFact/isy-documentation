@@ -4,6 +4,7 @@
 
 // Beginn übergreifende Änderungen
 - `IFS-364`: Neue IT-Systemtypen – Umbenennung von Fachanwendung zu Geschäftsanwendung
+- `IFE-223`: Umzug der Session-Dokumentation in den Baustein 'isy-session'
 // Ende übergreifende Änderungen
 
 include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/changelog.adoc[tag=release-2.2.0]
