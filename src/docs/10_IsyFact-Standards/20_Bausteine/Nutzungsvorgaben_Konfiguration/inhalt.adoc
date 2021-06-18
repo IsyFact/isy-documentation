@@ -67,12 +67,12 @@ Damit wird gleichzeitig eine sinnvolle Dokumentation von Default-Werten sicherge
 Davon abgesehen kann es hilfreich sein, zu wissen ob ein Konfigurationsparameter zur Laufzeit änderbar ist (siehe Kapitel <<konfigurationsaenderungen-zur-laufzeit>>), oder für die Änderung ein Neustart der Anwendung nötig ist.
 Außerdem ist die Angabe eines gültigen Wertebereichs bei vielen Konfigurationsparametern sinnvoll.
 
-Die fachliche Beschreibung, die in Form eines Kommentars für jeden Konfigurationsparameter angegeben sein sollte, soll um folgende Angaben ergänzt werden (variable Werte sind in `<>`  dargestellt):
+Die fachliche Beschreibung, die in Form eines Kommentars für jeden Konfigurationsparameter angegeben sein sollte, soll um folgende Angaben ergänzt werden (variable Werte sind in `<>` dargestellt):
 
 * Änderung erfordert Neustart: Ja/Nein
 * Wertebereich:
-** Bei Wahrheitswerten: true/false
-** Bei numerischen Werten: <min. Wert> - <max. Wert>
+** bei Wahrheitswerten: `true`/`false`
+** bei numerischen Werten: `<min. Wert>` - `<max. Wert>`
 
 Der Wertebereich ist bei vielen, jedoch nicht bei allen Konfigurationsparametern sinnvoll.
 Werden z.B. Anzeigetexte oder Links konfiguriert, so kann die Angabe des Wertebereichs entfallen.
@@ -86,11 +86,13 @@ Hierzu werden für Konfigurationsparameter logisch zusammenhängende Klassen ers
 mit `@ConfigurationProperties` annotiert werden.
 
 Beim Start der Anwendung befüllt Spring automatisch die Werte der Objekte mit den entsprechenden Properties aus `application.properties`.
-Die Konfigurationswerte werden dabei in Java Standard-Typen (`String`, `int`, `boolean`, usw. ) konvertiert. Für Zeitdauern, Zeitperioden und
-Dateigrößen wird eine erweiterte Syntax für die Konfigurationswerte verwendet. Die Werte dieser Konfigurationstypen werden automatisch in
-die komplexen Datentypen `Duration`, `Period` und `DataSize` umgewandelt.
+Die Konfigurationswerte werden dabei in Java Standard-Typen (`String`, `int`, `boolean`, usw.) konvertiert.
+Für Zeitdauern, Zeitperioden und Dateigrößen wird eine erweiterte Syntax für die Konfigurationswerte verwendet.
+Die Werte dieser Konfigurationstypen werden automatisch in die komplexen Datentypen `Duration`, `Period` und `DataSize` umgewandelt.
 
-Zur Überprüfung der Konfigurationswerte sollte die Standard-Java-Validierung eingesetzt werden.
+NOTE: Details hierzu können in der https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion[Spring Boot Dokumentation zu „Properties Conversion"] nachgelesen werden.
+
+Zur Überprüfung der Konfigurationswerte sollte Bean Validation eingesetzt werden.
 Damit können Werte auf Vorhandensein und korrektes Format geprüft werden.
 
 Zur Verwendung in der Anwendung wird die Konfigurationsklasse als Bean instanziiert und dann in der Anwendung per Dependency Injection gesetzt.
