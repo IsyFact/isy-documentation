@@ -12,6 +12,7 @@
     - Zusätzlichen Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
     - Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
 - `IFS-962`: Alte Tickets zur Anpassung der Dokumentation auf Aktualität geprüft und Dokumentation entsprechend angepasst.
+- `IFS-543`: Vorgabe für die Verwendung von Dependency-Injection eingefügt
 - `IFE-223`: Umzug der Session-Dokumentation in den Baustein
   - *Nutzungsvorgaben isy-session* und *Konzept Sessionmanagement* sind jetzt in isy-session zu finden
 
