@@ -1821,7 +1821,7 @@
                                         <toc />
                                         <toc2 />
                                     </attributes>
-                                    <sourceDirectory>.</sourceDirectory>
+                                    <sourceDirectory>src</sourceDirectory>
                                     <sourceDocumentName>changelog.adoc</sourceDocumentName>
                                     <outputFile>
                                         ${html-output-base-directory}/Changelog.html
@@ -1836,7 +1836,7 @@
                                 </goals>
                                 <configuration>
                                     <backend>pdf</backend>
-                                    <sourceDirectory>.</sourceDirectory>
+                                    <sourceDirectory>src</sourceDirectory>
                                     <attributes>
                                         <toc />
                                         <toc2 />

@@ -1,4 +1,5 @@
 = Handbuch für technische Autoren: Inhalt
+:imagesdir: images
 
 // tag::inhalt[]
 [[aufbau-der-dokumentation]]
@@ -1263,6 +1264,26 @@ Anschließend wird mit dem Befehl `mvn install` der Build-Vorgang gestartet.
 Aufgrund der Vielzahl der zu rendernden Dokumente und auszuführenden Skripte, kann der Build-Vorgang einige Zeit in Anspruch nehmen.
 Für Test-Zwecke können in der `pom.xml` nicht relevante Dokumente übersprungen werden, in dem die zugehörigen Ausführungsdefinitionen (`<execution></execution>`) auskommentiert werden.
 
+==== Fehlerszenarien beim Generieren
+
+:desc-table-asciidoc-fehler: Fehlerszenarien, Ursachen und Lösungen bei der Generierung
+[id="table-table-asciidoc-fehler",reftext="{table-caption} {counter:tables}"]
+.{desc-table-asciidoc-fehler}
+[options="header"]
+[cols="3,8a",options="header"]
+|====
+|Fehler|Mögliche Ursachen und Lösungen
+|`OutOfMemoryException` (max. HeapSize exceeded) |
+Mögliche Ursache:: Bei der Generierung von PDF-Dokumenten werden Rastergrafiken in ein PNM-Format (PPM, PGM oder PBM) konvertiert.
+Dies führt bei Dokumenten mit vielen Grafiken oder Grafiken mit sehr hoher Auflösung zu Speicherproblemen.
+
+Problemlösungen::
+. *Vektorgrafiken verwenden:* Bei Vektorgrafiken (z. B. im SVG-Format) entfällt die Konvertierung.
+. *Herabsetzen der Auflösung:* Bei Bildern mit einer Auflösung von 2000 Pixeln und mehr (egal ob Länge oder Breite) wird empfohlen, die Auflösung nach Möglichkeit zu reduzieren.
+Selbst bei der Verwendung vieler kleinerer Bilder kann es zu einer `OutOfMemoryException` kommen.
+Der Grund hierfür ist, dass der vom System zur Verfügung gestellte Speicher nach und nach volläuft.
+Tritt der Fehler deswegen auf, sollten Bilder nach Möglichkeit in Vektorgrafiken umgewandelt bzw. neu gezeichnet werden.
+|====
 
 [[vorgaben-changelog]]
 == Zentralisiertes und automatisiertes Changelog
@@ -1271,7 +1292,7 @@ Jede Komponente eines Projekts und jedes Dokument erhalten eine eigene Changelog
 Diese Datei wird im Folgenden Komponentenchangelog genannt.
 Dadurch können Änderungen nah am Änderungsort dokumentiert werden und Entwickler und Architekten können einzelne Einträge des Changelogs direkt einer Komponente oder einem Dokument zuordnen.
 Damit jedoch auch alle Änderungen eines Projekts (Menge aller Komponenten/Dokumente) zentral in einem Dokument zusammengefasst können, wird eine weitere Changelog-Datei im root-Verzeichnis des Projekts angelegt.
-Diese Changelog-Datei, im Folgenden Projektchangelog genannt, bindet die einzelnen Changelog-Datei automatisch und nach Release gruppiert ein.
+Diese Changelog-Datei, im Folgenden Projektchangelog genannt, bindet die einzelnen Changelog-Dateien automatisch und nach Release gruppiert ein.
 Auf diese Weise besitzt jedes Projekt ein zentrales Changelog und (je nach Projekt) mehrere dezentrale Komponentenchangelogs ohne die Einträge redundant verwalten zu müssen.
 
 :desc-image-architektur_changelogs: Zusammenführung der einzelnen Komponentenchangelogs
