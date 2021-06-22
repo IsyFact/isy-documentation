@@ -428,7 +428,7 @@ In der POM der Anwendung muss die Abhängigkeit hinzugefügt werden:
 [source,xml]
 ----
 <dependency>
-  <groupId>de.bund.bva.pliscommon</groupId>
+  <groupId>de.bund.bva.isyfact</groupId>
   <artifactId>isy-sonderzeichen</artifactId>
   <version><aktueller Version der Bibliothek></version>
 </dependency>
