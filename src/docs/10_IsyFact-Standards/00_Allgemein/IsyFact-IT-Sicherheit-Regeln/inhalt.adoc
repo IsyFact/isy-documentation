@@ -31,8 +31,6 @@ include::../../../10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Ueberwachun
 include::../../../10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 include::../../../10_IsyFact-Standards/40_Methodik/Java-Programmierkonventionen/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 
-include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Konzept_Session_Management/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
-include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_isy-session/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_IsyFact-Benutzerverwaltung/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
 
 include::../../../20_IsyFact-Erweiterungen/30_Plattform/Konzept_Logging_Infrastruktur_ELK/it-sicherheitsregeln.adoc[tags=it-sicherheitsregeln]
