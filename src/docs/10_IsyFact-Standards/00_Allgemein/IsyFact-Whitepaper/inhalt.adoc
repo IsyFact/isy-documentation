@@ -47,16 +47,16 @@ Nicht zuletzt soll durch die Vergrößerung des Anwenderkreises der Umfang und d
 Eine Software Factory stellt Ihre Inhalte strukturiert in 5 Bereichen zur Verfügung.
 Sowohl die IsyFact, also auch die IsyFact-Standards orientieren sich an dieser Struktur und bieten Ihre Hilfsmittel in fünf Bereichen, den fünf Säulen der IsyFact an:
 
-* Vorlagen für die Erstellung von Fachanwendungen auf fachlicher, software-technischer und technisch-infrastruktureller Ebene: den *Blaupausen*
+* Vorlagen für die Erstellung von Geschäftsanwendungen auf fachlicher, software-technischer und technisch-infrastruktureller Ebene: den *Blaupausen*
 * Wieder verwendbare Softwarelösungen, querschnittliche Systeme sowie Programmierbibliotheken und -vorlagen: den *Bausteinen*
 * Eine einheitliche, hochverfügbare Betriebsumgebung mit leistungsfähiger Hardware und der benötigten Systemsoftware: der *Plattform*
 * Konventionen und Vorgaben für die Spezifikation und Programmierung sowie das Projektvorgehen nach V-Modell XT: der *Methodik* und
 * Tools für teilweise Automatisierung von Modellierung, Programmierung, Tests und Fehlerverfolgung: den *Werkzeugen*
 
-:desc-image-fuenfsaeulen: Die fünf Säulen der IsyFact
-[id="image-fuenfsaeulen",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-fuenfsaeulen}
-image::fuenfsaeulen.png[align="center"]
+:desc-image-IFBereiche: Die fünf Säulen der IsyFact
+[id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-IFBereiche}
+image::../../common/images/IFBereiche.png[align="center",width=60%,pdfwidth=60%]
 
 Die Säulen werden nachfolgend im Detail beschrieben.
 
@@ -64,7 +64,7 @@ Die Säulen werden nachfolgend im Detail beschrieben.
 === Blaupausen
 
 Die Blaupausen beschreiben die Architektur und Konzepte der Anwendungslandschaft.
-Diese beinhaltet die Architekturen einer Fachanwendung auf fachlicher Ebene (A-Architektur), die software-technische Umsetzung (T-Architektur) sowie die darunter liegende Hardware und Systemsoftware (TI-Architektur).
+Diese beinhaltet die Architekturen einer Geschäftsanwendung auf fachlicher Ebene (A-Architektur), die software-technische Umsetzung (T-Architektur) sowie die darunter liegende Hardware und Systemsoftware (TI-Architektur).
 
 [[fachliche-referenzarchitektur-a-architektur]]
 ==== Fachliche Referenzarchitektur (A-Architektur)
@@ -79,13 +79,13 @@ image::AnwendungslandschaftIF.png[align="center"]
 Anwendungssysteme bieten dabei eine zusammengehörige, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es werden zwei Typen unterschieden:
 
-* *Fachanwendungen* implementieren fachliche Logik, Prozesse oder speichern Daten.
-Sie können Präsentationslogik enthalten, oder reine Datenspeicher im Hintergrund sein, die anderen Fachanwendungen ihre Daten bereitstellen.
-Je nach Anwendungsdomäne kann es unterschiedliche Arten von Fachanwendungen geben, die spezielle Aufgaben wahrnehmen.
-* *Querschnittssysteme* stellen Dienste für mehrere Fachanwendungen bereit, beispielsweise ein Suchverfahren oder die Anwenderverwaltung.
+* *Geschäftsanwendungen* implementieren fachliche Logik, Prozesse oder speichern Daten.
+Sie können Präsentationslogik enthalten, oder reine Datenspeicher im Hintergrund sein, die anderen Geschäftsanwendungen ihre Daten bereitstellen.
+Je nach Anwendungsdomäne kann es unterschiedliche Arten von Geschäftsanwendungen geben, die spezielle Aufgaben wahrnehmen.
+* *Querschnittssysteme* stellen Dienste für mehrere Geschäftsanwendungen bereit, beispielsweise ein Suchverfahren oder die Anwenderverwaltung.
 
 Ein Anwendungssystem besteht aus Anwendungskomponenten, die eine Menge funktional zusammenhängender Anwendungsfälle beschreiben.
-<<image-fachref>> zeigt beispielhaft die Aufteilung einer Fachanwendung mit Benutzerschnittstelle.
+<<image-fachref>> zeigt beispielhaft die Aufteilung einer Geschäftsanwendung mit Benutzerschnittstelle.
 
 
 :desc-image-fachref: Fachliche Referenzarchitektur eines Anwendungssystems
@@ -187,7 +187,7 @@ Es handelt sich dabei um kleinere Utility-Klassen, wie z.B. Interzeptoren, mit d
 [[plattform]]
 === Plattform
 
-*Eine einheitliche Plattform über alle Fachanwendungen ermöglicht einen standardisierten und effizienten Systembetrieb.*
+*Eine einheitliche Plattform über alle Geschäftsanwendungen ermöglicht einen standardisierten und effizienten Systembetrieb.*
 
 :desc-image-plattform: Betriebsplattform der IsyFact
 [id="image-plattform",reftext="{figure-caption} {counter:figures}"]
@@ -233,7 +233,7 @@ image::Methodik_V-Modell.png[align="center"]
 [[werkzeuge]]
 === Werkzeuge
 
-*Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Fachanwendungen.
+*Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Geschäftsanwendungen.
 Dazu bietet sie vorkonfigurierte Werkzeuge für Modellierung, Programmierung, Installation, Tests oder die Fehlerverfolgung.*
 
 Für die Softwareentwicklung setzt die IsyFact auf das Programmierwerkzeug Eclipse und bietet entsprechende Generatoren dafür an.
@@ -256,10 +256,10 @@ Die IsyFact-Standards stellt das Bundesverwaltungsamt seit Januar 2015 auch für
 Die Vorteile bei Nutzung der IsyFact-Standards sind:
 
 * *Festes Fundament durch fünf Säulen:* Blaupausen, Bausteine, Plattform, Methodik, Werkzeuge
-* *Universelle Vorbereitung für verschiedenste Fachanwendungen:* Nutzung der Gemeinsamkeiten von Fachanwendungen
-* *Effizienter Bau von Fachanwendungen:* Schneller und kostengünstiger als ohne IsyFact-Standards
-* *Effizienter Betrieb von Fachanwendungen:* Vorteile durch Standardisierung und Nutzungsvorgaben
-* *In der Praxis erprobtes Verfahren:* Migration bestehender und Umsetzung neuer Fachanwendungen im Bundesverwaltungsamt
+* *Universelle Vorbereitung für verschiedenste Geschäftsanwendungen:* Nutzung der Gemeinsamkeiten von Geschäftsanwendungen
+* *Effizienter Bau von Geschäftsanwendungen:* Schneller und kostengünstiger als ohne IsyFact-Standards
+* *Effizienter Betrieb von Geschäftsanwendungen:* Vorteile durch Standardisierung und Nutzungsvorgaben
+* *In der Praxis erprobtes Verfahren:* Migration bestehender und Umsetzung neuer Geschäftsanwendungen im Bundesverwaltungsamt
 * *Austausch von Komponenten:* Ermöglicht den Austausch von Bausteinen und Komponenten mit anderen Nutzern der IsyFact-Standards.
 
 [[produktueberblick]]

@@ -5,9 +5,9 @@
 
 Dieser Abschnitt beschreibt die Namenskonventionen der IsyFact.
 In komplexen Anwendungslandschaften werden <<glossar-Anwendungssystem,Anwendungssysteme>> in der Regel in funktionale Kategorien eingeordnet und typisiert (bspw. Register und Geschäftsanwendungen).
-Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Fachanwendungen existieren, wird meist allgemein von „Fachanwendungen“ gesprochen.
+Bei weniger komplexen Kontexten, in denen nur eine einzige oder wenige Geschäftsanwendungen existieren, wird meist allgemein von „Geschäftsanwendungen“ gesprochen.
 
-In folgenden Vorgaben wird daher zwischen Fachanwendungen, Registern und Geschäftsanwendungen unterschieden.
+In folgenden Vorgaben wird daher zwischen Geschäftsanwendungen und Registern unterschieden.
 Für andere Kontexte können weitere Systemtypen eingeführt werden, für die entsprechende Vorgaben nach dem gleichen Schema zu definieren sind.
 
 [[allgemein]]
@@ -21,18 +21,18 @@ In diesem Abschnitt werden allgemeine Namenskonventionen festgehalten.
 Je nach Typ eines Anwendungssystems ist der Name unterschiedlich zu wählen.
 Die verschiedenen Varianten sind wie folgt abgebildet.
 
-[[fachanwendung]]
-===== Fachanwendung
+[[geschaeftsanwendung]]
+===== Geschäftsanwendung
 
-:desc-table-SFachanw: Schema für eine Fachanwendung
-[id="table-SFachanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-SFachanw}
+:desc-table-SGanw: Schema für eine Geschäftsanwendung
+[id="table-SGanw",reftext="{table-caption} {counter:tables}"]
+.{desc-table-SGanw}
 [cols="1,4",options="header"]
 |====
-2+|Name einer Fachanwendung
-|*Schema*    m|<verfahren> Anwendung
-|*Beispiele* m|Xyz Anwendung
-|*Variable*   |*Mögliche Ausprägungen*
+2+|Name einer Geschäftsanwendung
+|*Schema* m|<verfahren> Geschäftsanwendung
+|*Beispiele* m|Xyz Geschäftsanwendung
+|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -48,21 +48,6 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |*Schema* m|<verfahren> Register
 |*Beispiele* m|Xyz Register
 |*Variable* |*Erklärung / Ausprägungen*
-m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
-|====
-
-[[geschaeftsanwendung]]
-===== Geschäftsanwendung
-
-:desc-table-SGanw: Schema für eine Geschäftsanwendung
-[id="table-SGanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-SGanw}
-[cols="1,4",options="header"]
-|====
-2+|Name einer Geschäftsanwendung
-|*Schema* m|<verfahren> Geschäftsanwendung
-|*Beispiele* m|Xyz Geschäftsanwendung
-|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -328,39 +313,10 @@ Das sind vor allem Klassen- und Dateinamen.
 Einige der hier genannten Namenskonventionen sind von denen der Spezifikation abhängig, beziehungsweise werden davon abgeleitet.
 
 [[artefakte-module]]
-==== Artefakte und Module
+==== Maven-Artefakte und -Module
 
-Bei einem Maven-Artefact wird eine Group-ID und eine Artefakt-ID definiert. Die Group-ID gibt einen direkten Anhaltspunkt auf die Domäne.
-Group-IDs werden mit einem Punkt konkatiniert.
-Mit der Artefakt-ID wird die Funktionalität des Artefaktes kurz und pregnant definiert.
-Als Beispiel für diese Dokumentation wird `isy-documentation` als Artefakt-ID angegeben. Die Konkatinierung erfolgt über ein Minus.
+include::../../40_Methodik/Java-Programmierkonventionen/inhalt.adoc[tag=namenskonvention]
 
-:desc-table-grIDMod: Group-ID von Modulen/Artefakten
-[id="table-grIDMod",reftext="{table-caption} {counter:tables}"]
-.{desc-table-grIDMod}
-[cols="1,4",options="header"]
-|====
-2+|Group-ID von Modulen/Artefakten
-|*Schema Group-ID* m|<sprach-kuerzel>.<organisation>.<firma>.<domaene>
-|*Beispiel* m|de.bund.bva.isyfact
-|====
-
-[[Präfixe]]
-===== Präfixe
-Prinzipiell soll jedes Modul, bzw. Artefakt, z.B. wie in einer Maven-Umgebung einen Präfix definiert haben.
-Artifakte einer Group-ID (Domäne) sollten immer einen einheitlichen Präfix besitzen. So haben alle IsyFact-Artefakte das Präfix `isy-` in ihrer Artefakt-ID.
-
-:desc-table-artIDMod: Artefakt-ID von Modulen/Artefakten
-[id="table-artIDMod",reftext="{table-caption} {counter:tables}"]
-.{desc-table-artIDMod}
-[cols="1,4",options="header"]
-|====
-2+|Artefakt-ID von Modulen/Artefakten
-|*Schema Artifakt-ID* m|<praefix>-<funktion/komponente> +
-<praefix>-<funktion/komponente>-<teilkomponente>
-|*Beispiel* m|isy-documentation +
-isy-documentation-core
-|====
 
 [[technische-systemnamen]]
 ==== Technische Systemnamen
@@ -368,18 +324,18 @@ isy-documentation-core
 Die technischen Systemnamen entsprechen der technischen Bezeichnung für ein IsyFact-konformes Anwendungssystem.
 Sie werden unter anderem für Projektnamen in Eclipse, Dokument Basis / Context Root bei Schnittstellen-URLs und als Namen von Deployment-Einheiten (vgl. Kapitel <<rpm-pakete>>) verwendet.
 
-[[fachanwendungen]]
-===== Fachanwendungen
+[[geschaeftsanwendung-1]]
+===== Geschäftsanwendung
 
-:desc-table-namfachanw:  Name einer Fachanwendung
-[id="table-namfachanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-namfachanw}
+:desc-table-namgfanw2:  Name einer Geschäftsanwendung
+[id="table-namgfanw2",reftext="{table-caption} {counter:tables}"]
+.{desc-table-namgfanw2}
 [cols="1,4",options="header"]
 |====
-2+|Name einer Fachanwendung
-|*Schema* m|<verfahren>-anwendung
-|*Beispiele* m|meinverfahren-anwendung
-|*Variable* |*Erklärung / Ausprägungen*
+2+|Name einer Geschäftsanwendung
+|*Schema* m|<verfahren>-gk
+|*Beispiele* m|xyz-gk
+|*Variable* |*Mögliche Ausprägungen*
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
@@ -398,38 +354,10 @@ m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
-[[geschäftsanwendung-1]]
-===== Geschäftsanwendung
-
-:desc-table-namgfanw2:  Name einer Geschäftsanwendung
-[id="table-namgfanw2",reftext="{table-caption} {counter:tables}"]
-.{desc-table-namgfanw2}
-[cols="1,4",options="header"]
-|====
-2+|Name einer Geschäftsanwendung
-|*Schema* m|<verfahren>-ga
-|*Beispiele* m|xyz-ga
-|*Variable* |*Mögliche Ausprägungen*
-m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
-|====
-
 [[servicegateway]]
 ===== Servicegateway
 
-:desc-table-namsgw:  Name eines Servicegateways
-[id="table-namsgw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-namsgw}
-[cols="1,4",options="header"]
-|====
-2+|Name eines Servicegateways
-|*Schemata* m|<verfahren>-sgw +
-<verfahren>-<zielverfahren>-sgw
-|*Beispiele* m|xyz-sgw +
-xyz-dienstabc-sgw
-|*Variable* |*Mögliche Ausprägungen*
-m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
-m|<zielverfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs, mit dem dieser SGW kommuniziert bzw. für den er eine Schnittstelle bereitstellt.
-|====
+include::../../20_Bausteine/Konzept_Servicegateway/inhalt.adoc[tag=namenskonvention]
 
 [[mailgateway]]
 ===== Mailgateway
@@ -446,24 +374,60 @@ m|<zielverfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs, mit dem die
 m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
 |====
 
-[[batch-anwendungen]]
-===== Batch-Anwendungen
+[[querschnittsanwendung]]
+===== Querschnittsanwendung
 
-Mit vielen Systemen wird eine eigene Batch-Deploymenteinheit ausgeliefert.
-Diese wird folgendermaßen benannt.
-
-:desc-table-nambat:  Name einer Batchanwendung
-[id="table-nambat",reftext="{table-caption} {counter:tables}"]
-.{desc-table-nambat}
+:desc-table-namqa:  Name einer Querschnittsanwendung
+[id="table-namqa",reftext="{table-caption} {counter:tables}"]
+.{desc-table-namqa}
 [cols="1,4",options="header"]
 |====
-2+|Name einer Batchanwendung
-|*Schema* m|<anwendungsname>-batch
-|*Beispiele* m|xyz-ga-batch +
-xyz-register-batch
+2+|Name einer Querschnittsanwendung
+|*Schema* m|<verfahren>-qk
+|*Beispiele* m|xyz-qk
+|*Variable* |*Mögliche Ausprägungen*
+m|<verfahren> |Der (Kurz)name des Verfahrens/Anwendungsbereichs.
+|====
+
+[[auslagern-fachkomponente-aus-anwendung]]
+===== Auslagern einer Fachkomponente aus einer Geschäftsanwendung
+Wenn eine Geschäftsanwendung in mehrere Fachkomponenten getrennt wird,
+dann wird die herausgebildete Fachkomponente wie folgt genannt:
+
+:desc-table-fachGK:  Name einer ausgelagerten fachlichen Geschäftskomponente
+[id="table-fachGK",reftext="{table-caption} {counter:tables}"]
+.{desc-table-fachGK}
+[cols="1,4",options="header"]
+|====
+2+|Name einer fachlichen Geschäftskomponente
+|*Schema* m|<anwendungsname>-<fachlichkeit>-gk
+|*Beispiele* m|xyz-fach1-gk +
+xyz-fach1-register
 |*Variable* |*Mögliche Ausprägungen*
 m|<anwendungsname> |Der Name einer Anwendung, wie in den vorigen Abschnitten beschrieben.
 Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
+m|<fachlichkeit> |Der Name der Fachkomponente, welche aus der Geschäftsanwendung ausgelagert wird.
+|====
+
+[[auslagern-technische-komponente-aus-anwendung]]
+===== Auslagern einer technischen Komponente aus einer Anwendung
+Wenn eine Geschäftsanwendung oder Fachkomponente technisch in mehrere IT-Systeme getrennt wird,
+dann werden diese Systeme wie folgt genannt:
+
+:desc-table-techGK:  Name einer ausgelagerten technsichen Geschäftskomponente
+[id="table-techGK",reftext="{table-caption} {counter:tables}"]
+.{desc-table-techGK}
+[cols="1,4",options="header"]
+|====
+2+|Name einer technischen Geschäftskomponente
+|*Schema* m|<anwendungsname>-<fachlichkeit>-gk<komponente>
+|*Beispiele* m|xyz-fach1-gkgui +
+xyz-qkbatch
+|*Variable* |*Mögliche Ausprägungen*
+m|<anwendungsname> |Der Name einer Anwendung, wie in den vorigen Abschnitten beschrieben.
+Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
+m|<fachlichkeit> |Der Name der Fachkomponente, welche aus der Geschäftsanwendung ausgelagert wird.
+m|<komponente> |Der Name der technischen Komponente: meist `gui` für eine ausgelagerte grafische Oberfläche oder `batch` für einen ausgelagerten Batch.
 |====
 
 [[name-der-web-application]]
@@ -471,358 +435,36 @@ Er setzt sich meistens aus einem Systemkürzel und dem Systemtyp zusammen.
 
 Der Name einer Web-Applikation (Webapp-Root) ist immer gleich dem technischen Systemnamen (siehe Abschnitt <<technische-systemnamen>>)
 
-[[interface-implementierungen]]
-==== Interface-Implementierungen
 
-Implementierungen von Interfaces werden durch das Suffix „Impl“ gekennzeichnet.
-
-:desc-table-ssimpl:  Interface-Implementierungen
-[id="table-ssimpl",reftext="{table-caption} {counter:tables}"]
-.{desc-table-ssimpl}
-[cols="1,4",options="header"]
-|====
-2+|Interface-Implementierungen
-|*Schema* m|<Interface>Impl
-|*Beispiele* m|MeldungImpl +
-NachrichtErzeugungImpl
-|====
 
 [[persistenz]]
 ==== Persistenz
+include::../../10_Blaupausen/Detailkonzept_Komponente_Datenzugriff/inhalt.adoc[tag=namenskonvention]
 
-:desc-table-daossimpl:  Data Access Objects: Interfaces + Implementierung
-[id="table-daossimpl",reftext="{table-caption} {counter:tables}"]
-.{desc-table-daossimpl}
-[cols="1,4",options="header"]
-|====
-2+|Data Access Objects: Interfaces + Implementierung
-|*Schema* m|<Entitaetsname>Dao +
-<Entitaetsname>DaoImpl
-|*Beispiele* m|AkteDao +
-AkteDaoImpl
-|====
-
-[[business-objekte]]
-==== Business-Objekte
-
-Unter Business-Objekten werden nicht-persistente Objekte verstanden, die in Schnittstellen im <<glossar-Anwendungskern>> verwendet werden.
-
-:desc-table-busiobj: Business-Objekte
-[id="table-busiobj",reftext="{table-caption} {counter:tables}"]
-.{desc-table-busiobj}
-[cols="1,4",options="header"]
-|====
-2+|Business-Objekte
-|*Schema* m|<Entitaetsname>Bo
-|*Beispiele* m|AkteBo
-|====
-
-[[anwendungsfälle]]
-==== Anwendungsfälle
-
-Anwendungsfallklassen werden durch das Präfix `Awf` gekennzeichnet.
-Der weitere Teil des Klassennamens leitet sich aus dem Namen des Anwendungsfalls aus der Spezifikation ab, in CamelCase-Schreibweise.
-
-:desc-table-anwcases: Anwendungsfälle
-[id="table-anwcases",reftext="{table-caption} {counter:tables}"]
-.{desc-table-anwcases}
-[cols="1,4",options="header"]
-|====
-2+|Anwendungsfälle
-|*Schema* m|Awf<AnwendungsfallName>
-|*Beispiele* m|AwfAntragVerarbeiten +
-AwfEntscheidungDurchfuehren
-|====
-
-[[anwendungsfunktionen]]
-==== Anwendungsfunktionen
-
-Analog zu den Anwendungsfällen werden Anwendungsfunktionen mit dem Präfix `Afu` gekennzeichnet.
-
-:desc-table-anwfkt2: Anwendungsfunktionen
-[id="table-anwfkt2",reftext="{table-caption} {counter:tables}"]
-.{desc-table-anwfkt2}
-[cols="1,4",options="header"]
-|====
-2+|Anwendungsfunktionen
-|*Schema* m|Afu<Anwendungsfunktionsname>
-|*Beispiele* m|AfuBerechnungFristdatum +
-AfuErmittlungEntscheidungsrelevanz
-|====
+===  Anwendungskern
+include::../../10_Blaupausen/Detailkonzept_Komponente_Anwendungskern/inhalt.adoc[tag=namenskonvention]
 
 [[batches]]
-==== Batches
+=== Batchbereich
 
-Analog zu den Anwendungsfällen werden Batchklassen mit dem Präfix `Bat` gekennzeichnet.
-
-:desc-table-batclass2: Batches: Klassen
-[id="table-batclass2",reftext="{table-caption} {counter:tables}"]
-.{desc-table-batclass2}
-[cols="1,4",options="header"]
-|====
-2+|Batches: Klassen
-|*Schema* m|Bat<Batchname>
-|*Beispiele* m|BatLoeschfristPruefen +
-BatSendenAllerInformationen
-2+|Batches: Property-Dateien (unter resources/resources/batch)
-|*Schemata* m|<batchname-des-batches>.properties
-|*Beispiele* m|loeschfrist-pruefen.properties +
-import-bhknz-liste.properties
-2+|Batches: Shellskripte
-|*Schemata* m|<batchname-des-batches>.sh
-|*Beispiele* m|loeschfrist-pruefen.sh +
-import-bhknz-liste.sh
-|====
-
-*Konfigurationsparameter*
-
-Die Konfiguration eines Batches kann über die Kommandozeile, als auch über die Konfigurationsdatei geschehen.
-
-
-:desc-table-batckonfig: Batches: Konfigurationsparameter
-[id="table-batckonfig",reftext="{table-caption} {counter:tables}"]
-.{desc-table-batckonfig}
-[cols="1,4",options="header"]
-|====
-2+|Konfigurationsparameter: Kommandozeile
-|*Schema* m|-<Parametername> <Parameterwert>
-|*Beispiele* m|-laufzeit 10
-2+|Konfigurationsparameter: Konfigurationsdatei
-|*Schema* m|<Parametername>=<Parameterwert> +
-<Parametername>.<Parametername>=<Parameterwert>
-|*Beispiele* m| BatchName=LoeschBatch +
-Loeschfunktion.DatumVon=30.11.2019
-|====
+include::../../10_Blaupausen/Detailkonzept_Komponente_Batch/inhalt.adoc[tag=namenskonvention]
 
 
 [[schnittstellen]]
-==== Schnittstellen
+=== Externe Schnittstellen aus Sicht der Anwendung
 
-Schnittstellen werden in der IsyFact in eigenen Schnittstellenprojekten bereitgestellt.
-Die Konventionen diesbezüglich sind wie in den folgenden Abschnitten dargestellt.
-
-[[interface-klassennamen]]
-===== Interface-Klassennamen
-
-:desc-table-ssclassnam: Interface-Klassennamen
-[id="table-ssclassnam",reftext="{table-caption} {counter:tables}"]
-.{desc-table-ssclassnam}
-[cols="1,4",options="header"]
-|====
-2+|Interface-Klassennamen
-|*Schema* m|<Schnittstellenname>RemoteBean
-|*Beispiele* m|MeldungRemoteBean +
-KommunikationXyzRemoteBean
-|====
-
-[[url]]
-===== URL
-
-Die Service-URL einer HTTP Invoker Schnittstelle muss folgendem Schema entsprechen:
-
-:desc-table-ssurl1: Schnittstellen: URL
-[id="table-ssurl1",reftext="{table-caption} {counter:tables}"]
-.{desc-table-ssurl1}
-[cols="1,4",options="header"]
-|====
-2+|Schnittstellen: URL
-|*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
-|*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
-                     $$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
-|*Variable*        | *Mögliche Ausprägungen*
-m|<Hostname>       | Der Hostname des Servers
-m|<Anwendungsname> | Der Name der Anwendung.
-                    Siehe Kapitel <<namen-von-anwendungssystemen>>. Wenn es sich um eine Querschnittskomponente handelt, muss dieser mit dem Präfix „isy-“ beginnen.
-m|<Servicename>    | Der Name des Services.
-m|<Version>       a| Die Versionsnummer des Service, die zweielementig und aufsteigend vergeben wird.
-                     Hierbei wird sich am Schema Major- und Minor-Level orientiert. Beispiele:
-
-                    * 1_0
-                    * 12_7
-|====
-
-[[projektname-artefakt-id]]
-===== Projektname / Artefakt-ID
-
-Die Maven Artefakt-ID von Schnittstellen ist nach dem folgenden Muster aufgebaut.
-Die ersten beiden Teile der Versionsnummer sind Teil der Artefakt-ID, um mehrere Versionen einer Schnittstelle gleichzeitig einbinden zu können.
-An dritter Stelle steht die Maven-Versionsnummer des Artefakts.
-
-:desc-table-artIFvss: Artefakt-ID von Schnittstellen
-[id="table-artIFvss",reftext="{table-caption} {counter:tables}"]
-.{desc-table-artIFvss}
-[cols="1,4",options="header"]
-|====
-2+|Artefakt-ID von Schnittstellen
-|*Schema* m|<Anwendungsname>-<protokoll>-sst-<sstname>-<version>
-|*Beispiele* m|xyz-ga-rest-sst-auskunft-v29.1
-|====
-
-[[transportobjekte]]
-====== Transportobjekte
-
-:desc-table-classnamtransobj: Klassennamen Transportobjekte
-[id="table-classnamtransobj",reftext="{table-caption} {counter:tables}"]
-.{desc-table-classnamtransobj}
-[cols="1,4",options="header"]
-|====
-2+|Klassennamen Transportobjekte
-|*Schema* m|<Entitaetsname>To
-|*Beispiele* m|AkteTo +
-InformationenXyzTo
-|====
+include::../../10_Blaupausen/Detailkonzept_Komponente_Service/inhalt.adoc[tag=namenskonvention]
+include::../../20_Bausteine/Konzept_HttpInvoker/inhalt.adoc[tag=namenskonvention]
 
 [[web-gui]]
 ==== Web-GUI
 
-[[modelklassen]]
-===== Modelklassen
+include::../../10_Blaupausen/Detailkonzept_Komponente_Web_GUI/inhalt.adoc[tag=namenskonvention]
 
-:desc-table-classnammodclass: Klassennamen Modelklassen
-[id="table-classnammodclass",reftext="{table-caption} {counter:tables}"]
-.{desc-table-classnammodclass}
-[cols="1,4",options="header"]
-|====
-2+|Klassennamen Modelklassen
-|*Schema* m|<Entitätsname>Model
-|*Beispiele* m|CdErwerbModel
-|====
-
-[[controllerklassen]]
-===== Controllerklassen
-
-:desc-table-classnamcontrclass: Klassennamen Controllerklassen
-[id="table-classnamcontrclass",reftext="{table-caption} {counter:tables}"]
-.{desc-table-classnamcontrclass}
-[cols="1,4",options="header"]
-|====
-2+|Klassennamen Controllerklassen
-|*Schema* m|<Maskenname>Controller
-|*Beispiele* m|CdErwerbController
-|====
-
-[[flows]]
-===== Flows
-
-:desc-table-flows1: Flows
-[id="table-flows1",reftext="{table-caption} {counter:tables}"]
-.{desc-table-flows1}
-[cols="1,4",options="header"]
-|====
-2+|Flows
-|*Schema* m|<Dialogname>Flow.xml
-|*Beispiele* m|cdErwerbFlow.xml
-|====
-
-[[main-view-von-flows]]
-===== Main-View von Flows
-
-:desc-table-mvvflow: Main View von Flows
-[id="table-mvvflow",reftext="{table-caption} {counter:tables}"]
-.{desc-table-mvvflow}
-[cols="1,4",options="header"]
-|====
-2+|Main View von Flows
-|*Schema* m|<Maskenname>ViewState.xhtml
-|*Beispiele* m|cdErwerbViewState.xhtml +
-cdSucheViewState.xhtml
-|====
-
-[[weitere-facelets]]
-===== Weitere Facelets
-
-:desc-table-facelets: Facelets
-[id="table-facelets",reftext="{table-caption} {counter:tables}"]
-.{desc-table-facelets}
-[cols="1,4",options="header"]
-|====
-2+|Facelets
-|*Schema* m|<maskenname><maskenteil>.xhtml
-|*Beispiele* m|cdErwerbFormular1.xhtml
-|====
-
-[[view-state-javascript-datei]]
-===== View-State Javascript-Datei
-
-:desc-table-vstatejsdat: View-State Javascript-Date
-[id="table-vstatejsdat",reftext="{table-caption} {counter:tables}"]
-.{desc-table-vstatejsdat}
-[cols="1,4",options="header"]
-|====
-2+|View-State Javascript-Datei
-|*Schema* m|<viewstatename>.js +
-<guikomponentenname>.js (bei übergreifenden, wiederverw.
-Dateien)
-|*Beispiele* m|cdErwerbFormular.js +
-cdErwerb.js (übergreifend)
-|====
 
 [[deploymentbetrieb-von-anwendungen]]
 === Deployment/Betrieb von Anwendungen
 
-[[rpm-pakete]]
-==== RPM-Pakete
+include::../../20_Bausteine/Konzept_Deployment/inhalt.adoc[tag=namenskonvention]
 
-Für die Benennung von RPM-Paketen existiert eine Konvention, welche durch den RPM-Standard vorgeben wird.
-Diese Vorgaben sind ebenfalls im <<DeploymentKonzept>> zu finden.
-
-NOTE: Siehe https://rpm-packaging-guide.github.io/#what-is-a-spec-file[RPM Packaging Guide]
-
-:desc-table-rpmpak: RPM-Pakete
-[id="table-rpmpak",reftext="{table-caption} {counter:tables}"]
-.{desc-table-rpmpak}
-[cols="1,4",options="header"]
-|====
-2+|RPM-Pakete
-|*Schema* m|<paketname>-<versionsnummer>-<build-version>.<architektur>.rpm
-|*Beispiele* m|isy-fachanwendung-batch-1.2.0-01.noarch.rpm
-|*Variable* |*Mögliche Ausprägungen*
-m|<paketname> a|
-Name der Deployment-Einheit.
-Setzt sich in der Regel aus einem Präfix für die Anwendungslandschaft und dem Anwendungsnamen (siehe Kapitel 2.1.1) zusammen.
-Deployment-Einheiten der IsyFact besitzen z.B. das Präfix „isy“.
-
-Beispiel:
-
-* isy-fachanwendung
-* isy-fachanwendung-batch
-
-m|<versionsnummer> |Versionsnummer der Deployment-Einheit, z.B. „1.2.0“. Die Versionierung basiert auf Semantic Versioning und ist im Konzept <<IsyFactVersionierung>> beschrieben.
-m|<build-version> a|
-Hier wird die Build-Nummer eingesetzt.
-Sie wird bei dem Bau jeder Auslieferungsversion (insbesondere auch bei Nachlieferungen) erhöht.
-
-Während der Entwicklung (Continuous Integration) wird hier eine laufende Nummer (Revisionsnummer der Versionsverwaltung, laufende Buildnummer des CI-Servers etc.) eingesetzt.
-
-m|<architektur> |Gibt die Systemarchitektur an, für welche das Paket erstellt wurde.
-Da IsyFact-konforme Anwendungen in Java erstellt werden, wird hier immer „noarch“ eingesetzt.
-Sollten Anwendungen Architektur-spezifische Bestandteile enthalten, wird hier die vom RPM-Standard vorgegebene Architektur-Bezeichnung eingesetzt.
-|====
-
-[[installationspfade]]
-==== Installationspfade
-
-Die Installationspfade sind ausführlich im Konzept beschrieben.
-
-:desc-table-instpathanw: Installationspfade – Anwendung
-[id="table-instpathanw",reftext="{table-caption} {counter:tables}"]
-.{desc-table-instpathanw}
-[cols="1,4",options="header"]
-|====
-2+|Installationspfade – Anwendung
-|*Schema* m|/opt/<rpm-paketname> (Anwendungsbasis) +
-/opt/<rpm-paketname>/bin (Skript-Verzeichnis) +
-/opt/<rpm-paketname>/tomcat (Tomcat) +
-/opt/<rpm-paketname>/tomcat/webapps/<name> (Basis der Webapp)
-|*Beispiele* m|/opt/isy-xyz-anwendung +
-/opt/isy-xyz-anwendung /bin +
-/opt/isy-xyz-anwendung /tomcat +
-/opt/isy-xyz-anwendung /tomcat/webapp/xyz-anwendung
-2+|*Installationspfade – Logdateien*
-|*Schema* m|/var/log/<rpm-paketname>
-|*Beispiele* m|/var/log/isy-xyz-anwendung
-2+|*Installationspfade – Betriebliche Konfiguration*
-|*Schema* m|/etc/<rpm-paketname>
-|*Beispiele* m|/etc/isy-xyz-anwendung
-|====
 // end::inhalt[]

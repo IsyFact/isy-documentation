@@ -1,4 +1,5 @@
 = Detailkonzept Service: Inhalt
+:imagesdir: images
 
 // tag::inhalt[]
 [[ueberblick]]
@@ -45,14 +46,36 @@ Sie definieren lediglich eine Datenstruktur.
 
 Service-Schnittstellen bestehen in der Regel aus einem _Remote-Bean_, einer _Service-Fassade_ und einer _Exception-Fassade_.
 
-Das *Remote-Bean* ist ein Interface, welches die Service-Operationen als Methoden definiert.
+=== Remote-Bean
+
+Das Remote-Bean ist ein Interface, welches die Service-Operationen als Methoden definiert.
 Es definiert ebenfalls die für den Service-Aufruf und die Antwort nötigen Transportobjekte sowie fachliche Exceptions.
-Oft wird das Remote-Bean zusammen mit allen direkt oder indirekt verwendeten Transportobjekten in einer eigenständigen Bibliothek paketiert, damit IT-Systeme die Schnittstellendefinitionen direkt mit ihren Aufrufern austauschen können.
+
+Das Remote-Bean soll zusammen mit allen direkt oder indirekt verwendeten Transportobjekten in einer eigenständigen Bibliothek paketiert werden, damit IT-Systeme die Schnittstellendefinitionen direkt mit ihren Aufrufern austauschen können.
 Die Bibliothek verwendet folgendes Namensschema:
-----
-<Anwendungsname>-<Schnittstellentechnologie>-sst-<Servicename>-vx.y-z.jar
-----
-Die *Service-Fassade* ist eine Klasse, welche die Service-Operationen als Methoden implementiert.
+
+//tag::namenskonvention[]
+[[projektname-artefakt-id]]
+
+
+Die Maven Artefakt-ID von Schnittstellen ist nach dem folgenden Muster aufgebaut.
+Die ersten beiden Teile der Versionsnummer sind Teil der Artefakt-ID, um mehrere Versionen einer Schnittstelle gleichzeitig einbinden zu können.
+An dritter Stelle steht die Maven-Versionsnummer des Artefakts.
+
+:desc-table-artIFvss: Artefakt-ID von Schnittstellen
+[id="table-artIFvss",reftext="{table-caption} {counter:tables}"]
+.{desc-table-artIFvss}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-artIFvss}
+|*Schema* m|<Anwendungsname>-<protokoll>-sst-<sstname>-<version>
+|*Beispiele* m|xyz-ga-rest-sst-auskunft-v29.1
+|====
+
+//end::namenskonvention[]
+
+=== Service-Fassade
+Die Service-Fassade ist eine Klasse, welche die Service-Operationen als Methoden implementiert.
 Ihre Hauptaufgabe ist die Transformation der Service-Aufrufe in interne Aufrufe des Anwendungskerns sowie die Transformation dessen Antworten in Antworten der Service-Schnittstelle.
 Dabei transformiert sie die Geschäftsobjekte des Anwendungskerns in Transportobjekte der Service-Schnittstelle und umgekehrt.
 Hierzu wird in der Regel ein Bean Mapper verwendet.
@@ -64,13 +87,14 @@ Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten Aufru
 Anschließend wird über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode anhand der Rechte des Aufrufers geprüft.
 Alternativ kann die Annotation `@Gesichert` auch an der Service-Fassade selbst verwendet werden, wenn alle Methoden die gleichen Rechte erfordern.
 
-Die *Exception-Fassade* ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Fassade geworfenen Exceptions in Exceptions der Service-Schnittstelle.
+=== Exception-Fassade
+Die Exception-Fassade ist verantwortlich für die Umwandlung der durch den Anwendungskern oder die Service-Fassade geworfenen Exceptions in Exceptions der Service-Schnittstelle.
 Dies kann auf mehreren Wegen geschehen.
-Je nach gewählter Schnittstellentechnologie werden z.B. Annotationen oder eigens dafür geschriebene Klassen oder Methoden verwendet.
+Je nach gewählter Schnittstellentechnologie werden z. B. Annotationen oder eigens dafür geschriebene Klassen oder Methoden verwendet.
 
 Bevor die Exception-Fassade aufgerufen wird, muss die Korrelations-ID aus dem Aufrufkontext im Logging-Kontext registriert sein.
 Dies geschieht durch die Annotation `@StelltLoggingKontextBereit` an der Methode oder an der Service-Fassade selbst.
-Dabei gilt es zu beachten, dass die Annotation standardmäßig so konfiguriert ist, dass sie vor den Annotationen ohne Prioritätsangabe ausgeführt wird, so dass diese immer Zugriff auf die Korrelations-ID haben.
+Dabei gilt es zu beachten, dass die Annotation standardmäßig so konfiguriert ist, dass sie vor den Annotationen ohne Angabe einer Priorität ausgeführt wird, sodass diese immer Zugriff auf die Korrelations-ID haben.
 Diese Reihenfolge wird durch Einfügen des Orders für den Advisor `stelltLoggingKontextBereitAdvisor` in der Autokonfiguration `IsyServiceApiCoreAutoConfiguration` erreicht.
 
 [NOTE]
@@ -128,7 +152,7 @@ TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 == Versionierung
 
 Die Notwendigkeit, Services in mehreren Versionen anbieten zu können, ist bedingt durch die Vielzahl an Service-Nutzern, die bei Änderung an einem Service nicht alle zeitgleich auf die neue Version eines Service umschalten können.
-Daher ist es notwendig, dass in einem - möglichst klein zu haltenden - Übergangszeitraum mehrere Versionen eines Service parallel betrieben werden können.
+Daher ist es notwendig, dass in einem – möglichst klein zu haltenden – Übergangszeitraum mehrere Versionen eines Service parallel betrieben werden können.
 
 Die Versionierung wird auf der Ebene von Services, nicht Service-Operationen ausgeführt, da diese Ebene von ihrer Granularität zu den üblichen fachlichen Änderungen passt.
 
@@ -175,7 +199,7 @@ Innerhalb des Service Gateways existiert keine Geschäftslogik, d.h. die Abbildu
 
 In einem komplexeren Fall kann es passieren, dass die Service-Schnittstelle einer Anwendung komplett umgestaltet wird, sodass die Aufrufe nicht mehr einfach aufeinander abgebildet werden können.
 Wird in so einem Fall ein neuer Service eingeführt, während der alte Service noch verfügbar bleiben muss, müssen die inkompatiblen Verarbeitungslogiken im Anwendungskern parallel erhalten bleiben.
-Auch hier enthält der Service-Gateway keine Geschäftslogik.
+Auch hier enthält das Service-Gateway keine Geschäftslogik.
 
 === Umsetzung
 Die Java-Klassen und -Interfaces eines Services existieren in allen Versionen der Service-Schnittstelle und unterscheiden sich inhaltlich
@@ -203,7 +227,7 @@ Kompatible Änderungen sind beispielsweise Bugfixes, neue Operationen in der Sch
 ----
 
 Bei inkompatiblen Änderungen der Schnittstelle wird die zweistellige Versionsnummer angepasst (Major und Minor); diese wird sowohl in der Artefakt-ID als auch in den Paketnamen der Schnittstelle verwendet.
-Inkompatible Änderungen der Schnittstelle sind z.B. das Entfernen von Attributen oder Operationen oder das Hinzufügen von Pflichtfeldern.
+Inkompatible Änderungen der Schnittstelle sind z. B. das Entfernen von Attributen oder Operationen oder das Hinzufügen von Pflichtfeldern.
 
 Bei der Implementierung ist zu beachten, dass die Versionsnummer aus dem Package-Namen auch in die Implementierung übernommen wird.
 
@@ -286,9 +310,9 @@ Unabhängig von der Konfiguration kann es trotz Loadbalancer und Anwendungsclust
 zu einer Nichtverfügbarkeit kommen.
 ====
 
-*Batchläufe:* Wenn lang laufende Batches in Fachanwendungen durchgeführt werden, dürfen in dieser Zeit keine Meldungen gemacht werden.
+*Batchläufe:* Wenn lang laufende Batches in Geschäftsanwendungen durchgeführt werden, dürfen in dieser Zeit keine Meldungen gemacht werden.
 So werden Dateninkonsistenzen vermieden.
-Meldungsaufrufe sind in dieser Zeit nicht verfügbar und werden von der Fachanwendung nicht beantwortet.
+Meldungsaufrufe sind in dieser Zeit nicht verfügbar und werden von der Geschäftsanwendung nicht beantwortet.
 
 [[retries-loadbalancer]]
 *Retries des Loadbalancers:* Tritt ein Ausfall von Hard- oder Software auf (siehe _Ausfall von Hard- oder Software_ oben), bekommt der Loadbalancer beim Weiterleiten einer Anfrage an einen ausgefallenen Knoten ein Timeout.
@@ -372,7 +396,7 @@ In einem solchen Fall führt eine Aufrufwiederholung zu einer erhöhten Last auf
 ====
 In Anbetracht der potenziellen Probleme der Aufrufwiederholung und der Tatsache, dass eine Aufrufwiederholung nur für idempotente Service-Operationen überhaupt zulässig ist, sollte von einer automatischen Aufrufwiederholung als Maßnahme zur Erhöhung der Verfügbarkeit in der Regel abgesehen werden.
 
-Ausgenommen davon sind Aufrufe, bei denen nur Daten gelesen werden, wie z.B. Suchen im Suchverfahren oder Abfragen von Verzeichnissen wie Schlüsselverzeichnis, Benutzerverzeichnis oder Behördenverzeichnis.
+Ausgenommen davon sind Aufrufe, bei denen nur Daten gelesen werden, wie z. B. Suchen im Suchverfahren oder Abfragen von Verzeichnissen wie Schlüsselverzeichnis, Benutzerverzeichnis oder Behördenverzeichnis.
 
 Hierfür soll grundsätzlich eine Aufrufwiederholung durchgeführt werden.
 Diese ist sinnvoll über die folgenden Parameter konfigurierbar:
@@ -386,8 +410,8 @@ Die Parameter sind Bestandteil der betrieblichen Konfiguration (s. <<KonzeptKonf
 
 ==== Deaktivierung von Services
 
-Aufgrund von Wartungsaktivitäten oder Batches (z.B. einer Datenmigration) in einer Fachanwendung kann es vorkommen, dass der Meldungsservice einer Fachanwendung vorübergehend deaktiviert wird.
-Andere Services wie z.B. eine Auskunft können während dieser Zeit regulär ausgeführt werden.
+Aufgrund von Wartungsaktivitäten oder Batches (z. B. einer Datenmigration) in einer Fachanwendung kann es vorkommen, dass der Meldungsservice einer Fachanwendung vorübergehend deaktiviert wird.
+Andere Services wie z. B. eine Auskunft können während dieser Zeit regulär ausgeführt werden.
 Während der Meldungsservice deaktiviert ist, wird dem Aufrufer eine entsprechende Fehlermeldung zurückgesendet.
 Da die Anforderung besteht, auch andere Services vorübergehend deaktivieren zu können, werden generell alle Services deaktivierbar gemacht.
 // end::inhalt[]

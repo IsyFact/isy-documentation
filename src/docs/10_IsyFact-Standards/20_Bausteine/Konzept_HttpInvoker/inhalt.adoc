@@ -1,5 +1,6 @@
 = Konzept HTTP Invoker: Inhalt
-include::{isy-dokumentvorlagen}/docs/common/isyfact-attributes.adoc[]
+
+:imagesdir: images
 
 // tag::inhalt[]
 [[kommunikation-mit-http-invoker]]
@@ -13,13 +14,11 @@ Asynchrone Kommunikation ist von HTTP Invoker nicht vorgesehen und wird im Weite
 
 Um eine möglichst lose Kopplung der IT-Systeme zu erreichen, werden folgende Festlegungen getroffen:
 
-* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht:*
-Es wird stets eine explizite Schnittstellen-Bean (Remote-Bean) als HTTP Invoker Schnittstelle implementiert.
-* *Es werden keine Datenbank-Entitäten verfügbar gemacht:*
-Jegliche über HTTP Invoker zu transportierende Objekte sind Transportobjekte.
+* *Es werden keine Komponenten des Anwendungskerns extern verfügbar gemacht:* Es wird stets eine explizite Schnittstellen-Bean (Remote-Bean) als HTTP Invoker Schnittstelle implementiert.
+* *Es werden keine Datenbank-Entitäten verfügbar gemacht:* Jegliche über HTTP Invoker zu transportierende Objekte sind Transportobjekte.
 * *Es werden keine Exceptions des Anwendungskerns geworfen:* Stattdessen werden möglichst grobe Exceptions geworfen, welche nur von der Service-Schnittstelle verwendet werden.
 
-IT-Systeme definieren für ihre HTTP Invoker Schnittstellen u.a. das Remote-Bean, alle direkt und indirekt verwendeten Transportobjekte sowie alle über die Schnittstelle transportierten Exceptions.
+IT-Systeme definieren für ihre HTTP Invoker Schnittstellen u. a. das Remote-Bean, alle direkt und indirekt verwendeten Transportobjekte sowie alle über die Schnittstelle transportierten Exceptions.
 Es stellt diesen Teil der HTTP Invoker Schnittstelle als Bibliothek anderen IT-Systemen zur Verfügung, sodass diese die Schnittstelle aufrufen können.
 Es ergibt sich so folgendes Szenario für einen Aufruf einer HTTP Invoker Schnittstelle (siehe <<image-KapsCallInvoke>>).
 
@@ -28,11 +27,18 @@ Es ergibt sich so folgendes Szenario für einen Aufruf einer HTTP Invoker Schnit
 .{desc-image-KapsCallInvoke}
 image::KapsCallInvoke.png[align="center",width=90%,pdfwidth=90%]
 
+[[kompatibilitaet-zu-weiteren-iam-systemen]]
+=== Kompatibilität zu OAuth 2
+
+Um die Kompatibilität zu OAuth 2 (siehe <<KonzeptSicherheit>>) zu gewährleisten, wird das Bearer Token von allen HTTP Invoker Schnittstellen verarbeitet und weitergeleitet.
+Das Bearer Token wird dabei im `AufrufkontextVerwalter` abgelegt und ist so jeder Methode des Remote-Beans zugänglich (siehe <<aufbau-des-remote-beans>>).
+Die Weiterleitung des Bearer Tokens erfolgt über einen HTTP-Header und ist so für existierende Schnittstellen transparent.
 
 [[aufbau-der-service-logik]]
 == Aufbau der Service-Logik
 
-Die Service-Logik besteht, wie im <<DetailkonzeptKomponenteService>> beschrieben, aus einem Remote-Bean, einer Exception-Fassade und einer Service-Fassade pro Service. Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
+Die Service-Logik besteht, wie im <<DetailkonzeptKomponenteService>> beschrieben, aus einem Remote-Bean, einer Exception-Fassade und einer Service-Fassade pro Service.
+Der Aufbau der Service-Logik ist in <<image-AufbauServLogik>> dargestellt.
 
 :desc-image-AufbauServLogik: Aufbau der Service-Logik mit HTTP Invoker
 [id="image-AufbauServLogik",reftext="{figure-caption} {counter:figures}"]
@@ -41,13 +47,14 @@ image::AufbauServLogik.png[align="center",width=80%,pdfwidth=80%]
 
 Im Wesentlichen besteht die Service-Logik also aus drei Klassen, die im Folgenden näher beleuchtet werden.
 
+[[aufbau-des-remote-beans]]
 === Aufbau des Remote-Beans
 
 Als Remote-Bean wird das Java-Interface bezeichnet, welches die Service-Schnittstelle definiert.
 Es definiert mittels der passenden Spring-Konfiguration im IT-System eine HTTP Invoker Schnittstelle.
 
 Jeder Methode des Remote-Beans wird als erster Parameter das Transportobjekt des Aufrufkontextes übergeben.
-Der Aufrufkontext sorgt dafür, dass jeder Methode des Remote-Beans die Login-Daten (Benutzer, Behörde, ...), die Rollen und die Korrelations-ID zur Verfügung stehen.
+Der Aufrufkontext sorgt dafür, dass jeder Methode des Remote-Beans die Login-Daten (Benutzer, Behörde, …), die Rollen und die Korrelations-ID zur Verfügung stehen.
 
 === Aufbau der Exception-Fassade
 
@@ -78,7 +85,8 @@ IT-Systeme teilen sich folgende Java-Klassen der HTTP Invoker Schnittstelle:
 * Java-Klassen der Transportobjekte,
 * Java-Klassen der Transport-Exceptions.
 
-Diese Klassen werden üblicherweise in einer kleinen Bibliothek pro Service bereitgestellt.
+Diese Klassen werden üblicherweise in einer Bibliothek pro Service bereitgestellt, deren Benennung in
+<<IsyFactNamenskonventionen, Namenskonvention>> im Abschnitt der Paketierung als Bibliothek spezifiziert wird.
 
 Durch diese enge Kopplung zwischen mehreren IT-Systemen spielt die Java-Version, mit der die Schnittstellen-Bibliotheken kompiliert wurden, eine zentrale Rolle.
 Sie darf nicht neuer sein als die Java-Version aller beteiligter IT-Systeme.
@@ -90,10 +98,46 @@ Es wird daher empfohlen, Schnittstellen mit der ältesten Java-Version zu kompil
 Eine HTTP Invoker Schnittstelle vereint mehrere Service-Methoden in einem Remote-Bean.
 Für die Versionierung bedeutet das, dass stets die komplette Remote-Bean-Schnittstelle versioniert wird und nicht die einzelnen Methoden der Remote-Bean-Schnittstelle.
 
-
 [[namenskonventionen]]
 == Namenskonventionen
+Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich nach folgendem Schema aufgebaut sein.
 
-Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich aufgebaut sein.
-Hierzu werden im Dokument <<IsyFactNamenskonventionen>> einheitliche Vorgaben definiert.
+// tag::namenskonvention[]
+:desc-table-ssurl1: Schnittstellen: URL
+[id="table-ssurl1",reftext="{table-caption} {counter:tables}"]
+.{desc-table-ssurl1}
+[cols="1,4",options="header"]
+|====
+2+|{desc-table-ssurl1}
+|*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
+|*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
+$$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
+|*Variable*        | *Mögliche Ausprägungen*
+m|<Hostname>       | Der Hostname des Servers
+m|<Anwendungsname> | Der Name der Anwendung.
+Siehe Kapitel <<namen-von-anwendungssystemen>>. Wenn es sich um eine Querschnittskomponente handelt, muss dieser mit dem Präfix „isy-“ beginnen.
+m|<Servicename>    | Der Name des Services.
+m|<Version>       a| Die Versionsnummer des Service, die zweielementig und aufsteigend vergeben wird.
+Hierbei wird sich am Schema Major- und Minor-Level orientiert. Beispiele:
+
+* 1_0
+* 12_7
+|====
+
+[[transportobjekte]]
+=== Transportobjekte
+
+:desc-table-classnamtransobj: Klassennamen Transportobjekte
+[id="table-classnamtransobj",reftext="{table-caption} {counter:tables}"]
+.{desc-table-classnamtransobj}
+[cols="1,4",options="header"]
+|====
+2+|Klassennamen Transportobjekte
+|*Schema* m|<Entitaetsname>To
+|*Beispiele* m|AkteTo +
+InformationenXyzTo
+|====
+
+// end::namenskonvention[]
+
 // end::inhalt[]

@@ -16,14 +16,14 @@ Im Folgenden wird beschrieben, was die Idee hinter der IsyFact ist und welche in
 [[die-idee-der-isyfact]]
 ==== Die Idee der IsyFact
 
-Beschäftigt man sich mit dem Entwurf und der Implementierung von Anwendungslandschaften, so stellt man fest, dass sich die einzelnen <<glossar-Fachanwendung,Fachanwendungen>> im Allgemeinen sehr ähnlich sind.
+Beschäftigt man sich mit dem Entwurf und der Implementierung von Anwendungslandschaften, so stellt man fest, dass sich die einzelnen <<glossar-Geschaeftsanwendung,Geschäftsanwendungen>> im Allgemeinen sehr ähnlich sind.
 Viele Problemstellungen müssen nur einmal gelöst werden und können dann wiederverwendet werden.
 
-Die IsyFact wurde entwickelt, um unterschiedliche Fachanwendungen effizient entwerfen, realisieren und betreiben zu können.
-Sie umfasst Konzepte, Software-Bausteine, eine Betriebsplattform, Werkzeuge und eine Methodik, auf deren Basis Fachanwendungen schneller, preiswerter und sicherer umgesetzt werden können.
+Die IsyFact wurde entwickelt, um unterschiedliche Geschäftsanwendungen effizient entwerfen, realisieren und betreiben zu können.
+Sie umfasst Konzepte, Software-Bausteine, eine Betriebsplattform, Werkzeuge und eine Methodik, auf deren Basis Geschäftsanwendungen schneller, preiswerter und sicherer umgesetzt werden können.
 Der Begriff Factory steht für die schnelle Erzeugung neuer Anwendungen durch Anpassung und Ausgestaltung vorgefertigter Elemente, die in eine standardisierte Plattform integriert werden können.
 
-Die Vorteile des IsyFact-Ansatzes sind vielfältig: Die zügige und effiziente Einrichtung neuer Fachanwendungen erhöht die Wirtschaftlichkeit.
+Die Vorteile des IsyFact-Ansatzes sind vielfältig: Die zügige und effiziente Einrichtung neuer Geschäftsanwendungen erhöht die Wirtschaftlichkeit.
 Durch Homogenisierung der Anwendungslandschaft werden Administration und Wartung vereinfacht.
 Weitere Vorteile sind höhere Sicherheit und Softwarequalität durch Einsatz erprobter Komponenten und Dienste sowie mehr Nachhaltigkeit durch eine zukunftssichere, weitgehend herstellerneutrale Software-Architektur und Plattform.
 
@@ -33,14 +33,14 @@ Weitere Vorteile sind höhere Sicherheit und Softwarequalität durch Einsatz erp
 :desc-image-IFBereiche: Durch die IsyFact abgedeckte Bereiche
 [id="image-IFBereiche",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFBereiche}
-image::IFBereiche.png[align="center",pdfwidth=70%,width=70%]
+image::../../common/images/IFBereiche.png[align="center",pdfwidth=45%,width=45%]
 
-Die IsyFact bietet standardisierte Lösungen zu wichtigen Themen beim Bau von Fachanwendungen.
-Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Besonderheiten seiner Fachanwendung konzentrieren.
+Die IsyFact bietet standardisierte Lösungen zu wichtigen Themen beim Bau von Geschäftsanwendungen.
+Der Entwickler kann sich dadurch ganz auf die strukturellen und operativen Besonderheiten seiner Geschäftsanwendung konzentrieren.
 
 Die Lösungen decken fünf Bereiche ab: Blaupausen, Bausteine, Betriebsplattform, Methodik und Werkzeuge.
 
-*Blaupausen:* <<glossar-Blaupause,Blaupausen>> beschreiben die vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Fachanwendungen aus drei verschiedenen Sichten: der fachlichen Sicht, der Sicht der softwaretechnischen Umsetzung und der Sicht der technischen Infrastruktur.
+*Blaupausen:* <<glossar-Blaupause,Blaupausen>> beschreiben die vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen aus drei verschiedenen Sichten: der fachlichen Sicht, der Sicht der softwaretechnischen Umsetzung und der Sicht der technischen Infrastruktur.
 
 *Bausteine:* <<glossar-Baustein,Bausteine>> sind konkrete, strukturierte Lösungen zur Umsetzung der in den Blaupausen beschriebenen Architektur und Konzepte.
 Bausteine sind wieder verwendbare Softwarelösungen, z.B. ein Regelwerk für fachliche Konsistenzprüfungen oder Komponenten zur Protokollierung.
@@ -48,16 +48,16 @@ Diese Bausteine liegen in unterschiedlichen Formen vor: Es gibt fachliche und te
 Dazu gehören auch am Markt verfügbare Fertigprodukte, für die detaillierte Nutzungsvorgaben erstellt wurden.
 
 *Betriebsplattform:* Die <<glossar-Plattform>> definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von Anwendungslandschaften, die sich aus der Verwendung der IsyFact ergeben.
-Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben. 
+Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 Die Betriebsplattform besteht aus Hardware und Netzen sowie der benötigten Middleware mit Anwendungsserver oder Datenbankserver und ist hochverfügbar.
-Diese Plattform ist über alle Fachanwendungen einheitlich und ermöglicht so einen standardisierten und effizienten Systembetrieb.
+Diese Plattform ist über alle Geschäftsanwendungen einheitlich und ermöglicht so einen standardisierten und effizienten Systembetrieb.
 
-*Methodik:* Im Rahmen einer Software-Factory bildet die <<glossar-Methodik>> die Grundlage für die Umsetzung von Fachanwendungen. 
+*Methodik:* Im Rahmen einer Software-Factory bildet die <<glossar-Methodik>> die Grundlage für die Umsetzung von Geschäftsanwendungen.
 Die Methodik der IsyFact bietet verschiedene Vorschläge zu allen Phasen des Software-Entwicklungsprozesses, wie z. B. Vorlagen für die Spezifikation oder die Programmierung.
-Das Projektvorgehen selbst ist konform zum V-Modell®-XT.
+Dieses Dokument ist V-Modell®-XT konform.
 
 *Werkzeuge:* Die IsyFact setzt auf Automatisierung und Werkzeugunterstützung bei der Erstellung von Registern.
-Dazu bietet sie vorkonfigurierte <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
+Dazu bietet sie Konfigurationsanleitungen ausgewählter <<glossar-Werkzeug,Werkzeuge>>, z. B. für die Modellierung, die Programmierung, Tests oder die Fehlerverfolgung.
 
 [[einordnung-der-referenzarchitektur-in-die-isyfact]]
 === Einordnung der Referenzarchitektur in die IsyFact
@@ -106,9 +106,9 @@ Durch die infrastrukturelle und betriebliche Gleichartigkeit der Anwendungssyste
 Die Risiken für Ausfälle, Fehler oder Sicherheitslücken wird hierdurch reduziert und die Zukunftssicherheit der Anwendungssysteme erhöht.
 
 *Erfahrung:* In die Definition der Referenzarchitektur sind wertvolle Erfahrungen zur Umsetzung großer und verteilter Softwaresysteme im Allgemeinen und Registern im Speziellen eingeflossen.
-Diverse Fachanwendungen wurden mit der Referenzarchitektur umgesetzt und die Referenzarchitektur kontinuierlich verbessert.
+Diverse Geschäftsanwendungen wurden mit der Referenzarchitektur umgesetzt und die Referenzarchitektur kontinuierlich verbessert.
 Durch die Verwendung der Referenzarchitektur wird diese Erfahrung nutzbar gemacht.
-Die mit dieser Referenzarchitektur erstellten Fachanwendungen sind hierdurch äußerst effizient umsetzbar, wartbar, betreibbar und zukunftssicher.
+Die mit dieser Referenzarchitektur erstellten Geschäftsanwendungen sind hierdurch äußerst effizient umsetzbar, wartbar, betreibbar und zukunftssicher.
 
 *Standards:* Durch die Referenzarchitektur werden Standards wie SAGA, V-Modell XT, XML / XÖV oder Webservices genutzt.
 
@@ -117,11 +117,11 @@ Die mit dieser Referenzarchitektur erstellten Fachanwendungen sind hierdurch äu
 
 Die IsyFact-Referenzarchitektur hat das Ziel, eine möglichst große Bandbreite von Systemen abzudecken.
 Daher trifft sie zunächst kaum Annahmen über die Struktur der Systemlandschaft oder die Art der darin enthaltenen Systeme.
-Auf einer allgemeinen Ebene unterscheidet die IsyFact-Referenzarchitektur lediglich zwischen Fachanwendungen, welche die Geschäftsprozesse innerhalb der Systemlandschaft implementieren einerseits, und andererseits den Querschnittssystemen, Service-Gateways und dem Portal, die als unterstützende Systeme wesentliche Strukturkonzepte der IsyFact umsetzen.
+Auf einer allgemeinen Ebene unterscheidet die IsyFact-Referenzarchitektur lediglich zwischen Geschäftsanwendungen, welche die Geschäftsprozesse innerhalb der Systemlandschaft implementieren einerseits, und andererseits den Querschnittssystemen, Service-Gateways und dem Portal, die als unterstützende Systeme wesentliche Strukturkonzepte der IsyFact umsetzen.
 
 In einem spezifischen <<glossar-Anwendungskontext>> wird man in der Regel jedoch viel weitergehende Festlegungen innerhalb der Anwendungs-Architektur treffen, die die Fachlichkeit des Kontexts abbilden.
 Diese kontextspezifischen Festlegungen werden in einem eigenen _Tailoring-Dokument_ <<TailoringVorlage>> festgehalten, das beschreibt, wie die IsyFact im betreffenden Anwendungskontext einzusetzen ist.
-Insbesondere enthält das Tailoring-Dokument die Arten von Fachanwendungen und ihre Beziehungen untereinander.
+Insbesondere enthält das Tailoring-Dokument die Arten von Geschäftsanwendungen und ihre Beziehungen untereinander.
 
 Gemeinsam mit dem vorliegenden Dokument definiert das Tailoring Dokument die Referenzarchitektur für eine spezifische Fachlichkeit in einem Anwendungskontexts (Kontext-Fachlichkeit). Dadurch ist es möglich, die Software-Architektur und die Architektur der technischen Infrastruktur in unterschiedlichen Kontexten zu verwenden und auf eine spezifische Fachlichkeit anzupassen.
 Dies ist in <<image-AnptRAafK>> dargestellt.
@@ -143,12 +143,12 @@ Hier kann schnell der Überblick verloren gehen, sodass Prinzipien zur Strukturi
 Die Menge aller Anwendungssysteme einer Organisation und deren Nutzungsbeziehungen untereinander bilden eine Anwendungslandschaft.
 Die fachliche Architektur einer Anwendungslandschaft gibt hier die Strukturierung aus fachlicher Sicht vor und legt fest, wie Anwendungssysteme in die Anwendungslandschaft integriert werden.
 
-Diese fachliche Architektur einer Anwendungslandschaft ist in <<image-FA-AW2>> dargestellt.
+Diese fachliche Architektur einer Anwendungslandschaft ist in <<image-GA-AW2>> dargestellt.
 
-:desc-image-FA-AW2: Fachliche Architektur einer Anwendungslandschaft
-[id="image-FA-AW2",reftext="{figure-caption} {counter:figures}"]
-.{desc-image-FA-AW2}
-image::FA-AW.png[align="center"]
+:desc-image-GA-AW2: Fachliche Architektur einer Anwendungslandschaft
+[id="image-GA-AW2",reftext="{figure-caption} {counter:figures}"]
+.{desc-image-GA-AW2}
+image::GA-AW.png[align="center"]
 
 [[die-strukturierung-der-anwendungslandschaft]]
 === Die Strukturierung der Anwendungslandschaft
@@ -157,7 +157,7 @@ Zur Strukturierung der <<glossar-Anwendungslandschaft>> werden drei fachliche Hi
 
 *<<glossar-Anwendungsdomaene,Anwendungsdomaene>>:* Auf der obersten Hierarchieebene werden Anwendungsdomänen gebildet: Anwendungsdomänen sind fachlich eng zusammengehörige Mengen von Anwendungssystemen
 zur Unterstützung von Geschäftsprozessen, die als eine Einheit angesehen werden können.
-In <<image-FA-AW2>> wurden zwei Domänen gebildet, erkennbar an den unteren schwarzen Kästen mit der Beschriftung „Domäne“.
+In <<image-GA-AW2>> wurden zwei Domänen gebildet, erkennbar an den unteren schwarzen Kästen mit der Beschriftung „Domäne“.
 
 Zwischen den Anwendungssystemen unterschiedlicher Anwendungsdomänen sollten nur wenige, klar definierte Nutzungsbeziehungen existieren.
 
@@ -165,49 +165,48 @@ Zwischen den Anwendungssystemen unterschiedlicher Anwendungsdomänen sollten nur
 Geschäftsprozesse werden durch Anwendungssysteme unterstützt.
 Anwendungssysteme sind einer Anwendungsdomäne zugeordnet.
 Anwendungssysteme setzen sich aus Anwendungskomponenten zusammen.
-Im Rahmen der allgemeinen Referenzarchitektur werden zunächst nur Fachanwendungen und Querschnittssysteme als Typen von Anwendungssystemen unterschieden Eine weitergehende Unterscheidung der Fachanwendungen muss im Rahmen des Tailorings der Referenzarchitektur erfolgen.
+Im Rahmen der allgemeinen Referenzarchitektur werden zunächst nur Geschäftsanwendungen und Querschnittssysteme als Typen von Anwendungssystemen unterschieden Eine weitergehende Unterscheidung der Geschäftsanwendungen muss im Rahmen des Tailorings der Referenzarchitektur erfolgen.
 
-* *<<glossar-Fachanwendung,Fachanwendungen>>:* Eine Fachanwendung implementiert für sich genommen oder im Zusammenspiel mit anderen Fachanwendungen einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne.
+* *<<glossar-Geschaeftsanwendung,Geschäftsanwendungen>>:* Eine Geschäftsanwendung implementiert für sich genommen oder im Zusammenspiel mit anderen Geschäftsanwendungen einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne.
 Sie implementiert entweder die gesamte hierfür notwendige Funktionalität (monolithisch), von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Oder die Fachanwendung implementiert nur einen Teilbereich der Funktionalität und greift für den Rest über Schnittstellen auf benachbarte Fachanwendungen zu.
+Oder die Geschäftsanwendung implementiert nur einen Teilbereich der Funktionalität und greift für den Rest über Schnittstellen auf benachbarte Geschäftsanwendungen zu.
 
-* *<<glossar-Querschnittssystem,Querschnittssysteme>>* sind Anwendungssysteme, die Basisdienste für mehrere Fachanwendungen bereitstellen, wie z. B. ein Behördenverzeichnis oder ein Outputmanagement.
+* *<<glossar-Querschnittssystem,Querschnittssysteme>>* sind Anwendungssysteme, die Basisdienste für mehrere Geschäftsanwendungen bereitstellen, wie z. B. ein Behördenverzeichnis oder ein Outputmanagement.
 
 *<<glossar-Anwendungskomponente,Anwendungskomponenten>>:* Eine Anwendungskomponente beschreibt eine Menge funktional zusammenhängender Anwendungsfälle.
 Anwendungskomponenten sind Bestandteile von Anwendungs­systemen.
 Im Rahmen weitergehender Architekturvorgaben beim Einsatz der IsyFact in einem konkreten Anwendungskontext wird man in der Regel auch vorgeben, welche Arten von Anwendungssystemen es in diesem Kontext geben soll und aus welchen Komponenten sie bestehen.
 
-In <<image-FA-AW2>> werden Anwendungskomponenten nicht dargestellt: Sie wären die Bestandteile der blauen und gelben Kästen.
+In <<image-GA-AW2>> werden Anwendungskomponenten nicht dargestellt: Sie wären die Bestandteile der blauen und gelben Kästen.
 
 [[fachliche-referenzarchitekturen-für-anwendungssysteme]]
 === Fachliche Referenzarchitekturen für Anwendungssysteme
 
 Die fachliche Referenzarchitektur muss beim Einsatz der IsyFact innerhalb des jeweiligen Anwendungskontexts definiert werden.
-Die IsyFact dient hier als allgemeiner technischer und konzeptioneller Rahmen und macht keine Vorgaben über die Arten von Anwendungssystemen, die in einem bestimmten Kontext vorkommen.
+Die IsyFact dient hier als allgemeiner konzeptioneller Rahmen und macht keine Vorgaben über die Arten von Anwendungssystemen, die in einem bestimmten Kontext vorkommen.
 
 Als Teil der fachlichen Architektur ist unter anderem folgendes zu definieren:
 
-* Die verschiedenen Arten von Fachanwendungen, die es innerhalb des Anwendungskontexts geben soll.
+* Die verschiedenen Arten von Geschäftsanwendungen, die es innerhalb des Anwendungskontexts geben soll.
 
-* Die Aufgaben und Verantwortlichkeiten der einzelnen Arten von Fachanwendungen.
+* Die Aufgaben und Verantwortlichkeiten der einzelnen Arten von Geschäftsanwendungen.
 
-* Der daraus resultierende interne Aufbau der Fachanwendungen aus Komponenten.
+* Der daraus resultierende interne Aufbau der Geschäftsanwendungen aus Komponenten.
 
-* Die Interaktion und die Abhängigkeiten zwischen den Fachanwendungen, insbesondere die zulässigen Kommunikations-Beziehungen.
+* Die Interaktion und die Abhängigkeiten zwischen den Geschäftsanwendungen, insbesondere die zulässigen Kommunikations-Beziehungen.
 
 [[die-software-referenzarchitektur]]
 == Die Software-Referenzarchitektur
 
 Eine Software-Architektur beschreibt, wie die in einer fachlichen Architektur definierten Elemente (Anwendungssysteme, Anwendungskomponenten, fachliche Entitäten, Anwendungsfälle etc.) software-technisch in Form von IT-Systemen, Komponenten, Klassen, physischen Datenmodellen etc. umgesetzt werden.
 
-Die Besonderheit der Software-Referenzarchitektur ist, dass sie nicht zwischen Systemarten (Fachanwendungen, Querschnittssystemen, usw.) unterscheidet.
+Die Besonderheit der Software-Referenzarchitektur ist, dass sie nicht zwischen Systemarten (Geschäftsanwendungen, Querschnittssystemen, usw.) unterscheidet.
 Obwohl unterschiedliche Systeme sehr unterschiedliche Fachlichkeiten umsetzen können, sind die Anforderungen an ihre technische Architektur gleich.
 
 Der Begriff der Anwendungslandschaft ist fachlich motiviert.
 Die technische Entsprechung hierfür ist der Begriff der <<glossar-Systemlandschaft>>.
 Eine Systemlandschaft, die eine Anwendungslandschaft nach den IsyFact-Standards umsetzt, wird im Folgenden als _IsyFact-Systemlandschaft_ bezeichnet.
-Eine solche IsyFact-Systemlandschaft beinhaltet alle software-technisch umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z. B. Datenbanken, Web-Server, usw.). 
-Sie wird auf einer technischen Infrastruktur betrieben und bildet einen in sich geschlossenen Sicherheitsbereich.
+Eine solche IsyFact-Systemlandschaft beinhaltet alle software-technisch umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z. B. Datenbanken, Web-Server, usw.).
 
 Die technische Architektur eines IT-Systems wird in <<IsyFactReferenzarchitekturITSystem>> definiert.
 Im Folgenden wird, aufbauend auf diesem Konzept, beschrieben:
@@ -218,7 +217,7 @@ Im Folgenden wird, aufbauend auf diesem Konzept, beschrieben:
 [[strukturierung-der-systemlandschaft]]
 === Strukturierung der Systemlandschaft
 
-Wichtige Grundlagen für die Software-Referenzarchitektur sind die Schnittstellen und Aufruf-Beziehungen der IT-Systeme vom Typ _Fachanwendung_,
+Wichtige Grundlagen für die Software-Referenzarchitektur sind die Schnittstellen und Aufruf-Beziehungen der IT-Systeme vom Typ _Geschäftsanwendung_,
 _Querschnittssystem_ sowie _Portal_ und _Service-Gateway_.
 Aufruf-Beziehungen werden stets unterschieden in _interne Aufrufe_, in welchen ein IT-System einer IsyFact-Systemlandschaft mit einem anderen
 IT-System derselben IsyFact-Systemlandschaft kommuniziert, und _externe Aufrufe_, in welchen ein IT-System der IsyFact-Systemlandschaft mit einem
@@ -238,37 +237,33 @@ Es kapselt die Webservice-Technologie vor den internen Systemen.
 
 Ein Service-Gateway-System besitzt weder eine eigene Datenhaltung noch eigene Fachlichkeit.
 
-*Die <<glossar-Fachanwendung>>*: Eine Fachanwendung implementiert allgemein die Geschäftsprozesse einer Domäne.
-Fachanwendungen können monolithisch strukturiert sein und alle Schichten der Software-Architektur umfassen, von der Benutzeroberfläche über Prozesse und <<glossar-Geschaeftslogik>> bis hin zur Datenspeicherung.
-Sie können aber auch jeweils nur Teile davon implementieren, sodass z.B. eine Fachanwendung eine GUI bereitstellt, eine weitere die Fachlogik implementiert und eine dritte schließlich die Persistierung der Daten realisiert.
-In diesem Fall würde die Gesamtfunktionalität durch das Zusammenwirken der drei Fachanwendungen erbracht.
+*Die <<glossar-Geschaeftsanwendung>>*: Eine Geschäftsanwendung implementiert allgemein die Geschäftsprozesse einer Domäne.
+Geschäftsanwendungen können monolithisch strukturiert sein und alle Schichten der Software-Architektur umfassen, von der Benutzeroberfläche über Prozesse und <<glossar-Geschaeftslogik>> bis hin zur Datenspeicherung.
+Sie können aber auch jeweils nur Teile davon implementieren, sodass z.B. eine Geschäftsanwendung eine GUI bereitstellt, eine weitere die Fachlogik implementiert und eine dritte schließlich die Persistierung der Daten realisiert.
+In diesem Fall würde die Gesamtfunktionalität durch das Zusammenwirken der drei Geschäftsanwendungen erbracht.
 
-Die Fachanwendungen einer IsyFact-Systemlandschaft können sich intern gegenseitig über ihre Service-Schnittstellen aufrufen.
-In einem konkreten Anwendungskontext einer IsyFact-Systemlandschaft wird man in der Regel die Arten von Fachanwendungen noch genauer definieren und dabei auch die möglichen Aufrufbeziehungen zwischen ihnen geeignet einschränken.
+Die Geschäftsanwendungen einer IsyFact-Systemlandschaft können sich intern gegenseitig über ihre Service-Schnittstellen aufrufen.
+In einem konkreten Anwendungskontext einer IsyFact-Systemlandschaft wird man in der Regel die Arten von Geschäftsanwendungen noch genauer definieren und dabei auch die möglichen Aufrufbeziehungen zwischen ihnen geeignet einschränken.
 
-Für die Kommunikation mit externen Systemen muss eine Fachanwendung ein Service-Gateway-System verwenden, egal in welche Richtung die Kommunikation verläuft.
+Für die Kommunikation mit externen Systemen muss eine Geschäftsanwendung ein Service-Gateway-System verwenden, egal in welche Richtung die Kommunikation verläuft.
 
-Fachanwendungen, die eine Benutzeroberfläche bereitstellen, dürfen aus Sicherheitsgründen nicht direkt vom Benutzer aufgerufen werden, sondern werden in das _Portal_ (siehe unten) der IsyFact-Systemlandschaft eingebunden.
+Geschäftsanwendungen, die eine Benutzeroberfläche bereitstellen, dürfen aus Sicherheitsgründen nicht direkt vom Benutzer aufgerufen werden, sondern werden in das _Portal_ (siehe unten) der IsyFact-Systemlandschaft eingebunden.
 Die Kommunikation mit dem Browser des Nutzers muss immer über das Portal erfolgen.
 
 *Das <<glossar-Portal>>:* Die Referenzarchitektur sieht keinen Portal-Server im klassischen Sinne vor: Es gibt weder einen systemübergreifenden Rahmen noch eine systemübergreifende Navigation.
 
 Ein Portal im Sinne der Referenzarchitektur besteht aus:
 
-* Einem Web-Server-Cluster, der Aufrufe entgegennimmt und an die Application-Server der Fachanwendungen weiterleitet.
-* Einem Loadbalancer, der die Lastverteilung im Web-Server-Cluster vornimmt und die SSL-Verbindung terminiert.
-* Einem Access-Manager, über den ein Single-Sign-On realisiert wird und in dem pro URL (und damit pro Fachanwendung) konfiguriert ist, welche Berechtigungen für die Nutzung der Anwendung vorhanden sein müssen.
-  Innerhalb dieses Systems werden die Authentifizierung, die Prüfung der Sitzungszertifikate und eine grundlegende Autorisierung vorgenommen.
-* Einer zentralen Startseite, welche den eingeloggten Benutzern die Fachanwendungen der Anwendungslandschaft, für welche sie berechtigt sind, präsentiert.
+* Einem Web-Server-Cluster, der Aufrufe entgegennimmt und an die Application-Server der Geschäftsanwendungen weiterleitet.
+* Einer zentralen Startseite, welche den eingeloggten Benutzern die Geschäftsanwendungen der Anwendungslandschaft, für welche sie berechtigt sind, präsentiert.
 
-Ein Portal wird somit nicht über ein eigens dafür implementiertes Programm, sondern über konfigurierte Software-Produkte umgesetzt.
-Der Zweck eines Portals ist die gemeinsame Authentifizierung und Autorisierung für alle Fachanwendungen und die Indirektion des Zugriffs von Nutzern auf die Geschäftsanwendungen.
+Der Zweck eines Portals ist die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen und die Indirektion des Zugriffs von Nutzern auf die Geschäftsanwendungen.
 
-*Das <<glossar-Querschnittssystem>>:* Ein Querschnittssystem bietet Fachanwendungen querschnittlich genutzte Funktionalitäten an, etwa für die Bereitstellung von Schlüsseldaten.
+*Das <<glossar-Querschnittssystem>>:* Ein Querschnittssystem bietet Geschäftsanwendungen querschnittlich genutzte Funktionalitäten an, etwa für die Bereitstellung von Schlüsseldaten.
 Querschnittssysteme können eine eigene Datenhaltung besitzen.
 
-Querschnittssysteme werden nicht direkt von Benutzern oder externen Systemen außerhalb der IsyFact-Systemlandschaft aufgerufen und rufen selbst nicht direkt externe Systeme auf.
-Ausnahmen hiervon sind Querschnittsysteme wie das Outputmanagement das z.B. zur Versendung von externen E-Mails einen Mailserver nutzt oder zur Versendung von Faxen einen Fax-Server.
+Querschnittsysteme werden nur von internen Benutzern oder anderen IT-Systemen derselben Systemlandschaft aufgerufen. Sie rufen selbst nur andere Querschnittsysteme auf.
+Eine Ausnahme bilden Querschnittsysteme, wie z.B. ein Mailserver für den Versand an externe E-Mail-Empfänger.
 
 [[interne-und-externe-servicekommunikation]]
 === Interne und externe Servicekommunikation
@@ -347,35 +342,37 @@ Nachdem im Dokument <<IsyFactReferenzarchitekturITSystem>> die technische Archit
 Die Nutzungsschicht eines IT-Systems bietet anderen IT-Systemen über Services, dem Betrieb über Batches und menschlichen Nutzern über eine GUI Schnittstellen zur Nutzung der implementierten Fachlichkeit an.
 Im Folgenden wird ein Beispiel-Szenario zur Nutzung eines IT-Systems vorgestellt.
 
-Es soll eine Fachanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
+====
+*_Beispiel:_* Es soll eine Geschäftsanwendung erstellt werden, die sowohl manuell über eine Weboberfläche als auch automatisiert über eine SOAP-Schnittstelle nutzbar sein soll.
 
 Für eine zur Architektur konforme Umsetzung dieser Anforderungen müssen verschiedene IT-Systeme umgesetzt werden:
 
-*Die Fachanwendung:* Die Fachanwendung soll in diesem Beispiel die Präsentationslogik, die Geschäftslogik und die Datenhaltung in einem Anwendungssystem realisieren.
+*Die Geschäftsanwendung:* Die Geschäftsanwendung soll in diesem Beispiel die Präsentationslogik, die Geschäftslogik und die Datenhaltung in einem Anwendungssystem realisieren.
 Sie implementiert dazu drei software-architektonische Schichten:
 
 * Die *Präsentationsschicht*, in der die Webseiten der GUI erzeugt und die Eingaben interpretiert werden.
 * Der *Anwendungskern*, in dem die Geschäftslogik abgebildet ist.
 * Die *Persistenzschicht*, in der sowohl die Anwendungsdaten als auch der Zustand der Anwendungssitzung abgespeichert werden.
 
-Zur Implementierung der Geschäftslogik kann die Fachanwendung auch <<glossar-Service,Services>> anderer Fachanwendung aufrufen.
+Zur Implementierung der Geschäftslogik kann die Geschäftsanwendung auch <<glossar-Service,Services>> anderer Geschäftsanwendung aufrufen.
 
 *Das Portal:* Wie in Kapitel <<strukturierung-der-systemlandschaft>> beschrieben, nimmt das Portal die <<glossar-Anwender>>-Aufrufe entgegen und leitet sie an die Geschäftsanwendung weiter.
 
 *Das Service-Gateway-System:* Wie in Kapitel <<strukturierung-der-systemlandschaft>> beschrieben, dient das Service-Gateway-System als Schnittstelle für die Kommunikation mit bzw. der Annahme der Aufrufe von externen Systemen.
 Im vorliegenden Fall wird nur ein Service-Provider benötigt, da nur Aufrufe entgegengenommen werden.
-Diese werden authentifiziert, autorisiert, und an das zugehörige Anwendungssystem weitergeleitet.
+Diese werden authentifiziert, autorisiert, und an das zugehörige IT-System weitergeleitet.
 
-Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten Anwendungssysteme und Aufruf-Beziehungen.
-Die in dieser Abbildung angedeuteten Schichten eines Anwendungssystems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
+Damit ergeben sich die in <<image-CallFAmGuX>> dargestellten IT-Systeme und Aufruf-Beziehungen.
+Die in dieser Abbildung angedeuteten Schichten eines IT-Systems (GUI, Batch, Service, Anwendungskern, Datenzugriff und Querschnitt) werden im Dokument <<IsyFactReferenzarchitekturITSystem>> erläutert.
 Wichtig in Hinblick auf diese Schichten sind folgende Punkte:
 
-* Die Schicht _Batch_ der Fachanwendung wird im Beispiel nicht implementiert, da die Fachanwendung keine Schnittstelle für Batchläufe anbietet.
-* Alle externen Aufrufe an die Fachanwendung werden durch die Schicht _Service_ verarbeitet: Keine andere Schicht darf externe Schnittstellen bereitstellen, insbesondere nicht die Schicht _Anwendungslogik_.
+* Die Komponente _Batch_ der Geschäftsanwendung wird im obigen Beispiel nicht implementiert, da die Geschäftsanwendung keine Schnittstelle für Batchläufe anbietet.
+* Alle externen Aufrufe an die Geschäftsanwendung werden durch eine _Service-Komponente_ verarbeitet: Keine andere Komponente darf externe Schnittstellen bereitstellen, insbesondere nicht in den _Anwendungskern_.
 * Es wurden keine Aufrufe von Querschnittskomponenten eingezeichnet.
-Für derartige Aufrufe gibt es keine Vorgaben: Sie können aus beliebigen Schichten von Fachanwendungen und Service Gateways aus aufgerufen werden.
+Für derartige Aufrufe gibt es keine Vorgaben: Sie können aus beliebigen Schichten von Geschäftsanwendungen und Service Gateways aus aufgerufen werden.
+====
 
-:desc-image-CallFAmGuX: Aufrufbeziehungen für eine Fachanwendung mit GUI und XML-Schnittstelle
+:desc-image-CallFAmGuX: Aufrufbeziehungen für eine Geschäftsanwendung mit GUI und XML-Schnittstelle
 [id="image-CallFAmGuX",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-CallFAmGuX}
 image::CallFAmGuX.png[align="center"]
@@ -400,7 +397,7 @@ Hierzu gehören z.B. das Betriebssystem, Web-Server, Application-Server, Access-
 *Bibliotheken für die Anwendungsentwicklung:* Die Anwendungs­entwicklung wird durch den Einsatz von Frameworks und entsprechenden Bibliotheken vereinfacht und beschleunigt.
 IsyFact verwendet insbesondere Spring, Hibernate und JSF.
 
-Eine detaillierte Liste der verwendbaren Produkte sind im Dokument <<ProduktKatalog>> zu finden.
+Eine detaillierte Liste der verbindlichen und empfohlenen Produkte sind im Dokument <<ProduktKatalog>> zu finden.
 
 [[die-referenzarchitektur-der-technischen-infrastruktur]]
 == Die Referenzarchitektur der technischen Infrastruktur
@@ -582,8 +579,8 @@ Der Aufbau der Produktionsumgebung ist so gestaltet, dass eine Verfügbarkeit vo
 In der Produktionsumgebung einer IsyFact-Systemlandschaft wird die geforderte Verfügbarkeit über das Mittel der Redundanz realisiert.
 Jede Komponente der technischen Infrastruktur ist mindestens zweimal vorhanden.
 Auf einem Rechnersystem können mehrere Instanzen eines Servers (Applikationsserver, Datenbankserver) betrieben werden.
-Bei einem Ausfall einer Komponente kann der Wirkbetrieb immer noch über die andere Komponente abgewickelt werden (Failover). 
-Die Zustandslosigkeit der Applikationsserver (siehe Kapitel <<die-software-referenzarchitektur>>) unterstützt diese Redundanz und das Failover: 
+Bei einem Ausfall einer Komponente kann der Wirkbetrieb immer noch über die andere Komponente abgewickelt werden (Failover).
+Die Zustandslosigkeit der Applikationsserver (siehe Kapitel <<die-software-referenzarchitektur>>) unterstützt diese Redundanz und das Failover:
 Beim Ausfall eines Applikationsservers sind die notwendigen Informationen, um den Betrieb über einen anderen Applikationsserver abzuwickeln, beim Ausfall des Knotens nicht verloren gegangen.
 
 Die Server-Knoten der technischen Infrastruktur sind über verschiedene Standorte, Racks, Enclosures verteilt.
@@ -639,7 +636,7 @@ Alle Komponenten der Betriebsumgebung, das heißt Hardware-Komponenten, System­
 Eine Konfiguration beschreibt die Betriebsumgebung durch die Angabe der Versionen der einzelnen Komponenten zu einem Zeitpunkt.
 Wird an der Betriebsumgebung eine Änderung zum Beispiel durch Austausch einer Hardware-Komponente durchgeführt, dann erhält diese Hardware-Komponente eine neue Versionsnummer.
 Gleichzeitig hat sich die Konfiguration der Betriebsumgebung verändert und wird ebenfalls mit einer neuen Versionsnummer bezeichnet.
-Gleiches gilt, wenn sich zum Beispiel die Parameter eines Anwendungsservers ändern: 
+Gleiches gilt, wenn sich zum Beispiel die Parameter eines Anwendungsservers ändern:
 Eine neue Version der Parameter liegt vor und damit liegt auch eine neue Konfiguration der Betriebsumgebung vor.
 Um nachvollziehen zu können, was sich wann warum geändert hat, ist es empfehlenswert, dass jede Veränderung an der Betriebsumgebung genehmigt und nachvollziehbar dokumentiert wird.
 
@@ -768,7 +765,7 @@ Hier vereinfacht die Referenzarchitektur die Nutzung dieser Services.
 * Nutzung zentraler Datenbestände, z. B. durch ein zentrales Schlüsselverzeichnis.
 * Bessere Handhabbarkeit der einzelnen Anwendungen: Die in den Anwendungen umgesetzte Fachlichkeit ist in der Regel sehr umfangreich.
 Daher bietet die Auflösung in Services ein wichtiges Mittel, um die Komplexität der einzelnen Systeme zu reduzieren und sie somit langfristig wartbar und veränderbar zu halten.
-* Flexibilität und Erweiterungsfähigkeit: Services einer Fachanwendung können durch die serviceorientierte Architektur leicht in andere Fachanwendungen eingebunden werden.
+* Flexibilität und Erweiterungsfähigkeit: Services einer Geschäftsanwendung können durch die serviceorientierte Architektur leicht in andere Geschäftsanwendungen eingebunden werden.
 
 In einigen Fällen bestehen diese Anforderungen nicht, daher wäre dann der Aufbau und Betrieb einer SOA-Plattform nicht angemessen.
 In diesem Fall können Anwendungen auch in einer kompakten Form gebaut werden.
@@ -781,7 +778,7 @@ Dieses Szenario ist in <<image-einfachSOArch>> dargestellt.
 .{desc-image-einfachSOArch}
 image::einfachsoArch.png[align="center"]
 
-Links ist eine typische Umsetzung einer Fachanwendung in der IsyFact-Systemlandschaft zu sehen.
+Links ist eine typische Umsetzung einer Geschäftsanwendung in der IsyFact-Systemlandschaft zu sehen.
 Sie ist über ein Portal in eine Unternehmenslandschaft integriert, hat Außenschnittstellen zu anderen Organisationen, die über ein Service Gateway angeboten werden und sie nutzen die zentralen Services „Output Management“, „Alphanumerisches Suchverfahren“ und das zentrale Schlüsselverzeichnis.
 
 In der Mitte ist dargestellt, dass es Anwendungen gibt, die diese Anforderungen nicht haben:

@@ -388,7 +388,7 @@ Diese setzen sich aus fünf Buchstaben und fünf numerischen Zeichen zusammen:
 [A-Z]\{5}[0-9]\{5}
 ----
 
-Ausnahme-IDs der Fachanwendung „ABCDE“ könnten dann z.B. wie folgt aussehen: `ABCDE10034`
+Ausnahme-IDs der Geschäftsanwendung „ABCDE“ könnten dann z.B. wie folgt aussehen: `ABCDE10034`
 
 Die Ausnahme-IDs sind in Nummernkreise für die einzelnen Komponenten unterteilt.
 Ein Nummernkreis umfasst immer 1000 Nummern, d. h. es gibt die Kreise 00xxx bis 99xxx.

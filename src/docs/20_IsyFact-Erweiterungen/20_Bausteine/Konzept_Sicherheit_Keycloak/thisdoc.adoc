@@ -4,7 +4,7 @@
 [[einleitung]]
 == Einleitung
 
-Das _Konzept Sicherheit Keycloak_ und seine Bausteine richtet sich an Behörden oder Institute, die ein zentrales Keycloak System bereits betreiben oder zukünftig betreiben wollen, um damit eine und/oder mehrere Fachanwendungen oder Anwendungslandschaften abzusichern (vgl. <<image-rahmenbedingungen>>).
+Das _Konzept Sicherheit Keycloak_ und seine Bausteine richtet sich an Behörden oder Institute, die ein zentrales Keycloak System bereits betreiben oder zukünftig betreiben wollen, um damit eine und/oder mehrere Geschäftsanwendungen oder Anwendungslandschaften abzusichern (vgl. <<image-rahmenbedingungen>>).
 
 :desc-image-rahmenbedingungen: Einsatz von Keycloak in einer Behörde oder einem Institut
 [id="image-rahmenbedingungen",reftext="{figure-caption} {counter:figures}"]

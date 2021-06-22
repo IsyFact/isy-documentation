@@ -176,7 +176,7 @@ Bei der Erstellung einer neuen Anwendung ist in der Spezifikations- bzw. Konstru
 Dies ist ebenfalls analog zur Definition der Ausnahme-IDs – es wird für Ausnahme-IDs und Ereignisschlüssel die gleiche Komponenten-ID verwendet.
 * *3 Ziffern*, als laufende Nummer der Ereignisschlüssel der jeweiligen Komponente.
 
-Ein exemplarischer Ereignisschlüssel der Fachanwendung XYZ ist demnach:
+Ein exemplarischer Ereignisschlüssel der Geschäftsanwendung XYZ ist demnach:
 
 [frame="none"]
 |====
@@ -612,6 +612,12 @@ Darüber hinaus werden Methoden zum Kennzeichen der Inhalte im MDC als fachlich 
 * `setzeMarkerFachdaten(...)`: Markiert den MDC als fachlich / nicht fachlich.
 * `liesMarkerFachdaten()`: Gibt an, ob der MDC fachliche Daten enthält.
 * `entferneMarkerFachdaten()`: Entfernt den Marker für Fachdaten.
+
+[[mcdfilter]]
+==== MDC-Filter
+
+Durch die Spring-Autokonfiguration in `isy-aufrufkontext` wird ein Servlet-Filter erstellt, welcher automatisch bei jedem Request die Korrelations-ID aus dem Http-Header ausliest und in den MDC setzt.
+Ist der Header nicht gesetzt, wird eine neue Korrelations-ID generiert.
 
 [[diagnosekontext-korrelations-id]]
 ==== Diagnosekontext / Korrelations-ID

@@ -1,5 +1,6 @@
 :doctitle: Logging-Infrastruktur ELK
 :document-type: Konzept
+:vs-einstufung: offen
 
 toc::[]
 
