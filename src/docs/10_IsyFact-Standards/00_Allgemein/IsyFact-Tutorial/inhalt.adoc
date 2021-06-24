@@ -1228,35 +1228,18 @@ die Autorisierung durchführen.
 
 In diesem Abschnitt wird beschrieben, wie die Überwachung einer Anwendung realisiert wird.
 
+NOTE: Detaillierte Informationen zur Überwachung sind im <<KonzeptUeberwachung>> und den
+<<NutzungsvorgabenUeberwachung>> enthalten.
+
 [[designvorgaben-11]]
 ==== Designvorgaben
 
-* Zur Überwachung werden `HealthIndicator` von Spring Boot Actuator verwendet.
-* Metriken werden anbieterneutral mit Micrometer angeboten.
-+
-NOTE: Eine Liste der angebotenen Metriken ist in <<KonzeptUeberwachung>> enthalten.
-* Die von Anwendungen bereitzustellenden Informationen sind in <<KonzeptUeberwachung>> aufgeführt.
-* Jede Anwendung muss eine Service-Operation anbieten, die es nutzenden Nachbarsystemen erlaubt, die Erreichbarkeit dieses Systems zu prüfen (`Ping`-Methode).
-
-[[klassendesign-5]]
-==== Klassendesign
-
-// TODO Grafik anpassen
-//:desc-image-berwachung: Klassendesign für die Überwachung
-//[id="image-berwachung",reftext="{figure-caption} {counter:figures}"]
-//{desc-image-berwachung}
-//image::Ueberwachung.png[align="center"]
-
-//<<image-berwachung>> zeigt das Klassendesign für die Anwendungsüberwachung.
-
-Die Metriken für Services werden über eine Service-Statistik gesammelt, welche über die Klasse
-`ServiceStatistik` angeboten wird.
-Diese wird per AOP beim Aufrufen einer Methode der `RemoteBean` aktualisiert
-(siehe <<klassendesign-2>>).
-
-Zum anderen wird für die Überwachung eine Ping-Methode implementiert und als Service-Methode in der
-Admin-Komponente angeboten.
-Der `HealthIndicator` wird ebenfalls in der Admin-Komponente implementiert.
+* Die Erreichbarkeit der Systems wird über einen HealthCheck von Spring Boot Actuator realisiert.
+* Server-Metriken werden anbieterneutral mit Micrometer angeboten.
+* Einzelne Services können detailliert überwacht werden. Dazu stellen die Services Statistiken über ihre Nutzung
+als Metriken bereit.
+* Zur Steuerung des Loadbalancing ist ein Servlet enthalten, um die Anwendung innerhalb eines Clusters deaktivierbar
+zu machen.
 
 [[realisierung-11]]
 ==== Realisierung
@@ -1281,33 +1264,21 @@ Zur Realisierung der Überwachung muss die in <<listing-bib-ueberwachung>> aufge
 </dependencies>
 ----
 
-Die Bibliothek enthält Beans, welche das von Anwendungen bereitzustellende Management-Interface implementieren.
-
 [[konfiguration-der-überwachungsschnittstelle]]
 ===== Konfiguration der Überwachungsschnittstelle
 
-Zum Anbieten der Service-Statistik sind alle benötigten Implementierungen in `isy-ueberwachung` enthalten.
-Es muss lediglich die Spring-Konfiguration durchgeführt werden.
-Diese besteht aus zwei Teilen, welche in <<KonzeptUeberwachung>> im Detail beschrieben sind:
+Der HealthCheck, die Server-Metriken und das Loadbalancing Servlet werden automatisch durch die Verwendung der Bibliothek
+in die Anwendung eingebunden und aktiviert. Für den HealthCheck muss explizit eine Konfiguration in den Application Properties
+erfolgen, damit der Health-Status automatisch aktualisiert wird.
+
+Die im Detail zu überwachenden Services müssen explizit konfiguriert werden. Dazu werden die Service-Beans in
+Service-Statistik-Beans gekapselt, und jeder Service-Aufruf wird durch die Service-Statistik-Beans delegiert. Die
+Konfiguration besteht aus aus zwei Teilen:
 
 * Konfigurieren der Service-Statistik-Beans als Spring Beans.
-* Anbinden der Service-Statistik-Beans an den Anwendungskern durch einen AOP-Advice.
-Dieser Advice wird so konfiguriert, dass bei jedem Aufruf einer Methode der RemoteBean
-(siehe <<klassendesign-2>>) die Statistik-Bean aufgerufen wird.
+* Anbinden der Service-Statistik-Beans an die Service-Beans durch einen AOP-Advice.
+Dieser Advice wird so konfiguriert, dass bei jedem Aufruf einer Methode der Service-Bean die Statistik-Bean aufgerufen wird.
 
-[[implementierung-der-ping--und-prüf-methoden]]
-===== Implementierung der Ping-Methode und HealthIndicator
-
-Um die Verfügbarkeit bzw. Erreichbarkeit eines Systems automatisiert überprüfen zu können, muss eine Ping-Methode und ein
-`HealthIndicator` in der Komponente „Administration“ implementiert werden.
-
-Die Ping-Methode wird per HTTP Invoker als Service-Methode angeboten (siehe <<anbieten-von-service-schnittstellen>>).
-Die Implementierung besteht darin, einfach den übergebenen String zurückzugeben.
-
-Der `HealthIndicator` muss für jedes System individuell implementiert werden.
-Als Grundsatz soll darin die Verfügbarkeit jedes Nachbarsystems und die aller genutzter Ressourcen geprüft werden.
-
-NOTE: Die Bibliothek `isy-persistence` bringt einen eigenen `HealthIndicator` für die Verfügbarkeit der Datenbank mit.
 
 [[ldap-zugriff]]
 === LDAP-Zugriff

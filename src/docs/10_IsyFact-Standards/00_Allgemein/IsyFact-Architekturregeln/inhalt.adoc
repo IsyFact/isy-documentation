@@ -31,8 +31,6 @@ include::../../../10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Ueberwachun
 include::../../../10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung/architekturregeln.adoc[tags=architekturregeln]
 include::../../../10_IsyFact-Standards/40_Methodik/Java-Programmierkonventionen/architekturregeln.adoc[tags=architekturregeln]
 
-include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Konzept_Session_Management/architekturregeln.adoc[tags=architekturregeln]
-include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_isy-session/architekturregeln.adoc[tags=architekturregeln]
 include::../../../20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_IsyFact-Benutzerverwaltung/architekturregeln.adoc[tags=architekturregeln]
 
 include::../../../20_IsyFact-Erweiterungen/30_Plattform/Konzept_Logging_Infrastruktur_ELK/architekturregeln.adoc[tags=architekturregeln]
