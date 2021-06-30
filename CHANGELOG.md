@@ -1,3 +1,9 @@
+#2.3.0
+
+
+
+- `IFS-536`: Die Überschriften wurden korrekt mit ASCIIDOC [[]] Klammern ausprogrammiert
+
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
