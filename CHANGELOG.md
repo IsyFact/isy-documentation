@@ -1,3 +1,8 @@
+# 2.3.0
+
+
+- `IFS-993`: Passagen zum Thema vor Logging-Konzept Version 3.0 wurde entfernt
+
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
