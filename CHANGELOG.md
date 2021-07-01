@@ -2,6 +2,7 @@
 - `IFS-546`: Vorgaben für Properties zu komplexen Datentypen ergänzt
 - `IFS-729`: Handbuch für techn. Autoren: Ursache und Lösungen für Fehler bei der Generierung von PDFs beschrieben
 - `IFS-993`: Passagen zum Thema vor Logging-Konzept Version 3.0 wurde entfernt
+- `IFS-536`: Die Überschriften wurden korrekt mit ASCIIDOC [[]] Klammern ausprogrammiert
 
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
