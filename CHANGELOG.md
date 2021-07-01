@@ -1,3 +1,7 @@
+# 2.3.0
+- `IFS-546`: Vorgaben für Properties zu komplexen Datentypen ergänzt
+- `IFS-729`: Handbuch für techn. Autoren: Ursache und Lösungen für Fehler bei der Generierung von PDFs beschrieben
+
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
