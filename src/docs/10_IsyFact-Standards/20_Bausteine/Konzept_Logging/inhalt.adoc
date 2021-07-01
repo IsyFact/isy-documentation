@@ -477,15 +477,6 @@ Der Marker wird in diesem Fall immer auf den Wert `true` gesetzt. Bei konformen 
 |`true`
 |====
 
-[[isyfact-konforme-anwendungen-vor-logging-konzept-version-3.0]]
-=== IsyFact-konforme Anwendungen (vor Logging-Konzept Version 3.0)
-
-Das Logging-Konzept wurde mit der Version 3 grundlegend überarbeitet.
-Die Logeinträge von Systemen, die konform zum Logging-Konzept vor Version 3 umgesetzt sind,
-stellen neben der Lognachricht die folgenden Informationen (analog zu <<entitaeten>>) bereit:
-
-* `systemid, hostid, thread, logger, zeitstempel, korrelationsid, level`
-
 [[tomcat-access-log]]
 === Tomcat access-log
 
