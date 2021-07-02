@@ -11,7 +11,7 @@
         <html-output-base-directory>${project.build.directory}/doc/html</html-output-base-directory>
         <pdf-output-base-directory>${project.build.directory}/doc/pdf</pdf-output-base-directory>
         <maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
-        <asciidoctorj-extensions.version>2.2.0</asciidoctorj-extensions.version>
+        <asciidoctorj-extensions.version>2.3.0</asciidoctorj-extensions.version>
     </properties>
 
     <profiles>

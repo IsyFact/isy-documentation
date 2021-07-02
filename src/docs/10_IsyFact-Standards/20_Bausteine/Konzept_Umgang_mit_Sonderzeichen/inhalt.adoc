@@ -14,12 +14,12 @@ Weder mehr noch weniger Zeichen darf/muss das System verarbeiten können.
 [[festlegung-des-zeichensatzes-und-der-codierung]]
 == Festlegung des Zeichensatzes und der Codierung
 
-Im SAGA-Standard 4.0 <<SAGA40>> wird der Zeichensatz Unicode v4.x (ISO 10646:2003) in der UTF-8-Codierung als obligatorisch aufgeführt.
-Das BMI hat als Rahmenbedingung für seinen Verantwortungsbereich auf der Basis des SAGA-Standards festgelegt, für die Zeichencodierung in neuen Systemen ausschließlich UTF-8 zu nutzen.
+Laut der Architekturrichtlinie für die IT des Bundes <<ArchitekturRichtlinieITBund>> soll der Zeichensatz DIN SPEC 91379 (auch String.Latin 1.2) in der UTF-8-Codierung verwendet werden.
+Das BMI hat als Rahmenbedingung für seinen Verantwortungsbereich festgelegt, für die Zeichencodierung in neuen Systemen ausschließlich UTF-8 zu nutzen.
 Dieser Zeichensatz stellt ausreichend viele der weltweit existierenden Buchstaben, Ziffern und Symbole zur Verfügung, um Daten in internationalen Schreibweisen abbilden zu können.
 
-Gemäß den Anforderungen des String-latin Zeichensatzes des BMI <<XOEVStringLatin>> soll die IsyFact genau diesen Zeichensatz unterstützen.
-Daher wird festgelegt, dass für IsyFact-Standard-basierte Anwendungen der Zeichensatz Unicode v4.x in der UTF-8-Codierung zu verwenden ist.
+Gemäß den Anforderungen des String.Latin Zeichensatzes des BMI <<XOEVStringLatin>> soll die IsyFact genau diesen Zeichensatz unterstützen.
+Daher wird festgelegt, dass für IsyFact-Standard-basierte Anwendungen der Zeichensatz DIN SPEC 91379 in der UTF-8-Codierung zu verwenden ist.
 
 [[transformation-von-sonderzeichen]]
 == Transformation von Sonderzeichen
@@ -32,7 +32,7 @@ In diesem Kapitel werden diese drei Möglichkeiten in je einem Unterkapitel besc
 === Transkription
 
 Transkription (Umschreibung) ist eine aussprachebasierte Darstellung eines fremden Alphabetes mit dem eigenen Alphabet, also z.B. die Darstellung russischer Namen in kyrillischer Schreibweise mit dem deutschen Alphabet.
-Transkription wird eingesetzt, um ohne Kenntnisse einer fremdem Sprache und des zugehörigen Alphabets eine halbwegs richtige Aussprache von Wörtern zu ermöglichen.
+Transkription wird eingesetzt, um ohne Kenntnisse einer fremden Sprache und des zugehörigen Alphabets eine halbwegs richtige Aussprache von Wörtern zu ermöglichen.
 Eine eindeutige Rückübertragung ist in der Regel nicht möglich.
 Im Folgenden werden die Festlegungen zur Transkription im Rahmen der IsyFact-Standards beschrieben.
 
