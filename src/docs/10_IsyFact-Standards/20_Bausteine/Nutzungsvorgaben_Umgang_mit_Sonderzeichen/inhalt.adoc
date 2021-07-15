@@ -227,6 +227,19 @@ Er ist deswegen bereits als `Deprecated` markiert.
 
 Der Zeichen-Validator kann verwendet werden, um zu überprüfen, ob eine Zeichenkette nur Zeichen eines bestimmten Datentyps der DIN Spezifikation 91 379 enthält.
 
+*Legacy Transformator*
+
+Mit dem Legacy Transformator ist es möglich, Texte, welche mit Zeichen der DIN SPEC 91379 geschrieben wurden, umzuwandeln, sodass diese von Systemen verarbeitet werden können, welche nur den Zeichensatz String Latin 1.1 beherrschen.
+Die Transformationregeln sind der <<table-legacy>> zu entnehmen.
+Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
+Es ist also möglich, dass transformierte Texte nicht mehr vom System verarbeitet werden können, wenn diese nicht mehr die maximale Zeichenlänge einhalten können.
+
+Der Transformator dient dazu die Kompatibilität zu Systemen herzustellen, die noch nicht auf die DIN SPEC umgestellt sind.
+Die Frist zur Umstellung endet im November 2024.
+Danach soll auch der Legcy Transformator aus isy-sonderzeichen entfernt werden.
+Er ist deswegen bereits als `Deprecated` markiert.
+
+
 [[einbindung-der-bibliothek-in-eine-anwendung]]
 === Einbindung der Bibliothek in eine Anwendung
 
