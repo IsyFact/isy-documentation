@@ -1,3 +1,9 @@
+# 2.3.0
+- `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
+  - Schnittstellenbeschreibung um neue Funktionen zum Erfassen von Metadaten ergänzt
+  - Verwendung des Legacy-Transformators hinzugefügt
+  - Tabelle mit Transformationsregeln zum Transformieren von DIN SPEC 91379 nach String Latin 1.1 eingefügt.
+
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
