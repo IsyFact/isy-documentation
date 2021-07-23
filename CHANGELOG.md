@@ -1,3 +1,10 @@
+# 1.10.0
+- `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
+    - Schnittstellenbeschreibung um neue Funktionen zum Erfassen von Metadaten ergänzt
+    - Verwendung des Legacy-Transformators hinzugefügt
+    - Tabelle mit Transformationsregeln zum Transformieren von DIN SPEC 91379 nach String Latin 1.1 eingefügt.
+- `IFS-1035`: Beschreibung des Zeichen-Validators zu den Sonderzeichen-Nutzungsvorgaben hinzugefügt
+
 # 1.9.0
 - `IFS-849`: Zusätzliche Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
 - `IFS-928`: Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.

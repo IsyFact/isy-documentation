@@ -4,14 +4,23 @@
 
     <groupId>de.bund.bva.isyfact</groupId>
     <artifactId>isy-documentation</artifactId>
-    <version>1.9.0</version>
+    <version>1.10.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <html-output-base-directory>${project.build.directory}/html</html-output-base-directory>
         <pdf-output-base-directory>${project.build.directory}/pdf</pdf-output-base-directory>
         <maven.build.timestamp.format>dd.MM.yyyy</maven.build.timestamp.format>
+        <isy-dokumentvorlagen.version>1.8.1</isy-dokumentvorlagen.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.bund.bva.isyfact</groupId>
+            <artifactId>isy-dokumentvorlagen</artifactId>
+            <version>${isy-dokumentvorlagen.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <defaultGoal>compile</defaultGoal>
@@ -32,7 +41,7 @@
                                 <artifactItem>
                                     <groupId>de.bund.bva.isyfact</groupId>
                                     <artifactId>isy-dokumentvorlagen</artifactId>
-                                    <version>1.8.1</version>
+                                    <version>${isy-dokumentvorlagen.version}</version>
                                     <overWrite>true</overWrite>
                                 </artifactItem>
                             </artifactItems>
@@ -175,7 +184,7 @@
                         <pdf-stylesdir>${project.build.directory}/isy-dokumentvorlagen/theme</pdf-stylesdir>
                         <pdf-style>isyfact</pdf-style>
                         <pdf-fontsdir>${project.build.directory}/isy-dokumentvorlagen/theme/fonts</pdf-fontsdir>
-                        <version-ifs>1.9.x</version-ifs>
+                        <version-ifs>1.10.x</version-ifs>
                         <isy-dokumentvorlagen>${project.build.directory}/isy-dokumentvorlagen</isy-dokumentvorlagen>
                     </attributes>
                 </configuration>
