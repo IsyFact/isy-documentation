@@ -173,7 +173,8 @@ Damit dürfen auch keine HTML-Sonderzeichen mehr verwendet werden, sondern nur n
 
 Dieses Kapitel beschreibt die Verwendung des Bausteins `isy-sonderzeichen`.
 
-Der Baustein `isy-sonderzeichen` ist eine Querschnittskomponente, die anderen Anwendungen Services zur Transformation von Zeichenketten zur Verfügung stellt. Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
+Der Baustein `isy-sonderzeichen` ist eine Querschnittskomponente, die anderen Anwendungen Services zur Transformation und Validierung von Zeichenketten zur Verfügung stellt.
+Die Bibliothek stellt dabei eine feste Anzahl von Transformatoren zur Verfügung, die für eine einheitliche Transformation von Zeichenketten innerhalb der Systemumgebung sorgen.
 
 Im Zuge der Umsetzung der DIN Spezifikation 91 379 wurde `isy-sonderzeichen` erweitert. Um die ursprüngliche Funktionalität zu erhalten,
 wurde die Bibliothek in zwei Packages aufgeteilt. Das _stringlatin1_1_ Package enthält die ursprüngliche Funktionalität. Die Umsetzung der
@@ -182,6 +183,9 @@ Umsetzung nicht verändert.
 
 [[funktionsweise]]
 === Funktionsweise
+
+[[funktionsweise-transformatoren]]
+==== Transformatoren
 
 Die Transformatoren arbeiten alle nach dem gleichen Schema.
 Sie unterscheiden sich nur durch unterschiedliche Tabellen, die zur Zeichentransformation herangezogen werden.
@@ -218,14 +222,19 @@ Die Frist zur Umstellung endet im November 2024.
 Danach soll auch der Legcy Transformator aus isy-sonderzeichen entfernt werden.
 Er ist deswegen bereits als `Deprecated` markiert.
 
+[[funktionsweise-zeichen-validator]]
+==== Zeichen-Validator
+
+Der Zeichen-Validator kann verwendet werden, um zu überprüfen, ob eine Zeichenkette nur Zeichen eines bestimmten Datentyps der DIN Spezifikation 91 379 enthält.
 
 [[einbindung-der-bibliothek-in-eine-anwendung]]
 === Einbindung der Bibliothek in eine Anwendung
 
-Um die Bibliothek in einer Anwendung nutzen zu können, sind zwei Schritte notwendig
+Um die Bibliothek in einer Anwendung nutzen zu können, sind drei Schritte notwendig:
 
-* Integration mit Maven und
-* Instanziierung der Transformator Factory.
+* Integration mit Maven,
+* Instanziierung der Transformator Factory und
+* Instanziierung des Zeichen-Validators
 
 [[integration-mit-maven]]
 ==== Integration mit Maven
@@ -249,12 +258,11 @@ Die Transformator-Factory und ein konkreter Transformator werden über Spring in
 [source,xml]
 ----
 <bean id="sonderzeichenTransformatorFactory" class="de.bund.bva.isyfact.sonderzeichen.stringlatin1_1.core.transformation.TransformatorFactory">
-  <property name="transformator" ref="sonderzeichenTransformator" >
-  <property name="transformationsTabelle" + value="${Pfad_zu_einerzusaetzlichenTabelle}">
+  <property name="transformator" ref="sonderzeichenTransformator"/>
+  <property name="transformationsTabelle" value="${Pfad_zu_einerzusaetzlichenTabelle}"/>
 </bean>
 
-<bean id="sonderzeichenTransformator" class="de.bund.bva.isyfact.sonderzeichen.stringlatin1_1.core.transformation.impl.IdentischerTransformator">
-</bean>
+<bean id="sonderzeichenTransformator" class="de.bund.bva.isyfact.sonderzeichen.stringlatin1_1.core.transformation.impl.IdentischerTransformator"/>
 ----
 
 In obigem Beispiel wird dabei der Transformator _IdentischerTransformator_ aus der ursprünglichen Umsetzung geladen.
@@ -266,10 +274,20 @@ Es findet also eine Ergänzung der existierenden Regeln statt.
 
 Das Vorgehen für die Komponenten der DIN Spezifikation 91 379 ist analog. Es müssen lediglich die Package-Pfade der Klassen aktualisiert werden.
 
-[[schnittstellendefinition]]
-=== Schnittstellendefinition
+[[instanziierung-des-zeichen-validators]]
+==== Instanziierung des Zeichen-Validators
 
-Der Aufruf des Transformators erfolgt über die jeweilige Methode der Transformator Schnittstelle.
+Der Zeichen-Validator wird über Spring instanziiert.
+
+[source,xml]
+----
+<bean id="zeichenValidator" class="de.bund.bva.isyfact.sonderzeichen.dinspec91379.validierung.ZeichenValidator"/>
+----
+
+[[methodenbeschreibung-transformator]]
+=== Methodenbeschreibung Transformator
+
+Der Aufruf des Transformators erfolgt über die jeweilige Methode der `Transformator`-Schnittstelle.
 Folgende Methoden stehen zur Verfügung:
 
 :desc-table-Transformator-Methoden: Transformator-Methoden
@@ -431,6 +449,37 @@ Das Attribut `neuePosition` kann außerdem die beiden folgenden Werte annehmen, 
 
 Zeichen, die zu Leerzeichen transformiert wurden, sodass mehrere Leerzeichen aufeinander folgen und anschließend durch ein einzelnes Leerzeichen ersetzt werden, erhalten als `neuePosition` die Position des einzelnen Leerzeichens.
 
+[[methodenbeschreibung-zeichen-validator]]
+=== Methodenbeschreibung Zeichen-Validator
+
+Der Aufruf des Zeichen-Validators erfolgt über die jeweilige Methode der `ZeichenValidator`-Klasse.
+Folgende Methoden stehen zur Verfügung:
+
+:desc-table-ZeichenValidator-Methoden: ZeichenValidator-Methoden
+[id="table-ZeichenValidator-Methoden",reftext="{table-caption} {counter:tables}"]
+.{desc-table-ZeichenValidator-Methoden}
+[cols=",",options="header",]
+|====
+|Methode |Parameter
+a|
+`isGueltigerString`
+
+Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 367 definierten Datentyps enthält.
+
+Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
+
+Doppelte Leerzeichen innerhalb der Zeichenkette werden zu einem Leerzeichen umgewandelt.
+
+ a|
+`String zeichenkette`
+
+Die zu überprüfende Zeichenkette
+
+`Datentyp datentyp`
+
+Der Datentyp
+
+|====
 
 [[zulaessige-zeichen-innerhalb-der-isyfact]]
 === Zulässige Zeichen innerhalb der IsyFact
