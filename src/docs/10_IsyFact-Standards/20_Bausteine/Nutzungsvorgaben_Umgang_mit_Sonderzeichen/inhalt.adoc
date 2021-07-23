@@ -206,6 +206,19 @@ Dieser Transformator führt die in <<table-transkription>> dargestellte Transkri
 Darstellung der übergebenen Zeichenkette, die mit dem ASCII-Zeichensatz dargestellt werden kann.
 Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
 
+*Legacy Transformator*
+
+Mit dem Legacy Transformator ist es möglich, Texte, welche mit Zeichen der DIN SPEC 91379 geschrieben wurden, umzuwandeln, sodass diese von Systemen verarbeitet werden können, welche nur den Zeichensatz String Latin 1.1 beherrschen.
+Die Transformationregeln sind der <<table-legacy>> zu entnehmen.
+Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
+Es ist also möglich, dass transformierte Texte nicht mehr vom System verarbeitet werden können, wenn diese nicht mehr die maximale Zeichenlänge einhalten können.
+
+Der Transformator dient dazu die Kompatibilität zu Systemen herzustellen, die noch nicht auf die DIN SPEC umgestellt sind.
+Die Frist zur Umstellung endet im November 2024.
+Danach soll auch der Legcy Transformator aus isy-sonderzeichen entfernt werden.
+Er ist deswegen bereits als `Deprecated` markiert.
+
+
 [[einbindung-der-bibliothek-in-eine-anwendung]]
 === Einbindung der Bibliothek in eine Anwendung
 
@@ -274,6 +287,8 @@ Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
 
 Doppelte Leerzeichen innerhalb der Zeichenkette werden zu einem Leerzeichen umgewandelt.
 
+Gibt den transformierten String aus.
+
  a|
 `String zeichenkette`
 
@@ -285,6 +300,8 @@ a|
 Transformiert eine Zeichenkette analog der zuvor beschriebenen `transformiere`-Funktion.
 Stellt zusätzlich sicher, dass die Zeichenkette nach der Operation die angegebene Länge hat.
 Es wird dabei nicht unterschieden, ob die ursprüngliche Zeichenkettenlänge bereits das Maximum überschritten hat oder erst durch eine Transformation die Zeichenkette verlängert wurde.
+
+Gibt den transformierten String aus.
 
  a|
 `String zeichenkette`
@@ -300,6 +317,55 @@ a|
 
 Transformiert eine Zeichenkette analog der zuvor beschriebenen `transformiere`-Funktion.
 Es werden jedoch keine Leerzeichen am Anfang/Ende der übergebenen Zeichenkette entfernt.
+
+Gibt den transformierten String aus.
+
+ a|
+`String zeichenkette`
+
+Die zu transformierende Zeichenkette
+
+a|
+`transformiereMitMetadaten`
+
+Transformiert eine Zeichenkette auf der Basis der zugrunde liegenden Transformationstabelle.
+
+Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
+
+Doppelte Leerzeichen innerhalb der Zeichenkette werden zu einem Leerzeichen umgewandelt.
+
+Gibt ein Objekt vom Typ `Transformation` zurück, welches den transformierten String und die Metadaten der Transformation enthält.
+
+ a|
+`String zeichenkette`
+
+Die zu transformierende Zeichenkette
+
+a|
+`transformiereMitMetadaten`
+
+Transformiert eine Zeichenkette analog der zuvor beschriebenen `transformiere`-Funktion.
+Stellt zusätzlich sicher, dass die Zeichenkette nach der Operation die angegebene Länge hat.
+Es wird dabei nicht unterschieden, ob die ursprüngliche Zeichenkettenlänge bereits das Maximum überschritten hat oder erst durch eine Transformation die Zeichenkette verlängert wurde.
+
+Gibt ein Objekt vom Typ `Transformation` zurück, welches den transformierten String und die Metadaten der Transformation enthält.
+
+ a|
+`String zeichenkette`
+
+Die zu transformierende Zeichenkette
+
+`int maximaleLaenge`
+
+Die maximale Länge der Zeichenkette
+
+a|
+`transformiereOhneTrimMitMetadaten`
+
+Transformiert eine Zeichenkette analog der zuvor beschriebenen `transformiere`-Funktion.
+Es werden jedoch keine Leerzeichen am Anfang/Ende der übergebenen Zeichenkette entfernt.
+
+Gibt ein Objekt vom Typ `Transformation` zurück, welches den transformierten String und die Metadaten der Transformation enthält.
 
  a|
 `String zeichenkette`
@@ -338,6 +404,33 @@ Sollte ein Unicode-Character, welcher aus mehreren char Objekten besteht definie
 So könnten Zeichen außerhalb des Definitionsbereichs (z.B. alle \\u\####\\u0302) der Transformation transformiert werden.
 
 Zur Überprüfung ob eine Zeichenkette innerhalb des für den Transformator gültigen Bereichs liegt, sollte daher die Funktion `getRegulaererAusdruck(String[])` benutzt werden um einen regulären Ausdruck für alle gültigen Zeichen zu erstellen.
+
+[[metadaten-einer-transformation]]
+=== Metadaten einer Transformation
+
+Alle Transformatoren der isyfact erlauben neben der Transformation auch die Ausgabe von Metadaten über eine ausgeführte Transformation.
+Dafür müssen die Funktionen mit dem Suffix `MitMetadaten` genutzt werden.
+Diese geben ein Objekt vom Typ `Transformation` zurück.
+
+Mit der Funktion `getTransformierterText()` erhält man daraus den transformierten Text, wie man ihn auch aus den `transformiere`-Methoden ohne der Speicherung von Metadaten erhält.
+Mit `getMetadatenList()` erhält man eine Liste von `TransformationMetadaten`-Objekten zurück.
+Ein solches Objekt enthält folgende Attribute:
+
+* `altesZeichen`: das Zeichen, das durch die Transformation ersetzt wurde
+* `alteCodepoints`: die Unicode-Codepoints des ersetzten Zeichens
+* `neuesZeichen`: das Zeichen nach der Transformation
+* `neueCodepoints`: die Unicode-Codepoints des Zeichens nach der Transformation
+* `altePosition`: Position des Zeichens im zu transformierenden String
+* `neuePosition`: neue Position des Zeichens nach der Transformation
+
+Schriftzeichen, welche durch die Transformation nicht verändert wurden, werden nicht in den Metadaten gelistet, auch wenn sich durch die Transformation anderer Zeichen ihre Position geändert hat.
+Das Attribut `neuePosition` kann außerdem die beiden folgenden Werte annehmen, wenn der transformierte Text getrimmt wurde:
+
+* `-1`: Wenn das Schriftzeichen zu einem führenden Leerzeichen transformiert wurde und durch das Trimmen entfernt wurde.
+* `-2`: Wenn das Schriftzeichen zu einem Leerzeichen am Ende des Texts transformiert wurde und durch das Trimmen entfernt wurde.
+
+Zeichen, die zu Leerzeichen transformiert wurden, sodass mehrere Leerzeichen aufeinander folgen und anschließend durch ein einzelnes Leerzeichen ersetzt werden, erhalten als `neuePosition` die Position des einzelnen Leerzeichens.
+
 
 [[zulaessige-zeichen-innerhalb-der-isyfact]]
 === Zulässige Zeichen innerhalb der IsyFact

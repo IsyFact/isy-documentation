@@ -4,6 +4,10 @@
 - `IFS-993`: Passagen zum Thema vor Logging-Konzept Version 3.0 wurde entfernt
 - `IFS-536`: Die Überschriften wurden korrekt mit ASCIIDOC [[]] Klammern ausprogrammiert
 - `IFS-624`: SAGA-Referenzen durch Architekturrichtlinie der IT des Bundes ersetzt
+- `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
+  - Schnittstellenbeschreibung um neue Funktionen zum Erfassen von Metadaten ergänzt
+  - Verwendung des Legacy-Transformators hinzugefügt
+  - Tabelle mit Transformationsregeln zum Transformieren von DIN SPEC 91379 nach String Latin 1.1 eingefügt.
 
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
