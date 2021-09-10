@@ -1,9 +1,13 @@
-# 2.3.0
+# 2.4.0
 - `IFS-546`: Vorgaben für Properties zu komplexen Datentypen ergänzt
 - `IFS-729`: Handbuch für techn. Autoren: Ursache und Lösungen für Fehler bei der Generierung von PDFs beschrieben
 - `IFS-993`: Passagen zum Thema vor Logging-Konzept Version 3.0 wurde entfernt
 - `IFS-536`: Die Überschriften wurden korrekt mit ASCIIDOC [[]] Klammern ausprogrammiert
 - `IFS-624`: SAGA-Referenzen durch Architekturrichtlinie der IT des Bundes ersetzt
+- `IFS-469`: Komponenten eines IT-Systems werden über eine Konfigurationsklasse im Stammpackage konfiguriert
+- `IFS-543`: Vorgabe für die Verwendung von Dependency-Injection eingefügt
+
+# 2.3.0
 - `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
   - Schnittstellenbeschreibung um neue Funktionen zum Erfassen von Metadaten ergänzt
   - Verwendung des Legacy-Transformators hinzugefügt
@@ -13,7 +17,6 @@
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
-- `IFS-469`: Komponenten eines IT-Systems werden über eine Konfigurationsklasse im Stammpackage konfiguriert
 - `IFS-489`: Entferne beim Loggen deklarierte Throwables in Methodensignaturen
 - `IFS-516`: Versionierungskonzept Schnittstellen mit "Best-Practices" + REST erweitern
 - `IFS-542`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
@@ -24,7 +27,6 @@
     - Zusätzlichen Zeichen und Beschreibung der Komponente im Zuge der Umsetzung von DIN SPEC 91379 aktualisiert.
     - Tabelle mit Transkriptionsregeln im Zuge der Umsetzung von DIN SPEC 91379 eingefügt.
 - `IFS-962`: Alte Tickets zur Anpassung der Dokumentation auf Aktualität geprüft und Dokumentation entsprechend angepasst.
-- `IFS-543`: Vorgabe für die Verwendung von Dependency-Injection eingefügt
 - `IFE-223`: Umzug der Session-Dokumentation in den Baustein
   - *Nutzungsvorgaben isy-session* und *Konzept Sessionmanagement* sind jetzt in isy-session zu finden
 
