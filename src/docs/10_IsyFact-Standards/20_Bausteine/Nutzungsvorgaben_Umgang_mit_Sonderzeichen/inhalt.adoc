@@ -88,15 +88,6 @@ In der JVM wird die Standard-Zeichencodierung beim Aufruf über den Parameter
 
 gesetzt.
 
-[[java-property-dateien]]
-=== Java Property-Dateien
-
-Bis zur Java-Version 1.5 werden Property-Dateien grundsätzlich ISO 8859-1 codiert gelesen und geschrieben.
-Das ist unabhängig von den Einstellungen des Zeichensatzes in der JVM und im Betriebssystem.
-Das Tool native2ascii (Native-to-ASCII Converter, siehe http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/native2ascii.html) kann für die Umcodierung von Property-Dateien verwendet werden.
-
-Bei XML-basierten Property-Dateien, können auch andere Zeichencodierungen verwendet werden.
-
 [[maven]]
 === Maven
 
