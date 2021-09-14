@@ -225,7 +225,7 @@ Wie in Kapitel <<festlegung-des-zeichensatzes-und-der-codierung>> festgelegt, wi
 Unicode v4.x in der UTF-8-Codierung verwendet.
 Die Transkription überführt die internationalen Sonderzeichen aus dem Unicode v4.x Zeichensatz in den ASCII-Zeichensatz.
 
-Im Rahmen der IsyFact werden zur Zeit von der Transkription nur kyrillische, griechische und lateinische Zeichen
+Im Rahmen der IsyFact werden zurzeit von der Transkription nur kyrillische, griechische und lateinische Zeichen
  unterstützt, da hiermit die im europäischen Raum gebräuchlichen Zeichen abgedeckt sind.
 
 [[anwendungsbereiche-in-einer-isyfact-systemlandschaft]]
@@ -417,13 +417,13 @@ Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
 *Legacy Transformator*
 
 Mit dem Legacy Transformator ist es möglich, Texte, welche mit Zeichen der DIN SPEC 91379 geschrieben wurden, umzuwandeln, sodass diese von Systemen verarbeitet werden können, welche nur den Zeichensatz String Latin 1.1 beherrschen.
-Die Transformationregeln sind der <<table-legacy>> zu entnehmen.
+Die Transformationsregeln sind der <<table-legacy>> zu entnehmen.
 Dieser Transformator ermöglicht keine Vorgabe der maximalen Zeichenlänge.
 Es ist also möglich, dass transformierte Texte nicht mehr vom System verarbeitet werden können, wenn diese nicht mehr die maximale Zeichenlänge einhalten können.
 
 Der Transformator dient dazu die Kompatibilität zu Systemen herzustellen, die noch nicht auf die DIN SPEC umgestellt sind.
 Die Frist zur Umstellung endet im November 2024.
-Danach soll auch der Legcy Transformator aus isy-sonderzeichen entfernt werden.
+Danach soll auch der Legacy Transformator aus isy-sonderzeichen entfernt werden.
 Er ist deswegen bereits als `Deprecated` markiert.
 
 [[funktionsweise-zeichen-validator]]
@@ -601,7 +601,7 @@ Die zu transformierende Zeichenkette
 a|
 `getRegulaererAusdruck`
 
-Gibt den regulären Ausdruck zurück, der alle gültige Zeichenketten beschreibt, deren Zeichen in der jeweiligen
+Gibt den regulären Ausdruck zurück, der alle gültigen Zeichenketten beschreibt, deren Zeichen in der jeweiligen
 Zeichenkategorie aufgeführt sind.
 
  a|
@@ -677,7 +677,7 @@ Folgende Methoden stehen zur Verfügung:
 a|
 `isGueltigerString`
 
-Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 367 definierten Datentyps enthält.
+Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 379 definierten Datentyps enthält.
 
 Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
 
