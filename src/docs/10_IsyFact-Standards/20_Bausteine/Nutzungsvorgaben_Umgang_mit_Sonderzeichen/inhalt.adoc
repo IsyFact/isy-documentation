@@ -219,7 +219,7 @@ Es ist also möglich, dass transformierte Texte nicht mehr vom System verarbeite
 
 Der Transformator dient dazu die Kompatibilität zu Systemen herzustellen, die noch nicht auf die DIN SPEC umgestellt sind.
 Die Frist zur Umstellung endet im November 2024.
-Danach soll auch der Legcy Transformator aus isy-sonderzeichen entfernt werden.
+Danach soll auch der Legacy Transformator aus isy-sonderzeichen entfernt werden.
 Er ist deswegen bereits als `Deprecated` markiert.
 
 [[funktionsweise-zeichen-validator]]
@@ -393,7 +393,7 @@ Die zu transformierende Zeichenkette
 a|
 `getRegulaererAusdruck`
 
-Gibt den regulären Ausdruck zurück, der alle gültige Zeichenketten beschreibt, deren Zeichen in der jeweiligen Zeichenkategorie aufgeführt sind.
+Gibt den regulären Ausdruck zurück, der alle gültigen Zeichenketten beschreibt, deren Zeichen in der jeweiligen Zeichenkategorie aufgeführt sind.
 
  a|
 `String[] kategorieListe`
@@ -464,7 +464,7 @@ Folgende Methoden stehen zur Verfügung:
 a|
 `isGueltigerString`
 
-Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 367 definierten Datentyps enthält.
+Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 379 definierten Datentyps enthält.
 
 Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
 
