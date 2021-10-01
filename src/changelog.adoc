@@ -1,5 +1,49 @@
 :doctitle: Changelog IsyFact Dokumentation
 
+== Änderungen IsyFact 2.4.0
+
+// Beginn übergreifende Änderungen
+
+// Ende übergreifende Änderungen
+
+include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Einstieg/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Namenskonventionen/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Referenzarchitektur-IT-System/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Tutorial/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Anwendungskern/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Batch/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Datenzugriff/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Service/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/10_Blaupausen/Detailkonzept_Komponente_Web_GUI/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Datum_Zeit/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Fehlerbehandlung/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Konfiguration/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Logging/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Sicherheit/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Task_Scheduling/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Ueberwachung/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Konzept_Umgang_mit_Sonderzeichen/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Datum_Zeit/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Isy_Util/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Konfiguration/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Logging/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Polling/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Sicherheit/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Spring_LDAP/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Task_Scheduling/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/20_Bausteine/Nutzungsvorgaben_Ueberwachung/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/40_Methodik/IsyFact-Versionierung/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/40_Methodik/Java-Programmierkonventionen/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/40_Methodik/Nutzung_EnterpriseArchitect/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/50_Werkzeuge/Einrichtung_Entwicklungsumgebung/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/50_Werkzeuge/Handbuch_fuer_technische_Autoren/changelog.adoc[tag=release-2.4.0]
+include::docs/10_IsyFact-Standards/50_Werkzeuge/Maven_Plugin_zur_Versionierungskontrolle/changelog.adoc[tag=release-2.4.0]
+include::docs/20_IsyFact-Erweiterungen/20_Bausteine/Nutzungsvorgaben_IsyFact-Benutzerverwaltung/changelog.adoc[tag=release-2.4.0]
+include::docs/20_IsyFact-Erweiterungen/30_Plattform/Konzept_Logging_Infrastruktur_ELK/changelog.adoc[tag=release-2.4.0]
+include::docs/20_IsyFact-Erweiterungen/30_Plattform/Nutzungsvorgaben_Redis/changelog.adoc[tag=release-2.4.0]
+
 == Änderungen IsyFact 2.3.0
 
 // Beginn übergreifende Änderungen

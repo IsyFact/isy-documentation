@@ -6,6 +6,7 @@
 - `IFS-624`: SAGA-Referenzen durch Architekturrichtlinie der IT des Bundes ersetzt
 - `IFS-469`: Komponenten eines IT-Systems werden über eine Konfigurationsklasse im Stammpackage konfiguriert
 - `IFS-543`: Vorgabe für die Verwendung von Dependency-Injection eingefügt
+- `IFS-992`: Der Abschnitt "IsyFact-konforme Anwendungen" wurde bearbeitet
 
 # 2.3.0
 - `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
