@@ -566,7 +566,7 @@ Damit entspricht die TI-Architektur der Produktionsumgebung den SAGA-Vorgaben.
 
 Der Zugriff durch die Anwender (Clients) und die über externe Systeme angeschlossener Anwender erfolgt über das WAN bzw. das interne LAN.
 Die Kommunikation erfolgt per Secure HTTP (HTTPS) mit einem Web-Browser oder ebenfalls per HTTPS oder SMTP via XML- oder Web-Service-Schnittstelle direkt aus der externen Anwendung über ein Service-Gateway-System.
-Der erste zu passierende Lastverteiler (engl. Loadbalancer) ist Endpunkt der Verschlüsselung der Kommunikationsverbindung, das heißt innerhalb der Produktionsumgebung kommunizieren die Anwendungssysteme unverschlüsselt miteinander.
+Innerhalb der Produktionsumgebung sollten die Anwendungssysteme ebenfalls verschlüsselt miteinander kommunizieren.
 
 Interne Drittsysteme, die aus dem internen LAN mit der IsyFact-Systemlandschaft kommunizieren, tun dies genau wie externe Anwendungen per HTTPS oder SMTP via XML- oder Web-Service-Schnittstellen über ein Service-Gateway-System.
 Zur Authentifizierung wird ein Access Control Management (ACM) eingesetzt.
@@ -724,7 +724,6 @@ Lastverteilung (engl. Loadbalancing) kann entweder durch dedizierte Hardware-Kom
 
 In der Hardware-Lastverteilung werden die eingehenden Anfragen von einer Hardware-Komponente entgegengenommen.
 Diese Hardware-Komponente ist für die Verteilung der Anfragen auf die dahinterliegenden Server zuständig.
-Gleichzeitig kann die Hardware-Komponente die Entschlüsselung der SSL-verschlüsselten Kommunikation übernehmen und entlastet so die Server von dieser Aufgabe.
 
 Analog arbeitet die Software-Lastverteilung.
 Hier übernimmt eine Software-Komponente wie z.B. ein Http-Server mit entsprechendem Plugin die Verteilung der Anfragen.
