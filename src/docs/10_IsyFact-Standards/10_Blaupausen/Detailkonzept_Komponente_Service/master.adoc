@@ -6,8 +6,6 @@ toc::[]
 
 colophon::[]
 
-include::docinfo.adoc[]
-
 include::thisdoc.adoc[tags=inhalt]
 
 include::inhalt.adoc[tags=inhalt]

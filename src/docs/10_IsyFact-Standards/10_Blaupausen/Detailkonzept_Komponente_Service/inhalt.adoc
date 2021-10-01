@@ -5,19 +5,18 @@
 [[ueberblick]]
 == Überblick
 
-Der Zugriff anderer IT-Systeme auf die Funktionalität des Anwendungskerns eines IT-Systems innerhalb der Systemlandschaft erfolgt über die technische Komponente „Service“ (siehe <<image-IFRefArcITSysServ>>).
+Services gliedern sich über eine technische Komponente „Service“ in die T-Architektur von IT-Systemen ein (siehe <<image-IFRefArcITSysServ>>).
 
 :desc-image-IFRefArcITSysServ: Referenzarchitektur eines IT-Systems
 [id="image-IFRefArcITSysServ",reftext="{figure-caption} {counter:figures}"]
 .{desc-image-IFRefArcITSysServ}
 image::IFRefArcITSysServ.png[align="center"]
 
-Intern besteht die Komponente „Service“ aus zwei Teilen: dem Service-Framework und der Service-Logik.
+Diese technische Komponente besteht aus zwei Teilen: dem Service-Framework und der Service-Logik.
 
-*Service-Framework:* Das Service-Framework ist die Bezeichnung für die Technologie, mit der die Services des
-Anwendungskerns zur Verfügung gestellt werden.
+Das *Service-Framework* bezeichnet die konkrete Technologie, mit der die Services des Anwendungskerns zur Verfügung gestellt werden.
 
-*Service-Logik:* Die Service-Logik enthält Daten und Funktionalität, die für die Bereitstellung des Services relevant sind.
+Die *Service-Logik* enthält Daten und Funktionalität, die für die Bereitstellung des Services relevant sind.
 Im Normalfall ist der Funktionsumfang der Komponente Service-Logik viel geringer als der Funktionsumfang der Entsprechungen im Anwendungskern.
 Dies liegt darin begründet, dass die Komponente Service-Logik die Funktionalität des Anwendungskerns nutzt, um den Service bereitzustellen.
 Die Kernfunktionalität des Services ist also im Anwendungskern implementiert.
@@ -81,7 +80,7 @@ Dabei transformiert sie die Geschäftsobjekte des Anwendungskerns in Transportob
 Hierzu wird in der Regel ein Bean Mapper verwendet.
 In Einzelfällen können Teile der Transformation auch programmiert werden, sofern der Nutzen daraus den Aufwand nicht übersteigt.
 
-Die Service-Fassade übernimmt auch die Autorisierung des Aufrufs auf.
+Die Service-Fassade übernimmt auch die Autorisierung des Aufrufs.
 Dazu nutzt sie die Möglichkeiten des Bausteins Sicherheit (siehe <<NutzungsvorgabenSicherheit>>).
 Voraussetzung für die Autorisierung ist die Auswertung des mitgelieferten Aufrufkontextes über die Annotation `@StelltAufrufKontextBereit` an der Methode oder an der Service-Fassade selbst.
 Anschließend wird über die Annotation `@Gesichert` die Berechtigung zum Zugriff auf die Methode anhand der Rechte des Aufrufers geprüft.
@@ -171,7 +170,7 @@ Externe Services werden durch Service-Gateways bereitgestellt.
 Die Versionierung eines Services muss also auch auf Ebene des Service-Gateways durchgeführt werden.
 Ein Service-Gateway ist ein rein technischer Protokoll-Wandler, der Web-Services in interne Schnittstellen konvertiert.
 Im Service-Gateway erfolgt daher immer nur ein einfaches Mapping auf die entsprechenden Service-Schnittstellen der angebundenen IT-Systeme.
-Der Ausgleich der Versionsunterschiede erfolgt ausschließlich im IT-Systeme und nicht im Service-Gateway.
+Der Ausgleich der Versionsunterschiede erfolgt ausschließlich im IT-System und nicht im Service-Gateway.
 Es ist möglich, pro Service-Version ein eigenes Service-Gateway zu erstellen (siehe <<image-archversServ>>).
 
 :desc-image-archversServ: Architektur versionierter Services
