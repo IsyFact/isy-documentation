@@ -401,7 +401,7 @@ isy.ueberwachung.nachbarsystemcheck.timeout=2s
 
 ## Konfiguration eines Nachbarsystems, das überwacht wird
 isy.ueberwachung.nachbarsysteme.beispielnachbar.systemname=Beispielnachbar
-isy.ueberwachung.nachbarsysteme.beispielnachbar.healthendpoint=http://example.com/actuator/health
+isy.ueberwachung.nachbarsysteme.beispielnachbar.healthendpoint=http(s)://example.com/actuator/health
 isy.ueberwachung.nachbarsysteme.beispielnachbar.essentiell=false
 
 # weitere Nachbarn
@@ -522,7 +522,7 @@ Die zu suchende Datei kann bei Bedarf durch die Property `isy.ueberwachung.loadb
 [[nutzung-des-loadbalancing-servlets]]
 ==== Nutzung des Loadbalancing-Servlets
 
-Durch die oben beschriebene Konfiguration kann die gewünschte Verfügbarkeit der Anwendung über die URL `http://<serverurl>/<anwendungsname>/Loadbalancer abgefragt werden`.
+Durch die oben beschriebene Konfiguration kann die gewünschte Verfügbarkeit der Anwendung über die URL `http(s)://<serverurl>/<anwendungsname>/Loadbalancer abgefragt werden`.
 
 Zur Steuerung des Loadbalancing-Servlets muss die IsAlive-Datei im Konfigurationsverzeichnis der Anwendung durch den Betrieb angelegt bzw. entfernt werden.
 Der Standardname für die IsAlive-Datei ist `/etc/<anwendungsname>/isAlive`.
