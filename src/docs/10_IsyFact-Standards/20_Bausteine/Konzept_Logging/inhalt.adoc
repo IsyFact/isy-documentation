@@ -433,48 +433,45 @@ Die folgenden Attribute werden automatisch durch logstash gesetzt und sind in je
 |path |Absoluter Pfad der Datei, aus welcher der Logeintrag gelesen wurde. |/var/log/xyz-ga/webserver01_xyz-ga_2014-05-10_1700.log
 |====
 
-[[isyfact-konforme-anwendungen]]
-=== IsyFact-konforme Anwendungen
+[[zusaetzliche-marker-von-isy-logging]]
+=== Zusätzliche Inhalte mit isy-logging
 
-Die Attribute, die durch Anwendungen geloggt werden, die konform zu `isy-logging` umgesetzt sind, werden durch die Entität ETY_Logeintrag in <<entitaeten>> beschrieben.
-Diese werden ergänzt um optionale Marker (Name/Wert-Paare). Beim Einsatz von `isy-logging` werden die folgenden Marker erstellt:
+Durch die Anwendungen geloggte Attribute werden durch die Entität `ETY_Logeintrag` in <<entitaeten>> beschrieben.
+Zusätzlich erhält man die Attribute: `parameter` und `gekuerzt`.
+Darüber hinaus werden beim Einsatz von `LoggingMethodInvoker` und `LoggingMethodInterceptor` die Attribute `methode` und `dauer` gesetzt.
 
-:desc-table-MarkerIsyLogging: Zusätzliche Marker von isy-logging
-[id="table-MarkerIsyLogging",reftext="{table-caption} {counter:tables}"]
-.{desc-table-MarkerIsyLogging}
+:desc-table-AttributeIsyLogging: Zusätzliche Attribute mit isy-logging
+[id="table-AttributeIsyLogging",reftext="{table-caption} {counter:tables}"]
+.{desc-table-AttributeIsyLogging}
 [cols="2,3,3",options="header"]
 |====
 |Attribut |Beschreibung |Format / Beispiel
 |parameter<1..n> |Parameter, die zur Ersetzung der Platzhalter in der Lognachricht übergeben wurden |`Freitext`
+|gekuerzt a|
+Informiert über die Kürzung eines Logeintrags.
+
+Das Attribut wird gesetzt, wenn der Logeintrag die maximale Länge eines Logeintrags überschritten hatte und aus diesem Grund gekürzt wurde.
+Das Attribut wird in diesem Fall immer auf den Wert `true` gesetzt. Bei konformen Logeinträgen wird der Marker nicht gesetzt.
+
+|`true`
 |methode a|
+
 Vollständige Signatur einer aufgerufenen Methode.
 
-Dieser Marker wird beim Loggen eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und `LoggingMethod-Interceptor` automatisch gesetzt.
+Das Attribut wird beim Loggen eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und `LoggingMethodInterceptor` automatisch gesetzt.
 
  a|`public de.bund.bva.
 isyfact.logging.
 hilfsklassen.
-TestZielParameterPerson
-de.bund.bva.isyfact.
-logging.hilfsklassen.
-TestZielKlasse.setzeName
-Exception(de.bund.bva.
-Isyfact.logging.
-hilfsklassen.TestZiel
-ParameterPerson,
-java.lang.String)`
+TestZielParameterPerson`
+
+`de.bund.bva.isyfact.logging.hilfsklassen.TestZielKlasse.setzeName Exception(de.bund.bva.Isyfact.logging.hilfsklassen.TestZielParameterPerson,java.lang.String)`
 |dauer a|
 Dauer eines Methodenaufrufs.
 
-Dieser Marker wird beim Loggen der Dauer eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und `LoggingMethod-Interceptor` automatisch gesetzt.
+Das Attribut wird beim Loggen der Dauer eines Methodenaufrufs mit den Hilfsklassen `LoggingMethodInvoker` und `LoggingMethodInterceptor` automatisch gesetzt.
  |`124`
-|gekuerzt a|
-Informiert über die Kürzung eines Logeintrags.
 
-Dieser Marker wird gesetzt, wenn der Logeintrag die maximale Länge eines Logeintrags überschritten hatte und aus diesem Grund gekürzt wurde.
-Der Marker wird in diesem Fall immer auf den Wert `true` gesetzt. Bei konformen Logeinträgen wird der Marker nicht gesetzt.
-
-|`true`
 |====
 
 [[tomcat-access-log]]
