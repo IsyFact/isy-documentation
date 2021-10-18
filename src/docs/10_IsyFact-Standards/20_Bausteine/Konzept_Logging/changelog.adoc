@@ -11,6 +11,7 @@
 
 // tag::release-2.3.0[]
 - `IFS-993`: Passagen zum Thema vor Logging-Konzept Version 3.0 wurde entfernt
+- `IFS-994`: Passagen zum Thema ASV wurden entfernt
 // end::release-2.3.0[]
 
 *Änderungen IsyFact 2.2.0*

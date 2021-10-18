@@ -16,7 +16,8 @@
   - Verwendung des Legacy-Transformators hinzugefügt
   - Tabelle mit Transformationsregeln zum Transformieren von DIN SPEC 91379 nach String Latin 1.1 eingefügt.
 - `IFS-1035`: Beschreibung des Zeichen-Validators zu den Sonderzeichen-Nutzungsvorgaben hinzugefügt
-
+- `IFS-994`: Passagen zum Thema ASV wurden entfernt
+  
 # 2.2.0
 - `IFS-211`: Konventionen zur Quellcodeablage hinzugefügt
 - `IFS-472`: Dokument IF-Einstieg überarbeiten
