@@ -88,15 +88,6 @@ In der JVM wird die Standard-Zeichencodierung beim Aufruf über den Parameter
 
 gesetzt.
 
-[[java-property-dateien]]
-=== Java Property-Dateien
-
-Bis zur Java-Version 1.5 werden Property-Dateien grundsätzlich ISO 8859-1 codiert gelesen und geschrieben.
-Das ist unabhängig von den Einstellungen des Zeichensatzes in der JVM und im Betriebssystem.
-Das Tool native2ascii (Native-to-ASCII Converter, siehe http://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/native2ascii.html) kann für die Umcodierung von Property-Dateien verwendet werden.
-
-Bei XML-basierten Property-Dateien, können auch andere Zeichencodierungen verwendet werden.
-
 [[maven]]
 === Maven
 
@@ -219,7 +210,7 @@ Es ist also möglich, dass transformierte Texte nicht mehr vom System verarbeite
 
 Der Transformator dient dazu die Kompatibilität zu Systemen herzustellen, die noch nicht auf die DIN SPEC umgestellt sind.
 Die Frist zur Umstellung endet im November 2024.
-Danach soll auch der Legcy Transformator aus isy-sonderzeichen entfernt werden.
+Danach soll auch der Legacy Transformator aus isy-sonderzeichen entfernt werden.
 Er ist deswegen bereits als `Deprecated` markiert.
 
 [[funktionsweise-zeichen-validator]]
@@ -393,7 +384,7 @@ Die zu transformierende Zeichenkette
 a|
 `getRegulaererAusdruck`
 
-Gibt den regulären Ausdruck zurück, der alle gültige Zeichenketten beschreibt, deren Zeichen in der jeweiligen Zeichenkategorie aufgeführt sind.
+Gibt den regulären Ausdruck zurück, der alle gültigen Zeichenketten beschreibt, deren Zeichen in der jeweiligen Zeichenkategorie aufgeführt sind.
 
  a|
 `String[] kategorieListe`
@@ -464,7 +455,7 @@ Folgende Methoden stehen zur Verfügung:
 a|
 `isGueltigerString`
 
-Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 367 definierten Datentyps enthält.
+Überprüft, ob eine Zeichenkette nur Zeichen eines in der DIN Spezifikation 91 379 definierten Datentyps enthält.
 
 Leerzeichen am Anfang und am Ende der Zeichenkette werden entfernt.
 

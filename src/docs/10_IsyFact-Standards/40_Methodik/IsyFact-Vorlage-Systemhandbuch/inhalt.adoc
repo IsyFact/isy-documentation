@@ -328,7 +328,7 @@ Die entsprechende Datei ist mit den Schlüsseln und Mappings im Releaseletter de
 [[apache-konfiguration]]
 ==== Apache Konfiguration
 
-Nach der SSL-Terminierung durch den Loadbalancer vor der Informations- & Dienstezone gelangen die HTTP-Requests zu einem Apache Web Server in der Informations- & Dienstezone.
+Nach dem Loadbalancer vor der Informations- & Dienstezone gelangen die HTTP-Requests zu einem Apache Web Server in der Informations- & Dienstezone.
 
 Der Apache Server muss konfiguriert werden, um die Requests an den Tomcat der XXX-Geschäftsanwendung in der Logik- und Verarbeitungszone weiterzuleiten.
 Die Weiterleitung geschieht mithilfe des Apache Tomcat Connectors (mod_jk).
@@ -520,19 +520,19 @@ Folgende Werte müssen nach der Erstinstallation angepasst werden:
 Die Adresse des Behördenverzeichnisses.
 
 Beispiel: +
-`http://isy.local.vm:50001/plis-behoerdenverzeichnis`
+`http(s)://isy.local.vm:50001/plis-behoerdenverzeichnis`
 
 |`gui.behoerdenverzeichnis.url` a|
 Die Adresse der GUI des Behördenverzeichnisses.
 
 Beispiel: +
-`http://isy.local.vm/plis-behoerdenverzeichnis`
+`http(s)://isy.local.vm/plis-behoerdenverzeichnis`
 
 |`schluesselverzeichnis.service.url` a|
 Die Adresse des Schlüsselverzeichnisses.
 
 Beispiel: +
-`http://isy.local.vm:50002/plis-schluesselverzeichnis`
+`http(s)://isy.local.vm:50002/plis-schluesselverzeichnis`
 
 |`batch.benutzer.kennung` |System-Benutzer zum Ausführen der Batches.
 |`batch.benutzer.passwort` |Passwort des System-Benutzers zum Ausführen der Batches.
@@ -737,7 +737,7 @@ Folgende Werte müssen nach der Erstinstallation angepasst werden:
 Die Adresse der XXX-Geschäftsanwendung.
 
 Beispiel: +
-`http://isy.local.vm:50001/xxx-ga`
+`http(s)://isy.local.vm:50001/xxx-ga`
 
 |… |
 |===

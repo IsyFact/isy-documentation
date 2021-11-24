@@ -109,9 +109,9 @@ Die Service-URLs der HTTP Invoker Schnittstellen müssen einheitlich nach folgen
 [cols="1,4",options="header"]
 |====
 2+|{desc-table-ssurl1}
-|*Schema*         m| $$http://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
-|*Beispiele*      m| $$http://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
-$$http://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
+|*Schema*         m| $$http(s)://<Hostname>/<Anwendungsname>/<Servicename>_v<Version>$$
+|*Beispiele*      m| $$http(s)://register-xyz.test.de/xyz-register/AuskunftBean_v4_1$$ +
+$$htt(s)://qs-xyz.test.de/isy-benutzerverzeichnis/AuskunftBean_v4_1$$
 |*Variable*        | *Mögliche Ausprägungen*
 m|<Hostname>       | Der Hostname des Servers
 m|<Anwendungsname> | Der Name der Anwendung.

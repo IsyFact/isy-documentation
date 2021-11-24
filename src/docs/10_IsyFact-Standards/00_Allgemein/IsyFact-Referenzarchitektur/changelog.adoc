@@ -1,6 +1,13 @@
 [[changelog]]
 = Changelog
 
+*Änderungen IsyFact 2.4.0*
+
+// tag::release-2.4.0[]
+- `IFS-1162`: Interne Verschlüsselung als SOLL-Anforderung an eine Systemlandschaft beschrieben
+- `IFS-1092`: Übertragungswege von Daten in der internen Servicekommunikation beschrieben
+// end::release-2.4.0[]
+
 *Änderungen IsyFact 2.3.0*
 
 // tag::release-2.3.0[]
