@@ -9,6 +9,7 @@
 - `IFS-1162`: Interne Verschlüsselung als SOLL-Anforderung an eine Systemlandschaft beschrieben
 - `IFS-1092`: Übertragungswege von Daten in der internen Servicekommunikation beschrieben
 - `IFS-992`: Abschnitt "IsyFact-konforme Anwendungen" klarer beschrieben
+- `IFE-354`: Veraltete Version von _Konzept Sicherheit Keycloak_ gelöscht
 
 # 2.3.0
 - `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
