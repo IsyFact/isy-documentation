@@ -1072,6 +1072,40 @@
                                 </configuration>
                             </execution>
                             <execution>
+                                <id>Konzept_Servicegateway</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>html</backend>
+                                    <sourceDirectory>
+                                        src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Servicegateway
+                                    </sourceDirectory>
+                                    <sourceDocumentName>master.adoc</sourceDocumentName>
+                                    <outputFile>
+                                        ${html-output-base-directory}/IsyFact-Standards/Bausteine/KonzeptServicegateway.html
+                                    </outputFile>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>Konzept_Servicegateway-pdf</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>process-asciidoc</goal>
+                                </goals>
+                                <configuration>
+                                    <backend>pdf</backend>
+                                    <sourceDirectory>
+                                        src/docs/10_IsyFact-Standards/20_Bausteine/Konzept_Servicegateway
+                                    </sourceDirectory>
+                                    <sourceDocumentName>master.adoc</sourceDocumentName>
+                                    <outputFile>
+                                        ${pdf-output-base-directory}/10_IsyFact-Standards/20_Bausteine/Sicherheitskomponente/Konzept_Servicegateway.pdf
+                                    </outputFile>
+                                </configuration>
+                            </execution>
+                            <execution>
                                 <id>Konzept_Sicherheit</id>
                                 <phase>generate-resources</phase>
                                 <goals>
