@@ -149,6 +149,26 @@ Standardmäßig wird Port 7000 verwendet.
 
 Eine Erläuterung der Konfigurationsparameter findet sich im Anhang <<liste-der-redissonparameter>>.
 
+[[Schritt-6-Konfiguration-Redisson-Spring-Session]]
+== Schritt 6: Konfiguration von Redisson's Spring Session
+
+Um Deserialisierungsfehler bei den aus Redis gelesenen Sessionobjekten zu vermeiden, muss in allen Anwendungen, die isy-session einsetzen, ein anwendungsspezifischer Präfix gesetzt werden, weil sich mehrere Anwendungen eine Session teilen und gemeinsam denselben Redis-Cluster verwenden.
+
+Ein geeigneter Präfix wird der Annotation _@IsyEnableRedissonHttpSession_ als Parameter übergeben. In <<table-redison-http-session-config>> sind alle Parameter der Annotation aufgelistet.
+
+:desc-table-redison-http-session-config: Konfigurationsparameter "IsyEnableRedissonHttpSession"
+[id="table-redison-http-session-config",reftext="{table-caption} {counter:tables}"]
+.{desc-table-redison-http-session-config}
+[cols="3,2,4",options="header"]
+|====
+3+|Konfigurationsparameter isy-session
+|*Parameter* |*Standardwert* |*Beschreibung*
+|maxInactiveIntervalInSeconds |1800s |Wenn die Session nicht genutzt wird, verfällt die Session nach Ablauf dieses Intervalls
+|keyPrefix |"" |Legt einen eindeutigen Namespace für Schlüssel fest. Der Wert wird verwendet, um Sitzungen zu isolieren, indem das Präfix von "spring:session:" in "spring:session:<redisNamespace>:" geändert wird. Der Standardwert ist "", so dass alle Redis-Schlüssel mit "spring:session" beginnen.
+|lockPrefix |"lock" |Legt ein eindeutiges Präfix zur Identifizierung von Redisson-Sperren fest.
+|====
+
+
 [[vermeidung-haeufiger-fehler]]
 = Vermeidung häufiger Fehler
 
