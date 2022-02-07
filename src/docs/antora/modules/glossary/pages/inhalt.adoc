@@ -163,7 +163,7 @@ Eine Domäne im Kontext der A-Architektur entspricht der Begrifflichkeit aus Sic
 Eine *Anwendungsdomäne* gruppiert fachlich zusammengehörende Anwendungssysteme. Werden Querschnittsanwendungen gruppiert, entsteht eine *Querschnittsdomäne*.
 +
 [id="image-Anwendungsdomaene"]
-.Anwendungsdomäne
+.Domänen einer Anwendungslandschaft
 image::glossar-anwendungsdomaene.dn.svg[]
 +
 Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
