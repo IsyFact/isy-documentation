@@ -26,16 +26,16 @@ Spezialisierung des Begriffs <<glossar-Domaene>> im Kontext von <<glossar-Gescha
 [id="glossar-Anwendungskern",reftext="Anwendungskern"]
 Anwendungskern (AWK)::
 Der Anwendungskern beinhaltet die Anwendungslogik eines Anwendungssystems.
-
-.Anwendungskern
++
 [id="image-glossar-3"]
+.Anwendungskern
 image::glossar-anwendungskern.png[align="center"]
 
 [id="glossar-Anwendungskomponente",reftext="Anwendungskomponente"]
 Anwendungskomponente (ANK)::
 Eine Anwendungskomponente beschreibt eine Menge von funktional zusammenhängenden Anwendungsfällen.
 Anwendungskomponenten sind Bestandteile von Anwendungssystemen.
-
++
 Beispiele: Benutzerverwaltung: ANK_Benutzer, ANK_Rollen, ...
 
 [id="glossar-Anwendungskontext",reftext="Anwendungskontext"]
@@ -52,9 +52,9 @@ Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungssystemen ist in
 [id="glossar-Anwendungslandschaft-IsyFact",reftext="Anwendungslandschaft (IsyFact)"]
 Anwendungslandschaft (IsyFact)::
 Die Anwendungslandschaft der IsyFact besteht aus Anwendungsdomänen, einer Querschnittsdomäne, einem Portal und einem Service-Gateway.
-
-.Anwendungslandschaft (IsyFact)
++
 [id="image-glossar-4"]
+.Anwendungslandschaft (IsyFact)
 image::glossar-anwendungslandschaft.png[align="center"]
 
 [id="glossar-Anwendungssystem",reftext="Anwendungssystem"]
@@ -77,11 +77,11 @@ Architektursicht::
 In Anlehnung an iSAQB werden in der IsyFact die Sichten A-Architektur, T-Architektur und TI-Architektur unterschieden.
 Nachfolgende Abbildung zeigt die Orthogonalität von Architektursichten und Anwendungstypen.
 Jeder Anwendungstyp besitzt eine spezifische Darstellung in jeder Sicht.
-
-.Anwendungstypen
++
 [id="image-Anwendungstypen"]
+.Anwendungstypen
 image::glossar-anwendungstypen.png[align="center"]
-
++
 NOTE: iSAQB = international Software Architecture Qualification Board
 
 [id="glossar-Auslieferung",reftext="Auslieferung"]
@@ -105,9 +105,9 @@ Die Batches können dabei den Anwendungskern aufrufen und nutzen.
 Baustein:: Wiederverwendbare Umsetzung einer spezifischen Problemlösung.
 Bausteine stellen strukturierte Lösungen von Geschäftsprozessen dar.
 Umfasst mindestens eine Bibliothek oder ein Anwendungssystem inklusive der dazugehörigen Dokumentation.
-
++
 Beispiel: Logging, Sicherheit, Überwachung
-
++
 NOTE: Da zwischen einem logischen Baustein und einem Anwendungssystem eine N:M Beziehung besteht, kann es vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
 
 [id="glossar-GUI",reftext="Benutzeroberfläche (GUI)"]
@@ -120,15 +120,15 @@ Bibliothek::
 Kleinste auslieferbare Einheit von thematisch zusammengehörenden Funktionen.
 Eine oder mehrere Bibliotheken sind Bestandteile von IT-Systemen oder anderer Bibliotheken.
 Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
-
-.Bibliothek
++
 [id="image-glossar-1"]
+.Bibliothek
 image::glossar-bibliothek.png[align="center"]
 
 [id="glossar-Blaupause",reftext="Blaupause"]
 Blaupause::
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
-
++
 NOTE: Für jeden Anwendungstyp ist ein Satz von Blaupausen notwendig.
 
 [id="glossar-bva",reftext="BVA"]
@@ -140,7 +140,7 @@ Change Log::
 Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit Releases) zuordnet.
 Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen in eine Bibliothek integrieren.
 Pro Bibliothek und Anwendungssystem existiert ein Change Log.
-
++
 Es enthält:
 
 * Inhalt und Version der Software in Form einer Stückliste,
@@ -203,9 +203,9 @@ Eine Instanz ist Bestandteil der TI-Architektur einer Geschäftsanwendung und l�
 IsyFact (IF)::
 Allgemeine Software-Fabrik (engl. Software-Factory) für den Bau von komplexen Anwendungslandschaften, die vom Bundesverwaltungsamt entwickelt wird.
 Sie bündelt bestehendes technisches Know-how um Anwendungssysteme effizienter entwickeln und betreiben zu können.
-
++
 Quelle: http://isyfact.de[isyfact.de]
-
++
 Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu einem spezifischen Anwendungskontext gehören.
 Die IsyFact besteht aus den IsyFact-Standards (IFS) und den IsyFact-Erweiterungen.
 
@@ -233,7 +233,7 @@ Java Virtual Machine
 konforme Änderung::
 Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch vollkonform und nicht-konform), wobei Abwärtskompatibilität gewährleistet ist.
 Das bedeutet, dass Nutzer der entsprechenden Bibliotheken keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
-
++
 Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen.
 Eine konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
 
@@ -246,14 +246,14 @@ Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturents
 Methodik::
 Im Rahmen einer Software-Factory bildet die Methodik die Grundlage für die Umsetzung von Geschäftsanwendungen mittels einer standardisierten Vorgehensweise nach dem V-Modell XT Bund.
 Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
-
++
 NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen zur Verfügung stellt.
 
 [id="glossar-nicht-konform",reftext="nicht konforme Änderung"]
 nicht konforme Änderung::
 Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch vollkonform und konform), wobei *keine* Abwärtskompatibilität gewährleistet ist.
 Das bedeutet, dass Nutzer der entsprechenden Bibliotheken in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
-
++
 Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionen.
 Eine nicht konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
 
@@ -353,9 +353,9 @@ Eine Software Factory ist eine Sammlung von Blaupausen, Bausteinen, einer Plattf
 Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer Anwendungsdomäne so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des Architekturrahmens sichergestellt ist.
 „Standardisiert“ bedeutet, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software Factory getroffen und in entsprechenden Komponenten implementiert sind.
 Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen Fachlichkeit der Anwendung konzentrieren.
-
-.Software Factory
++
 [id="image-SoftwareFactory"]
+.Software Factory
 image::glossar-software-factory.png[align="center"]
 
 [id="glossar-svn",reftext="SVN"]
@@ -366,7 +366,7 @@ Subversion
 Systemlandschaft::
 Der Begriff der Anwendungslandschaft ist fachlich motiviert.
 Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
-
++
 Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server, usw.).
 
 [id="glossar-T-Architektur",reftext="T-Architektur"]
@@ -381,7 +381,7 @@ Sie beschreibt den Aufbau der Betriebsumgebung für die <IT-Systeme einer IsyFac
 [id="glossar-vollkonform",reftext="vollkonforme Änderung"]
 vollkonforme Änderung::
 Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer Bibliothek nicht verändert (siehe auch konform und nicht-konform).
-
++
 Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
 
 [id="glossar-Werkzeug",reftext="Werkzeug"]
