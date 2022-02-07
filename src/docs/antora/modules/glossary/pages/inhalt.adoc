@@ -113,7 +113,7 @@ NOTE: Da zwischen einem logischen Baustein und einem Anwendungssystem eine N:M B
 [id="glossar-GUI",reftext="Benutzeroberfläche (GUI)"]
 Benutzeroberfläche (GUI)::
 Das Graphical User Interface (GUI) stellt die Verbindung zwischen Anwender und Anwendung her.
-Die IsyFact stellt ein fertiges Framework zur Verfügung und strukturiert die die Erstellung der Dialoglogik der Geschäftsprozesse.
+Die IsyFact stellt ein fertiges Framework zur Verfügung und strukturiert die Erstellung der Dialoglogik der Geschäftsprozesse.
 
 [id="glossar-Bibliothek",reftext="Bibliothek"]
 Bibliothek::
@@ -201,13 +201,11 @@ Eine Instanz ist Bestandteil der TI-Architektur einer Geschäftsanwendung und l�
 
 [id="glossar-IsyFact",reftext="IsyFact"]
 IsyFact (IF)::
-Allgemeine Software-Fabrik (engl. Software-Factory) für den Bau von komplexen Anwendungslandschaften, die vom Bundesverwaltungsamt entwickelt wird.
+Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen Anwendungslandschaften, die vom Bundesverwaltungsamt entwickelt wird.
 Sie bündelt bestehendes technisches Know-how um Anwendungssysteme effizienter entwickeln und betreiben zu können.
 +
-Quelle: http://isyfact.de[isyfact.de]
-+
 Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu einem spezifischen Anwendungskontext gehören.
-Die IsyFact besteht aus den IsyFact-Standards (IFS) und den IsyFact-Erweiterungen.
+Die IsyFact besteht aus den IsyFact-Standards und den IsyFact-Erweiterungen.
 
 [id="glossar-IFE",reftext="IsyFact-Erweiterungen (IFE)"]
 IsyFact-Erweiterungen (IFE)::
