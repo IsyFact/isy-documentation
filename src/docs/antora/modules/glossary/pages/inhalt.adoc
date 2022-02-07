@@ -17,18 +17,11 @@ Der Begriff steht im Kontext einer Software-Factory im Unterschied zum Nutzer.
 [id="glossar-Anwendung",reftext="Anwendung"]
 Anwendung::
 Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
-Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittssystem verwendet werden.
+Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
 
 [id="glossar-Anwendungsdomaene",reftext="Anwendungsdomäne"]
 Anwendungsdomäne::
-Eine Domäne im Kontext der A-Architektur entspricht der Begrifflichkeit aus Sicht des „Domain Driven Design“.
-Eine Anwendungsdomäne gruppiert fachlich zusammengehörende Anwendungssysteme. Werden Querschnittssysteme gruppiert, entsteht eine Querschnittsdomäne.
-
-.Anwendungsdomäne
-[id="image-Anwendungsdomaene"]
-image::glossar-anwendungsdomaene.png[align="center"]
-
-Beispiele für Anwendungsdomänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
+Spezialisierung des Begriffs <<glossar-Domaene>> im Kontext von <<glossar-Geschaeftsanwendung,Geschäftsanwendungen>>.
 
 [id="glossar-Anwendungskern",reftext="Anwendungskern"]
 Anwendungskern (AWK)::
@@ -58,8 +51,7 @@ Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungssystemen ist in
 
 [id="glossar-Anwendungslandschaft-IsyFact",reftext="Anwendungslandschaft (IsyFact)"]
 Anwendungslandschaft (IsyFact)::
-Die Anwendungslandschaft der IsyFact besteht aus Anwendungsdomänen, einem Portal und einem Service-Gateway.
-Eine Anwendungsdomäne wiederum besteht aus Geschäftsanwendung und Querschnittssystemen.
+Die Anwendungslandschaft der IsyFact besteht aus Anwendungsdomänen, einer Querschnittsdomäne, einem Portal und einem Service-Gateway.
 
 .Anwendungslandschaft (IsyFact)
 [id="image-glossar-4"]
@@ -68,7 +60,7 @@ image::glossar-anwendungslandschaft.png[align="center"]
 [id="glossar-Anwendungssystem",reftext="Anwendungssystem"]
 Anwendungssystem::
 Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
-Es besteht aus Anwendungskomponenten und Querschnittskomponenten.
+Es besteht aus Anwendungskomponenten.
 Anwendungssysteme unterstützen Geschäftsprozesse.
 Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine Geschäftsanwendung.
 Ein Anwendungssystem ist Bestandteil der A-Architektur.
@@ -167,7 +159,14 @@ Es gibt Basisdienste, Fachdienste und Querschnittsdienste.
 
 [id="glossar-Domaene",reftext="Domäne"]
 Domäne::
-siehe Anwendungsdomäne oder Querschnittsdomäne
+Eine Domäne im Kontext der A-Architektur entspricht der Begrifflichkeit aus Sicht des „Domain Driven Design“.
+Eine *Anwendungsdomäne* gruppiert fachlich zusammengehörende Anwendungssysteme. Werden Querschnittsanwendungen gruppiert, entsteht eine *Querschnittsdomäne*.
++
+[id="image-Anwendungsdomaene"]
+.Anwendungsdomäne
+image::glossar-anwendungsdomaene.dn.svg[]
++
+Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
 
 [id="glossar-EfA",reftext="Einer-für-Alle-System"]
 Einer-für-Alle-System (EfA)::
@@ -189,7 +188,7 @@ File Transfer Protocol
 Geschäftsanwendung::
 Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die Basisdienste von Querschnittssystemen oder andere Anwendungssysteme nutzen.
+Dabei kann sie die Basisdienste von Querschnittsanwendungen oder andere Anwendungssysteme nutzen.
 
 [id="glossar-Geschaeftslogik",reftext="Geschäftslogik"]
 Geschäftslogik::
@@ -297,28 +296,35 @@ Portal::
 Zentraler Zugangspunkt zu den Geschäftsanwendungen einer Anwendungslandschaft.
 Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen.
 
+
+[id="glossar-Querschnittsanwendung", reftext="Querschnittsanwendung"]
+Querschnittsanwendung::
+Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
+Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für Anwender.
+Querschnittsanwendungen sind somit in verschiedenen Anwendungsdomänen oder über mehrere Anwendungslandschaften hinweg wiederverwendbar.
++
+Die IsyFact stellt Querschnittsanwendungen in Form von Bausteinen bereit.
+Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
++
+Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+
 [id="glossar-Querschnittsdienst",reftext="Querschnittsdienst"]
 Querschnittsdienst::
 Ein Querschnittsdienst ist ein Dienst, der in unterschiedlichen Anwendungslandschaften stets eine anfallende Aufgabe in ähnlicher oder gleicher Form unterstützt (z.B. Personalwesen).
 
 [id="glossar-Querschnittsdomaene",reftext="Querschnittsdomäne"]
 Querschnittsdomäne::
-Eine Anwendungsdomäne, die nur Querschnittssysteme gruppiert, wird als Querschnittsdomäne bezeichnet.
+Spezialisierung des Begriffs <<glossar-Domaene>> im Kontext von <<glossar-Querschnittsanwendung,Querschnittsanwendungen>>.
+Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Querschnittsanwendungen einer Anwendungslandschaft unabhängig von ihrer Fachlichkeit.
+Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
 [id="glossar-Querschnittskomponente",reftext="Querschnittskomponente"]
 Querschnittskomponente::
-Querschnittskomponenten sind Anwendungskomponenten, die nur querschnittliche Funktionen zur Verfügung stellen.
-Diese querschnittlichen Komponenten sind in jeweils eigenen Blaupausen oder Bausteinen beschrieben und durch eine Bibliothek umgesetzt.
-
-Beispiel: Benutzerverwaltung
-
-NOTE: Querschnittssysteme wurden früher auch Querschnittskomponenten genannt, bevor es zu einer genauen Definition von Baustein, Bibliothek, System und Komponente kam.
+Dieser Begriff ist auf fachlicher Ebene veraltet und wird vollständig durch <<glossar-Querschnittsanwendung>> ersetzt.
 
 [id="glossar-Querschnittssystem",reftext="Querschnittssystem"]
 Querschnittssystem::
-Querschnittssysteme sind spezielle Anwendungen in einer Querschnittsdomäne, welche Basisdienste für weitere (mindestens zwei) Geschäftsanwendungen einer Anwendungslandschaft bereitstellen.
-
-Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+Dieser Begriff ist veraltet und wird vollständig durch <<glossar-Querschnittsanwendung>> ersetzt.
 
 [id="glossar-Release",reftext="Release"]
 Release::
