@@ -895,9 +895,9 @@ Dazu wird die Ausführungsbean bei allen wichtigen Ereignissen aufgerufen:
 
 Jeder Batch erhält beim Logging eine eigene Korrelations-ID.
 
-WARNING: Die Korrelations-ID für Batches war in älteren Versionen des Batchrahmens die ID des Batches statt einer UUID.
+WARNING: In älteren Versionen des Batchrahmens handelte es sich bei der Korrelations-ID für Batches um die ID des Batches. Mittlerweile wurde dies durch eine UUID ersetzt.
 
-Zusätzlich erhält jeder zu verarbeitende Satz eine die Satznummer als Korrelations-ID.
+Zusätzlich erhält jeder zu verarbeitende Satz auch eine eigene Korrelations-ID, welche an die Korrelations-ID des Batches angehängt wird. Die entstehende Korrelations-ID Kette wird dann dem Aufruf-Kontext hinzugefügt.
 
 [[fachliche-logik-in-den-komponenten-der-fachanwendung-implementieren]]
 === Fachliche Logik in den Komponenten der Fachanwendung implementieren
