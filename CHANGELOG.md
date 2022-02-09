@@ -1,3 +1,6 @@
+# 1.10.1
+- `IFS-702`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
+ 
 # 1.10.0
 - `IFS-1109`: Nutzungsvorgaben Umgang mit Sonderzeichen:
     - Schnittstellenbeschreibung um neue Funktionen zum Erfassen von Metadaten ergänzt
