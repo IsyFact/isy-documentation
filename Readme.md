@@ -1,9 +1,5 @@
 # isy-documentation
 
-<div align="center">
-    <img src="https://git.zssi.ivbb.bund.de/IsyFact/isy-documentation/badges/master/pipeline.svg" alt="build-badge"/>
-</div>
-
 `isy-documentation` enthält alle Dokumente wie beispielsweise Blaupausen, Konzepte und Nutzungsvorgaben des IsyFact Standards.
 
 Die Dokumentation ist in Asciidoc geschrieben, pro Dokument wird immer eine HTML und eine PDF Version erzeugt.
@@ -13,7 +9,7 @@ Die Dokumentation ist in Asciidoc geschrieben, pro Dokument wird immer eine HTML
 Die Dokumentation kann mit folgenden Befehlen gebaut werden.
 
 ```
-$ git clone https://git.zssi.ivbb.bund.de/IsyFact/isy-documentation.git
+$ git clone https://github.com/IsyFact/isy-documentation.git
 
 $ cd isy-documentation
 
@@ -32,4 +28,4 @@ Das Dokument befindet sich anschließend direkt im Zielverzeichnis für HTML ode
 
 ## Weiterentwicklung der Dokumentation
 
-Eine Anleitung zur Erstellung und Pflege von Dokumenten steht im [Handbuch für technische Autoren](https://git.zssi.ivbb.bund.de/IsyFact/isy-documentation/-/blob/master/src/docs/10_IsyFact-Standards/50_Werkzeuge/Handbuch_fuer_technische_Autoren/master.adoc), welches ebenfalls Teil von `isy-documentation` ist.
+Eine Anleitung zur Erstellung und Pflege von Dokumenten steht im [Handbuch für technische Autoren](https://github.com/IsyFact/isy-documentation/blob/master/src/docs/10_IsyFact-Standards/50_Werkzeuge/Handbuch_fuer_technische_Autoren/inhalt.adoc), welches ebenfalls Teil von `isy-documentation` ist.
