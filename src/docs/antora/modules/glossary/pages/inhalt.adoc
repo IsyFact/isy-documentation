@@ -160,7 +160,7 @@ Closed Source Release::
 Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als Einer-für-Alle-System anbietet.
 Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
 
-[id="glossar-Dienst",reftext="Service"]
+[id="glossar-ServiceFachlich",reftext="Service"]
 Service::
 Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
 Es gibt Basisservices, Fachservices und Querschnittsservices.
