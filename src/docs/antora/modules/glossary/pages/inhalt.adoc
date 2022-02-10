@@ -160,11 +160,6 @@ Closed Source Release::
 Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als Einer-für-Alle-System anbietet.
 Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
 
-[id="glossar-ServiceFachlich",reftext="Service"]
-Service::
-Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
-Es gibt Basisservices, Fachservices und Querschnittsservices.
-
 [id="glossar-Domaene",reftext="Domäne"]
 Domäne::
 siehe Anwendungsdomäne oder Querschnittsdomäne
@@ -323,6 +318,11 @@ Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
 [id="glossar-Release",reftext="Release"]
 Release::
 Veröffentlichter Versionsstand einer Software-Factory.
+
+[id="glossar-ServiceFachlich",reftext="Service"]
+Service::
+Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
+Es gibt Basisservices, Fachservices und Querschnittsservices.
 
 [id="glossar-Service",reftext="Service"]
 Service::
