@@ -1,0 +1,4 @@
+name: glossary
+title: Glossar
+version: '1.0'
+start_page: glossary:master.adoc
