@@ -98,10 +98,10 @@ Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Sour
 Die entwickelte Software wird auf einer Betriebsumgebung (Plattform) installiert.
 Zu jeder Auslieferung gibt es ein Change-Log.
 
-[id="glossar-Basisdienst",reftext="Basisdienst"]
-Basisdienst::
-Ein Basisdienst ist ein Dienst, der eine gemeinsame, übergreifende Grundlage für andere, darauf aufbauende Dienste (Fach- und Querschnittsdienste) bildet.
-Der Basisdienst ist keiner einzelnen fachlichen Aufgabe direkt zugeordnet.
+[id="glossar-Basisservice",reftext="Basisservice"]
+Basisservice::
+Ein Basisservice ist ein Service, der eine gemeinsame, übergreifende Grundlage für andere, darauf aufbauende Services (Fach- und Querschnittsservices) bildet.
+Der Basisservice ist keiner einzelnen fachlichen Aufgabe direkt zugeordnet.
 
 [id="glossar-Batch",reftext="Batch"]
 Batch::
@@ -160,11 +160,6 @@ Closed Source Release::
 Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als Einer-für-Alle-System anbietet.
 Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
 
-[id="glossar-Dienst",reftext="Dienst"]
-Dienst::
-Ein Dienst ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
-Es gibt Basisdienste, Fachdienste und Querschnittsdienste.
-
 [id="glossar-Domaene",reftext="Domäne"]
 Domäne::
 siehe Anwendungsdomäne oder Querschnittsdomäne
@@ -175,11 +170,11 @@ Begriff aus der deutschen Bundesverwaltung.
 Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
 Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-für-Alle-System angeboten.
 
-[id="glossar-Fachdienst",reftext="Fachdienst"]
-Fachdienst::
-Ein Fachdienst ist ein Dienst, der direkt der Erfüllung einer speziellen Fachaufgabe dient.
-Der Kontext eines Fachdienstes ist in der operativen Praxis meist auf eine Anwendungslandschaft beschränkt.
-Sie werden durch Basisdienste unterstützt.
+[id="glossar-Fachservice",reftext="Fachservice"]
+Fachservice::
+Ein Fachservice ist ein Service, der direkt der Erfüllung einer speziellen Fachaufgabe dient.
+Der Kontext eines Fachservices ist in der operativen Praxis meist auf eine Anwendungslandschaft beschränkt.
+Sie werden durch Basisservices unterstützt.
 
 [id="glossar-ftp",reftext="FTP"]
 FTP::
@@ -189,7 +184,7 @@ File Transfer Protocol
 Geschäftsanwendung::
 Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die Basisdienste von Querschnittssystemen oder andere Anwendungssysteme nutzen.
+Dabei kann sie die Basisservice von Querschnittssystemen oder andere Anwendungssysteme nutzen.
 
 [id="glossar-Geschaeftslogik",reftext="Geschäftslogik"]
 Geschäftslogik::
@@ -297,9 +292,9 @@ Portal::
 Zentraler Zugangspunkt zu den Geschäftsanwendungen einer Anwendungslandschaft.
 Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen.
 
-[id="glossar-Querschnittsdienst",reftext="Querschnittsdienst"]
-Querschnittsdienst::
-Ein Querschnittsdienst ist ein Dienst, der in unterschiedlichen Anwendungslandschaften stets eine anfallende Aufgabe in ähnlicher oder gleicher Form unterstützt (z.B. Personalwesen).
+[id="glossar-Querschnittsservice",reftext="Querschnittsservice"]
+Querschnittsservice::
+Ein Querschnittsservice ist ein Service, der in unterschiedlichen Anwendungslandschaften stets eine anfallende Aufgabe in ähnlicher oder gleicher Form unterstützt (z.B. Personalwesen).
 
 [id="glossar-Querschnittsdomaene",reftext="Querschnittsdomäne"]
 Querschnittsdomäne::
@@ -316,13 +311,18 @@ NOTE: Querschnittssysteme wurden früher auch Querschnittskomponenten genannt, b
 
 [id="glossar-Querschnittssystem",reftext="Querschnittssystem"]
 Querschnittssystem::
-Querschnittssysteme sind spezielle Anwendungen in einer Querschnittsdomäne, welche Basisdienste für weitere (mindestens zwei) Geschäftsanwendungen einer Anwendungslandschaft bereitstellen.
+Querschnittssysteme sind spezielle Anwendungen in einer Querschnittsdomäne, welche Basisservices für weitere (mindestens zwei) Geschäftsanwendungen einer Anwendungslandschaft bereitstellen.
 
 Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
 
 [id="glossar-Release",reftext="Release"]
 Release::
 Veröffentlichter Versionsstand einer Software-Factory.
+
+[id="glossar-ServiceFachlich",reftext="Service"]
+Service::
+Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
+Es gibt Basisservices, Fachservices und Querschnittsservices.
 
 [id="glossar-Service",reftext="Service"]
 Service::
@@ -331,7 +331,7 @@ Zugriffe von außerhalb der Anwendungslandschaft laufen zusätzlich über ein Se
 
 [id="glossar-Service-Gateway",reftext="Service-Gateway"]
 Service-Gateway::
-Stellt die Verbindung zwischen einem externen und einem internen Dienst durch eine Schnittstelle zur Verfügung.
+Stellt die Verbindung zwischen einem externen und einem internen Service durch eine Schnittstelle zur Verfügung.
 
 [id="glossar-sla",reftext="SLA"]
 SLA::
