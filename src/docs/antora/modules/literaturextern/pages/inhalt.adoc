@@ -215,6 +215,10 @@ http://www.cio.bund.de/v-modell-xt
 SLF4J FATAL::
 http://slf4j.org/faq.html#fatal
 
+[id="litextern-slf4j-bridge-handler"]
+SLF4JBridgeHandler::
+http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html
+
 [id="litextern-Identity_management"]
 Identity and Access Management::
 https://en.wikipedia.org/wiki/Identity_management
