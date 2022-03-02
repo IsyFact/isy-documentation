@@ -17,14 +17,6 @@ https://github.com/IsyFact/IsyFact-Vorlageanwendung
 IsyFact::
 https://github.com/isyfact
 
-[id="litextern-exceptions"]
-Exceptions::
-http://www.onjava.com/pub/a/onjava/2003/11/19/exceptions.html
-
-[id="litextern-antipattern-exceptions"]
-Antipatterns Exceptions::
-http://today.java.net/pub/a/today/2006/04/06/exception-handling-antipatterns.html
-
 [id="litextern-CWE-502"]
 CWE-502::
 http://cwe.mitre.org/data/definitions/502.html
@@ -250,4 +242,16 @@ http://micrometer.io/docs
 [id="litextern-Spring-Boot-Info-Endpoint"]
 Dokumentation von Spring Boot zum Info-Endpoint::
 https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-application-info
+
+[id="litextern-diagrams.net"]
+diagrams.net::
+https://diagrams.net
+
+[id="litextern-diagrams.net-IntelliJ"]
+IntelliJ mit diagrams.net::
+https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
+
+[id="litextern-diagrams.net-VS-Code"]
+Visualstudio mit diagrams.net::
+https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 // end::inhalt[]
