@@ -90,11 +90,6 @@ Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Sour
 Die entwickelte Software wird auf einer Betriebsumgebung (Plattform) installiert.
 Zu jeder Auslieferung gibt es ein Change-Log.
 
-[id="glossar-Basisservice",reftext="Basisservice"]
-Basisservice::
-Ein Basisservice ist ein Service, der eine gemeinsame, übergreifende Grundlage für andere, darauf aufbauende Services (Fach- und Querschnittsservices) bildet.
-Der Basisservice ist keiner einzelnen fachlichen Aufgabe direkt zugeordnet.
-
 [id="glossar-Batch",reftext="Batch"]
 Batch::
 Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
@@ -168,12 +163,6 @@ Einer-für-Alle-System (EfA)::
 Begriff aus der deutschen Bundesverwaltung.
 Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
 Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-für-Alle-System angeboten.
-
-[id="glossar-Fachservice",reftext="Fachservice"]
-Fachservice::
-Ein Fachservice ist ein Service, der direkt der Erfüllung einer speziellen Fachaufgabe dient.
-Der Kontext eines Fachservices ist in der operativen Praxis meist auf eine Anwendungslandschaft beschränkt.
-Sie werden durch Basisservices unterstützt.
 
 [id="glossar-ftp",reftext="FTP"]
 FTP::
@@ -299,10 +288,6 @@ Die IsyFact stellt Querschnittsanwendungen in Form von Bausteinen bereit.
 Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
 +
 Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
-
-[id="glossar-Querschnittsservice",reftext="Querschnittsservice"]
-Querschnittsservice::
-Ein Querschnittsservice ist ein Service, der in unterschiedlichen Anwendungslandschaften stets eine anfallende Aufgabe in ähnlicher oder gleicher Form unterstützt (z.B. Personalwesen).
 
 [id="glossar-Querschnittsdomaene",reftext="Querschnittsdomäne"]
 Querschnittsdomäne::
