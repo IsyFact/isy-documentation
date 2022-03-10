@@ -295,14 +295,6 @@ Spezialisierung des Begriffs <<glossar-Domaene>> im Kontext von <<glossar-Quersc
 Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Querschnittsanwendungen einer Anwendungslandschaft unabhängig von ihrer Fachlichkeit.
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
-[id="glossar-Querschnittskomponente",reftext="Querschnittskomponente"]
-Querschnittskomponente::
-Dieser Begriff ist auf fachlicher Ebene veraltet und wird vollständig durch <<glossar-Querschnittsanwendung>> ersetzt.
-
-[id="glossar-Querschnittssystem",reftext="Querschnittssystem"]
-Querschnittssystem::
-Dieser Begriff ist veraltet und wird vollständig durch <<glossar-Querschnittsanwendung>> ersetzt.
-
 [id="glossar-Release",reftext="Release"]
 Release::
 Veröffentlichter Versionsstand einer Software-Factory.
