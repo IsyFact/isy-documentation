@@ -1,8 +1,0 @@
-= Glossar: Einleitung
-
-// tag::inhalt[]
-[[einleitung]]
-== Einleitung
-
-Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
-// end::inhalt[]

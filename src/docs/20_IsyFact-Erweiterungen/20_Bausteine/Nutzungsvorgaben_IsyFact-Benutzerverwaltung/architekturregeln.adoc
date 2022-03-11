@@ -1,7 +1,0 @@
-// tag::architekturregeln[]
-
-[[architekturregeln-isyfact-benutzerverwaltung]]
-== Architekturregeln IsyFact-Benutzerverwaltung
-
-include::inhalt.adoc[tags=architekturregel]
-// end::architekturregeln[]

@@ -1,7 +1,0 @@
-// tag::architekturregeln[]
-
-[[architekturregeln-ldap]]
-== Architekturregeln Spring LDAP
-
-include::inhalt.adoc[tags=architekturregel]
-// end::architekturregeln[]

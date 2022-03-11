@@ -1,8 +1,0 @@
-// tag::architekturregeln[]
-
-[[architekturregeln-ueberwachung]]
-== Architekturregeln Überwachung
-
-include::inhalt.adoc[tags=architekturregel]
-include::../Konzept_Ueberwachung/inhalt.adoc[tags=architekturregel]
-// end::architekturregeln[]
