@@ -101,6 +101,10 @@ http://www.vogella.com/tutorials/AsciiDoc/article.html
 AsciiDoc Recommended Practices::
 https://asciidoctor.org/docs/asciidoc-recommended-practices
 
+[id="litextern-AntoraXrefMacroStructure"]
+Antora: Xref macro structure::
+https://docs.antora.org/antora/latest/page/xref/#structure
+
 [id="litextern-JSR-310"]
 JSR 310 „Date and Time API“::
 https://jcp.org/en/jsr/detail?id=310
