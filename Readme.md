@@ -1,31 +1,9 @@
 # isy-documentation
 
-`isy-documentation` enthält alle Dokumente wie beispielsweise Blaupausen, Konzepte und Nutzungsvorgaben des IsyFact Standards.
-
-Die Dokumentation ist in Asciidoc geschrieben, pro Dokument wird immer eine HTML und eine PDF Version erzeugt.
-
-## Dokumentation bauen
-
-Die Dokumentation kann mit folgenden Befehlen gebaut werden.
-
-```
-$ git clone https://github.com/IsyFact/isy-documentation.git
-
-$ cd isy-documentation
-
-$ mvn clean compile
-```
-
-## Einzelnes Dokument bauen
-
-Das Bauen eines einzelnen Dokuments (z.B. IsyFact-Whitepaper) ist ebenfalls möglich:
-
-```
-$ mvn compile -Pbuild-component -Dcomponent.name=IsyFact-Whitepaper -Dcomponent.src=src/docs/10_IsyFact-Standards/00_Allgemein/IsyFact-Whitepaper
-```
-
-Das Dokument befindet sich anschließend direkt im Zielverzeichnis für HTML oder PDF.
+`isy-documentation` enthält übergeordnete allgemeine Dokumente wie das Glossar, das externe Literaturverzeichnis und die Lizenzangaben. Die Einträge können von Dokumenten in anderen Repositories per Antora eingebunden werden.
 
 ## Weiterentwicklung der Dokumentation
 
-Eine Anleitung zur Erstellung und Pflege von Dokumenten steht im [Handbuch für technische Autoren](https://github.com/IsyFact/isy-documentation/blob/master/src/docs/10_IsyFact-Standards/50_Werkzeuge/Handbuch_fuer_technische_Autoren/inhalt.adoc), welches ebenfalls Teil von `isy-documentation` ist.
+Eine Anleitung zur Erstellung und Pflege von Dokumenten steht im [Handbuch für technische Autoren](https://github.com/IsyFact/isy-documentation/blob/master/src/docs/10_IsyFact-Standards/50_Werkzeuge/Handbuch_fuer_technische_Autoren/inhalt.adoc), welches Teil der IsyFact Gesamtdokumentation ist. 
+
+TODO Link anpassen für Antora

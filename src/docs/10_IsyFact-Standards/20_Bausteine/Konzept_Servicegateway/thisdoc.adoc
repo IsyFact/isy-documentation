@@ -1,5 +1,0 @@
-= Konzept Servicegateway
-
-// tag::inhalt[]
-
-// end::inhalt[]

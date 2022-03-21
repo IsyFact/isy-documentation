@@ -1,8 +1,0 @@
-// tag::architekturregeln[]
-
-[[architekturregeln-sicherheit]]
-== Architekturregeln Sicherheit
-
-include::inhalt.adoc[tags=architekturregel]
-include::../Konzept_Sicherheit/inhalt.adoc[tags=architekturregel]
-// end::architekturregeln[]

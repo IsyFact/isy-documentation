@@ -1,7 +1,0 @@
-// tag::it-sicherheitsregeln[]
-
-[[it-sicherheitsregeln-isyfact-benutzerverwaltung]]
-== IT-Sicherheitsregeln IsyFact-Benutzerverwaltung
-
-include::inhalt.adoc[tags=sicherheit]
-// end::it-sicherheitsregeln[]

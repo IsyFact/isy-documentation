@@ -1,7 +1,0 @@
-// tag::it-sicherheitsregeln[]
-
-[[it-sicherheitsregeln-ldap]]
-== IT-Sicherheitsregeln Spring LDAP
-
-include::inhalt.adoc[tags=sicherheit]
-// end::it-sicherheitsregeln[]
