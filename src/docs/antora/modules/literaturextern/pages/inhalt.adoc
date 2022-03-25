@@ -270,4 +270,8 @@ https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 [id="litextern-diagrams.net-VS-Code"]
 Visualstudio mit diagrams.net::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
+
+[id="litextern-asciidoctorj-extensions"]
+AsciidoctorJ Extensions::
+https://asciidoctor.org/docs/asciidoctorj
 // end::inhalt[]
