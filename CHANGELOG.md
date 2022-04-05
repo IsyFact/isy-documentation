@@ -1,3 +1,6 @@
+# 2.5.0
+- `IFS-1344`: Umstellung auf CI-Friendly builds
+ 
 # 2.4.0
 - `IFS-546`: Vorgaben für Properties zu komplexen Datentypen ergänzt
 - `IFS-729`: Handbuch für techn. Autoren: Ursache und Lösungen für Fehler bei der Generierung von PDFs beschrieben
