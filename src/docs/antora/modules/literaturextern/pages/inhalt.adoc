@@ -247,7 +247,7 @@ http://download.oracle.com/docs/cd/B19306_01/server.102/b14225.pdf
 Code2000::
 http://www.code2000.net
 
-[id="litextern-Monitoring-Systeme-unterstützt"]
+[id="litextern-monitoring-systeme-unterstuetzt"]
 unterstützte Monitoring-Systeme::
 http://micrometer.io/docs/concepts#_supported_monitoring_systems
 
@@ -274,4 +274,58 @@ https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 [id="litextern-asciidoctorj-extensions"]
 AsciidoctorJ Extensions::
 https://asciidoctor.org/docs/asciidoctorj
+
+[id="litextern-wiki-rest"]
+Wikipedia-Seite zu REST::
+https://de.wikipedia.org/wiki/Representational_State_Transfer
+
+[id="litextern-dissertation-roy-fielding"]
+Dissertation von Roy Fielding::
+https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation_2up.pdf
+
+[id="litextern-wikipedia-http-statuscode"]
+Wikipedia-Seite zu HTTP-Statuscodes::
+https://de.wikipedia.org/wiki/HTTP-Statuscode
+
+[id="litextern-restapitutorial-uebersicht-http-statuscodes"]
+openapi-generator.tech::
+https://www.restapitutorial.com/httpstatuscodes.html
+
+[id="litextern-openapi-generator-tech"]
+Übersicht HTTP-Statuscodes::
+https://openapi-generator.tech/docs/generators
+
+[id="litextern-swagger-request-validator"]
+Swagger Request Validator::
+https://bitbucket.org/atlassian/swagger-request-validator
+
+[id="litextern-spring-webflux-exceptions"]
+Spring Homepage (Webflux Exceptions)::
+https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-and-rest-exceptions
+
+[id="litextern-spring-oauth2-bearertoken-resolver"]
+Spring Homepage (Bearer Token Resolver)::
+https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html/oauth2.html#oauth2resourceserver-bearertoken-resolver
+
+[id="litextern-spring-content-negotiation"]
+Spring Homepage (Content Negotiation)::
+https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html/oauth2.html#oauth2resourceserver-bearertoken-resolver
+
+[id="litextern-oauth-homepage"]
+OAuth Homepage::
+https://oauth.net/2/
+
+[id="litextern-swagger-editor-intellij"]
+Swagger Editor für IntelliJ::
+https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor
+
+[id="litextern-swagger-editor-eclipse"]
+Swagger Editor für Eclipse::
+https://marketplace.eclipse.org/content/openapi-swagger-editor
+
+[id="litextern-swagger-spezification"]
+Swagger Spezifikation::
+https://swagger.io/specification/
+
+
 // end::inhalt[]
