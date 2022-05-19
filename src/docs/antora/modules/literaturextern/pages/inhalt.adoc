@@ -109,9 +109,29 @@ http://www.vogella.com/tutorials/AsciiDoc/article.html
 AsciiDoc Recommended Practices::
 https://asciidoctor.org/docs/asciidoc-recommended-practices
 
+[[litextern-Antora-Installationen]]
+Antora Installationen::
+https://docs.antora.org/antora/latest/install-and-run-quickstart/
+
+[[litextern-Antora-Playbook]]
+Antora Playbook::
+https://docs.antora.org/antora/latest/install-and-run-quickstart/#create-a-playbook
+
+[[litextern-Antora-Maven]]
+Antora mit Maven::
+https://abelsromero.github.io/blog/2020/antora-with-maven.html
+
 [id="litextern-AntoraXrefMacroStructure"]
 Antora: Xref macro structure::
 https://docs.antora.org/antora/latest/page/xref/#structure
+
+[[litextern-Antora-Komponente]]
+Antora-Dokumentations-Komponente::
+https://docs.antora.org/antora/latest/component-version-descriptor/
+
+[[litextern-Antora-Verzeichnisstruktur]]
+Antora-Verzeichnisstruktur::
+https://docs.antora.org/antora/latest/standard-directories/
 
 [id="litextern-JSR-310"]
 JSR 310 „Date and Time API“::
@@ -327,5 +347,7 @@ https://marketplace.eclipse.org/content/openapi-swagger-editor
 Swagger Spezifikation::
 https://swagger.io/specification/
 
-
+[[litextern-Font-Awesome]]
+Font Awesome::
+https://fontawesome.com/
 // end::inhalt[]

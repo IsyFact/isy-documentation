@@ -9,6 +9,16 @@ Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
 A-Architektur::
 Fachliche Architektursicht auf die Software-Architektur einer Geschäftsanwendung.
 
+
+[[glossar-Antora-Dokumentations-Komponente]]
+Antora-Dokumentations-Komponente::
+In einer Antora-Dokumentations-Komponente werden alle Dokumentationsseiten eines Repositories zusammengefasst, die derselben Versionierung unterliegen.
+Eine Antora-Dokumentations-Komponente kann mehrere Versionen haben, die in die Gesamtdokumentation integriert werden.
++
+Eine Komponenten-Version wird repräsentiert durch die antora.yml Konfigurationsdatei.
+Sie enthält mindestens den Namen der Komponente und ihre Version.
+
+
 [id="glossar-Anwender",reftext="Anwender"]
 Anwender::
 Jemand, der eine Geschäftsanwendung bedient.
