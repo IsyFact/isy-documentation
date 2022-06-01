@@ -366,6 +366,14 @@ Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer Bi
 +
 Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
 
+[[glossar-vs-code]]
+VS Code::
+https://code.visualstudio.com/
+
+[[glossar-vs-code-asciidoc-erweiterung]]
+AsciiDoc Erweiterung für Visual Studio Code::
+https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
+
 [[glossar-werkzeug]]
 Werkzeug::
 Eine Software-Factory setzt bei der Anwendungsentwicklung auf Automatisierung und Werkzeugunterstützung.
