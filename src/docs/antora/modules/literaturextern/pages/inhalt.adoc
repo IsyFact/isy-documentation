@@ -9,13 +9,21 @@ Die folgende Auflistung zeigt alle für die IsyFact-Dokumentation verwendeten ex
 Creative-Commons-Lizenz::
 https://creativecommons.org/licenses/by/4.0/legalcode.de
 
+[id="litextern-url-isyfact-bva"]
+IsyFact (BVA)::
+http://isyfact.de
+
+[id="litextern-url-isyfact-online-docs"]
+IsyFact (Online-Dokumentation)::
+https://isyfact.github.io
+
+[id="litextern-url-isyfact-github"]
+IsyFact (GitHub)::
+https://github.com/IsyFact
+
 [id="litextern-vorlageanwendung"]
 IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
-
-[id="litextern-url-isyfact"]
-IsyFact::
-https://github.com/isyfact
 
 [id="litextern-string.latin-1.2"]
 String Latin 1.2::
