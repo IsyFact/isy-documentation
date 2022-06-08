@@ -333,4 +333,88 @@ https://swagger.io/specification/
 [[litextern-font-awesome]]
 Font Awesome::
 https://fontawesome.com/
+
+[id="litextern-font-awesome-icons"]
+Font Awesome Icons::
+https://fontawesome.com/icons/
+
+[id="litextern-get-bootstrap"]
+Get Bootstrap::
+http://getbootstrap.com
+
+[id="litextern-bootstrap-docs"]
+Bootstrap Docs::
+http://bootstrapdocs.com
+
+[id="litextern-github-bootstrap-less"]
+Bootstrap Less::
+https://github.com/twbs/bootstrap/tree/master/less
+
+[id="litextern-github-bootstrap-mini-js"]
+Bootstrap Mini Js::
+https://github.com/twbs/bootstrap/tree/master/js
+
+[id="litextern-less-stylesheet"]
+Less Stylesheet::
+http://lesscss.org
+
+[id="litextern-dot-less"]
+dotLess::
+http://www.dotlesscss.org
+
+[id="litextern-less-app"]
+Less.app::
+http://incident57.com/less
+
+[id="litextern-grunt-js"]
+GruntJs::
+http://gruntjs.com
+
+[id="litextern-node-js"]
+NodeJs::
+http://nodejs.org
+
+[id="litextern-get-bootstrap-grid"]
+Get Bootstrap Grid::
+http://getbootstrap.com/css/#grid
+
+[id="litextern-eternicode-bootstrap-datepicker"]
+Bootstrap Date Picker::
+https://github.com/eternicode/bootstrap-datepicker/
+
+[id="litextern-snapappointments-bootstrap-auswahlbox"]
+Bootstrap Auswahlbox::
+https://developer.snapappointments.com/bootstrap-select/
+
+[id="litextern-jdewit-bootstrap-time-picker"]
+Bootstrap Timepicker::
+https://github.com/jdewit/bootstrap-timepicker/
+
+[id="litextern-liberation-Font"]
+Liberation Font::
+https://github.com/liberationfonts/liberation-fonts
+
+[id="litextern-ls-lint"]
+JSLint::
+http://www.jslint.com
+
+[id="litextern-firefox-esr-roadmap"]
+Firefox ESR Roadmap::
+https://www.mozilla.org/en-US/firefox/organizations/faq/
+
+[id="litextern-location-breadcrumb"]
+Location Breadcrumb::
+https://de.wikipedia.org/wiki/Brotkr%C3%BCmelnavigation
+
+[id="litextern-juicystudio-kontrast-analyse"]
+JuicyStudio Kontrast Analyse::
+http://juicystudio.com/services/luminositycontrastratio.php
+
+[id="litextern-paciellogroup-kontrast-analyse"]
+Paciello Group Kontrast Analyse::
+http://www.paciellogroup.com/resources/contrast-analyser.html#download
+
+[id="litextern-vicheck"]
+ViCheck::
+http://www.vischeck.com/
 // end::inhalt[]
