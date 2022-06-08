@@ -410,4 +410,8 @@ http://www.paciellogroup.com/resources/contrast-analyser.html#download
 [id="litextern-vicheck"]
 ViCheck::
 http://www.vischeck.com/
+
+[id="litextern-openapi-spezifikation"]
+OpenAPI Spezifikation::
+https://swagger.io/specification
 // end::inhalt[]
