@@ -5,327 +5,334 @@
 
 Die folgende Auflistung zeigt alle für die IsyFact-Dokumentation verwendeten externen Links.
 
-[id="litextern-cc-licence"]
+[[litextern-cc-licence]]
 Creative-Commons-Lizenz::
 https://creativecommons.org/licenses/by/4.0/legalcode.de
 
-[id="litextern-vorlageanwendung"]
+[[litextern-vorlageanwendung]]
 IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
 
-[id="litextern-url-isyfact"]
+[[litextern-url-isyfact]]
 IsyFact::
 https://github.com/isyfact
 
-[id="litextern-string.latin-1.2"]
+[[litextern-string-latin-1-2]]
 String Latin 1.2::
 https://www.xoev.de/string-latin-4813
 
-[id="litextern-string.latin-1.2-download"]
+[[litextern-litextern-string-latin-1-2-download]]
 String Latin 1.2 (Download)::
 https://www.xoev.de/downloads-2316#StringLatin
 
-[id="litextern-CWE-502"]
+[[litextern-cwe-502]]
 CWE-502::
 http://cwe.mitre.org/data/definitions/502.html
 
-[id="litextern-SemanticVersioning"]
+[[litextern-semantic-versioning]]
 Semantic Versioning 2.0.0::
 http://semver.org/spec/v2.0.0.html [Zugriff am 05.03.2018]
 
-[id="litextern-Vermeulen2000"]
+[[litextern-vermeulen2000]]
 Allan Vermeulen, Scott W. Ambler, Greg Baumgardner, Eldon Metz, Trevor Misfeldt, Jim Shur, Patrick Thomson::
 The Elements of Java Style. 2000. Cambridge University
 
-[id="litextern-Ambler1999"]
+[[litextern-ambler1999]]
 Writing Robust Java Code. The AmbySoft Inc. Coding Standards for Java v17.01d::
 http://www.ambysoft.com/downloads/javaCodingStandards.pdf
 
-[id="litextern-Bloch2008"]
+[[litextern-bloch2008]]
 Joshua Bloch::
 Effective Java Second Edition. 2008. Addison Wesley
 
-[id="litextern-VirtualBox"]
+[[litextern-virtual-box]]
 Oracle VirtualBox::
 https://www.virtualbox.org
 
-[id="litextern-OSBoxes"]
+[[litextern-osboxes]]
 OSBoxes::
 https://www.osboxes.org
 
-[id="litextern-OSBoxes-Ubuntu"]
+[[litextern-osboxes-ubuntu]]
 OSBoxes Ubuntu::
 https://www.osboxes.org/ubuntu/
 
-[id="litextern-RPM-Packaging-Guide"]
+[[litextern-rpm-packaging-guide]]
 RPM Packaging Guide::
 https://rpm-packaging-guide.github.io/#what-is-a-spec-file
 
-[id="litextern-SpringToolSuite"]
+[[litextern-spring-tool-suite]]
 Spring Tool Suite::
 https://spring.io/tools
 
-[id="litextern-Ubuntu-Programmstarter"]
+[[litextern-ubuntu-programmstarter]]
 Ubuntu Desktop Programmstarter::
 https://wiki.ubuntuusers.de/.desktop-Dateien/
 
-[id="litextern-Apache"]
+[[litextern-apache]]
 Apache::
 http://www.apache.org
 
-[id="litextern-VisualStudio"]
-Visual Studio::
-https://code.visualstudio.com/
-
-[id="litextern-Atom"]
-Atom::
-https://atom.io/
-
-[id="litextern-IntelliJ"]
+[[litextern-intellij]]
 IntelliJ::
 https://www.jetbrains.com/idea/
 
-[id="litextern-Maven"]
-Maven::
-https://maven.apache.org/download.cgi
-
-[id="litextern-AsciiDoc"]
+[[litextern-asciidoc]]
 What is AsciiDoc? Why do we need it?::
 https://asciidoctor.org/docs/what-is-asciidoc/
 
-[id="litextern-AsciidoctorUserManual"]
+[[litextern-asciidoctor-usermanual]]
 Asciidoctor User Manual::
 https://asciidoctor.org/docs/user-manual/
 
-[id="litextern-AsciiDocSyntax"]
+[[litextern-asciidoc-syntax]]
 AsciiDoc Syntax Quick Reference::
 https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 
-[id="litextern-AsciiDocTutorial"]
+[[litextern-asciidoc-tutorial]]
 Tutorial: Using AsciiDoc and Asciidoctor to write documentation::
 http://www.vogella.com/tutorials/AsciiDoc/article.html
 
-[id="litextern-AsciiDocRecommendedPractices"]
+[[litextern-asciidoc-recommended-practices]]
 AsciiDoc Recommended Practices::
 https://asciidoctor.org/docs/asciidoc-recommended-practices
 
-[id="litextern-AntoraXrefMacroStructure"]
+[[litextern-antora-installationen]]
+Antora Installationen::
+https://docs.antora.org/antora/latest/install-and-run-quickstart/
+
+[[litextern-antora-playbook]]
+Antora Playbook::
+https://docs.antora.org/antora/latest/install-and-run-quickstart/#create-a-playbook
+
+[[litextern-antora-maven]]
+Antora mit Maven::
+https://abelsromero.github.io/blog/2020/antora-with-maven.html
+
+[[litextern-antora-xref-macro-structure]]
 Antora: Xref macro structure::
 https://docs.antora.org/antora/latest/page/xref/#structure
 
-[id="litextern-JSR-310"]
+[[litextern-antora-komponente]]
+Antora-Dokumentations-Komponente::
+https://docs.antora.org/antora/latest/component-version-descriptor/
+
+[[litextern-antora-verzeichnisstruktur]]
+Antora-Verzeichnisstruktur::
+https://docs.antora.org/antora/latest/standard-directories/
+
+[[litextern-jsr-310]]
 JSR 310 „Date and Time API“::
 https://jcp.org/en/jsr/detail?id=310
 
-[id="litextern-Maven-Standard-Directory-Layout"]
+[[litextern-maven-standard-directory-layout]]
 Apache Maven Standard Directory Layout::
 https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
 
-[id="litextern-Sun1997-Code-Conventions"]
+[[litextern-sun1997-code-conventions]]
 Sun 1997::
 https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
 
-[id="litextern-Synopse"]
+[[litextern-synopse]]
 Synopse::
 http://de.wikipedia.org/wiki/Synopse
 
-[id="litextern-Unix"]
+[[litextern-unix]]
 Unix::
 http://de.wikipedia.org/wiki/Unix
 
-[id="litextern-Maven-Central"]
+[[litextern-maven-central]]
 Maven Central::
 https://search.maven.org
 
-[id="litextern-Eclipse-Checkstyle-Plugin"]
+[[litextern-eclipse-checkstyle-plugin]]
 Eclipse Checkstyle Plugin::
 https://github.com/checkstyle/eclipse-cs-update-site
 
-[id="litextern-Git-LFS"]
+[[litextern-git-lfs]]
 Git LFS::
 https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage
 
-[id="litextern-Git"]
+[[litextern-git]]
 Git::
 http://www.git-scm.com
 
-[id="litextern-JPA-Hibernate"]
+[[litextern-jpa-hibernate]]
 Java Persistence with Hibernate::
 Christian Bauer, Gavin King
 Java Persistence with Hibernate. 2007. Manning Publications
 
-[id="litextern-Spring-Data-JPA"]
+[[litextern-spring-data-jpa]]
 Spring Data JPA::
 https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details
 
-[id="litextern-Spring"]
+[[litextern-spring]]
 Spring::
 http://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
 
-
-[id="litextern-Spring-Boot-Properties-Conversion"]
+[[litextern-spring-boot-properties-conversion]]
 Spring Boot Dokumentation zu „Properties Conversion"::
 https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
 
-[id="litextern-Collection-Mapping"]
+[[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
 http://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html (Zugriff am 03.02.2022)
 
-[id="litextern-UCP"]
+[[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
 https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm (Zugriff am 03.02.2022)
 
-[id="litextern-Temporale-Datenhaltung"]
+[[litextern-temporale-datenhaltung]]
 Zeitmaschine – Temporale Datenhaltung::
 https://web.archive.org/web/20040929014721/http://www.sigs.de/publications/js/2003/05/demelt_JS_05_03.pdf
 
-[id="litextern-IT-Grundschutz-BSI"]
+[[litextern-it-grundschutz-bsi]]
 IT-Grundschutz des BSI::
 https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/it-grundschutz_node.html
 
-[id="litextern-IT-Grundschutz-M471"]
+[[litextern-it-grundschutz-m471]]
 M 4.71 Restriktive Handhabung von Datenbank-Links::
 https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf Seite 3285 (Zugriff am 03.02.2022)
 
-[id="litextern-Multitable-Bulk-Operations"]
+[[litextern-multitable-bulk-operations]]
 Multitable Bulk Operations::
 https://in.relation.to/2005/07/20/multitable-bulk-operations/  (Zugriff am 04.02.2022)
 
-[id="litextern-SAGA_4.0"]
+[[litextern-saga-4-0]]
 SAGA 4.0::
 https://www.cio.bund.de/SharedDocs/Publikationen/DE/Architekturen-und-Standards/SAGA/saga_4_0_download.pdf?__blob=publicationFile
 
-[id="litextern-SAGA_5"]
+[[litextern-saga-5]]
 SAGA 5::
 https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/SAGA/SAGA%205-aktuelle%20Version/saga_5_aktuelle_version_node.html
 
-[id="litextern-Semantic-Versioning"]
-Semantic Versioning::
-https://semver.org
-
-[id="litextern-Webseiten-Register-Factory"]
+[[litextern-webseiten-register-factory]]
 Webseiten der Register Factory::
 https://www.bva.bund.de/DE/Das-BVA/Aufgaben/I/Informationstechnik/RegisterFactory/Produkt/produkt_rf_node.html#doc241990bodyText6
 
-[id="litextern-Register-Factory"]
+[[litextern-register-factory]]
 Register Factory::
 http://www.register-factory.de
 
-[id="litextern-OWASP"]
+[[litextern-owasp]]
 OWASP Top 10 Project::
 https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
 
-[id="litextern-Hibernate-Toolset-Guide"]
+[[litextern-hibernate-toolset-guide]]
 Hibernate Toolset Guide::
 http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide
 
-[id="litextern-v-modell-xt"]
+[[litextern-v-modell-xt]]
 V-Modell XT::
 http://www.cio.bund.de/v-modell-xt
 
-[id="litextern-slf4j-fatal"]
+[[litextern-slf4j-fatal]]
 SLF4J FATAL::
 http://slf4j.org/faq.html#fatal
 
-[id="litextern-slf4j-bridge-handler"]
+[[litextern-slf4j-bridge-handler]]
 SLF4JBridgeHandler::
 http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html
 
-[id="litextern-Identity_management"]
+[[litextern-identity_management]]
 Identity and Access Management::
 https://en.wikipedia.org/wiki/Identity_management
 
-[id="litextern-Architekturrichtlinie"]
+[[litextern-architekturrichtlinie]]
 Architekturrichtlinie für die IT des Bundes::
 https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/Architekturrichtlinie-IT-Bund/architekturrichtlinie_it_bund_node.html
 
-[id="litextern-Oracle-Globalization-Support"]
+[[litextern-oracle-globalization-support]]
 Oracle, Globalization Support Guide 10g Release 2 (10.2)::
 http://download.oracle.com/docs/cd/B19306_01/server.102/b14225.pdf
 
-[id="litextern-Code2000"]
+[[litextern-code2000]]
 Code2000::
 http://www.code2000.net
 
-[id="litextern-monitoring-systeme-unterstuetzt"]
+[[litextern-monitoring-systeme-unterstuetzt]]
 unterstützte Monitoring-Systeme::
 http://micrometer.io/docs/concepts#_supported_monitoring_systems
 
-[id="litextern-Monitoring-Systeme"]
+[[litextern-monitoring-systeme]]
 Monitoring-Systeme::
 http://micrometer.io/docs
 
-[id="litextern-Spring-Boot-Info-Endpoint"]
+[[litextern-spring-boot-info-endpoint]]
 Dokumentation von Spring Boot zum Info-Endpoint::
 https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-application-info
 
-[id="litextern-diagrams.net"]
+[[litextern-diagrams-net]]
 diagrams.net::
 https://diagrams.net
 
-[id="litextern-diagrams.net-IntelliJ"]
+[[litextern-diagrams-net-intellij]]
 IntelliJ mit diagrams.net::
 https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 
-[id="litextern-diagrams.net-VS-Code"]
+[[litextern-diagrams-net-vs-code]]
 Visualstudio mit diagrams.net::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 
-[id="litextern-asciidoctorj-extensions"]
+[[litextern-asciidoctorj-extensions]]
 AsciidoctorJ Extensions::
 https://asciidoctor.org/docs/asciidoctorj
 
-[id="litextern-wiki-rest"]
+[[litextern-wiki-rest]]
 Wikipedia-Seite zu REST::
 https://de.wikipedia.org/wiki/Representational_State_Transfer
 
-[id="litextern-dissertation-roy-fielding"]
+[[litextern-dissertation-roy-fielding]]
 Dissertation von Roy Fielding::
 https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation_2up.pdf
 
-[id="litextern-wikipedia-http-statuscode"]
+[[litextern-wikipedia-http-statuscode]]
 Wikipedia-Seite zu HTTP-Statuscodes::
 https://de.wikipedia.org/wiki/HTTP-Statuscode
 
-[id="litextern-restapitutorial-uebersicht-http-statuscodes"]
+[[litextern-restapitutorial-uebersicht-http-statuscodes]]
 openapi-generator.tech::
 https://www.restapitutorial.com/httpstatuscodes.html
 
-[id="litextern-openapi-generator-tech"]
+[[litextern-openapi-generator-tech]]
 Übersicht HTTP-Statuscodes::
 https://openapi-generator.tech/docs/generators
 
-[id="litextern-swagger-request-validator"]
+[[litextern-swagger-request-validator]]
 Swagger Request Validator::
 https://bitbucket.org/atlassian/swagger-request-validator
 
-[id="litextern-spring-webflux-exceptions"]
+[[litextern-spring-webflux-exceptions]]
 Spring Homepage (Webflux Exceptions)::
 https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-and-rest-exceptions
 
-[id="litextern-spring-oauth2-bearertoken-resolver"]
+[[litextern-spring-oauth2-bearertoken-resolver]]
 Spring Homepage (Bearer Token Resolver)::
 https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html/oauth2.html#oauth2resourceserver-bearertoken-resolver
 
-[id="litextern-spring-content-negotiation"]
+[[litextern-spring-content-negotiation]]
 Spring Homepage (Content Negotiation)::
 https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html/oauth2.html#oauth2resourceserver-bearertoken-resolver
 
-[id="litextern-oauth-homepage"]
+[[litextern-oauth-homepage]]
 OAuth Homepage::
 https://oauth.net/2/
 
-[id="litextern-swagger-editor-intellij"]
+[[litextern-swagger-editor-intellij]]
 Swagger Editor für IntelliJ::
 https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor
 
-[id="litextern-swagger-editor-eclipse"]
+[[litextern-swagger-editor-eclipse]]
 Swagger Editor für Eclipse::
 https://marketplace.eclipse.org/content/openapi-swagger-editor
 
-[id="litextern-swagger-spezification"]
+[[litextern-swagger-spezification]]
 Swagger Spezifikation::
 https://swagger.io/specification/
+
+[[litextern-font-awesome]]
+Font Awesome::
+https://fontawesome.com/
 
 [id="litextern-font-awesome-icons"]
 Font Awesome Icons::
