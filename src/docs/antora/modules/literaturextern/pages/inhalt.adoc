@@ -6,8 +6,12 @@
 Die folgende Auflistung zeigt alle für die IsyFact-Dokumentation verwendeten externen Links.
 
 [[litextern-cc-licence]]
-Creative-Commons-Lizenz::
+Creative-Commons-Lizenz (Lizenzbedingungen)::
 https://creativecommons.org/licenses/by/4.0/legalcode.de
+
+[[litextern-cc-short]]
+Creative-Commons-Lizenz (Kurzfassung)::
+https://creativecommons.org/licenses/by/4.0/deed.de
 
 [[litextern-url-isyfact-bva]]
 IsyFact (BVA)::
