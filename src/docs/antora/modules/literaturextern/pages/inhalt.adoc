@@ -26,7 +26,6 @@ IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
 
 [[litextern-string-latin-1-2]]
-[id="litextern-string.latin-1.2"]
 String Latin 1.2::
 https://www.xoev.de/string-latin-4813
 
