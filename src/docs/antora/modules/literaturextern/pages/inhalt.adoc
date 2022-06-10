@@ -274,6 +274,14 @@ http://micrometer.io/docs
 Dokumentation von Spring Boot zum Info-Endpoint::
 https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-application-info
 
+[[litextern-vs-code]]
+Visual Studio Code::
+https://code.visualstudio.com/
+
+[[litextern-vs-code-asciidoc-erweiterung]]
+AsciiDoc Erweiterung für Visual Studio Code::
+https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
+
 [[litextern-diagrams-net]]
 diagrams.net::
 https://diagrams.net
@@ -283,7 +291,7 @@ IntelliJ mit diagrams.net::
 https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 
 [[litextern-diagrams-net-vs-code]]
-Visualstudio mit diagrams.net::
+diagrams.net Erweiterung für Visual Studio Code::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 
 [[litextern-asciidoctorj-extensions]]
