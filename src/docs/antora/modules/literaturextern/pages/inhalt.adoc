@@ -6,16 +6,28 @@
 Die folgende Auflistung zeigt alle für die IsyFact-Dokumentation verwendeten externen Links.
 
 [[litextern-cc-licence]]
-Creative-Commons-Lizenz::
+Creative-Commons-Lizenz (Lizenzbedingungen)::
 https://creativecommons.org/licenses/by/4.0/legalcode.de
+
+[[litextern-cc-short]]
+Creative-Commons-Lizenz (Kurzfassung)::
+https://creativecommons.org/licenses/by/4.0/deed.de
+
+[[litextern-url-isyfact-bva]]
+IsyFact (BVA)::
+http://isyfact.de
+
+[[litextern-url-isyfact-online-docs]]
+IsyFact (Online-Dokumentation)::
+https://isyfact.github.io
+
+[[litextern-url-isyfact-github]]
+IsyFact (GitHub)::
+https://github.com/IsyFact
 
 [[litextern-vorlageanwendung]]
 IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
-
-[[litextern-url-isyfact]]
-IsyFact::
-https://github.com/isyfact
 
 [[litextern-string-latin-1-2]]
 String Latin 1.2::
@@ -262,6 +274,14 @@ http://micrometer.io/docs
 Dokumentation von Spring Boot zum Info-Endpoint::
 https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-application-info
 
+[[litextern-vs-code]]
+Visual Studio Code::
+https://code.visualstudio.com/
+
+[[litextern-vs-code-asciidoc-erweiterung]]
+AsciiDoc Erweiterung für Visual Studio Code::
+https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
+
 [[litextern-diagrams-net]]
 diagrams.net::
 https://diagrams.net
@@ -271,7 +291,7 @@ IntelliJ mit diagrams.net::
 https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 
 [[litextern-diagrams-net-vs-code]]
-Visualstudio mit diagrams.net::
+diagrams.net Erweiterung für Visual Studio Code::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 
 [[litextern-asciidoctorj-extensions]]
