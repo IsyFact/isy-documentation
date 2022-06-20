@@ -399,8 +399,12 @@ Get Bootstrap Grid::
 http://getbootstrap.com/css/#grid
 
 [id="litextern-eternicode-bootstrap-datepicker"]
-Bootstrap Date Picker::
+Bootstrap Date Picker GitHub::
 https://github.com/eternicode/bootstrap-datepicker/
+
+[id="litextern-eternicode-bootstrap-datepicker-docs"]
+Bootstrap Date Picker Docs::
+https://bootstrap-datepicker.readthedocs.io
 
 [id="litextern-snapappointments-bootstrap-auswahlbox"]
 Bootstrap Auswahlbox::
