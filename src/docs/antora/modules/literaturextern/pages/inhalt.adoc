@@ -399,8 +399,12 @@ Get Bootstrap Grid::
 http://getbootstrap.com/css/#grid
 
 [id="litextern-eternicode-bootstrap-datepicker"]
-Bootstrap Date Picker::
+Bootstrap Date Picker GitHub::
 https://github.com/eternicode/bootstrap-datepicker/
+
+[id="litextern-eternicode-bootstrap-datepicker-docs"]
+Bootstrap Date Picker Docs::
+https://bootstrap-datepicker.readthedocs.io
 
 [id="litextern-snapappointments-bootstrap-auswahlbox"]
 Bootstrap Auswahlbox::
@@ -441,4 +445,24 @@ http://www.vischeck.com/
 [id="litextern-openapi-spezifikation"]
 OpenAPI Spezifikation::
 https://swagger.io/specification
+
+[[litextern-owasp10]]
+OWASP Top 10::
+https://owasp.org/Top10/
+
+[[litextern-jsf-wiki]]
+Jakarta Server Faces::
+https://de.wikipedia.org/wiki/Jakarta_Server_Faces
+
+[[litextern-swf]]
+Spring Web Flow::
+https://spring.io/projects/spring-webflow
+
+[[litextern-javaserver-faces]]
+JavaServer Faces::
+https://www.oracle.com/java/technologies/javaserverfaces.html
+
+[[litextern-tomahawk]]
+Apache Tomahawk::
+https://svn.apache.org/repos/asf/myfaces/site/publish/tomahawk/index.html
 // end::inhalt[]
