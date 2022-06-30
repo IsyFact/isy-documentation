@@ -414,11 +414,11 @@ https://developer.snapappointments.com/bootstrap-select/
 Bootstrap Timepicker::
 https://github.com/jdewit/bootstrap-timepicker/
 
-[id="litextern-liberation-Font"]
+[id="litextern-liberation-font"]
 Liberation Font::
 https://github.com/liberationfonts/liberation-fonts
 
-[id="litextern-ls-lint"]
+[id="litextern-js-lint"]
 JSLint::
 http://www.jslint.com
 
