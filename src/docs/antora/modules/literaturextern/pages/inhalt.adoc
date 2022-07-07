@@ -465,4 +465,21 @@ https://www.oracle.com/java/technologies/javaserverfaces.html
 [[litextern-tomahawk]]
 Apache Tomahawk::
 https://svn.apache.org/repos/asf/myfaces/site/publish/tomahawk/index.html
+
+[[litextern-selenium]]
+Selenium::
+https://selenium.dev/documentation/
+
+[[litextern-selenium-getting-started]]
+Selenium Getting Started::
+https://selenium.dev/documentation/webdriver/getting_started/first_script/
+
+[[litextern-selenium-finders]]
+Selenium Finders::
+https://selenium.dev/documentation/webdriver/elements/finders/
+
+[[litextern-selenium-locators]]
+Selenium Locators::
+https://selenium.dev/documentation/webdriver/elements/locators/
+
 // end::inhalt[]
