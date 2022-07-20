@@ -13,6 +13,7 @@ https://creativecommons.org/licenses/by/4.0/legalcode.de
 Creative-Commons-Lizenz (Kurzfassung)::
 https://creativecommons.org/licenses/by/4.0/deed.de
 
+// W3C Link check: redirected; accepted
 [[litextern-url-isyfact-bva]]
 IsyFact (BVA)::
 http://isyfact.de
@@ -33,7 +34,7 @@ https://github.com/IsyFact/IsyFact-Vorlageanwendung
 String Latin 1.2::
 https://www.xoev.de/string-latin-4813
 
-[[litextern-litextern-string-latin-1-2-download]]
+[[litextern-string-latin-1-2-download]]
 String Latin 1.2 (Download)::
 https://www.xoev.de/downloads-2316#StringLatin
 
@@ -43,7 +44,7 @@ http://cwe.mitre.org/data/definitions/502.html
 
 [[litextern-semantic-versioning]]
 Semantic Versioning 2.0.0::
-http://semver.org/spec/v2.0.0.html [Zugriff am 05.03.2018]
+https://semver.org/spec/v2.0.0.html [Zugriff am 05.03.2018]
 
 [[litextern-vermeulen2000]]
 Allan Vermeulen, Scott W. Ambler, Greg Baumgardner, Eldon Metz, Trevor Misfeldt, Jim Shur, Patrick Thomson::
@@ -83,7 +84,7 @@ https://wiki.ubuntuusers.de/.desktop-Dateien/
 
 [[litextern-apache]]
 Apache::
-http://www.apache.org
+https://www.apache.org
 
 [[litextern-intellij]]
 IntelliJ::
@@ -103,11 +104,11 @@ https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 
 [[litextern-asciidoc-tutorial]]
 Tutorial: Using AsciiDoc and Asciidoctor to write documentation::
-http://www.vogella.com/tutorials/AsciiDoc/article.html
+https://www.vogella.com/tutorials/AsciiDoc/article.html
 
 [[litextern-asciidoc-recommended-practices]]
 AsciiDoc Recommended Practices::
-https://asciidoctor.org/docs/asciidoc-recommended-practices
+https://asciidoctor.org/docs/asciidoc-recommended-practices/
 
 [[litextern-antora-installationen]]
 Antora Installationen::
@@ -147,11 +148,11 @@ https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
 
 [[litextern-synopse]]
 Synopse::
-http://de.wikipedia.org/wiki/Synopse
+https://de.wikipedia.org/wiki/Synopse
 
 [[litextern-unix]]
 Unix::
-http://de.wikipedia.org/wiki/Unix
+https://de.wikipedia.org/wiki/Unix
 
 [[litextern-maven-central]]
 Maven Central::
@@ -180,7 +181,7 @@ https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories
 
 [[litextern-spring]]
 Spring::
-http://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
+https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
 
 [[litextern-spring-boot-properties-conversion]]
 Spring Boot Dokumentation zu „Properties Conversion"::
@@ -188,7 +189,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#fea
 
 [[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
-http://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html (Zugriff am 03.02.2022)
+https://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html (Zugriff am 03.02.2022)
 
 [[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
@@ -198,6 +199,8 @@ https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm (Zugriff am 03
 Zeitmaschine – Temporale Datenhaltung::
 https://web.archive.org/web/20040929014721/http://www.sigs.de/publications/js/2003/05/demelt_JS_05_03.pdf
 
+
+// W3C Link check: redirected/bad request; yet working
 [[litextern-it-grundschutz-bsi]]
 IT-Grundschutz des BSI::
 https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/it-grundschutz_node.html
@@ -218,21 +221,22 @@ https://www.cio.bund.de/SharedDocs/Publikationen/DE/Architekturen-und-Standards/
 SAGA 5::
 https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/SAGA/SAGA%205-aktuelle%20Version/saga_5_aktuelle_version_node.html
 
-[[litextern-webseiten-register-factory]]
-Webseiten der Register Factory::
-https://www.bva.bund.de/DE/Das-BVA/Aufgaben/I/Informationstechnik/RegisterFactory/Produkt/produkt_rf_node.html#doc241990bodyText6
+[[litextern-register-factory-bausteine]]
+Bausteine der Register Factory::
+https://www.bva.bund.de/DE/Das-BVA/Aufgaben/I/Informationstechnik/RegisterFactory/Produkt/produkt_rf_node.html#doc241990bodyText2
 
+// W3C Link check: redirected; accepted
 [[litextern-register-factory]]
 Register Factory::
 http://www.register-factory.de
 
 [[litextern-owasp]]
-OWASP Top 10 Project::
-https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project
+OWASP Top 10::
+https://owasp.org/Top10/
 
 [[litextern-hibernate-toolset-guide]]
 Hibernate Toolset Guide::
-http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide
+https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide
 
 [[litextern-v-modell-xt]]
 V-Modell XT::
@@ -240,7 +244,7 @@ http://www.cio.bund.de/v-modell-xt
 
 [[litextern-slf4j-fatal]]
 SLF4J FATAL::
-http://slf4j.org/faq.html#fatal
+https://www.slf4j.org/faq.html#fatal
 
 [[litextern-slf4j-bridge-handler]]
 SLF4JBridgeHandler::
@@ -264,39 +268,41 @@ http://www.code2000.net
 
 [[litextern-monitoring-systeme-unterstuetzt]]
 unterstützte Monitoring-Systeme::
-http://micrometer.io/docs/concepts#_supported_monitoring_systems
+https://micrometer.io/docs/concepts#_supported_monitoring_systems
 
 [[litextern-monitoring-systeme]]
 Monitoring-Systeme::
-http://micrometer.io/docs
+https://micrometer.io/docs
 
 [[litextern-spring-boot-info-endpoint]]
 Dokumentation von Spring Boot zum Info-Endpoint::
-https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-application-info
+https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.info
 
 [[litextern-vs-code]]
 Visual Studio Code::
 https://code.visualstudio.com/
 
+//W3C Link check: broken; yet working
 [[litextern-vs-code-asciidoc-erweiterung]]
 AsciiDoc Erweiterung für Visual Studio Code::
 https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
 
 [[litextern-diagrams-net]]
 diagrams.net::
-https://diagrams.net
+https://www.diagrams.net
 
 [[litextern-diagrams-net-intellij]]
 IntelliJ mit diagrams.net::
 https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 
+//W3C Link check: broken; yet working
 [[litextern-diagrams-net-vs-code]]
 diagrams.net Erweiterung für Visual Studio Code::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 
 [[litextern-asciidoctorj-extensions]]
 AsciidoctorJ Extensions::
-https://asciidoctor.org/docs/asciidoctorj
+https://asciidoctor.org/docs/asciidoctorj/
 
 [[litextern-wiki-rest]]
 Wikipedia-Seite zu REST::
@@ -316,15 +322,15 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 [[litextern-openapi-generator-tech]]
 Übersicht HTTP-Statuscodes::
-https://openapi-generator.tech/docs/generators
+https://openapi-generator.tech/docs/generators/
 
 [[litextern-swagger-request-validator]]
 Swagger Request Validator::
 https://bitbucket.org/atlassian/swagger-request-validator
 
-[[litextern-spring-webflux-exceptions]]
-Spring Homepage (Webflux Exceptions)::
-https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-and-rest-exceptions
+[[litextern-spring-webflux]]
+Spring WebFlux::
+https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux
 
 [[litextern-spring-oauth2-bearertoken-resolver]]
 Spring Homepage (Bearer Token Resolver)::
@@ -360,7 +366,7 @@ https://fontawesome.com/icons/
 
 [id="litextern-get-bootstrap"]
 Get Bootstrap::
-http://getbootstrap.com
+https://getbootstrap.com
 
 [id="litextern-bootstrap-docs"]
 Bootstrap Docs::
@@ -376,7 +382,7 @@ https://github.com/twbs/bootstrap/tree/master/js
 
 [id="litextern-less-stylesheet"]
 Less Stylesheet::
-http://lesscss.org
+https://lesscss.org
 
 [id="litextern-dot-less"]
 dotLess::
@@ -388,19 +394,19 @@ http://incident57.com/less
 
 [id="litextern-grunt-js"]
 GruntJs::
-http://gruntjs.com
+https://gruntjs.com
 
 [id="litextern-node-js"]
 NodeJs::
-http://nodejs.org
+https://nodejs.org/en/
 
-[id="litextern-get-bootstrap-grid"]
-Get Bootstrap Grid::
-http://getbootstrap.com/css/#grid
+[id="litextern-bootstrap-grid-doc"]
+Bootstrap Grid Documentation::
+https://getbootstrap.com/docs/3.4/css/#grid
 
 [id="litextern-eternicode-bootstrap-datepicker"]
 Bootstrap Date Picker GitHub::
-https://github.com/eternicode/bootstrap-datepicker/
+https://github.com/eternicode/bootstrap-datepicker
 
 [id="litextern-eternicode-bootstrap-datepicker-docs"]
 Bootstrap Date Picker Docs::
@@ -414,17 +420,17 @@ https://developer.snapappointments.com/bootstrap-select/
 Bootstrap Timepicker::
 https://github.com/jdewit/bootstrap-timepicker/
 
-[id="litextern-liberation-Font"]
+[id="litextern-liberation-font"]
 Liberation Font::
 https://github.com/liberationfonts/liberation-fonts
 
-[id="litextern-ls-lint"]
+[id="litextern-js-lint"]
 JSLint::
-http://www.jslint.com
+https://www.jslint.com
 
-[id="litextern-firefox-esr-roadmap"]
-Firefox ESR Roadmap::
-https://www.mozilla.org/en-US/firefox/organizations/faq/
+[id="litextern-firefox-esr"]
+Firefox Extended Support Release::
+https://www.mozilla.org/en-US/firefox/enterprise/
 
 [id="litextern-location-breadcrumb"]
 Location Breadcrumb::
@@ -432,19 +438,15 @@ https://de.wikipedia.org/wiki/Brotkr%C3%BCmelnavigation
 
 [id="litextern-juicystudio-kontrast-analyse"]
 JuicyStudio Kontrast Analyse::
-http://juicystudio.com/services/luminositycontrastratio.php
+https://juicystudio.com/services/luminositycontrastratio.php
 
-[id="litextern-paciellogroup-kontrast-analyse"]
-Paciello Group Kontrast Analyse::
-http://www.paciellogroup.com/resources/contrast-analyser.html#download
+[id="litextern-color-kontrast-analyse"]
+Color Kontrast Analyse::
+https://www.tpgi.com/color-contrast-checker/
 
 [id="litextern-vicheck"]
 ViCheck::
 http://www.vischeck.com/
-
-[[litextern-owasp10]]
-OWASP Top 10::
-https://owasp.org/Top10/
 
 [[litextern-jsf-wiki]]
 Jakarta Server Faces::
