@@ -22,6 +22,10 @@ http://isyfact.de
 IsyFact (Online-Dokumentation)::
 https://isyfact.github.io
 
+[[litextern-url-isyfact-online-docs-source]]
+IsyFact (Quelle der Online-Dokumentation)::
+https://github.com/IsyFact/isyfact-standards/tree/master/isyfact-standards-doc
+
 [[litextern-url-isyfact-github]]
 IsyFact (GitHub)::
 https://github.com/IsyFact
