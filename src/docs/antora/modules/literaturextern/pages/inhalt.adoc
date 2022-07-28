@@ -102,6 +102,10 @@ https://asciidoctor.org/docs/user-manual/
 AsciiDoc Syntax Quick Reference::
 https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 
+[[litextern-AsciiDocTaggedRegions]]
+AsciiDoc: Include Content by Tagged Regions::
+https://docs.asciidoctor.org/asciidoc/latest/directives/include-tagged-regions/
+
 [[litextern-asciidoc-tutorial]]
 Tutorial: Using AsciiDoc and Asciidoctor to write documentation::
 https://www.vogella.com/tutorials/AsciiDoc/article.html
