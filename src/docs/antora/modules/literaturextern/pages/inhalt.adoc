@@ -22,6 +22,10 @@ http://isyfact.de
 IsyFact (Online-Dokumentation)::
 https://isyfact.github.io
 
+[[litextern-url-isyfact-online-docs-source]]
+IsyFact (Quelle der Online-Dokumentation)::
+https://github.com/IsyFact/isyfact-standards/tree/master/isyfact-standards-doc
+
 [[litextern-url-isyfact-github]]
 IsyFact (GitHub)::
 https://github.com/IsyFact
@@ -101,6 +105,10 @@ https://asciidoctor.org/docs/user-manual/
 [[litextern-asciidoc-syntax]]
 AsciiDoc Syntax Quick Reference::
 https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+
+[[litextern-AsciiDocTaggedRegions]]
+AsciiDoc: Include Content by Tagged Regions::
+https://docs.asciidoctor.org/asciidoc/latest/directives/include-tagged-regions/
 
 [[litextern-asciidoc-tutorial]]
 Tutorial: Using AsciiDoc and Asciidoctor to write documentation::
