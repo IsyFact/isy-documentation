@@ -496,4 +496,12 @@ https://selenium.dev/documentation/webdriver/elements/finders/
 Selenium Locators::
 https://selenium.dev/documentation/webdriver/elements/locators/
 
+[[litextern-highlight-js]]
+highlight.js::
+https://highlightjs.org/
+
+[[litextern-highlight-js-uebersicht]]
+highlight.js: Supported Languages::
+https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
+
 // end::inhalt[]
