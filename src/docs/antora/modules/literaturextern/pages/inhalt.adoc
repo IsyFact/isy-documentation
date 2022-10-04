@@ -456,6 +456,14 @@ https://www.tpgi.com/color-contrast-checker/
 ViCheck::
 http://www.vischeck.com/
 
+[id="litextern-openapi-spezifikation"]
+OpenAPI Spezifikation::
+https://swagger.io/specification
+
+[[litextern-owasp10]]
+OWASP Top 10::
+https://owasp.org/Top10/
+
 [[litextern-jsf-wiki]]
 Jakarta Server Faces::
 https://de.wikipedia.org/wiki/Jakarta_Server_Faces
