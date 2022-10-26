@@ -34,6 +34,10 @@ https://github.com/IsyFact
 IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
 
+[[litextern-isyfact-checkstyle]]
+IsyFact Checkstyle-Regeln (README)::
+https://github.com/IsyFact/isy-checkstyle-config#readme
+
 [[litextern-string-latin-1-2]]
 String Latin 1.2::
 https://www.xoev.de/string-latin-4813
