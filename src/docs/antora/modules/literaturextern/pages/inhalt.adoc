@@ -312,6 +312,10 @@ https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 diagrams.net Erweiterung für Visual Studio Code::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 
+[[litextern-enterprise-architect]]
+Enterprise Architect::
+https://sparxsystems.com/products/ea/index.html
+
 [[litextern-asciidoctorj-extensions]]
 AsciidoctorJ Extensions::
 https://asciidoctor.org/docs/asciidoctorj/
