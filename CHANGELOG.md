@@ -1,4 +1,5 @@
 # 1.10.1
+- `IFE-458`: Erweiterung Nutzungsvorgaben isy-session - Konfiguration von Redisson's Spring Session
 - `IFS-702`: Ergänzung zu Aufnahmen der Korrelations-ID im Aufruf-Kontext in Detailkonzept_Komponente-Batch
  
 # 1.10.0
