@@ -4,7 +4,7 @@
 
     <groupId>de.bund.bva.isyfact</groupId>
     <artifactId>isy-documentation</artifactId>
-    <version>1.10.1-SNAPSHOT</version>
+    <version>1.11.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -184,7 +184,7 @@
                         <pdf-stylesdir>${project.build.directory}/isy-dokumentvorlagen/theme</pdf-stylesdir>
                         <pdf-style>isyfact</pdf-style>
                         <pdf-fontsdir>${project.build.directory}/isy-dokumentvorlagen/theme/fonts</pdf-fontsdir>
-                        <version-ifs>1.10.x</version-ifs>
+                        <version-ifs>1.11.0</version-ifs>
                         <isy-dokumentvorlagen>${project.build.directory}/isy-dokumentvorlagen</isy-dokumentvorlagen>
                     </attributes>
                 </configuration>
