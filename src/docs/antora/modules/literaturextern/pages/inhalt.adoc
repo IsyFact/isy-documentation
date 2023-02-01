@@ -508,4 +508,8 @@ https://highlightjs.org/
 highlight.js: Supported Languages::
 https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 
+[[litextern-dsgvo]]
+DSGVO::
+https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE
+
 // end::inhalt[]
