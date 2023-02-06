@@ -464,6 +464,10 @@ http://www.vischeck.com/
 OpenAPI Spezifikation::
 https://swagger.io/specification
 
+[[litextern-authorization-bearer-token]]
+RFC 6750 Authorization Bearer Token::
+https://datatracker.ietf.org/doc/html/rfc6750
+
 [[litextern-owasp10]]
 OWASP Top 10::
 https://owasp.org/Top10/
