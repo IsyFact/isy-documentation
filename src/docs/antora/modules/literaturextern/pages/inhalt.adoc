@@ -189,15 +189,15 @@ Java Persistence with Hibernate. 2007. Manning Publications
 
 [[litextern-spring-data-jpa]]
 Spring Data JPA::
-https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details
+https://docs.spring.io/spring-data/jpa/docs/2.7.x/reference/html/#repositories.query-methods.details
 
 [[litextern-spring]]
 Spring::
-https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/
 
 [[litextern-spring-boot-properties-conversion]]
 Spring Boot Dokumentation zu „Properties Conversion"::
-https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
 
 [[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
@@ -288,7 +288,11 @@ https://micrometer.io/docs
 
 [[litextern-spring-boot-info-endpoint]]
 Dokumentation von Spring Boot zum Info-Endpoint::
-https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.info
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/actuator.html#actuator.endpoints.info
+
+[[litextern-spring-boot-managed-dependencies]]
+Liste der Spring Boot Managed Dependencies::
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/dependency-versions.html
 
 [[litextern-vs-code]]
 Visual Studio Code::
@@ -346,7 +350,7 @@ https://bitbucket.org/atlassian/swagger-request-validator
 
 [[litextern-spring-webflux]]
 Spring WebFlux::
-https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/web-reactive.html#webflux
 
 [[litextern-spring-oauth2-bearertoken-resolver]]
 Spring Homepage (Bearer Token Resolver)::
