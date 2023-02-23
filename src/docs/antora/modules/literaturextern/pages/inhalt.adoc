@@ -517,11 +517,11 @@ DSGVO::
 https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE
 
 [[litextern-rfc7519-json-web-token]]
-RFC 7519: JSON Web Token (JWT)::
+RJSON Web Token (JWT)::
 https://tools.ietf.org/html/rfc7519
 
 [[litextern-rfc7519-jwt-claims]]
-RFC 7519: JSON Web Token (JWT) - 4. JWT Claims::
+JSON Web Token (JWT) - 4. JWT Claims::
 https://datatracker.ietf.org/doc/html/rfc7519#section-4
 
 [[litextern-iana-json-web-token]]
