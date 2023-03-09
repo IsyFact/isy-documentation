@@ -34,6 +34,10 @@ https://github.com/IsyFact
 IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
 
+[[litextern-isyfact-checkstyle]]
+IsyFact Checkstyle-Regeln (README)::
+https://github.com/IsyFact/isy-checkstyle-config#readme
+
 [[litextern-string-latin-1-2]]
 String Latin 1.2::
 https://www.xoev.de/string-latin-4813
@@ -185,15 +189,15 @@ Java Persistence with Hibernate. 2007. Manning Publications
 
 [[litextern-spring-data-jpa]]
 Spring Data JPA::
-https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details
+https://docs.spring.io/spring-data/jpa/docs/2.7.x/reference/html/#repositories.query-methods.details
 
 [[litextern-spring]]
 Spring::
-https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/
 
 [[litextern-spring-boot-properties-conversion]]
 Spring Boot Dokumentation zu „Properties Conversion"::
-https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
 
 [[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
@@ -221,13 +225,14 @@ https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf 
 Multitable Bulk Operations::
 https://in.relation.to/2005/07/20/multitable-bulk-operations/  (Zugriff am 04.02.2022)
 
-[[litextern-saga-4-0]]
-SAGA 4.0::
-https://www.cio.bund.de/SharedDocs/Publikationen/DE/Architekturen-und-Standards/SAGA/saga_4_0_download.pdf?__blob=publicationFile
+[[litextern-v-modell-xt]]
+V-Modell XT::
+https://www.cio.bund.de/Webs/CIO/DE/digitaler-wandel/Achitekturen_und_Standards/V_modell_xt/v_modell_xt-node.html
 
 [[litextern-saga-5]]
-SAGA 5::
-https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/SAGA/SAGA%205-aktuelle%20Version/saga_5_aktuelle_version_node.html
+[[litextern-architekturrichtlinie]]
+Architekturrichtlinie für die IT des Bundes / SAGA::
+https://www.cio.bund.de/Webs/CIO/DE/digitaler-wandel/Achitekturen_und_Standards/IT_Architektur_Bund/IT_Architektur_Bund-node.html
 
 [[litextern-register-factory-bausteine]]
 Bausteine der Register Factory::
@@ -246,10 +251,6 @@ https://owasp.org/Top10/
 Hibernate Toolset Guide::
 https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide
 
-[[litextern-v-modell-xt]]
-V-Modell XT::
-http://www.cio.bund.de/v-modell-xt
-
 [[litextern-slf4j-fatal]]
 SLF4J FATAL::
 https://www.slf4j.org/faq.html#fatal
@@ -261,10 +262,6 @@ http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html
 [[litextern-identity_management]]
 Identity and Access Management::
 https://en.wikipedia.org/wiki/Identity_management
-
-[[litextern-architekturrichtlinie]]
-Architekturrichtlinie für die IT des Bundes::
-https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/Architekturrichtlinie-IT-Bund/architekturrichtlinie_it_bund_node.html
 
 [[litextern-oracle-globalization-support]]
 Oracle, Globalization Support Guide 10g Release 2 (10.2)::
@@ -284,7 +281,11 @@ https://micrometer.io/docs
 
 [[litextern-spring-boot-info-endpoint]]
 Dokumentation von Spring Boot zum Info-Endpoint::
-https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.info
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/actuator.html#actuator.endpoints.info
+
+[[litextern-spring-boot-managed-dependencies]]
+Liste der Spring Boot Managed Dependencies::
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/dependency-versions.html
 
 [[litextern-baeldung-spring-liveness-readiness-probes]]]
 Baeldung: Liveness and Readiness Probes in Spring Boot::
@@ -316,6 +317,10 @@ https://plugins.jetbrains.com/plugin/15635-diagrams-net-integration
 diagrams.net Erweiterung für Visual Studio Code::
 https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio
 
+[[litextern-enterprise-architect]]
+Enterprise Architect::
+https://sparxsystems.com/products/ea/index.html
+
 [[litextern-asciidoctorj-extensions]]
 AsciidoctorJ Extensions::
 https://asciidoctor.org/docs/asciidoctorj/
@@ -346,7 +351,7 @@ https://bitbucket.org/atlassian/swagger-request-validator
 
 [[litextern-spring-webflux]]
 Spring WebFlux::
-https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/web-reactive.html#webflux
 
 [[litextern-spring-oauth2-bearertoken-resolver]]
 Spring Homepage (Bearer Token Resolver)::
@@ -496,6 +501,10 @@ http://www.vischeck.com/
 OpenAPI Spezifikation::
 https://swagger.io/specification
 
+[[litextern-authorization-bearer-token]]
+RFC 6750 Authorization Bearer Token::
+https://datatracker.ietf.org/doc/html/rfc6750
+
 [[litextern-owasp10]]
 OWASP Top 10::
 https://owasp.org/Top10/
@@ -540,4 +549,6 @@ https://highlightjs.org/
 highlight.js: Supported Languages::
 https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 
-// end::inhalt[]
+[[litextern-dsgvo]]
+DSGVO::
+https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE
