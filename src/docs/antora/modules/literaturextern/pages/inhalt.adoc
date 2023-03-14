@@ -189,15 +189,15 @@ Java Persistence with Hibernate. 2007. Manning Publications
 
 [[litextern-spring-data-jpa]]
 Spring Data JPA::
-https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details
+https://docs.spring.io/spring-data/jpa/docs/2.7.x/reference/html/#repositories.query-methods.details
 
 [[litextern-spring]]
 Spring::
-https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/
 
 [[litextern-spring-boot-properties-conversion]]
 Spring Boot Dokumentation zu „Properties Conversion"::
-https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
 
 [[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
@@ -225,13 +225,14 @@ https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf 
 Multitable Bulk Operations::
 https://in.relation.to/2005/07/20/multitable-bulk-operations/  (Zugriff am 04.02.2022)
 
-[[litextern-saga-4-0]]
-SAGA 4.0::
-https://www.cio.bund.de/SharedDocs/Publikationen/DE/Architekturen-und-Standards/SAGA/saga_4_0_download.pdf?__blob=publicationFile
+[[litextern-v-modell-xt]]
+V-Modell XT::
+https://www.cio.bund.de/Webs/CIO/DE/digitaler-wandel/Achitekturen_und_Standards/V_modell_xt/v_modell_xt-node.html
 
 [[litextern-saga-5]]
-SAGA 5::
-https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/SAGA/SAGA%205-aktuelle%20Version/saga_5_aktuelle_version_node.html
+[[litextern-architekturrichtlinie]]
+Architekturrichtlinie für die IT des Bundes / SAGA::
+https://www.cio.bund.de/Webs/CIO/DE/digitaler-wandel/Achitekturen_und_Standards/IT_Architektur_Bund/IT_Architektur_Bund-node.html
 
 [[litextern-register-factory-bausteine]]
 Bausteine der Register Factory::
@@ -250,10 +251,6 @@ https://owasp.org/Top10/
 Hibernate Toolset Guide::
 https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide
 
-[[litextern-v-modell-xt]]
-V-Modell XT::
-http://www.cio.bund.de/v-modell-xt
-
 [[litextern-slf4j-fatal]]
 SLF4J FATAL::
 https://www.slf4j.org/faq.html#fatal
@@ -265,10 +262,6 @@ http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html
 [[litextern-identity_management]]
 Identity and Access Management::
 https://en.wikipedia.org/wiki/Identity_management
-
-[[litextern-architekturrichtlinie]]
-Architekturrichtlinie für die IT des Bundes::
-https://www.cio.bund.de/Web/DE/Architekturen-und-Standards/Architekturrichtlinie-IT-Bund/architekturrichtlinie_it_bund_node.html
 
 [[litextern-oracle-globalization-support]]
 Oracle, Globalization Support Guide 10g Release 2 (10.2)::
@@ -288,7 +281,11 @@ https://micrometer.io/docs
 
 [[litextern-spring-boot-info-endpoint]]
 Dokumentation von Spring Boot zum Info-Endpoint::
-https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.info
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/actuator.html#actuator.endpoints.info
+
+[[litextern-spring-boot-managed-dependencies]]
+Liste der Spring Boot Managed Dependencies::
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/dependency-versions.html
 
 [[litextern-vs-code]]
 Visual Studio Code::
@@ -346,7 +343,7 @@ https://bitbucket.org/atlassian/swagger-request-validator
 
 [[litextern-spring-webflux]]
 Spring WebFlux::
-https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/web-reactive.html#webflux
 
 [[litextern-spring-oauth2-bearertoken-resolver]]
 Spring Homepage (Bearer Token Resolver)::
@@ -468,6 +465,10 @@ http://www.vischeck.com/
 OpenAPI Spezifikation::
 https://swagger.io/specification
 
+[[litextern-authorization-bearer-token]]
+RFC 6750 Authorization Bearer Token::
+https://datatracker.ietf.org/doc/html/rfc6750
+
 [[litextern-owasp10]]
 OWASP Top 10::
 https://owasp.org/Top10/
@@ -516,20 +517,32 @@ https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 DSGVO::
 https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE
 
-[[litextern-rfc7519-json-web-token]]
-RJSON Web Token (JWT)::
-https://tools.ietf.org/html/rfc7519
+[[litextern-token-introspection]]
+RFC 7662: OAuth 2.0 Token Introspection::
+https://tools.ietf.org/html/rfc7662
 
-[[litextern-rfc7519-jwt-claims]]
-JSON Web Token (JWT) - 4. JWT Claims::
-https://datatracker.ietf.org/doc/html/rfc7519#section-4
+[[litextern-self-encoded-access-token]]
+OAuth: Self-Encoded Access Tokens::
+https://www.oauth.com/oauth2-servers/access-tokens/self-encoded-access-tokens
 
-[[litextern-iana-json-web-token]]
-iana.org (Internet Assigned Numbers Authority): JSON Web Token (JWT)::
-https://www.iana.org/assignments/jwt/jwt.xhtml
+[[litextern-validating-jwt-access-tokens]]
+RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens - 4. Validating JWT Access Tokens::
+https://datatracker.ietf.org/doc/html/rfc9068#name-validating-jwt-access-token
 
-[[litextern-openid-spec-claims]]
-openid.net: OpenID Connect 1.0 Specs - 5. Claims::
-https://openid.net/specs/openid-connect-core-1_0.html#Claims
+[[litextern-resource-server-jwt]]
+Spring-Security: OAuth 2.0 Resource Server JWT::
+https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+
+[[litextern-representational-state-transfer]]
+Representational State Transfer::
+https://de.wikipedia.org/wiki/Representational_State_Transfer
+
+[[litextern-rest-api-tutorial]]
+REST API-Tutorial::
+http://www.restapitutorial.com
+
+[[litextern-modzilla-content-negotiation]]
+Content Negotiation, Principles of content negotiation, Server-driven content negotiation::
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation
 
 // end::inhalt[]
