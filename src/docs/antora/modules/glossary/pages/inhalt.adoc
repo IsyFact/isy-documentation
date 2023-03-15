@@ -29,7 +29,7 @@ Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Gesch�
 
 [[glossar-anwendungsdomaene]]
 Anwendungsdomäne::
-Spezialisierung des Begriffs <<glossar-domaene>> im Kontext von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
+Spezialisierung des Begriffs <<glossar-domaene,Domäne>> im Kontext von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
 
 [[glossar-anwendungskern]]
 Anwendungskern (AWK)::
@@ -268,10 +268,6 @@ Die Persistenzschicht ermöglicht es, Daten der Geschäftsanwendungen permanent 
 Die Datenzugriffslogik der Geschäftsanwendung wird in strukturierten Komponenten realisiert.
 Die IsyFact stellt ein fertiges Persistenz-Framework zur Verfügung.
 
-[[glossar-pib]]
-PIB::
-PLIS IT-Architecture Board
-
 [[glossar-plattform]]
 Plattform::
 Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von Anwendungslandschaften, die sich aus der Verwendung der IsyFact ergeben.
@@ -299,7 +295,7 @@ Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
 
 [[glossar-querschnittsdomaene]]
 Querschnittsdomäne::
-Spezialisierung des Begriffs <<glossar-domaene>> im Kontext von <<glossar-querschnittsanwendung,Querschnittsanwendungen>>.
+Spezialisierung des Begriffs <<glossar-domaene,Domäne>> im Kontext von <<glossar-querschnittsanwendung,Querschnittsanwendungen>>.
 Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Querschnittsanwendungen einer Anwendungslandschaft unabhängig von ihrer Fachlichkeit.
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
@@ -325,9 +321,10 @@ Stellt die Verbindung zwischen einem externen und einem internen Service durch e
 SLA::
 Service Level Agreement
 
-[[glossar-sles]]
-SLES::
-Suse Linux Enterprise Server
+[[glossar-spa]]
+Single Page Application (SPA)::
+Als Alternative zur klassischen Web-Anwendung kann eine GUI als "Single Page Application" umgesetzt werden.
+Hierbei wird nur eine Seite aufgerufen, welche die gesamte Dialoglogik und den Sitzungszustand auf der Clientseite belässt und Inhalte dynamisch über Services nachlädt, die unabhängig und losgekoppelt vom Client implementiert werden.
 
 [[glossar-software-factory]]
 Software Factory (SF)::
