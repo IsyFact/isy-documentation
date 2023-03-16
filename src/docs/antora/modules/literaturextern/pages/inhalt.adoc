@@ -552,3 +552,25 @@ https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 [[litextern-dsgvo]]
 DSGVO::
 https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE
+
+[[litextern-linux-locale-parameters]]
+Linux Locale Parameters::
+https://www.gnu.org/software/gettext/manual/html_node/Locale-Environment-Variables.html
+
+[[litextern-token-introspection]]
+RFC 7662: OAuth 2.0 Token Introspection::
+https://tools.ietf.org/html/rfc7662
+
+[[litextern-self-encoded-access-token]]
+OAuth: Self-Encoded Access Tokens::
+https://www.oauth.com/oauth2-servers/access-tokens/self-encoded-access-tokens
+
+[[litextern-validating-jwt-access-tokens]]
+RFC 9068: JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens - 4. Validating JWT Access Tokens::
+https://datatracker.ietf.org/doc/html/rfc9068#name-validating-jwt-access-token
+
+[[litextern-resource-server-jwt]]
+Spring-Security: OAuth 2.0 Resource Server JWT::
+https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+
+// end::inhalt[]
