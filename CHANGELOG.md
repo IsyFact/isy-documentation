@@ -1,5 +1,6 @@
-# 2.5.0
+# 3.0.0
 - `IFS-1344`: Umstellung auf CI-Friendly builds
+- `IFS-2272`: Link auf Linux Locale Parameters hinzugefügt
  
 # 2.4.0
 - `IFS-546`: Vorgaben für Properties zu komplexen Datentypen ergänzt

@@ -517,6 +517,10 @@ https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 DSGVO::
 https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32016R0679&from=DE
 
+[[litextern-linux-locale-parameters]]
+Linux Locale Parameters::
+https://www.gnu.org/software/gettext/manual/html_node/Locale-Environment-Variables.html
+
 [[litextern-token-introspection]]
 RFC 7662: OAuth 2.0 Token Introspection::
 https://tools.ietf.org/html/rfc7662
