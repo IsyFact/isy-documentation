@@ -1,4 +1,5 @@
 # 2.5.0
+- `IFS-2273`: Deprecation texts added
 - `IFS-1344`: Umstellung auf CI-Friendly builds
  
 # 2.4.0
