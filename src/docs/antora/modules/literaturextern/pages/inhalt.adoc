@@ -192,11 +192,19 @@ Spring Data JPA::
 https://docs.spring.io/spring-data/jpa/docs/2.7.x/reference/html/#repositories.query-methods.details
 
 [[litextern-spring]]
-Spring::
+Spring Framework::
 https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/
 
+[[litextern-spring-aop-aspectj-around-advice]]
+Spring Framework: Around-Advice mit @AspectJ-Annotationen::
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/core.html#aop-ataspectj-around-advice
+
+[[litextern-spring-task-scheduling-annotations]]
+Spring Framework: Annotationen zum Task Scheduling::
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/integration.html#scheduling-annotation-support
+
 [[litextern-spring-boot-properties-conversion]]
-Spring Boot Dokumentation zu „Properties Conversion"::
+Spring Boot Dokumentation zu "Properties Conversion"::
 https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
 
 [[litextern-collection-mapping]]
@@ -271,13 +279,21 @@ http://download.oracle.com/docs/cd/B19306_01/server.102/b14225.pdf
 Code2000::
 http://www.code2000.net
 
+[[litextern-monitoring-systeme]]
+Micrometer::
+https://micrometer.io/docs
+
 [[litextern-monitoring-systeme-unterstuetzt]]
-unterstützte Monitoring-Systeme::
+Micrometer: Unterstützte Monitoring-Systeme::
 https://micrometer.io/docs/concepts#_supported_monitoring_systems
 
-[[litextern-monitoring-systeme]]
-Monitoring-Systeme::
-https://micrometer.io/docs
+[[litextern-micrometer-timed-annotation]]
+Micrometer: die `@Timed`-Annotation::
+https://micrometer.io/docs/concepts#_the_timed_annotation
+
+[[litextern-spring-boot-task-scheduling]]
+Task Scheduling von Spring Boot::
+https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.task-execution-and-scheduling
 
 [[litextern-spring-boot-info-endpoint]]
 Dokumentation von Spring Boot zum Info-Endpoint::
