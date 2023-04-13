@@ -1,0 +1,8 @@
+.icon:ban[] Deprecation
+****
+Dieser Teil der Dokumentation ist veraltet und wird in einem zukünftigen Release entfernt.
+Die Inhalte sollten zur Entwicklung neuer Anwendungen nicht mehr berücksichtigt werden.
+ifdef::linkaktuell[]
+Stattdessen wird empfohlen, {linkaktuell} zu verwenden.
+endif::[]
+****
