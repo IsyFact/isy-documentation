@@ -303,6 +303,14 @@ https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/actuator.html#actua
 Liste der Spring Boot Managed Dependencies::
 https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/dependency-versions.html
 
+[[litextern-baeldung-spring-liveness-readiness-probes]]]
+Baeldung: Liveness and Readiness Probes in Spring Boot::
+https://www.baeldung.com/spring-liveness-readiness-probes
+
+[[litextern-medium-enable-liveness-readiness-probes]]
+Medium: How to enable Liveness and Readiness Probes in a Spring Boot Application::
+https://medium.com/@salarai.de/how-to-enable-liveness-and-readiness-probes-in-a-spring-boot-application-a40cf3423db3#:~:text=A%20readiness%20probe%20is%20another%20health%20check%20that,with%20another%20service%20in%20order%20to%20be%20used
+
 [[litextern-vs-code]]
 Visual Studio Code::
 https://code.visualstudio.com/
@@ -368,6 +376,34 @@ https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html/oauth2.htm
 [[litextern-spring-content-negotiation]]
 Spring Homepage (Content Negotiation)::
 https://docs.spring.io/spring-security/site/docs/5.2.x/reference/html/oauth2.html#oauth2resourceserver-bearertoken-resolver
+
+[[litextern-spring-api-liveness]]
+Spring Boot API (LivenessState)::
+https://docs.spring.io/spring-boot/docs/2.6.0/api/org/springframework/boot/availability/LivenessState.html
+
+[[litextern-spring-liveness]]
+Spring Boot Liveness::
+: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application.application-availability.liveness
+
+[[litextern-spring-api-readiness]]
+Spring Boot API (ReadinessState)::
+https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/availability/ReadinessState.html
+
+[[litextern-spring-api-availability]]
+Spring Boot API (AvailabilityState)::
+https://docs.spring.io/spring-boot/docs/2.6.0/api/org/springframework/boot/availability/AvailabilityState.html
+
+[[litextern-kubernetes-liveness-readiness-probes]]
+Kubernetes (Liveness/Readiness Startup probes)::
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+[[litextern-oracle-availability]]
+Oracle (Availability)::
+https://docs.oracle.com/cd/A97335_02/ias.102/a95201/avail.htm
+
+[[litextern-aws-availability]]
+aws (Availability)::
+https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html
 
 [[litextern-oauth-homepage]]
 OAuth Homepage::
