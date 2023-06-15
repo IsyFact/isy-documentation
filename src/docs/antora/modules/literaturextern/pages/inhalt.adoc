@@ -209,7 +209,8 @@ https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#featu
 
 [[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
-https://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html (Zugriff am 03.02.2022)
+https://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html 
+//(Zugriff am 03.02.2022)
 
 [[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
