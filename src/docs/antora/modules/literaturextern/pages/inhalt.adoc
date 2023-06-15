@@ -210,10 +210,17 @@ https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#featu
 [[litextern-collection-mapping]]
 Hibernate Documentation, Chapter 6. Collection Mapping::
 https://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html (Zugriff am 03.02.2022)
+//(Zugriff am 03.02.2022)
+
+[[litextern-hibernate-filter]]
+Hibernate Documentation, Chapter 5.9. Filtering entities and associations::
+https://docs.jboss.org/hibernate/orm/6.2/userguide/html_single/Hibernate_User_Guide.html#pc-filter
+//(Zugriff am 06.06.2023)
 
 [[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
-https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm (Zugriff am 03.02.2022)
+https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm
+//(Zugriff am 03.02.2022)
 
 [[litextern-temporale-datenhaltung]]
 Zeitmaschine – Temporale Datenhaltung::
@@ -227,11 +234,13 @@ https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Z
 
 [[litextern-it-grundschutz-m471]]
 M 4.71 Restriktive Handhabung von Datenbank-Links::
-https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf Seite 3285 (Zugriff am 03.02.2022)
+https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf Seite 3285
+//(Zugriff am 03.02.2022)
 
 [[litextern-multitable-bulk-operations]]
 Multitable Bulk Operations::
-https://in.relation.to/2005/07/20/multitable-bulk-operations/  (Zugriff am 04.02.2022)
+https://in.relation.to/2005/07/20/multitable-bulk-operations/
+//(Zugriff am 04.02.2022)
 
 [[litextern-v-modell-xt]]
 V-Modell XT::
