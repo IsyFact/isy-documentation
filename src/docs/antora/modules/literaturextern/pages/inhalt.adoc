@@ -8,7 +8,6 @@ Die folgende Auflistung zeigt alle für die IsyFact-Dokumentation verwendeten ex
 [[litextern-cc-licence]]
 Creative-Commons-Lizenz (Lizenzbedingungen)::
 https://creativecommons.org/licenses/by/4.0/legalcode.de
-//test
 
 [[litextern-cc-short]]
 Creative-Commons-Lizenz (Kurzfassung)::
