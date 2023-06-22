@@ -208,16 +208,19 @@ Spring Boot Dokumentation zu "Properties Conversion"::
 https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
 
 [[litextern-collection-mapping]]
-Hibernate Documentation, Chapter 6. Collection Mapping::
-https://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html
-//(Zugriff am 03.02.2022)
-https://www.hibernate.org/hib_docs/v3/reference/en/html/collections.html
-//(Zugriff am 03.02.2022)
+Hibernate Documentation, Chapter 2.8. Collections::
+https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#collections
+//(Zugriff am 22.06.2023)
 
 [[litextern-hibernate-filter]]
 Hibernate Documentation, Chapter 5.9. Filtering entities and associations::
-https://docs.jboss.org/hibernate/orm/6.2/userguide/html_single/Hibernate_User_Guide.html#pc-filter
-//(Zugriff am 06.06.2023)
+https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#pc-filtering
+//(Zugriff am 22.06.2023)
+
+[[litextern-hibernate-toolset-guide]]
+Hibernate Documentation, Chapter 4. Schema generation::
+https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#schema-generation
+//(Zugriff am 22.06.2023)
 
 [[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
@@ -263,10 +266,6 @@ http://www.register-factory.de
 [[litextern-owasp]]
 OWASP Top 10::
 https://owasp.org/Top10/
-
-[[litextern-hibernate-toolset-guide]]
-Hibernate Toolset Guide::
-https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#toolsetguide
 
 [[litextern-slf4j-fatal]]
 SLF4J FATAL::
