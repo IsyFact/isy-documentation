@@ -192,8 +192,8 @@ Jakarta Persistence::
 https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html
 
 [[litextern-hibernate-inheritance]]
-Hibernate User Guide - Inheritance::
-https://docs.jboss.org/hibernate/orm/6.2/userguide/html_single/Hibernate_User_Guide.html#entity-inheritance
+Hibernate Documentation, Chapter 2.11. Inheritance::
+https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#entity-inheritance
 
 [[litextern-spring-data-jpa]]
 Spring Data JPA::
