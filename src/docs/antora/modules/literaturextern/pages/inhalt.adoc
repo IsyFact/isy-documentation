@@ -429,13 +429,13 @@ https://marketplace.eclipse.org/content/openapi-swagger-editor
 Swagger Spezifikation::
 https://swagger.io/specification/
 
-[[litextern-font-awesome]]
-Font Awesome::
-https://fontawesome.com/
+[[litextern-prime-faces]]
+Prime Faces::
+https://www.primefaces.org/
 
-[id="litextern-font-awesome-icons"]
-Font Awesome Icons::
-https://fontawesome.com/icons/
+[id="litextern-prime-faces-icons"]
+Prime Faces Icons::
+https://www.primefaces.org/showcase/icons.xhtml
 
 [id="litextern-get-bootstrap"]
 Get Bootstrap::
