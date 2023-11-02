@@ -187,6 +187,14 @@ Java Persistence with Hibernate::
 Christian Bauer, Gavin King
 Java Persistence with Hibernate. 2007. Manning Publications
 
+[[litextern-jakarta-persistence]]
+Jakarta Persistence::
+https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html
+
+[[litextern-hibernate-inheritance]]
+Hibernate User Guide - Inheritance::
+https://docs.jboss.org/hibernate/orm/6.2/userguide/html_single/Hibernate_User_Guide.html#entity-inheritance
+
 [[litextern-spring-data-jpa]]
 Spring Data JPA::
 https://docs.spring.io/spring-data/jpa/docs/2.7.x/reference/html/#repositories.query-methods.details
