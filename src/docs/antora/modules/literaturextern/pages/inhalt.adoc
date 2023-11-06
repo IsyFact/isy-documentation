@@ -185,7 +185,15 @@ http://www.git-scm.com
 [[litextern-jpa-hibernate]]
 Java Persistence with Hibernate::
 Christian Bauer, Gavin King
-Java Persistence with Hibernate. 2007. Manning Publications
+Java Persistence with Hibernate, Second Edition. 2015. Manning Publications
+
+[[litextern-jakarta-persistence]]
+Jakarta Persistence::
+https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html
+
+[[litextern-hibernate-inheritance]]
+Hibernate Documentation, Chapter 2.11. Inheritance::
+https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html#entity-inheritance
 
 [[litextern-spring-data-jpa]]
 Spring Data JPA::
