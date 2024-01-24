@@ -30,6 +30,22 @@ https://github.com/IsyFact/isyfact-standards/tree/master/isyfact-standards-doc
 IsyFact (GitHub)::
 https://github.com/IsyFact
 
+[[litextern-isyfact-online-docs-meta]]
+IsyFact (Online-Dokumentation: übergreifende Inhalte)::
+https://github.com/IsyFact/isy-documentation
+
+[[litextern-isyfact-antora]]
+IsyFact (Antora Playbook & Supplemental UI)::
+https://github.com/IsyFact/isy-antora-playbook
+
+[[litextern-isyfact-antora-playbook]]
+IsyFact (Antora Playbook)::
+https://github.com/IsyFact/isy-antora-playbook/blob/main/antora-playbook.yml
+
+[[litextern-isyfact-standards]]
+IsyFact (Open Source)::
+https://github.com/IsyFact/isyfact-standards
+
 [[litextern-vorlageanwendung]]
 IsyFact-Vorlageanwendung::
 https://github.com/IsyFact/IsyFact-Vorlageanwendung
@@ -98,6 +114,8 @@ https://www.apache.org
 IntelliJ::
 https://www.jetbrains.com/idea/
 
+// AsciiDoc & Antora
+
 [[litextern-asciidoc]]
 What is AsciiDoc? Why do we need it?::
 https://asciidoctor.org/docs/what-is-asciidoc/
@@ -122,6 +140,10 @@ https://www.vogella.com/tutorials/AsciiDoc/article.html
 AsciiDoc Recommended Practices::
 https://asciidoctor.org/docs/asciidoc-recommended-practices/
 
+[[litextern-antora]]
+Antora::
+https://antora.org
+
 [[litextern-antora-installationen]]
 Antora Installationen::
 https://docs.antora.org/antora/latest/install-and-run-quickstart/
@@ -145,6 +167,10 @@ https://docs.antora.org/antora/latest/component-version-descriptor/
 [[litextern-antora-verzeichnisstruktur]]
 Antora-Verzeichnisstruktur::
 https://docs.antora.org/antora/latest/standard-directories/
+
+[[litextern-antora-modules]]
+Antora (Modules)::
+https://docs.antora.org/antora/latest/module-directories/#module
 
 [[litextern-jsr-310]]
 JSR 310 „Date and Time API“::
