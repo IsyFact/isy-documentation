@@ -2,6 +2,7 @@
 - `IFS-381`: Release 2.5.0
   - Enthält Backport der Dokumentation für DIN NORM 91379, IFS-1912, IFS-1467 und IFS-1628
   - Update aller AsciidoctorJ-Versionen
+- `ISY-658`: Abschnitt "Anmerkung zum Parallelbetrieb von AufrufKontextVerwalter und MdcHelper" hinzugefügt
 
 # 2.4.0
 - `IFS-546`: Vorgaben für Properties zu komplexen Datentypen ergänzt
