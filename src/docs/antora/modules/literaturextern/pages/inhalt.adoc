@@ -36,11 +36,11 @@ https://github.com/IsyFact/isy-documentation
 
 [[litextern-isyfact-antora]]
 IsyFact (Antora Playbook & Supplemental UI)::
-https://github.com/IsyFact/isy-antora-playbook
+https://github.com/IsyFact/isyfact.github.io
 
 [[litextern-isyfact-antora-playbook]]
 IsyFact (Antora Playbook)::
-https://github.com/IsyFact/isy-antora-playbook/blob/main/antora-playbook.yml
+https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook.yml
 
 [[litextern-isyfact-standards]]
 IsyFact (Open Source)::
