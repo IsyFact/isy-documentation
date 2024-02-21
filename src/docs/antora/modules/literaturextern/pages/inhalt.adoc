@@ -60,7 +60,8 @@ http://cwe.mitre.org/data/definitions/502.html
 
 [[litextern-semantic-versioning]]
 Semantic Versioning 2.0.0::
-https://semver.org/spec/v2.0.0.html [Zugriff am 05.03.2018]
+https://semver.org/spec/v2.0.0.html
+// Zugriff am 05.03.2018
 
 [[litextern-vermeulen2000]]
 Allan Vermeulen, Scott W. Ambler, Greg Baumgardner, Eldon Metz, Trevor Misfeldt, Jim Shur, Patrick Thomson::
@@ -77,10 +78,6 @@ Effective Java Second Edition. 2008. Addison Wesley
 [[litextern-rpm-packaging-guide]]
 RPM Packaging Guide::
 https://rpm-packaging-guide.github.io/#what-is-a-spec-file
-
-[[litextern-intellij]]
-IntelliJ::
-https://www.jetbrains.com/idea/
 
 // AsciiDoc & Antora
 
@@ -119,10 +116,6 @@ https://docs.antora.org/antora/latest/install-and-run-quickstart/
 [[litextern-antora-playbook]]
 Antora Playbook::
 https://docs.antora.org/antora/latest/install-and-run-quickstart/#create-a-playbook
-
-[[litextern-antora-maven]]
-Antora mit Maven::
-https://abelsromero.github.io/blog/2020/antora-with-maven.html
 
 [[litextern-antora-xref-macro-structure]]
 Antora: Xref macro structure::
@@ -222,7 +215,8 @@ https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Gu
 
 [[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
-https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm (Zugriff am 03.02.2022)
+https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm
+//(Zugriff am 03.02.2022)
 
 [[litextern-temporale-datenhaltung]]
 Zeitmaschine – Temporale Datenhaltung::
@@ -241,7 +235,8 @@ https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf 
 
 [[litextern-multitable-bulk-operations]]
 Multitable Bulk Operations::
-https://in.relation.to/2005/07/20/multitable-bulk-operations/  (Zugriff am 04.02.2022)
+https://in.relation.to/2005/07/20/multitable-bulk-operations/
+//(Zugriff am 04.02.2022)
 
 [[litextern-v-modell-xt]]
 V-Modell XT::
@@ -393,7 +388,7 @@ https://docs.spring.io/spring-boot/docs/2.6.0/api/org/springframework/boot/avail
 
 [[litextern-spring-liveness]]
 Spring Boot Liveness::
-: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application.application-availability.liveness
+https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application.application-availability.liveness
 
 [[litextern-spring-api-readiness]]
 Spring Boot API (ReadinessState)::
