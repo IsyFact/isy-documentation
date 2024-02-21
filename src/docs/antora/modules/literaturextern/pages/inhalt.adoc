@@ -313,10 +313,6 @@ http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html
 Identity and Access Management::
 https://en.wikipedia.org/wiki/Identity_management
 
-[[litextern-oracle-globalization-support]]
-Oracle, Globalization Support Guide 10g Release 2 (10.2)::
-http://download.oracle.com/docs/cd/B19306_01/server.102/b14225.pdf
-
 [[litextern-code2000]]
 Code2000::
 http://www.code2000.net
