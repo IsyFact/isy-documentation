@@ -102,6 +102,14 @@ https://rpm-packaging-guide.github.io/#what-is-a-spec-file
 Spring Tool Suite::
 https://spring.io/tools
 
+[[litextern-spring-cache-abstraction]]
+Spring Cache Abstraction::
+https://docs.spring.io/spring-framework/reference/integration/cache.html
+
+[[litextern-ehcache]]
+EHCache::
+https://www.ehcache.org/documentation/
+
 [[litextern-ubuntu-programmstarter]]
 Ubuntu Desktop Programmstarter::
 https://wiki.ubuntuusers.de/.desktop-Dateien/
