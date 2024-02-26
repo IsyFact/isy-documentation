@@ -46,14 +46,6 @@ https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook.yml
 IsyFact (Open Source)::
 https://github.com/IsyFact/isyfact-standards
 
-[[litextern-vorlageanwendung]]
-IsyFact-Vorlageanwendung::
-https://github.com/IsyFact/IsyFact-Vorlageanwendung
-
-[[litextern-isyfact-checkstyle]]
-IsyFact Checkstyle-Regeln (README)::
-https://github.com/IsyFact/isy-checkstyle-config#readme
-
 [[litextern-string-latin-1-2]]
 String Latin 1.2::
 https://www.xoev.de/string-latin-4813
@@ -68,7 +60,8 @@ http://cwe.mitre.org/data/definitions/502.html
 
 [[litextern-semantic-versioning]]
 Semantic Versioning 2.0.0::
-https://semver.org/spec/v2.0.0.html [Zugriff am 05.03.2018]
+https://semver.org/spec/v2.0.0.html
+// Zugriff am 05.03.2018
 
 [[litextern-vermeulen2000]]
 Allan Vermeulen, Scott W. Ambler, Greg Baumgardner, Eldon Metz, Trevor Misfeldt, Jim Shur, Patrick Thomson::
@@ -82,37 +75,9 @@ http://www.ambysoft.com/downloads/javaCodingStandards.pdf
 Joshua Bloch::
 Effective Java Second Edition. 2008. Addison Wesley
 
-[[litextern-virtual-box]]
-Oracle VirtualBox::
-https://www.virtualbox.org
-
-[[litextern-osboxes]]
-OSBoxes::
-https://www.osboxes.org
-
-[[litextern-osboxes-ubuntu]]
-OSBoxes Ubuntu::
-https://www.osboxes.org/ubuntu/
-
 [[litextern-rpm-packaging-guide]]
 RPM Packaging Guide::
 https://rpm-packaging-guide.github.io/#what-is-a-spec-file
-
-[[litextern-spring-tool-suite]]
-Spring Tool Suite::
-https://spring.io/tools
-
-[[litextern-ubuntu-programmstarter]]
-Ubuntu Desktop Programmstarter::
-https://wiki.ubuntuusers.de/.desktop-Dateien/
-
-[[litextern-apache]]
-Apache::
-https://www.apache.org
-
-[[litextern-intellij]]
-IntelliJ::
-https://www.jetbrains.com/idea/
 
 // AsciiDoc & Antora
 
@@ -151,10 +116,6 @@ https://docs.antora.org/antora/latest/install-and-run-quickstart/
 [[litextern-antora-playbook]]
 Antora Playbook::
 https://docs.antora.org/antora/latest/install-and-run-quickstart/#create-a-playbook
-
-[[litextern-antora-maven]]
-Antora mit Maven::
-https://abelsromero.github.io/blog/2020/antora-with-maven.html
 
 [[litextern-antora-xref-macro-structure]]
 Antora: Xref macro structure::
@@ -195,10 +156,6 @@ https://de.wikipedia.org/wiki/Unix
 [[litextern-maven-central]]
 Maven Central::
 https://search.maven.org
-
-[[litextern-eclipse-checkstyle-plugin]]
-Eclipse Checkstyle Plugin::
-https://github.com/checkstyle/eclipse-cs-update-site
 
 [[litextern-git-lfs]]
 Git LFS::
@@ -258,7 +215,8 @@ https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Gu
 
 [[litextern-ucp]]
 Universal Connection Pool for JDBC Developer’s Guide::
-https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm (Zugriff am 03.02.2022)
+https://docs.oracle.com/cd/E11882_01/java.112/e12265/optimize.htm
+//(Zugriff am 03.02.2022)
 
 [[litextern-temporale-datenhaltung]]
 Zeitmaschine – Temporale Datenhaltung::
@@ -277,7 +235,8 @@ https://download.gsb.bund.de/BSI/ITGSK/IT-Grundschutz-Kataloge_2016_EL15_DE.pdf 
 
 [[litextern-multitable-bulk-operations]]
 Multitable Bulk Operations::
-https://in.relation.to/2005/07/20/multitable-bulk-operations/  (Zugriff am 04.02.2022)
+https://in.relation.to/2005/07/20/multitable-bulk-operations/
+//(Zugriff am 04.02.2022)
 
 [[litextern-v-modell-xt]]
 V-Modell XT::
@@ -312,10 +271,6 @@ http://www.slf4j.org/api/org/slf4j/bridge/SLF4JBridgeHandler.html
 [[litextern-identity_management]]
 Identity and Access Management::
 https://en.wikipedia.org/wiki/Identity_management
-
-[[litextern-oracle-globalization-support]]
-Oracle, Globalization Support Guide 10g Release 2 (10.2)::
-http://download.oracle.com/docs/cd/B19306_01/server.102/b14225.pdf
 
 [[litextern-code2000]]
 Code2000::
@@ -433,7 +388,7 @@ https://docs.spring.io/spring-boot/docs/2.6.0/api/org/springframework/boot/avail
 
 [[litextern-spring-liveness]]
 Spring Boot Liveness::
-: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application.application-availability.liveness
+https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.spring-application.application-availability.liveness
 
 [[litextern-spring-api-readiness]]
 Spring Boot API (ReadinessState)::
