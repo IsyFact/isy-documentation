@@ -194,6 +194,14 @@ https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/core.html#aop-
 Spring Framework: Annotationen zum Task Scheduling::
 https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/integration.html#scheduling-annotation-support
 
+[[litextern-spring-cache-abstraction]]
+Spring Cache Abstraction::
+https://docs.spring.io/spring-framework/reference/integration/cache.html
+
+[[litextern-ehcache]]
+EHCache::
+https://www.ehcache.org/documentation/
+
 [[litextern-spring-boot-properties-conversion]]
 Spring Boot Dokumentation zu "Properties Conversion"::
 https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/features.html#features.external-config.typesafe-configuration-properties.conversion
