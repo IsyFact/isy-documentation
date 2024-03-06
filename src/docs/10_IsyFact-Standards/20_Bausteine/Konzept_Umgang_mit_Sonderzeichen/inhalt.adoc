@@ -384,6 +384,8 @@ Im Zuge der Umsetzung der DIN Spezifikation 91 379 wurde `isy-sonderzeichen` erw
 wurde die Bibliothek in zwei Packages aufgeteilt. Das _stringlatin1_1_ Package enthält die ursprüngliche Funktionalität. Die Umsetzung der
 DIN Spezifikation wurde im Package _dinspec91379_ umgesetzt. Die Architektur und Funktionsweise der Komponente wurde im Zuge der
 Umsetzung nicht verändert.
+Eine Erweiterung des Zeichensatzes der DIN SPEC 91379 ist die DIN Norm 91379.
+Für diese wurde ein weiteres Package _dinnorm91379_ angelegt, welches die beiden anderen Packages zukünftig ersetzt.
 
 [[funktionsweise]]
 == Funktionsweise
