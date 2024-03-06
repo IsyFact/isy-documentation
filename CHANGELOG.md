@@ -1,4 +1,5 @@
 # 1.12.0
+- `ISY-142 `: Hinzufügen weiterer Sonderzeichen nach DIN Norm 91379
 
 # 1.11.0
 - `IFE-458`: Erweiterung Nutzungsvorgaben isy-session - Konfiguration von Redisson's Spring Session
