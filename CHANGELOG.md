@@ -1,3 +1,5 @@
+# 1.13.0
+
 # 1.12.0
 - `ISY-142 `: Hinzufügen weiterer Sonderzeichen nach DIN Norm 91379
 - `ISY-388 `: Versionsanhebung auf 1.12.0
