@@ -1,0 +1,5 @@
+name: documentation-guide
+title: Leitfaden Dokumentation
+version: ~
+nav:
+  - modules/ROOT/nav.adoc
