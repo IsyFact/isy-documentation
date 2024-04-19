@@ -9,30 +9,5 @@ bin/
 *.iml
 .idea/
 
-# Ignore Maven-specific files
-target/
-
 # Ignore VS Code files
 .vscode
-
-# Ignore generated Asciidoc files
-src/docs/10_*/**/listoffigures.adoc
-src/docs/10_*/**/listoflistings.adoc
-src/docs/10_*/**/listoftables.adoc
-src/docs/10_*/**/glossary.adoc
-src/docs/10_*/**/bibliography.adoc
-src/docs/20_*/**/listoffigures.adoc
-src/docs/20_*/**/listoflistings.adoc
-src/docs/20_*/**/listoftables.adoc
-src/docs/20_*/**/glossary.adoc
-src/docs/20_*/**/bibliography.adoc
-
-# Ignore Asciidoctor extensions
-.asciidoctor
-
-# Ignore index files
-.directory
-
-# Ignore node installation
-node
-node_modules

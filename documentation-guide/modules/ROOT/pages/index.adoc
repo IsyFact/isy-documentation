@@ -1,0 +1,9 @@
+= Leitfaden Dokumentation
+
+include::glossary:licence:partial$licence.adoc[]
+
+.icon:wrench[] Work In Progress
+****
+Der Leitfaden zur IsyFact-Dokumentation zieht bald hierhin um.
+Aktuell ist er xref:isyfact-standards-doku:werkzeuge:dokumentation/einfuehrung.adoc[an dieser Stelle] zu finden.
+****
