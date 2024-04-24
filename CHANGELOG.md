@@ -1,5 +1,6 @@
 # 2024
 
+- [2024-04-24] `IFS-2784`: moved module literaturextern to isyfact-standards 3.x and made obsolete vor 4.x.  
 - [2024-04-18] `IFS-2797`: refactor content sources into [components with no versions](https://docs.antora.org/antora/latest/component-with-no-version/) & add the documentation guide:
   - changes to components with no versions become effective immediately
   - Antora won't assign a version to the glossary in the UI
