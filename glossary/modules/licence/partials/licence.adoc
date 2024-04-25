@@ -4,5 +4,5 @@ Alle Inhalte der Seite, insbesondere Texte und Grafiken, sind urheberrechtlich g
 Alle urheberrechtlichen Nutzungs- und Verwertungsrechte liegen beim Bundesverwaltungsamt.
 
 image:glossary:licence:CC-BY.png[Creative Commons Namensnennung,150,float="right"]
-Die Nutzung ist unter den xref:glossary:literaturextern:inhalt.adoc#litextern-cc-licence[Lizenzbedingungen] der xref:glossary:literaturextern:inhalt.adoc#litextern-cc-short[Creative Commons Namensnennung 4.0 International] gestattet.
+Die Nutzung ist unter den https://creativecommons.org/licenses/by/4.0/legalcode.de[Lizenzbedingungen] der https://creativecommons.org/licenses/by/4.0/deed.de[Creative Commons Namensnennung 4.0 International] gestattet.
 ====
