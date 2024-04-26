@@ -70,7 +70,6 @@ Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzu
 Anwendungstyp::
 Sammlung von Architekturvorgaben (aller Architektursichten) zur Entwicklung eines Anwendungssystems mit gleichartigen spezifischen Eigenschaften.
 In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von Anwendungssystemen.
-Für jeden Anwendungstyp ist ein Satz von Blaupausen notwendig.
 
 [[glossar-architektursicht]]
 Architektursicht::
@@ -121,10 +120,8 @@ Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
 image::glossar-bibliothek.png[align="center"]
 
 [[glossar-blaupause]]
-Blaupause::
+Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[bis IsyFact 3.x]#::
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
-+
-NOTE: Für jeden Anwendungstyp ist ein Satz von Blaupausen notwendig.
 
 [[glossar-bva]]
 BVA::
@@ -291,6 +288,10 @@ Spezialisierung des Begriffs <<glossar-domaene,Domäne>> im Kontext von <<glossa
 Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Querschnittsanwendungen einer Anwendungslandschaft unabhängig von ihrer Fachlichkeit.
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
+[[glossar-referenzarchitektur]]
+Referenzarchitektur [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[ab IsyFact 4]#::
+Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
+
 [[glossar-release]]
 Release::
 Veröffentlichter Versionsstand einer Software-Factory.
@@ -320,7 +321,7 @@ Hierbei wird nur eine Seite aufgerufen, welche die gesamte Dialoglogik und den S
 
 [[glossar-software-factory]]
 Software Factory (SF)::
-Eine Software Factory ist eine Sammlung von Blaupausen, Bausteinen, einer Plattform, einer Methodik und Werkzeugen, die es erlaubt, durch Standardisierung, Modularisierung und Wiederverwendung Geschäftsanwendungen weitestgehend standardisiert zu entwickeln.
+Eine Software Factory ist eine Sammlung von Referenzarchitekturen, Bausteinen, einer Plattform, einer Methodik und Werkzeugen, die es erlaubt, durch Standardisierung, Modularisierung und Wiederverwendung Geschäftsanwendungen weitestgehend standardisiert zu entwickeln.
 Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer Anwendungsdomäne so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des Architekturrahmens sichergestellt ist.
 „Standardisiert“ bedeutet, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software Factory getroffen und in entsprechenden Komponenten implementiert sind.
 Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen Fachlichkeit der Anwendung konzentrieren.
