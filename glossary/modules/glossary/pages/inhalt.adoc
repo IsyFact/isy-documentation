@@ -29,7 +29,7 @@ Der Anwendungskern beinhaltet die Anwendungslogik eines Anwendungssystems.
 +
 [[image-glossar-3]]
 .Anwendungskern
-image::glossar-anwendungskern.png[align="center"]
+image::glossar-anwendungskern.dn.svg[]
 
 [[glossar-anwendungskomponente]]
 Anwendungskomponente (ANK)::
@@ -313,11 +313,6 @@ Stellt die Verbindung zwischen einem externen und einem internen Service durch e
 [[glossar-sla]]
 SLA::
 Service Level Agreement
-
-[[glossar-spa]]
-Single Page Application (SPA)::
-Als Alternative zur klassischen Web-Anwendung kann eine GUI als "Single Page Application" umgesetzt werden.
-Hierbei wird nur eine Seite aufgerufen, welche die gesamte Dialoglogik und den Sitzungszustand auf der Clientseite belässt und Inhalte dynamisch über Services nachlädt, die unabhängig und losgekoppelt vom Client implementiert werden.
 
 [[glossar-software-factory]]
 Software Factory (SF)::

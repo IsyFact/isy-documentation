@@ -9,6 +9,7 @@
 - [2024-04-18] `IFS-2797`: shorten changelog and translate it to English:
   - many entries are obsolete as its contents aren't present anymore on this branch
 - [2024-04-26] `IFS-2816`: mark term "Blaupause" as obsolete & introduce new term "Referenzarchitektur"
+- [2024-04-29] `IFS-3676`: remove GUI component from the definition of an "IT-System" 
 
 # 2023
 
