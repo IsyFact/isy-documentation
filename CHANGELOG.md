@@ -1,6 +1,8 @@
 # 2024
 
-- [2024-04-24] `IFS-2784`: moved module literaturextern to isyfact-standards 3.x and made obsolete vor 4.x.  
+- [2024-04-29] `IFS-3676`: remove GUI component from the definition of an "IT-System"
+- [2024-04-26] `IFS-2816`: mark term "Blaupause" as obsolete & introduce new term "Referenzarchitektur"
+- [2024-04-24] `IFS-2784`: move module `literaturextern` to isyfact-standards 3.x and make it obsolete for 4.x
 - [2024-04-18] `IFS-2797`: refactor content sources into [components with no versions](https://docs.antora.org/antora/latest/component-with-no-version/) & add the documentation guide:
   - changes to components with no versions become effective immediately
   - Antora won't assign a version to the glossary in the UI
@@ -8,8 +10,6 @@
 - [2024-04-18] `IFS-2797`: remove Maven build
 - [2024-04-18] `IFS-2797`: shorten changelog and translate it to English:
   - many entries are obsolete as its contents aren't present anymore on this branch
-- [2024-04-26] `IFS-2816`: mark term "Blaupause" as obsolete & introduce new term "Referenzarchitektur"
-- [2024-04-29] `IFS-3676`: remove GUI component from the definition of an "IT-System" 
 
 # 2023
 
