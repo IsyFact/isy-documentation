@@ -11,3 +11,6 @@ bin/
 
 # Ignore VS Code files
 .vscode
+
+# Ignore diagrams.net-specific files
+*.dn.svg.bkp
