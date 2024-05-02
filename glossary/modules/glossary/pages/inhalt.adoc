@@ -314,6 +314,10 @@ Stellt die Verbindung zwischen einem externen und einem internen Service durch e
 SLA::
 Service Level Agreement
 
+[[glossar-spa]]
+Single Page Application (SPA)::
+→ https://de.wikipedia.org/wiki/Single-Page-Webanwendung[icon:wikipedia-w[] Single-Page-Webanwendung]
+
 [[glossar-software-factory]]
 Software Factory (SF)::
 Eine Software Factory ist eine Sammlung von Referenzarchitekturen, Bausteinen, einer Plattform, einer Methodik und Werkzeugen, die es erlaubt, durch Standardisierung, Modularisierung und Wiederverwendung Geschäftsanwendungen weitestgehend standardisiert zu entwickeln.
