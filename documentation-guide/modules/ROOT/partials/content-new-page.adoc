@@ -1,0 +1,3 @@
+:scope-page:
+include::partial$content-new.adoc[]
+:!scope-page:

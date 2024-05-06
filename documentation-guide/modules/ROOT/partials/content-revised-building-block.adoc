@@ -1,0 +1,3 @@
+:scope-building-block:
+include::partial$content-revised.adoc[]
+:!scope-building-block:

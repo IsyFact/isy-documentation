@@ -1,0 +1,8 @@
+ifdef::scope-building-block[.icon:puzzle-piece[title="Work in Progress"] Baustein in Überarbeitung]
+ifdef::scope-page[.icon:puzzle-piece[title="Work in Progress"] Seite in Überarbeitung]
+ifndef::scope-page,scope-building-block[.icon:puzzle-piece[title="Work in Progress"] In Überarbeitung]
+****
+Die folgenden Inhalte können sich ohne Ankündigung bis zum nächsten Release umfassend ändern.
+
+Die überarbeiteten Inhalte sind möglicherweise noch nicht in der gesamten IsyFact berücksichtigt, sodass es während der Überarbeitung zu Inkonsistenzen in der Dokumentation kommen kann.
+****
