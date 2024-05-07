@@ -1,1 +1,2 @@
 * xref:index.adoc[Einstieg]
+** xref:guides/content-changes.adoc[]

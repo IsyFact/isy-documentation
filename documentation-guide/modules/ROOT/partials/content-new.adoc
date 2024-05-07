@@ -1,6 +1,6 @@
-ifdef::scope-building-block[.icon:puzzle-piece[title="Work in Progress"] Baustein in Erstellung]
-ifdef::scope-page[.icon:puzzle-piece[title="Work in Progress"] Seite in Erstellung]
-ifndef::scope-page,scope-building-block[.icon:puzzle-piece[title="Work in Progress"] In Erstellung]
+ifdef::scope-building-block[.icon:puzzle-piece[title="In Erstellung"] Baustein in Erstellung]
+ifdef::scope-page[.icon:puzzle-piece[title="In Erstellung"] Seite in Erstellung]
+ifndef::scope-page,scope-building-block[.icon:puzzle-piece[title="In Erstellung"] Inhalt in Erstellung]
 ****
 Die neuen Inhalte sind möglicherweise noch nicht in der gesamten IsyFact berücksichtigt.
 Trotzdem sind sie bereits für die Entwicklung neuer Anwendungen relevant.

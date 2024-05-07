@@ -1,6 +1,6 @@
-ifdef::scope-building-block[.icon:puzzle-piece[title="Work in Progress"] Baustein in Überarbeitung]
-ifdef::scope-page[.icon:puzzle-piece[title="Work in Progress"] Seite in Überarbeitung]
-ifndef::scope-page,scope-building-block[.icon:puzzle-piece[title="Work in Progress"] In Überarbeitung]
+ifdef::scope-building-block[.icon:wrench[title="In Überarbeitung"] Baustein in Überarbeitung]
+ifdef::scope-page[.icon:wrench[title="In Überarbeitung"] Seite in Überarbeitung]
+ifndef::scope-page,scope-building-block[.icon:wrench[title="In Überarbeitung"] Inhalt in Überarbeitung]
 ****
 Die folgenden Inhalte können sich ohne Ankündigung bis zum nächsten Release umfassend ändern.
 
