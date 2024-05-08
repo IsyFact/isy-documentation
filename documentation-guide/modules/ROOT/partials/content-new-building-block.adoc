@@ -1,0 +1,3 @@
+:scope-building-block:
+include::partial$content-new.adoc[]
+:!scope-building-block:

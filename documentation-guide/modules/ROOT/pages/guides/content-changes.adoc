@@ -1,0 +1,150 @@
+= Änderungen an Inhalten
+
+include::glossary:licence:partial$licence.adoc[]
+
+Der Leitfaden bietet die Möglichkeit an, Änderungen an Inhalten über vordefinierte Elemente auszuzeichnen.
+Er unterstützt die Auszeichnung von Inhalten in Erstellung und in Überarbeitung.
+
+IMPORTANT: Nachdem eine Änderung abgeschlossen ist, muss die Auszeichnung an allen betreffenden Stellen entfernt werden.
+
+
+[[erstellung]]
+== Inhalte in Erstellung
+
+Wenn Inhalte neu erstellt werden, geschieht dies meist über einen längeren Zeitraum hinweg.
+Während der Erstellung sind diese neuen Inhalte in der Regel noch nicht in der ganzen IsyFact berücksichtigt.
+
+Um solche Inhalte auszuzeichnen, bietet der Leitfaden eine allgemeine Variante, eine für Seiten und eine für Bausteine an.
+Es sollte immer die Variante gewählt werden, die am besten zum Wirkungsbereich (_Scope_) der Änderung passt.
+
+=== Allgemeiner Hinweis
+
+Dieser Hinweis kann an beliebigen Stellen im Text platziert werden.
+Es empfiehlt sich, ihn direkt nach einer Überschrift zu platzieren.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-new.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-new.adoc[]
+
+=== Hinweis für Seiten
+
+Dieser Hinweis sollte, direkt nach dem Lizenzhinweis, als erster Inhalt auf einer Seite stehen.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-new-page.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-new-page.adoc[]
+
+=== Hinweis für Bausteine
+
+Dieser Hinweis sollte auf allen Seiten des Bausteins platziert werden.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-new-building-block.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-new-building-block.adoc[]
+
+=== Kurzhinweis
+
+Der Kurzhinweis kann in Tabellen, für Verweise oder ähnliche Textstellen verwendet werden.
+
+*Markup:*
+
+[source,asciidoc]
+....
+icon:puzzle-piece[title="In Erstellung"] (Inhalt in Erstellung)
+....
+
+*Beispiel (Verweis):*
+
+<<erstellung,icon:puzzle-piece[title="In Erstellung"] (Inhalt in Erstellung)>>
+
+
+[[ueberarbeitung]]
+== Inhalte in Überarbeitung
+
+Von Zeit zu Zeit werden Inhalte aus diversen Gründen grundlegend überarbeitet.
+Während der Überarbeitung sind diese Inhalte möglicherweise inkonsistent, sowohl in sich als auch zum Rest der IsyFact.
+
+Um solche Inhalte auszuzeichnen, bietet der Leitfaden eine allgemeine Variante, eine für Seiten und eine für Bausteine an.
+Es sollte immer die Variante gewählt werden, die am besten zum Wirkungsbereich (_Scope_) der Änderung passt.
+
+=== Allgemeiner Hinweis
+
+Dieser Hinweis kann an beliebigen Stellen im Text platziert werden.
+Es empfiehlt sich, ihn direkt nach einer Überschrift zu platzieren.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-revised.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-revised.adoc[]
+
+=== Hinweis für Seiten
+
+Dieser Hinweis sollte, direkt nach dem Lizenzhinweis, als erster Inhalt auf einer Seite stehen.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-revised-page.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-revised-page.adoc[]
+
+=== Hinweis für Bausteine
+
+Dieser Hinweis sollte auf allen Seiten des Bausteins platziert werden.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-revised-building-block.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-revised-building-block.adoc[]
+
+=== Kurzhinweis
+
+Der Kurzhinweis kann in Tabellen, für Verweise oder ähnliche Textstellen verwendet werden.
+
+*Markup:*
+
+[source,asciidoc]
+....
+icon:wrench[title="In Überarbeitung"] (Inhalt in Überarbeitung)
+....
+
+*Beispiel:*
+
+<<ueberarbeitung,icon:wrench[title="In Überarbeitung"] (Inhalt in Überarbeitung)>>

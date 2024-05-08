@@ -1,0 +1,8 @@
+ifdef::scope-building-block[.icon:wrench[title="In Überarbeitung"] Baustein in Überarbeitung]
+ifdef::scope-page[.icon:wrench[title="In Überarbeitung"] Seite in Überarbeitung]
+ifndef::scope-page,scope-building-block[.icon:wrench[title="In Überarbeitung"] Inhalt in Überarbeitung]
+****
+Die folgenden Inhalte können sich ohne Ankündigung bis zum nächsten Release umfassend ändern.
+
+Die überarbeiteten Inhalte sind möglicherweise noch nicht in der gesamten IsyFact berücksichtigt, sodass es während der Überarbeitung zu Inkonsistenzen in der Dokumentation kommen kann.
+****
