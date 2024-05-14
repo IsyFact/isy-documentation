@@ -1,9 +1,14 @@
 = Glossar: Inhalt
 
 // tag::inhalt[]
+
+:sectnums!:
+
 == Glossar
 
 Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
+
+=== A
 
 [[glossar-a-architektur]]
 A-Architektur::
@@ -89,6 +94,8 @@ Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Sour
 Die entwickelte Software wird auf einer Betriebsumgebung (Plattform) installiert.
 Zu jeder Auslieferung gibt es ein Change-Log.
 
+=== B
+
 [[glossar-batch]]
 Batch::
 Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
@@ -120,12 +127,14 @@ Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
 image::glossar-bibliothek.png[align="center"]
 
 [[glossar-blaupause]]
-Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[bis IsyFact 3.x]#::
+Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]#::
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
 [[glossar-bva]]
 BVA::
 Bundesverwaltungsamt
+
+=== C
 
 [[glossar-change-log]]
 Change Log::
@@ -144,6 +153,8 @@ Closed Source Release::
 Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als Einer-für-Alle-System anbietet.
 Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
 
+=== D
+
 [[glossar-domaene]]
 Domäne::
 Eine Domäne im Kontext der A-Architektur entspricht der Begrifflichkeit aus Sicht des „Domain Driven Design“.
@@ -155,15 +166,21 @@ image::glossar-anwendungsdomaene.dn.svg[]
 +
 Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
 
+=== E
+
 [[glossar-efa]]
 Einer-für-Alle-System (EfA)::
 Begriff aus der deutschen Bundesverwaltung.
 Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
 Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-für-Alle-System angeboten.
 
+=== F
+
 [[glossar-ftp]]
 FTP::
 File Transfer Protocol
+
+=== G
 
 [[glossar-geschaeftsanwendung]]
 Geschäftsanwendung::
@@ -174,6 +191,8 @@ Dabei kann sie die Services von Querschnittsanwendungen oder andere Anwendungssy
 [[glossar-geschaeftslogik]]
 Geschäftslogik::
 Die Anwendungslogik von Geschäftsanwendungen.
+
+=== I
 
 [[glossar-instanz]]
 Instanz::
@@ -204,9 +223,13 @@ Umsetzung einer Geschäftsanwendung unter Berücksichtigung technischer Rahmenbe
 Ein IT-System ist Bestandteil der T-Architektur und es ist (für sich) alleine ausführbar.
 Aus Sicht der A-Architektur ist die Entsprechung zum IT-System das Anwendungssystem.
 
+=== J
+
 [[glossar-jvm]]
 JVM::
 Java Virtual Machine
+
+=== K
 
 [[glossar-konform]]
 konforme Änderung::
@@ -221,12 +244,16 @@ Konzept::
 Ein Konzept ist die fachliche Beschreibung eines Bausteins.
 Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturentscheidungen sowie den Lösungsansatz.
 
+=== M
+
 [[glossar-methodik]]
 Methodik::
 Im Rahmen einer Software-Factory bildet die Methodik die Grundlage für die Umsetzung von Geschäftsanwendungen mittels einer standardisierten Vorgehensweise nach dem V-Modell XT Bund.
 Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
 +
 NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen zur Verfügung stellt.
+
+=== N
 
 [[glossar-nicht-konform]]
 nicht konforme Änderung::
@@ -246,10 +273,14 @@ Nutzungsvorgaben::
 Nutzungsvorgaben beschreiben die Verwendung eines Bausteins aus technischer Sicht.
 Sie sind Teil der Dokumentation eines Bausteins und richten sich an Entwickler. Das Dokument komplementiert das Konzept, das sich an fachlich Interessierte und Architekten richtet.
 
+=== O
+
 [[glossar-open-source-release]]
 Open Source Release::
 Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen Nutzern anbietet.
 Das Open Source Release beinhaltet die IsyFact-Standards (IFS) sowie Teile der IsyFact-Erweiterungen (IFE).
+
+=== P
 
 [[glossar-persistenz]]
 Persistenz::
@@ -263,7 +294,7 @@ Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betri
 Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 
 [[glossar-plis]]
-PLIS::
+PLIS [.glossary-deprecated]#veraltet#::
 Plattform Informationssysteme
 
 [[glossar-portal]]
@@ -271,8 +302,10 @@ Portal::
 Zentraler Zugangspunkt zu den Geschäftsanwendungen einer Anwendungslandschaft.
 Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen.
 
+=== Q
+
 [[glossar-querschnittsanwendung]]
-Querschnittsanwendung::
+Querschnittsanwendung (QA)::
 Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für Anwender.
 Querschnittsanwendungen sind somit in verschiedenen Anwendungsdomänen oder über mehrere Anwendungslandschaften hinweg wiederverwendbar.
@@ -282,19 +315,30 @@ Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanw
 +
 Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
 
+Ehemalige Bezeichnung: <<glossar-querschnittskomponente,Querschnittskomponente>>
+
 [[glossar-querschnittsdomaene]]
 Querschnittsdomäne::
 Spezialisierung des Begriffs <<glossar-domaene,Domäne>> im Kontext von <<glossar-querschnittsanwendung,Querschnittsanwendungen>>.
 Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Querschnittsanwendungen einer Anwendungslandschaft unabhängig von ihrer Fachlichkeit.
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
+[[glossar-querschnittskomponente]]
+Querschnittskomponente (QK) [.glossary-changed]#<<glossar-querschnittsanwendung,abgelöst>># [.glossary-release]#≤ IsyFact 2#::
+
+Abgelöst → <<glossar-querschnittsanwendung,Querschnittsanwendung>> 
+
+=== R
+
 [[glossar-referenzarchitektur]]
-Referenzarchitektur [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[ab IsyFact 4]#::
+Referenzarchitektur [.glossary-proposed]#vorgeschlagen# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
 [[glossar-release]]
 Release::
 Veröffentlichter Versionsstand einer Software-Factory.
+
+=== S
 
 [[glossar-service-fachlich]]
 Service::
@@ -340,6 +384,8 @@ Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
 +
 Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server, usw.).
 
+=== T
+
 [[glossar-t-architektur]]
 T-Architektur::
 Technische Architektursicht auf die Software-Architektur einer Geschäftsanwendung.
@@ -349,11 +395,15 @@ TI-Architektur::
 Technische Infrastruktursicht auf die Software-Architektur einer Geschäftsanwendung.
 Sie beschreibt den Aufbau der Betriebsumgebung für die <IT-Systeme einer IsyFact-Systemlandschaft.
 
+=== V
+
 [[glossar-vollkonform]]
 vollkonforme Änderung::
 Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer Bibliothek nicht verändert (siehe auch konform und nicht-konform).
 +
 Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
+
+=== W
 
 [[glossar-werkzeug]]
 Werkzeug::
