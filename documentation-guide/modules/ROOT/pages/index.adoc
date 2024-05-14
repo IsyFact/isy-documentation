@@ -74,7 +74,7 @@ Sie unterteilt sich in https://docs.antora.org/antora/latest/module-directories/
 |→ `referenzarchitektur`
 
 |referenzarchitektur
-|Inhalte der Säule xref:isyfact-standards-doku:referenzarchitektur:index.adoc[]
+|Inhalte der Säule xref:4.0.x@isyfact-standards-doku:referenzarchitektur:index.adoc[]
 
 |bausteine
 |Allgemeine Inhalte der Säule xref:isyfact-standards-doku:bausteine:bausteine.adoc[]
