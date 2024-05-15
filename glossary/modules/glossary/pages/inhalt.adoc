@@ -130,6 +130,8 @@ image::glossar-bibliothek.png[align="center"]
 Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]#::
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
+ Abgelöst → <<glossar-referenzarchitektur,Referenzarchitektur>>
+
 [[glossar-bva]]
 BVA::
 Bundesverwaltungsamt
