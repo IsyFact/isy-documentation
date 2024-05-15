@@ -129,7 +129,7 @@ Die Verweise aus jeder Navigationsdatei werden in der Reihenfolge der Erwähnung
 ----
 nav:
 - modules/einstieg/nav.adoc
-- modules/blaupausen/nav.adoc
+- modules/referenzarchitektur/nav.adoc
 - modules/bausteine/nav.adoc
 - modules/plattform/nav.adoc
 - modules/methodik/nav.adoc
