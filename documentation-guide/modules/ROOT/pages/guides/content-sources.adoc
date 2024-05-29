@@ -1,0 +1,71 @@
+= Veröffentlichung von Antora-Komponenten
+
+include::glossary:licence:partial$licence.adoc[]
+
+Die Online-Dokumentation besteht im Wesentlichen aus veröffentlichten Antora-Komponenten.
+Dieser Guide beschreibt, wie Antora-Komponenten in die Online-Dokumentation <<antora-komponente-aufnehmen,*aufgenommen*>> und aus ihr <<antora-komponente-entfernen,*entfernt*>> werden.
+
+NOTE: Für diesen Guide ist ein grundlegendes Verständnis des https://docs.antora.org/antora/latest/playbook/[Playbooks] sowie von https://docs.github.com/de/actions[GitHub Actions] nützlich.
+
+[[antora-komponente-aufnehmen]]
+== Aufnahme einer Antora-Komponente
+
+Die Repositories der IsyFact verwenden Git LFS.
+Durch die fehlende Unterstützung von Git LFS seitens Antora muss nicht nur das Playbook, sondern auch der CI-Build, angepasst werden.
+
+=== Anpassung des CI-Builds
+
+Um den fehlenden LFS-Support von Antora zu kompensieren, checkt der CI-Build das Repository mithilfe der https://github.com/actions/checkout[Checkout-Action] manuell aus.
+Die Checkout-Action unterstützt Git LFS.
+
+NOTE: Die Nutzung der Checkout-Action ist in der README des Repositories dokumentiert.
+Besonders empfehlenswert ist die https://github.com/actions/checkout?tab=readme-ov-file#usage[Übersicht aller Parameter] sowie die https://github.com/actions/checkout?tab=readme-ov-file#scenarios[Liste gängiger Beispiele].
+
+Zur Veröffentlichung einer Antora-Komponente muss dem https://github.com/IsyFact/isyfact.github.io/blob/main/.github/workflows/antora_build.yml[Workflow des CI-Builds] eine neue Checkout-Action hinzugefügt werden.
+
+.Konfiguration der Checkout-Action für die IsyFact-Standards (Release 3.x)
+[source,yaml]
+----
+jobs:
+  Build:
+    steps:
+      - name: Checkout isyfact-standards (release/3.x)
+        uses: actions/checkout@v4
+        with:
+          repository: IsyFact/isyfact-standards
+          ref: release/3.x
+          lfs: true
+          sparse-checkout: isyfact-standards-doc/src/docs/antora
+          path: isyfact-standards-3.x
+----
+
+TIP: Die Nutzung von `sparse-checkout` wird empfohlen, um nur die Dateien auszuchecken, die für den Build der Dokumentation benötigt werden.
+
+=== Anpassung des Playbooks
+
+Dem https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook.yml[Playbook] muss für das ausgecheckte Repository eine neue _Content Source_ hinzugefügt werden.
+
+.Konfiguration der Content Source für die IsyFact-Standards (Release 3.x)
+[source,yaml]
+----
+content:
+  sources:
+    - url: ./isyfact-standards-3.x
+      branches: HEAD
+      start_path: isyfact-standards-doc/src/docs/antora
+----
+
+Hierbei muss:
+
+* die `url` aus dem Playbook auf den `path` aus der Checkout-Action zeigen,
+* der `start_path` aus dem Playbook im `sparse_checkout` aus der Checkout-Action enthalten sein,
+* der Parameter `branches` auf `HEAD` gesetzt sein, um den lokalen, ausgecheckten Stand zu verwenden.
+
+[[antora-komponente-entfernen]]
+== Entfernung einer Antora-Komponente
+
+Prinzipiell müssen zur Entfernung einer Antora-Komponente aus der Online-Dokumentation die Anpassungen aus <<antora-komponente-aufnehmen>> rückgängig gemacht werden.
+
+Zusätzlich ist darauf zu achten, dass durch die Entfernung einer Antora-Komponente keine ungültigen Verweise entstehen.
+Hierzu geben die https://github.com/IsyFact/isyfact.github.io/actions/workflows/antora_build.yml[Logs der CI-Builds] (oder lokalen Builds) Aufschluss.
+Werden dort noch Verweise auf die entfernte Antora-Komponente als ungültig gemeldet, müssen die entsprechenden Stellen in der Dokumentation angepasst werden.
