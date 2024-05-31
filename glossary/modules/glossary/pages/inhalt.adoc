@@ -4,7 +4,8 @@
 
 :sectnums!:
 
-== Glossar
+[.glossary]
+_== Glossar_
 
 Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
 
@@ -127,7 +128,7 @@ Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
 image::glossar-bibliothek.png[align="center"]
 
 [[glossar-blaupause]]
-Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]#::
+Blaupause [.changed]#<<glossar-referenzarchitektur,abgelöst>># [.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]#::
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
  Abgelöst → <<glossar-referenzarchitektur,Referenzarchitektur>>
@@ -296,7 +297,7 @@ Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betri
 Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
 
 [[glossar-plis]]
-PLIS [.glossary-deprecated]#veraltet#::
+PLIS [.deprecated]#veraltet#::
 Plattform Informationssysteme
 
 [[glossar-portal]]
@@ -326,14 +327,14 @@ Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Qu
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
 [[glossar-querschnittskomponente]]
-Querschnittskomponente (QK) [.glossary-changed]#<<glossar-querschnittsanwendung,abgelöst>># [.glossary-release]#≤ IsyFact 2#::
+Querschnittskomponente (QK) [.changed]#<<glossar-querschnittsanwendung,abgelöst>># [.release]#≤ IsyFact 2#::
 
 Abgelöst → <<glossar-querschnittsanwendung,Querschnittsanwendung>> 
 
 === R
 
 [[glossar-referenzarchitektur]]
-Referenzarchitektur [.glossary-proposed]#vorgeschlagen# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
+Referenzarchitektur [.proposed]#vorgeschlagen# [.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
 [[glossar-release]]
