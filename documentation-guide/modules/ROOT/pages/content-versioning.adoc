@@ -30,7 +30,7 @@ Unabhängig von der Vorgehensweise müssen zur Versionierung mehrere Parameter i
 * `display_version`: (optional) https://docs.antora.org/antora/latest/component-display-version/[Version zur Anzeige] im UI,
 * `prerelease`: (optional) Anzeige eines https://docs.antora.org/antora/latest/component-prerelease/[Entwicklungsstands].
 
-Ob und wie die Parameter zu setzen sind, erklärt der Abschnitt <<konfiguration-version>>.
+Ob und wie die Parameter zu setzen sind, erklärt der Abschnitt "<<konfiguration-version>>".
 
 [[komponente-ohne-version]]
 === Explizites Ausnehmen von der Versionierung
@@ -79,7 +79,7 @@ IMPORTANT: Bei diesem Vorgehen ist es nicht sinnvoll, eine abweichende `display_
 === Explizite Versionierung
 
 Ist eine Versionierung über die Git-Referenz nicht sinnvoll, muss die Version explizit festgelegt werden.
-Die Version entspricht, wie in der IsyFact vorgeschrieben, dem Format nach xref:4.0.x@isyfact-standards-doku:methodik:versionierung/master.adoc[Semantic Versioning].
+Die Version entspricht, wie in der IsyFact vorgeschrieben, dem Format nach xref:isyfact-standards-doku:methodik:versionierung/master.adoc[Semantic Versioning].
 
 .Explizite Versionierung
 [source,yaml]
