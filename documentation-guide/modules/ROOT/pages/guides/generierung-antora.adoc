@@ -15,26 +15,20 @@ Deshalb wird hier nur auf die IsyFact-Besonderheiten eingegangen.
 [source,yaml]
 ----
 site:
-  title: IsyFact Dokumentation
-  url: https://github.com/isyfact
-  start_page: isyfact-standards-doku:einstieg:vorstellung.adoc
+  title: IsyFact
+  url: https://isyfact.github.io/
+  start_page: isyfact-standards-doku:einstieg:einstieg.adoc
 content:
   sources:
-    - url: ../isy-documentation   <1>
-      branches: HEAD              <2>
-      start_path: src/docs/antora
-    - url: ../isyfact-standards   <1>
-      branches: HEAD
-      start_path: isyfact-standards-doc/src/docs/antora
-
+    # ... <.>
 runtime:
   fetch: true
 asciidoc:
   attributes:
     page-toctitle: Inhalt
-    sectnums: true             <3>
-    sectnumlevels: 5           <4>
-    caution-caption: Achtung   <5>
+    sectnums: true             <.>
+    sectnumlevels: 5           <.>
+    caution-caption: Achtung   <.>
     important-caption: Wichtig
     note-caption: Hinweis
     tip-caption: Tipp
@@ -46,21 +40,18 @@ asciidoc:
     listing-caption: Listing
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable <6>
-    snapshot: false                       <7>
-  supplemental_files: ./supplemental-ui   <8>
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable <.>
+    snapshot: true
+  supplemental_files: ./supplemental-ui <.>
 output:
-  dir: ./public
+  dir: ./docs
 ----
-<1> Die Git-Repositories `isy-documentation` und `isyfact-standards` enthalten Antora-Komponenten für die Online-Dokumentation.
-<2> Auf dem lokal ausgecheckten Branch des angegebenen Repositories wird nach Antora-Komponenten gesucht.
-<3> Abschnitte sollen nummeriert werden.
-<4> Die Abschnitte dürfen bis Level 5 geschachtelt sein (möglich, aber nicht empfohlen).
-<5> Vordefinierte Captions auf Deutsch.
-<6> Standard-UI von Antora.
-<7> Ein stabiles UI ist hilfreich.
-<8> Ergänzungen der IsyFact zum Standard-UI.
-
+<.> Die Einbindung von Antora-Komponenten beschreibt der Guide "xref:content-sources.adoc[]".
+<.> Abschnitte sollen nummeriert werden.
+<.> Die Abschnitte dürfen bis Level 5 geschachtelt sein (möglich, aber nicht empfohlen).
+<.> Vordefinierte Captions auf Deutsch.
+<.> Standard-UI von Antora.
+<.> Ergänzungen der IsyFact zum Standard-UI.
 
 == Supplemental UI
 
