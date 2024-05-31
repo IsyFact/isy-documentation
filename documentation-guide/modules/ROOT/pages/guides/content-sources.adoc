@@ -1,4 +1,4 @@
-= Veröffentlichung von Antora-Komponenten
+= Veröffentlichung von Inhalten
 
 include::glossary:licence:partial$licence.adoc[]
 
@@ -13,6 +13,7 @@ NOTE: Für diesen Guide ist ein grundlegendes Verständnis des https://docs.anto
 Die Repositories der IsyFact verwenden Git LFS.
 Durch die fehlende Unterstützung von Git LFS seitens Antora muss nicht nur das Playbook, sondern auch der CI-Build, angepasst werden.
 
+[[anpassung-ci-build]]
 === Anpassung des CI-Builds
 
 Um den fehlenden LFS-Support von Antora zu kompensieren, checkt der CI-Build das Repository mithilfe der https://github.com/actions/checkout[Checkout-Action] manuell aus.
@@ -41,6 +42,7 @@ jobs:
 
 TIP: Die Nutzung von `sparse-checkout` wird empfohlen, um nur die Dateien auszuchecken, die für den Build der Dokumentation benötigt werden.
 
+[[anpassung-playbook]]
 === Anpassung des Playbooks
 
 Dem https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook.yml[Playbook] muss für das ausgecheckte Repository eine neue _Content Source_ hinzugefügt werden.
