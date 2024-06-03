@@ -5,7 +5,7 @@
 :sectnums!:
 
 [.glossary]
-_== Glossar_
+== Glossar
 
 Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
 
@@ -327,7 +327,7 @@ Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Qu
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
 [[glossar-querschnittskomponente]]
-Querschnittskomponente (QK) [.changed]#<<glossar-querschnittsanwendung,abgelöst>># [.release]#≤ IsyFact 2#::
+Querschnittskomponente (QK) [.superseded]#<<glossar-querschnittsanwendung,abgelöst>># [.release]#≤ IsyFact 2#::
 
 Abgelöst → <<glossar-querschnittsanwendung,Querschnittsanwendung>> 
 
