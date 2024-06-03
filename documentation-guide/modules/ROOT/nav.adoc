@@ -2,6 +2,8 @@
 ** xref:guides/erstellung-antora.adoc[]
 ** xref:guides/bearbeitung-antora.adoc[]
 ** xref:guides/content-changes.adoc[]
+** xref:content-versioning.adoc[]
+** xref:content-sources.adoc[]
 ** xref:guides/generierung-antora.adoc[]
 ** xref:namenskonventionen.adoc[]
 * xref:seitenvorlage.adoc[]

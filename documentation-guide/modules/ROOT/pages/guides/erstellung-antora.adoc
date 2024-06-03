@@ -21,10 +21,10 @@ In Repositories, die noch keine Dokumentation enthalten, muss ein derartiges Sub
 
 
 [[antora-komponente]]
-== Antora-Dokumentationskomponente
+== Antora-Komponente
 
 Innerhalb des Submoduls wird der Pfad `src/docs/antora` angelegt.
-Unterhalb dieses Pfades liegt die Antora-Dokumentationskomponente, repräsentiert durch die Konfigurationsdatei `antora.yml`.
+Unterhalb dieses Pfades liegt die Antora-Komponente, repräsentiert durch die Konfigurationsdatei `antora.yml`.
 In Repositories, die noch keine Antora-Komponente enthalten, muss diese Konfigurationsdatei noch angelegt werden.
 Ein Repository sollte jedoch nur eine Antora-Komponente enthalten.
 
