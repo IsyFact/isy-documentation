@@ -1,6 +1,6 @@
 = Änderungen an Inhalten
 
-include::glossary:licence:partial$licence.adoc[]
+include::documentation-guide::partial$licence.adoc[]
 
 Der Leitfaden bietet die Möglichkeit an, Änderungen an Inhalten über vordefinierte Elemente auszuzeichnen.
 Er unterstützt die Auszeichnung von Inhalten in Erstellung und in Überarbeitung.
@@ -148,3 +148,84 @@ icon:wrench[title="In Überarbeitung"] (Inhalt in Überarbeitung)
 *Beispiel:*
 
 <<ueberarbeitung,icon:wrench[title="In Überarbeitung"] (Inhalt in Überarbeitung)>>
+
+
+[[deprecations]]
+== Inhalte in Deprecations
+
+Gelegentlich veralten Bausteine und ihre Dokumentation.
+In der Dokumentationsseite werden Bausteine, die deprecated sind – die demnach in einer späteren Version entfallen können – als Deprecation ausgezeichnet.
+Es gibt folgende Möglichkeiten, Deprecations auszuzeichnen:
+
+=== Deprecation für Baustein
+
+Dieser Hinweis sollte auf allen Seiten des mit Deprecation auszuzeichnenden Bausteins platziert werden.
+Ein vorbereiteter Text mit Icon aus `isy-documentation` wird inkludiert.
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-deprecated-building-block.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-deprecated-building-block.adoc[]
+
+=== Deprecation für beliebigen Abschnitt
+
+Zur Auszeichnung einer Deprecation an einem beliebigen Abschnitt (z.B. Kapitel) einer Dokumentationsseite kann auf folgende Auszeichnung zurückgegriffen werden.  
+Ein vorbereiteter Text mit Icon aus `isy-documentation` wird damit inkludiert.
+
+[TIP]
+====
+Dabei sollte die Auszeichnung direkt unterhalb einer Überschrift platziert werden, damit der Abschnitt inklusive untergeordneter Abschnitte tieferer Ebenen bis zur nächsten Überschrift der gleichen Ebene als deprecated erkennbar ist. 
+Beachte, dass durch die Auszeichnung das Ende des Deprecation Abschnitts nicht explizit dargestellt werden kann.
+====
+
+*Markup:*
+
+[source,asciidoc]
+....
+\include::documentation-guide::partial$content-deprecated.adoc[]
+....
+
+*Ergebnis:*
+
+include::documentation-guide::partial$content-deprecated.adoc[]
+
+
+=== (Optional) Verweis auf neue Dokumentationsseite
+
+Die Deprecation Markierung für einen Baustein oder Abschnitt kann optional um einen jeweils fest definierten Zusatztext und selbst definierten  Verweis auf die neue Dokumentationsseite erweitert werden.
+Dafür ist ein Attribut mit dem entsprechenden Verweis vor der Inkludierung des Deprecation-Bausteins oder -Abschnitts einzufügen.
+Dieser Verweis kann im Verlauf der Dokumentationsseite geändert werden, wenn es mehrere Deprecation-Abschnitte mit unterschiedlichen Verweisen gibt.
+
+*Markup:*
+
+[source,asciidoc]
+....
+:linkaktuell: xref:<Antora-Pfad zur neuen Seite>.adoc[]
+\include::documentation-guide::partial$content-deprecated-building-block.adoc[]
+....
+
+*Ergebnis:* 
+
+:linkaktuell: xref:documentation-guide::content-versioning.adoc[]
+include::documentation-guide::partial$content-deprecated-building-block.adoc[]
+
+=== Deprecation Kurzform
+
+Für eine Deprecation Markierung an einer kleinen Textstelle oder Tabellenzelle kann folgende Kurzform gewählt werden:
+
+*Markup:*
+
+[source,asciidoc]
+....
+icon:ban[title=Deprecation] [.line-through]#<durchzustreichender Titel/Text>#
+....
+
+*Ergebnis:*
+
+icon:ban[title=Deprecation] [.line-through]#<durchzustreichender Titel/Text>#

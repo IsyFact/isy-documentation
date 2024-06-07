@@ -1,8 +1,3 @@
-.icon:ban[] Deprecation
-****
-Dieser Teil der Dokumentation ist veraltet und wird in einem zukünftigen Release entfernt.
-Die Inhalte sollten zur Entwicklung neuer Anwendungen nicht mehr berücksichtigt werden.
-ifdef::linkaktuell[]
-Stattdessen wird empfohlen, {linkaktuell} zu verwenden.
-endif::[]
-****
+// Content of this file has been moved to `include` target and should note be referenced from documents anymore. 
+// File will remain for backward compatibility but may be removed in future. 
+include::documentation-guide::partial$content-deprecated.adoc[]
