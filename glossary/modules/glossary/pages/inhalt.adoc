@@ -15,9 +15,26 @@ Jemand, der eine Geschäftsanwendung bedient.
 Der Begriff steht im Kontext einer Software-Factory im Unterschied zum Nutzer.
 
 [[glossar-anwendung]]
-Anwendung::
-Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
+Anwendung [.glossary-changed]#überarbeitet#::
+[cols="1a,1a",options="header"]
+|===
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+
+|Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
 Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
+
+|Eine Anwendung ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
+Es besteht aus Anwendungskomponenten.
+#Anwendungen unterstützen Geschäftsprozesse.#
+
+#Stellt eine Anwendung eine Fachlogik dar, so handelt es sich um eine <<glossar-geschaeftsanwendung,Geschäftsanwendung>>.#
+
+
+Eine Anwendung ist Bestandteil der A-Architektur.
+Die software-technische Umsetzung einer Anwendung besteht aus mehreren #IT-Systemen (≥ IF 4)#.
+|===
+
 
 [[glossar-anwendungsdomaene]]
 Anwendungsdomäne::
@@ -25,7 +42,7 @@ Spezialisierung des Begriffs <<glossar-domaene,Domäne>> im Kontext von <<glossa
 
 [[glossar-anwendungskern]]
 Anwendungskern (AWK)::
-Der Anwendungskern beinhaltet die Anwendungslogik eines Anwendungssystems.
+Der Anwendungskern beinhaltet die Anwendungslogik einer Anwendung.
 +
 [[image-glossar-3]]
 .Anwendungskern
@@ -34,20 +51,20 @@ image::glossar-anwendungskern.dn.svg[]
 [[glossar-anwendungskomponente]]
 Anwendungskomponente (ANK)::
 Eine Anwendungskomponente beschreibt eine Menge von funktional zusammenhängenden Anwendungsfällen.
-Anwendungskomponenten sind Bestandteile von Anwendungssystemen.
+Anwendungskomponenten sind Bestandteile von Anwendungen.
 +
 Beispiele: Benutzerverwaltung: ANK_Benutzer, ANK_Rollen, ...
 
 [[glossar-anwendungskontext]]
 Anwendungskontext::
-Sammlung von nicht-funktionalen und technischen Anforderungen zur Umsetzung einer „Klasse“ von Anwendungssystemen – unabhängig von der Fachlichkeit.
+Sammlung von nicht-funktionalen und technischen Anforderungen zur Umsetzung einer „Klasse“ von Anwendungen – unabhängig von der Fachlichkeit.
 Ein Anwendungskontext kann zu neuen Anwendungstypen und damit zu einer neuen spezifischen Software-Factory führen.
 
 [[glossar-anwendungslandschaft]]
 Anwendungslandschaft (allgemeine Definition)::
-Gröbste Strukturierungsebene für eine Menge von Anwendungssystemen:
-eine Anwendungslandschaft enthält Anwendungsdomänen, die wiederum Anwendungssysteme gruppieren.
-Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungssystemen ist in der Regel eine hohe Interaktion zu erwarten.
+Gröbste Strukturierungsebene für eine Menge von Anwendungen:
+eine Anwendungslandschaft enthält Anwendungsdomänen, die wiederum Anwendungen gruppieren.
+Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungen ist in der Regel eine hohe Interaktion zu erwarten.
 
 [[glossar-anwendungslandschaft-isyfact]]
 Anwendungslandschaft (IsyFact)::
@@ -58,7 +75,7 @@ Die Anwendungslandschaft der IsyFact besteht aus Anwendungsdomänen, einer Quers
 image::glossar-anwendungslandschaft.png[align="center"]
 
 [[glossar-anwendungssystem]]
-Anwendungssystem::
+Anwendungssystem [.glossary-changed]#<<glossar-anwendung,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#::
 Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Es besteht aus Anwendungskomponenten.
 Anwendungssysteme unterstützen Geschäftsprozesse.
@@ -68,8 +85,8 @@ Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzu
 
 [[glossar-anwendungstyp]]
 Anwendungstyp::
-Sammlung von Architekturvorgaben (aller Architektursichten) zur Entwicklung eines Anwendungssystems mit gleichartigen spezifischen Eigenschaften.
-In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von Anwendungssystemen.
+Sammlung von Architekturvorgaben (aller Architektursichten) zur Entwicklung einer Anwendung mit gleichartigen spezifischen Eigenschaften.
+In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von Anwendungen.
 
 [[glossar-architektursicht]]
 Architektursicht::
@@ -85,7 +102,7 @@ NOTE: iSAQB = international Software Architecture Qualification Board
 
 [[glossar-auslieferung]]
 Auslieferung (Deployment)::
-Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Source-Releases wird Software (Bibliotheken sowie Anwendungssysteme) und die dazugehörige Dokumentation ausgeliefert.
+Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Source-Releases wird Software (Bibliotheken sowie Anwendungen) und die dazugehörige Dokumentation ausgeliefert.
 Die entwickelte Software wird auf einer Betriebsumgebung (Plattform) installiert.
 Zu jeder Auslieferung gibt es ein Change-Log.
 
@@ -98,11 +115,11 @@ Die Batches können dabei den Anwendungskern aufrufen und nutzen.
 [[glossar-baustein]]
 Baustein:: Wiederverwendbare Umsetzung einer spezifischen Problemlösung.
 Bausteine stellen strukturierte Lösungen von Geschäftsprozessen dar.
-Umfasst mindestens eine Bibliothek oder ein Anwendungssystem inklusive der dazugehörigen Dokumentation.
+Umfasst mindestens eine Bibliothek oder eine Anwendung inklusive der dazugehörigen Dokumentation.
 +
 Beispiel: Logging, Sicherheit, Überwachung
 +
-NOTE: Da zwischen einem logischen Baustein und einem Anwendungssystem eine N:M Beziehung besteht, kann es vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
+NOTE: Da zwischen einem logischen Baustein und einer Anwendung eine N:M Beziehung besteht, kann es vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
 
 [[glossar-gui]]
 Benutzeroberfläche (GUI)::
@@ -120,7 +137,7 @@ Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
 image::glossar-bibliothek.png[align="center"]
 
 [[glossar-blaupause]]
-Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[bis IsyFact 3.x]#::
+Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#::
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
 [[glossar-bva]]
@@ -131,7 +148,7 @@ Bundesverwaltungsamt
 Change Log::
 Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit Releases) zuordnet.
 Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen in eine Bibliothek integrieren.
-Pro Bibliothek und Anwendungssystem existiert ein Change Log.
+Pro Bibliothek und Anwendung existiert ein Change Log.
 +
 Es enthält:
 
@@ -147,7 +164,7 @@ Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
 [[glossar-domaene]]
 Domäne::
 Eine Domäne im Kontext der A-Architektur entspricht der Begrifflichkeit aus Sicht des „Domain Driven Design“.
-Eine *Anwendungsdomäne* gruppiert fachlich zusammengehörende Anwendungssysteme. Werden Querschnittsanwendungen gruppiert, entsteht eine *Querschnittsdomäne*.
+Eine *Anwendungsdomäne* gruppiert fachlich zusammengehörende Anwendungen. Werden Querschnittsanwendungen gruppiert, entsteht eine *Querschnittsdomäne*.
 +
 [[image-Anwendungsdomaene]]
 .Domänen einer Anwendungslandschaft
@@ -167,9 +184,7 @@ File Transfer Protocol
 
 [[glossar-geschaeftsanwendung]]
 Geschäftsanwendung::
-Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
-Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die Services von Querschnittsanwendungen oder andere Anwendungssysteme nutzen.
+Eine Geschäftsanwendung ist eine Anwendung, welche einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne #spezifiziert#.
 
 [[glossar-geschaeftslogik]]
 Geschäftslogik::
@@ -183,7 +198,7 @@ Eine Instanz ist Bestandteil der TI-Architektur einer Geschäftsanwendung und l�
 [[glossar-isyfact]]
 IsyFact (IF)::
 Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen Anwendungslandschaften, die vom Bundesverwaltungsamt entwickelt wird.
-Sie bündelt bestehendes technisches Know-how um Anwendungssysteme effizienter entwickeln und betreiben zu können.
+Sie bündelt bestehendes technisches Know-how um Anwendungen effizienter entwickeln und betreiben zu können.
 +
 Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu einem spezifischen Anwendungskontext gehören.
 Die IsyFact besteht aus den IsyFact-Standards und den IsyFact-Erweiterungen.
@@ -202,7 +217,7 @@ Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwic
 IT-System::
 Umsetzung einer Geschäftsanwendung unter Berücksichtigung technischer Rahmenbedingungen.
 Ein IT-System ist Bestandteil der T-Architektur und es ist (für sich) alleine ausführbar.
-Aus Sicht der A-Architektur ist die Entsprechung zum IT-System das Anwendungssystem.
+Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
 
 [[glossar-jvm]]
 JVM::
@@ -289,7 +304,7 @@ Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Qu
 Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
 
 [[glossar-referenzarchitektur]]
-Referenzarchitektur [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[ab IsyFact 4]#::
+Referenzarchitektur [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
 [[glossar-release]]
@@ -338,7 +353,7 @@ Systemlandschaft::
 Der Begriff der Anwendungslandschaft ist fachlich motiviert.
 Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
 +
-Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungssysteme der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server, usw.).
+Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungen der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server, usw.).
 
 [[glossar-t-architektur]]
 T-Architektur::
