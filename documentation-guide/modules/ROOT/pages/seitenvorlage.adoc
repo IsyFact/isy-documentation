@@ -76,7 +76,7 @@ Ist der Seitentitel für das Navigationsmenü zu lang, sollte in der Navigations
 Direkt nach dem Seitentitel steht der Lizenzhinweis.
 Dieser ist zentral definiert und kann einfach in die Seite eingebettet werden.
 
- include::glossary:licence:partial$licence.adoc[]
+ include::documentation-guide::partial$licence.adoc[]
 
 [[struktur-verweise]]
 === Verweise auf andere Seiten
