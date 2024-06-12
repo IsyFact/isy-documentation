@@ -1,5 +1,7 @@
 # 2024
 
+- [2024-06-12] [glossary] `IFS-3736`: revise term "IT-System", add new terms "IT-Systemtyp", "Backend", "Frontend" and revise term "Batch"
+- [2024-06-12] [glossary] `IFS-3736`: mark term "Anwendungssystem" as superseded by "Anwendung" and revise terms "Anwendung", "Geschäftsanwendung" and "Querschnittsanwendung" accordingly
 - [2024-05-31] [documentation-guide] `IFS-3670`: add guides for managing content sources and versioning content
 - [2024-05-07] [documentation-guide] `IFS-2593`: add markup for marking content changes (i.e. new and revised content)
 - [2024-05-07] `IFS-2593`: add modules to the changelog
