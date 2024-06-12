@@ -1,6 +1,10 @@
 = Glossar: Inhalt
 
 // tag::inhalt[]
+
+:sectnums!:
+
+[.glossary]
 == Glossar
 
 Dieses Dokument enthält eine Übersicht über zentrale Begriffe der IsyFact.
@@ -24,15 +28,23 @@ Anwendung [.glossary-changed]#überarbeitet#::
 |Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
 Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
 
-|Eine Anwendung ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
-Es besteht aus Anwendungskomponenten.
-#Anwendungen unterstützen Geschäftsprozesse.#
+|
+//tag::anwendung-definition[]
 
-#Stellt eine Anwendung eine Fachlogik dar, so handelt es sich um eine <<glossar-geschaeftsanwendung,Geschäftsanwendung>>.#
+Eine Anwendung ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
+Sie besteht aus xref:glossary:glossary:master.adoc#glossar-anwendungskomponente[Anwendungskomponenten].
 
+Eine Anwendung unterstützt Geschäftsprozesse.
+Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary:glossary:master.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
+Dabei kann sie Services von anderen Anwendungen nutzen.
 
-Eine Anwendung ist Bestandteil der A-Architektur.
-Die software-technische Umsetzung einer Anwendung besteht aus mehreren #IT-Systemen (≥ IF 4)#.
+Eine Anwendung ist Bestandteil der xref:glossary:glossary:master.adoc#glossar-a-architektur[A-Architektur].
+Die software-technische Umsetzung einer Anwendung besteht aus mehreren xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen].
+
+// end::anwendung-definition[]
+
+Die IsyFact kennt zwei <<glossar-anwendungstyp,Anwendungstypen>>: die <<glossar-geschaeftsanwendung,Geschäftsanwendung>> und die <<glossar-querschnittsanwendung,Querschnittsanwendung>>.
+
 |===
 
 
@@ -96,9 +108,9 @@ Jeder Anwendungstyp besitzt eine spezifische Darstellung in jeder Sicht.
 +
 [[image-Anwendungstypen]]
 .Anwendungstypen
-image::glossar-anwendungstypen.png[align="center"]
+image::glossar-anwendungstypen.dn.svg[]
 +
-NOTE: iSAQB = international Software Architecture Qualification Board
+NOTE: iSAQB = International Software Architecture Qualification Board
 
 [[glossar-auslieferung]]
 Auslieferung (Deployment)::
@@ -183,8 +195,24 @@ FTP::
 File Transfer Protocol
 
 [[glossar-geschaeftsanwendung]]
-Geschäftsanwendung::
-Eine Geschäftsanwendung ist eine Anwendung, welche einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne #spezifiziert#.
+Geschäftsanwendung (GA) [.glossary-changed]#überarbeitet#::
+[cols="1a,1a",options="header"]
+|===
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+
+|Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
+Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
+Dabei kann sie die Services von Querschnittsanwendungen oder andere Anwendungssysteme nutzen.
+
+|
+//tag::ga-definition[]
+
+Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] unterstützt.
+Sie setzt hierfür Fachlogik um.
+
+//end::ga-definition[]
+|===
 
 [[glossar-geschaeftslogik]]
 Geschäftslogik::
@@ -287,15 +315,37 @@ Zentraler Zugangspunkt zu den Geschäftsanwendungen einer Anwendungslandschaft.
 Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen.
 
 [[glossar-querschnittsanwendung]]
-Querschnittsanwendung::
-Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
+Querschnittsanwendung [.glossary-changed]#überarbeitet#::
+[cols="1a,1a",options="header"]
+|===
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+
+|Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für Anwender.
 Querschnittsanwendungen sind somit in verschiedenen Anwendungsdomänen oder über mehrere Anwendungslandschaften hinweg wiederverwendbar.
-+
+
 Die IsyFact stellt Querschnittsanwendungen in Form von Bausteinen bereit.
 Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
-+
+
 Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+
+|
+//tag::querschnittsanwendung-definition[]
+
+Eine Querschnittsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche die folgenden Kriterien in besonderem Maße erfüllt:
+Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary:glossary:master.adoc#glossar-anwender[Anwender].
+Querschnittsanwendungen sind somit in verschiedenen xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomänen] oder über mehrere xref:glossary:glossary:master.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
+
+Querschnittsanwendungen dürfen nur Services von anderen Querschnittsanwendungen nutzen.
+
+//end::querschnittsanwendung-definition[]
+
+Die IsyFact stellt Querschnittsanwendungen in Form von <<glossar-baustein,Bausteinen>> bereit.
+Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
+
+*Beispiele:* Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+|===
 
 [[glossar-querschnittsdomaene]]
 Querschnittsdomäne::
@@ -362,7 +412,7 @@ Technische Architektursicht auf die Software-Architektur einer Geschäftsanwendu
 [[glossar-ti-architektur]]
 TI-Architektur::
 Technische Infrastruktursicht auf die Software-Architektur einer Geschäftsanwendung.
-Sie beschreibt den Aufbau der Betriebsumgebung für die <IT-Systeme einer IsyFact-Systemlandschaft.
+Sie beschreibt den Aufbau der Betriebsumgebung für die IT-Systeme einer IsyFact-Systemlandschaft.
 
 [[glossar-vollkonform]]
 vollkonforme Änderung::
