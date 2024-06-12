@@ -22,11 +22,8 @@ Der Begriff steht im Kontext einer Software-Factory im Unterschied zum Nutzer.
 Anwendung [.glossary-changed]#überarbeitet#::
 [cols="1a,1a",options="header"]
 |===
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-
-|Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
-Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 //tag::anwendung-definition[]
@@ -45,6 +42,8 @@ Die software-technische Umsetzung einer Anwendung besteht aus mehreren xref:glos
 
 Die IsyFact kennt zwei <<glossar-anwendungstyp,Anwendungstypen>>: die <<glossar-geschaeftsanwendung,Geschäftsanwendung>> und die <<glossar-querschnittsanwendung,Querschnittsanwendung>>.
 
+|Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
+Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
 |===
 
 
@@ -198,12 +197,8 @@ File Transfer Protocol
 Geschäftsanwendung (GA) [.glossary-changed]#überarbeitet#::
 [cols="1a,1a",options="header"]
 |===
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-
-|Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
-Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die Services von Querschnittsanwendungen oder andere Anwendungssysteme nutzen.
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 //tag::ga-definition[]
@@ -212,6 +207,9 @@ Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anw
 Sie setzt hierfür Fachlogik um.
 
 //end::ga-definition[]
+|Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
+Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
+Dabei kann sie die Services von Querschnittsanwendungen oder andere Anwendungssysteme nutzen.
 |===
 
 [[glossar-geschaeftslogik]]
@@ -318,17 +316,8 @@ Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für al
 Querschnittsanwendung [.glossary-changed]#überarbeitet#::
 [cols="1a,1a",options="header"]
 |===
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-
-|Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
-Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für Anwender.
-Querschnittsanwendungen sind somit in verschiedenen Anwendungsdomänen oder über mehrere Anwendungslandschaften hinweg wiederverwendbar.
-
-Die IsyFact stellt Querschnittsanwendungen in Form von Bausteinen bereit.
-Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
-
-Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 //tag::querschnittsanwendung-definition[]
@@ -345,6 +334,15 @@ Die IsyFact stellt Querschnittsanwendungen in Form von <<glossar-baustein,Bauste
 Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
 
 *Beispiele:* Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+
+|Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
+Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für Anwender.
+Querschnittsanwendungen sind somit in verschiedenen Anwendungsdomänen oder über mehrere Anwendungslandschaften hinweg wiederverwendbar.
+
+Die IsyFact stellt Querschnittsanwendungen in Form von Bausteinen bereit.
+Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
+
+Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
 |===
 
 [[glossar-querschnittsdomaene]]
