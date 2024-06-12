@@ -117,11 +117,37 @@ Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Sour
 Die entwickelte Software wird auf einer Betriebsumgebung (Plattform) installiert.
 Zu jeder Auslieferung gibt es ein Change-Log.
 
+[[backend]]
+Backend [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
+//tag::backend-definition[]
++
+Ein Backend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-service[Services] bereitstellt.
+Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
++
+Backends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich xref:glossary:glossary:master.adoc#glossar-anwendungskomponente[Anwendungskomponenten] und Nachbarsystemschnittstellen um.
+
+//end::backend-definition[]
+
 [[glossar-batch]]
-Batch::
-Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
+Batch [.glossary-changed]#überarbeitet#::
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+//tag::batch-definition[]
+
+Ein Batch ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich eine automatische Datenverarbeitung ohne manuelle Interaktion eines xref:glossary:glossary:master.adoc#glossar-anwender[Anwenders] umsetzt.
+
+Batches können hierfür entweder direkt den xref:glossary:glossary:master.adoc#glossar-anwendungskern[Anwendungskern] aufrufen und nutzen, oder über interne Schnittstellen mit xref:glossary:glossary:master.adoc#backend[Backends] kommunizieren.
+
+//end::batch-definition[]
+
+|Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
 Der Nutzer kann die Batchlogik in vorbereitete Strukturen implementieren, die IsyFact stellt einen fertigen Batchrahmen zur Verfügung.
 Die Batches können dabei den Anwendungskern aufrufen und nutzen.
+|===
 
 [[glossar-baustein]]
 Baustein:: Wiederverwendbare Umsetzung einer spezifischen Problemlösung.
@@ -189,6 +215,17 @@ Begriff aus der deutschen Bundesverwaltung.
 Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
 Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-für-Alle-System angeboten.
 
+[[frontend]]
+Frontend [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
+//tag::frontend-definition[]
++
+Ein Frontend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-gui[grafische Benutzerschnittstellen] bereitstellt.
+Frontends kommunizieren hierzu über interne Schnittstellen mit xref:glossary:glossary:master.adoc#backend[Backends].
++
+Frontends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich Dialoge und Masken um.
+
+//end::frontend-definition[]
+
 [[glossar-ftp]]
 FTP::
 File Transfer Protocol
@@ -204,7 +241,7 @@ Geschäftsanwendung (GA) [.glossary-changed]#überarbeitet#::
 //tag::ga-definition[]
 
 Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] unterstützt.
-Sie setzt hierfür Fachlogik um.
+Sie setzt hierfür xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik] um.
 
 //end::ga-definition[]
 |Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
@@ -240,10 +277,36 @@ Umfasst alle Bestandteile der IsyFact, die für jede Geschäftsanwendung verpfli
 Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwickelt.
 
 [[glossar-it-system]]
-IT-System::
-Umsetzung einer Geschäftsanwendung unter Berücksichtigung technischer Rahmenbedingungen.
+IT-System [.glossary-changed]#überarbeitet#::
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+//tag::it-system-definition[]
+
+Ein IT-System ist die software-technische Umsetzung eines Teils einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung].
+Es ist eine in sich abgeschlossene, ausführbare Einheit.
+Spezialisierungen des IT-Systems, die xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtypen], setzen bestimmte Teile der Anwendung möglichst effizient um.
+
+//end::it-system-definition[]
+
+|Umsetzung einer Geschäftsanwendung unter Berücksichtigung technischer Rahmenbedingungen.
 Ein IT-System ist Bestandteil der T-Architektur und es ist (für sich) alleine ausführbar.
 Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
+|===
+
+[[glossar-it-systemtyp]]
+IT-Systemtyp [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
+//tag::it-systemtyp-definition[]
+
+Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systems].
+Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen.
+
+//end::it-systemtyp-definition[]
+
+Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend,Backend>>, das <<frontend,Frontend>> und den <<glossar-batch,Batch>>.
 
 [[glossar-jvm]]
 JVM::
