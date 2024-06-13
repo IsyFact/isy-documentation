@@ -1,5 +1,7 @@
 = Namenskonventionen
 
+include::documentation-guide::partial$licence.adoc[]
+
 Auch für die Dokumentation gelten Namenskonventionen.
 Wenn nicht gesondert beschrieben, gelten folgende Konventionen für alle Namen, die der Ablage der Dokumentation dienen und keine Anzeigenamen sind, also z.B. Dateinamen inklusive Asciidoc- und Bild-Dateien, Verzeichnisnamen, Namen für Antora-Komponenten und -Module und Anchor.
 Mit Kleinbuchstaben sind Kleinbuchstaben ohne Umlaute und Sonderzeichen gemeint.

@@ -1,6 +1,6 @@
 = Seiten bearbeiten
 
-include::glossary:licence:partial$licence.adoc[]
+include::documentation-guide::partial$licence.adoc[]
 
 Im Folgenden wird beschrieben, wie Seiten bearbeitet werden müssen, damit sie per Antora generiert werden können.
 Außerdem werden Konventionen zur Bearbeitung beschrieben, die es ermöglichen, die IsyFact Dokumentation in einem einheitlichen Stil zur Verfügung zu stellen.
@@ -103,7 +103,7 @@ Das ist ein Beispieltext zum Unterkapitel.
 
 Auch Abbildungen, Tabellen und Listings müssen mit einem Anchor versehen werden, damit sie als Sprungziel dienen können.
 
-Besonderheiten ergeben sich für Anchor für <<glossar,Glossareinträge>> und <<verweise-extern,externe Verweise>>.
+Besonderheiten ergeben sich für Anchor für <<glossar,Glossareinträge>>.
 
 [[verweise-lokal]]
 === Verweise innerhalb einer Seite
@@ -178,48 +178,8 @@ Stattdessen werden <<verweise-lokal>> empfohlen.
 
 [[verweise-extern]]
 === Externe Verweise
-.icon:ban[] Deprecation
-****
-Dieser Teil der Dokumentation ist veraltet und wird in einem zukünftigen Release angepasst.
-Ab Version 4.x werden externe Verweise gemäß https://docs.asciidoctor.org/asciidoc/latest/macros/url-macro/[Asciidoc Dokumentation] gesetzt.
-****
 
-
-
-In diesem Abschnitt werden Verweise auf Ziele außerhalb der Antora-Dokumentation beschrieben.
-I.d.R.handelt es sich um URLs von externen Webseiten, vereinzelt auch um konventionelle Bücher.
-
-[IMPORTANT]
-====
-Damit die externen Verweise leichter auf ihre Gültigkeit überprüft werden können, werden sie an zentraler Stelle gesammelt in `isy-documentation` in der Antora-Komponente `glossary`, Antora-Modul `literaturextern`.
-====
-
-Dort sind alle Einträge mit einem Sprungziel (Anchor) versehen.
-In der Dokumentation müssen alle externen Verweise eines dieser Sprungziele referenzieren anstatt direkt die URL.
-Der Anchor beginnt immer mit dem Bezeichner `litextern-`.
-
-// tag::namenskonvention[]
-[[table-litextern-anchor]]
-.Namensschema für Anchor von externen Verweisen (externes Literaturverzeichnis in `isy-documentation`)
-[cols="1s,4m",options="header"]
-|====
-2+|Namen für Anchor im externen Literaturverzeichnis
-|Schema |litextern-<Name gemäß allgemeinem Namensschema für Dokumentation>
-|Beispiel |litextern-isyfact
-|====
-
-// end::namenskonvention[]
-
-Eine Referenz auf einen Eintrag des externen Literaturverzeichnisses erfolgt über einen <<listing-xref,Antora xref-Link>>, wobei der Eintrag nach dem `#` der Anchor im Literaturverzeichnis in `isy-documentation` ist.
-Der Text innerhalb der eckigen Klammern definiert den Linktext.
-
-Ein Beispiel: +
-[[listing-literaturextern-verweis]]
-.externer Verweis
-[source,asciidoc]
-----
-xref:glossary:literaturextern:inhalt.adoc#litextern-asciidoctor-usermanual[Asciidoctor User Manual]
-----
+Externe Verweise werden gemäß https://docs.asciidoctor.org/asciidoc/latest/macros/url-macro/[Asciidoc Dokumentation] gesetzt.
 
 [[admonition-blocks]]
 == Admonition-Blocks
@@ -599,31 +559,3 @@ xref:glossary:glossary:master.adoc#glossar-isyfact[IsyFact]
 ----
 
 Der Link auf einen Glossareintrag sieht wie folgt aus: xref:glossary:glossary:master.adoc#glossar-isyfact[IsyFact]
-
-
-[[deprecations]]
-== Deprecations
-
-Gelegentlich veralten Bausteine und ihre Dokumentation.
-In der Dokumentationsseite werden Bausteine, die deprecated sind, die demnach in einer späteren Version entfallen können, als Deprecation gekennzeichnet.
-Es gibt mehrere Möglichkeiten, Deprecations auszuzeichnen.
-
-*Deprecation für Baustein*
-
-Ein vorbereiteter Text mit Icon aus `isy-documentation` wird inkludiert, siehe xref:seitenvorlage.adoc#deprecation-baustein[Deprecation für Baustein].
-Damit wird ein vollständiger Baustein als deprecated gekennzeichnet.
-
-*Deprecation für beliebigen Abschnitt*
-
-Ein vorbereiteter Text mit Icon aus `isy-documentation` wird inkludiert, siehe xref:seitenvorlage.adoc#deprecation-abschnitt[Deprecation für Abschnitt], um beliebige Textabschnitte als deprecated zu kennzeichnen.
-Dabei sollte das Attribut direkt unterhalb einer Überschrift platziert werden, damit der Abschnitt inklusive untergeordneter Abschnitte tieferer Ebenen bis zur nächsten Überschrift der gleichen Ebene als deprecated erkennbar ist.
-
-*Deprecation mit Verweis auf neue Dokumentationsseite*
-
-Sowohl Bausteine als auch Abschnitte können einen Zusatztext erhalten mit einem Verweis auf die neue Dokumentationsseite.
-Dies erfolgt, indem vor der Inkludierung des Deprecation-Bausteins oder -Abschnitts ein Attribut mit dem entsprechenden Verweis angefügt wird, siehe xref:seitenvorlage.adoc#deprecation-verweis[Verweis auf neue Seite].
-Dieser Verweis kann im Verlauf der Dokumentationsseite geändert werden, wenn es mehrere Deprecation-Abschnitte mit unterschiedlichen Verweisen gibt.
-
-*Deprecation Kurzform*
-
-Wenn der Hinweis auf eine Deprecation in einer Tabellenzelle oder anderen kleinen Textstellen erfolgen soll, kann auch die xref:seitenvorlage.adoc#deprecation-kurzform[Kurzform] gewählt werden.

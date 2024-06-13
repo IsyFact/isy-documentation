@@ -1,6 +1,6 @@
 = Seiten anlegen
 
-include::glossary:licence:partial$licence.adoc[]
+include::documentation-guide::partial$licence.adoc[]
 
 Soll eine neue Dokumentation angelegt werden oder die bestehende Dokumentation um eine Seite erweitert werden, so muss zunächst das xref:index.adoc#struktur-dokumentation[geeignete Repository zur Ablage] bestimmt und ggf. lokal geklont werden.
 
