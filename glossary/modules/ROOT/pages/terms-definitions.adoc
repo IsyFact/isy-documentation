@@ -1,0 +1,9 @@
+= Glossar
+:docrole: glossary
+:page-toclevels: 1
+
+:sectnums!:
+
+include::glossary:licence:partial$licence.adoc[]
+
+include::glossary:inhalt.adoc[tags=inhalt]
