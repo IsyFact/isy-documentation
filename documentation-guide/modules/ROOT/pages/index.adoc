@@ -1,6 +1,6 @@
 = Leitfaden Dokumentation
 
-include::glossary:licence:partial$licence.adoc[]
+include::documentation-guide::partial$licence.adoc[]
 
 Diese Seiten dienen technischen Autoren der Online-Dokumentation als Wegweiser.
 Die Online-Dokumentation wird nach festgelegten Regeln und nach einem bestimmten Grundschema angefertigt.

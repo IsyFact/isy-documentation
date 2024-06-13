@@ -1,8 +1,3 @@
-====
-image:glossary:licence:IFS-Logo.png[IFS-Logo,150,float="left"] Diese Seite ist ein Teil der IsyFact-Standards.
-Alle Inhalte der Seite, insbesondere Texte und Grafiken, sind urheberrechtlich geschützt.
-Alle urheberrechtlichen Nutzungs- und Verwertungsrechte liegen beim Bundesverwaltungsamt.
-
-image:glossary:licence:CC-BY.png[Creative Commons Namensnennung,150,float="right"]
-Die Nutzung ist unter den https://creativecommons.org/licenses/by/4.0/legalcode.de[Lizenzbedingungen] der https://creativecommons.org/licenses/by/4.0/deed.de[Creative Commons Namensnennung 4.0 International] gestattet.
-====
+// Content of this file has been moved to `include` target and should note be referenced from documents anymore. 
+// File will remain for backward compatibility but may be removed in future. 
+include::documentation-guide::partial$licence.adoc[]
