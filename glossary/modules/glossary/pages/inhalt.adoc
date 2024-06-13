@@ -36,7 +36,7 @@ Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstel
 Dabei kann sie Services von anderen Anwendungen nutzen.
 
 Eine Anwendung ist Bestandteil der xref:glossary:glossary:master.adoc#glossar-a-architektur[A-Architektur].
-Die software-technische Umsetzung einer Anwendung besteht aus mehreren xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen].
+Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen].
 
 // end::anwendung-definition[]
 
@@ -300,12 +300,12 @@ Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
 [[glossar-it-systemtyp]]
 IT-Systemtyp [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 //tag::it-systemtyp-definition[]
-
++
 Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systems].
 Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen.
-
++
 //end::it-systemtyp-definition[]
-
++
 Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend,Backend>>, das <<frontend,Frontend>> und den <<glossar-batch,Batch>>.
 
 [[glossar-jvm]]
