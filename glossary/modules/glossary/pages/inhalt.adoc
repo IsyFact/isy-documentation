@@ -172,8 +172,8 @@ image::glossary:glossary:glossar-bibliothek.dn.svg[]
 [[glossar-blaupause]]
 === Blaupause
 [.status]
+[.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[bis IsyFact 3.x]#
 [.superseded]#<<glossar-referenzarchitektur,abgelöst>>#
-[.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[bis IsyFact 3.x]# +
 
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
@@ -501,7 +501,7 @@ Subversion
 Der Begriff der Anwendungslandschaft ist fachlich motiviert.
 Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
 
-Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungen der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server, usw.).
+Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungen der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server).
 
 [[t]]
 == T
