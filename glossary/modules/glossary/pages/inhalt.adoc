@@ -83,7 +83,7 @@ Die Anwendungslandschaft der IsyFact besteht aus Anwendungsdomänen, einer Quers
 +
 [[image-glossar-4]]
 .Anwendungslandschaft (IsyFact)
-image::glossar-anwendungslandschaft.png[align="center"]
+image::glossar-anwendungslandschaft.png[]
 
 [[glossar-anwendungssystem]]
 Anwendungssystem [.glossary-changed]#<<glossar-anwendung,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#::
@@ -171,7 +171,7 @@ Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
 +
 [[image-glossar-1]]
 .Bibliothek
-image::glossar-bibliothek.png[align="center"]
+image::glossar-bibliothek.dn.svg[]
 
 [[glossar-blaupause]]
 Blaupause [.glossary-changed]#<<glossar-referenzarchitektur,abgelöst>># [.glossary-release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#::
@@ -453,7 +453,7 @@ Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen F
 +
 [[image-SoftwareFactory]]
 .Software Factory
-image::glossar-software-factory.png[align="center"]
+image::glossar-software-factory.png[]
 
 [[glossar-svn]]
 SVN::
