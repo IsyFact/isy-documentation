@@ -27,7 +27,6 @@ Anwendung [.glossary-changed]#überarbeitet#::
 
 |
 //tag::anwendung-definition[]
-
 Eine Anwendung ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
 Sie besteht aus xref:glossary:glossary:master.adoc#glossar-anwendungskomponente[Anwendungskomponenten].
 
@@ -37,8 +36,7 @@ Dabei kann sie Services von anderen Anwendungen nutzen.
 
 Eine Anwendung ist Bestandteil der xref:glossary:glossary:master.adoc#glossar-a-architektur[A-Architektur].
 Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen].
-
-// end::anwendung-definition[]
+//end::anwendung-definition[]
 
 Die IsyFact kennt zwei <<glossar-anwendungstyp,Anwendungstypen>>: die <<glossar-geschaeftsanwendung,Geschäftsanwendung>> und die <<glossar-querschnittsanwendung,Querschnittsanwendung>>.
 
@@ -120,12 +118,10 @@ Zu jeder Auslieferung gibt es ein Change-Log.
 [[backend]]
 Backend [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 //tag::backend-definition[]
-+
 Ein Backend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-service[Services] bereitstellt.
 Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
 +
 Backends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich xref:glossary:glossary:master.adoc#glossar-anwendungskomponente[Anwendungskomponenten] und Nachbarsystemschnittstellen um.
-
 //end::backend-definition[]
 
 [[glossar-batch]]
@@ -137,11 +133,9 @@ Batch [.glossary-changed]#überarbeitet#::
 
 |
 //tag::batch-definition[]
-
 Ein Batch ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich eine automatische Datenverarbeitung ohne manuelle Interaktion eines xref:glossary:glossary:master.adoc#glossar-anwender[Anwenders] umsetzt.
 
 Batches können hierfür entweder direkt den xref:glossary:glossary:master.adoc#glossar-anwendungskern[Anwendungskern] aufrufen und nutzen, oder über interne Schnittstellen mit xref:glossary:glossary:master.adoc#backend[Backends] kommunizieren.
-
 //end::batch-definition[]
 
 |Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
@@ -218,12 +212,10 @@ Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-fü
 [[frontend]]
 Frontend [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 //tag::frontend-definition[]
-+
 Ein Frontend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-gui[grafische Benutzerschnittstellen] bereitstellt.
 Frontends kommunizieren hierzu über interne Schnittstellen mit xref:glossary:glossary:master.adoc#backend[Backends].
 +
 Frontends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich Dialoge und Masken um.
-
 //end::frontend-definition[]
 
 [[glossar-ftp]]
@@ -239,10 +231,8 @@ Geschäftsanwendung (GA) [.glossary-changed]#überarbeitet#::
 
 |
 //tag::ga-definition[]
-
 Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] unterstützt.
 Sie setzt hierfür xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik] um.
-
 //end::ga-definition[]
 |Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
@@ -285,11 +275,9 @@ IT-System [.glossary-changed]#überarbeitet#::
 
 |
 //tag::it-system-definition[]
-
 Ein IT-System ist die software-technische Umsetzung eines Teils einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung].
 Es ist eine in sich abgeschlossene, ausführbare Einheit.
 Spezialisierungen des IT-Systems, die xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtypen], setzen bestimmte Teile der Anwendung möglichst effizient um.
-
 //end::it-system-definition[]
 
 |Umsetzung einer Geschäftsanwendung unter Berücksichtigung technischer Rahmenbedingungen.
@@ -300,10 +288,8 @@ Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
 [[glossar-it-systemtyp]]
 IT-Systemtyp [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 //tag::it-systemtyp-definition[]
-+
 Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systems].
 Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen.
-+
 //end::it-systemtyp-definition[]
 +
 Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend,Backend>>, das <<frontend,Frontend>> und den <<glossar-batch,Batch>>.
@@ -384,13 +370,11 @@ Querschnittsanwendung [.glossary-changed]#überarbeitet#::
 
 |
 //tag::querschnittsanwendung-definition[]
-
 Eine Querschnittsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche die folgenden Kriterien in besonderem Maße erfüllt:
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary:glossary:master.adoc#glossar-anwender[Anwender].
 Querschnittsanwendungen sind somit in verschiedenen xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomänen] oder über mehrere xref:glossary:glossary:master.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
 
 Querschnittsanwendungen dürfen nur Services von anderen Querschnittsanwendungen nutzen.
-
 //end::querschnittsanwendung-definition[]
 
 Die IsyFact stellt Querschnittsanwendungen in Form von <<glossar-baustein,Bausteinen>> bereit.
