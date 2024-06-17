@@ -38,8 +38,6 @@ Eine Anwendung ist Bestandteil der xref:glossary:glossary:master.adoc#glossar-a-
 Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen].
 //end::anwendung-definition[]
 
-Die IsyFact kennt zwei <<glossar-anwendungstyp,Anwendungstypen>>: die <<glossar-geschaeftsanwendung,Geschäftsanwendung>> und die <<glossar-querschnittsanwendung,Querschnittsanwendung>>.
-
 |Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
 Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
 |===
@@ -96,6 +94,8 @@ Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzu
 Anwendungstyp::
 Sammlung von Architekturvorgaben (aller Architektursichten) zur Entwicklung einer Anwendung mit gleichartigen spezifischen Eigenschaften.
 In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von Anwendungen.
++
+Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung,Geschäftsanwendung>> und die <<glossar-querschnittsanwendung,Querschnittsanwendung>>.
 
 [[glossar-architektursicht]]
 Architektursicht::
@@ -118,9 +118,8 @@ Zu jeder Auslieferung gibt es ein Change-Log.
 [[backend]]
 Backend [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 //tag::backend-definition[]
-Ein Backend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-service[Services] bereitstellt.
-Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
-+
+Ein Backend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von xref:glossary:glossary:master.adoc#glossar-service[Services] bereitstellt.
+Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden. +
 Backends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich xref:glossary:glossary:master.adoc#glossar-anwendungskomponente[Anwendungskomponenten] und Nachbarsystemschnittstellen um.
 //end::backend-definition[]
 
@@ -214,7 +213,7 @@ Frontend [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-d
 //tag::frontend-definition[]
 Ein Frontend ist ein xref:glossary:glossary:master.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary:glossary:master.adoc#glossar-gui[grafische Benutzerschnittstellen] bereitstellt.
 Frontends kommunizieren hierzu über interne Schnittstellen mit xref:glossary:glossary:master.adoc#backend[Backends].
-+
+
 Frontends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich Dialoge und Masken um.
 //end::frontend-definition[]
 
@@ -231,7 +230,7 @@ Geschäftsanwendung (GA) [.glossary-changed]#überarbeitet#::
 
 |
 //tag::ga-definition[]
-Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] unterstützt.
+Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] umsetzt.
 Sie setzt eine spezifische xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik] um und erzeugt hieraus direkten Nutzen für xref:glossary:glossary:master.adoc#glossar-anwender[Anwender].
 //end::ga-definition[]
 |Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
