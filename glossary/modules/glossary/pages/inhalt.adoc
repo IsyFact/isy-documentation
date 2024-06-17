@@ -232,7 +232,7 @@ Geschäftsanwendung (GA) [.glossary-changed]#überarbeitet#::
 |
 //tag::ga-definition[]
 Eine Geschäftsanwendung ist eine xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary:glossary:master.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] unterstützt.
-Sie setzt hierfür xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik] um.
+Sie setzt eine spezifische xref:glossary:glossary:master.adoc#glossar-geschaeftslogik[Geschäftslogik] um und erzeugt hieraus direkten Nutzen für xref:glossary:glossary:master.adoc#glossar-anwender[Anwender].
 //end::ga-definition[]
 |Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
