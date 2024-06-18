@@ -288,9 +288,8 @@ Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
 IT-Systemtyp [.glossary-new]#neu# [.glossary-release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#::
 //tag::it-systemtyp-definition[]
 Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary:glossary:master.adoc#glossar-it-system[IT-Systems].
-Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen.
+Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary:glossary:master.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen. +
 //end::it-systemtyp-definition[]
-+
 Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend,Backend>>, das <<frontend,Frontend>> und den <<glossar-batch,Batch>>.
 
 [[glossar-jvm]]
