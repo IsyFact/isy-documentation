@@ -99,7 +99,7 @@ Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzu
 Sammlung von Architekturvorgaben (aller Architektursichten) zur Entwicklung einer Anwendung mit gleichartigen spezifischen Eigenschaften.
 In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von Anwendungen.
 +
-Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung,Geschäftsanwendung>> und die <<glossar-querschnittsanwendung,Querschnittsanwendung>>.
+Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung>> und die <<glossar-querschnittsanwendung>>.
 
 [[glossar-architektursicht]]
 === Architektursicht
@@ -335,7 +335,7 @@ Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
 Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systems].
 Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen. +
 //end::it-systemtyp-definition[]
-Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend,Backend>>, das <<frontend,Frontend>> und den <<glossar-batch,Batch>>.
+Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend>>, das <<frontend>> und den <<glossar-batch>>.
 
 [[j]]
 == J
@@ -426,7 +426,7 @@ Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für al
 == Q
 
 [[glossar-querschnittsanwendung]]
-=== Querschnittsanwendung
+=== Querschnittsanwendung (QA)
 [.status]
 [.revised]#überarbeitet#
 
