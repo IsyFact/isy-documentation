@@ -1,0 +1,79 @@
+= Verwendung des Glossars
+
+include::partial$licence.adoc[]
+
+Das Glossar enthält zentrale Begriffe und Definitionen der IsyFact.
+Es besitzt ein Statusmodell, mit dem Änderungen an Begriffen abgebildet werden.
+Außerdem können einzelne Begriffe und Definitionen im Text eingebunden werden, um Redundanzen zu vermeiden oder um auf das Glossar zu verweisen.
+Dieser Guide beschreibt das Arbeiten mit Glossareinträgen und die Einbindung des Glossars.
+
+== Arbeiten mit Glossareinträgen
+
+
+Die IsyFact Dokumentation beinhaltet auch ein Glossar.
+Es befindet sich im Repository `isy-documentation` in der xref:guides/erstellung-antora.adoc#antora-komponente[Antora-Komponente] `glossary`.
+In der HTML-Dokumentation ist es über die Liste der Antora-Komponenten aufrufbar.
+
+[IMPORTANT]
+====
+Neue Glossareinträge sollten alphabetisch einsortiert werden.
+Dadurch werden auch doppelte Einträge verhindert.
+====
+
+Im Glossar sind alle Einträge mit einem Sprungziel (Anchor) versehen.
+Der Anchor beginnt immer mit dem Bezeichner `glossar-`.
+
+// tag::namenskonvention[]
+[[table-glossar-anchor]]
+.Namensschema für Anchor von Glossareinträgen (Glossar in `isy-documentation`)
+[cols="1s,4m",options="header"]
+|====
+2+|Namen für Anchor im Glossar
+|Schema |glossar-<Name gemäß allgemeinem Namensschema für Dokumentation>
+|Beispiel |glossar-isyfact
+|====
+
+// end::namenskonvention[]
+
+Der Link auf einen Glossareintrag sieht wie folgt aus: xref:glossary:glossary:master.adoc#glossar-isyfact[IsyFact]
+
+== Einbindung von Begriffen und Definitionen
+
+Begriffe und Definitionen können auf zwei Arten eingebunden werden.
+Ein direkter Verweis auf das Glossar dient dazu, auf die festgelegte Bedeutung des Begriffs hinzuweisen.
+Die Einbindung einer Definition ist immer dann sinnvoll, um die Definition nicht an anderer Stelle wiederholen zu müssen.
+
+=== Direkter Verweis
+
+Ein direkter Verweis auf einen Begriff des Glossars erfolgt über das https://docs.antora.org/antora/latest/page/xref/[xref-Makro] von Antora.
+Da die Begriffe im Glossar mit Ankern versehen sind, muss in der eckigen Klammern zwingend ein Text stehen - meistens der Begriff selbst.
+
+[[glossar-direkter-verweis]]
+.Direkter Verweis auf einen Glossareintrag
+[source,asciidoc]
+----
+xref:glossary::terms-definitions.adoc#isyfact[IsyFact]
+----
+
+=== Einbindung einer Definition
+
+Wenn in einem Text eine ganze Definition aus dem Glossar wiedergegeben werden soll, kann dies über eine Inklusion geschehen.
+Dazu muss die Definition im Glossar von entsprechende Tags umgeben sein.
+
+[[glossar-definition-tags]]
+.Kennzeichnung einer Definition mit Tags
+[source,asciidoc]
+----
+//tag::begriff-definition[]
+Hier steht die Definition des Begriffs.
+//end::begriff-definition[]
+----
+
+Diese Definition kann nun an beliebiger Stelle im Text eingebunden werden.
+
+[[glossar-einbindung-definition]]
+.Einbindung einer Definition im Text
+[source,asciidoc]
+----
+\include::glossary::terms-definitions.adoc[tag=begriff-definition]
+----
