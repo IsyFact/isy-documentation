@@ -6,4 +6,553 @@
 
 include::documentation-guide::partial$licence.adoc[]
 
-include::glossary:inhalt.adoc[tags=inhalt]
+Das Glossar enthält eine Übersicht über zentrale Begriffe und Definitionen der IsyFact.
+
+[[a]]
+== A
+
+[[glossar-a-architektur]]
+=== A-Architektur
+Fachliche Architektursicht auf die Software-Architektur einer Geschäftsanwendung.
+
+[[glossar-anwender]]
+=== Anwender
+Jemand, der eine Geschäftsanwendung bedient.
+Der Begriff steht im Kontext einer Software-Factory im Unterschied zum Nutzer.
+
+[[glossar-anwendung]]
+=== Anwendung
+[.status]
+[.revised]#überarbeitet#
+
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+// tag::anwendung-definition[]
+Eine Anwendung ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
+Sie besteht aus xref:glossary::terms-definitions.adoc#glossar-anwendungskomponente[Anwendungskomponenten].
+
+Eine Anwendung unterstützt Geschäftsprozesse.
+Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary::terms-definitions.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
+Dabei kann sie Services von anderen Anwendungen nutzen.
+
+Eine Anwendung ist Bestandteil der xref:glossary::terms-definitions.adoc#glossar-a-architektur[A-Architektur].
+Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen].
+// end::anwendung-definition[]
+
+|Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
+Dieser Begriff sollte *nicht* pauschal als Synonym für Anwendungssystem, Geschäftsanwendung oder Querschnittsanwendungen verwendet werden.
+|===
+
+
+[[glossar-anwendungsdomaene]]
+=== Anwendungsdomäne
+Spezialisierung des Begriffs <<glossar-domaene>> im Kontext von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
+
+[[glossar-anwendungskern]]
+=== Anwendungskern (AWK)
+Der Anwendungskern beinhaltet die Anwendungslogik einer Anwendung.
+
+.Anwendungskern
+image::glossary::glossar-anwendungskern.dn.svg[]
+
+[[glossar-anwendungskomponente]]
+=== Anwendungskomponente (ANK)
+Eine Anwendungskomponente beschreibt eine Menge von funktional zusammenhängenden Anwendungsfällen.
+Anwendungskomponenten sind Bestandteile von Anwendungen.
+
+Beispiele: Benutzerverwaltung: ANK_Benutzer, ANK_Rollen, ...
+
+[[glossar-anwendungskontext]]
+=== Anwendungskontext
+Sammlung von nicht-funktionalen und technischen Anforderungen zur Umsetzung einer „Klasse“ von Anwendungen – unabhängig von der Fachlichkeit.
+Ein Anwendungskontext kann zu neuen Anwendungstypen und damit zu einer neuen spezifischen Software-Factory führen.
+
+[[glossar-anwendungslandschaft]]
+=== Anwendungslandschaft (allgemeine Definition)
+Gröbste Strukturierungsebene für eine Menge von Anwendungen:
+eine Anwendungslandschaft enthält Anwendungsdomänen, die wiederum Anwendungen gruppieren.
+Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungen ist in der Regel eine hohe Interaktion zu erwarten.
+
+[[glossar-anwendungslandschaft-isyfact]]
+=== Anwendungslandschaft (IsyFact)
+Die Anwendungslandschaft der IsyFact besteht aus Anwendungsdomänen, einer Querschnittsdomäne, einem Portal und einem Service-Gateway.
+
+.Anwendungslandschaft (IsyFact)
+image::glossary::glossar-anwendungslandschaft.png[]
+
+[[glossar-anwendungssystem]]
+=== Anwendungssystem
+[.status]
+[.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.superseded]#<<glossar-anwendung,abgelöst>>#
+
+Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
+Es besteht aus Anwendungskomponenten.
+Anwendungssysteme unterstützen Geschäftsprozesse.
+Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine Geschäftsanwendung.
+Ein Anwendungssystem ist Bestandteil der A-Architektur.
+Aus Sicht der T-Architektur bildet ein IT-System die software-technische Umsetzung eines Anwendungssystems ab.
+
+[[glossar-anwendungstyp]]
+=== Anwendungstyp
+Sammlung von Architekturvorgaben (aller Architektursichten) zur Entwicklung einer Anwendung mit gleichartigen spezifischen Eigenschaften.
+In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von Anwendungen.
++
+Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung>> und die <<glossar-querschnittsanwendung>>.
+
+[[glossar-architektursicht]]
+=== Architektursicht
+In Anlehnung an iSAQB werden in der IsyFact die Sichten A-Architektur, T-Architektur und TI-Architektur unterschieden.
+Nachfolgende Abbildung zeigt die Orthogonalität von Architektursichten und Anwendungstypen.
+Jeder Anwendungstyp besitzt eine spezifische Darstellung in jeder Sicht.
+
+.Anwendungstypen
+image::glossary::glossar-anwendungstypen.dn.svg[]
+
+NOTE: iSAQB = International Software Architecture Qualification Board
+
+[[glossar-auslieferung]]
+=== Auslieferung (Deployment)
+Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Source-Releases wird Software (Bibliotheken sowie Anwendungen) und die dazugehörige Dokumentation ausgeliefert.
+Die entwickelte Software wird auf einer Betriebsumgebung (Plattform) installiert.
+Zu jeder Auslieferung gibt es ein Change-Log.
+
+[[b]]
+== B
+
+[[backend]]
+=== Backend
+[.status]
+[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4.x]#
+
+// tag::backend-definition[]
+Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von xref:glossary::terms-definitions.adoc#glossar-service[Services] bereitstellt.
+Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden. +
+Backends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich xref:glossary::terms-definitions.adoc#glossar-anwendungskomponente[Anwendungskomponenten] und Nachbarsystemschnittstellen um.
+// end::backend-definition[]
+
+[[glossar-batch]]
+=== Batch
+[.status]
+[.revised]#überarbeitet#
+
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+// tag::batch-definition[]
+Ein Batch ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich eine automatische Datenverarbeitung ohne manuelle Interaktion eines xref:glossary::terms-definitions.adoc#glossar-anwender[Anwenders] umsetzt.
+
+Batches können hierfür entweder direkt den xref:glossary::terms-definitions.adoc#glossar-anwendungskern[Anwendungskern] aufrufen und nutzen, oder über interne Schnittstellen mit xref:glossary::terms-definitions.adoc#backend[Backends] kommunizieren.
+// end::batch-definition[]
+
+|Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines Anwenders (z.B. Einhaltung gesetzlicher Löschfristen).
+Der Nutzer kann die Batchlogik in vorbereitete Strukturen implementieren, die IsyFact stellt einen fertigen Batchrahmen zur Verfügung.
+Die Batches können dabei den Anwendungskern aufrufen und nutzen.
+|===
+
+[[glossar-baustein]]
+=== Baustein
+Wiederverwendbare Umsetzung einer spezifischen Problemlösung.
+Bausteine stellen strukturierte Lösungen von Geschäftsprozessen dar.
+Umfasst mindestens eine Bibliothek oder eine Anwendung inklusive der dazugehörigen Dokumentation.
+
+Beispiel: Logging, Sicherheit, Überwachung
+
+NOTE: Da zwischen einem logischen Baustein und einer Anwendung eine N:M Beziehung besteht, kann es vorkommen, dass ein Baustein ein für sich alleine lauffähiges IT-System darstellt.
+
+[[glossar-gui]]
+=== Benutzeroberfläche (GUI)
+Das Graphical User Interface (GUI) stellt die Verbindung zwischen Anwender und Anwendung her.
+Die IsyFact stellt ein fertiges Framework zur Verfügung und strukturiert die Erstellung der Dialoglogik der Geschäftsprozesse.
+
+[[glossar-bibliothek]]
+=== Bibliothek
+Kleinste auslieferbare Einheit von thematisch zusammengehörenden Funktionen.
+Eine oder mehrere Bibliotheken sind Bestandteile von IT-Systemen oder anderer Bibliotheken.
+Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
+
+.Bibliothek
+image::glossary::glossar-bibliothek.dn.svg[]
+
+[[glossar-blaupause]]
+=== Blaupause
+[.status]
+[.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.superseded]#<<glossar-referenzarchitektur,abgelöst>>#
+
+Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
+
+[[glossar-bva]]
+=== BVA
+Bundesverwaltungsamt
+
+[[c]]
+== C
+
+[[glossar-change-log]]
+=== Change Log
+Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit Releases) zuordnet.
+Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen in eine Bibliothek integrieren.
+Pro Bibliothek und Anwendung existiert ein Change Log.
+
+Es enthält:
+
+* Inhalt und Version der Software in Form einer Stückliste,
+* bekannte Fehler und Probleme der Software,
+* die mit der Version geschlossenen Fehler und umgesetzten Änderungen in einer Aufstellung.
+
+[[glossar-closed-source-release]]
+=== Closed Source Release
+Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als Einer-für-Alle-System anbietet.
+Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
+
+[[d]]
+== D
+
+[[glossar-domaene]]
+=== Domäne
+Eine Domäne im Kontext der A-Architektur entspricht der Begrifflichkeit aus Sicht des "Domain Driven Design".
+Eine *Anwendungsdomäne* gruppiert fachlich zusammengehörende Anwendungen. Werden Querschnittsanwendungen gruppiert, entsteht eine *Querschnittsdomäne*.
+
+.Domänen einer Anwendungslandschaft
+image::glossary::glossar-anwendungsdomaene.dn.svg[]
+
+Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
+
+[[e]]
+== E
+
+[[glossar-efa]]
+=== Einer-für-Alle-System (EfA)
+Begriff aus der deutschen Bundesverwaltung.
+Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
+Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-für-Alle-System angeboten.
+
+[[f]]
+== F
+
+[[frontend]]
+=== Frontend
+[.status]
+[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4.x]#
+
+// tag::frontend-definition[]
+Ein Frontend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-gui[grafische Benutzerschnittstellen] bereitstellt.
+Frontends kommunizieren hierzu über interne Schnittstellen mit xref:glossary::terms-definitions.adoc#backend[Backends].
+
+Frontends setzen, auf die fachliche Referenzarchitektur bezogen, maßgeblich Dialoge und Masken um.
+// end::frontend-definition[]
+
+[[glossar-ftp]]
+=== FTP
+File Transfer Protocol
+
+[[g]]
+== G
+
+[[glossar-geschaeftsanwendung]]
+=== Geschäftsanwendung (GA)
+[.status]
+[.revised]#überarbeitet#
+
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+// tag::ga-definition[]
+Eine Geschäftsanwendung ist eine xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary::terms-definitions.adoc#glossar-anwendungsdomaene[Anwendungsdomäne] umsetzt.
+Sie setzt eine spezifische xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] um und erzeugt hieraus direkten Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
+// end::ga-definition[]
+|Eine Geschäftsanwendung ist ein Anwendungssystem, welches einen oder mehrere Geschäftsprozesse einer Anwendungsdomäne spezifiziert.
+Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
+Dabei kann sie die Services von Querschnittsanwendungen oder andere Anwendungssysteme nutzen.
+|===
+
+[[glossar-geschaeftslogik]]
+=== Geschäftslogik
+Die Anwendungslogik von Geschäftsanwendungen.
+
+[[i]]
+== I
+
+[[glossar-instanz]]
+=== Instanz
+Ausgeführte Instanz eines IT-Systems auf einer Plattform.
+Eine Instanz ist Bestandteil der TI-Architektur einer Geschäftsanwendung und läuft in einer Systemlandschaft.
+
+[[glossar-isyfact]]
+=== IsyFact (IF)
+Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen Anwendungslandschaften, die vom Bundesverwaltungsamt entwickelt wird.
+Sie bündelt bestehendes technisches Know-how um Anwendungen effizienter entwickeln und betreiben zu können.
+
+Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu einem spezifischen Anwendungskontext gehören.
+Die IsyFact besteht aus den IsyFact-Standards und den IsyFact-Erweiterungen.
+
+[[glossar-ife]]
+=== IsyFact-Erweiterungen (IFE)
+Umfasst alle Bestandteile der IsyFact, die *nicht* für jede Geschäftsanwendung verpflichtend sind.
+IsyFact-Erweiterungen können auch von Nutzern der IsyFact eingebracht werden.
+
+[[glossar-ifs]]
+=== IsyFact-Standards (IFS)
+Umfasst alle Bestandteile der IsyFact, die für jede Geschäftsanwendung verpflichtend sind.
+Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwickelt.
+
+[[glossar-it-system]]
+=== IT-System
+[.status]
+[.revised]#überarbeitet#
+
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+// tag::it-system-definition[]
+Ein IT-System ist die software-technische Umsetzung eines Teils einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung].
+Es ist eine in sich abgeschlossene, ausführbare Einheit.
+Spezialisierungen des IT-Systems, die xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtypen], setzen bestimmte Teile der Anwendung möglichst effizient um.
+// end::it-system-definition[]
+
+|Umsetzung einer Geschäftsanwendung unter Berücksichtigung technischer Rahmenbedingungen.
+Ein IT-System ist Bestandteil der T-Architektur und es ist (für sich) alleine ausführbar.
+Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
+|===
+
+[[glossar-it-systemtyp]]
+=== IT-Systemtyp
+[.status]
+[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#
+
+// tag::it-systemtyp-definition[]
+Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systems].
+Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um einen bestimmten Teil einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] möglichst effizient umzusetzen. +
+// end::it-systemtyp-definition[]
+Die software-technische Referenzarchitektur der IsyFact kennt drei IT-Systemtypen: das <<backend>>, das <<frontend>> und den <<glossar-batch>>.
+
+[[j]]
+== J
+
+[[glossar-jvm]]
+=== JVM
+Java Virtual Machine
+
+[[k]]
+== K
+
+[[glossar-konform]]
+=== Konforme Änderung
+Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch vollkonform und nicht-konform), wobei Abwärtskompatibilität gewährleistet ist.
+Das bedeutet, dass Nutzer der entsprechenden Bibliotheken keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
+
+Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen.
+Eine konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
+
+[[glossar-konzept]]
+=== Konzept
+Ein Konzept ist die fachliche Beschreibung eines Bausteins.
+Es enthält Anforderungen an den Baustein, Rahmenbedingungen und Architekturentscheidungen sowie den Lösungsansatz.
+
+[[m]]
+== M
+
+[[glossar-methodik]]
+=== Methodik
+Im Rahmen einer Software-Factory bildet die Methodik die Grundlage für die Umsetzung von Geschäftsanwendungen mittels einer standardisierten Vorgehensweise nach dem V-Modell XT Bund.
+Dabei definiert die Software Factory kein eigenes Vorgehen oder Vorgehensmodell, sondern passt die eigenen Produkte (im Sinne des V-Modell XT) in ein zum V-Modell XT konformes Vorgehen ein.
+
+NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring, der zusätzlich auch noch Vorlagen aller benötigten Dokumente mit Ausfüllhinweisen zur Verfügung stellt.
+
+[[n]]
+== N
+
+[[glossar-nicht-konform]]
+=== Nicht konforme Änderung
+Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch vollkonform und konform), wobei *keine* Abwärtskompatibilität gewährleistet ist.
+Das bedeutet, dass Nutzer der entsprechenden Bibliotheken in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
+
+Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionen.
+Eine nicht konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
+
+[[glossar-nutzer]]
+=== Nutzer
+Jemand, der eine Software-Factory nutzt, um Geschäftsanwendungen zu bauen und zu betreiben.
+Der Begriff steht im Kontext einer Software-Factory im Unterschied zum Anwender.
+
+[[glossar-nutzungsvorgaben]]
+=== Nutzungsvorgaben
+Nutzungsvorgaben beschreiben die Verwendung eines Bausteins aus technischer Sicht.
+Sie sind Teil der Dokumentation eines Bausteins und richten sich an Entwickler. Das Dokument komplementiert das Konzept, das sich an fachlich Interessierte und Architekten richtet.
+
+[[o]]
+== O
+
+[[glossar-open-source-release]]
+=== Open Source Release
+Bezeichnet Releases aller Bausteine der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen Nutzern anbietet.
+Das Open Source Release beinhaltet die IsyFact-Standards (IFS) sowie Teile der IsyFact-Erweiterungen (IFE).
+
+[[p]]
+== P
+
+[[glossar-persistenz]]
+=== Persistenz
+Die Persistenzschicht ermöglicht es, Daten der Geschäftsanwendungen permanent zu speichern.
+Die Datenzugriffslogik der Geschäftsanwendung wird in strukturierten Komponenten realisiert.
+Die IsyFact stellt ein fertiges Persistenz-Framework zur Verfügung.
+
+[[glossar-plattform]]
+=== Plattform
+Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von Anwendungslandschaften, die sich aus der Verwendung der IsyFact ergeben.
+Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
+
+[[glossar-plis]]
+=== PLIS
+Plattform Informationssysteme
+
+[[glossar-portal]]
+=== Portal
+Zentraler Zugangspunkt zu den Geschäftsanwendungen einer Anwendungslandschaft.
+Das Portal übernimmt die gemeinsame Authentifizierung und Autorisierung für alle Geschäftsanwendungen.
+
+[[q]]
+== Q
+
+[[glossar-querschnittsanwendung]]
+=== Querschnittsanwendung (QA)
+[.status]
+[.revised]#überarbeitet#
+
+[cols="1a,1a",options="header"]
+|===
+^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
+^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+
+|
+// tag::querschnittsanwendung-definition[]
+Eine Querschnittsanwendung ist eine xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], welche die folgenden Kriterien in besonderem Maße erfüllt:
+Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
+Querschnittsanwendungen sind somit in verschiedenen xref:glossary::terms-definitions.adoc#glossar-anwendungsdomaene[Anwendungsdomänen] oder über mehrere xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
+
+Querschnittsanwendungen dürfen nur Services von anderen Querschnittsanwendungen nutzen.
+// end::querschnittsanwendung-definition[]
+
+Die IsyFact stellt Querschnittsanwendungen in Form von <<glossar-baustein,Bausteinen>> bereit.
+Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
+
+*Beispiele:* Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+
+|Eine Querschnittsanwendung ist eine Anwendung, welche die folgenden Kriterien in besonderem Maße erfüllt:
+Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für Anwender.
+Querschnittsanwendungen sind somit in verschiedenen Anwendungsdomänen oder über mehrere Anwendungslandschaften hinweg wiederverwendbar.
+
+Die IsyFact stellt Querschnittsanwendungen in Form von Bausteinen bereit.
+Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
+
+Beispiele: Portalstartseite, Benutzerverzeichnis, Hilfeanwendung
+|===
+
+[[glossar-querschnittsdomaene]]
+=== Querschnittsdomäne
+Spezialisierung des Begriffs <<glossar-domaene>> im Kontext von <<glossar-querschnittsanwendung,Querschnittsanwendungen>>.
+Die Querschnittsdomäne bildet keine fachliche Klammer, sondern bündelt alle Querschnittsanwendungen einer Anwendungslandschaft unabhängig von ihrer Fachlichkeit.
+Aufgrund dieser Eigenschaft gibt es pro Anwendungslandschaft maximal eine Querschnittsdomäne.
+
+[[r]]
+== R
+
+[[glossar-referenzarchitektur]]
+=== Referenzarchitektur
+[.status]
+[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#
+
+Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer Anwendungslandschaft für den Betrieb von Geschäftsanwendungen von den drei Architektursichten aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
+
+[[glossar-release]]
+=== Release
+Veröffentlichter Versionsstand einer Software-Factory.
+
+[[s]]
+== S
+
+[[glossar-service-fachlich]]
+=== Service
+Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
+Es gibt Basisservices, Fachservices und Querschnittsservices.
+
+[[glossar-service]]
+=== Service
+Technische Komponente (und damit Teil der T-Architektur), über die andere Anwendungen innerhalb einer Anwendungslandschaft auf die Funktionalität des Anwendungskerns eines IT-Systems zugreifen.
+Zugriffe von außerhalb der Anwendungslandschaft laufen zusätzlich über ein Service-Gateway.
+
+[[glossar-service-gateway]]
+=== Service-Gateway
+Stellt die Verbindung zwischen einem externen und einem internen Service durch eine Schnittstelle zur Verfügung.
+
+[[glossar-sla]]
+=== SLA
+Service Level Agreement
+
+[[glossar-spa]]
+=== Single Page Application (SPA)
+→ https://de.wikipedia.org/wiki/Single-Page-Webanwendung[icon:wikipedia-w[] Single-Page-Webanwendung]
+
+[[glossar-software-factory]]
+=== Software Factory (SF)
+Eine Software Factory ist eine Sammlung, bestehend aus einer Referenzarchitektur, Bausteinen, einer Plattform, einer Methodik und Werkzeugen, die es erlaubt, durch Standardisierung, Modularisierung und Wiederverwendung Geschäftsanwendungen weitestgehend standardisiert zu entwickeln.
+Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer Anwendungsdomäne so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des Architekturrahmens sichergestellt ist.
+"Standardisiert" bedeutet, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software Factory getroffen und in entsprechenden Komponenten implementiert sind.
+Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen Fachlichkeit der Anwendung konzentrieren.
+
+.Software Factory
+image::glossary::glossar-software-factory.png[]
+
+[[glossar-svn]]
+=== SVN
+Subversion
+
+[[glossar-systemlandschaft]]
+=== Systemlandschaft
+Der Begriff der Anwendungslandschaft ist fachlich motiviert.
+Die technische Entsprechung hierfür ist der Begriff der Systemlandschaft.
+
+Eine Systemlandschaft beinhaltet alle software-technisch in IT-Systeme umgesetzten Anwendungen der Anwendungslandschaft sowie technische Systeme zur Unterstützung (z.B. Datenbanken, Web-Server).
+
+[[t]]
+== T
+
+[[glossar-t-architektur]]
+=== T-Architektur
+Technische Architektursicht auf die Software-Architektur einer Geschäftsanwendung.
+
+[[glossar-ti-architektur]]
+=== TI-Architektur
+Technische Infrastruktursicht auf die Software-Architektur einer Geschäftsanwendung.
+Sie beschreibt den Aufbau der Betriebsumgebung für die IT-Systeme einer IsyFact-Systemlandschaft.
+
+[[v]]
+== V
+
+[[glossar-vollkonform]]
+=== Vollkonforme Änderung
+Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer Bibliothek nicht verändert (siehe auch konform und nicht-konform).
+
+Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
+
+[[w]]
+== W
+
+[[glossar-werkzeug]]
+=== Werkzeug
+Eine Software-Factory setzt bei der Anwendungsentwicklung auf Automatisierung und Werkzeugunterstützung.
+Dazu bietet sie vorkonfigurierte Werkzeuge für Modellierung, Programmierung, Installation, Tests oder die Fehlerverfolgung.

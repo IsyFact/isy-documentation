@@ -103,8 +103,6 @@ Das ist ein Beispieltext zum Unterkapitel.
 
 Auch Abbildungen, Tabellen und Listings müssen mit einem Anchor versehen werden, damit sie als Sprungziel dienen können.
 
-Besonderheiten ergeben sich für Anchor für <<glossar,Glossareinträge>>.
-
 [[verweise-lokal]]
 === Verweise innerhalb einer Seite
 
