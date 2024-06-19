@@ -150,7 +150,7 @@ Ein Beispiel: +
 .Verweis auf einen Glossareintrag
 [source,asciidoc]
 ----
-xref:glossary:glossary:master.adoc#glossar-isyfact[IsyFact]
+xref:glossary::terms-definitions.adoc#glossar-isyfact[IsyFact]
 ----
 
 Für eine Erläuterung der einzelnen Abschnitte eines xref-Verweises wird auf die Antora-Dokumentation verwiesen:
@@ -518,44 +518,3 @@ Verweise auf Listings nutzen, wie üblich, den Anker.
 // Verweis zwischen Seiten
 xref:version@component:module:file.adoc#listing-hallowelt[Text des Verweises]
 ----
-
-[[glossar]]
-== Glossar
-
-Die IsyFact Dokumentation beinhaltet auch ein Glossar.
-Es befindet sich im Repository `isy-documentation` in der xref:guides/erstellung-antora.adoc#antora-komponente[Antora-Komponente] `glossary`.
-In der HTML-Dokumentation ist es über die Liste der Antora-Komponenten aufrufbar.
-
-[IMPORTANT]
-====
-Neue Glossareinträge sollten alphabetisch einsortiert werden.
-Dadurch werden auch doppelte Einträge verhindert.
-====
-
-Im Glossar sind alle Einträge mit einem Sprungziel (Anchor) versehen.
-Der Anchor beginnt immer mit dem Bezeichner `glossar-`.
-
-// tag::namenskonvention[]
-[[table-glossar-anchor]]
-.Namensschema für Anchor von Glossareinträgen (Glossar in `isy-documentation`)
-[cols="1s,4m",options="header"]
-|====
-2+|Namen für Anchor im Glossar
-|Schema |glossar-<Name gemäß allgemeinem Namensschema für Dokumentation>
-|Beispiel |glossar-isyfact
-|====
-
-// end::namenskonvention[]
-
-Eine Referenz auf einen Begriff des Glossars erfolgt über einen <<listing-xref,Antora Verweis>>, wobei der Eintrag nach dem `#` der Anchor im Glossar in `isy-documentation` ist.
-Der Text innerhalb der eckigen Klammern definiert den Linktext.
-
-Ein Beispiel: +
-[[listing-glossar-verweis-2]]
-.Verweis auf Glossareintrag
-[source,asciidoc]
-----
-xref:glossary:glossary:master.adoc#glossar-isyfact[IsyFact]
-----
-
-Der Link auf einen Glossareintrag sieht wie folgt aus: xref:glossary:glossary:master.adoc#glossar-isyfact[IsyFact]

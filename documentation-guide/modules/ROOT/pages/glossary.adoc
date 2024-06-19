@@ -1,0 +1,176 @@
+= Verwendung des Glossars
+
+include::partial$licence.adoc[]
+
+Das Glossar enthält zentrale Begriffe und Definitionen der IsyFact in Form von Glossareinträgen.
+Es besitzt ein Statusmodell, mit dem Änderungen an Glossareinträgen abgebildet werden.
+Das Glossar ermöglicht es, einzelne Definitionen im Text einzubinden oder auf Glossareinträge zu verweisen.
+
+Dieser Guide beschreibt den strukturellen Aufbau des Glossars, das Statusmodell der Einträge sowie das Einbinden von Definitionen und Verweisen auf Einträge.
+
+== Aufbau des Glossars
+
+Das Glossar ist alphabetisch sortiert und befindet sich in einem https://github.com/IsyFact/isy-documentation/tree/master/glossary[eigenen Antora-Modul].
+Es besteht aus einer Liste von Glossareinträgen, die eine Überschrift, Informationen zum Status und eine Definition bzw. eine Begriffsklärung enthalten.
+
+[[glossar-eintrag-aufbau]]
+.Aufbau eines Glossareintrags
+[source,asciidoc]
+----
+[[begriff]] <.>
+=== Begriff (Abkürzungen) <.>
+[.status] <.>
+[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#
+
+// tag::begriff-definition[] <.>
+Definition des Begriffs.
+// end::begriff-definition[]
+
+Weitere Informationen zum Begriff, z.B. Zusammenhänge zu anderen Begriffen.
+----
+<.> Anker des Begriffs.
+<.> Nennung des Begriffs und ggf. gängiger Abkürzungen.
+<.> <<statusmodell,Statusinformationen>>, falls sich der Begriff ändert.
+<.> Tags zur Einbindung der Definition in Texte.
+
+Der Anker sollte immer dem Begriff selbst entsprechen.
+Leerzeichen müssen durch Bindestriche ersetzt und Umlaute umgeschrieben werden.
+
+Die Statusinformationen und die Tags zur Einbindung der Definition sind optional und sollten dann gesetzt werden, wenn sie gebraucht werden.
+
+[[statusmodell]]
+== Statusmodell
+
+Das Statusmodell erlaubt es, Änderungen an den Begriffen konsistent in Glossareinträgen abzubilden.
+Es kennt die folgenden Status: "vorgeschlagen", "überarbeitet", "abgelöst" und "veraltet".
+Zusammen bilden die Status einen Lebenszyklus, der im Folgenden dargestellt ist.
+
+.Lebenszyklus eines Begriffs
+image::glossar-statusmodell.dn.svg[]
+
+=== Status "vorgeschlagen"
+
+Wenn ein Begriff ins Glossar aufgenommen werden soll, dessen Bedeutung noch nicht abschließend geklärt ist, befindet er sich im Status "vorgeschlagen".
+Der Glossareintrag enthält eine Auszeichnung des Status und einen Hinweis, ab welcher Version der IsyFact er gültig wird.
+
+[[glossar-status-vorgeschlagen]]
+.Kennzeichnung des Status "vorgeschlagen"
+[source,asciidoc]
+----
+[.status]
+[.release]#xref:x.y.z@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact x]#
+[.proposed]#vorgeschlagen#
+----
+
+=== Status "überarbeitet"
+
+Wenn ein Begriff im Glossar seine Bedeutung verändert, befindet er sich im Status "überarbeitet".
+Der Glossareintrag enthält eine Auszeichnung des Status.
+
+[[glossar-status-ueberarbeitet]]
+.Kennzeichnung des Status "überarbeitet"
+[source,asciidoc]
+----
+[.status]
+[.revised]#überarbeitet#
+----
+
+Ebenso enthält er eine Gegenüberstellung der alten und der neuen Definition des Begriffs mit dem Hinweis, für welche Versionen der IsyFact sie gültig sind.
+
+[[glossar-status-ueberarbeitet-definitionen]]
+.Tabellarische Gegenüberstellung der alten und neuen Definition
+[source,asciidoc]
+----
+[cols="1a,1a",options="header"]
+|===
+^|xref:x.y.z@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact x]
+^|xref:a.b.c@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact a]
+
+|Neue Definition
+|Alte Definition
+|===
+----
+
+=== Status "abgelöst"
+
+Wenn ein Begriff im Glossar durch einen anderen ersetzt wird, befindet er sich im Status "abgelöst".
+Der Glossareintrag enthält eine Auszeichnung des Status, einen Verweis auf den neuen Begriff und einen Hinweis, bis zu welcher Version der IsyFact der Begriff gültig bleibt.
+
+[[glossar-status-abgeloest]]
+.Kennzeichnung des Status "abgelöst"
+[source,asciidoc]
+----
+[.status]
+[.release]#xref:x.y.z@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact x]#
+[.superseded]#<<neuer-begriff,abgelöst>>#
+----
+
+=== Status "veraltet"
+
+Wenn ein Begriff im Glossar ersatzlos gestrichen wird, befindet er sich im Status "veraltet".
+Der Glossareintrag enthält eine Auszeichnung des Status und einen Hinweis, bis zu welcher Version der IsyFact der Begriff gültig bleibt.
+
+[[glossar-status-veraltet]]
+.Kennzeichnung des Status "veraltet"
+[source,asciidoc]
+----
+[.status]
+[.release]#xref:x.y.z@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact x]#
+[.deprecated]#veraltet#
+----
+
+=== Entfernung der Statusinformationen
+
+Die Statusinformationen referenzieren stets konkrete Releases der IsyFact.
+Wenn das Release, das referenziert wird, nicht mehr Teil der Online-Dokumentation ist, wird auch die Statusinformation entfernt.
+
+TIP: Dies ist gut dadurch sichtbar, das nach xref:content-sources.adoc#antora-komponente-entfernen[Entfernung des Releases] "tote Links" entstehen.
+
+==== Status "abgelöst" und "veraltet"
+
+Bei diesen Status wird nicht nur die Statusinformation, sondern der gesamte Glossareintrag entfernt.
+
+==== Status "überarbeitet"
+
+Bei diesem Status wird die Tabelle und die alte Definition entfernt, sodass nur die neue Definition im Glossareintrag verbleibt.
+
+== Einbinden von Definitionen und Einträgen
+
+Das Glossar ermöglicht zwei Arten der Einbindung.
+Ein direkter Verweis auf einen Eintrag dient dazu, auf die festgelegte Bedeutung eines Begriffs hinzuweisen.
+Die Einbindung einer Definition ist immer dann sinnvoll, um die Definition nicht an anderer Stelle wiederholen zu müssen.
+
+=== Direkter Verweis
+
+Ein direkter Verweis auf einen Glossareintrag erfolgt über das https://docs.antora.org/antora/latest/page/xref/[xref-Makro] von Antora.
+Da die Einträge über Anker referenziert werden, muss zwischen den eckigen Klammern zwingend ein Text stehen - meistens der Begriff selbst.
+
+[[glossar-direkter-verweis]]
+.Direkter Verweis auf einen Glossareintrag
+[source,asciidoc]
+----
+xref:glossary::terms-definitions.adoc#isyfact[IsyFact]
+----
+
+=== Einbindung einer Definition
+
+Wenn in einem Text eine Definition aus dem Glossar wiedergegeben werden soll, geschieht dies über eine https://docs.asciidoctor.org/asciidoc/latest/directives/include/[Einbindung].
+Dazu muss die Definition im Glossar von entsprechenden Tags umgeben sein.
+
+[[glossar-definition-tags]]
+.Kennzeichnung einer Definition mit Tags
+[source,asciidoc]
+----
+// tag::begriff-definition[]
+Definition des Begriffs.
+// end::begriff-definition[]
+----
+
+Die Einbindung geschieht nun über eine Einbindung der https://docs.asciidoctor.org/asciidoc/latest/directives/include-tagged-regions/[Inhalte zwischen den Tags].
+
+[[glossar-einbindung-definition]]
+.Einbindung einer Definition im Text
+[source,asciidoc]
+----
+\include::glossary::terms-definitions.adoc[tag=begriff-definition]
+----

@@ -1,5 +1,10 @@
 # 2024
 
+- [2024-06-19] [documentation-guide] `IFS-3823`: add guide for working with the glossary
+- [2024-06-19] [glossary] `IFS-3823`: change glossary structure & introduce status model:
+  - change glossary entries from definition lists to headlines with short paragraphs
+  - add headlines for grouping entries by their first letter
+  - add markup for marking terms as "proposed", "revised", "superseded" and "deprecated"
 - [2024-06-12] [glossary] `IFS-3736`: revise term "IT-System", add new terms "IT-Systemtyp", "Backend", "Frontend" and revise term "Batch"
 - [2024-06-12] [glossary] `IFS-3736`: mark term "Anwendungssystem" as superseded by "Anwendung" and revise terms "Anwendung", "Geschäftsanwendung" and "Querschnittsanwendung" accordingly
 - [2024-06-11] [documentation-guide] `IFS-3735`: moving partials licence & deprecations from module glossary to documentation guide
