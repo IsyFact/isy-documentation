@@ -36,7 +36,7 @@ Ob und wie die Parameter zu setzen sind, erklärt der Abschnitt "<<konfiguration
 === Explizites Ausnehmen von der Versionierung
 
 Wenn die Inhalte der Antora-Komponente keine Versionierung benötigen, weil sie stets widerspiegeln, was zum aktuellen Zeitpunkt gilt, werden sie explizit von der Versionierung ausgenommen.
-Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossary:glossary:master.adoc[].
+Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossary::terms-definitions.adoc[].
 
 NOTE: Für solche Inhalte sieht Antora das Konzept einer https://docs.antora.org/antora/latest/component-with-no-version/[Komponente ohne Version] vor.
 
