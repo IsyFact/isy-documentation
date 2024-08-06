@@ -1,3 +1,6 @@
+# 3.1.0
+- `IFS-3938`: IsyFact Versionsanhebung auf 3.1.0
+
 # 3.0.0
 - `IFS-2273`: Deprecation texts added
 - `IFS-1344`: Umstellung auf CI-Friendly builds
