@@ -37,7 +37,8 @@ Sie besteht aus xref:glossary::terms-definitions.adoc#glossar-anwendungskomponen
 
 Eine Anwendung unterstützt Geschäftsprozesse.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary::terms-definitions.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie Services von anderen Anwendungen nutzen.
+Dabei kann sie <<glossar-service>>s von anderen Anwendungen nutzen.
+
 
 Eine Anwendung ist Bestandteil der xref:glossary::terms-definitions.adoc#glossar-a-architektur[A-Architektur].
 Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen].
@@ -233,7 +234,7 @@ Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von 
 === Einer-für-Alle-System (EfA)
 Begriff aus der deutschen Bundesverwaltung.
 Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
-Im Rahmen der IsyFact werden Teile der IsyFact-Erweiterungen (IFE) als Einer-für-Alle-System angeboten.
+Im Rahmen der <<glossar-isyfact>> werden Teile der <<glossar-ife>> als Einer-für-Alle-System angeboten.
 
 [[f]]
 == F
@@ -275,7 +276,7 @@ Sie setzt eine spezifische xref:glossary::terms-definitions.adoc#glossar-geschae
 // end::ga-definition[]
 |Eine Geschäftsanwendung ist ein <<glossar-anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<glossar-anwendungsdomaene>> spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die Services von <<glossar-querschnittsanwendung,Querschnittsanwendungen>> oder andere <<glossar-anwendungssystem,Anwendungssysteme>> nutzen.
+Dabei kann sie die <<glossar-service>>s von <<glossar-querschnittsanwendung,Querschnittsanwendungen>> oder andere <<glossar-anwendungssystem,Anwendungssysteme>> nutzen.
 |===
 
 [[glossar-geschaeftslogik]]
@@ -292,16 +293,16 @@ Eine Instanz ist Bestandteil der <<glossar-ti-architektur>> einer <<glossar-anwe
 
 [[glossar-isyfact]]
 === IsyFact (IF)
-Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen <<glossar-anwendungslandschaft,Anwendungslandschaften>>, die vom Bundesverwaltungsamt entwickelt wird.
+Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen <<glossar-anwendungslandschaft,Anwendungslandschaften>>, die vom <<glossar-bva>> entwickelt wird.
 Sie bündelt bestehendes technisches Know-how um <<glossar-anwendung,Anwendungen>> effizienter entwickeln und betreiben zu können.
 
 Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu einem spezifischen <<glossar-anwendungskontext>> gehören.
-Die IsyFact besteht aus den IsyFact-Standards und den IsyFact-Erweiterungen.
+Die IsyFact besteht aus den <<glossar-ifs>> und den <<glossar-ife>>.
 
 [[glossar-ife]]
 === IsyFact-Erweiterungen (IFE)
-Umfasst alle Bestandteile der IsyFact, die *nicht* für jede <<glossar-anwendung>> verpflichtend sind.
-IsyFact-Erweiterungen können auch von <<glossar-nutzer,Nutzern>> der IsyFact eingebracht werden.
+Umfasst alle Bestandteile der <<glossar-isyfact>>, die *nicht* für jede <<glossar-anwendung>> verpflichtend sind.
+<<glossar-ife>> können auch von <<glossar-nutzer,Nutzern>> der IsyFact eingebracht werden.
 
 [[glossar-ifs]]
 === IsyFact-Standards (IFS)
@@ -353,7 +354,7 @@ Java Virtual Machine
 
 [[glossar-konform]]
 === Konforme Änderung
-Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch vollkonform und nicht-konform), wobei Abwärtskompatibilität gewährleistet ist.
+Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<glossar-vollkonform>> und <<glossar-nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist.
 Das bedeutet, dass <<glossar-nutzer>> der entsprechenden <<glossar-bibliothek,Bibliotheken>> keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
 
 Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen.
@@ -379,7 +380,7 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 
 [[glossar-nicht-konform]]
 === Nicht konforme Änderung
-Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch vollkonform und konform), wobei *keine* Abwärtskompatibilität gewährleistet ist.
+Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<glossar-vollkonform>> und <<glossar-konform>>), wobei *keine* Abwärtskompatibilität gewährleistet ist.
 Das bedeutet, dass <<glossar-nutzer>> der entsprechenden <<glossar-bibliothek,Bibliotheken>> in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
 
 Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionen.
@@ -402,7 +403,7 @@ Das Dokument komplementiert das <<glossar-konzept>>, das sich an fachlich Intere
 [[glossar-open-source-release]]
 === Open Source Release
 Bezeichnet Releases aller <<glossar-baustein,Bausteine>> der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen <<glossar-nutzer>> anbietet.
-Das Open Source Release beinhaltet die IsyFact-Standards (IFS) sowie Teile der IsyFact-Erweiterungen (IFE).
+Das Open Source Release beinhaltet die <<glossar-ifs>> sowie Teile der <<glossar-ife>>.
 
 [[p]]
 == P
@@ -411,7 +412,7 @@ Das Open Source Release beinhaltet die IsyFact-Standards (IFS) sowie Teile der I
 === Persistenz
 Die Persistenzschicht ermöglicht es, Daten der <<glossar-anwendung>> permanent zu speichern.
 Die Datenzugriffslogik wird in strukturierten Komponenten realisiert.
-Die IsyFact stellt ein fertiges Persistenz-Framework zur Verfügung.
+Die <<glossar-isyfact>> stellt ein fertiges Persistenz-Framework zur Verfügung.
 
 [[glossar-plattform]]
 === Plattform
@@ -447,7 +448,7 @@ Eine Querschnittsanwendung ist eine xref:glossary::terms-definitions.adoc#glossa
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
 Querschnittsanwendungen sind somit in verschiedenen xref:glossary::terms-definitions.adoc#glossar-anwendungsdomaene[Anwendungsdomänen] oder über mehrere xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
 
-Querschnittsanwendungen dürfen nur Services von anderen Querschnittsanwendungen nutzen.
+Querschnittsanwendungen dürfen nur <<glossar-service>>s von anderen Querschnittsanwendungen nutzen.
 // end::querschnittsanwendung-definition[]
 
 Die IsyFact stellt Querschnittsanwendungen in Form von <<glossar-baustein,Bausteinen>> bereit.
@@ -489,7 +490,7 @@ Veröffentlichter Versionsstand einer <<glossar-software-factory>>.
 == S
 
 [[glossar-service-fachlich]]
-=== Service
+=== Service (fachlich)
 Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
 Es gibt Basisservices, Fachservices und Querschnittsservices.
 
@@ -500,7 +501,7 @@ Zugriffe von außerhalb der <<glossar-anwendungslandschaft>> laufen zusätzlich 
 
 [[glossar-service-gateway]]
 === Service-Gateway
-Stellt die Verbindung zwischen einem externen und einem internen Service durch eine Schnittstelle zur Verfügung.
+Stellt die Verbindung zwischen einem externen und einem internen <<glossar-service>> durch eine Schnittstelle zur Verfügung.
 
 [[glossar-sla]]
 === SLA
@@ -548,7 +549,7 @@ Sie beschreibt den Aufbau der Betriebsumgebung für die <<glossar-it-system,IT-S
 
 [[glossar-vollkonform]]
 === Vollkonforme Änderung
-Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer <<glossar-bibliothek>> nicht verändert (siehe auch konform und nicht-konform).
+Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer <<glossar-bibliothek>> nicht verändert (siehe auch <<glossar-konform>> und <<glossar-nicht-konform>>).
 
 Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
 
