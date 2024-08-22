@@ -1,0 +1,107 @@
+= Erstellung von Antora-Komponenten
+
+include::documentation-guide::partial$licence.adoc[]
+
+Jeder Inhalt der Online-Dokumentation ist Teil genau einer Antora-Komponente.
+Dieser Guide beschreibt, was zur Erstellung einer Antora-Komponente nötig ist.
+
+
+[[antora-komponente-aufbau]]
+== Aufbau der Antora-Komponente
+
+Jede Antora-Komponente liegt in einem Git-Repository.
+Der Pfad, unter dem sie liegt, heißt https://docs.antora.org/antora/latest/content-source-repositories/#content-source-root[_content source root_], und wird in der Regel durch die Struktur des Projekts, das sie dokumentiert, bestimmt.
+Unterhalb dieses Pfades sollten nur Bestandteile der Antora-Komponente liegen.
+
+IMPORTANT: In der Regel enthält ein Repository genau eine Antora-Komponente.
+Dies liegt daran, dass Software und Dokumentation dann gemeinsam veröffentlicht werden können.
+Einen Sonderfall stellen xref:content-versioning.adoc#komponente-ohne-version[Komponenten ohne Version] dar.
+Diese können zur Vereinfachung in einem gemeinsamen Repository liegen.
+
+Eine https://docs.antora.org/antora/latest/standard-directories/#minimum-requirements[minimale Antora-Komponente] enthält eine Konfigurationsdatei (`antora.yml`), ein Modul, eine Navigationsdatei (`nav.adoc`) und eine Seite, die (zumindest temporär) als "Startseite" für die neue Antora-Komponente dient.
+
+[[antora-komponente-minimal]]
+.Minimaler Aufbau einer Antora-Komponente
+----
+📒 content-source-root <.>
+  📄 antora.yml <.>
+  📂 modules <.>
+    📂 ROOT <.>
+      📄 nav.adoc <.>
+      📂 pages
+        📄 index.adoc <.>
+----
+<.> Verzeichnis der Antora-Komponente
+<.> Konfigurationsdatei der Antora-Komponente
+<.> Verzeichnis für Module
+<.> Verzeichnis des ROOT-Moduls
+<.> "Startseite" des Moduls
+
+Das https://docs.antora.org/antora/latest/root-module-directory/#root-module[ROOT-Modul] ist eine Konvention von Antora und sorgt dafür, dass der Modulname nicht Bestandteil der URL der einzelnen Seiten wird.
+
+
+[[antora-komponente-konfiguration-aufbau]]
+== Aufbau der Konfigurationsdatei
+
+Eine minimale https://docs.antora.org/antora/latest/component-version-descriptor/[Konfigurationsdatei] enthält den technischen Namen (`name`), den Titel (`title`) sowie die initiale Version (`version` und `prerelease`) der Antora-Komponente. Außerdem definiert sie, wie die Navigation der Antora-Komponente (`nav`) aussieht.
+
+[[antora-komponente-konfiguration-minimal]]
+.Minimale Konfigurationsdatei
+[source,yaml]
+----
+name: new-component
+title: Neue Komponente
+version: 0.1 | ~
+prerelease: false | (DEV)
+nav:
+  - modules/ROOT/nav.adoc
+----
+
+Der Name der Antora-Komponente tritt als Teil der URL jeder Seite in Erscheinung.
+Der Titel erscheint an verschiedenen Stellen der Online-Dokumentation und repräsentiert die gesamte Antora-Komponente.
+Das Setzen der Version behandelt der Guide zur xref:content-versioning.adoc[].
+
+Die Navigation enthält zu Beginn die Navigationsdatei des ROOT-Moduls.
+Perspektivisch referenziert sie die Navigationsdateien aller Module.
+Das folgende Beispiel zeigt die Konfiguration zur Navigation der IsyFact-Standards.
+
+[[antora-komponente-isyfact-navigation]]
+.Navigation der IsyFact
+[source,yaml]
+----
+nav:
+- modules/einstieg/nav.adoc
+- modules/referenzarchitektur/nav.adoc
+- modules/bausteine/nav.adoc
+- modules/plattform/nav.adoc
+- modules/methodik/nav.adoc
+- modules/werkzeuge/nav.adoc
+- modules/release/nav.adoc
+----
+
+[[antora-komponente-navigation-aufbau]]
+== Aufbau der Navigationsdatei
+
+Eine minimale https://docs.antora.org/antora/latest/navigation/files-and-lists/[Navigationsdatei] enthält als einzigen Eintrag die "Startseite" des ROOT-Moduls.
+
+[[antora-modul-navigation-minimal]]
+.Minimale Navigationsdatei
+[source,asciidoc]
+----
+* xref:index.adoc[]
+----
+
+Die Navigationsdatei kann im späteren Verlauf nicht nur eine Liste von Seiten enthalten, sondern auch Untermenüs definieren.
+Das folgende Beispiel zeigt die Navigationsdatei dieses Leitfadens.
+
+[[leitfaden-navigation-aufbau]]
+.Navigationsdatei des Leitfadens
+[source,asciidoc]
+----
+include::../nav.adoc[]
+----
+
+== Ausblick: Inhalte hinzufügen
+
+Nach der Erstellung der Antora-Komponente kann diese mit weiteren Inhalten versehen werden.
+Einen Startpunkt hierzu bietet die Antora-Dokumentation zur https://docs.antora.org/antora/latest/standard-directories[Struktur einer Komponente].

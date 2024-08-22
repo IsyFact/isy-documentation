@@ -1,5 +1,6 @@
 * xref:index.adoc[Online-Dokumentation mit AsciiDoc und Antora]
-** xref:guides/erstellung-antora.adoc[]
+** xref:create-antora-component.adoc[]
+** xref:seitenvorlage.adoc[]
 ** xref:guides/bearbeitung-antora.adoc[]
 ** xref:guides/content-changes.adoc[]
 ** xref:glossary.adoc[]
@@ -7,5 +8,4 @@
 ** xref:content-sources.adoc[]
 ** xref:guides/generierung-antora.adoc[]
 ** xref:namenskonventionen.adoc[]
-* xref:seitenvorlage.adoc[]
 * xref:kopiervorlage.adoc[]
