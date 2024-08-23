@@ -10,15 +10,15 @@ Dieser Guide beschreibt, was zur Erstellung einer Antora-Komponente nötig ist.
 == Aufbau der Antora-Komponente
 
 Jede Antora-Komponente liegt in einem Git-Repository.
-Der Pfad, unter dem sie liegt, heißt https://docs.antora.org/antora/latest/content-source-repositories/#content-source-root[_content source root_], und wird in der Regel durch die Struktur des Projekts, das sie dokumentiert, bestimmt.
+Der Pfad, unter dem die Komponente liegt, heißt https://docs.antora.org/antora/latest/content-source-repositories/#content-source-root[_content source root_], und wird in der Regel durch die Struktur des Projekts, das sie dokumentiert, bestimmt.
 Unterhalb dieses Pfades sollten nur Bestandteile der Antora-Komponente liegen.
 
 IMPORTANT: In der Regel enthält ein Repository genau eine Antora-Komponente.
-Dies liegt daran, dass Software und Dokumentation dann gemeinsam veröffentlicht werden können.
-Einen Sonderfall stellen xref:content-versioning.adoc#komponente-ohne-version[Komponenten ohne Version] dar.
+Dies liegt daran, dass mehrere, versionierte Antora-Komponenten in einem Repository nur schwer gleichzeitig zu veröffentlichen sind.
+Einen Sonderfall stellen Antora-Komponenten xref:content-versioning.adoc#komponente-ohne-version[ohne Version] dar.
 Diese können zur Vereinfachung in einem gemeinsamen Repository liegen.
 
-Eine https://docs.antora.org/antora/latest/standard-directories/#minimum-requirements[minimale Antora-Komponente] enthält eine Konfigurationsdatei (`antora.yml`), ein Modul, eine Navigationsdatei (`nav.adoc`) und eine Seite, die (zumindest temporär) als "Startseite" für die neue Antora-Komponente dient.
+Eine https://docs.antora.org/antora/latest/standard-directories/#minimum-requirements[minimale Antora-Komponente] enthält eine Konfigurationsdatei (`antora.yml`), ein Modul (`ROOT`), eine Navigationsdatei (`nav.adoc`) und eine Seite (`index.adoc`), die anfangs als Startseite für die neue Antora-Komponente dient.
 
 [[antora-komponente-minimal]]
 .Minimaler Aufbau einer Antora-Komponente
@@ -31,8 +31,8 @@ Eine https://docs.antora.org/antora/latest/standard-directories/#minimum-require
       📂 pages
         📄 index.adoc <.>
 ----
-<.> Verzeichnis der Antora-Komponente
-<.> Konfigurationsdatei der Antora-Komponente
+<.> Verzeichnis der Komponente
+<.> Konfigurationsdatei der Komponente
 <.> Verzeichnis für Module
 <.> Verzeichnis des ROOT-Moduls
 <.> "Startseite" des Moduls
@@ -43,7 +43,7 @@ Das https://docs.antora.org/antora/latest/root-module-directory/#root-module[ROO
 [[antora-komponente-konfiguration-aufbau]]
 == Aufbau der Konfigurationsdatei
 
-Eine minimale https://docs.antora.org/antora/latest/component-version-descriptor/[Konfigurationsdatei] enthält den technischen Namen (`name`), den Titel (`title`) sowie die initiale Version (`version` und `prerelease`) der Antora-Komponente. Außerdem definiert sie, wie die Navigation der Antora-Komponente (`nav`) aussieht.
+Eine minimale https://docs.antora.org/antora/latest/component-version-descriptor/[Konfigurationsdatei] enthält den technischen Namen (`name`), den Titel (`title`) sowie die initiale Version (`version` und `prerelease`) der Antora-Komponente. Außerdem definiert sie die Startseite (`start_page`) der Antora-Komponente und wie ihre Navigation (`nav`) aufgebaut ist.
 
 [[antora-komponente-konfiguration-minimal]]
 .Minimale Konfigurationsdatei
@@ -53,12 +53,13 @@ name: new-component
 title: Neue Komponente
 version: 0.1 | ~
 prerelease: false | (DEV)
+start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
 ----
 
 Der Name der Antora-Komponente tritt als Teil der URL jeder Seite in Erscheinung.
-Der Titel erscheint an verschiedenen Stellen der Online-Dokumentation und repräsentiert die gesamte Antora-Komponente.
+Der Titel erscheint an verschiedenen Stellen der Online-Dokumentation und ist meist mit einem Verweis auf die Startseite der Antora-Komponente versehen.
 Das Setzen der Version behandelt der Guide zur xref:content-versioning.adoc[].
 
 Die Navigation enthält zu Beginn die Navigationsdatei des ROOT-Moduls.
@@ -70,19 +71,19 @@ Das folgende Beispiel zeigt die Konfiguration zur Navigation der IsyFact-Standar
 [source,yaml]
 ----
 nav:
-- modules/einstieg/nav.adoc
-- modules/referenzarchitektur/nav.adoc
-- modules/bausteine/nav.adoc
-- modules/plattform/nav.adoc
-- modules/methodik/nav.adoc
-- modules/werkzeuge/nav.adoc
-- modules/release/nav.adoc
+  - modules/einstieg/nav.adoc
+  - modules/referenzarchitektur/nav.adoc
+  - modules/bausteine/nav.adoc
+  - modules/plattform/nav.adoc
+  - modules/methodik/nav.adoc
+  - modules/werkzeuge/nav.adoc
+  - modules/release/nav.adoc
 ----
 
 [[antora-komponente-navigation-aufbau]]
 == Aufbau der Navigationsdatei
 
-Eine minimale https://docs.antora.org/antora/latest/navigation/files-and-lists/[Navigationsdatei] enthält als einzigen Eintrag die "Startseite" des ROOT-Moduls.
+Eine minimale https://docs.antora.org/antora/latest/navigation/files-and-lists/[Navigationsdatei] enthält als einzigen Eintrag die Startseite des ROOT-Moduls.
 
 [[antora-modul-navigation-minimal]]
 .Minimale Navigationsdatei
