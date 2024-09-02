@@ -1,5 +1,6 @@
 # 2024
 
+- [2024-08-22] [documentation-guide] `IFS-4017`: add guide for creating Antora components
 - [2024-06-19] [documentation-guide] `IFS-3823`: add guide for working with the glossary
 - [2024-06-19] [glossary] `IFS-3823`: change glossary structure & introduce status model:
   - change glossary entries from definition lists to headlines with short paragraphs

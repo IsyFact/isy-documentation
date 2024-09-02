@@ -26,11 +26,7 @@ Die Online-Dokumentation wird mit https://antora.org[Antora] generiert.
 Antora erzeugt aus AsciiDoc-Quellen, die über mehrere Git-Repositories verteilt liegen können, eine gemeinsame, statische HTML-Seite, auch Projektseite genannt.
 Eine besondere Stärke von Antora ist die Git-Integration, die es ermöglicht, Branches und Tags zu verwenden, um verschiedene Versionen derselben Dokumentation zu erzeugen.
 
-Einzelheiten zur Dokumentation mit Antora finden sich auf den Unterseiten:
-
-* xref:guides/erstellung-antora.adoc[],
-* xref:guides/bearbeitung-antora.adoc[],
-* xref:guides/generierung-antora.adoc[].
+Einzelheiten zur Dokumentation mit Antora finden sich auf den Unterseiten des Leitfadens.
 
 [[grundlagen-werkzeuge]]
 === Werkzeuge

@@ -1,6 +1,9 @@
-= Seitenvorlage
+= Erstellung von Seiten
 
 include::documentation-guide::partial$licence.adoc[]
+
+Die Online-Dokumentation besteht im Wesentlichen aus Seiten.
+Dieser Guide beschreibt, was bei der Erstellung einer Seite wichtig ist.
 
 [TIP]
 ====
@@ -8,7 +11,7 @@ Zum schnellen Anlegen einer neuen Seite steht eine xref:kopiervorlage.adoc[Kopie
 ====
 
 [[struktur-thema]]
-== Struktur eines Themas
+== Strukturierung von Themen
 
 *Eine Seite behandelt ein bestimmtes, in sich selbst abgeschlossenes Thema.*
 Führt die Beschreibung des Themas zu einer zu langen Seite, sollten einzelne Teilaspekte auf in sich selbst abgeschlossene Seiten ausgelagert werden.

@@ -74,7 +74,7 @@ Das ist ein Text zum Seitentitel.
 [[querverweise]]
 == Querverweise
 
-Antora bietet die Möglichkeit, innerhalb einer Gesamtdokumentation beliebige Querverweise zu setzen, auch über xref:guides/erstellung-antora.adoc#antora-modul[Antora-Modul] - und xref:guides/erstellung-antora.adoc#antora-komponente[Antora-Komponenten] - Grenzen hinweg.
+Antora bietet die Möglichkeit, innerhalb der Online-Dokumentation beliebige Querverweise zu setzen, auch über die Grenzen von Antora-Modulen und Antora-Komponenten hinweg.
 Davon sollte jedoch mit Bedacht Gebrauch gemacht werden, denn sehr starke Verlinkungen der Seiten untereinander bewirken auch eine starke Abhängigkeit.
 Jegliche Umbenennungen oder Löschungen von Sprungzielen, dazu gehören auch Seitendatei-, Modul- und Komponentennamen, machen die Querverweise darauf ungültig.
 Allerdings weist Antora bei der Generierung der Dokumentation im Log auf nicht auflösbare Querverweise hin.
@@ -131,7 +131,7 @@ Verweise können auch auf andere Sprungziele zeigen als Überschriften, wie Abbi
 [[verweise-gesamtdoku]]
 === Verweise innerhalb der Antora-Dokumentation
 
-In diesem Abschnitt werden Verweise auf Inline-Anchor beschrieben, die nicht innerhalb derselben Seite in derselben Datei liegen, sondern in anderen Seiten oder anderen xref:guides/erstellung-antora.adoc#antora-modul[Antora-Modulen] oder xref:guides/erstellung-antora.adoc#antora-komponente[Antora-Komponenten].
+In diesem Abschnitt werden Verweise auf Inline-Anchor beschrieben, die nicht innerhalb derselben Seite in derselben Datei liegen, sondern in anderen Seiten, Antora-Modulen oder Antora-Komponenten.
 Diese Verweise nutzen die Syntax des Xref-Makros von Antora.
 
 Ein xref-Verweis ist bei Antora immer gleich aufgebaut:
@@ -302,7 +302,7 @@ Somit können mit Tags versehene Teile einer Seite in anderen Seiten zusammengez
 [IMPORTANT]
 ====
 Das zum Teil noch verwendete Vorgehen der Einbettung von Inhalten anhand von Tags (z.B. `tag::inhalt[]`) ist nicht mehr erlaubt.
-Seiten besitzen einen xref:seitenvorlage.adoc#struktur-thema[engen, thematischen Fokus] und sind direkt über die xref:guides/erstellung-antora.adoc#linksnavigation-antora[Linksnavigation] aufrufbar.
+Seiten besitzen einen xref:seitenvorlage.adoc#struktur-thema[engen, thematischen Fokus] und sind direkt über die Navigation aufrufbar.
 Ein Verweis drückt den Zusammenhang zweier Seiten besser aus als das komplette Einfügen einer Seite in eine andere.
 ====
 
@@ -334,9 +334,9 @@ In der IsyFact-Dokumentation werden Tags genutzt, um Bestandteile zu bündeln od
 [[bilder]]
 == Abbildungen
 
-IMPORTANT: Abbildungen zu einer Seite werden stets im Unterordner `/images` unterhalb des Antora-Moduls abgelegt, in dem sich die Seite befindet, siehe auch xref:guides/erstellung-antora.adoc#struktur-dokuseite[Struktur Dokumentation].
+IMPORTANT: Abbildungen zu einer Seite werden stets im Unterordner `images` unterhalb des Antora-Moduls abgelegt, in dem sich die Seite befindet (s. Antora-Dokumentation zur https://docs.antora.org/antora/latest/standard-directories/#hierarchy-and-reserved-names[Struktur einer Komponente]).
 
-IMPORTANT: Abbildungen sollten mit diagrams.net als <Name Abbildung>.dn.svg erstellt werden, siehe auch xref:isyfact-standards-doku:methodik:diagrammerstellung/diagramsnet.adoc#arbeiten-mit-diagrams.net[Arbeiten mit diagrams.net].
+IMPORTANT: Abbildungen sollten mit xref:isyfact-standards-doku:methodik:diagrammerstellung/diagramsnet.adoc#arbeiten-mit-diagrams.net[diagrams.net] als `<Name Abbildung>.dn.svg` erstellt werden.
 
 Diagramme, die mit dem xref:isyfact-standards-doku:methodik:diagrammerstellung/enterprise-architect.adoc[Enterprise Architect] erstellt werden, oder Screenshots, dürfen auch weiterhin im PNG-Format eingebunden werden.
 
