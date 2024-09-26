@@ -28,7 +28,7 @@ Der Begriff steht im Kontext einer <<glossar-software-factory>> im Unterschied z
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::anwendung-definition[]
@@ -88,7 +88,7 @@ image::glossary::glossar-anwendungslandschaft.png[]
 [[glossar-anwendungssystem]]
 === Anwendungssystem
 [.status]
-[.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.release]#xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
 [.superseded]#<<glossar-anwendung,abgelöst>>#
 
 Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
@@ -144,7 +144,7 @@ Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::batch-definition[]
@@ -185,7 +185,7 @@ image::glossary::glossar-bibliothek.dn.svg[]
 [[glossar-blaupause]]
 === Blaupause
 [.status]
-[.release]#xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.release]#xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
 [.superseded]#<<glossar-referenzarchitektur,abgelöst>>#
 
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer <<glossar-anwendungslandschaft>> für den Betrieb von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>> von den drei <<glossar-architektursicht,Architektursichten>> aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
@@ -267,7 +267,7 @@ File Transfer Protocol
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::ga-definition[]
@@ -317,7 +317,7 @@ Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwic
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::it-system-definition[]
@@ -440,7 +440,7 @@ Das Portal übernimmt die zentrale Authentifizierung und Autorisierung aller <<g
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::querschnittsanwendung-definition[]
