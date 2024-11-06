@@ -106,7 +106,7 @@ NOTE: iSAQB = International Software Architecture Qualification Board
 [[glossar-auslieferung]]
 === Auslieferung (Deployment)
 
-Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Source-Releases wird Software (<<glossar-bibliothek,Bibliotheken>> sowie <<glossar-anwendung,Anwendungen>>) und die dazugehörige Dokumentation ausgeliefert.
+Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Source-Releases wird Software (Bibliotheken sowie <<glossar-anwendung,Anwendungen>>) und die dazugehörige Dokumentation ausgeliefert.
 Die entwickelte Software wird auf einer Betriebsumgebung (<<glossar-plattform>>) installiert.
 Zu jeder Auslieferung gibt es ein <<glossar-change-log>>.
 
@@ -153,27 +153,11 @@ Die Batches können dabei den xref:isyfact-standards-doku:referenzarchitektur:so
 
 Wiederverwendbare Umsetzung einer spezifischen Problemlösung.
 Bausteine stellen strukturierte Lösungen von Geschäftsprozessen dar.
-Umfasst mindestens eine <<glossar-bibliothek>> oder eine <<glossar-anwendung>> inklusive der dazugehörigen Dokumentation.
+Umfasst mindestens eine Bibliothek oder eine <<glossar-anwendung>> inklusive der dazugehörigen Dokumentation.
 
 Beispiel: Logging, Sicherheit, Überwachung
 
 NOTE: Da zwischen einem logischen Baustein und einer <<glossar-anwendung>> eine N:M Beziehung besteht, kann es vorkommen, dass ein Baustein ein für sich alleine lauffähiges <<glossar-it-system>> darstellt.
-
-[[glossar-gui]]
-=== Benutzeroberfläche (GUI)
-
-Das Graphical User Interface (GUI) stellt die Verbindung zwischen <<glossar-anwender>> und <<glossar-anwendung>> her.
-Die IsyFact stellt ein fertiges Framework zur Verfügung und strukturiert die Erstellung der Dialoglogik der Geschäftsprozesse.
-
-[[glossar-bibliothek]]
-=== Bibliothek
-
-Kleinste auslieferbare Einheit von thematisch zusammengehörenden Funktionen.
-Eine oder mehrere Bibliotheken sind Bestandteile von <<glossar-it-system,IT-Systemen>> oder anderer Bibliotheken.
-Bibliotheken unterstützen nur und sind nicht (für sich) alleine ausführbar.
-
-.Bibliothek
-image::glossary::glossar-bibliothek.dn.svg[]
 
 [[glossar-blaupause]]
 === Blaupause
@@ -196,7 +180,7 @@ Bundesverwaltungsamt
 
 Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit Releases) zuordnet.
 Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen integrieren.
-Pro <<glossar-bibliothek>> und <<glossar-anwendung>> existiert ein Change Log.
+Pro Bibliothek und <<glossar-anwendung>> existiert ein Change Log.
 
 Es enthält:
 
@@ -244,10 +228,12 @@ Im Rahmen der <<glossar-isyfact>> werden Teile der <<glossar-ife>> als Einer-fü
 [.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4.x]#
 
 // tag::frontend-definition[]
-Ein Frontend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-gui[grafische Benutzerschnittstellen] bereitstellt.
+
+Ein Frontend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich grafische Benutzerschnittstellen bereitstellt.
 Frontends kommunizieren hierzu über interne Schnittstellen mit xref:glossary::terms-definitions.adoc#backend[Backends].
 
 Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich Dialoge und Masken um.
+
 // end::frontend-definition[]
 
 [[glossar-ftp]]
@@ -290,12 +276,6 @@ Die Anwendungslogik von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
 
 [[i]]
 == I
-
-[[glossar-instanz]]
-=== Instanz
-
-Ausgeführte Instanz eines <<glossar-it-system,IT-Systems>> auf einer <<glossar-plattform>>.
-Eine Instanz ist Bestandteil der <<glossar-ti-architektur>> einer <<glossar-anwendung>> und läuft in einer <<glossar-systemlandschaft>>.
 
 [[glossar-isyfact]]
 === IsyFact (IF)
@@ -366,7 +346,7 @@ Java Virtual Machine
 === Konforme Änderung
 
 Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<glossar-vollkonform>> und <<glossar-nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist.
-Das bedeutet, dass <<glossar-nutzer>> der entsprechenden <<glossar-bibliothek,Bibliotheken>> keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
+Das bedeutet, dass <<glossar-nutzer>> der entsprechenden Bibliotheken keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
 
 Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen.
 Eine konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
@@ -395,7 +375,7 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 === Nicht konforme Änderung
 
 Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<glossar-vollkonform>> und <<glossar-konform>>), wobei *keine* Abwärtskompatibilität gewährleistet ist.
-Das bedeutet, dass <<glossar-nutzer>> der entsprechenden <<glossar-bibliothek,Bibliotheken>> in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
+Das bedeutet, dass <<glossar-nutzer>> der entsprechenden Bibliotheken in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
 
 Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionen.
 Eine nicht konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
@@ -424,13 +404,6 @@ Das Open Source Release beinhaltet die <<glossar-ifs>> sowie Teile der <<glossar
 
 [[p]]
 == P
-
-[[glossar-persistenz]]
-=== Persistenz
-
-Die Persistenzschicht ermöglicht es, Daten der <<glossar-anwendung>> permanent zu speichern.
-Die Datenzugriffslogik wird in strukturierten Komponenten realisiert.
-Die <<glossar-isyfact>> stellt ein fertiges Persistenz-Framework zur Verfügung.
 
 [[glossar-plattform]]
 === Plattform
@@ -531,11 +504,6 @@ Stellt die Verbindung zwischen einem externen und einem internen <<glossar-servi
 
 Service Level Agreement
 
-[[glossar-spa]]
-=== Single Page Application (SPA)
-
-→ https://de.wikipedia.org/wiki/Single-Page-Webanwendung[icon:wikipedia-w[] Single-Page-Webanwendung]
-
 [[glossar-software-factory]]
 === Software Factory
 
@@ -580,7 +548,7 @@ Sie beschreibt den Aufbau der Betriebsumgebung für die <<glossar-it-system,IT-S
 [[glossar-vollkonform]]
 === Vollkonforme Änderung
 
-Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer <<glossar-bibliothek>> nicht verändert (siehe auch <<glossar-konform>> und <<glossar-nicht-konform>>).
+Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer Bibliothek nicht verändert (siehe auch <<glossar-konform>> und <<glossar-nicht-konform>>).
 
 Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
 
