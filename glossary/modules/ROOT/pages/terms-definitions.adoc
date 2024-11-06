@@ -103,13 +103,6 @@ image::glossary::glossar-anwendungstypen.dn.svg[]
 
 NOTE: iSAQB = International Software Architecture Qualification Board
 
-[[glossar-auslieferung]]
-=== Auslieferung (Deployment)
-
-Im Kontext der Auslieferung von sowohl Open-Source-Releases als auch Closed-Source-Releases wird Software (Bibliotheken sowie <<glossar-anwendung,Anwendungen>>) und die dazugehörige Dokumentation ausgeliefert.
-Die entwickelte Software wird auf einer Betriebsumgebung (<<glossar-plattform>>) installiert.
-Zu jeder Auslieferung gibt es ein <<glossar-change-log>>.
-
 [[b]]
 == B
 
@@ -171,28 +164,6 @@ Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzept
 === BVA
 
 Bundesverwaltungsamt
-
-[[c]]
-== C
-
-[[glossar-change-log]]
-=== Change Log
-
-Ein Change Log ist eine Liste, die umgesetzte Änderungen Versionen (und somit Releases) zuordnet.
-Die Einträge werden durch Entwickler geschrieben, wenn sie Änderungen integrieren.
-Pro Bibliothek und <<glossar-anwendung>> existiert ein Change Log.
-
-Es enthält:
-
-* Inhalt und Version der Software in Form einer Stückliste,
-* bekannte Fehler und Probleme der Software,
-* die mit der Version geschlossenen Fehler und umgesetzten Änderungen in einer Aufstellung.
-
-[[glossar-closed-source-release]]
-=== Closed Source Release
-
-Bezeichnet Releases aller <<glossar-baustein,Bausteine>> der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt anderen Behörden im Rahmen der Kieler Beschlüsse als Einer-für-Alle-System anbietet.
-Das Closed Source Release der IsyFact komplettiert das Open-Source-Release.
 
 [[d]]
 == D
@@ -393,15 +364,6 @@ Nutzungsvorgaben beschreiben die Verwendung eines <<glossar-baustein,Bausteins>>
 Sie richten sich an Entwickler.
 Das Dokument komplementiert das <<glossar-konzept>>, das sich an fachlich Interessierte und Architekten richtet.
 
-[[o]]
-== O
-
-[[glossar-open-source-release]]
-=== Open Source Release
-
-Bezeichnet Releases aller <<glossar-baustein,Bausteine>> der IsyFact sowie darauf basierender Endprodukte, die das Bundesverwaltungsamt unter der Apache 2.0 Lizenz auch nicht-behördlichen <<glossar-nutzer>> anbietet.
-Das Open Source Release beinhaltet die <<glossar-ifs>> sowie Teile der <<glossar-ife>>.
-
 [[p]]
 == P
 
@@ -479,11 +441,6 @@ Aufgrund dieser Eigenschaft gibt es pro <<glossar-anwendungslandschaft>> maximal
 [.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#
 
 Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer <<glossar-anwendungslandschaft>> für den Betrieb von <<glossar-anwendung,Anwendungen>> von drei <<glossar-architektursicht,Architektursichten>> aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
-
-[[glossar-release]]
-=== Release
-
-Veröffentlichter Versionsstand einer <<glossar-software-factory>>.
 
 [[s]]
 == S
