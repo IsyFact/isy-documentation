@@ -160,11 +160,6 @@ NOTE: Da zwischen einem logischen Baustein und einer <<glossar-anwendung>> eine 
 
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer <<glossar-anwendungslandschaft>> für den Betrieb von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>> von den drei <<glossar-architektursicht,Architektursichten>> aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
-[[glossar-bva]]
-=== BVA
-
-Bundesverwaltungsamt
-
 [[d]]
 == D
 
@@ -207,11 +202,6 @@ Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossa
 
 // end::frontend-definition[]
 
-[[glossar-ftp]]
-=== FTP
-
-File Transfer Protocol
-
 [[g]]
 == G
 
@@ -251,7 +241,7 @@ Die Anwendungslogik von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
 [[glossar-isyfact]]
 === IsyFact (IF)
 
-Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen <<glossar-anwendungslandschaft,Anwendungslandschaften>>, die vom <<glossar-bva>> entwickelt wird.
+Allgemeine Software-Fabrik (englisch: software factory) für den Bau von komplexen <<glossar-anwendungslandschaft,Anwendungslandschaften>>, die vom Bundesverwaltungsamt (BVA) entwickelt wird.
 Sie bündelt bestehendes technisches Know-how um <<glossar-anwendung,Anwendungen>> effizienter entwickeln und betreiben zu können.
 
 Die IsyFact enthält Funktionalität „allgemeiner Natur“, die *nicht* zu einem spezifischen <<glossar-anwendungskontext>> gehören.
@@ -302,14 +292,6 @@ Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um
 // end::it-systemtyp-definition[]
 Die software-technische <<glossar-referenzarchitektur>> der IsyFact kennt drei IT-Systemtypen: das <<backend>>, das <<frontend>> und den <<glossar-batch>>.
 
-[[j]]
-== J
-
-[[glossar-jvm]]
-=== JVM
-
-Java Virtual Machine
-
 [[k]]
 == K
 
@@ -354,11 +336,6 @@ Das Dokument komplementiert das <<glossar-konzept>>, das sich an fachlich Intere
 
 Die Plattform definiert allgemeine Vorgaben und Rahmenbedingungen für den Betrieb von <<glossar-anwendungslandschaft,Anwendungslandschaften>>, die sich aus der Verwendung der IsyFact ergeben.
 Es werden Rechner-, Unterstützungsprogramm- und Netzwerkstrukturen beschrieben.
-
-[[glossar-plis]]
-=== PLIS
-
-Plattform Informationssysteme
 
 [[glossar-portal]]
 === Portal
@@ -438,11 +415,6 @@ Es gibt Basisservices, Fachservices und Querschnittsservices.
 
 Stellt die Verbindung zwischen einem externen und einem internen <<glossar-service-fachlich,Service>> durch eine Schnittstelle zur Verfügung.
 
-[[glossar-sla]]
-=== SLA
-
-Service Level Agreement
-
 [[glossar-software-factory]]
 === Software Factory
 
@@ -453,11 +425,6 @@ Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen F
 
 .Software Factory
 image::glossary::glossar-software-factory.png[]
-
-[[glossar-svn]]
-=== SVN
-
-Subversion
 
 [[glossar-systemlandschaft]]
 === Systemlandschaft
