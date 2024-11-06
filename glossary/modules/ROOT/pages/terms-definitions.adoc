@@ -282,15 +282,6 @@ Er besitzt eine eigene Systemarchitektur und einen eigenen Technologie-Stack, um
 // end::it-systemtyp-definition[]
 Die software-technische <<glossar-referenzarchitektur>> der IsyFact kennt drei IT-Systemtypen: das <<backend>>, das <<frontend>> und den <<glossar-batch>>.
 
-[[k]]
-== K
-
-[[glossar-konzept]]
-=== Konzept
-
-Ein Konzept ist die fachliche Beschreibung eines <<glossar-baustein,Bausteins>>.
-Es enthält Anforderungen, Rahmenbedingungen, Architekturentscheidungen sowie den Lösungsansatz.
-
 [[m]]
 == M
 
@@ -310,13 +301,6 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 
 Jemand, der eine <<glossar-software-factory>> nutzt, um <<glossar-anwendung,Anwendungen>> zu bauen und zu betreiben.
 Der Begriff steht im Kontext einer <<glossar-software-factory>> im Unterschied zum <<glossar-anwender>>.
-
-[[glossar-nutzungsvorgaben]]
-=== Nutzungsvorgaben
-
-Nutzungsvorgaben beschreiben die Verwendung eines <<glossar-baustein,Bausteins>> aus technischer Sicht.
-Sie richten sich an Entwickler.
-Das Dokument komplementiert das <<glossar-konzept>>, das sich an fachlich Interessierte und Architekten richtet.
 
 [[p]]
 == P
