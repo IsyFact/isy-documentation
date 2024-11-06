@@ -175,16 +175,6 @@ image::glossary::glossar-anwendungsdomaene.dn.svg[]
 
 Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
 
-[[e]]
-== E
-
-[[glossar-efa]]
-=== Einer-für-Alle-System (EfA)
-
-Begriff aus der deutschen Bundesverwaltung.
-Bezeichnet ein System, welches im Auftrag einer Behörde entwickelt wurde und anderen Behörden zur Nutzung und ggf. auch zur Weiterentwicklung angeboten wird.
-Im Rahmen der <<glossar-isyfact>> werden Teile der <<glossar-ife>> als Einer-für-Alle-System angeboten.
-
 [[f]]
 == F
 
