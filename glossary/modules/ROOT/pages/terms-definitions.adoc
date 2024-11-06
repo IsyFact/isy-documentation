@@ -313,15 +313,6 @@ Java Virtual Machine
 [[k]]
 == K
 
-[[glossar-konform]]
-=== Konforme Änderung
-
-Eine konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<glossar-vollkonform>> und <<glossar-nicht-konform>>), wobei Abwärtskompatibilität gewährleistet ist.
-Das bedeutet, dass <<glossar-nutzer>> der entsprechenden Bibliotheken keine Anpassungen vornehmen müssen, um die geänderte Komponente weiterhin nutzen zu können.
-
-Beispiel für eine konforme Änderung ist das Ändern eines Default-Werts oder die Bereitstellung neuer Funktionalität, ohne bestehende Funktionalität anzupassen.
-Eine konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
-
 [[glossar-konzept]]
 === Konzept
 
@@ -341,15 +332,6 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 
 [[n]]
 == N
-
-[[glossar-nicht-konform]]
-=== Nicht konforme Änderung
-
-Eine nicht konforme Änderung ist eine Änderung, die das Außenverhalten einer Komponente verändert (siehe auch <<glossar-vollkonform>> und <<glossar-konform>>), wobei *keine* Abwärtskompatibilität gewährleistet ist.
-Das bedeutet, dass <<glossar-nutzer>> der entsprechenden Bibliotheken in der Regel Anpassungen vornehmen müssen, um die Komponente weiter nutzen zu können.
-
-Beispiele für nicht konforme Änderungen sind das Ändern von Schnittstellenformaten oder das Verändern von bereits etablierter Funktionen.
-Eine nicht konforme Änderung muss im entsprechenden Change-Log eingetragen werden.
 
 [[glossar-nutzer]]
 === Nutzer
@@ -498,16 +480,6 @@ Technische <<glossar-architektursicht>> auf die Software-Architektur einer <<glo
 
 Technische Infrastruktursicht auf die Software-Architektur einer <<glossar-anwendung>>.
 Sie beschreibt den Aufbau der Betriebsumgebung für die <<glossar-it-system,IT-Systeme>> einer <<glossar-systemlandschaft>>.
-
-[[v]]
-== V
-
-[[glossar-vollkonform]]
-=== Vollkonforme Änderung
-
-Eine vollkonforme Änderung ist eine Änderung, die das Außenverhalten einer Bibliothek nicht verändert (siehe auch <<glossar-konform>> und <<glossar-nicht-konform>>).
-
-Beispiele für vollkonforme Änderungen sind in der Regel das Bereinigen von Quellcode, das Einführen eines Default-Werts oder die Erhöhung der Robustheit - rein fachlich ändert sich dabei nichts.
 
 [[w]]
 == W
