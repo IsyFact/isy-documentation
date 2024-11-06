@@ -1,5 +1,6 @@
 # 2024
 
+- [2024-11-06] [glossary] `IFS-4209`: removed not needed glossary entries
 - [2024-09-26] [glossary] `IFS-4186`: fix glossary links that broke during the 3.1 release 
 - [2024-08-22] [documentation-guide] `IFS-4017`: add guide for creating Antora components
 - [2024-06-19] [documentation-guide] `IFS-3823`: add guide for working with the glossary
