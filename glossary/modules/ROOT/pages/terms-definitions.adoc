@@ -115,7 +115,7 @@ NOTE: iSAQB = International Software Architecture Qualification Board
 
 Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von <<glossar-service-fachlich,Services>> bereitstellt.
 Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
-Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich xref:isyfact-standards-doku:referenzarchitektur:fachlich.adoc#awl-fachliche-architektur[Anwendungskomponenten] und Nachbarsystemschnittstellen um.
+Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich Anwendungskomponenten und Nachbarsystemschnittstellen um.
 
 // end::backend-definition[]
 
