@@ -37,7 +37,7 @@ Der Begriff steht im Kontext einer <<glossar-software-factory>> im Unterschied z
 // tag::anwendung-definition[]
 
 Eine Anwendung ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
-Sie besteht aus xref:isyfact-standards-doku:referenzarchitektur:fachlich.adoc#awl-fachliche-architektur[Anwendungskomponenten].
+Sie besteht aus Anwendungskomponenten.
 
 Eine Anwendung unterstützt Geschäftsprozesse.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary::terms-definitions.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
@@ -62,10 +62,10 @@ Ein Anwendungskontext kann zu neuen <<glossar-anwendungstyp,Anwendungstypen>> un
 === Anwendungslandschaft
 
 Gröbste Strukturierungsebene für eine Menge von <<glossar-anwendung,Anwendungen>>:
-Eine Anwendungslandschaft enthält <<glossar-domaene,Anwendungsdomänen>>, die wiederum Anwendungen gruppieren.
+Eine Anwendungslandschaft enthält <<glossar-domaene,Domänen>>, die wiederum Anwendungen gruppieren.
 Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungen ist in der Regel eine hohe Interaktion zu erwarten.
 
-Eine mittels der IsyFact umgesetzte Anwendungslandschaft besteht aus <<glossar-domaene,Anwendungsdomänen>>, einer <<glossar-querschnittsdomaene>>, einem <<glossar-portal>> und einem <<glossar-service-gateway>>.
+Eine mittels der IsyFact umgesetzte Anwendungslandschaft besteht aus <<glossar-domaene,Domänen>>, einer <<glossar-querschnittsdomaene>>, einem <<glossar-portal>> und einem <<glossar-service-gateway>>.
 
 .Anwendungslandschaft (IsyFact)
 image::glossary::glossar-anwendungslandschaft.png[]
@@ -77,7 +77,7 @@ image::glossary::glossar-anwendungslandschaft.png[]
 [.superseded]#<<glossar-anwendung,abgelöst>>#
 
 Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
-Es besteht aus xref:isyfact-standards-doku:referenzarchitektur:fachlich.adoc#awl-fachliche-architektur[Anwendungskomponenten].
+Es besteht aus Anwendungskomponenten.
 Anwendungssysteme unterstützen Geschäftsprozesse.
 Stellt ein Anwendungssystem eine Fachlogik dar, so handelt es sich um eine Geschäftsanwendung.
 Ein Anwendungssystem ist Bestandteil der <<glossar-a-architektur>>.
@@ -133,12 +133,12 @@ Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar
 // tag::batch-definition[]
 Ein Batch ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich eine automatische Datenverarbeitung ohne manuelle Interaktion eines xref:glossary::terms-definitions.adoc#glossar-anwender[Anwenders] umsetzt.
 
-Batches können hierfür entweder direkt den xref:isyfact-standards-doku:referenzarchitektur:software-technisch:backend:anwendungskern.adoc[Anwendungskern] aufrufen und nutzen, oder über interne Schnittstellen mit xref:glossary::terms-definitions.adoc#backend[Backends] kommunizieren.
+Batches können hierfür entweder den Quellcode eines bestehenden Backends einbinden und nutzen, oder über interne Schnittstellen mit xref:glossary::terms-definitions.adoc#backend[Backends] kommunizieren.
 // end::batch-definition[]
 
 |Ein Batch ist eine automatische Datenverarbeitung ohne manuelle Interaktion eines <<glossar-anwender,Anwenders>> (z.B. Einhaltung gesetzlicher Löschfristen).
 Der <<glossar-nutzer>> kann die Batchlogik in vorbereitete Strukturen implementieren, die IsyFact stellt einen fertigen Batchrahmen zur Verfügung.
-Die Batches können dabei den xref:isyfact-standards-doku:referenzarchitektur:software-technisch:backend:anwendungskern.adoc[Anwendungskern] aufrufen und nutzen.
+Die Batches können dabei den Quellcode eines bestehenden Backends einbinden und nutzen.
 |===
 
 [[glossar-baustein]]
@@ -167,13 +167,13 @@ Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzept
 === Domäne
 
 Eine Domäne im Kontext der <<glossar-a-architektur>> entspricht der Begrifflichkeit aus Sicht des "Domain Driven Design".
-Eine *Anwendungsdomäne* gruppiert fachlich zusammengehörende <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
+Sie gruppiert fachlich zusammengehörende <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
 Werden <<glossar-querschnittsanwendung,Querschnittsanwendungen>> gruppiert, entsteht eine *<<glossar-querschnittsdomaene>>*.
 
 .Domänen einer <<glossar-anwendungslandschaft>>
-image::glossary::glossar-anwendungsdomaene.dn.svg[]
+image::glossary::glossar-domaene.dn.svg[]
 
-Beispiele für Domänen: Bewertung von Dienstposten, Finanzielle Förderung von Schulen, ...
+Beispiele für Domänen: Bewertung von Dienstposten, finanzielle Förderung von Schulen, ...
 
 [[f]]
 == F
@@ -210,12 +210,12 @@ Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossa
 
 // tag::ga-definition[]
 
-Eine Geschäftsanwendung ist eine xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary::terms-definitions.adoc#glossar-domaene[Anwendungsdomäne] umsetzt.
+Eine Geschäftsanwendung ist eine xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], welche einen oder mehrere Geschäftsprozesse einer xref:glossary::terms-definitions.adoc#glossar-domaene[Domäne] umsetzt.
 Sie setzt eine spezifische xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] um und erzeugt hieraus direkten Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
 
 // end::ga-definition[]
 
-|Eine Geschäftsanwendung ist ein <<glossar-anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<glossar-domaene,Anwendungsdomäne>> spezifiziert.
+|Eine Geschäftsanwendung ist ein <<glossar-anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<glossar-domaene,Domäne>> spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
 Dabei kann sie die <<glossar-service-fachlich,Services>> von <<glossar-querschnittsanwendung,Querschnittsanwendungen>> oder anderen <<glossar-anwendungssystem,Anwendungssystemen>> nutzen.
 |===
@@ -337,7 +337,7 @@ Das Portal übernimmt die zentrale Authentifizierung und Autorisierung aller <<g
 
 Eine Querschnittsanwendung ist eine xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], welche die folgenden Kriterien in besonderem Maße erfüllt:
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
-Querschnittsanwendungen sind somit in verschiedenen xref:glossary::terms-definitions.adoc#glossar-domaene[Anwendungsdomänen] oder über mehrere xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
+Querschnittsanwendungen sind somit in verschiedenen xref:glossary::terms-definitions.adoc#glossar-domaene[Domänen] oder über mehrere xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
 
 Querschnittsanwendungen dürfen nur <<glossar-service-fachlich,Services>> von anderen Querschnittsanwendungen nutzen.
 
@@ -350,7 +350,7 @@ Bei der Entwicklung von <<glossar-anwendungslandschaft,Anwendungslandschaften>> 
 
 |Eine Querschnittsanwendung ist eine <<glossar-anwendung>>, welche die folgenden Kriterien in besonderem Maße erfüllt:
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für <<glossar-anwender>>.
-Querschnittsanwendungen sind somit in verschiedenen <<glossar-domaene,Anwendungsdomänen>> oder über mehrere <<glossar-anwendungslandschaft,Anwendungslandschaften>> hinweg wiederverwendbar.
+Querschnittsanwendungen sind somit in verschiedenen <<glossar-domaene,Domänen>> oder über mehrere <<glossar-anwendungslandschaft,Anwendungslandschaften>> hinweg wiederverwendbar.
 
 Die IsyFact stellt Querschnittsanwendungen in Form von <<glossar-baustein,Bausteinen>> bereit.
 Bei der Entwicklung von Anwendungslandschaften können ebenfalls Querschnittsanwendungen entstehen.
@@ -393,7 +393,7 @@ Stellt die Verbindung zwischen einem externen und einem internen <<glossar-servi
 === Software Factory
 
 Eine Software Factory ist eine Sammlung, bestehend aus einer <<glossar-referenzarchitektur>>, <<glossar-baustein,Bausteinen>>, einer <<glossar-plattform>>, einer <<glossar-methodik>> und <<glossar-werkzeug,Werkzeugen>>, die es erlaubt, durch Standardisierung, Modularisierung und Wiederverwendung <<glossar-anwendung,Anwendungen>> weitestgehend standardisiert zu entwickeln.
-Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer <<glossar-domaene,Anwendungsdomäne>> so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des Architekturrahmens sichergestellt ist.
+Die Herausforderung bei der Wiederverwendung besteht darin, das einmal erworbene Wissen über die Anwendungsentwicklung in einer <<glossar-domaene,Domäne>> so zu strukturieren, zu dokumentieren und vorzuhalten, dass nachfolgende Projekte einfach und verlässlich darauf zugreifen können, und damit die Einhaltung des Architekturrahmens sichergestellt ist.
 "Standardisiert" bedeutet, dass alle wesentlichen technischen Architekturentscheidungen bereits durch die Software Factory getroffen und in entsprechenden Komponenten implementiert sind.
 Architekten und Entwickler können sich damit auf die Umsetzung der jeweiligen Fachlichkeit der <<glossar-anwendung>> konzentrieren.
 
