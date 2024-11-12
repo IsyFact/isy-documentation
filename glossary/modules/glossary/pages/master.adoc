@@ -1,3 +1,4 @@
+:noindex:
 // The content of this file has been moved to the target of the include and should not be referenced anymore.
 // The file will remain for backwards compatibility, but may be removed in the future.
 include::glossary::terms-definitions.adoc[]

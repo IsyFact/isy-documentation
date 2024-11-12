@@ -1,5 +1,5 @@
 = Glossar
-:docrole: glossary
+:role: glossary
 :page-toclevels: 1
 
 :sectnums!:
@@ -30,7 +30,7 @@ Der Begriff steht im Kontext einer <<glossar-software-factory>> im Unterschied z
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 
@@ -41,7 +41,7 @@ Sie besteht aus Anwendungskomponenten.
 
 Eine Anwendung unterstützt Geschäftsprozesse.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary::terms-definitions.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie <<glossar-service-fachlich,Services>> von anderen Anwendungen nutzen.
+Dabei kann sie xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] von anderen Anwendungen nutzen.
 
 Eine Anwendung ist Bestandteil der xref:glossary::terms-definitions.adoc#glossar-a-architektur[A-Architektur].
 Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen].
@@ -73,7 +73,7 @@ image::glossary::glossar-anwendungslandschaft.png[]
 [[glossar-anwendungssystem]]
 === Anwendungssystem
 [.status]
-[.release]#xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.release]#xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
 [.superseded]#<<glossar-anwendung,abgelöst>>#
 
 Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
@@ -113,7 +113,7 @@ NOTE: iSAQB = International Software Architecture Qualification Board
 
 // tag::backend-definition[]
 
-Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von <<glossar-service-fachlich,Services>> bereitstellt.
+Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] bereitstellt.
 Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
 Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich Anwendungskomponenten und Nachbarsystemschnittstellen um.
 
@@ -127,7 +127,7 @@ Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::batch-definition[]
@@ -155,7 +155,7 @@ NOTE: Da zwischen einem logischen Baustein und einer <<glossar-anwendung>> eine 
 [[glossar-blaupause]]
 === Blaupause
 [.status]
-[.release]#xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.release]#xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
 [.superseded]#<<glossar-referenzarchitektur,abgelöst>>#
 
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer <<glossar-anwendungslandschaft>> für den Betrieb von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>> von den drei <<glossar-architektursicht,Architektursichten>> aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
@@ -204,7 +204,7 @@ Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossa
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 
@@ -257,7 +257,7 @@ Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwic
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 // tag::it-system-definition[]
@@ -329,7 +329,7 @@ Das Portal übernimmt die zentrale Authentifizierung und Autorisierung aller <<g
 [cols="1a,1a",options="header"]
 |===
 ^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.1.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
 
 |
 
@@ -339,7 +339,7 @@ Eine Querschnittsanwendung ist eine xref:glossary::terms-definitions.adoc#glossa
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
 Querschnittsanwendungen sind somit in verschiedenen xref:glossary::terms-definitions.adoc#glossar-domaene[Domänen] oder über mehrere xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
 
-Querschnittsanwendungen dürfen nur <<glossar-service-fachlich,Services>> von anderen Querschnittsanwendungen nutzen.
+Querschnittsanwendungen dürfen nur xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] von anderen Querschnittsanwendungen nutzen.
 
 // end::querschnittsanwendung-definition[]
 
