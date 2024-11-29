@@ -268,20 +268,20 @@ Die Anforderungen kommen typischerweise aus den Bereichen:
 Sie bilden die Grundlage für eine einheitliche Umsetzung von Anforderungen, die in gleichartig strukturierten IT-Systemen münden.
 ****
 
-.icon:university[title=Architekturregel] Architekturregel: Beispiel für Architekturregel
+.icon:university[title=Architekturregel] Beispiel für Architekturregel
 ****
 Der Block Architekturregel beschreibt Vorgaben und Regeln, welche die IsyFact an die Architektur von mit ihr entwickelten IT-Systemen stellt.
 Die Vorgaben zielen somit vor allem auf eine korrekte Umsetzung der Referenzarchitektur ab und sind fast ausschließlich technischer Natur.
 Sie bilden die Grundlage für eine einheitliche softwaretechnische Architektur der IT-Systeme.
 ****
 
-.icon:shield[title=Sicherheit] Sicherheit: Beispiel für Sicherheitshinweis
+.icon:shield[title=Sicherheit] Beispiel für Sicherheitshinweis
 ****
 Der Block Sicherheit beschreibt Regeln, welche die IsyFact an die IT-Sicherheit von mit ihr entwickelten IT-Systemen stellt.
 Die Regeln stellen vor allem eine, vom festgestellten Schutzbedarf abhängige, sichere Umsetzung der IT-Systeme sicher.
 ****
 
-.icon:paint-brush[] Bedienkonzept: Beispiel für Bedienkonzept
+.icon:paint-brush[title=Bedienkonzept] Beispiel für Bedienkonzept
 ****
 Der Block Bedienkonzept beschreibt Regeln, welche die IsyFact an die Gestaltung der grafischen Oberflächen stellt.
 Die Regeln kommen typischerweise aus den Bereichen:

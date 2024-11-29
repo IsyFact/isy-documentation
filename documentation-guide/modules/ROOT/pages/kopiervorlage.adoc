@@ -119,22 +119,22 @@ Typische Fallstricke bei der Nutzung der IsyFact.
 Typische Fehler bei der Nutzung der IsyFact.
 ====
 
-.icon:cogs[] Anwendungsanforderung: Anforderung
+.icon:cogs[title=Anforderung] Anforderung
 ****
 Anforderungen an die Entwicklung von Anwendungen und IT-Systemen.
 ****
 
-.icon:university[title=Architekturregel] Architekturregel: Vorgabe
+.icon:university[title=Architekturregel] Vorgabe
 ****
 Regeln für die Architektur von Anwendungen und IT-Systemen.
 ****
 
-.icon:shield[title=Sicherheit] Sicherheit: Vorgabe
+.icon:shield[title=Sicherheit] Vorgabe
 ****
 Regeln für die Sicherheit von IT-Systemen.
 ****
 
-.icon:paint-brush[] Bedienkonzept: Vorgabe
+.icon:paint-brush[title=Bedienkonzept] Vorgabe
 ****
 Regeln zur Gestaltung von grafischen Oberflächen.
 ****
