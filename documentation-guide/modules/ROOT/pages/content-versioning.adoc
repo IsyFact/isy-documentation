@@ -88,7 +88,7 @@ Die Propertys werden wie folgt interpretiert:
 
 * (main|master|develop): Entwicklungsbranches für Major-Releases (main, master oder develop) werden mit einem expliziten Wert angegeben.
 Hierfür wird der Beispielwert `NEXT` durch einen gewünschten Wert (zum Beispiel '4 (DEV)' oder '4.0') ersetzt.
-* release/(*): Entwicklungsbranches für Minor-Releases (beispielsweise release/3.x) werden über Git mit der Versionsnummer des derzeitigen Major-Releases versehen.
+* release/(*): Entwicklungsbranches für Minor-Releases (beispielsweise release/3.x) werden über Git mit der Versionsnummer des aktuellen Major-Releases versehen.
 * (*): Release-Branches werden immer mit Tags (beispielsweise 3.1.0), die die Versionsnummern abbilden, versehen.
 
 Diese Lösung ist für viele Anwendungsfälle geeignet.
