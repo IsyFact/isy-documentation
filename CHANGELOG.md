@@ -1,5 +1,6 @@
 # 2024
 
+- [2024-12-05] [documentation-guide] `IFS-4249`: add definition for versioning through git and set explicit versioning deprecated
 - [2024-11-12] [glossary] `IFS-4363`: fix glossary links, exclude old glossary page from search index
 - [2024-11-06] [glossary] `IFS-4209`: removed obsolete glossary entries
 - [2024-09-26] [glossary] `IFS-4186`: fix glossary links that broke during the 3.1 release 

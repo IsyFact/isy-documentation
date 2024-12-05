@@ -73,10 +73,42 @@ Antora kürzt die Git-Referenz folgendermaßen ab:
 
 Reicht dieses einfache Mapping nicht aus, kann Antora auch https://docs.antora.org/antora/latest/component-version-key/#refname-projection[komplexere Ersetzungen] auf der Git-Referenz vornehmen.
 
+Falls mehrere Versionen innerhalb einer `antora.yml` erfasst werden sollen (zum Beispiel für unterschiedliche Entwicklungsstände), wird die Datei folgendermaßen strukturiert:
+
+.Versionierung mittels Git-Referenz mit mehreren Versionen
+[source,yaml]
+----
+version:
+  (main|master|develop): 'NEXT'
+  release/(*): $1
+  (*): $1
+----
+
+Die Propertys werden wie folgt interpretiert:
+
+* (main|master|develop): Entwicklungsbranches für Major-Releases (main, master oder develop) werden mit einem expliziten Wert angegeben.
+Hierfür wird der Beispielwert `NEXT` durch einen gewünschten Wert (zum Beispiel '4 (DEV)' oder '4.0') ersetzt.
+* release/(*): Entwicklungsbranches für Minor-Releases (beispielsweise release/3.x) werden über Git mit der Versionsnummer des aktuellen Major-Releases versehen.
+* (*): Release-Branches werden immer mit Tags (beispielsweise 3.1.0), die die Versionsnummern abbilden, versehen.
+
+Diese Lösung ist für viele Anwendungsfälle geeignet.
+Bei schnellen Release-Zyklen können ausschließlich Releases über Tags in die Online-Dokumentation aufgenommen werden.
+Bei langsameren Release-Zyklen können Entwicklungsversionen auf Major- und Minor-Ebene explizit berücksichtigt werden.
+
+Da Releases durch diese Versionierungsart nachträglich nicht verändert werden können, ist eine Auszeichnung von Release-Versionen wie CURRENT nicht möglich.
+Allerdings können CURRENT-Versionen in der Online-Dokumentation im Selektor gelb statt grau dargestellt werden, was ohne Auszeichnung erkennbar ist (siehe <<>>.
+
+[[darstellung-doku-selektor]]
+.Darstellung der Selektoren in der Online-Dokumentation
+image::selectors-online-docs.png[align="center"]
+
 IMPORTANT: Bei diesem Vorgehen ist es nicht sinnvoll, eine abweichende `display_version` zu setzen, da sich diese nicht im Einklang mit dem Wert von `version` ändert.
 
 [[explizite-versionierung]]
 === Explizite Versionierung
+
+:linkaktuell: <<versionierung-git>>
+include::glossary:miscellaneous:partial$deprecated-abschnitt.adoc[]
 
 Ist eine Versionierung über die Git-Referenz nicht sinnvoll, muss die Version explizit festgelegt werden.
 Die Version entspricht, wie in der IsyFact vorgeschrieben, dem Format nach xref:isyfact-standards-doku:methodik:versionierung/master.adoc[Semantic Versioning].
@@ -97,6 +129,9 @@ version: '4.0.x'
 
 [[version-auszeichung]]
 === Auszeichnung spezieller Versionen
+
+:linkaktuell: <<versionierung-git>>
+include::glossary:miscellaneous:partial$deprecated-abschnitt.adoc[]
 
 Versionen mit spezieller Bedeutung sind mit einem Suffix zu kennzeichnen.
 
