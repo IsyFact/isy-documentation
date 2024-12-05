@@ -92,7 +92,7 @@ Hierfür wird der Beispielwert `NEXT` durch einen gewünschten Wert (zum Beispie
 * (*): Release-Branches werden immer mit Tags (beispielsweise 3.1.0), die die Versionsnummern abbilden, versehen.
 
 Diese Lösung ist für viele Anwendungsfälle geeignet.
-Bei schnellen Release-Zyklen können allein Releases über Tags in die Online-Dokumentation aufgenommen werden.
+Bei schnellen Release-Zyklen können ausschließlich Releases über Tags in die Online-Dokumentation aufgenommen werden.
 Bei langsameren Release-Zyklen können Entwicklungsversionen auf Major- und Minor-Ebene explizit berücksichtigt werden.
 
 Da Releases durch diese Versionierungsart nachträglich nicht verändert werden können, ist eine Auszeichnung von Release-Versionen wie CURRENT nicht möglich.
