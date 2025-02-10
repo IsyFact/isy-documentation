@@ -3,10 +3,10 @@
 include::documentation-guide::partial$licence.adoc[]
 
 Jeder Inhalt der Online-Dokumentation ist Teil genau einer Antora-Komponente.
-Antora-Komponenten legen ihre Version in ihrer Konfigurationsdatei fest.
-Dieser Guide beschreibt, auf welche Art dies geschieht.
+Antora-Komponenten haben eine definierte https://docs.antora.org/antora/latest/component-version-key/[Version].
+Dieser Guide beschreibt, auf welche Art die Version einer Komponente festgelegt werden kann.
 
-NOTE: Für diesen Guide ist ein grundlegendes Verständnis der https://docs.antora.org/antora/latest/component-version-descriptor/[Konfigurationsdatei `antora.yml`] nützlich.
+NOTE: Für diesen Guide ist ein grundlegendes Verständnis der https://docs.antora.org/antora/latest/component-version-descriptor/[Antora-Komponenten-Konfigurationsdatei `antora.yml`] und der https://docs.antora.org/antora/latest/playbook/configure-content-sources/[Antora-Playbook-Konfiguration] nützlich.
 
 [[versionierung-vorgehensweise]]
 == Vorgehensweise
@@ -27,7 +27,6 @@ Aktuell gibt es zwei Vorgehensweisen:
 Unabhängig von der Vorgehensweise müssen zur Versionierung mehrere Parameter in der Konfigurationsdatei `antora.yml` gesetzt werden:
 
 * `version`: https://docs.antora.org/antora/latest/component-version-key/[Version] der Antora-Komponente,
-* `display_version`: (optional) https://docs.antora.org/antora/latest/component-display-version/[Version zur Anzeige] im UI,
 * `prerelease`: (optional) Anzeige eines https://docs.antora.org/antora/latest/component-prerelease/[Entwicklungsstands].
 
 Ob und wie die Parameter zu setzen sind, erklärt der Abschnitt "<<konfiguration-version>>".
@@ -43,6 +42,7 @@ NOTE: Für solche Inhalte sieht Antora das Konzept einer https://docs.antora.org
 Die Konfiguration einer solchen Antora-Komponente ist denkbar einfach.
 
 .Antora-Komponente ohne Version
+.antora.yml
 [source,yaml]
 ----
 version: ~
@@ -53,18 +53,20 @@ TIP: Antora-Komponenten ohne Version durchlaufen keine Releases und sollten dahe
 [[konfiguration-version]]
 == Konfiguration der Version
 
-Antora ermöglicht es, Versionsnummern explizit festzulegen, oder die Version anhand der konfigurierten Git-Referenz (Branch oder Tag) zu setzen.
+Antora ermöglicht es, die Version einer Komponente explizit festzulegen, oder die Version anhand der Git-Referenz (Branch oder Tag) zu setzen.
 
 [[versionierung-git]]
 === Versionierung mittels Git-Referenz
 
 Die Versionierung mithilfe der Git-Referenz ist dann sinnvoll, wenn eine Antora-Komponente über Tags versioniert wird oder die Branch-Namen eine gute Vorlage für die Version bieten.
 
-.Versionierung mittels Git-Referenz
+.Verwendung des Referenznamens als Version
+.antora.yml
 [source,yaml]
 ----
 version: true
 ----
+Der Wert true weist Antora an, den Referenznamen als Wert für die Komponenten-Version zu verwenden.
 
 Antora kürzt die Git-Referenz folgendermaßen ab:
 
@@ -75,7 +77,9 @@ Reicht dieses einfache Mapping nicht aus, kann Antora auch https://docs.antora.o
 
 Falls mehrere Versionen innerhalb einer `antora.yml` erfasst werden sollen (zum Beispiel für unterschiedliche Entwicklungsstände), wird die Datei folgendermaßen strukturiert:
 
-.Versionierung mittels Git-Referenz mit mehreren Versionen
+.Ableitung der Version durch Projektion des Referenznamens
+Referenznamen-Projektion ermöglicht es, den Referenznamen mit einem Muster abzugleichen und dann eine Version auf der Grundlage dieser Übereinstimmung zu erstellen.
+
 [source,yaml]
 ----
 version:
@@ -84,12 +88,13 @@ version:
   (*): $1
 ----
 
-Die Propertys werden wie folgt interpretiert:
+In obigen Beispiel wird die Version wie folgt gebildet:
 
-* (main|master|develop): Entwicklungsbranches für Major-Releases (main, master oder develop) werden mit einem expliziten Wert angegeben.
-Hierfür wird der Beispielwert `NEXT` durch einen gewünschten Wert (zum Beispiel '4 (DEV)' oder '4.0') ersetzt.
-* release/(*): Entwicklungsbranches für Minor-Releases (beispielsweise release/3.x) werden über Git mit der Versionsnummer des aktuellen Major-Releases versehen.
-* (*): Release-Branches werden immer mit Tags (beispielsweise 3.1.0), die die Versionsnummern abbilden, versehen.
+* (main|master|develop): Entwicklungsbranches (main, master oder develop) wird die Version `NEXT` zugewiesen.
+* release/(*): Releasebranches (beispielsweise release/3.x) werden mit der Versionsnummer des Releases versehen.
+* (*): Für alle anderen Branches, wie beispielsweise feature Branches wird der Branchname als Versionsnummern verwendet.
+
+Das Mapping von Referenznamen auf Versionen kann sowohl für die Antora-Komponente in antora.yml, als auch im Antora Playbook für eine Content-Source definiert werden.
 
 Diese Lösung ist für viele Anwendungsfälle geeignet.
 Bei schnellen Release-Zyklen können ausschließlich Releases über Tags in die Online-Dokumentation aufgenommen werden.
@@ -102,72 +107,10 @@ Allerdings können CURRENT-Versionen in der Online-Dokumentation im Selektor gel
 .Darstellung der Selektoren in der Online-Dokumentation
 image::selectors-online-docs.png[align="center"]
 
-IMPORTANT: Bei diesem Vorgehen ist es nicht sinnvoll, eine abweichende `display_version` zu setzen, da sich diese nicht im Einklang mit dem Wert von `version` ändert.
-
-[[explizite-versionierung]]
-=== Explizite Versionierung
-
-:linkaktuell: <<versionierung-git>>
-include::glossary:miscellaneous:partial$deprecated-abschnitt.adoc[]
-
-Ist eine Versionierung über die Git-Referenz nicht sinnvoll, muss die Version explizit festgelegt werden.
-Die Version entspricht, wie in der IsyFact vorgeschrieben, dem Format nach xref:isyfact-standards-doku:methodik:versionierung/master.adoc[Semantic Versioning].
-
-.Explizite Versionierung
-[source,yaml]
-----
-version: '4.0.3'
-----
-
-Sollen Bugfix-Releases nicht zu einer Versionsänderung in der Dokumentation führen, kann diese davon abstrahieren.
-
-.Explizite Versionierung ohne Bugfix-Release
-[source,yaml]
-----
-version: '4.0.x'
-----
-
-[[version-auszeichung]]
-=== Auszeichnung spezieller Versionen
-
-:linkaktuell: <<versionierung-git>>
-include::glossary:miscellaneous:partial$deprecated-abschnitt.adoc[]
-
-Versionen mit spezieller Bedeutung sind mit einem Suffix zu kennzeichnen.
-
-.Auszeichnung spezieller Versionen
-[cols="2,1m",options="header"]
-|===
-| Art der Version
-| Suffix
-
-| Aktuelle Version
-| CURRENT
-
-| LTS-Version
-| LTS
-
-| Entwicklungsstand
-| DEV
-|===
-
-Für aktuelle Versionen und LTS-Versionen geschieht die Kennzeichnung über die `display_version`.
-Der Wert von `version` ist Bestandteil von Verweisen und sollte deswegen möglichst stabil bleiben.
-
-[[explizite-versionierung-speziell]]
-.Explizite Versionierung mit spezieller Auszeichnung
-[source,yaml]
-----
-version: '4.0.3'
-display_version: '4.0.3 (LTS)'
-----
-
-IMPORTANT: Diese Konfiguration funktioniert aufgrund der Dopplung der Versionsnummer nicht gut für die Versionierung über Git-Referenzen.
-
 [[version-entwicklung]]
-==== Auszeichnung von Entwicklungsständen
+=== Auszeichnung von Entwicklungsständen
 
-Für Entwicklungsstände gibt es eine weitere Möglichkeit der Konfiguration, bei dem die Version nicht, wie im <<explizite-versionierung-speziell,vorigen Beispiel>>, in der Konfiguration dupliziert werden muss.
+Für Entwicklungsstände gibt es eine weitere Möglichkeit die angezeigten Komponentenversionen anzupassen.
 
 .Konfiguration einer Entwicklungsversion (explizit)
 [source,yaml]
