@@ -106,6 +106,8 @@ In obigen Beispiel wird die Version wie folgt gebildet:
 
 Das Mapping von Referenznamen auf Versionen kann sowohl für die Antora-Komponente in antora.yml, als auch im Antora Playbook für eine Content-Source definiert werden.
 
+NOTE: Eine explizit gesetzte Version hat Vorrang zu einer Ableitung der Version auf den Branchnamen.
+
 Diese Lösung ist für viele Anwendungsfälle geeignet.
 Bei schnellen Release-Zyklen können ausschließlich Releases über Tags in die Online-Dokumentation aufgenommen werden.
 Bei langsameren Release-Zyklen können Entwicklungsversionen auf Major- und Minor-Ebene explizit berücksichtigt werden.
