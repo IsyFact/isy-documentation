@@ -101,7 +101,7 @@ version:
 In obigen Beispiel wird die Version wie folgt gebildet:
 
 * (main|master|develop): Entwicklungsbranches (main, master oder develop) wird die Version `NEXT` zugewiesen.
-* release/(*): Releasebranches (beispielsweise release/3.x) werden mit der Versionsnummer des Releases versehen.
+* `release/(*)`: Releasebranches (beispielsweise `release/3.x`) werden mit der Versionsnummer des Releases versehen.
 * `(*)`: Für alle anderen Branches, wie beispielsweise Feature-Branches wird der Branchname als Version verwendet.
 
 TIP: Das Mapping von Referenznamen auf Versionen kann sowohl für die Antora-Komponente, als auch im Antora Playbook für eine Content-Source definiert werden.
