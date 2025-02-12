@@ -122,7 +122,7 @@ image::selectors-online-docs.png[align="center"]
 [[version-entwicklung]]
 == Auszeichnung von Entwicklungsständen
 
-Entwicklungsstände können als solche ausgezeichnet werden um diese in der Sortierung der Versionen und der Anzeige der Komponentenversionen anzupassen.
+Entwicklungsstände können als solche ausgezeichnet werden, um diese in der Sortierung der Versionen und der Anzeige der Komponentenversionen anzupassen.
 
 .Auszeichnung von Entwicklungsständen (`antora.yml`)
 [source,yaml]
