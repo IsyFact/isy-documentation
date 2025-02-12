@@ -56,7 +56,7 @@ TIP: Antora-Komponenten ohne Version durchlaufen keine Releases und sollten dahe
 
 [[komponente-mit-version]]
 === Explizites Setzen der Version
-Die Version einer Komponente kann explizit in der Komponenten-Konfigurationsdatei 'antora.yml' gesetzt werden.
+Die Version einer Komponente kann explizit in der Komponenten-Konfigurationsdatei gesetzt werden.
 
 .Explizites Setzen der Version (`antora.yml`)
 [source,yaml]
