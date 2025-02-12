@@ -44,7 +44,7 @@ Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossar
 
 NOTE: Für solche Inhalte sieht Antora das Konzept einer https://docs.antora.org/antora/latest/component-with-no-version/[Komponente ohne Version] vor.
 
-Die Konfiguration einer solchen Antora-Komponente ist denkbar einfach in 'antora.yml'.
+Die Konfiguration einer solchen Antora-Komponente ist denkbar einfach.
 
 .Antora-Komponente ohne Version (`antora.yml`)
 [source,yaml]
