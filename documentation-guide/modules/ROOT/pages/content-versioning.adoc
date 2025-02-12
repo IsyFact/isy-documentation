@@ -46,7 +46,7 @@ NOTE: Für solche Inhalte sieht Antora das Konzept einer https://docs.antora.org
 
 Die Konfiguration einer solchen Antora-Komponente ist denkbar einfach in 'antora.yml'.
 
-.Antora-Komponente ohne Version
+.Antora-Komponente ohne Version (`antora.yml`)
 [source,yaml]
 ----
 version: ~
