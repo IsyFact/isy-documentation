@@ -89,7 +89,7 @@ Reicht dieses einfache Mapping nicht aus, kann Antora auch https://docs.antora.o
 
 Die Referenznamen-Projektion ermöglicht es, den Referenznamen mit einem Muster abzugleichen und dann eine Version auf der Grundlage dieser Übereinstimmung zu erstellen.
 
-.Ableitung der Version durch Projektion des Referenznamens
+.Ableitung der Version durch Projektion des Referenznamens (`antora.yml`)
 [source,yaml]
 ----
 version:
