@@ -31,18 +31,22 @@ Unabhängig von der Vorgehensweise müssen zur Versionierung mehrere Parameter i
 
 Wie die Parameter zu setzen sind, erklären die Abschnitte "<<konfiguration-version>>" und "<<version-entwicklung>>".
 
+=== Ausnehmen von der Versionierung
+
+Wenn die Inhalte der Antora-Komponente keine Versionierung benötigen, weil sie stets widerspiegeln, was zum aktuellen Zeitpunkt gilt, werden sie explizit von der Versionierung ausgenommen.
+Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossary::terms-definitions.adoc[].
+
+Wie eine Antora-Komponente von der Versionierung ausgenommen werden kann erklärt der Abschnitt <<_explizites_ausnehmen_von_der_versionierung>>
+
 [[konfiguration-version]]
 == Konfiguration der Version
 
 Antora ermöglicht es, die Version einer Komponente explizit festzulegen, oder die Version anhand der Git-Referenz (Branch oder Tag) zu setzen.
 
-[[komponente-ohne-version]]
+[#_explizites_ausnehmen_von_der_versionierung]
 === Explizites Ausnehmen von der Versionierung
 
-Wenn die Inhalte der Antora-Komponente keine Versionierung benötigen, weil sie stets widerspiegeln, was zum aktuellen Zeitpunkt gilt, werden sie explizit von der Versionierung ausgenommen.
-Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossary::terms-definitions.adoc[].
-
-NOTE: Für solche Inhalte sieht Antora das Konzept einer https://docs.antora.org/antora/latest/component-with-no-version/[Komponente ohne Version] vor.
+Für Antora-Komponente die keine Versionierung benötigen, sieht Antora das Konzept einer https://docs.antora.org/antora/latest/component-with-no-version/[Komponente ohne Version] vor.
 
 Die Konfiguration einer solchen Antora-Komponente ist denkbar einfach.
 
