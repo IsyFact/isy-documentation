@@ -27,7 +27,7 @@ Aktuell gibt es zwei Vorgehensweisen:
 Unabhängig von der Vorgehensweise müssen zur Versionierung mehrere Parameter in der Konfigurationsdatei `antora.yml` gesetzt werden:
 
 * `version`: Festlegen der https://docs.antora.org/antora/latest/component-version-key/[Version] der Antora-Komponente,
-* `prerelease`: (optional) Kennzeichnung der Version als https://docs.antora.org/antora/latest/component-prerelease/[Entwicklungsstands].
+* `prerelease`: (optional) Kennzeichnung der Version als https://docs.antora.org/antora/latest/component-prerelease/[Entwicklungsstand].
 
 Wie die Parameter zu setzen sind, werden in den Abschnitten "<<konfiguration-version>>" und "<<version-entwicklung>>".
 
