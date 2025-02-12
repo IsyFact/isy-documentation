@@ -1,3 +1,7 @@
+# 2025
+
+- [2025-02-12] [documentation-guide] `IFS-4492`: remove instruction to set displayVersion
+
 # 2024
 
 - [2024-12-05] [documentation-guide] `IFS-4249`: add definition for versioning through git and set explicit versioning deprecated
