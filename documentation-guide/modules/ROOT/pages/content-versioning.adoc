@@ -85,7 +85,7 @@ Antora kürzt die Git-Referenz folgendermaßen ab:
 
 Reicht dieses einfache Mapping nicht aus, kann Antora auch https://docs.antora.org/antora/latest/component-version-key/#refname-projection[komplexere Ersetzungen] auf der Git-Referenz vornehmen.
 
-* Komplexere Versionierung
+==== Komplexere Versionierung
 
 Die Referenznamen-Projektion ermöglicht es, den Referenznamen mit einem Muster abzugleichen und dann eine Version auf der Grundlage dieser Übereinstimmung zu erstellen.
 
