@@ -71,7 +71,7 @@ Die Versionierung mithilfe der Git-Referenz ist dann sinnvoll, wenn eine Antora-
 
 * Einfache Versionierung
 
-.Verwendung des Referenznamens als Version
+.Verwendung des Referenznamens als Version (`antora.yml`)
 [source,yaml]
 ----
 version: true
