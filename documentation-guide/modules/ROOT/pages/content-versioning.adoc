@@ -124,7 +124,7 @@ image::selectors-online-docs.png[align="center"]
 
 Entwicklungsstände können als solche ausgezeichnet werden um diese in der Sortierung der Versionen und der Anzeige der Komponentenversionen anzupassen.
 
-.Auszeichnung von Entwicklungsständen
+.Auszeichnung von Entwicklungsständen (`antora.yml`)
 [source,yaml]
 ----
 version: '4.0.3'
