@@ -116,13 +116,6 @@ Diese Lösung ist für viele Anwendungsfälle geeignet.
 Bei schnellen Release-Zyklen können ausschließlich Releases über Tags in die Online-Dokumentation aufgenommen werden.
 Bei langsameren Release-Zyklen können Entwicklungsversionen auf Major- und Minor-Ebene explizit berücksichtigt werden.
 
-Da Releases durch diese Versionierungsart nachträglich nicht verändert werden können, ist eine Auszeichnung von Release-Versionen wie CURRENT nicht möglich.
-Allerdings können CURRENT-Versionen in der Online-Dokumentation im Selektor gelb statt grau dargestellt werden, was ohne Auszeichnung erkennbar ist (siehe <<>>.
-
-[[darstellung-doku-selektor]]
-.Darstellung der Selektoren in der Online-Dokumentation
-image::selectors-online-docs.png[align="center"]
-
 [[version-entwicklung]]
 == Auszeichnung von Entwicklungsständen
 
