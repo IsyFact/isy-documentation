@@ -104,7 +104,7 @@ In obigen Beispiel wird die Version wie folgt gebildet:
 * release/(*): Releasebranches (beispielsweise release/3.x) werden mit der Versionsnummer des Releases versehen.
 * (*): Für alle anderen Branches, wie beispielsweise feature Branches wird der Branchname als Versionsnummern verwendet.
 
-Das Mapping von Referenznamen auf Versionen kann sowohl für die Antora-Komponente in antora.yml, als auch im Antora Playbook für eine Content-Source definiert werden.
+TIP: Das Mapping von Referenznamen auf Versionen kann sowohl für die Antora-Komponente, als auch im Antora Playbook für eine Content-Source definiert werden.
 
 NOTE: Eine explizit gesetzte Version hat Vorrang zu einer Ableitung der Version auf den Branchnamen.
 
