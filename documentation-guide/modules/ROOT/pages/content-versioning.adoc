@@ -69,7 +69,7 @@ version: '4.0.3'
 
 Die Versionierung mithilfe der Git-Referenz ist dann sinnvoll, wenn eine Antora-Komponente über Tags versioniert wird oder die Branch-Namen eine gute Vorlage für die Version bieten.
 
-* Einfache Versionierung
+==== Einfache Versionierung
 
 .Verwendung des Referenznamens als Version (`antora.yml`)
 [source,yaml]
