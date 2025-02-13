@@ -36,7 +36,7 @@ Wie die Parameter zu setzen sind, erklären die Abschnitte "<<konfiguration-vers
 Wenn die Inhalte der Antora-Komponente keine Versionierung benötigen, weil sie stets widerspiegeln, was zum aktuellen Zeitpunkt gilt, werden sie explizit von der Versionierung ausgenommen.
 Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossary::terms-definitions.adoc[].
 
-Wie eine Antora-Komponente von der Versionierung ausgenommen werden kann erklärt der Abschnitt <<_explizites_ausnehmen_von_der_versionierung>>
+Wie eine Antora-Komponente von der Versionierung ausgenommen werden kann erklärt der Abschnitt <<_explizites_ausnehmen_von_der_versionierung>>.
 
 [[konfiguration-version]]
 == Konfiguration der Version
