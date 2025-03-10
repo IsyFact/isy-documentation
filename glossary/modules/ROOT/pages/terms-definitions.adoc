@@ -296,6 +296,13 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 [[n]]
 == N
 
+[[nachbarsystem]]
+=== Nachbarsystem
+
+// tag::nachbarsystem-definition[]
+Ein Nachbarsystem ist ein Kommunikationspartner einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], mit dem sie über Schnittstellen kommuniziert.
+// end::nachbarsystem-definition[]
+
 [[glossar-nutzer]]
 === Nutzer
 
