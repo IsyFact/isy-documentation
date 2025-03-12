@@ -175,6 +175,16 @@ image::glossary::glossar-domaene.dn.svg[]
 
 Beispiele für Domänen: Bewertung von Dienstposten, finanzielle Förderung von Schulen, ...
 
+[[e]]
+== E
+
+[[externes-system]]
+=== Externes System
+
+Ein externes System bezeichnet ein System außerhalb der betrachteten <<glossar-systemlandschaft>>.
+Von externen Systemen sind nur die <<glossar-service-fachlich,Services>> bekannt, die zur Kommunikation mit <<glossar-it-system,IT-Systemen>> innerhalb der betrachteten Systemlandschaft dienen.
+Die Kommunikation mit externen Systemen erfolgt ausschließlich über <<glossar-service-gateway,Service-Gateways>>.
+
 [[f]]
 == F
 
