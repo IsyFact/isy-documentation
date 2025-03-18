@@ -1,6 +1,6 @@
 name: glossary
 title: Glossar
-version: ~
+#version: 'latest'
 start_page: ROOT:terms-definitions.adoc
 nav:
   - modules/ROOT/nav.adoc
