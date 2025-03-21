@@ -1,5 +1,6 @@
 # 2025
 
+- [2025-03-20] [documentation-guide] `IFS-4549`:centralize version mapping for Online-Documentation
 - [2025-02-12] [documentation-guide] `IFS-4492`: remove instruction to set displayVersion
 
 # 2024
