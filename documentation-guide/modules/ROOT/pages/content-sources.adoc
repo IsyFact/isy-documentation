@@ -99,7 +99,7 @@ Das lokale Playbook unterscheidet sich in folgenden Punkten vom zentralen Playbo
 content:
   sources:
     - url: ../isyfact-standards
-      branches: master, feature/IFS-4549*, release/4*, release/3.x*, release/3.2.1
+      branches: master, HEAD, release/4*, release/3.x*, release/3.2.1
       tags: [4.0.0]
       start_path: isyfact-standards-doc/src/docs/antora
       version:
