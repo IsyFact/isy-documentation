@@ -19,23 +19,25 @@ Die Online-Dokumentation der IsyFact verwendet zwei Arten der Versionierung: Spi
 Wenn Antora-Komponenten zusammen mit Software-Komponenten veröffentlicht werden, spiegeln sie deren Version.
 Beispiele hierfür sind der xref:isy-angular-widgets-doc::konzept/konzept.adoc[Baustein Angular] und die xref:isyfact-standards-doku:einstieg:einstieg.adoc[IsyFact-Standards].
 
-Aktuell gibt es zwei Vorgehensweisen:
+Aktuell gibt es folgende Vorgehensweisen:
 
 * Bei kurzen Release-Zyklen enthält die Online-Dokumentation ausschließlich offizielle Releases einer Antora-Komponente.
 * Bei längeren Release-Zyklen beinhaltet die Online-Dokumentation auch einen Entwicklungsstand, damit sich die Nutzer der IsyFact auf die Änderungen des nächsten Releases vorbereiten können.
+* Zur Weiterentwicklung der Online-Dokumentation und Integration von Änderungen werden für die Entwicklung auch Feature-Branches erstellt.
 
-Unabhängig von der Vorgehensweise müssen zur Versionierung mehrere Parameter in der Konfigurationsdatei `antora.yml` gesetzt werden:
+Unabhängig von der Vorgehensweise müssen zur Versionierung folgende Parameter in der Konfigurationsdatei `antora.yml` gesetzt werden:
 
-* `version`: Festlegen der https://docs.antora.org/antora/latest/component-version-key/[Version] der Antora-Komponente,
+* `version`: (optional) Festlegen der https://docs.antora.org/antora/latest/component-version-key/[Version] der Antora-Komponente,
 * `prerelease`: (optional) Kennzeichnung der Version als https://docs.antora.org/antora/latest/component-prerelease/[Entwicklungsstand].
 
 Wie die Parameter zu setzen sind, erklären die Abschnitte "<<konfiguration-version>>" und "<<version-entwicklung>>".
 
 === Ausnehmen von der Versionierung
 
-Wenn die Inhalte der Antora-Komponente keine Versionierung benötigen, weil sie stets widerspiegeln, was zum aktuellen Zeitpunkt gilt, werden sie explizit von der Versionierung ausgenommen.
+Wenn die Inhalte der Antora-Komponente keine Versionierung benötigen, weil sie stets widerspiegeln, was zum aktuellen Zeitpunkt gilt, werden für diese Komponenten keine Releases erstellt und stattdessen der jeweilige Stand der Online-Dokumentation erstellt..
 Beispiele hierfür sind dieser xref:index.adoc[Leitfaden] sowie das xref:glossary::terms-definitions.adoc[].
 
+Wenn Inhalte lediglich der Strukturierung der Inhalte dienen und selbst nicht aktualisiert werden, können diese von der Versionierung ausgenommen werden.
 Wie eine Antora-Komponente von der Versionierung ausgenommen werden kann erklärt der Abschnitt <<_explizites_ausnehmen_von_der_versionierung>>.
 
 [[konfiguration-version]]
@@ -93,7 +95,7 @@ Reicht dieses einfache Mapping nicht aus, kann Antora auch https://docs.antora.o
 
 Die Referenznamen-Projektion ermöglicht es, den Referenznamen mit einem Muster abzugleichen und dann eine Version auf der Grundlage dieser Übereinstimmung zu erstellen.
 
-.Ableitung der Version durch Projektion des Referenznamens (`antora.yml`)
+.Ableitung der Version durch Projektion des Referenznamens
 [source,yaml]
 ----
 version:
@@ -108,7 +110,7 @@ In obigen Beispiel wird die Version wie folgt gebildet:
 * `release/(*)`: Releasebranches (beispielsweise `release/3.x`) werden mit der Versionsnummer des Releases versehen.
 * `(*)`: Für alle anderen Branches, wie beispielsweise Feature-Branches wird der Branchname als Version verwendet.
 
-TIP: Das Mapping von Referenznamen auf Versionen kann sowohl für die Antora-Komponente, als auch im Antora Playbook für eine Content-Source definiert werden.
+TIP: Das Mapping von Referenznamen auf Versionen kann sinnvollerweise im Antora Playbook für eine Content-Source definiert werden, da diese auf mehrere Komponenten-Versionen angewandt wird, während die Antora-Komponentenkonfiguration dem jeweiligen Stand einer Komponenten-Version entspricht.
 
 NOTE: Eine explizit gesetzte Version hat Vorrang zu einer Ableitung der Version auf den Branchnamen.
 
