@@ -29,8 +29,8 @@ Der Begriff steht im Kontext einer <<glossar-software-factory>> im Unterschied z
 
 [cols="1a,1a",options="header"]
 |===
-^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|≥ IsyFact 4
+^|≤ IsyFact 3
 
 |
 
@@ -73,7 +73,7 @@ image::glossary::glossar-anwendungslandschaft.png[]
 [[glossar-anwendungssystem]]
 === Anwendungssystem
 [.status]
-[.release]#xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.release]#≤ IsyFact 3#
 [.superseded]#<<glossar-anwendung,abgelöst>>#
 
 Ein Anwendungssystem ist eine zusammengehörende, logische Einheit aus Funktionen, Daten und Schnittstellen.
@@ -109,7 +109,7 @@ NOTE: iSAQB = International Software Architecture Qualification Board
 [[backend]]
 === Backend
 [.status]
-[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4.x]#
+[.release]#≥ IsyFact 4#
 
 // tag::backend-definition[]
 
@@ -126,8 +126,8 @@ Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar
 
 [cols="1a,1a",options="header"]
 |===
-^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|≥ IsyFact 4
+^|≤ IsyFact 3
 
 |
 // tag::batch-definition[]
@@ -155,7 +155,7 @@ NOTE: Da zwischen einem logischen Baustein und einer <<glossar-anwendung>> eine 
 [[glossar-blaupause]]
 === Blaupause
 [.status]
-[.release]#xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3.x]#
+[.release]#≤ IsyFact 3#
 [.superseded]#<<glossar-referenzarchitektur,abgelöst>>#
 
 Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzepte einer <<glossar-anwendungslandschaft>> für den Betrieb von <<glossar-geschaeftsanwendung,Geschäftsanwendungen>> von den drei <<glossar-architektursicht,Architektursichten>> aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
@@ -191,7 +191,7 @@ Die Kommunikation mit externen Systemen erfolgt ausschließlich über <<glossar-
 [[frontend]]
 === Frontend
 [.status]
-[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4.x]#
+[.release]#≥ IsyFact 4#
 
 // tag::frontend-definition[]
 
@@ -213,8 +213,8 @@ Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossa
 
 [cols="1a,1a",options="header"]
 |===
-^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|≥ IsyFact 4
+^|≤ IsyFact 3
 
 |
 
@@ -266,8 +266,8 @@ Die IsyFact-Standards werden zentral durch das Bundesverwaltungsamt weiterentwic
 
 [cols="1a,1a",options="header"]
 |===
-^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|≥ IsyFact 4
+^|≤ IsyFact 3
 
 |
 // tag::it-system-definition[]
@@ -284,7 +284,7 @@ Aus Sicht der A-Architektur ist die Entsprechung zum IT-System die Anwendung.
 [[glossar-it-systemtyp]]
 === IT-Systemtyp
 [.status]
-[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#
+[.release]#≥ IsyFact 4#
 
 // tag::it-systemtyp-definition[]
 Ein IT-Systemtyp ist eine Spezialisierung des xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systems].
@@ -310,7 +310,9 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 === Nachbarsystem
 
 // tag::nachbarsystem-definition[]
+
 Ein Nachbarsystem ist ein Kommunikationspartner einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung], mit dem sie über Schnittstellen kommuniziert.
+
 // end::nachbarsystem-definition[]
 
 [[glossar-nutzer]]
@@ -345,8 +347,8 @@ Das Portal übernimmt die zentrale Authentifizierung und Autorisierung aller <<g
 
 [cols="1a,1a",options="header"]
 |===
-^|xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]
-^|xref:3.2.x@isyfact-standards-doku:einstieg:einstieg.adoc[≤ IsyFact 3]
+^|≥ IsyFact 4
+^|≤ IsyFact 3
 
 |
 
@@ -388,7 +390,7 @@ Aufgrund dieser Eigenschaft gibt es pro <<glossar-anwendungslandschaft>> maximal
 [[glossar-referenzarchitektur]]
 === Referenzarchitektur
 [.status]
-[.release]#xref:4.0.x@isyfact-standards-doku:einstieg:einstieg.adoc[≥ IsyFact 4]#
+[.release]#≥ IsyFact 4#
 
 Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur und Konzepte einer <<glossar-anwendungslandschaft>> für den Betrieb von <<glossar-anwendung,Anwendungen>> von drei <<glossar-architektursicht,Architektursichten>> aus: der fachlichen Sicht, der softwaretechnischen Sicht und der Sicht der technischen Infrastruktur.
 
