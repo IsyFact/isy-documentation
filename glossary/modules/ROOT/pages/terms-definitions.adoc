@@ -180,6 +180,9 @@ Beispiele für Domänen: Bewertung von Dienstposten, finanzielle Förderung von 
 
 [[externes-system]]
 === Externes System
+[.status]
+[.revised]#überarbeitet#
+[.release]#≥ IsyFact 4#
 
 Ein externes System bezeichnet ein System außerhalb der betrachteten <<glossar-systemlandschaft>>.
 Von externen Systemen sind nur die <<glossar-service-fachlich,Services>> bekannt, die zur Kommunikation mit <<glossar-it-system,IT-Systemen>> innerhalb der betrachteten Systemlandschaft dienen.
@@ -308,6 +311,9 @@ NOTE: Das V-Modell-XT bietet einen Projektassistenten für das Projekt-Tailoring
 
 [[nachbarsystem]]
 === Nachbarsystem
+[.status]
+[.revised]#überarbeitet#
+[.release]#≥ IsyFact 4#
 
 // tag::nachbarsystem-definition[]
 
