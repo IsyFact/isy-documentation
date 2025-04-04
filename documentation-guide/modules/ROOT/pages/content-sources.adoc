@@ -96,6 +96,8 @@ Hierbei muss aufgrund des Git LFS Workarounds:
 
 Ansonsten sind die gleichen Punkte wie bei <<content-source-branches>> zu beachten.
 
+WARNING: Antora rät generell davon ab, Dokumentation https://docs.antora.org/antora/latest/playbook/content-tags/[aus Tags heraus] zu veröffentlichen.
+
 [[playbook-lokale-entwicklung]]
 === Playbook für lokale Entwicklung
 Für die lokale Entwicklung ist es sinnvoll, ein https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook-local.yml["lokales" Playbook] zu pflegen.
@@ -129,12 +131,6 @@ Hierbei muss:
 * der Parameter `branches` bzw. `tags` die für die Veröffentlichung bestimmten Git-Referenzen beinhalten,
 * der Parameter `version` das Mapping der Git-Referenzen auf Versionen festlegen.
 
-NOTE: Beinhaltet ein Content Source mehrere Antora Komponenten, so ist der
-https://docs.antora.org/antora/latest/playbook/content-source-start-paths/#start-paths-key[_start_paths_] key zu verwenden.
-
-WARNING: Antora rät generell davon ab, Dokumentation aus Tags zu ziehen, siehe https://docs.antora.org/antora/latest/playbook/content-tags/[Content Keys - Tags]
-
-NOTE: Das lokale checkout der Dokumentation mit Git LFS kann über eine Antora Erweiterung realisiert werden, siehe https://docs.antora.org/antora/latest/extend/extension-use-cases/#support-remote-repositories-with-git-lfs-enabled[Antora extension Use Cases]
 
 [[antora-komponente-entfernen]]
 == Entfernung einer Antora-Komponente
