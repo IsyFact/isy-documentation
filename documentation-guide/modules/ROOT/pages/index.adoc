@@ -46,51 +46,52 @@ Die Quellen der Online-Dokumentation der IsyFact verteilen sich auf mehrere Git-
 Zur Bereitstellung der Projektseite nutzt die IsyFact zwei übergreifende Repositories:
 
 * https://github.com/IsyFact/isyfact.github.io[icon:github[] isyfact.github.io] zur Ablage der globalen Konfiguration (Playbook, CI/CD-Build, ...) und zur Bereitstellung der erzeugten Projektseite,
-* https://github.com/IsyFact/isy-documentation[icon:github[] isy-documentation] zur Bereitstellung übergreifender Inhalte wie z.B. Lizenzhinweise, dem Glossar und einem Quellenverzeichnis.
+* https://github.com/IsyFact/isy-documentation[icon:github[] isy-documentation] zur Bereitstellung übergreifender Inhalte wie z.B. Lizenzhinweise, dem Glossar und einem Quellenverzeichnis,
+* weitere Repositories zur Ablage von Inhalten zu entkoppelten Bausteinen.
 
 Die meisten Inhalte sind derzeit im zentralen Repository https://github.com/IsyFact/isyfact-standards[icon:github[] isyfact-standards] enthalten.
 Weitere Inhalte sind im https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook.yml[Playbook] referenziert.
 
 === Struktur des zentralen Repositories
 
-Die Dokumentation ist vollständig im Modul https://github.com/IsyFact/isyfact-standards/tree/master/isyfact-standards-doc[isyfact-standards-doc] enthalten.
-Sie unterteilt sich in https://docs.antora.org/antora/latest/module-directories/#module[Module], die sich an den Säulen der IsyFact bzw. an ihren Bausteinen orientieren.
+Die Dokumentation ist vollständig im Maven-Modul https://github.com/IsyFact/isyfact-standards/tree/master/isyfact-standards-doc[isyfact-standards-doc] enthalten.
+Sie unterteilt sich in https://docs.antora.org/antora/latest/module-directories/#module[Antora-Module], die sich an den Säulen der IsyFact bzw. an ihren Bausteinen orientieren.
 
 [[table-antora-modules]]
-.Module der Dokumentation der IsyFact-Standards
+.Module der Dokumentation in `isyfact-standards`
 [cols="1m,4", options="header"]
 |===
 |Modul
 |Beschreibung
 
 |einstieg
-|xref:isyfact-standards-doku:einstieg:einstieg.adoc[] in die IsyFact & Inhalte zur IsyFact allgemein
+|Einstieg in die IsyFact & Inhalte zur IsyFact allgemein
 
 |icon:ban[title=Deprecation] [.line-through]#blaupausen#
-|→ `referenzarchitektur`
+|→ `referenzarchitektur` (ab IsyFact 4)
 
 |referenzarchitektur
-|Inhalte der Säule xref:4.0.x@isyfact-standards-doku:referenzarchitektur:index.adoc[]
+|Inhalte der Säule "Referenzarchitektur"
 
 |bausteine
-|Allgemeine Inhalte der Säule xref:isyfact-standards-doku:bausteine:bausteine.adoc[]
+|Allgemeine Inhalte der Säule "Bausteine"
 
 |isy-\{baustein}
 |Inhalte des jeweiligen Bausteins
 
 |plattform
-|Inhalte der Säule xref:isyfact-standards-doku:plattform:plattform.adoc[]
+|Inhalte der Säule "Plattform"
 
 |methodik
-|Inhalte der Säule xref:isyfact-standards-doku:methodik:methodik.adoc[]
+|Inhalte der Säule "Methodik"
 
 |werkzeuge
-|Inhalte der Säule xref:isyfact-standards-doku:werkzeuge:werkzeuge.adoc[]
+|Inhalte der Säule "Werkzeuge"
 
 |icon:ban[title=Deprecation] [.line-through]#changelog#
-|→ `release`
+|→ `release` (ab IsyFact 4)
 
 |release
-|xref:4.0.x@isyfact-standards-doku:release:releasenotes.adoc[Änderungsdokumentation] zum aktuellen Release
+|Änderungsdokumentation zum aktuellen Release
 |===
 
