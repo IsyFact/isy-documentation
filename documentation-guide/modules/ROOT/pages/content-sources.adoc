@@ -83,7 +83,7 @@ https://docs.antora.org/antora/latest/playbook/content-source-start-paths/#start
 ----
 content:
   sources:
-    - url: ./isyfact-standards-3.x
+    - url: ./isyfact-standards-4.0.0
       branches: HEAD
       start_path: isyfact-standards-doc/src/docs/antora
       version: '{tag}'
