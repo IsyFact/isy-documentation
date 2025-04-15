@@ -47,32 +47,90 @@ TIP: Die Nutzung von `sparse-checkout` wird empfohlen, um nur die Dateien auszuc
 
 Dem https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook.yml[Playbook] muss für das ausgecheckte Repository eine neue _Content Source_ hinzugefügt werden.
 
-.Konfiguration der Content Source für die IsyFact-Standards (Release 3.x) in 'antora-playbook.yml'
+[[content-source-branches]]
+==== Content Source auf Basis von Branches
 
+.Konfiguration einer Content Source auf Basis eines Branches
 [source,yaml]
 ----
 content:
   sources:
     - url: ./isyfact-standards-3.x
       branches: release/3.x
-      tags: [3.2.1]
       start_path: isyfact-standards-doc/src/docs/antora
       version:
         'release/(*)': $1
-        'master': '5.x'
+        'master': '{next}.x' <.>
         '(*)': $1
 ----
+<.> `\{next}` bezeichnet hierbei die nächste Hauptversion.
 
 Hierbei muss:
 
 * die `url` aus dem Playbook auf den `path` aus der Checkout-Action zeigen,
 * der `start_path` aus dem Playbook im `sparse_checkout` aus der Checkout-Action enthalten sein,
-* der Parameter `branches` auf den ausgecheckten Git-Branch gesetzt sein, um den lokalen, ausgecheckten Stand zu verwenden.
-* der https://docs.antora.org/antora/latest/playbook/content-tags/[tag key] selektiert eine Reihe von Git-Tags.
-* das Version-Mapping legt den version key für eine Antora-Komponente fest.
+* der Parameter `branches` auf den ausgecheckten Git-Branch gesetzt sein, um den lokalen, ausgecheckten Stand zu verwenden,
+* der Parameter `version` das Mapping der Git-Referenzen auf Versionen festlegen.
 
-NOTE: Beinhaltet ein Content-Source mehrere Antora Komponenten, so ist der
-https://docs.antora.org/antora/latest/playbook/content-source-start-paths/#start-paths-key[_start_paths_] key zu verwenden.
+NOTE: Beinhaltet eine Content Source mehrere Antora-Komponenten, so ist der Parameter
+https://docs.antora.org/antora/latest/playbook/content-source-start-paths/#start-paths-key[_start_paths_] zu verwenden.
+
+[[content-source-tags]]
+==== Content Source auf Basis von Tags
+
+.Konfiguration einer Content Source auf Basis eines Tags
+[source,yaml]
+----
+content:
+  sources:
+    - url: ./isyfact-standards-4.0.0
+      branches: HEAD
+      start_path: isyfact-standards-doc/src/docs/antora
+      version: '{tag}'
+----
+
+Hierbei muss aufgrund des Git LFS Workarounds:
+
+* der Parameter `branches` auf `HEAD` zeigen,
+* der Parameter `version` gleich dem Tag sein.
+
+Ansonsten sind die gleichen Punkte wie bei <<content-source-branches>> zu beachten.
+
+WARNING: Antora rät generell davon ab, Dokumentation https://docs.antora.org/antora/latest/playbook/content-tags/[aus Tags heraus] zu veröffentlichen.
+
+[[playbook-lokale-entwicklung]]
+=== Playbook für lokale Entwicklung
+Für die lokale Entwicklung ist es sinnvoll, ein https://github.com/IsyFact/isyfact.github.io/blob/main/antora-playbook-local.yml["lokales" Playbook] zu pflegen.
+Das lokale Playbook unterscheidet sich in folgenden Punkten vom zentralen Playbook:
+
+* eine Content Source beinhaltet mehrere Git Branches oder Tags,
+* es werden _Feature_ Branches für eine Vorschau der Beiträge unterstützt,
+* die Pflege der Branches erfolgt unter Umständen lokal.
+
+.Konfiguration einer Content Source im lokalen Playbook
+[source,yaml]
+----
+content:
+  sources:
+    - url: ../isyfact-standards
+      branches: [HEAD, master, release/4.x, release/3.x]
+      tags: [3.2.1, 4.0.0]
+      start_path: isyfact-standards-doc/src/docs/antora
+      version:
+        'feature/(*)': $1
+        'release/(*)': $1
+        'master': '{next}.x' <.>
+        '(*)': $1
+----
+<.> `\{next}` bezeichnet hierbei die nächste Hauptversion.
+
+Hierbei muss:
+
+* die `url` aus dem Playbook auf den lokalen Checkout-Pfad zeigen,
+* der `start_path` auf die Antora-Komponenten-Konfiguration (antora.yml) verweisen,
+* der Parameter `branches` bzw. `tags` die für die Veröffentlichung bestimmten Git-Referenzen beinhalten,
+* der Parameter `version` das Mapping der Git-Referenzen auf Versionen festlegen.
+
 
 [[antora-komponente-entfernen]]
 == Entfernung einer Antora-Komponente
@@ -82,44 +140,3 @@ Prinzipiell müssen zur Entfernung einer Antora-Komponente aus der Online-Dokume
 Zusätzlich ist darauf zu achten, dass durch die Entfernung einer Antora-Komponente keine ungültigen Verweise entstehen.
 Hierzu geben die https://github.com/IsyFact/isyfact.github.io/actions/workflows/antora_build.yml[Logs der CI-Builds] (oder lokalen Builds) Aufschluss.
 Werden dort noch Verweise auf die entfernte Antora-Komponente als ungültig gemeldet, müssen die entsprechenden Stellen in der Dokumentation angepasst werden.
-
-[[playbook-lokale-entwicklung]]
-=== Playbook für lokale Entwicklung
-Für die lokale Entwicklung ist es sinnvoll ein weiteres Playbook _antora-playbook-local.yml_ zu pflegen.
-Das lokale Playbook unterscheidet sich in folgenden Punkten vom zentralen Playbook:
-
-* Eine Content-Source beinhaltet mehrere Git Branches oder Tags
-* Es werden _Feature_ Branches für eine Vorschau der Beiträge unterstützt
-* Die Pflege der Branches erfolgt unter Umständen lokal.
-
-.Konfiguration der Content Source für die IsyFact-Standards (Release 3.x) in 'antora-playbook-local.yml'
-
-[source,yaml]
-----
-content:
-  sources:
-    - url: ../isyfact-standards
-      branches: master, HEAD, release/4*, release/3.x*, release/3.2.1
-      tags: [4.0.0]
-      start_path: isyfact-standards-doc/src/docs/antora
-      version:
-        'feature/(*)': $1
-        'release/(*)': $1
-        'master': '5.x'
-        '(*)': $1
-----
-
-Hierbei muss:
-
-* die `url` aus dem Playbook auf den lokalen Checkout-Pfad zeigen,
-* der `start_path` auf die Antora-Komponenten-Konfiguration (antora.yml) verweisen,
-* der Parameter `branches` die für die Veröffentlichung bestimmten Git-Branches beinhalten.
-* der https://docs.antora.org/antora/latest/playbook/content-tags/[tag key] selektiert eine Reihe von Git-Tags.
-* das Version-Mapping legt den version key für eine Antora-Komponente fest.
-
-NOTE: Beinhaltet ein Content-Source mehrere Antora Komponenten, so ist der
-https://docs.antora.org/antora/latest/playbook/content-source-start-paths/#start-paths-key[_start_paths_] key zu verwenden.
-
-WARNING: Antora rät generell davon ab, Dokumentation aus Tags zu ziehen, siehe https://docs.antora.org/antora/latest/playbook/content-tags/[Content Keys - Tags]
-
-NOTE: Das lokale checkout der Dokumentation mit Git LFS kann über eine Antora Erweiterung realisiert werden, siehe https://docs.antora.org/antora/latest/extend/extension-use-cases/#support-remote-repositories-with-git-lfs-enabled[Antora extension Use Cases]
