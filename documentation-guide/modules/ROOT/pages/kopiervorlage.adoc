@@ -1,7 +1,5 @@
 = Kopiervorlage für neue Seiten
 
-include::documentation-guide::partial$licence.adoc[]
-
 Der folgende Quelltext dient als Kopiervorlage für neue Seiten.
 
 [[kopiervorlage]]
@@ -9,8 +7,6 @@ Der folgende Quelltext dient als Kopiervorlage für neue Seiten.
 [source,asciidoc]
 ....
 = Titel der Seite
-
-\include::documentation-guide::partial$licence.adoc[]
 
 // tag::template[]
 [[formatierung]]

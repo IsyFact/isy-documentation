@@ -4,8 +4,6 @@
 
 :sectnums!:
 
-include::documentation-guide::partial$licence.adoc[]
-
 Das Glossar enthält eine Übersicht über zentrale Begriffe und Definitionen der IsyFact.
 
 [[a]]

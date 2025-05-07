@@ -1,7 +1,5 @@
 = Änderungen an Inhalten
 
-include::documentation-guide::partial$licence.adoc[]
-
 Der Leitfaden bietet die Möglichkeit an, Änderungen an Inhalten über vordefinierte Elemente auszuzeichnen.
 Er unterstützt die Auszeichnung von Inhalten in Erstellung, in Überarbeitung und in Deprecation.
 
@@ -35,7 +33,7 @@ include::documentation-guide::partial$content-new.adoc[]
 
 === Hinweis für Seiten
 
-Dieser Hinweis sollte, direkt nach dem Lizenzhinweis, als erster Inhalt auf einer Seite stehen.
+Dieser Hinweis sollte als erster Inhalt auf einer Seite stehen.
 
 *Markup:*
 
@@ -106,7 +104,7 @@ include::documentation-guide::partial$content-revised.adoc[]
 
 === Hinweis für Seiten
 
-Dieser Hinweis sollte, direkt nach dem Lizenzhinweis, als erster Inhalt auf einer Seite stehen.
+Dieser Hinweis sollte als erster Inhalt auf einer Seite stehen.
 
 *Markup:*
 

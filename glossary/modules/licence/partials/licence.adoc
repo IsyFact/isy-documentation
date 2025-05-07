@@ -1,3 +1,2 @@
-// Content of this file has been moved to `include` target and should note be referenced from documents anymore. 
-// File will remain for backward compatibility but may be removed in future. 
-include::documentation-guide::partial$licence.adoc[]
+// As of IFS-4537, the content of this file has been moved to the footer.
+// Including this partial is no longer necessary!
