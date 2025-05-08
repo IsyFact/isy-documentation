@@ -1,7 +1,5 @@
 = Leitfaden Dokumentation
 
-include::documentation-guide::partial$licence.adoc[]
-
 Diese Seiten dienen technischen Autoren der Online-Dokumentation als Wegweiser.
 Die Online-Dokumentation wird nach festgelegten Regeln und nach einem bestimmten Grundschema angefertigt.
 
@@ -46,7 +44,7 @@ Die Quellen der Online-Dokumentation der IsyFact verteilen sich auf mehrere Git-
 Zur Bereitstellung der Projektseite nutzt die IsyFact zwei übergreifende Repositories:
 
 * https://github.com/IsyFact/isyfact.github.io[icon:github[] isyfact.github.io] zur Ablage der globalen Konfiguration (Playbook, CI/CD-Build, ...) und zur Bereitstellung der erzeugten Projektseite,
-* https://github.com/IsyFact/isy-documentation[icon:github[] isy-documentation] zur Bereitstellung übergreifender Inhalte wie z.B. Lizenzhinweise, dem Glossar und einem Quellenverzeichnis,
+* https://github.com/IsyFact/isy-documentation[icon:github[] isy-documentation] zur Bereitstellung übergreifender Inhalte wie z.B. dem Glossar und dem Leitfaden zur Arbeit mit der Dokumentation,
 * weitere Repositories zur Ablage von Inhalten zu entkoppelten Bausteinen.
 
 Die meisten Inhalte sind derzeit im zentralen Repository https://github.com/IsyFact/isyfact-standards[icon:github[] isyfact-standards] enthalten.

@@ -1,7 +1,5 @@
 = Verwendung des Glossars
 
-include::partial$licence.adoc[]
-
 Das Glossar enthält zentrale Begriffe und Definitionen der IsyFact in Form von Glossareinträgen.
 Es besitzt ein Statusmodell, mit dem Änderungen an Glossareinträgen abgebildet werden.
 Das Glossar ermöglicht es, einzelne Definitionen im Text einzubinden oder auf Glossareinträge zu verweisen.

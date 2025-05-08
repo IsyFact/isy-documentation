@@ -1,7 +1,5 @@
 = Versionierung von Inhalten
 
-include::documentation-guide::partial$licence.adoc[]
-
 Jeder Inhalt der Online-Dokumentation ist Teil genau einer Antora-Komponente.
 Antora-Komponenten haben eine definierte https://docs.antora.org/antora/latest/component-version-key/[Version].
 Dieser Guide beschreibt, auf welche Art die Version einer Komponente festgelegt werden kann.

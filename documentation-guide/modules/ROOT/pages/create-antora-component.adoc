@@ -1,7 +1,5 @@
 = Erstellung von Antora-Komponenten
 
-include::documentation-guide::partial$licence.adoc[]
-
 Jeder Inhalt der Online-Dokumentation ist Teil genau einer Antora-Komponente.
 Dieser Guide beschreibt, was zur Erstellung einer Antora-Komponente nötig ist.
 
@@ -15,7 +13,7 @@ Unterhalb dieses Pfades sollten nur Bestandteile der Antora-Komponente liegen.
 
 IMPORTANT: In der Regel enthält ein Repository genau eine Antora-Komponente.
 Dies liegt daran, dass mehrere, versionierte Antora-Komponenten in einem Repository nur schwer gleichzeitig zu veröffentlichen sind.
-Einen Sonderfall stellen Antora-Komponenten xref:content-versioning.adoc#komponente-ohne-version[ohne Version] dar.
+Einen Sonderfall stellen Antora-Komponenten ohne Version dar.
 Diese können zur Vereinfachung in einem gemeinsamen Repository liegen.
 
 Eine https://docs.antora.org/antora/latest/standard-directories/#minimum-requirements[minimale Antora-Komponente] enthält eine Konfigurationsdatei (`antora.yml`), ein Modul (`ROOT`), eine Navigationsdatei (`nav.adoc`) und eine Seite (`index.adoc`), die anfangs als Startseite für die neue Antora-Komponente dient.

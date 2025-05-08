@@ -1,7 +1,5 @@
 = Veröffentlichung von Inhalten
 
-include::documentation-guide::partial$licence.adoc[]
-
 Die Online-Dokumentation besteht im Wesentlichen aus veröffentlichten Antora-Komponenten.
 Dieser Guide beschreibt, wie Antora-Komponenten in die Online-Dokumentation <<antora-komponente-aufnehmen,*aufgenommen*>> und aus ihr <<antora-komponente-entfernen,*entfernt*>> werden.
 

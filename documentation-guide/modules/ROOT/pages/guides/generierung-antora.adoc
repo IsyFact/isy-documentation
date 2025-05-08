@@ -1,7 +1,5 @@
 = Projektseite erzeugen
 
-include::documentation-guide::partial$licence.adoc[]
-
 Die Generierung einer Projektseite erfolgt, falls das Repository https://github.com/IsyFact/isyfact.github.io[icon:github[] isyfact.github.io] verwendet wird, wie in vergleichbaren npm-Projekten.
 Nachdem alle Abhängigkeiten installiert wurden, wird die Projektseite mit dem Befehl `npm build` erzeugt.
 
