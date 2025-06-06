@@ -15,7 +15,7 @@ Die Online-Dokumentation der IsyFact verwendet zwei Arten der Versionierung: Spi
 === Spiegeln der Software-Version
 
 Wenn Antora-Komponenten zusammen mit Software-Komponenten veröffentlicht werden, spiegeln sie deren Version.
-Beispiele hierfür sind der xref:isy-angular-widgets-doc::konzept/konzept.adoc[Baustein Angular] und die xref:isyfact-standards-doku:einstieg:einstieg.adoc[IsyFact-Standards].
+Beispiele hierfür sind der xref:angular::konzept.adoc[Baustein Angular] und die xref:isyfact-standards-doku:einstieg:einstieg.adoc[IsyFact-Standards].
 
 Aktuell gibt es folgende Vorgehensweisen:
 
