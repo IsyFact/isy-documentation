@@ -1,5 +1,6 @@
 # 2025
 
+- [2025-06-18] `IFS-4712`: add license declaration
 - [2025-05-08] (documentation-guide) `IFS-4537`: remove instructions for the license partial
 - [2025-03-20] (documentation-guide) `IFS-4549`: centralize version mapping
 - [2025-03-17] (glossary) `IFS-4208`: add terms "Nachbarsystem" and "Externes System"
