@@ -75,7 +75,6 @@ nav:
   - modules/plattform/nav.adoc
   - modules/methodik/nav.adoc
   - modules/werkzeuge/nav.adoc
-  - modules/release/nav.adoc
 ----
 
 [[antora-komponente-navigation-aufbau]]
