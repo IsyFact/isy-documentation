@@ -107,15 +107,26 @@ NOTE: iSAQB = International Software Architecture Qualification Board
 [[backend]]
 === Backend
 [.status]
-[.release]#≥ IsyFact 4#
+[.revised]#überarbeitet#
 
+[cols="1a,1a",options="header"]
+|===
+^|≥ IsyFact 5
+^|IsyFact 4
+
+|
 // tag::backend-definition[]
 
 Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] bereitstellt.
 Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
-Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich Anwendungskomponenten und Nachbarsystemschnittstellen um.
+Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich Anwendungskomponenten und intern genutzte Nachbarsystemschnittstellen um.
 
 // end::backend-definition[]
+
+|Ein Backend ist ein <<glossar-it-systemtyp>>, der hauptsächlich <<glossar-geschaeftslogik>> umsetzt und diese in Form von <<glossar-service-fachlich,Services>> bereitstellt.
+Dabei kann es sich um Nachbarsystemschnittstellen einer <<glossar-anwendung>> handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen <<glossar-it-system,IT-Systemen>> derselben Anwendung verwendet werden.
+Backends setzen, auf die fachliche <<glossar-referenzarchitektur>> bezogen, maßgeblich Anwendungskomponenten und Nachbarsystemschnittstellen um.
+|===
 
 [[glossar-batch]]
 === Batch
@@ -205,6 +216,23 @@ Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossa
 
 [[g]]
 == G
+
+[[gateway]]
+=== Gateway
+[.status]
+[.release]#≥ IsyFact 5#
+
+// tag::gateway-definition[]
+
+Ein Gateway ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der eine Verbindung zwischen xref:glossary::terms-definitions.adoc#externes-system[externen Systemen] und xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] der xref:glossary::terms-definitions.adoc#glossar-systemlandschaft[Systemlandschaft] herstellt.
+Alle Gateways einer Systemlandschaft zusammengenommen bilden ein _API-Gateway_ für die Systemlandschaft.
+
+Die Aufgaben eines Gateways reichen von Routing, Authentifizierung & Autorisierung, Protokollierung & Monitoring, Transformation von Anfragen und Antworten bis hin zum Schutz der Systemlandschaft vor externen Angriffen.
+Gateways beinhalten weder xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] noch eine eigene Datenhaltung.
+
+Gateways setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich extern genutzte Nachbarsystemschnittstellen um und binden externe Services in die Systemlandschaft ein.
+
+// end::gateway-definition[]
 
 [[glossar-geschaeftsanwendung]]
 [reftext="Geschäftsanwendung"]
