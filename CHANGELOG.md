@@ -1,5 +1,6 @@
 # 2025
 
+- [2025-10-09] (glossary) `IFS-4872`: add terms "Gateway" and base "Service-Gateway" on it
 - [2025-06-18] `IFS-4712`: add license declaration
 - [2025-05-08] (documentation-guide) `IFS-4537`: remove instructions for the license partial
 - [2025-03-20] (documentation-guide) `IFS-4549`: centralize version mapping
