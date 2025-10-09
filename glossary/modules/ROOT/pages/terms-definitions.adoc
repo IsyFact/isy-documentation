@@ -195,7 +195,7 @@ Beispiele für Domänen: Bewertung von Dienstposten, finanzielle Förderung von 
 
 Ein externes System bezeichnet ein System außerhalb der betrachteten <<glossar-systemlandschaft>>.
 Von externen Systemen sind nur die <<glossar-service-fachlich,Services>> bekannt, die zur Kommunikation mit <<glossar-it-system,IT-Systemen>> innerhalb der betrachteten Systemlandschaft dienen.
-Die Kommunikation mit externen Systemen erfolgt ausschließlich über <<glossar-service-gateway,Service-Gateways>>.
+Die Kommunikation mit externen Systemen erfolgt ausschließlich über <<gateway,Gateways>>.
 
 [[f]]
 == F
@@ -225,8 +225,6 @@ Frontends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossa
 // tag::gateway-definition[]
 
 Ein Gateway ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der eine Verbindung zwischen xref:glossary::terms-definitions.adoc#externes-system[externen Systemen] und xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] der xref:glossary::terms-definitions.adoc#glossar-systemlandschaft[Systemlandschaft] herstellt.
-Alle Gateways einer Systemlandschaft zusammengenommen bilden ein _API-Gateway_ für die Systemlandschaft.
-
 Die Aufgaben eines Gateways reichen von Routing, Authentifizierung & Autorisierung, Protokollierung & Monitoring, Transformation von Anfragen und Antworten bis hin zum Schutz der Systemlandschaft vor externen Angriffen.
 Gateways beinhalten weder xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] noch eine eigene Datenhaltung.
 
@@ -437,8 +435,28 @@ Es gibt Basisservices, Fachservices und Querschnittsservices.
 
 [[glossar-service-gateway]]
 === Service-Gateway
+[.revised]#überarbeitet#
 
+[cols="1a,1a",options="header"]
+|===
+^|≥ IsyFact 5
+^|≤ IsyFact 4
+
+|
+
+// tag::service-gateway-definition[]
+
+Ein Service-Gateway ist ein xref:glossary::terms-definitions.adoc#glossar-it-system[IT-System] vom Typ xref:glossary::terms-definitions.adoc#gateway[Gateway], das eine Verbindung zwischen Services xref:glossary::terms-definitions.adoc#externes-system[externer Systeme] und xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] der xref:glossary::terms-definitions.adoc#glossar-systemlandschaft[Systemlandschaft], sowie zwischen Services von xref:glossary::terms-definitions.adoc#backend[Backends] und xref:glossary::terms-definitions.adoc#externes-system[externen Systemen] herstellt.
+
+// end::service-gateway-definition[]
+
+CAUTION: Auf Ebene der <<glossar-anwendungslandschaft>>, Systemlandschaft und <<glossar-plattform>> wird die Gesamtheit aller Service-Gateways als "das" Service-Gateway bezeichnet.
+Hierbei handelt es sich um einen reinen Sammelbegriff.
+
+
+|
 Stellt die Verbindung zwischen einem externen und einem internen <<glossar-service-fachlich,Service>> durch eine Schnittstelle zur Verfügung.
+|===
 
 [[glossar-software-factory]]
 === Software Factory
