@@ -22,6 +22,9 @@ Die folgenden Webseiten bieten ausführliche Tutorials und weiterführende Infor
 [[ein-satz-pro-zeile]]
 == Zeilenumbrüche
 
+[[ein-satz-pro-zeile]]
+== Zeilenumbrüche
+
 Der Quelltext eines Dokuments bricht nach jedem Satz um.
 Er orientiert sich nicht anhand einer fixen Spaltenbreite.
 Diese Regel wird "ein Satz pro Zeile" (_one sentence per line_, s. https://asciidoctor.org/docs/asciidoc-recommended-practices/[AsciiDoc Recommended Practices]) genannt und orientiert sich an der Art und Weise, wie Quellcode organisiert ist (eine Anweisung pro Zeile).
