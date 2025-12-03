@@ -41,10 +41,10 @@ Eine Anwendung unterstützt Geschäftsprozesse.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary::terms-definitions.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
 Dabei kann sie xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] von anderen Anwendungen nutzen.
 
+// end::anwendung-definition[]
+
 Eine Anwendung ist Bestandteil der xref:glossary::terms-definitions.adoc#glossar-a-architektur[A-Architektur].
 Die software-technische Umsetzung einer Anwendung besteht in der Regel aus mehreren xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen].
-
-// end::anwendung-definition[]
 
 |Die Bedeutung des Begriffs „Anwendung“ geht meist aus dem Kontext hervor.
 Dieser Begriff sollte *nicht* pauschal als Synonym für <<glossar-anwendungssystem>>, <<glossar-geschaeftsanwendung>> oder <<glossar-querschnittsanwendung>> verwendet werden.
@@ -63,10 +63,7 @@ Gröbste Strukturierungsebene für eine Menge von <<glossar-anwendung,Anwendunge
 Eine Anwendungslandschaft enthält <<glossar-domaene,Domänen>>, die wiederum Anwendungen gruppieren.
 Zwischen den in einer Anwendungslandschaft vorhandenen Anwendungen ist in der Regel eine hohe Interaktion zu erwarten.
 
-Eine mittels der IsyFact umgesetzte Anwendungslandschaft besteht aus <<glossar-domaene,Domänen>>, einer <<glossar-querschnittsdomaene>>, einem <<glossar-portal>> und einem <<glossar-service-gateway>>.
-
-.Anwendungslandschaft (IsyFact)
-image::glossary::glossar-anwendungslandschaft.png[]
+Eine mittels der IsyFact umgesetzte Anwendungslandschaft besteht aus <<glossar-domaene,Domänen>>, einer <<glossar-querschnittsdomaene>>, einem <<glossar-portal>> und einem <<api-gateway>>.
 
 [[glossar-anwendungssystem]]
 === Anwendungssystem
@@ -88,6 +85,18 @@ Sammlung von Architekturvorgaben (aller <<glossar-architektursicht,Architektursi
 In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von <<glossar-anwendung,Anwendungen>>.
 +
 Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung>> und die <<glossar-querschnittsanwendung>>.
+
+[[api-gateway]]
+=== API-Gateway
+[.status]
+[.release]#≥ IsyFact 5#
+
+// tag::api-gateway-definition[]
+
+Das API-Gateway hat zur Aufgabe, Aufrufe aus der xref:glossary::terms-definitions.adoc#glossar-systemlandschaft[Systemlandschaft] an xref:glossary::terms-definitions.adoc#externes-system[externe Systeme] sowie Aufrufe von externen Systemen in die Systemlandschaft weiterzuleiten.
+Es überbrückt dabei Schnittstellentechnologien und nimmt querschnittliche Aufgaben wahr, insbesondere in den Bereichen Authentifizierung, Autorisierung, Monitoring und Protokollierung.
+
+// end::api-gateway-definition[]
 
 [[glossar-architektursicht]]
 === Architektursicht
@@ -450,9 +459,7 @@ Ein Service-Gateway ist ein xref:glossary::terms-definitions.adoc#glossar-it-sys
 
 // end::service-gateway-definition[]
 
-CAUTION: Auf Ebene der <<glossar-anwendungslandschaft>>, Systemlandschaft und <<glossar-plattform>> wird die Gesamtheit aller Service-Gateways als "das" Service-Gateway bezeichnet.
-Hierbei handelt es sich um einen reinen Sammelbegriff.
-
+Service-Gateways sind ein Teil der technischen Umsetzung des <<api-gateway,API-Gateways>>.
 
 |
 Stellt die Verbindung zwischen einem externen und einem internen <<glossar-service-fachlich,Service>> durch eine Schnittstelle zur Verfügung.
