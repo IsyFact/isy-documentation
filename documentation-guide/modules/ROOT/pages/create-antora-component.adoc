@@ -37,6 +37,18 @@ Eine https://docs.antora.org/antora/latest/standard-directories/#minimum-require
 
 Das https://docs.antora.org/antora/latest/root-module-directory/#root-module[ROOT-Modul] ist eine Konvention von Antora und sorgt dafür, dass der Modulname nicht Bestandteil der URL der einzelnen Seiten wird.
 
+[TIP]
+====
+Die Online-Dokumentation der IsyFact nutzt als Konvention den Ordner `docs` auf oberster Ebene eines Repositories zur Ablage einer Antora-Komponente.
+
+----
+📒 repository-root
+  📂 docs
+  📂 software-module-a
+  📂 software-module-b
+  📂 ...
+----
+====
 
 [[antora-komponente-konfiguration-aufbau]]
 == Aufbau der Konfigurationsdatei
@@ -59,6 +71,19 @@ nav:
 Der Name der Antora-Komponente tritt als Teil der URL jeder Seite in Erscheinung.
 Der Titel erscheint an verschiedenen Stellen der Online-Dokumentation und ist meist mit einem Verweis auf die Startseite der Antora-Komponente versehen.
 Das Setzen der Version behandelt der Guide zur xref:content-versioning.adoc[].
+
+[TIP]
+====
+Die Online-Dokumentation der IsyFact nutzt als Konvention den Namen des Bausteins in den Attributen `name` und `title`.
+
+[source,yaml]
+----
+name: security
+title: Baustein Security
+----
+
+Der Name wiederholt insbesondere nicht die Projektbezeichnung (`isy` / `isyfact`) und verweist nicht explizit darauf, das Dokumentation (u.a. `docs` / `doku`) enthalten ist.
+====
 
 Die Navigation enthält zu Beginn die Navigationsdatei des ROOT-Moduls.
 Perspektivisch referenziert sie die Navigationsdateien aller Module.

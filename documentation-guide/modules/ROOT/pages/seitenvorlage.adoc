@@ -31,6 +31,24 @@ _In sich selbst abgeschlossen_ bedeutet, dass zum grundlegenden Verständnis des
 <.> Hauptseite eines Themas.
 <.> Seite zu einem Teilaspekt des Themas.
 
+[TIP]
+====
+Die Online-Dokumentation der IsyFact nutzt als Konvention zur Benennung von Ordnern und Seiten https://developer.mozilla.org/de/docs/Glossary/Kebab_case[Kebab Case], da Ordner- und Seitennamen Bestandteile der URL zum Aufruf der Seiten sind.
+
+----
+📂 software-technisch
+  📂 backend
+      📄 anwendungskern.adoc <.>
+      📄 spring.adoc
+  📄 backend.adoc
+  📄 it-system.adoc
+  📄 it-system-zerlegung.adoc <.>
+📄 index.adoc
+----
+<.> Aufruf über `/software-technisch/backend/anwendungskern.html`
+<.> Aufruf über `/software-technisch/it-system-zerlegung.html`
+====
+
 Diese Struktur kann rekursiv angewendet werden.
 Allerdings ist zu beachten, dass der Navigationsbaum hierdurch schnell unübersichtlich wird.
 Daher sollte es maximal zwei Ebenen unterhalb eines Themas geben.

@@ -1,5 +1,6 @@
 # 2025
 
+- [2025-12-16] (documentation-guide) `IFS-4650`: document conventions of the online documentation 
 - [2025-12-03] (glossary) `IFS-4924`: introduce term "API-Gateway"
 - [2025-10-09] (glossary) `IFS-4872`: add terms "Gateway" and base "Service-Gateway" on it
 - [2025-06-18] `IFS-4712`: add license declaration
