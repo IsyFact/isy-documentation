@@ -1,3 +1,7 @@
+# 2026
+
+- [2026-01-14] (glossary) `IFS-4734`: revise definition of term "Service"
+
 # 2025
 
 - [2025-12-16] (documentation-guide) `IFS-4650`: document conventions of the online documentation 
