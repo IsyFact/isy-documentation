@@ -39,7 +39,7 @@ Sie besteht aus Anwendungskomponenten.
 
 Eine Anwendung unterstützt Geschäftsprozesse.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von den Schnittstellen (zu xref:glossary::terms-definitions.adoc#glossar-anwender[Anwendern] oder anderen Anwendungen) über die xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik], die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] von anderen Anwendungen nutzen.
+Dabei kann sie xref:glossary::terms-definitions.adoc#service[Services] von anderen Anwendungen nutzen.
 
 // end::anwendung-definition[]
 
@@ -126,13 +126,13 @@ NOTE: iSAQB = International Software Architecture Qualification Board
 |
 // tag::backend-definition[]
 
-Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] bereitstellt.
+Ein Backend ist ein xref:glossary::terms-definitions.adoc#glossar-it-systemtyp[IT-Systemtyp], der hauptsächlich xref:glossary::terms-definitions.adoc#glossar-geschaeftslogik[Geschäftslogik] umsetzt und diese in Form von xref:glossary::terms-definitions.adoc#service[Services] bereitstellt.
 Dabei kann es sich um Nachbarsystemschnittstellen einer xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendung] handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] derselben Anwendung verwendet werden.
 Backends setzen, auf die fachliche xref:glossary::terms-definitions.adoc#glossar-referenzarchitektur[Referenzarchitektur] bezogen, maßgeblich Anwendungskomponenten und intern genutzte Nachbarsystemschnittstellen um.
 
 // end::backend-definition[]
 
-|Ein Backend ist ein <<glossar-it-systemtyp>>, der hauptsächlich <<glossar-geschaeftslogik>> umsetzt und diese in Form von <<glossar-service-fachlich,Services>> bereitstellt.
+|Ein Backend ist ein <<glossar-it-systemtyp>>, der hauptsächlich <<glossar-geschaeftslogik>> umsetzt und diese in Form von <<service,Services>> bereitstellt.
 Dabei kann es sich um Nachbarsystemschnittstellen einer <<glossar-anwendung>> handeln, die von anderen Anwendungen verwendet werden, oder um interne Schnittstellen, die von anderen <<glossar-it-system,IT-Systemen>> derselben Anwendung verwendet werden.
 Backends setzen, auf die fachliche <<glossar-referenzarchitektur>> bezogen, maßgeblich Anwendungskomponenten und Nachbarsystemschnittstellen um.
 |===
@@ -184,7 +184,7 @@ Blaupausen beschreiben die durch die IsyFact vorgegebene Architektur und Konzept
 [[glossar-domaene]]
 === Domäne
 
-Eine Domäne im Kontext der <<glossar-a-architektur>> entspricht der Begrifflichkeit aus Sicht des "Domain Driven Design".
+Eine Domäne im Kontext der <<glossar-a-architektur>> entspricht der Begrifflichkeit aus Sicht der Methode "Domain Driven Design".
 Sie gruppiert fachlich zusammengehörende <<glossar-geschaeftsanwendung,Geschäftsanwendungen>>.
 Werden <<glossar-querschnittsanwendung,Querschnittsanwendungen>> gruppiert, entsteht eine *<<glossar-querschnittsdomaene>>*.
 
@@ -203,7 +203,7 @@ Beispiele für Domänen: Bewertung von Dienstposten, finanzielle Förderung von 
 [.release]#≥ IsyFact 4#
 
 Ein externes System bezeichnet ein System außerhalb der betrachteten <<glossar-systemlandschaft>>.
-Von externen Systemen sind nur die <<glossar-service-fachlich,Services>> bekannt, die zur Kommunikation mit <<glossar-it-system,IT-Systemen>> innerhalb der betrachteten Systemlandschaft dienen.
+Von externen Systemen sind nur die <<service,Services>> bekannt, die zur Kommunikation mit <<glossar-it-system,IT-Systemen>> innerhalb der betrachteten Systemlandschaft dienen.
 Die Kommunikation mit externen Systemen erfolgt ausschließlich über <<gateway,Gateways>>.
 
 [[f]]
@@ -263,7 +263,7 @@ Sie setzt eine spezifische xref:glossary::terms-definitions.adoc#glossar-geschae
 
 |Eine Geschäftsanwendung ist ein <<glossar-anwendungssystem>>, welches einen oder mehrere Geschäftsprozesse einer <<glossar-domaene,Domäne>> spezifiziert.
 Sie beschreibt die gesamten hierfür notwendigen Funktionen, von der Benutzerschnittstelle über die fachliche Logik, die Prozesse bis hin zur Datenhaltung.
-Dabei kann sie die <<glossar-service-fachlich,Services>> von <<glossar-querschnittsanwendung,Querschnittsanwendungen>> oder anderen <<glossar-anwendungssystem,Anwendungssystemen>> nutzen.
+Dabei kann sie die <<service,Services>> von <<glossar-querschnittsanwendung,Querschnittsanwendungen>> oder anderen <<glossar-anwendungssystem,Anwendungssystemen>> nutzen.
 |===
 
 [[glossar-geschaeftslogik]]
@@ -397,7 +397,7 @@ Eine Querschnittsanwendung ist eine xref:glossary::terms-definitions.adoc#glossa
 Sie besitzt eine geringe bis nicht vorhandene Fachspezifität und ist eigenständig ohne Nutzen für xref:glossary::terms-definitions.adoc#glossar-anwender[Anwender].
 Querschnittsanwendungen sind somit in verschiedenen xref:glossary::terms-definitions.adoc#glossar-domaene[Domänen] oder über mehrere xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaften] hinweg wiederverwendbar.
 
-Querschnittsanwendungen dürfen nur xref:glossary::terms-definitions.adoc#glossar-service-fachlich[Services] von anderen Querschnittsanwendungen nutzen.
+Querschnittsanwendungen dürfen nur xref:glossary::terms-definitions.adoc#service[Services] von anderen Querschnittsanwendungen nutzen.
 
 // end::querschnittsanwendung-definition[]
 
@@ -436,14 +436,39 @@ Die Referenzarchitektur beschreibt die durch die IsyFact vorgegebene Architektur
 [[s]]
 == S
 
-[[glossar-service-fachlich]]
-=== Service (fachlich)
+[[service]]
+=== Service
+[.status]
+[.revised]#überarbeitet#
 
-Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
+[cols="1a,1a",options="header"]
+|===
+^|≥ IsyFact 5
+^|≤ IsyFact 4
+
+|Ein Service kapselt eine klar umrissene fachliche oder technische Funktionalität und stellt diese über eine wohldefinierte, veröffentlichte Schnittstelle bereit.
+Services sind ein Bestandteil von <<backend,Backends>>.
+
+Ein Service besitzt die folgenden Eigenschaften:
+
+* *Modularität:* Services sind in sich abgeschlossen.
+* *Definierte Schnittstelle:*  Für die Nutzung von Services reicht es, deren Schnittstellen (API) zu kennen.
+Kenntnisse über die Details der Implementierung sind nicht erforderlich.
+* *Autonomie:* Services verwalten ihre Daten selbst.
+* *Lose Kopplung:* Services sind möglichst unabhängig voneinander realisiert.
+* *Plattformunabhängigkeit:* Anbieter und Nutzer eines Services können mit unterschiedlichen Technologien auf verschiedenen Plattformen realisiert sein.
+
+Für Services, die Funktionalität einer <<glossar-querschnittsanwendung>> umsetzen, gelten zusätzlich folgende Eigenschaften:
+
+* *Wiederverwendbarkeit:* Services sind so definiert, dass sie von <<glossar-it-system,IT-Systemen>> verschiedener <<glossar-anwendung,Anwendungen>> bzw. <<glossar-domaene,Domänen>> verwendet werden können.
+
+|Ein Service ist eine logische Einheit, die einen definierten Umfang an funktionalen Anforderungen erfüllt.
 Es gibt Basisservices, Fachservices und Querschnittsservices.
+|===
 
 [[glossar-service-gateway]]
 === Service-Gateway
+[.status]
 [.revised]#überarbeitet#
 
 [cols="1a,1a",options="header"]
@@ -462,7 +487,7 @@ Ein Service-Gateway ist ein xref:glossary::terms-definitions.adoc#glossar-it-sys
 Service-Gateways sind ein Teil der technischen Umsetzung des <<api-gateway,API-Gateways>>.
 
 |
-Stellt die Verbindung zwischen einem externen und einem internen <<glossar-service-fachlich,Service>> durch eine Schnittstelle zur Verfügung.
+Stellt die Verbindung zwischen einem externen und einem internen <<service>> durch eine Schnittstelle zur Verfügung.
 |===
 
 [[glossar-software-factory]]
