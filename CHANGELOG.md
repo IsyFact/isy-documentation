@@ -1,5 +1,6 @@
 # 2026
 
+- [2026-02-18] (documentation-guide) `IFS-5224`: describe how to mark deprecated content
 - [2026-01-14] (glossary) `IFS-4734`: revise definition of term "Service"
 
 # 2025
