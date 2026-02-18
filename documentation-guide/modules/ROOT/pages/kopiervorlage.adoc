@@ -137,7 +137,7 @@ Regeln zur Gestaltung von grafischen Oberflächen.
 
 Mehr zu Admonition Blocks xref:documentation-guide::guides/bearbeitung-antora.adoc#admonition-blocks[hier].
 
-Mehr zu Status-Auszeichnungen der Dokumentation wie Deprecation, "in Erstellung" xref:documentation-guide::guides/content-changes.adoc[hier].
+Mehr zu Status-Auszeichnungen der Dokumentation wie Deprecation, "in Erstellung" xref:documentation-guide::content-changes.adoc[hier].
 
 // end::template[]
 ....

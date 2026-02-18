@@ -234,7 +234,7 @@ Dies ist dann sinnvoll, wenn Teile der Dokumentation durch andere ersetzt werden
 
 *Ergebnis:*
 
-:linkaktuell: xref:documentation-guide::guides/content-changes.adoc[diese Inhalte]
+:linkaktuell: xref:documentation-guide::content-changes.adoc[diese Inhalte]
 include::documentation-guide::partial$content-deprecated-building-block.adoc[]
 
 [[deprecation-antora-component-version]]
