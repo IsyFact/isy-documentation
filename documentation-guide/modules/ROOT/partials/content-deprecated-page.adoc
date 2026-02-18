@@ -1,0 +1,3 @@
+:scope-page:
+include::partial$content-deprecated.adoc[]
+:!scope-page:

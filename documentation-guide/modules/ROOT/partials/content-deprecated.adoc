@@ -1,4 +1,6 @@
-.icon:ban[] Deprecation
+ifdef::scope-building-block[.🚫 Baustein veraltet (_deprecated_)]
+ifdef::scope-page[.🚫 Seite veraltet (_deprecated_)]
+ifndef::scope-page,scope-building-block[.🚫 Inhalt veraltet (_deprecated_)]
 ****
 Dieser Teil der Dokumentation ist veraltet und wird in einem zukünftigen Release entfernt.
 Die Inhalte sollten zur Entwicklung neuer Anwendungen nicht mehr berücksichtigt werden.
