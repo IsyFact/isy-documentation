@@ -14,7 +14,7 @@ Der folgende Quelltext dient als Kopiervorlage für neue Seiten.
 
 Der Quelltext einer Seite bricht gemäß der Regel _one sentence per line_ nach jedem Satz um.
 
-Mehr zu Zeilenumbrüchen xref:documentation-guide::guides/bearbeitung-antora.adoc#ein-satz-pro-zeile[hier].
+Mehr zu Zeilenumbrüchen xref:documentation-guide::seitenbearbeitung.adoc#ein-satz-pro-zeile[hier].
 
 [[formatierung-verweise]]
 === Verweise
@@ -36,7 +36,7 @@ Alle Verweise auf andere Seiten derselben Dokumentation nutzen die Syntax des Xr
 Die https://docs.antora.org/antora/latest/page/xref/#structure[Beschreibung der Struktur des Xref-Makros] zeigt weitere, interessante Anwendungsfälle für diese Art von Verweisen.
 ====
 
-Mehr zu Querverweisen xref:documentation-guide::guides/bearbeitung-antora.adoc#querverweise[hier].
+Mehr zu Querverweisen xref:documentation-guide::seitenbearbeitung.adoc#querverweise[hier].
 
 ==== Glossar
 
@@ -53,7 +53,7 @@ Mehr zur Verwendung des Glossars xref:documentation-guide::glossary.adoc[hier].
 .Beispiel einer Abbildung
 image::glossary::glossar-software-factory.png[]
 
-Mehr zu Abbildungen xref:documentation-guide::guides/bearbeitung-antora.adoc#bilder[hier].
+Mehr zu Abbildungen xref:documentation-guide::seitenbearbeitung.adoc#bilder[hier].
 
 [[formatierung-tabellen]]
 === Tabellen
@@ -69,7 +69,7 @@ Mehr zu Abbildungen xref:documentation-guide::guides/bearbeitung-antora.adoc#bil
 |Zelle 31|Zelle 32|Zelle 33|Zelle 34
 |===
 
-Mehr zu Tabellen xref:documentation-guide::guides/bearbeitung-antora.adoc#tabellen[hier].
+Mehr zu Tabellen xref:documentation-guide::seitenbearbeitung.adoc#tabellen[hier].
 
 [[formatierung-listings]]
 === Listings
@@ -85,7 +85,7 @@ public class HalloWelt {
 }
 ----
 
-Mehr zu Listings xref:documentation-guide::guides/bearbeitung-antora.adoc#listings[hier].
+Mehr zu Listings xref:documentation-guide::seitenbearbeitung.adoc#listings[hier].
 
 [[formatierung-admonitions]]
 === Admonition Blocks
@@ -135,7 +135,7 @@ Regeln für die Sicherheit von IT-Systemen.
 Regeln zur Gestaltung von grafischen Oberflächen.
 ****
 
-Mehr zu Admonition Blocks xref:documentation-guide::guides/bearbeitung-antora.adoc#admonition-blocks[hier].
+Mehr zu Admonition Blocks xref:documentation-guide::seitenbearbeitung.adoc#admonition-blocks[hier].
 
 Mehr zu Status-Auszeichnungen der Dokumentation wie Deprecation, "in Erstellung" xref:documentation-guide::content-changes.adoc[hier].
 
