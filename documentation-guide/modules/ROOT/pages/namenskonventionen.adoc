@@ -18,6 +18,4 @@ NOTE: Bei einigen Namen in der IsyFact-Dokumentation ist die Umstellung der Name
 |falsch |_isyfact, IsyFact, isyfact standards, lösung, standards-und-erweiterungen
 |====
 
-[[dokumentation-glossar]]
-== Spezielle Namensschemata Dokumentation
-include::guides/bearbeitung-antora.adoc[tag=namenskonvention]
+include::seitenbearbeitung.adoc[tag=namenskonvention]
