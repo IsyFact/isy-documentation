@@ -1,15 +1,13 @@
-= Seiten bearbeiten
+= Seitenbearbeitung
 
-Im Folgenden wird beschrieben, wie Seiten bearbeitet werden müssen, damit sie per Antora generiert werden können.
-Außerdem werden Konventionen zur Bearbeitung beschrieben, die es ermöglichen, die IsyFact Dokumentation in einem einheitlichen Stil zur Verfügung zu stellen.
+Seiten müssen bestimmten Vorgaben genügen, damit sie in der Online-Dokumentation der IsyFact insgesamt in einem einheitlichen Stil zur Verfügung gestellt werden können.
+Außerdem zielen die Vorgaben darauf ab, die Seiten möglichst wartungsarm zu gestalten.
 
-Außerdem gibt es eine xref:seitenvorlage.adoc[Seitenvorlage], die kopiert werden kann, und exemplarisch alle gängigen Elemente einer Dokumentationsseite enthält.
-
-Außer diesem Handbuch sind Kenntnisse der AsciiDoc-Syntax erforderlich.
+Es gibt eine xref:seitenvorlage.adoc[Seitenvorlage], die kopiert werden kann, und exemplarisch alle gängigen Elemente einer Seite der Online-Dokumentation enthält.
 
 [NOTE]
 ====
-Dieses Handbuch erklärt die Grundlagen der AsciiDoc-Syntax nicht weiter.
+Der Leitfaden erklärt die Grundlagen der AsciiDoc-Syntax nicht weiter.
 Die folgenden Webseiten bieten ausführliche Tutorials und weiterführende Informationen an:
 
 * https://asciidoctor.org/docs/what-is-asciidoc/[What is AsciiDoc? Why do we need it?] +
@@ -116,12 +114,11 @@ Zum <<ueberschriften,Beispiel-Kapitel>> gelangen Sie über einen Mausklick.
 Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>.
 ----
 
-Der erste Parameter in dem Klammer-Paar referenziert die ID des Querverweises.
-Der zweite Parameter kann gesetzt werden, wenn statt des Namens des Kapitels ein eigener Text verwendet werden soll.
 Der erzeugte Text sieht wie folgt aus:
 
-_Zum <<ueberschriften,Beispiel-Kapitel>> gelangen Sie über einen Mausklick._
-_Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>._
+[example]
+Zum <<ueberschriften,Beispiel-Kapitel>> gelangen Sie über einen Mausklick.
+Im Übrigen handelt es sich bei dem Beispiel-Kapitel um das Kapitel <<ueberschriften>>.
 
 Verweise können auch auf andere Sprungziele zeigen als Überschriften, wie Abbildungen, Tabellen und Listings, siehe auch xref:seitenvorlage.adoc#formatierung-verweise[Beispiele für Verweise auf Abbildungen, Tabellen und Listings].
 
@@ -175,7 +172,7 @@ Stattdessen werden <<verweise-lokal>> empfohlen.
 [[verweise-extern]]
 === Externe Verweise
 
-Externe Verweise werden gemäß https://docs.asciidoctor.org/asciidoc/latest/macros/url-macro/[Asciidoc Dokumentation] gesetzt.
+Externe Verweise werden gemäß https://docs.asciidoctor.org/asciidoc/latest/macros/url-macro/[AsciiDoc Dokumentation] gesetzt.
 
 [[admonition-blocks]]
 == Admonition-Blocks
@@ -334,24 +331,6 @@ In der IsyFact-Dokumentation werden Tags genutzt, um Bestandteile zu bündeln od
 
 IMPORTANT: Abbildungen zu einer Seite werden stets im Unterordner `images` unterhalb des Antora-Moduls abgelegt, in dem sich die Seite befindet (s. Antora-Dokumentation zur https://docs.antora.org/antora/latest/standard-directories/#hierarchy-and-reserved-names[Struktur einer Komponente]).
 
-IMPORTANT: Abbildungen sollten mit xref:isyfact-standards-doku:methodik:diagrammerstellung/diagramsnet.adoc#arbeiten-mit-diagrams.net[diagrams.net] als `<Name Abbildung>.dn.svg` erstellt werden.
-
-Diagramme, die mit dem xref:isyfact-standards-doku:methodik:diagrammerstellung/enterprise-architect.adoc[Enterprise Architect] erstellt werden, oder Screenshots, dürfen auch weiterhin im PNG-Format eingebunden werden.
-
-// tag::namenskonvention[]
-
-[[table-namenskonvention-bilder]]
-.Namensschema für Namen von Abbildungen aus diagrams.net
-[cols="1s,4m",options="header"]
-|====
-2+|Namen für Abbildungen
-|Schema |<Name Abbildung gemäß allgemeinem Namensschema für Dokumentation>.dn.svg
-|Beispiel |beispiel.dn.svg
-|Hinweis | dn bedeutet: erstellt mit diagrams.net
-|====
-
-// end::namenskonvention[]
-
 Wenn ein Antora-Modul sehr viele Bilder enthält, kann auch eine Unterstruktur unterhalb von `/images` angelegt werden, z.B. `/images/unterordner`.
 
 Eine Abbildung muss folgende Informationen enthalten:
@@ -388,6 +367,31 @@ oder, wenn das eingebundene Bild in einer Seite in einem anderen Modul oder eine
  xref:component:module:file.adoc#image-beispiel[Text].
 
 Beispiele für Abbildungen finden sich außerdem in xref:seitenvorlage.adoc#formatierung-abbildungen[Seitenvorlage Abbildungen].
+
+[[draw.io]]
+=== draw.io
+
+Diagramme, die mit xref:isyfact-standards-doku:methodik:diagrammerstellung/drawio.adoc[draw.io] erstellt werden, sind nach folgender Konvention zu benennen.
+
+// tag::namenskonvention[]
+
+[[table-namenskonvention-bilder]]
+.Konvention für Dateinamen von Abbildungen aus draw.io
+[cols="1s,4m",options="header"]
+|====
+2+|Dateinamen für Abbildungen aus draw.io
+|Schema |<name-der-abbildung>.dn.svg
+|Beispiel |beispiel.dn.svg
+|====
+
+// end::namenskonvention[]
+
+Da die Online-Dokumentation der IsyFact keinen Dark Mode unterstützt, müssen alle Diagramme xref:isyfact-standards-doku:methodik:diagrammerstellung/drawio.adoc#adaptive-colors[ohne Unterstützung von adaptiven Farben] erstellt werden.
+
+[[enterprise-architect]]
+=== Enterprise Architect
+
+Diagramme, die mit dem xref:isyfact-standards-doku:methodik:diagrammerstellung/enterprise-architect.adoc[Enterprise Architect] erstellt werden, oder Screenshots, dürfen auch weiterhin im PNG-Format eingebunden werden.
 
 [[tabellen]]
 == Tabellen
