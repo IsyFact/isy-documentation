@@ -83,7 +83,7 @@ Aus Sicht der <<glossar-t-architektur>> bildet ein <<glossar-it-system>> die sof
 
 Sammlung von Architekturvorgaben (aller <<glossar-architektursicht,Architektursichten>>) zur Entwicklung einer <<glossar-anwendung>> mit gleichartigen spezifischen Eigenschaften.
 In diesem Sinne gruppiert ein Anwendungstyp Eigenschaften von <<glossar-anwendung,Anwendungen>>.
-+
+
 Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung>> und die <<glossar-querschnittsanwendung>>.
 
 [[api-gateway]]
@@ -91,12 +91,27 @@ Die IsyFact kennt zwei Anwendungstypen: die <<glossar-geschaeftsanwendung>> und 
 [.status]
 [.release]#≥ IsyFact 5#
 
-// tag::api-gateway-definition[]
+[[api-gateway-fachliche-sicht]]
+==== Fachliche Sicht
 
-Das API-Gateway hat zur Aufgabe, Aufrufe aus der xref:glossary::terms-definitions.adoc#glossar-systemlandschaft[Systemlandschaft] an xref:glossary::terms-definitions.adoc#externes-system[externe Systeme] sowie Aufrufe von externen Systemen in die Systemlandschaft weiterzuleiten.
+// tag::api-gateway-definition-fachlich[]
+
+Das API-Gateway ist der zentrale Zugangspunkt zum Aufruf von Schnittstellen von xref:glossary::terms-definitions.adoc#glossar-anwendung[Anwendungen] einer xref:glossary::terms-definitions.adoc#glossar-anwendungslandschaft[Anwendungslandschaft] von außen, sowie zum Aufruf von Schnittstellen von externen Anwendungen von innerhalb der Anwendungslandschaft.
+Es kapselt interne Schnittstellen und bietet nach außen konsolidierte, versionierte und gesicherte APIs an.
+Außerdem schützt das API-Gateway die internen Anwendungen vor Angriffen, Überlastung und unzulässigen Zugriffen, und steuert den Zugriff auf Geschäftsobjekte und ‑prozesse über fachliche Zugriffsregeln.
+
+// end::api-gateway-definition-fachlich[]
+
+[[api-gateway-technische-sicht]]
+==== Technische Sicht
+
+// tag::api-gateway-definition-technisch[]
+
+Das API-Gateway ist der zentrale Zugangspunkt zum Aufruf von xref:glossary::terms-definitions.adoc#service[Services] von xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systemen] einer xref:glossary::terms-definitions.adoc#glossar-systemlandschaft[Systemlandschaft] von außen, sowie zum Aufruf von Services von xref:glossary::terms-definitions.adoc#externes-system[externen Systemen] von innerhalb der Systemlandschaft.
+Es stellt eine klare technische Grenze zur Systemlandschaft dar, indem es die internen Systeme von externen Systemen entkoppelt.
 Es überbrückt dabei Schnittstellentechnologien und nimmt querschnittliche Aufgaben wahr, insbesondere in den Bereichen Authentifizierung, Autorisierung, Monitoring und Protokollierung.
 
-// end::api-gateway-definition[]
+// end::api-gateway-definition-technisch[]
 
 [[glossar-architektursicht]]
 === Architektursicht
