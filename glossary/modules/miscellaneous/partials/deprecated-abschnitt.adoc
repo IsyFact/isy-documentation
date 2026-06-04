@@ -1,3 +1,3 @@
-// Content of this file has been moved to `include` target and should note be referenced from documents anymore. 
-// File will remain for backward compatibility but may be removed in future. 
+// Content of this file has been moved to `include` target and should not be referenced from documents anymore.
+// File will remain for backward compatibility but may be removed in the future.
 include::documentation-guide::partial$content-deprecated.adoc[]
