@@ -38,8 +38,7 @@ asciidoc:
     listing-caption: Listing
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable <.>
-    snapshot: true
+    url: ./antora-ui/default-ui/build/ui-bundle.zip <.>
   supplemental_files: ./supplemental-ui <.>
 output:
   dir: ./docs
@@ -48,7 +47,7 @@ output:
 <.> Abschnitte sollen nummeriert werden.
 <.> Die Abschnitte dürfen bis Level 5 geschachtelt sein (möglich, aber nicht empfohlen).
 <.> Vordefinierte Captions auf Deutsch.
-<.> Standard-UI von Antora.
+<.> IsyFact UI-Bundle. Die Einbindung erfolgt gemäß der https://github.com/isyfact/isy-antora-default-ui#integrate-isyfact-ui-bundle-into-antora-project[Anleitung] im Repository https://github.com/isyfact/isy-antora-default-ui[icon:github[] isy-antora-default-ui].
 <.> Ergänzungen der IsyFact zum Standard-UI.
 
 == Supplemental UI
